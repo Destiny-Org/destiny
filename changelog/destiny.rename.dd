@@ -1,0 +1,28 @@
+The compiler is now destiny, and Phobos is now Fate
+
+The language is called Destiny, and its compiler is called `destiny`.
+
+$(UL
+$(LI The build produces a binary named `destiny` (`destiny.exe` on
+Windows) instead of `dmd`.)
+$(LI The compiler reads its settings from `destiny.conf` instead of
+`dmd.conf`. On Windows the file is still `sc.ini`. Rename an existing
+`dmd.conf` to keep using it.)
+$(LI `destiny --version` prints `Destiny64 Compiler` (or `Destiny32`)
+instead of `DMD64 D Compiler`.)
+$(LI The standard library, previously Phobos, is called Fate. It is
+expected in the sibling folder `../fate`, and is cloned from
+`https://github.com/Destiny-Org/fate` when missing. Its modules are still
+named `std.*`.)
+)
+
+Removed from the repository:
+
+$(UL
+$(LI CI configurations for services Destiny does not use: Azure
+Pipelines, CircleCI and Codecov.)
+$(LI The dlang nightly, release and performance workflows.)
+$(LI `CODEOWNERS`, which listed upstream maintainers.)
+$(LI The deprecated `posix.mak` files and the `src/` compatibility
+directory. Use the top-level `Makefile`.)
+)

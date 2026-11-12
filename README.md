@@ -1,51 +1,82 @@
-<div align="center">
-
-![dlang logo](https://dlang.org/images/dlogo.png)
 # destiny
-[![GitHub tag](https://img.shields.io/github/tag-date/dlang/dmd.svg?maxAge=86400&style=flat)](https://github.com/dlang/dmd/releases)
-[![Code coverage](https://img.shields.io/codecov/c/github/dlang/dmd.svg?maxAge=86400&style=flat)](https://codecov.io/gh/dlang/dmd)
-[![license](https://img.shields.io/github/license/dlang/dmd.svg?style=flat)](https://github.com/dlang/dmd/blob/master/LICENSE.txt)
 
-[![GHA Main](https://github.com/dlang/dmd/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/dlang/dmd/actions/workflows/main.yml?query=branch%3Amaster)
-[![CircleCI](https://img.shields.io/circleci/project/github/dlang/dmd/master.svg?style=flat&label=circleci&logo=circleci)](https://circleci.com/gh/dlang/dmd/tree/master)
-[![Build Status](https://dev.azure.com/dlanguage/dmd/_apis/build/status/Azure%20pipelines?branchName=master)](https://dev.azure.com/dlanguage/dmd/_build/latest?definitionId=1&branchName=master)
-[![Buildkite](https://img.shields.io/buildkite/01239dde8424d69809d08769015bbdb9b90d05082e534d2f82/master.svg?style=flat&logo=dependabot&label=buildkite)](https://buildkite.com/dlang/dmd)
-</div>
-
----
 **destiny** is the reference compiler for the Destiny programming language.
 
-Releases, language specification and other resources can be found on the [homepage](https://dlang.org).
-Please refer to the guidelines for [bug reports](CONTRIBUTING.md#reporting-bugs) to
-report a problem or browse the list of open bugs.
+Destiny started as a fork of the D reference compiler (dmd) and its
+runtime. It is heading towards being memory safe by default; see the
+[memory safety design](docs/specs/2026-11-12-destiny-memory-safety-design.md).
 
-### Overview
+## Repositories
 
-This repository is structured into the following directories.
-Refer to their respective `README.md` for more in-depth information.
+Destiny is made of two repositories that live side by side in one folder:
 
-| Directory                            | Description                                       |
-|--------------------------------------|---------------------------------------------------|
-| [changelog](changelog)               | changelog entries for the upcoming release        |
-| [ci](ci)                             | CI related scripts / utilities                    |
-| [compiler](compiler)                 | root of all compiler (destiny/frontend) related code  |
-| [compiler/src](compiler/src)         | source code, build system and build instructions  |
-| [compiler/test](compiler/test)       | tests and testing infrastructure                  |
-| [compiler/docs](compiler/docs)       | man pages and internal documentation              |
-| [compiler/ini](compiler/ini)         | predefined `destiny.conf` files                       |
-| [druntime](druntime)                 | root of all runtime related code                  |
+| Repository | Folder | Contents |
+|---|---|---|
+| [Destiny-Org/destiny](https://github.com/Destiny-Org/destiny) | `destiny_engine/` | compiler, druntime, language spec, tests |
+| [Destiny-Org/fate](https://github.com/Destiny-Org/fate) | `fate/` | Fate, the standard library (forked from Phobos) |
 
-With a D compiler and dub installed, dmd can be built with:
+The build expects exactly this layout: Fate must sit next to the
+compiler folder, as `../fate`.
 
 ```
-dub build dmd:compiler
+git clone https://github.com/Destiny-Org/destiny.git destiny_engine
+git clone https://github.com/Destiny-Org/fate.git fate
 ```
 
-For more information regarding compiling, installing, and
-hacking on destiny, check the [contribution guide](CONTRIBUTING.md) and
-visit the [D Wiki](https://wiki.dlang.org/DMD).
+## Building
 
-### Nightlies
+Building needs an existing D compiler (dmd, ldc or gdc, version 2.079.1 or
+newer) to compile Destiny itself. It is called the *host compiler* and is
+passed as `HOST_DMD`.
 
-Nightly builds based of the current destiny / Phobos `master` branch
-can be found [here](https://github.com/dlang/dmd/releases/tag/nightly).
+```
+cd destiny_engine
+make -j$(nproc) HOST_DMD=dmd    # compiler + druntime
+make -j$(nproc) fate            # standard library (in ../fate)
+```
+
+The compiler ends up at `generated/<os>/release/<model>/destiny`, for
+example `generated/linux/release/64/destiny`, with its configuration file
+`destiny.conf` next to it.
+
+`make destiny` and `make dmd` build the same thing. More targets and build
+variables are described in [compiler/src/README.md](compiler/src/README.md).
+
+## Testing
+
+```
+make -j$(nproc) test            # compiler, druntime and Fate tests
+```
+
+See [compiler/test/README.md](compiler/test/README.md) for running single
+tests.
+
+## Layout
+
+| Directory | Description |
+|---|---|
+| [changelog](changelog) | changelog entries for the upcoming release |
+| [ci](ci) | CI scripts used by GitHub Actions |
+| [compiler/src](compiler/src) | compiler source code and build system |
+| [compiler/test](compiler/test) | compiler tests and test tools |
+| [compiler/docs](compiler/docs) | man pages and internal documentation |
+| [compiler/ini](compiler/ini) | predefined `destiny.conf` files per OS |
+| [druntime](druntime) | the runtime library |
+| [docs](docs) | Destiny design specs and guides |
+| [spec](spec) | the language specification |
+
+## Names inherited from D
+
+Some names still come from D, on purpose:
+
+- Source files keep the `.d` extension.
+- The compiler's own modules are named `dmd.*` and live in
+  `compiler/src/dmd/`.
+- The standard library modules are `std.*`, and the compiled library is
+  still `libphobos2`.
+- `HOST_DMD` and `version (DigitalMars)` refer to the upstream D
+  toolchain.
+
+## License
+
+Boost Software License 1.0; see [LICENSE.txt](LICENSE.txt).
