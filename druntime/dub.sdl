@@ -1,0 +1,8 @@
+name "druntime"
+license "BSL-1.0"
+description "D Runtime Library"
+authors "DLang Community"
+copyright "Copyright © 1999-2018, The Destiny Language Foundation"
+
+targetType "library"
+targetPath "generated"
