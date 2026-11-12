@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22809
+// upstream issue 22809
 
 typedef unsigned long size_t;
 
@@ -15,7 +15,7 @@ int y = ((size_t)((char *)&((struct Foo *)1)->x - (char *)1));
 _Static_assert(((size_t)((char *)&((struct Foo *)0)->y - (char *)0))==4, "");
 
 
-// https://issues.dlang.org/show_bug.cgi?id=23584
+// upstream issue 23584
 
 int foo(float bar)
 {

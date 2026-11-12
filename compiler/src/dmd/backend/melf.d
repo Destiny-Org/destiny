@@ -3,11 +3,11 @@
  * Declarations for ELF file format
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
  * Translation to D of Linux's melf.h
  *
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/melf.d, backend/melf.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/melf.d, backend/melf.d)
  * References:  $(LINK2 https://github.com/ARM-software/abi-aa/blob/main/aaelf64/aaelf64.rst, aaelf64)
  */
 

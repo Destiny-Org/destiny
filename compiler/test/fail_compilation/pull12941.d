@@ -14,7 +14,7 @@ fail_compilation/pull12941.d(105):        `pull12941.abc(return ref int* p)` dec
  */
 
 /*********************************/
-// Tests for https://github.com/dlang/dmd/pull/12941
+// Tests for upstream dmd pull request 12941
 
 #line 100
 

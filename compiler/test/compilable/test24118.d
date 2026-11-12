@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=24118
+// upstream issue 24118
 
 void map(alias fun, T)(T[] arr)
 {

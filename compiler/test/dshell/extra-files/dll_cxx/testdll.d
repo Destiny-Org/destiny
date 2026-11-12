@@ -3,7 +3,7 @@ version(Windows)
 else
     enum EXPORT = "";
 
-// https://issues.dlang.org/show_bug.cgi?id=22323
+// upstream issue 22323
 extern(C++) class C22323
 {
     this();
@@ -67,7 +67,7 @@ void test22323()
     assert(S22323.dtorCount == 3);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=19660
+// upstream issue 19660
 extern (C)
 {
     export extern __gshared int someValue19660;

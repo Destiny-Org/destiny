@@ -7,7 +7,7 @@ fail_compilation/test21247.d(18): Error: undefined identifier `b`
 fail_compilation/test21247.d(20):        called from here: `hang_dmd(0u)`
 ---
  */
-// https://github.com/dlang/dmd/issues/21247
+// upstream dmd issue 21247
 ubyte[4] hang_dmd(uint a)
 {
     union {

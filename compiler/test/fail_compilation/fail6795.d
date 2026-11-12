@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=6795
+// upstream issue 6795
 /*
 TEST_OUTPUT:
 ---
@@ -25,7 +25,7 @@ void test_wrong_line_num()
     auto ps = &sa[0];
     auto pa = &aa[0]; // ok with AA lowering, just as `pa = 0 in aa`
 
-    // https://issues.dlang.org/show_bug.cgi?id=24845
+    // upstream issue 24845
     enum Maps : int[string] { Some = ["aa" : 12], Other = ["bb" : 24] }
     Maps.Some["zz"] = 44;
 }

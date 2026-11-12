@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20021
+// upstream issue 20021
 struct S
 {
     bool opCast(T : bool)() { return true; }

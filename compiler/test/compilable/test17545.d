@@ -4,7 +4,7 @@ AliasSeq!((Attrib))
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17545
+// upstream issue 17545
 
 module example;
 

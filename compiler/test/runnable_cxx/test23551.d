@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23551
+// upstream dmd issue 23551
 // EXTRA_CPP_SOURCES: test23551.cpp
 // EXTRA_FILES: test23551.h
 

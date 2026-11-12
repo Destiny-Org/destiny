@@ -34,7 +34,7 @@ void test ()
         });
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=11316
+// upstream issue 11316
 void issue11316() {
     void delegate(const int x) F0;
     F0 = (const int x) {}; // OK

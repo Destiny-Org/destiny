@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23401
+// upstream dmd issue 23401
 
 struct HasDtor { int x; ~this() {} }
 class Base    { int marker; this() { marker = 42; } }

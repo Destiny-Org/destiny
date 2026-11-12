@@ -22,7 +22,7 @@ int main () {
     size_t aggr;
     MyContainerClass mc;
 
-    // https://issues.dlang.org/show_bug.cgi?id=15997
+    // upstream issue 15997
     enum WINHTTP_ERROR_BASE = 4200;
     enum ERROR_WINHTTP_CLIENT_AUTH_CERT_NEEDED = (WINHTTP_ERROR_BASE, + 44);
 
@@ -47,7 +47,7 @@ int main () {
 
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=16022
+// upstream issue 16022
 
 bool test16022()
 {

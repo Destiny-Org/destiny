@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -preview=dip1008
-// https://issues.dlang.org/show_bug.cgi?id=19317
+// upstream issue 19317
 
 class MyException: Exception {
     static int numInstances;

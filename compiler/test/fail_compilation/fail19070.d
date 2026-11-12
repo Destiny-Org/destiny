@@ -6,7 +6,7 @@ fail_compilation/fail19070.d(20): Error: template instance `fail19070.S!int` err
 ---
 */
 
-// https://github.com/dlang/dmd/issues/19070
+// upstream dmd issue 19070
 // error message for converting return value with ctor/dtor is horrible
 
 struct S(T)

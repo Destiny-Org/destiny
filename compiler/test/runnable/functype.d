@@ -183,7 +183,7 @@ void testxx()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3646
+// upstream issue 3646
 
 int bar3646(int x = 10) { printf("bar %d\n", x); return x; }
 int bam3646(int y)      { printf("bam %d\n", y); return y; }
@@ -215,7 +215,7 @@ void test3646()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3866
+// upstream issue 3866
 
 void test3866()
 {
@@ -230,7 +230,7 @@ void test3866()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8579
+// upstream issue 8579
 
 void test8579()
 {
@@ -256,7 +256,7 @@ void test8579()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14210
+// upstream issue 14210
 
 string foo14210a(DT)(string name, DT dg)
 {
@@ -276,7 +276,7 @@ void test14210()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10734
+// upstream issue 10734
 
 // There's no platform independent export symbol, so
 // test just only in Win32.
@@ -299,11 +299,11 @@ void test10734()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14656
+// upstream issue 14656
 
 void test14656()
 {
-    //void unaryFun()(auto int a) pure nothrow @safe @nogc {}   // changed to invalid by fixing https://issues.dlang.org/show_bug.cgi?id=14669
+    //void unaryFun()(auto int a) pure nothrow @safe @nogc {}   // changed to invalid by fixing upstream issue 14669
     alias Identity(F) = F;
     //unaryFun!()(41);
     static void fun(int n) pure nothrow @safe @nogc {}

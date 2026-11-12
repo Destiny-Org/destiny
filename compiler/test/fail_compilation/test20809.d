@@ -7,7 +7,7 @@ fail_compilation/test20809.d(112):        perhaps annotate the function with `re
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=20809
+// upstream issue 20809
 
 #line 100
 

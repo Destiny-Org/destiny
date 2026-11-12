@@ -5,7 +5,7 @@
 # For more information, please see the documentation of build.d.
 #
 # We recommend installing a D compiler globally and using src/build.d directly.
-# Visit https://dlang.org/download.html for more information
+# Visit https://github.com/Destiny-Org/destiny for more information
 
 set -euo pipefail
 

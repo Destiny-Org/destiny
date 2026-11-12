@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -preview=fieldwise -O
-// https://issues.dlang.org/show_bug.cgi?id=21821
+// upstream issue 21821
 
 // test case comes from unittests in core.lifetime
 

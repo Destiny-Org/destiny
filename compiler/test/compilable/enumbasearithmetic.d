@@ -1,4 +1,4 @@
-//https://issues.dlang.org/show_bug.cgi?id=20777
+//upstream issue 20777
 struct FooInt
 {
     int i;

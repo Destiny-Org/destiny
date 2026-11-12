@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24191
+// upstream dmd issue 24191
 
 /*
 DISABLED: freebsd32 openbsd32 linux32 osx32 win32 hurd32

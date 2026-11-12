@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/19346
+// upstream dmd issue 19346
 // Ddoc: ditto on struct should not prevent member documentation
 
 // PERMUTE_ARGS:

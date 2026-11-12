@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22825
+// upstream issue 22825
 /* TEST_OUTPUT:
 ---
 fail_compilation/fail22825a.d(10): Error: positive integer argument expected following `#line`

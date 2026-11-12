@@ -31,17 +31,17 @@ class SSCDClass
 #line 17
 
 alias int myInt;
-myInt x; // https://issues.dlang.org/show_bug.cgi?id=3404
+myInt x; // upstream issue 3404
 
 struct Foo(T) { T t; }
 class  Bar(int T) { int t = T; }
-interface Baz(T...) { T[0] t() const; } // https://issues.dlang.org/show_bug.cgi?id=3466
+interface Baz(T...) { T[0] t() const; } // upstream issue 3466
 
 template P(alias T) {}
 
 class Bar2 : Bar!1, Baz!(int, 2, null) {
     this() {}
-    ~this() {} // https://issues.dlang.org/show_bug.cgi?id=4178
+    ~this() {} // upstream issue 4178
 
     static foo() {}
     protected abstract Foo!int baz();
@@ -86,7 +86,7 @@ struct Foo3(bool b) {
 /++
  + Documentation test
  +/
-@trusted myInt bar(ref uint blah, Bar2 foo = new Bar3(7)) // https://issues.dlang.org/show_bug.cgi?id=4477
+@trusted myInt bar(ref uint blah, Bar2 foo = new Bar3(7)) // upstream issue 4477
 {
     return -1;
 }

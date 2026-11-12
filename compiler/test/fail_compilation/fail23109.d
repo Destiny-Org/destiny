@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23109
+// upstream issue 23109
 /*
 EXTRA_FILES: imports/test23109a.d imports/test23109b.d imports/test23109c.d
 EXTRA_SOURCES: extra-files/test23109/object.d

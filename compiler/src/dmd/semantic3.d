@@ -3,12 +3,12 @@
  * function bodies and late semantic checks for templates, mixins,
  * aggregates, and special members.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/semantic3.d, _semantic3.d)
- * Documentation:  https://dlang.org/phobos/dmd_semantic3.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/semantic3.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/semantic3.d, _semantic3.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/semantic3.d
+ * 
  */
 
 module dmd.semantic3;
@@ -280,7 +280,7 @@ private extern(C++) final class Semantic3Visitor : Visitor
         {
             if (funcdecl.storage_class & STC.inference)
             {
-                /* https://issues.dlang.org/show_bug.cgi?id=15044
+                /* upstream issue 15044
                  * For generated opAssign function, any errors
                  * from its body need to be gagged.
                  */
@@ -402,7 +402,7 @@ private extern(C++) final class Semantic3Visitor : Visitor
 
             declareThis(funcdecl, sc2);
 
-            // Reverts: https://issues.dlang.org/show_bug.cgi?id=5710
+            // Reverts: upstream issue 5710
             // No compiler supports this, and there was never any spec for it.
             // @@@DEPRECATED_2.116@@@
             // Deprecated in 2.096, can be made an error in 2.116.
@@ -573,7 +573,7 @@ private extern(C++) final class Semantic3Visitor : Visitor
             Scope* scout = null;
             if (needEnsure || funcdecl.addPostInvariant())
             {
-                /* https://issues.dlang.org/show_bug.cgi?id=3657
+                /* upstream issue 3657
                  * Set the correct end line number for fensure scope.
                  */
                 Loc fensure_endloc = funcdecl.endloc;
@@ -659,7 +659,7 @@ private extern(C++) final class Semantic3Visitor : Visitor
                             funcdecl.returns.remove(i);
                             continue;
                         }
-                        if (inferRef && f.isRef && !exp.type.constConv(f.next)) // https://issues.dlang.org/show_bug.cgi?id=13336
+                        if (inferRef && f.isRef && !exp.type.constConv(f.next)) // upstream issue 13336
                             f.isRef = false;
                         i++;
                     }
@@ -758,12 +758,12 @@ private extern(C++) final class Semantic3Visitor : Visitor
                     //printf("ctorflow.callSuper = x%x\n", sc2.ctorflow.callSuper);
                 }
 
-                /* https://issues.dlang.org/show_bug.cgi?id=17502
+                /* upstream issue 17502
                  * Wait until after the return type has been inferred before
                  * generating the contracts for this function, and merging contracts
                  * from overrides.
                  *
-                 * https://issues.dlang.org/show_bug.cgi?id=17893
+                 * upstream issue 17893
                  * However should take care to generate this before inferered
                  * function attributes are applied, such as 'nothrow'.
                  *
@@ -782,7 +782,7 @@ private extern(C++) final class Semantic3Visitor : Visitor
                 if (!(blockexit & (BE.throw_ | BE.halt) || funcdecl.hasCatches))
                 {
                     /* Don't generate unwind tables for this function
-                     * https://issues.dlang.org/show_bug.cgi?id=17997
+                     * upstream issue 17997
                      */
                     funcdecl.hasNoEH = true;
                 }
@@ -876,7 +876,7 @@ private extern(C++) final class Semantic3Visitor : Visitor
                             continue;
                         if (tret.ty == Terror)
                         {
-                            // https://issues.dlang.org/show_bug.cgi?id=13702
+                            // upstream issue 13702
                             exp = exp.checkGC(sc3);
                             continue;
                         }
@@ -889,7 +889,7 @@ private extern(C++) final class Semantic3Visitor : Visitor
                          */
                         if (!exp.implicitConvTo(tret) && funcdecl.isTypeIsolated(exp.type))
                         {
-                            /* https://issues.dlang.org/show_bug.cgi?id=20073
+                            /* upstream issue 20073
                              *
                              * The problem is that if the type of the returned expression (exp.type)
                              * is an aggregated declaration with an alias this, the alias this may be
@@ -961,7 +961,7 @@ private extern(C++) final class Semantic3Visitor : Visitor
                                 auto implicitlyCastedExp = exp.implicitCastTo(sc3, tret);
                                 global.endGagging(errors);
 
-                                // <https://github.com/dlang/dmd/issues/20888>
+                                // <upstream dmd issue 20888>
                                 if (implicitlyCastedExp.isErrorExp())
                                 {
                                     auto types = toAutoQualChars(exp.type, tret);
@@ -990,7 +990,7 @@ private extern(C++) final class Semantic3Visitor : Visitor
 
                             exp = exp.optimize(WANTvalue);
 
-                            /* https://issues.dlang.org/show_bug.cgi?id=10789
+                            /* upstream issue 10789
                              * If NRVO is not possible, all returned lvalues should call their postblits.
                              * For functions with a __result variable, postblits will be called later
                              * during initialization of __result.
@@ -1377,10 +1377,10 @@ private extern(C++) final class Semantic3Visitor : Visitor
         if (!f.deco && funcdecl.ident != Id.xopEquals && funcdecl.ident != Id.xopCmp)
         {
             sc = sc.push();
-            if (funcdecl.isCtorDeclaration()) // https://issues.dlang.org/show_bug.cgi?id=#15665
+            if (funcdecl.isCtorDeclaration()) // upstream issue 15665
                 f.isCtor = true;
             sc.stc = STC.none;
-            sc.linkage = funcdecl._linkage; // https://issues.dlang.org/show_bug.cgi?id=8496
+            sc.linkage = funcdecl._linkage; // upstream issue 8496
             funcdecl.type = f.typeSemantic(funcdecl.loc, sc);
             sc = sc.pop();
         }
@@ -1502,7 +1502,7 @@ private extern(C++) final class Semantic3Visitor : Visitor
          *.It is not necessary to add it after
          * each initialization of a field, because destruction of .init constructed
          * structs should be benign.
-         * https://issues.dlang.org/show_bug.cgi?id=14246
+         * upstream issue 14246
          */
         AggregateDeclaration ad = ctor.isMemberDecl();
         if (!ad || !ad.fieldDtor ||
@@ -1870,7 +1870,7 @@ void semanticRTInfo(AggregateDeclaration ad)
     // If rtInfoScope comes from a non-root ImportC module whose minst is that
     // module itself (see scopeCreateGlobal), so needsCodegen() would skip
     // RTInfoImpl even though TypeInfo references it at link time.
-    // See https://github.com/dlang/dmd/issues/23166.
+    // See upstream dmd issue 23166
     sc3.minst = sc._module.importedFrom;
     if (ad.isDeprecated())
         sc3.stc |= STC.deprecated_;

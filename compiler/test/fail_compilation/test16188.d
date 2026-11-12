@@ -7,7 +7,7 @@ fail_compilation/test16188.d(101): Error: template instance `test16188.Where.opD
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=16188
+// upstream issue 16188
 
 /* This produces the message:
  *   Error: no property 'name' for type 'Where'

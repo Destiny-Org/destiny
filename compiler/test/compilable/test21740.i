@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21740
+// upstream dmd issue 21740
 int x²;
 int \u2160;
 int \u2182;

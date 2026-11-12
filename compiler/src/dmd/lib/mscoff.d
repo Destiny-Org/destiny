@@ -1,12 +1,12 @@
 /**
  * A library in the COFF format, used on 32-bit and 64-bit Windows targets.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/lib/mscoff.d, _libmscoff.d)
- * Documentation:  https://dlang.org/phobos/dmd_libmscoff.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/lib/mscoff.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/lib/mscoff.d, _libmscoff.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.lib.mscoff;

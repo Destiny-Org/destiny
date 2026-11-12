@@ -7,7 +7,7 @@ fail_compilation/fail20084.d(109): Error: escaping a reference to parameter `v` 
 
 #line 100
 
-// https://issues.dlang.org/show_bug.cgi?id=20084
+// upstream issue 20084
 
 struct W() {
     int value;

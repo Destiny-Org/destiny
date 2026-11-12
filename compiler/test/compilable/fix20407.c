@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20407
+// upstream dmd issue 20407
 
 int f(int x)
 {

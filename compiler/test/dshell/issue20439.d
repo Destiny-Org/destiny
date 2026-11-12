@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20439
+// upstream dmd issue 20439
 //
 // A CTFE class/struct instance baked into a struct's `.init` needs a local backing symbol
 // ("internal") in *every* object module that emits the init image. The symbol was cached on
@@ -8,7 +8,7 @@
 // `b.o:(.data.rel.ro+0x8): undefined reference to 'internal'`.
 //
 // The issue used `SysTime.max`; reduced here to a plain CTFE instance to avoid importing
-// Phobos (the test suite must not), exercising both toSymbol overloads (class + struct).
+// Fate (the test suite must not), exercising both toSymbol overloads (class + struct).
 import dshell;
 
 int main()

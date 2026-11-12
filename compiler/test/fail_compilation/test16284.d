@@ -7,7 +7,7 @@ fail_compilation/test16284.d(27):        while evaluating: `static assert(test()
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=16284
+// upstream issue 16284
 
 struct S {}
 

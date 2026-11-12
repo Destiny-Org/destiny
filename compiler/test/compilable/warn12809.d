@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -o- -w
 
 /*
-Warning removed in: https://github.com/dlang/dmd/pull/15568
+Warning removed in: upstream dmd pull request 15568
 ---
 fail_compilation/warn12809.d(25): Warning: statement is not reachable
 fail_compilation/warn12809.d(33): Warning: statement is not reachable
@@ -72,7 +72,7 @@ void test3()
     int x = 1;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=14835
+// upstream issue 14835
 bool isEven(int i)()
 {
     static if (i % 2)
@@ -82,7 +82,7 @@ bool isEven(int i)()
 
 enum x = isEven!0;
 
-// https://issues.dlang.org/show_bug.cgi?id=10532
+// upstream issue 10532
 alias Seq(T...) = T;
 void f()
 {

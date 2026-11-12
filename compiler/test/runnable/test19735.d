@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19735
+// upstream issue 19735
 
 extern int test1(int par)
 {

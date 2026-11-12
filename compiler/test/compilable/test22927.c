@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22927
+// upstream issue 22927
 
 struct block *tmp;
 struct block {};

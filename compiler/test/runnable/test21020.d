@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21020
+// upstream dmd issue 21020
 
 shared struct Queue {
     int[int] map;

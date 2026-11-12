@@ -10,7 +10,7 @@ fail_compilation/test17596.d(24): Error: forward reference to template `opBinary
 ---
 */
 
-// https://github.com/dlang/dmd/issues/17596
+// upstream dmd issue 17596
 
 struct S1 {}
 struct S2

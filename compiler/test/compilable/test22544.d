@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22544
+// upstream dmd issue 22544
 
 struct S {
     int bar() { return 1; }

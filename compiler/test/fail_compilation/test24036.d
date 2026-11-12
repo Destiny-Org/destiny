@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=24036
+upstream issue 24036
 Issue 24036 - assert message in CTFE becomes `['m', 'e', 's', 's', 'a', 'g', 'e'][0..7]` if produced using std.format.format
 
 TEST_OUTPUT:

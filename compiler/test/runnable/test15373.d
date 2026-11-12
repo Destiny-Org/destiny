@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=15373
+// upstream issue 15373
 
 // Using `typeid` on an `extern(C++) class` type is fine as it is evaluated at compile-time
 

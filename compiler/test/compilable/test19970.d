@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19970
+// upstream issue 19970
 
 enum void* p = cast(void*)0;
 static assert(p is null);

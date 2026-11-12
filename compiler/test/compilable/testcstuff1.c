@@ -1,6 +1,6 @@
 // check the expression parser
 
-// https://github.com/dlang/dmd/issues/23226
+// upstream dmd issue 23226
 // C23 6.7.12 — message operand is optional
 _Static_assert(1);
 _Static_assert(1, "ok");

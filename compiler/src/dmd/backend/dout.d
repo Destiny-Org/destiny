@@ -2,15 +2,15 @@
  * Transition from intermediate representation to code generator
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
  * Copyright:   Copyright (C) 1984-1998 by Symantec
- *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved
+ *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/dout.d, backend/dout.d)
- * Documentation:  https://dlang.org/phobos/dmd_backend_dout.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/backend/dout.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dout.d, backend/dout.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dout.d
+ * 
  */
 
 module dmd.backend.dout;
@@ -500,7 +500,7 @@ void out_readonly(Symbol* s)
         /* Cannot have pointers in CDATA when compiling PIC code, because
          * they require dynamic relocations of the read-only segment.
          * Instead use the .data.rel.ro section.
-         * https://issues.dlang.org/show_bug.cgi?id=11171
+         * upstream issue 11171
          */
         if (config.flags3 & CFG3pic && dtpointers(s.Sdt))
             s.Sseg = CDATAREL;

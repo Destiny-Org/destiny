@@ -7,7 +7,7 @@ fail_compilation/test14238.d(27):        function `baz` closes over variable `x`
 fail_compilation/test14238.d(26):        `x` declared here
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=14238
+// upstream issue 14238
 
 @safe:
 

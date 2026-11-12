@@ -4,7 +4,7 @@ fail_compilation/fix17349.d(35): Error: cannot implicitly override base class me
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=17349
+// upstream issue 17349
 
 struct S { }
 

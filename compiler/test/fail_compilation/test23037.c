@@ -19,7 +19,7 @@ fail_compilation/test23037.c(207): Error: expected identifier for declaration
 ---
 */
 
-/* https://issues.dlang.org/show_bug.cgi?id=23037
+/* upstream issue 23037
  */
 
 #line 100

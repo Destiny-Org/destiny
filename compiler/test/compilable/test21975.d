@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21975
+// upstream issue 21975
 
 struct Outer(T)
 {

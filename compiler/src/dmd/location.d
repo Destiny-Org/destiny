@@ -1,12 +1,12 @@
 /**
  * Encapsulates file/line/column locations.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/location.d, _location.d)
- * Documentation:  https://dlang.org/phobos/dmd_location.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/location.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/location.d, _location.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/location.d
+ * 
  */
 
 module dmd.location;
@@ -38,7 +38,7 @@ struct Loc
 
     // FIXME: This arbitrary size increase is needed to prevent segfault in
     // runnable/test42.d on Ubuntu x86 when DMD was built with DMD 2.105 .. 2.110
-    // https://github.com/dlang/dmd/pull/20777#issuecomment-2614128849
+    // upstream dmd pull request 20777
     version (DigitalMars) version (linux) version (X86)
         private uint dummy;
 

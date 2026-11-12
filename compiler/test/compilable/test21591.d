@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21591
+// upstream issue 21591
 
 alias F = void function();
 

@@ -7,7 +7,7 @@ fail_compilation/test23886.i(105): Error: "string" expected after `#ident`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23886
+// upstream issue 23886
 
 #line 100
 

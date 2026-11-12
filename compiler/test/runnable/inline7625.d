@@ -149,7 +149,7 @@ void test7625b()
 
         static if (false)
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=15483
+            /* upstream issue 15483
                Even though it does absolutely nothing,
                the mere presence of this block prevents inlining
                of this function.

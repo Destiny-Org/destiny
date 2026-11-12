@@ -2,13 +2,13 @@
  * Emit Dwarf symbolic debug info
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/dwarfdbginf.d, backend/dwarfdbginf.d)
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/backend/dwarfdbginf.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dwarfdbginf.d, backend/dwarfdbginf.d)
+ * 
  */
 
 
@@ -28,7 +28,7 @@ application if debug info is needed when the application is deployed.
 
 Support in core.runtime for getting filename and line number for backtraces
 from these `.dSYM` files will need to be investigated.
-See: https://issues.dlang.org/show_bug.cgi?id=20510
+See: upstream issue 20510
 */
 
 module dmd.backend.dwarfdbginf;
@@ -2524,7 +2524,7 @@ static if (1)
                  */
                 {
                     /*
-                        https://issues.dlang.org/show_bug.cgi?id=22311
+                        upstream issue 22311
                         Must be unsigned long long, not ulong as the backend thinks ulong is from C.
                     */
                     uint lenidx = I64 ? dwarf_typidx(tstypes[TYullong]) : dwarf_typidx(tstypes[TYuint]);

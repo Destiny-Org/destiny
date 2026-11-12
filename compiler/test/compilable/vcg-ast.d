@@ -67,7 +67,7 @@ void main()
     values!wchar_t;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=24764
+// upstream issue 24764
 
 import imports.vcg_ast_import;
 
@@ -78,7 +78,7 @@ template imported()
 
 alias myImport = imported!();
 
-// https://github.com/dlang/dmd/issues/21105
+// upstream dmd issue 21105
 
 enum compiles = __traits(compiles,{
     int[] arr;

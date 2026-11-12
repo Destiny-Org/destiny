@@ -1,15 +1,15 @@
 /**
  * Does name mangling for `extern(D)` symbols.
  *
- * Specification: $(LINK2 https://dlang.org/spec/abi.html#name_mangling, Name Mangling)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/abi.dd, Name Mangling)
  *
- * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors: Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/mangle/package.d, _dmangle.d)
- * Documentation:  https://dlang.org/phobos/dmd_dmangle.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/mangle/package.d
- * References:  https://dlang.org/blog/2017/12/20/ds-newfangled-name-mangling/
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mangle/package.d, _dmangle.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
+ * References:  https://github.com/Destiny-Org/destiny
  */
 
 module dmd.mangle;
@@ -422,7 +422,7 @@ void mangleFuncType(TypeFunction t, TypeFunction ta, ubyte modMask, Type tret, r
  */
 void mangleParameter(Parameter p, ref OutBuffer buf, ref Backref backref)
 {
-    // https://dlang.org/spec/abi.html#Parameter
+    // https://github.com/Destiny-Org/destiny/blob/main/spec/abi.dd
 
     auto stc = p.storageClass;
 
@@ -818,7 +818,7 @@ public:
             Tuple va = isTuple(o);
             //printf("\to [%d] %p ta %p ea %p sa %p va %p\n", i, o, ta, ea, sa, va);
             if (i < nparams && (*tempdecl.parameters)[i].specialization())
-                buf.writeByte('H'); // https://issues.dlang.org/show_bug.cgi?id=6574
+                buf.writeByte('H'); // upstream issue 6574
             if (ta)
             {
                 buf.writeByte('T');
@@ -827,7 +827,7 @@ public:
             else if (ea)
             {
                 // Don't interpret it yet, it might actually be an alias template parameter.
-                // Only constfold manifest constants, not const/immutable lvalues, see https://issues.dlang.org/show_bug.cgi?id=17339.
+                // Only constfold manifest constants, not const/immutable lvalues, see upstream issue 17339.
                 enum keepLvalue = true;
                 ea = ea.optimize(WANTvalue, keepLvalue);
                 if (auto ev = ea.isVarExp())
@@ -1112,7 +1112,7 @@ private struct Backref
             return false;
 
         /**
-         * https://issues.dlang.org/show_bug.cgi?id=21591
+         * upstream issue 21591
          *
          * Special case for unmerged TypeFunctions: use the generic merged
          * function type as backref cache key to avoid missed backrefs.
@@ -1264,7 +1264,7 @@ extern (D) void toBuffer(ref OutBuffer buf, const(char)[] id, Dsymbol s)
  * This results in localNum having a non-zero number, which
  * is used to add a fake parent of the form `__Sddd` to make
  * the mangled names unique.
- * https://issues.dlang.org/show_bug.cgi?id=20565
+ * upstream issue 20565
  * Params:
  *      buf = buffer to write to
  *      localNum = local symbol number
@@ -1350,7 +1350,7 @@ void realToMangleBuffer(ref OutBuffer buf, real_t value)
  * externally in C, so in that case null is returned. C++ does support
  * namespaces, so extern(C++) always gives a C++ mangled name.
  *
- * See also: https://issues.dlang.org/show_bug.cgi?id=20012
+ * See also: upstream issue 20012
  *
  * Params:
  *     d = declaration to mangle
@@ -1367,7 +1367,7 @@ extern (D) const(char)[] externallyMangledIdentifier(Declaration d)
     const par = d.toParent(); //toParent() skips over mixin templates
     if (!par || par.isModule() || linkage == LINK.cpp ||
         (linkage == LINK.c && d.isCsymbol() &&
-         // https://github.com/dlang/dmd/issues/21241
+         // upstream dmd issue 21241
          // Static check is so C static functions get a unique mangle so the linker
          // won't merge them if compiling all-at-once.
          // Non-static functions can use their ident as their mangle.

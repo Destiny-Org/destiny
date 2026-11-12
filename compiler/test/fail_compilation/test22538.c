@@ -9,7 +9,7 @@ fail_compilation/test22538.c(126): Error: variable `test22538.stone2` conflicts 
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=22534
+// upstream issue 22534
 
 #line 100
 

@@ -18,4 +18,4 @@ dub --single -v lexer.d
 ```
 
 If you don't have `dub` installed on your system,
-[install an official release](https://dlang.org/download.html).
+[install an official release](https://github.com/Destiny-Org/destiny).

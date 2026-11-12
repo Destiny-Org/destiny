@@ -35,7 +35,7 @@ float usePrefetch(float[] x)
 ---
 
 
-Copyright: Copyright © 2021, The D Language Foundation
+Copyright: Copyright © 2021, The D Language Foundation; Copyright (C) 2026 Destiny contributors
 License:   $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
 Authors:   Walter Bright
 Source:    $(DRUNTIMESRC core/builtins.d)

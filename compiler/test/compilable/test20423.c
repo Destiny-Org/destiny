@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20423
+// upstream dmd issue 20423
 #include <stdarg.h>
 #include <stddef.h>
 #include <assert.h>

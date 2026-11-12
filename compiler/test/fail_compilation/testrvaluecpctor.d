@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22593
+// upstream issue 22593
 
 /*
 TEST_OUTPUT:
@@ -24,7 +24,7 @@ void fail22593()
     a.__ctor(a);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21613
+// upstream issue 21613
 
 /*
 TEST_OUTPUT:

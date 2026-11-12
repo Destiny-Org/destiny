@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19609
+// upstream issue 19609
 /*
 EXTRA_FILES: imports/fail19609a.d imports/fail19609b.d imports/fail19609c.d imports/fail19609d.d
 TEST_OUTPUT:

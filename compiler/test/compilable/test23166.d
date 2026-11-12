@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -inline
 
-// https://issues.dlang.org/show_bug.cgi?id=23166
+// upstream issue 23166
 
 // seg fault with -inline
 

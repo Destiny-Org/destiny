@@ -1,5 +1,5 @@
 
-// https://issues.dlang.org/show_bug.cgi?id=24069
+// upstream issue 24069
 
 typedef void (*fp_t)(int*);
 

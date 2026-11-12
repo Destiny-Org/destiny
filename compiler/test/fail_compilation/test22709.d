@@ -7,7 +7,7 @@ fail_compilation/test22709.d(20): Error: assigning address of variable `local` t
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22709
+// upstream issue 22709
 @safe:
 
 void escape(ref ubyte[] arr, ref ubyte[64] local)

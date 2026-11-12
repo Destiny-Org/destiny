@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22705
+// upstream issue 22705
 
 
 Ta *pa;

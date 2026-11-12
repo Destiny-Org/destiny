@@ -7,15 +7,15 @@ fail_compilation/var_func_attr.d(19): Error: cannot implicitly convert expressio
 
 // Test the effect of function attributes on variables
 // See:
-//   https://issues.dlang.org/show_bug.cgi?id=7432
-//   https://github.com/dlang/dmd/pull/14199
+//   upstream issue 7432
+//   upstream dmd pull request 14199
 // Usually it's a no-op, but the attribute can apply to the function/delegate type of the variable
 // The current behavior is weird, so this is a test of the current behavior, not necessarily the desired behavior
 
 // No-op
 pure int x;
 
-// Applies to function type (existing code in dmd and Phobos relies on this)
+// Applies to function type (existing code in dmd and Fate relies on this)
 pure void function() pf = () {
     static int g;
     g++;

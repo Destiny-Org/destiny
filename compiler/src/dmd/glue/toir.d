@@ -1,12 +1,12 @@
 /**
  * Convert to Intermediate Representation (IR) for the back-end.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/glue/toir.d, _toir.d)
- * Documentation:  https://dlang.org/phobos/dmd_gule_toir.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/glue/toir.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/toir.d, _toir.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.glue.toir;
@@ -161,7 +161,7 @@ struct IRState
  * Returns:
  *      elem that increments the line count
  * References:
- * https://dlang.org/dmd-windows.html#switch-cov
+ * https://github.com/Destiny-Org/destiny/blob/main/README.md
  */
 package(dmd.glue)
 extern (D) elem* incUsageElem(ref IRState irs, Loc loc)
@@ -263,7 +263,7 @@ elem* getEthis(Loc loc, ref IRState irs, Dsymbol fd, Dsymbol fdp = null, Dsymbol
                  * fd is the nested function '__require' or '__ensure'.
                  * Even if there's a closure environment, we should give
                  * original stack data as the nested function frame.
-                 * See also: SymbolExp.toElem() in e2ir.c (https://issues.dlang.org/show_bug.cgi?id=9383 fix)
+                 * See also: SymbolExp.toElem() in e2ir.c (upstream issue 9383 fix)
                  */
                 /* Address of 'sthis' gives the 'this' for the nested
                  * function.
@@ -282,7 +282,7 @@ elem* getEthis(Loc loc, ref IRState irs, Dsymbol fd, Dsymbol fdp = null, Dsymbol
                 //printf("%s to %s, offset = %d\n", cd.toChars(), cdp.toChars(), offset);
                 if (offset)
                 {
-                    /* https://issues.dlang.org/show_bug.cgi?id=7517: If fdp is declared in interface, offset the
+                    /* upstream issue 7517: If fdp is declared in interface, offset the
                      * 'this' pointer to get correct interface type reference.
                      */
                     Symbol* stmp = symbol_genauto(TYnptr);
@@ -811,7 +811,7 @@ void buildClosure(FuncDeclaration fd, ref IRState irs)
          */
         if (oldValue != fd.requiresClosure && (fd.nrvo_var || !irs.params.useGC))
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=23112
+            /* upstream issue 23112
              * This can shift due to templates being expanded that access alias symbols.
              */
             fd.checkClosure();   // give decent diagnostic
@@ -863,7 +863,7 @@ void buildClosure(FuncDeclaration fd, ref IRState irs)
             v.inClosure = true;
 
             // Hack for the case fail_compilation/fail10666.d,
-            // until proper https://issues.dlang.org/show_bug.cgi?id=5730 fix will come.
+            // until proper upstream issue 5730 fix will come.
             bool isScopeDtorParam = v.edtor && (v.storage_class & STC.parameter);
             if (v.needsScopeDtor() || isScopeDtorParam)
             {
@@ -873,7 +873,7 @@ void buildClosure(FuncDeclaration fd, ref IRState irs)
             }
             if (v.isargptr)
             {
-                /* See https://issues.dlang.org/show_bug.cgi?id=2479
+                /* See upstream issue 2479
                  * This is actually a bug, but better to produce a nice
                  * message at compile time rather than memory corruption at runtime
                  */
@@ -1012,7 +1012,7 @@ void buildClosure(FuncDeclaration fd, ref IRState irs)
  * Reference:
  *      buildClosure() is very similar.
  *
- *      https://github.com/dlang/dmd/pull/9143 was an incomplete attempt to solve this problem
+ *      upstream dmd pull request 9143 was an incomplete attempt to solve this problem
  *      that was merged. It should probably be removed.
  */
 package(dmd.glue)

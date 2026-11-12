@@ -3,12 +3,12 @@
  *
  * Specification: C11
  *
- * Copyright:   Copyright (C) 2021-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 2021-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/importc.d, _importc.d)
- * Documentation:  https://dlang.org/phobos/dmd_importc.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/importc.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/importc.d, _importc.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/importc.d
+ * 
  */
 
 module dmd.importc;
@@ -727,7 +727,7 @@ void cEnumSemantic(Scope* sc, EnumDeclaration ed)
                 em.type = commonType;
                 // optimize out the cast so that other parts of the compiler can
                 // assume that an integral enum's members are `IntegerExp`s.
-                // https://issues.dlang.org/show_bug.cgi?id=24504
+                // upstream issue 24504
                 em.value = em.value.castTo(sc, commonType).optimize(WANTvalue);
             }
         });

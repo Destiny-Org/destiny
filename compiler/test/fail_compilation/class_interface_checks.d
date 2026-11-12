@@ -10,7 +10,7 @@ fail_compilation/class_interface_checks.d(37): Error: class `class_interface_che
 */
 
 
-// https://github.com/dlang/dmd/issues/19807
+// upstream dmd issue 19807
 // Unimplemented interface methods inherited through an abstract base class
 // should be detected, instead of compiling and segfaulting at runtime.
 

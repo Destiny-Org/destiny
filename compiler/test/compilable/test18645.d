@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=18645
+// upstream issue 18645
 
 immutable INIT = 42;
 

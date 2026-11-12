@@ -2,15 +2,15 @@
  * Support for NT exception handling
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
  * Copyright:   Copyright (C) 1994-1998 by Symantec
- *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved
+ *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/x86/nteh.d, backend/nteh.d)
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/backend/x86/nteh.d
- * Documentation:  https://dlang.org/phobos/dmd_backend_x86_nteh.html
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/nteh.d, backend/nteh.d)
+ * 
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/nteh.d
  */
 
 module dmd.backend.x86.nteh;
@@ -567,7 +567,7 @@ void nteh_unwind(ref CGstate cg, ref CodeBuilder cdb,regm_t saveregs,uint stop_i
     // Shouldn't this always be CX?
     const reg_t reg = CX;
 
-    // https://github.com/dlang/dmd/blob/cdfadf8a18f474e6a1b8352af2541efe3e3467cc/druntime/src/rt/deh_win32.d#L934
+    // https://github.com/Destiny-Org/destiny/blob/cdfadf8a18f474e6a1b8352af2541efe3e3467cc/druntime/src/rt/deh_win32.d#L934
     const local_unwind = RTLSYM.D_LOCAL_UNWIND2;    // __d_local_unwind2()
 
     const regm_t desregs = (~getRtlsym(local_unwind).Sregsaved & (ALLREGS)) | (1UL << reg);

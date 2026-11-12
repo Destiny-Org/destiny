@@ -566,7 +566,7 @@ unittest
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=24436
+// upstream issue 24436
 @system unittest
 {
     import core.memory : GC;

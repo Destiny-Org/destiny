@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20963
+// upstream dmd issue 20963
 
 void cdind() {
     struct ABC {

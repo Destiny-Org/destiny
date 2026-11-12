@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23509
+// upstream issue 23509
 
 int max(int a, int b)
 {

@@ -1,7 +1,7 @@
 // REQUIRED_ARGS:
 // EXTRA_FILES: imports/test15857a.d imports/test15857b.d imports/test15857c.d
 
-// https://issues.dlang.org/show_bug.cgi?id=15825
+// upstream issue 15825
 
 template anySatisfy15825(T...)
 {
@@ -10,7 +10,7 @@ template anySatisfy15825(T...)
 
 alias T15825 = anySatisfy15825!(int);
 
-// https://issues.dlang.org/show_bug.cgi?id=15857
+// upstream issue 15857
 
 template Mix15857(T)
 {

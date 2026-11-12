@@ -8,7 +8,7 @@ fail_compilation/test13537.d(34): Error: modifying field `U.y` which overlaps wi
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=13537
+// upstream issue 13537
 
 union U
 {

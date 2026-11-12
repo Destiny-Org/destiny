@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=21807
+upstream issue 21807
 
 REQUIRED_ARGS: -de
 TEST_OUTPUT:

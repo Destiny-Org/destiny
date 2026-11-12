@@ -383,7 +383,7 @@ void test20()
 
 /*******************************************/
 
-/* https://issues.dlang.org/show_bug.cgi?id=22994
+/* upstream issue 22994
  */
 
 char cs1[1];
@@ -701,7 +701,7 @@ void test23230()
 }
 
 /*********************************/
-// https://issues.dlang.org/show_bug.cgi?id=22652
+// upstream issue 22652
 
 void test22652()
 {
@@ -760,7 +760,7 @@ void test44()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=23338
+// upstream issue 23338
 
 struct S45 {
     char a, b[2];
@@ -780,7 +780,7 @@ void test45()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=23348
+// upstream issue 23348
 
 struct SS46 {
     char a, b[2];
@@ -816,7 +816,7 @@ void test22925()
 
 /*******************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=23345
+// upstream issue 23345
 
 struct S47 { int a, b; };
 
@@ -830,7 +830,7 @@ void test47()
 
 /*******************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=24154
+// upstream issue 24154
 
 void test24154()
 {
@@ -844,7 +844,7 @@ void test24154()
 
 /*******************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=24155
+// upstream issue 24155
 
 struct S24155 { int x, y; };
 

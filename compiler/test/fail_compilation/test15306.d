@@ -6,7 +6,7 @@ fail_compilation/test15306.d(19): Error: `shared` delegate `test15306.main.__dgl
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=15306
+// upstream issue 15306
 
 void main()
 {

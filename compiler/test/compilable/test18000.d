@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -preview=dip1000
 
-// https://issues.dlang.org/show_bug.cgi?id=18000
+// upstream issue 18000
 
 struct File
 {

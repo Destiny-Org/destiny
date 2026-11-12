@@ -1,5 +1,5 @@
 /**
- * Written in the D programming language.
+ * Written in the Destiny programming language.
  * This module provides ELF-specific support for sections with shared libraries.
  *
  * Copyright: Copyright Martin Nowak 2012-2013.

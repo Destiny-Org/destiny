@@ -25,7 +25,7 @@ int   AAAA0021
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=21301
+// upstream issue 21301
 
 //extern (C)
 void func(

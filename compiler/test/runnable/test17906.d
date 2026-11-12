@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/17906
+// upstream dmd issue 17906
 
 // A recursive call must not be assumed `nothrow` while inferring `nothrow`,
 // otherwise the `catch (Exception)` clause around it gets wrongly elided and

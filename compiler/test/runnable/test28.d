@@ -1230,7 +1230,7 @@ void test65()
 
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18576
+// upstream issue 18576
 
 void delegate() callback;
 
@@ -1273,7 +1273,7 @@ void test18576()
 }
 
 /*******************************************/
-// https://github.com/dlang/dmd/issues/22160
+// upstream dmd issue 22160
 
 struct Vector22160(T)
 {
@@ -1323,7 +1323,7 @@ void test22160()
 }
 
 /*******************************************/
-// https://github.com/dlang/dmd/issues/22292
+// upstream dmd issue 22292
 
 struct Vector22292(T)
 {

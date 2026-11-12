@@ -576,11 +576,11 @@ styles of links:
  * Some links:
  *
  * 1. A [reference link][ref] and bare reference links: [ref] or [Object]
- * 2. An [inline link](https://dlang.org)
- * 3. A bare URL: https://dlang.org
- * 4. An ![image](https://dlang.org/images/d3.png)
+ * 2. An [inline link](https://github.com/Destiny-Org/destiny)
+ * 3. A bare URL: https://github.com/Destiny-Org/destiny
+ * 4. An ![image](https://github.com/Destiny-Org/destiny)
  *
- * [ref]: https://dlang.org "The Destiny Language Website"
+ * [ref]: https://github.com/Destiny-Org/destiny "The Destiny Language Website"
  */
 ---
 
@@ -635,7 +635,7 @@ text wrapped in single or double quotes, or in parentheses:
 )
 
 ---
-/// [a link with title text](https://dlang.org 'Some title text')
+/// [a link with title text](https://github.com/Destiny-Org/destiny 'Some title text')
 ---
 
 $(H4 $(LNAME2 urls, Bare URLs))
@@ -969,7 +969,7 @@ $(P
     /**
     Macros:
      PARAM = <u>$1</u>
-     MATH_DOCS = <a href="https://dlang.org/phobos/std_math.html">Math Docs</a>
+     MATH_DOCS = <a href="https://github.com/Destiny-Org/fate/blob/main/std/math/package.d">Math Docs</a>
     */
     module math;
 
@@ -988,7 +988,7 @@ $(P
     <dl><dt><big><a name="sum"></a>int <u>sum</u>(int <i>a</i>, int <i>b</i>);
     </big></dt>
     <dd>This function returns the <u>sum</u> of <u><i>a</i></u> and <u><i>b</i></u>.
-     See also the <a href="https://dlang.org/phobos/std_math.html">Math Docs</a>.
+     See also the <a href="https://github.com/Destiny-Org/fate/blob/main/std/math/package.d">Math Docs</a>.
     </dd>
     </dl>
     ------------------------------------
@@ -1089,7 +1089,7 @@ $(P
 
 $(P The implementations of all predefined macros are implementation-defined. The
 reference implementation's macro definitions can be found $(HTTPS
-github.com/dlang/dmd/blob/master/compiler/src/dmd/res/default_ddoc_theme.ddoc, here).)
+github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/res/default_ddoc_theme.ddoc, here).)
 
 $(P
     Ddoc does not generate HTML code. It formats into the basic
@@ -1386,7 +1386,7 @@ $(H2 $(LNAME2 links_to_d_documentation_generators, Links to D documentation gene
 
 $(P
     A list of current D documentation generators which use Ddoc
-    can be found on our $(LINK2 https://wiki.dlang.org/Open_Source_Projects#Documentation_Generators, wiki page).
+    can be found on our $(LINK2 https://github.com/Destiny-Org/destiny, wiki page).
 )
 
 $(SPEC_SUBNAV_PREV_NEXT iasm, D x86 Inline Assembler, interfaceToC, Interfacing to C)

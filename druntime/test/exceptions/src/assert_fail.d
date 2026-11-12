@@ -82,11 +82,11 @@ void testStrings()
     test("foo", "bar", `"foo" != "bar"`);
     test("", "bar", `"" != "bar"`);
 
-    char[] dlang = "dlang".dup;
+    char[] desti = "desti".dup;
     const(char)[] rust = "rust";
-    test(dlang, rust, `"dlang" != "rust"`);
+    test(desti, rust, `"desti" != "rust"`);
 
-    // https://issues.dlang.org/show_bug.cgi?id=20322
+    // upstream issue 20322
     test("left"w, "right"w, `"left" != "right"`);
     test("left"d, "right"d, `"left" != "right"`);
 
@@ -170,7 +170,7 @@ void testStruct()
     test(S(0), S(1), "S(0) != S(1)");
     test(T([T(null)]), T(null), "T([T([])]) != T([])");
 
-    // https://issues.dlang.org/show_bug.cgi?id=20323
+    // upstream issue 20323
     static struct NoCopy
     {
         @disable this(this);
@@ -200,7 +200,7 @@ void testAttributes() @safe pure @nogc nothrow
     assert(s2 == `0 != true`);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20066
+// upstream issue 20066
 void testVoidArray()
 {
     test!"!is"([], null, (__ctfe ? "<void[] not supported>" : "[]") ~ " is `null`");

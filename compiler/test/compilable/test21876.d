@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21876
+// upstream issue 21876
 
 auto test1()
 {

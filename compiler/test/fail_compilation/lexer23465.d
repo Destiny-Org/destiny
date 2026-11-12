@@ -13,7 +13,7 @@ fail_compilation/lexer23465.d(19):        `arr` declared here
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23465
+// upstream issue 23465
 // Invalid token error points to wrong line
 
 int[] arr = [

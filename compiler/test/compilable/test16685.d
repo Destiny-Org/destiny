@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16685
+// upstream issue 16685
 
 struct Id { ushort value; }
 enum Id x = Id(5);

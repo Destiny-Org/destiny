@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21478
+// upstream dmd issue 21478
 
 // Test struct that implements "rule of five"
 

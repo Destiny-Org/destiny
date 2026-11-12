@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22054
+// upstream dmd issue 22054
 
 import core.sys.windows.winbase;
 import core.sys.windows.winnt;

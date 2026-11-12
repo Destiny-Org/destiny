@@ -1,12 +1,12 @@
 /**
  * Converts expressions to Intermediate Representation (IR) for the backend.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/glue/e2ir.d, _e2ir.d)
- * Documentation: https://dlang.org/phobos/dmd_glue_e2ir.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/glue/e2ir.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/e2ir.d, _e2ir.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/e2ir.d
+ * 
  */
 
 module dmd.glue.e2ir;
@@ -777,7 +777,7 @@ elem* toElem(Expression e, ref IRState irs)
                 elem* ethis = getEthis(se.loc, irs, fd, null, se.originalScope);
                 ethis = el_una(OPaddr, TYnptr, ethis);
 
-                /* https://issues.dlang.org/show_bug.cgi?id=9383
+                /* upstream issue 9383
                  * If 's' is a virtual function parameter
                  * placed in closure, and actually accessed from in/out
                  * contract, instead look at the original stack data.
@@ -1660,7 +1660,7 @@ elem* toElem(Expression e, ref IRState irs)
 
     elem* visitAssert(AssertExp ae)
     {
-        // https://dlang.org/spec/expression.html#assert_expressions
+        // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
         //printf("AssertExp.toElem() %s\n", ae.toChars());
         elem* e;
         if (irs.params.useAssert != CHECKENABLE.on)
@@ -1745,7 +1745,7 @@ elem* toElem(Expression e, ref IRState irs)
 
             if (ae.msg)
             {
-                /* https://issues.dlang.org/show_bug.cgi?id=8360
+                /* upstream issue 8360
                  * If the condition is evalated to true,
                  * msg is not evaluated at all. so should use
                  * toElemDtor(msg, irs) instead of toElem(msg, irs).
@@ -1972,7 +1972,7 @@ elem* toElem(Expression e, ref IRState irs)
     }
 
     /***************************************
-     * https://dlang.org/spec/expression.html#cat_expressions
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
      */
 
     elem* visitCat(CatExp ce)
@@ -2349,7 +2349,7 @@ elem* toElem(Expression e, ref IRState irs)
 
         //printf("IdentityExp.toElem() %s\n", ie.toChars());
 
-        /* Fix Issue 18746 : https://issues.dlang.org/show_bug.cgi?id=18746
+        /* Fix Issue 18746 : upstream issue 18746
          * Before skipping the comparison for empty structs
          * it is necessary to check whether the expressions involved
          * have any sideeffects
@@ -2370,7 +2370,7 @@ elem* toElem(Expression e, ref IRState irs)
             elem* es2 = toElem(ie.e2, irs);
             es2 = addressElem(es2, ie.e2.type);
             // In case of `real`, don't compare padding bits
-            // https://issues.dlang.org/show_bug.cgi?id=3632
+            // upstream issue 3632
             elem* ecount = el_long(TYsize_t, (t1.ty == TY.Tfloat80) ? (t1.size() - target.realpad) : t1.size());
             if (1)
             {
@@ -2438,7 +2438,7 @@ elem* toElem(Expression e, ref IRState irs)
         }
 
         /*
-            https://issues.dlang.org/show_bug.cgi?id=23120
+            upstream issue 23120
 
             If rhs is a noreturn expression, then there is no point
             to generate any code for the noreturen variable.
@@ -2571,7 +2571,7 @@ elem* toElem(Expression e, ref IRState irs)
                 elem* eto = toElem(ae.e1, irs);
                 elem* efrom = toElem(ae.e2, irs);
 
-                // https://github.com/dlang/dmd/issues/22659
+                // upstream dmd issue 22659
                 // LHS is a SliceExp with static array type from cast(T[n]) slice.
                 if (t1.ty == Tsarray)
                     return setResult(elAssign(eto, efrom, ae.e1.type, null));
@@ -2876,7 +2876,7 @@ elem* toElem(Expression e, ref IRState irs)
              * as:
              *      e1[0] = x, e1[1..2] = a, e1[3] = b, ...;
              */
-            if (ae.op == EXP.construct &&   // https://issues.dlang.org/show_bug.cgi?id=11238
+            if (ae.op == EXP.construct &&   // upstream issue 11238
                                            // avoid aliasing issue
                 ae.e2.op == EXP.arrayLiteral)
             {
@@ -2921,7 +2921,7 @@ elem* toElem(Expression e, ref IRState irs)
                 return setResult2(e);
             }
 
-            /* https://issues.dlang.org/show_bug.cgi?id=13661
+            /* upstream issue 13661
              * Even if the elements in rhs are all rvalues and
              * don't have to call postblits, this assignment should call
              * destructors on old assigned elements.
@@ -3393,7 +3393,7 @@ elem* toElem(Expression e, ref IRState irs)
             return el_long(TYint, 0);
         }
 
-        // https://issues.dlang.org/show_bug.cgi?id=12900
+        // upstream issue 12900
         Type txb = dve.type.toBasetype();
         Type tyb = v.type.toBasetype();
         if (auto tv = txb.isTypeVector()) txb = tv.basetype;
@@ -3404,7 +3404,7 @@ elem* toElem(Expression e, ref IRState irs)
 
         assert(txb.ty == tyb.ty);
 
-        // https://issues.dlang.org/show_bug.cgi?id=14730
+        // upstream issue 14730
         if (v.offset == 0)
         {
             FuncDeclaration fd = v.parent.isFuncDeclaration();
@@ -3768,7 +3768,7 @@ elem* toElem(Expression e, ref IRState irs)
         // Generate code for `vec.array`
         if (auto ve = vae.e1.isVectorExp())
         {
-            // https://issues.dlang.org/show_bug.cgi?id=19607
+            // upstream issue 19607
             // When viewing a vector literal as an array, build the underlying array directly.
             if (ve.e1.op == EXP.arrayLiteral)
                 result = toElem(ve.e1, irs);
@@ -3969,7 +3969,7 @@ elem* toElem(Expression e, ref IRState irs)
         {
             assert(t1.ty == tb.ty);   // Tarray or Tsarray
 
-            // https://issues.dlang.org/show_bug.cgi?id=14672
+            // upstream issue 14672
             // If se is in left side operand of element-wise
             // assignment, the element type can be painted to the base class.
             int offset;
@@ -4758,8 +4758,8 @@ elem* toElemCast(CastExp ce, elem* e, bool isLvalue, ref IRState irs)
     TY fty;
     TY tty;
     if (t.equals(tfrom) ||
-        t.equals(Type.tvoid) ||       // https://issues.dlang.org/show_bug.cgi?id=18573
-        tybasic(e.Ety) == TYnoreturn) // https://issues.dlang.org/show_bug.cgi?id=23950
+        t.equals(Type.tvoid) ||       // upstream issue 18573
+        tybasic(e.Ety) == TYnoreturn) // upstream issue 23950
                                       // Remember to pop value left on FPU stack
         return e;
 
@@ -6138,7 +6138,7 @@ elem* callfunc(Loc loc,
     {
         // `OPcallns` used to be passed here for certain pure functions,
         // but optimizations based on pure have to be retought, see:
-        // https://issues.dlang.org/show_bug.cgi?id=22277
+        // upstream issue 22277
         if (ep)
             e = el_bin(OPcall, tyret, ec, ep);
         else
@@ -6829,7 +6829,7 @@ elem* toElemCall(CallExp ce, ref IRState irs, elem* ehidden = null)
          *   [2] ec:  (dctor info ((__ctmp = initializer),__ctmp)), __ctmp
          *   [3] ec:  (dctor info ((_flag=0),((__ctmp = initializer),__ctmp))), __ctmp
          * The trouble
-         * https://issues.dlang.org/show_bug.cgi?id=13095
+         * upstream issue 13095
          * is if ctor(args) throws, then __ctmp is destructed even though __ctmp
          * is not a fully constructed object yet. The solution is to move the ctor(args) itno the dctor tree.
          * But first, detect [1], then [2], then split up [2] into:
@@ -6901,7 +6901,7 @@ elem* toElemCall(CallExp ce, ref IRState irs, elem* ehidden = null)
         {
             // This optimization is not valid if alloca can be called
             // multiple times within the same function, eg in a loop
-            // see https://issues.dlang.org/show_bug.cgi?id=3822
+            // see upstream issue 3822
             if (fd && fd.ident == Id.__alloca &&
                 !fd.fbody && fd._linkage == LINK.c &&
                 arguments && arguments.length == 1)

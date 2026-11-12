@@ -8,7 +8,7 @@ fail_compilation/fail23210.d(17):        because of `@disable this();` here
 ---
 */
 
-// https://github.com/dlang/dmd/issues/23210
+// upstream dmd issue 23210
 
 struct C
 {

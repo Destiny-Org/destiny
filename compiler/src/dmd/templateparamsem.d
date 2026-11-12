@@ -1,12 +1,12 @@
 /**
  * Semantic analysis of template parameters.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/templateparamsem.d, _templateparamsem.d)
- * Documentation:  https://dlang.org/phobos/dmd_templateparamsem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/templateparamsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/templateparamsem.d, _templateparamsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/templateparamsem.d
+ * 
  */
 
 module dmd.templateparamsem;
@@ -183,7 +183,7 @@ RootObject aliasParameterSemantic(Loc loc, Scope* sc, RootObject o, TemplatePara
                 return Type.terror;
             // We might have something that looks like a type
             // but is actually an expression or a dsymbol
-            // see https://issues.dlang.org/show_bug.cgi?id=16472
+            // see upstream issue 16472
             if (t)
                 return t.typeSemantic(loc, sc);
             if (ea)

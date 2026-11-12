@@ -6,7 +6,7 @@ fail_compilation/fail19881.d(13): Error: assigning address of variable `local` t
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=19881
+// upstream issue 19881
 
 @safe int* test(return scope int* input) {
     int local = 42;

@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -preview=fixAliasThis
 
-// https://issues.dlang.org/show_bug.cgi?id=16086
+// upstream issue 16086
 struct A
 {
     void tail() {}
@@ -36,7 +36,7 @@ struct S16086
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=16082
+// upstream issue 16082
 struct S16082
 {
     struct Inner

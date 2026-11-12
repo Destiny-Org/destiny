@@ -1,12 +1,12 @@
 /**
  * Does the semantic passes on enums.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/enumsem.d, _enumsem.d)
- * Documentation:  https://dlang.org/phobos/dmd_enumsem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/enumsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/enumsem.d, _enumsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/enumsem.d
+ * 
  */
 
 module dmd.enumsem;
@@ -151,7 +151,7 @@ void enumSemantic(Scope* sc, EnumDeclaration ed)
         {
             auto sym = te.toDsymbol(sc).isEnumDeclaration();
             // Special enums like __c_[u]long[long] are fine to forward reference
-            // see https://issues.dlang.org/show_bug.cgi?id=20599
+            // see upstream issue 20599
             if (!sym.isSpecial() && (!sym.memtype ||  !sym.members || !sym.symtab || sym._scope))
             {
                 // memtype is forward referenced, so try again later
@@ -201,7 +201,7 @@ void enumSemantic(Scope* sc, EnumDeclaration ed)
 
     version (none)
     {
-        // @@@DEPRECATED_2.110@@@ https://dlang.org/deprecate.html#scope%20as%20a%20type%20constraint
+        // @@@DEPRECATED_2.110@@@ https://github.com/Destiny-Org/destiny
         // Deprecated in 2.100
         // Make an error in 2.110
         if (sc.stc & STC.scope_)
@@ -263,7 +263,7 @@ Expression getDefaultValue(EnumDeclaration ed, Loc loc)
         return ed.defaultval;
     }
     //printf("EnumDeclaration::getDefaultValue() %p %s\n", this, toChars());
-    // https://issues.dlang.org/show_bug.cgi?id=23904
+    // upstream issue 23904
     // Return ed.defaultval only if it is not ErrorExp.
     // A speculative context may set ed.defaultval to ErrorExp;
     // subsequent non-speculative contexts need to be able
@@ -386,7 +386,7 @@ void enumMemberSemantic(Scope* sc, EnumMember em)
     em._linkage = LINK.d;
     em.storage_class |= STC.manifest;
 
-    // https://issues.dlang.org/show_bug.cgi?id=9701
+    // upstream issue 9701
     if (em.ed.isAnonymous())
     {
         if (em.userAttribDecl)
@@ -436,7 +436,7 @@ void enumMemberSemantic(Scope* sc, EnumMember em)
             }
             if (em.ed.memtype.ty != Terror)
             {
-                /* https://issues.dlang.org/show_bug.cgi?id=11746
+                /* upstream issue 11746
                  * All of named enum members should have same type
                  * with the first member. If the following members were referenced
                  * during the first member semantic, their types should be unified.
@@ -475,7 +475,7 @@ void enumMemberSemantic(Scope* sc, EnumMember em)
 
             if (!em.ed.isAnonymous())
             {
-                e = e.castTo(sc, em.ed.type.addMod(e.type.mod)); // https://issues.dlang.org/show_bug.cgi?id=12385
+                e = e.castTo(sc, em.ed.type.addMod(e.type.mod)); // upstream issue 12385
                 e = e.ctfeInterpret();
             }
         }
@@ -489,7 +489,7 @@ void enumMemberSemantic(Scope* sc, EnumMember em)
             em.origValue = e;
         }
         em.value = e;
-        // https://issues.dlang.org/show_bug.cgi?id=24311
+        // upstream issue 24311
         // First enum member is .init value, which gets put into static segment
         if (first)
             lowerStaticAAs(e, sc);
@@ -573,12 +573,12 @@ void enumMemberSemantic(Scope* sc, EnumMember em)
         auto errors = global.startGagging();
         Expression eprev = emprev.value;
         assert(eprev);
-        // .toHeadMutable() due to https://issues.dlang.org/show_bug.cgi?id=18645
+        // .toHeadMutable() due to upstream issue 18645
         Type tprev = eprev.type.toHeadMutable().equals(em.ed.type.toHeadMutable())
             ? em.ed.memtype
             : eprev.type;
         /*
-            https://issues.dlang.org/show_bug.cgi?id=20777
+            upstream issue 20777
             Previously this used getProperty, which doesn't consider anything user defined,
             this construct does do that and thus fixes the bug.
         */

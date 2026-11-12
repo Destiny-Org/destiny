@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19754
+// upstream issue 19754
 
 void test19754()
 {
@@ -29,7 +29,7 @@ void test19754()
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20608
+// upstream issue 20608
 
 void foo(T...)(auto ref T args) {}
 

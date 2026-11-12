@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19224
+// upstream issue 19224
 static if (__traits(compiles, __vector(float[4])))
 {
     float sum(const float[4] val)

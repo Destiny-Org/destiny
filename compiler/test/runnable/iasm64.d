@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-// Copyright (c) 1999-2016 by The D Language Foundation
+// Copyright (c) 1999-2016 by The D Language Foundation; Copyright (C) 2026 Destiny contributors
 // All Rights Reserved
 // written by Walter Bright
 // https://www.digitalmars.com
@@ -6654,7 +6654,7 @@ void test9965()
         0x40, 0xB5, 0x01,       // mov  BPL,1
         0x40, 0xB4, 0x01,       // mov  SPL,1
         0x41, 0xB0, 0x01,       // mov  R8B,1
-        0x40, 0x80, 0xE6, 0x01, // and  SIL,1 (https://issues.dlang.org/show_bug.cgi?id=12971)
+        0x40, 0x80, 0xE6, 0x01, // and  SIL,1 (upstream issue 12971)
     ];
 
     asm
@@ -6856,7 +6856,7 @@ L1:     pop     RAX;
 }
 
 /****************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20126
+// upstream issue 20126
 
 extern(C) float floop(float* r, float x)
 {
@@ -6915,7 +6915,7 @@ void test63()
 }
 
 /****************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6166
+// upstream issue 6166
 
 struct NRV { int[8] a; }
 

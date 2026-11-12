@@ -8,7 +8,7 @@ fail_compilation/test19971.d(17):        cannot pass argument `"%s"` of type `st
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=19971
+// upstream issue 19971
 
 void f(int x) {}
 void main()

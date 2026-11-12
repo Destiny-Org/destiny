@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19734
+// upstream issue 19734
 // REQUIRED_ARGS: -main
 
 class C19734

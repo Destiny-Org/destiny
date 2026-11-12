@@ -5,7 +5,7 @@ fail_compilation/test16495.d(17): Error: expected 1 arguments for `fullyQualifie
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=16495
+// upstream issue 16495
 
 void test1()
 {

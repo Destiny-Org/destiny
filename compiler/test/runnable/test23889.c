@@ -1,6 +1,6 @@
 // DISABLED: win freebsd openbsd
 
-// https://issues.dlang.org/show_bug.cgi?id=23889
+// upstream issue 23889
 
 #include <alloca.h>
 

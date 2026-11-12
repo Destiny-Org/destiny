@@ -4,7 +4,7 @@ fail_compilation/test18736.d(21): Error: constructor calls not allowed in loops 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=18736
+// upstream issue 18736
 
 class A
 {

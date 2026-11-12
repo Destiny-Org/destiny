@@ -1,5 +1,5 @@
 /**
- * Written in the D programming language.
+ * Written in the Destiny programming language.
  * Module initialization routines.
  *
  * Copyright: Copyright Digital Mars 2000 - 2013.
@@ -253,7 +253,7 @@ struct ModuleGroup
             foreach (i, m; _modules)
             {
                 // use bit array to prevent duplicates
-                // https://issues.dlang.org/show_bug.cgi?id=16208
+                // upstream issue 16208
                 clearFlags(reachable);
                 // preallocate enough space to store all the indexes
                 int *edge = cast(int*)malloc(int.sizeof * _modules.length);

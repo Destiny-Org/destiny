@@ -7,7 +7,7 @@ fail_compilation/test20489.d(18):        parameter 1 is missing `scope`
 ---
 */
 
-// Test case for https://github.com/dlang/dmd/issues/20489
+// Test case for upstream dmd issue 20489
 // Improved error message on override mismatches
 
 class B {

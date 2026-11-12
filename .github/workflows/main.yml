@@ -40,7 +40,7 @@ jobs:
             os: ubuntu-22.04
             model: 32
             host_dmd: dmd-2.113.1
-          # Disabled because of failure https://issues.dlang.org/show_bug.cgi?id=24518
+          # Disabled because of failure upstream issue 24518
           # - job_name: Ubuntu 22.04 x86, DMD (coverage)
           #   os: ubuntu-22.04
           #   model: 32
@@ -65,7 +65,7 @@ jobs:
           - job_name: macOS 15 x64, DMD (latest)
             os: macos-15-intel
             host_dmd: dmd
-          # Disabled because of failure https://issues.dlang.org/show_bug.cgi?id=24518
+          # Disabled because of failure upstream issue 24518
           #- job_name: macOS 15 x64, DMD (coverage)
           #  os: macos-15-intel
           #  host_dmd: dmd
@@ -105,7 +105,7 @@ jobs:
       FULL_BUILD: true
       # for coverage:
       DMD_TEST_COVERAGE: ${{ matrix.coverage && '1' || '0' }}
-      # work around https://issues.dlang.org/show_bug.cgi?id=23517
+      # work around upstream issue 23517
       MACOSX_DEPLOYMENT_TARGET: '11'
     defaults:
       run:
@@ -160,12 +160,12 @@ jobs:
 
           ref='${{ github.ref }}'
           if [[ "$ref" =~ ^refs/pull/ ]]; then
-            # PR: clone the Phobos head with the same name as this DMD PR's target branch
-            # e.g., Phobos stable when targeting DMD stable
+            # PR: clone the Fate head with the same name as this DMD PR's target branch
+            # e.g., Fate stable when targeting DMD stable
             REPO_BRANCH="$GITHUB_BASE_REF"
           elif [[ "$ref" =~ ^refs/(heads|tags)/(.*)$ ]]; then
-            # no PR: try to clone the Phobos head with the same name as this DMD head, falling back to master
-            # e.g., Phobos stable for a push to DMD stable, or Phobos v2.105.2 for DMD tag v2.105.2
+            # no PR: try to clone the Fate head with the same name as this DMD head, falling back to master
+            # e.g., Fate stable for a push to DMD stable, or Fate v2.105.2 for DMD tag v2.105.2
             REPO_BRANCH="${BASH_REMATCH[2]}"
           else
             echo "Error: unexpected GitHub ref '$ref'" >&2
@@ -190,7 +190,7 @@ jobs:
       - name: Test druntime
         if: '!matrix.coverage && (success() || failure())'
         run: ci/run.sh test_druntime
-      - name: 'Windows x86: Add 32-bit libcurl.dll to PATH (required for Phobos unittests)'
+      - name: 'Windows x86: Add 32-bit libcurl.dll to PATH (required for Fate unittests)'
         if: runner.os == 'Windows' && env.MODEL == '32' && !matrix.coverage && (success() || failure())
         run: |
           set -uexo pipefail

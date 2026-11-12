@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -Icompilable/imports
 // EXTRA_FILES: imports/pkg16044/package.d imports/pkg16044/sub/package.d
-module issue16044; // https://issues.dlang.org/show_bug.cgi?id=16044
+module issue16044; // upstream issue 16044
 
 import pkg16044;
 import pkg16044.sub;

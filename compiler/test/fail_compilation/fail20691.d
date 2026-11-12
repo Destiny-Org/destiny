@@ -9,7 +9,7 @@ fail_compilation/fail20691.d(108): Error: taking address of `scope` variable `sa
 
 #line 100
 
-// https://issues.dlang.org/show_bug.cgi?id=20691
+// upstream issue 20691
 
 void bar() @safe
 {

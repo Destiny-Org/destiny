@@ -1,7 +1,7 @@
 name "dmd"
 description "The DMD compiler"
 authors "Walter Bright"
-copyright "Copyright © 1999-2018, The Destiny Language Foundation"
+copyright "Copyright © 1999-2018, The D Language Foundation; Copyright (C) 2026 Destiny contributors"
 license "BSL-1.0"
 toolchainRequirements dub=">=1.29.0" # can use $DUB_EXE etc. in custom commands
 

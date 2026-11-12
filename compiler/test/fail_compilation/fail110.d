@@ -10,7 +10,7 @@ fail_compilation/fail110.d(17):        declared here
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=297
+// upstream issue 297
 // Shadowing declarations allowed in foreach type lists
 void main()
 {

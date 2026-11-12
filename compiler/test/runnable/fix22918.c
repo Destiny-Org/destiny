@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22918
+// upstream issue 22918
 
 const char c;
 const double dbl;

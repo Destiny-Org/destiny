@@ -1,7 +1,7 @@
 /**
  * Exception allocation, cloning, and release compiler support routines.
  *
- * Copyright: Copyright (c) 2017 by D Language Foundation
+ * Copyright: Copyright (c) 2017 by D Language Foundation; Copyright (C) 2026 Destiny contributors
  * License: Distributed under the
  *      $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost Software License 1.0).
  *    (See accompanying file LICENSE)

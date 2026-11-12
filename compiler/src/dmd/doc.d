@@ -1,14 +1,14 @@
 /**
  * Ddoc documentation generation.
  *
- * Specification: $(LINK2 https://dlang.org/spec/ddoc.html, Documentation Generator)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/ddoc.dd, Documentation Generator)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/doc.d, _doc.d)
- * Documentation:  https://dlang.org/phobos/dmd_doc.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/doc.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/doc.d, _doc.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/doc.d
+ * 
  */
 
 module dmd.doc;
@@ -104,7 +104,7 @@ void gendocfile(Module m, const char[] ddoctext, const char* datetime, ErrorSink
 
         size_t commentlen = m.comment ? strlen(cast(char*)m.comment) : 0;
         Dsymbols a;
-        // https://issues.dlang.org/show_bug.cgi?id=9764
+        // upstream issue 9764
         // Don't push m in a, to prevent emphasize ddoc file name.
         if (dc.macros)
         {
@@ -1703,7 +1703,7 @@ void emitComment(Dsymbol s, ref OutBuffer buf, Scope* sc)
         {
             //printf("AttribDeclaration::emitComment(sc = %p)\n", sc);
             /* A general problem with this,
-             * illustrated by https://issues.dlang.org/show_bug.cgi?id=2516
+             * illustrated by upstream issue 2516
              * is that attributes are not transmitted through to the underlying
              * member declarations for template bodies, because semantic analysis
              * is not done for template declaration bodies
@@ -3978,7 +3978,7 @@ struct MarkdownLinkReferences
         if (scopeRoot != root)
         {
             path = "$(DOC_ROOT_" ~ root.ident.toString() ~ ')' ~ path;
-            lref = '.' ~ lref;  // remote URIs like Phobos and Mir use .prefixes
+            lref = '.' ~ lref;  // remote URIs like Fate and Mir use .prefixes
         }
 
         return cast(string) (path ~ '#' ~ lref);
@@ -4732,7 +4732,7 @@ void highlightText(Scope* sc, Dsymbols* a, Loc loc, ref OutBuffer buf, size_t of
                             lineStart = true;
                         ++p;
                     }
-                    if (!codeLanguage.length || codeLanguage == "dlang" || codeLanguage == "d")
+                    if (!codeLanguage.length || codeLanguage == "dlang" || codeLanguage == "d" || codeLanguage == "destiny")
                         highlightCode2(sc, a, codebuf, 0);
                     else
                         codebuf.remove(codebuf.length-1, 1);    // remove the trailing 0 byte
@@ -4754,7 +4754,7 @@ void highlightText(Scope* sc, Dsymbols* a, Loc loc, ref OutBuffer buf, size_t of
 
                     inCode = c0;
                     codeIndent = istart - iLineStart; // save indent count
-                    if (codeLanguage.length && codeLanguage != "dlang" && codeLanguage != "d")
+                    if (codeLanguage.length && codeLanguage != "dlang" && codeLanguage != "d" && codeLanguage != "destiny")
                     {
                         // backslash-escape
                         for (size_t j; j < codeLanguage.length - 1; ++j)
@@ -5081,7 +5081,7 @@ void highlightText(Scope* sc, Dsymbols* a, Loc loc, ref OutBuffer buf, size_t of
                      * alone so the macro can still be recognized/expanded;
                      * only the macro's *arguments* (below) may be
                      * auto-highlighted like normal text.
-                     * https://github.com/dlang/dmd/issues/19080
+                     * upstream dmd issue 19080
                      */
                     expectMacroName = false;
                     i = j - 1;
@@ -5360,9 +5360,9 @@ void highlightCode2(Scope* sc, Dsymbols* a, ref OutBuffer buf, size_t offset)
             size_t o = res.length;
             highlightCode3(sc, res, tok.ptr, lex.p);
             if (tok.value == TOK.comment || tok.value == TOK.string_ || tok.value == TOK.interpolated)
-                /* https://issues.dlang.org/show_bug.cgi?id=7656
-                 * https://issues.dlang.org/show_bug.cgi?id=7715
-                 * https://issues.dlang.org/show_bug.cgi?id=10519
+                /* upstream issue 7656
+                 * upstream issue 7715
+                 * upstream issue 10519
                  */
                 escapeDdocString(res, o);
             res.writeByte(')');

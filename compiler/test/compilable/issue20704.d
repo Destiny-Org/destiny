@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=20704
+upstream issue 20704
 REQUIRED_ARGS: -preview=rvaluerefparam
  */
 

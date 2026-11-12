@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16213
+// upstream issue 16213
 
 enum Id(size_t i) = i;
 void main()

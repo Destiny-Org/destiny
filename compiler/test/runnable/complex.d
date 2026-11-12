@@ -1152,7 +1152,7 @@ void test57()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3382
+// upstream issue 3382
 
 real toreal(ireal x){ return x.im; }
 
@@ -1168,7 +1168,7 @@ alias typeof(BUG3919.init*BUG3919.init) ICE3919;
 alias typeof(BUG3919.init/BUG3919.init) ICE3920;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8454
+// upstream issue 8454
 
 double sqrt8454(double d) { return d/2; }
 void foo8454(cdouble m) {}
@@ -1179,7 +1179,7 @@ void test8454()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9046
+// upstream issue 9046
 
 void test9046()
 {
@@ -1191,7 +1191,7 @@ void test9046()
 }
 
 /********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9112
+// upstream issue 9112
 
 void test9112a()    //  T() and T(v)
 {
@@ -1261,7 +1261,7 @@ void test9112b()    // new T(v)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10639
+// upstream issue 10639
 
 struct S1
 {
@@ -1281,7 +1281,7 @@ void test10639()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10842
+// upstream issue 10842
 
 template Test10842(F, T)
 {
@@ -1334,7 +1334,7 @@ void test10927()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13252
+// upstream issue 13252
 
 alias TypeTuple13252(T...) = T;
 
@@ -1342,7 +1342,7 @@ static assert(is(typeof(TypeTuple13252!(cast(cfloat )(1 + 2i))[0]) == cfloat ));
 static assert(is(typeof(TypeTuple13252!(cast(cdouble)(1 + 2i))[0]) == cdouble));
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14218
+// upstream issue 14218
 
 void test14218()
 {
@@ -1364,7 +1364,7 @@ void test14218()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15653
+// upstream issue 15653
 
 alias TypeTuple15653(T...) = T;
 
@@ -1390,7 +1390,7 @@ void test15653()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17087
+// upstream issue 17087
 
 cfloat toComplex(int x) { return cast(cfloat)x; }
 
@@ -1400,7 +1400,7 @@ void test17087()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17677
+// upstream issue 17677
 
 void test17677()
 {
@@ -1411,7 +1411,7 @@ void test17677()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17677
+// upstream issue 17677
 
 float getreal_rcx(cfloat z)
 {

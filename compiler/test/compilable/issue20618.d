@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22198
+// upstream issue 22198
 // This test was in fail_compilation, however the change in the compiler has
 // been reverted to make this code compilable again.
 void main()

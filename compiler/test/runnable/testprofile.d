@@ -67,7 +67,7 @@ void test13331() {asm {naked; ret;}}
 
 // ------------------
 
-// https://issues.dlang.org/show_bug.cgi?id=15745
+// upstream issue 15745
 
 ubyte LS1B(uint board)
 {

@@ -18,7 +18,7 @@ fail_compilation/test21008.d(105):        called from here: `handleMiddlewareAnn
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=21008
+// upstream issue 21008
 
 #line 100
 

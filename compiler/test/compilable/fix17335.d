@@ -2,7 +2,7 @@
  * PERMUTE_ARGS:
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=17335
+// upstream issue 17335
 
 bool alwaysFalse() { return false; }
 void main()

@@ -15,7 +15,7 @@ false
 import imports.testmangle;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10077
+// upstream issue 10077
 // pragma(mangle)
 
 pragma(mangle, "_test10077a_") int test10077a;
@@ -56,7 +56,7 @@ void test10077i()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13050
+// upstream issue 13050
 
 void func13050(int);
 template decl13050(Arg)
@@ -81,7 +81,7 @@ static assert(is(typeof(&problem13050!int) == void function(int)));
 static assert(is(typeof(&workaround13050!int) == void function(int)));
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=2774
+// upstream issue 2774
 
 int foo2774(int n) { return 0; }
 static assert(foo2774.mangleof == "_D6mangle7foo2774FiZi");
@@ -102,7 +102,7 @@ void test2774()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8847
+// upstream issue 8847
 
 auto S8847()
 {
@@ -296,7 +296,7 @@ static assert(typeof(f8847a()).mangleof == "S6mangle6f8847aFNaZ1S");
 static assert(typeof(f8847b()).mangleof == "S6mangle6f8847bFNaZ1S");
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12352
+// upstream issue 12352
 
 auto bar12352()
 {
@@ -327,7 +327,7 @@ static assert(typeof(baz12352())     .mangleof ==  "C6mangle8baz12352FZ1C");
 static assert(typeof(baz12352()).func.mangleof == "_D6mangle8baz12352FZ1C4funcMFZv");
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9525
+// upstream issue 9525
 
 void f9525(T)(in T*) { }
 
@@ -358,7 +358,7 @@ void test9525()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10249
+// upstream issue 10249
 
 template Seq10249(T...) { alias Seq10249 = T; }
 
@@ -394,7 +394,7 @@ static: // necessary to make overloaded symbols accessible via __traits(getOverl
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11718
+// upstream issue 11718
 
 struct Ty11718(alias sym) {}
 
@@ -435,7 +435,7 @@ void test11718()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11776
+// upstream issue 11776
 
 struct S11776(alias fun) { }
 
@@ -458,7 +458,7 @@ void test11776()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12044
+// upstream issue 12044
 
 struct S12044(T)
 {
@@ -485,7 +485,7 @@ void test12044()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12217
+// upstream issue 12217
 
 void test12217(int)
 {
@@ -503,7 +503,7 @@ void test12217(int)
 void test12217() {}
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12231
+// upstream issue 12231
 
 void func12231a()()
 if (is(typeof({

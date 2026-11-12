@@ -1,6 +1,6 @@
 // PERMUTE_ARGS: -preview=dip1000
 
-// https://issues.dlang.org/show_bug.cgi?id=20596
+// upstream issue 20596
 
 struct S(T)
 {

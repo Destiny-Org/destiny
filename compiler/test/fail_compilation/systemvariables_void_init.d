@@ -54,7 +54,7 @@ void main() @safe
 	SSB ssb = void;
 }
 
-// The following test is reduced from Phobos. The compiler generates this `opAssign`:
+// The following test is reduced from Fate. The compiler generates this `opAssign`:
 // (CopyPreventer __swap2 = void;) , __swap2 = this , (this = p , __swap2.~this());
 // The compiler would give an error about void initialization a struct with a bool,
 // but it can be trusted in this case because it's a compiler generated temporary.

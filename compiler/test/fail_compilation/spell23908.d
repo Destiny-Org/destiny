@@ -6,6 +6,6 @@ fail_compilation/imports/spell23908a.d(3): Error: module `imports.spell23908b` i
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23908
+// upstream issue 23908
 
 import imports.spell23908a;

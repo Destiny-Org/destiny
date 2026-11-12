@@ -338,7 +338,7 @@ void testTypeinfo()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12214
+// upstream issue 12214
 
 void test12214() pure nothrow
 {
@@ -347,8 +347,8 @@ void test12214() pure nothrow
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12220
-// https://issues.dlang.org/show_bug.cgi?id=12221
+// upstream issue 12220
+// upstream issue 12221
 
 void test12220()
 {
@@ -362,7 +362,7 @@ void test12220()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12403
+// upstream issue 12403
 
 void test12403()
 {
@@ -393,7 +393,7 @@ void test22354()
     assert(aa["x"].length == 1);  // FAILS: length is still 0
 }
 
-// https://github.com/dlang/dmd/issues/22406
+// upstream dmd issue 22406
 void testShared()
 {
     shared int[int] processes = [1: 1, 2:4, 3:9];
@@ -442,7 +442,7 @@ void testShared()
     assert(2 in cprocesses);
 }
 
-// https://github.com/dlang/dmd/issues/22556
+// upstream dmd issue 22556
 void test22556()
 {
     static struct RefCounted(T)
@@ -458,7 +458,7 @@ void test22556()
     static assert(!__traits(compiles, foo.clear));
 }
 
-// https://github.com/dlang/dmd/issues/23064
+// upstream dmd issue 23064
 void test23064()
 {
     static struct A(T)
@@ -470,7 +470,7 @@ void test23064()
     static struct B { A!B x; }
 }
 
-// https://github.com/dlang/dmd/issues/23065
+// upstream dmd issue 23065
 void test23065()
 {
     static struct C(T)
@@ -499,7 +499,7 @@ void test23065()
     cast(void) (a == a);
 }
 
-// https://github.com/dlang/dmd/issues/23182
+// upstream dmd issue 23182
 void test23182()
 {
     int[][string] aarr;
@@ -518,7 +518,7 @@ void test23182()
     assert(calls == 1);
 }
 
-// https://github.com/dlang/dmd/issues/23711
+// upstream dmd issue 23711
 void test23711()
 {
     alias AliasSeq(T...) = T;
@@ -528,7 +528,7 @@ void test23711()
 
 /***************************************************/
 
-// https://github.com/dlang/dmd/issues/22567
+// upstream dmd issue 22567
 void test22567()
 {
     struct S
@@ -543,7 +543,7 @@ void test22567()
     assert(foo["bar"]["baz"] == "boom");
 }
 
-// https://github.com/dlang/dmd/issues/19829
+// upstream dmd issue 19829
 void test19829()
 {
     auto foo() {
@@ -563,7 +563,7 @@ void test19829()
     assert(bar == [true]);
 }
 
-// https://github.com/dlang/dmd/issues/23964
+// upstream dmd issue 23964
 void test23964()
 {
     struct S
@@ -582,7 +582,7 @@ void test23964()
     assert(aa["a"].data == [11, 2, 3]);
 }
 
-// https://github.com/dlang/dmd/issues/24223
+// upstream dmd issue 24223
 void test24223() @safe
 {
     alias Unit = void[0];

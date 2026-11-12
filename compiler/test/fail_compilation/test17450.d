@@ -8,7 +8,7 @@ fail_compilation/test17450.d(20): Error: escaping a reference to parameter `this
 fail_compilation/test17450.d(19):        perhaps annotate the function with `return`
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=17450
+// upstream issue 17450
 
 alias dg_t = void delegate();
 
@@ -37,7 +37,7 @@ fail_compilation/test17450.d(103): Error: scope parameter `c` may not be returne
 fail_compilation/test17450.d(106): Error: scope parameter `this` may not be returned
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=17450
+// upstream issue 17450
 
 #line 100
 

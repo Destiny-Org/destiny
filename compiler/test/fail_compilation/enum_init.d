@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=8511
+upstream issue 8511
 
 TEST_OUTPUT:
 ---
@@ -15,7 +15,7 @@ real hypot()
 }
 
 /*
-https://issues.dlang.org/show_bug.cgi?id=21785
+upstream issue 21785
 
 TEST_OUTPUT:
 ---
@@ -33,7 +33,7 @@ void fooNB()
 }
 
 /*
-https://issues.dlang.org/show_bug.cgi?id=21785
+upstream issue 21785
 
 TEST_OUTPUT:
 ---
@@ -52,13 +52,13 @@ void main()
 
 
 /*
-https://issues.dlang.org/show_bug.cgi?id=21785
+upstream issue 21785
 
 TEST_OUTPUT:
 ---
 fail_compilation/enum_init.d(306): Error: variable `enum_init.fooOB.ob` - no definition of struct `S`
 fail_compilation/enum_init.d(302):        required by type `OpaqueBase`
-fail_compilation/enum_init.d(306):        see https://dlang.org/spec/struct.html#opaque_struct_unions
+fail_compilation/enum_init.d(306):        see https://github.com/Destiny-Org/destiny/blob/main/spec/struct.dd
 fail_compilation/enum_init.d(306):        perhaps declare a variable with pointer type `OpaqueBase*` instead
 ---
 */
@@ -89,7 +89,7 @@ void forwardRef()
 }
 
 /*
-https://issues.dlang.org/show_bug.cgi?id=21792
+upstream issue 21792
 
 TEST_OUTPUT:
 ---

@@ -6,7 +6,7 @@ fail_compilation/test20522.d(19): Error: undefined identifier `non_existent`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=20522
+// upstream issue 20522
 struct File
 {
     ~this() {}

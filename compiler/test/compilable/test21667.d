@@ -1,5 +1,5 @@
 // Issue 21667 - scope parameter causes 'no size because of forward references'
-// https://issues.dlang.org/show_bug.cgi?id=21667
+// upstream issue 21667
 @safe:
 
 struct Foo

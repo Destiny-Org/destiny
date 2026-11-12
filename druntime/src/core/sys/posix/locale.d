@@ -2,7 +2,7 @@
  * D header file for POSIX's <locale.h>.
  *
  * See_Also:  https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/locale.h.html
- * Copyright: D Language Foundation, 2019
+ * Copyright: D Language Foundation, 2019; Copyright (C) 2026 Destiny contributors
  * License:   $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Authors:   Mathias 'Geod24' Lang
  * Standards: The Open Group Base Specifications Issue 7, 2018 edition

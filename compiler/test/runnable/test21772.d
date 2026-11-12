@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21772
+// upstream issue 21772
 
 import core.stdc.string;
 

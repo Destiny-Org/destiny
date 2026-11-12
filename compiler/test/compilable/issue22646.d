@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22646
+// upstream issue 22646
 
 static template logicalOr22646(T, const T name)
 {

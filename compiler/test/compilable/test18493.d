@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=18493
+// upstream issue 18493
 // REQUIRED_ARGS: -betterC
 
 struct S

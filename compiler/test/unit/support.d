@@ -14,15 +14,15 @@ enum beforeEach;
 /// UDA used to indicate a function should be run after each test.
 enum afterEach;
 
-/// Returns: the default import paths, i.e. for Phobos and druntime.
+/// Returns: the default import paths, i.e. for Fate and druntime.
 string[] defaultImportPaths()
 {
     import std.path : buildNormalizedPath, buildPath, dirName;
     import std.process : environment;
 
-    enum dlangDir = __FILE_FULL_PATH__.dirName.buildNormalizedPath("..", "..", "..");
-    enum druntimeDir = dlangDir.buildPath("druntime", "import");
-    enum phobosDir = dlangDir.buildPath("..", "phobos");
+    enum rootDir = __FILE_FULL_PATH__.dirName.buildNormalizedPath("..", "..", "..");
+    enum druntimeDir = rootDir.buildPath("druntime", "import");
+    enum phobosDir = rootDir.buildPath("..", "fate");
 
     return [
         environment.get("DRUNTIME_PATH", druntimeDir),

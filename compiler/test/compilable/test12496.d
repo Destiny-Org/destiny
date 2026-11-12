@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=12496
+// upstream issue 12496
 
 final abstract class T1
 {

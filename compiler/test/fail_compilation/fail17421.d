@@ -7,7 +7,7 @@ fail_compilation/fail17421.d(15):        while evaluating: `static assert(__trai
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17421
+// upstream issue 17421
 
 alias int* x;
 

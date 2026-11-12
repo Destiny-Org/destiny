@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21850
+// upstream issue 21850
 
 struct Strukt2 {
     this(int* _block) {  }

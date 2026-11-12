@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23710
+// upstream issue 23710
 
 int test(int i)
 {

@@ -6,8 +6,8 @@ TEST_OUTPUT:
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=1870
-// https://issues.dlang.org/show_bug.cgi?id=12790
+// upstream issue 1870
+// upstream issue 12790
 string get()
 {
     return

@@ -1,6 +1,6 @@
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6265
+// upstream issue 6265
 
 pure nothrow @safe int h6265() {
     return 1;
@@ -63,7 +63,7 @@ void fECPb() {
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5635
+// upstream issue 5635
 
 pure bool foo5635(R = int)(string x)
 {
@@ -79,7 +79,7 @@ void test5635()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5936
+// upstream issue 5936
 
 auto bug5936c(R)(R i) @safe pure nothrow {
     return true;
@@ -87,7 +87,7 @@ auto bug5936c(R)(R i) @safe pure nothrow {
 static assert( bug5936c(0) );
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6351
+// upstream issue 6351
 
 void bug6351(alias dg)()
 {
@@ -101,7 +101,7 @@ void test6351()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6359
+// upstream issue 6359
 
 void    impure6359()      nothrow @safe @nogc {}
 void throwable6359() pure         @safe @nogc {}
@@ -164,16 +164,16 @@ void test6359() pure nothrow @safe @nogc
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7017
+// upstream issue 7017
 
 template map7017(fun...) if (fun.length >= 1)
 {
     auto map7017()
     {
         struct Result {
-            this(int dummy){}   // impure member function -> inferred to pure by fixing https://issues.dlang.org/show_bug.cgi?id=10329
+            this(int dummy){}   // impure member function -> inferred to pure by fixing upstream issue 10329
         }
-        return Result(0);   // impure call -> inferred to pure by fixing https://issues.dlang.org/show_bug.cgi?id=10329
+        return Result(0);   // impure call -> inferred to pure by fixing upstream issue 10329
     }
 }
 
@@ -190,7 +190,7 @@ void test7017a() pure
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7017 (little simpler cases)
+// upstream issue 7017 (little simpler cases)
 
 auto map7017a(alias fun)() { return fun();     }    // depends on purity of fun
 auto map7017b(alias fun)() { return;           }    // always pure
@@ -239,7 +239,7 @@ pure string escapeShellArguments()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8234
+// upstream issue 8234
 
 void test8234()
 {
@@ -259,7 +259,7 @@ void test8234()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8504
+// upstream issue 8504
 
 import core.demangle : demangle;
 
@@ -291,7 +291,7 @@ void test8504()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8751
+// upstream issue 8751
 
 alias bool delegate(in int) pure Bar8751;
 Bar8751 foo8751a(immutable int x) pure
@@ -304,7 +304,7 @@ Bar8751 foo8751b(const int x) pure
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8793
+// upstream issue 8793
 
 alias bool delegate(in int) pure Dg8793;
 alias bool function(in int) pure Fp8793;
@@ -327,7 +327,7 @@ Dg8793 foo8793ptr1(immutable int* p) pure { return x => *p == x; } // OK
 Dg8793 foo8793ptr2(const int* p) pure { return x => *p == x; } // OK <- error
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9072
+// upstream issue 9072
 
 struct A9072(T)
 {
@@ -340,8 +340,8 @@ void test9072()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5933
-// https://issues.dlang.org/show_bug.cgi?id=8504
+// upstream issue 5933
+// upstream issue 8504
 // Template attribute inferrence doesn't work
 
 int foo5933()(int a) { return a*a; }
@@ -361,7 +361,7 @@ void test5933()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9148
+// upstream issue 9148
 
 void test9148a() pure
 {
@@ -519,7 +519,7 @@ void test9148e()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12912
+// upstream issue 12912
 
 struct S12912(alias fun)
 {
@@ -541,7 +541,7 @@ class C12912
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10002
+// upstream issue 10002
 
 void impure10002() {}
 void remove10002(alias pred, bool impure = false, Range)(Range range)
@@ -570,7 +570,7 @@ class Node10002
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10148
+// upstream issue 10148
 
 void fa10148() {}  // fa is @system
 
@@ -588,7 +588,7 @@ auto fb10148(T)()
             static assert(is(typeof(&fc) == void delegate()));
             fa10148();
         }
-        // [1] this is now inferred to @safe by implementing https://issues.dlang.org/show_bug.cgi?id=7511
+        // [1] this is now inferred to @safe by implementing upstream issue 7511
         this(S a) {}
     }
 
@@ -606,7 +606,7 @@ void test10148()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10289
+// upstream issue 10289
 
 void test10289()
 {
@@ -647,7 +647,7 @@ void test10289()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10296
+// upstream issue 10296
 
 void foo10296()()
 {
@@ -663,7 +663,7 @@ pure void test10296()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12025
+// upstream issue 12025
 
 struct Foo12025
 {
@@ -691,7 +691,7 @@ void test12025b() pure
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12542
+// upstream issue 12542
 
 int logOf12542(T)(T n)
 {
@@ -706,14 +706,14 @@ void test12542() @safe nothrow pure
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12704
+// upstream issue 12704
 
 void foo12704() @system;
 alias FP12704 = typeof(function() { foo12704(); });
 static assert(is(FP12704 == void function() @system));
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12970
+// upstream issue 12970
 
 @system { @safe void f12970a() {} }
 @system { void f12970b() @safe {} }
@@ -771,7 +771,7 @@ static assert(AliasDecl_FP2.stringof == "void function()");
 static assert(AliasDecl_FP3.stringof == "void function() @safe");
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13217
+// upstream issue 13217
 
 void writeln13217(string) {}
 
@@ -790,7 +790,7 @@ void test13217()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13840
+// upstream issue 13840
 
 struct Foo13840
 {
@@ -818,7 +818,7 @@ void test13840() nothrow
 }
 
 /***************************************************/
-// https://github.com/dlang/dmd/pull/20685
+// upstream dmd pull request 20685
 
 struct T1
 {

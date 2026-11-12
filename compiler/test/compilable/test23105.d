@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23105
+// upstream issue 23105
 
 module test23105;
 

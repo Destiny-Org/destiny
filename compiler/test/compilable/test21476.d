@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21476
+// upstream dmd issue 21476
 
 struct S21476
 {

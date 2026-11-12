@@ -28,12 +28,12 @@
  *   arguments, and uses it if found.
  * - Otherwise, the rest of semantic is run on the `TemplateInstance`.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/dtemplate.d, _dtemplate.d)
- * Documentation:  https://dlang.org/phobos/dmd_dtemplate.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/dtemplate.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dtemplate.d, _dtemplate.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dtemplate.d
+ * 
  */
 
 module dmd.dtemplate;
@@ -228,8 +228,8 @@ struct TemplatePrevious
 
 /***********************************************************
  * [mixin] template Identifier (parameters) [Constraint]
- * https://dlang.org/spec/template.html
- * https://dlang.org/spec/template-mixin.html
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template-mixin.dd
  */
 extern (C++) final class TemplateDeclaration : ScopeDsymbol
 {
@@ -396,7 +396,7 @@ extern (C++) final class TypeDeduced : Type
 }
 
 /***********************************************************
- * https://dlang.org/spec/template.html#TemplateParameter
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
  */
 extern (C++) class TemplateParameter : ASTNode
 {
@@ -470,7 +470,7 @@ extern (C++) class TemplateParameter : ASTNode
 }
 
 /***********************************************************
- * https://dlang.org/spec/template.html#TemplateTypeParameter
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
  * Syntax:
  *  ident : specType = defaultType
  */
@@ -531,7 +531,7 @@ extern (C++) class TemplateTypeParameter : TemplateParameter
 }
 
 /***********************************************************
- * https://dlang.org/spec/template.html#TemplateThisParameter
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
  * Syntax:
  *  this ident : specType = defaultType
  */
@@ -559,7 +559,7 @@ extern (C++) final class TemplateThisParameter : TemplateTypeParameter
 }
 
 /***********************************************************
- * https://dlang.org/spec/template.html#TemplateValueParameter
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
  * Syntax:
  *  valType ident : specValue = defaultValue
  */
@@ -619,7 +619,7 @@ extern (C++) final class TemplateValueParameter : TemplateParameter
 }
 
 /***********************************************************
- * https://dlang.org/spec/template.html#TemplateAliasParameter
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
  * Syntax:
  *  specType ident : specAlias = defaultAlias
  */
@@ -674,7 +674,7 @@ extern (C++) final class TemplateAliasParameter : TemplateParameter
 }
 
 /***********************************************************
- * https://dlang.org/spec/template.html#TemplateSequenceParameter
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
  * Syntax:
  *  ident ...
  */
@@ -739,7 +739,7 @@ extern (C++) final class TemplateTupleParameter : TemplateParameter
 }
 
 /***********************************************************
- * https://dlang.org/spec/template.html#explicit_tmp_instantiation
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
  * Given:
  *  foo!(args) =>
  *      name = foo
@@ -1092,7 +1092,7 @@ bool definitelyValueParameter(Expression e) @safe
     if (!v)
         return true;
 
-    // https://issues.dlang.org/show_bug.cgi?id=16685
+    // upstream issue 16685
     // var.x.y where var is a constant available at compile time
     if (v.storage_class & STC.manifest)
         return true;
@@ -1102,7 +1102,7 @@ bool definitelyValueParameter(Expression e) @safe
 }
 
 /***********************************************************
- * https://dlang.org/spec/template-mixin.html
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template-mixin.dd
  * Syntax:
  *    mixin MixinTemplateName [TemplateArguments] [Identifier];
  */

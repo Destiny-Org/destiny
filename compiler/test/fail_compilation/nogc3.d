@@ -96,7 +96,7 @@ int[] bar13702(bool b) @nogc
 }
 
 /**********  Enum and pointer types ***************/
-// https://github.com/dlang/dmd/issues/21052
+// upstream dmd issue 21052
 /*
 TEST_OUTPUT:
 ---
@@ -119,7 +119,7 @@ fail_compilation/nogc3.d(125): Error: this array literal causes a GC allocation 
 ---
 */
 
-// https://github.com/dlang/dmd/issues/21054
+// upstream dmd issue 21054
 void g() @nogc
 {
     int[] x = (int[2]).init[];

@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -Jcompilable/imports/
 // EXTRA_FILES: imports/imp16088.d imports/test21227/a..b.txt imports/test21227/a.txt imports/test21227/..foo/a.txt
 
-// https://issues.dlang.org/show_bug.cgi?id=16088
+// upstream issue 16088
 
 void bar(string x) {}
 auto foo()
@@ -10,7 +10,7 @@ auto foo()
 }
 
 
-// https://issues.dlang.org/show_bug.cgi?id=21227
+// upstream issue 21227
 
 void test21227()
 {
@@ -35,7 +35,7 @@ immutable ubyte[] s0 = import("imp16088.d");
 
 static assert(s0[0 .. expectedStart.length] == "module imports.imp16088;");
 
-// https://issues.dlang.org/show_bug.cgi?id=24687
+// upstream issue 24687
 
 void foo(string path);
 void foo(const(ubyte[]) data);

@@ -5,7 +5,7 @@ TEST_OUTPUT:
 fail_compilation/fail17492.d(20): Error: function `fail17492.C.testE()` conflicts with previous declaration at fail_compilation/fail17492.d(13)
 fail_compilation/fail17492.d(37): Error: function `fail17492.S.testE()` conflicts with previous declaration at fail_compilation/fail17492.d(30)
 ---
-https://issues.dlang.org/show_bug.cgi?id=17492
+upstream issue 17492
 */
 
 class C

@@ -58,8 +58,8 @@ static assert(UglyStruct.alignof == 1);
 static assert(UglyStruct.sizeof == 9);
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19914
-// https://issues.dlang.org/show_bug.cgi?id=19915
+// upstream issue 19914
+// upstream issue 19915
 
 class TemplatedClass(T)
 {

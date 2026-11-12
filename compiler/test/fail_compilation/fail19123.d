@@ -5,7 +5,7 @@ fail_compilation/fail19123.d(23): Error: uninitialized variable `b` cannot be re
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=19123
+// upstream issue 19123
 
 union U
 {

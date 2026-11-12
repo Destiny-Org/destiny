@@ -1995,7 +1995,7 @@ void test11()
 /***********************************************/
 
 /* No divide-by-zero constant folding errors
- * https://issues.dlang.org/show_bug.cgi?id=20906
+ * upstream issue 20906
  */
 
 int test12()

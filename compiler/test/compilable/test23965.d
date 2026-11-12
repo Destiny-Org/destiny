@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23965
+// upstream issue 23965
 // REQUIRED_ARGS: -de
 deprecated:
 

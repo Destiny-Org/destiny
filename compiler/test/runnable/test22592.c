@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22592
+// upstream issue 22592
 
 int printf(const char *s, ...);
 void exit(int);

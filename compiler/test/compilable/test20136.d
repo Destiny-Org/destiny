@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20136
+// upstream issue 20136
 class Context
 {
     size_t[const(Key)] aa;

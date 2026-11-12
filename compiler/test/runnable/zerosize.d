@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24276
+// upstream dmd issue 24276
 extern (C) struct S { }
 extern (C) struct E { S s; }
 

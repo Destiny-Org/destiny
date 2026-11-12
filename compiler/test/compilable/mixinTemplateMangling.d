@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20012
+// upstream issue 20012
 
 mixin template mixinFoo() {
 

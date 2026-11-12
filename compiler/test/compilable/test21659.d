@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21659
+// upstream issue 21659
 
 // Compiler-recognized ident
 enum __c_ulonglong : ulong;

@@ -4,7 +4,7 @@ fail_compilation/fix24089.c(11): Error: cannot take address of imported symbol `
 ---
  */
 
-// https://github.com/dlang/dmd/issues/24089
+// upstream dmd issue 24089
 
 __declspec(dllimport) int __stdcall foo(void);
 struct S { int (*fp)(void); };

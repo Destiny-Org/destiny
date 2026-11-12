@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24229
+// upstream dmd issue 24229
 
 class C { int x = 5; }
 int f() { shared C c = new shared C; return c.x; }

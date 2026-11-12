@@ -25,7 +25,7 @@ HERE";
     //writefln("'%s'", s);
     assert(s == "foo\n");
 
-    // https://issues.dlang.org/show_bug.cgi?id=19623
+    // upstream issue 19623
     s = q"übel
 foo
 übel";
@@ -43,7 +43,7 @@ foo
     s = q{{foo}"}"};
     assert(s == "{foo}\"}\"");
 
-    // https://github.com/dlang/dmd/issues/22535
+    // upstream dmd issue 22535
     s = q"EOS
 *是是是*
 的的的.
@@ -65,7 +65,7 @@ void test7()
 }
 
 /*********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4633
+// upstream issue 4633
 
 template Types(alias v)
 {

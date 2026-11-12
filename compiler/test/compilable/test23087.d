@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23087
+// upstream issue 23087
 struct S
 {
     this(bool) {}

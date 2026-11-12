@@ -3,14 +3,14 @@
  *
  * The routines in this module are called from `optimize.d`.
  *
- * Specification: $(LINK2 https://dlang.org/spec/float.html#fp_const_folding, Floating Point Constant Folding)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/float.dd, Floating Point Constant Folding)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/constfold.d, _constfold.d)
- * Documentation:  https://dlang.org/phobos/dmd_constfold.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/constfold.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/constfold.d, _constfold.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/constfold.d
+ * 
  */
 
 module dmd.constfold;
@@ -1258,7 +1258,7 @@ UnionExp Slice(Type type, Expression e1, Expression lwr, Expression upr)
         const uinteger_t ilwr = lwr.toInteger();
         const uinteger_t iupr = upr.toInteger();
         if (sliceBoundsCheck(0, es1.length, ilwr, iupr))
-            cantExp(ue);   // https://issues.dlang.org/show_bug.cgi?id=18115
+            cantExp(ue);   // upstream issue 18115
         else
         {
             const len = cast(size_t)(iupr - ilwr);

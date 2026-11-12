@@ -26,7 +26,7 @@ int f4(T...)(T x, int y, int z) { assert(y == 30); assert(z == 50); return T.len
 static assert(f4(10, 10, 10, y: 30, z: 50) == 3);
 static assert(f4(10, 10, 30, z: 50) == 2);
 
-// https://github.com/dlang/dmd/issues/21335
+// upstream dmd issue 21335
 // Named args with template parameter defaults (IFTI)
 void f5(A = int, B = int)(A a = A.init, B b = B.init)
 {
@@ -40,7 +40,7 @@ void testIssue21335()
 }
 
 // Variadic tuple with named argument for default parameter (post-tuple)
-// https://github.com/dlang/dmd/issues/22878
+// upstream dmd issue 22878
 int f6(T...)(T args, string file = __FILE__, int line = __LINE__) { return T.length; }
 static assert(f6(1, 2, file: __FILE__) == 2);
 static assert(f6(file: __FILE__) == 0);

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22597
+// upstream issue 22597
 // TRANSFORM_OUTPUT: remove_lines("warning: vsprintf\(\) is often misused")
 
 typedef __builtin_va_list va_list;

@@ -66,7 +66,7 @@ package void postblitRecurse(E, size_t n)(ref E[n] arr)
 
     struct InnerMiddle {}
 
-    version (none) // https://issues.dlang.org/show_bug.cgi?id=14242
+    version (none) // upstream issue 14242
     struct InnerElement
     {
         static char counter = '1';
@@ -100,7 +100,7 @@ package void postblitRecurse(E, size_t n)(ref E[n] arr)
         char[] s;
         InnerTop top;
         InnerMiddle middle;
-        version (none) InnerElement[3] array; // https://issues.dlang.org/show_bug.cgi?id=14242
+        version (none) InnerElement[3] array; // upstream issue 14242
         int a;
         InnerBottom bottom;
         ~this() @safe nothrow pure { order ~= "destroy outer"; }
@@ -150,7 +150,7 @@ package void postblitRecurse(E, size_t n)(ref E[n] arr)
 }
 
 // Test handling of fixed-length arrays
-// Separate from first test because of https://issues.dlang.org/show_bug.cgi?id=14242
+// Separate from first test because of upstream issue 14242
 @safe unittest
 {
     string[] order;
@@ -195,7 +195,7 @@ package void postblitRecurse(E, size_t n)(ref E[n] arr)
 }
 
 // Test handling of failed postblit
-// Not nothrow or @safe because of https://issues.dlang.org/show_bug.cgi?id=14242
+// Not nothrow or @safe because of upstream issue 14242
 /+ nothrow @safe +/ unittest
 {
     static class FailedPostblitException : Exception { this() nothrow @safe { super(null); } }

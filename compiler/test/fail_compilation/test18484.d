@@ -6,7 +6,7 @@ fail_compilation/test18484.d(24): Error: escaping reference to stack allocated v
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=18484
+// upstream issue 18484
 
 struct S
 {

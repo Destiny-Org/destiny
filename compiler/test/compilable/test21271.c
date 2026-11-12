@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21271
+// upstream dmd issue 21271
 #define PUSH __pragma(pack(push))
 #define PACK  __pragma(pack(1))
 #define POP __pragma(pack(pop))

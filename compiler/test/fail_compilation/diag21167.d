@@ -6,7 +6,7 @@ fail_compilation\diag21167.d(17):        cannot pass argument `"foo"` of type `s
 fail_compilation\diag21167.d(11):        `diag21167.f(int __param_0, int __param_1, int __param_2)` declared here
 ---
 */
-// https://github.com/dlang/dmd/issues/21167
+// upstream dmd issue 21167
 
 void f(int, int, int){}
 

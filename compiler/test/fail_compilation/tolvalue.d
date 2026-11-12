@@ -16,7 +16,7 @@ fail_compilation/tolvalue.d(47): Error: cannot modify manifest constant `f`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=24238
+// upstream issue 24238
 
 void templateFunc(T)() {}
 alias intAlias = int;

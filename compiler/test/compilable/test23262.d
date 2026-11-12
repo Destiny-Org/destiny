@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23262
+/* upstream issue 23262
  */
 
 struct T()

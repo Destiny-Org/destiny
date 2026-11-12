@@ -5,7 +5,7 @@ fail_compilation/test23789.c(103): Error: alignment value expected, not `"a"`
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=23789
+// upstream issue 23789
 
 #line 100
 

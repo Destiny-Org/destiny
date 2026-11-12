@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=6795
+// upstream issue 6795
 void check6795()
 {
     enum int[] array = [0];
@@ -12,7 +12,7 @@ void check6795()
     assert((array[0] += 3) == 3);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21312
+// upstream issue 21312
 void check21312()
 {
     auto p = &[123][0];

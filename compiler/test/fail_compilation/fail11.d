@@ -5,7 +5,7 @@ fail_compilation/fail11.d(12): Error: `int*` has no effect
 ---
 */
 
-// https://forum.dlang.org/thread/c738o9$1p7i$1@digitaldaemon.com
+// https://github.com/Destiny-Org/destiny
 
 void main()
 {

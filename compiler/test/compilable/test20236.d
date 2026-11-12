@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20236
+// upstream issue 20236
 
 /*
 TEST_OUTPUT:

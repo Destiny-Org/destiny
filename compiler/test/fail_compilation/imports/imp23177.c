@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23177
+// upstream dmd issue 23177
 
 typedef int(*fp)();
 int run1(fp fn)

@@ -47,7 +47,7 @@ LINK = <a href="$0">$0</a>
 LINK2 = <a href="$1">$+</a>
 LINK_TITLE = <a href="$1" title="$2">$3</a>
 SYMBOL_LINK = <a href="$1">$(DDOC_PSYMBOL $+)</a>
-PHOBOS_PATH = https://dlang.org/phobos/
+PHOBOS_PATH = https://github.com/Destiny-Org/fate
 DOC_ROOT_std = $(PHOBOS_PATH)
 DOC_ROOT_core = $(PHOBOS_PATH)
 DOC_ROOT_etc = $(PHOBOS_PATH)
@@ -74,7 +74,7 @@ DDOC_FLAGS = <div class="ddoc_flags"><span class="ddoc_flags_label">Current Beha
 D_CODE =
 <section class="code_listing">
   <div class="code_sample">
-    <div class="dlang">
+    <div class="destiny">
       <ol class="code_lines">
         <li><pre><code class="code">$0</code></pre></li>
       </ol>
@@ -85,7 +85,7 @@ D_CODE =
 OTHER_CODE =
 <section class="code_listing">
   <div class="code_sample">
-    <div class="dlang">
+    <div class="destiny">
       <ol class="code_lines">
         <li><pre><code class="code language-$1">$+</code></pre></li>
       </ol>
@@ -215,21 +215,21 @@ DDOC =
         display: block;
       }
 
-      body.dlang .dlang {
+      body.destiny .destiny {
         display: inline-block;
       }
 
-      body.dlang .declaration .dlang {
+      body.destiny .declaration .destiny {
           display: block;
       }
 
-      body.dlang .ddoc_header_anchor a.dlang {
+      body.destiny .ddoc_header_anchor a.destiny {
         display: block;
         color: rgba(0, 136, 204, 1);
         text-decoration: none;
       }
 
-      body.dlang .ddoc_header_anchor .code {
+      body.destiny .ddoc_header_anchor .code {
         color: rgba(0, 136, 204, 1);
       }
 
@@ -530,17 +530,17 @@ DDOC =
         word-wrap: break-word;
       }
 
-      .ddoc div.dlang {
+      .ddoc div.destiny {
         margin: 10px 0 21px;
         padding: 4px 0 2px 10px;
       }
 
-      .ddoc div.dlang {
+      .ddoc div.destiny {
           margin: 10px 0 21px;
           padding: 4px 0 2px 10px;
       }
 
-      .ddoc div.dlang {
+      .ddoc div.destiny {
         border-left: 5px solid rgba(0, 155, 51, 0.2);
       }
 
@@ -650,7 +650,7 @@ DDOC =
       }
     </style>
   </head>
-  <body id="ddoc_main" class="ddoc dlang">
+  <body id="ddoc_main" class="ddoc destiny">
     <div class="content_wrapper">
       <article class="module">
         <h1 class="module_name">$(TITLE)</h1>
@@ -691,7 +691,7 @@ DDOC_DECL = <div class="ddoc_decl">
   <section class="section">
     <div class="declaration">
       <h4>Declaration</h4>
-      <div class="dlang">
+      <div class="destiny">
         <p class="para">
           <code class="code">
             $0

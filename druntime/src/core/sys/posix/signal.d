@@ -54,7 +54,7 @@ version (CRuntime_WASI)
 version (Supported):
 version (Posix):
 extern (C):
-//nothrow:  // this causes http://issues.dlang.org/show_bug.cgi?id=12738 (which has been fixed)
+//nothrow:  // this causes upstream issue 12738 (which has been fixed)
 //@system:
 
 //

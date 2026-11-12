@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23862
+// upstream issue 23862
 
 enum E { A, B }
 

@@ -6,7 +6,7 @@ fail_compilation/fail18057.d(13): Error: variable `fail18057.RBNode.copy` recurs
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=18057
+// upstream issue 18057
 // Recursive field initializer causes segfault.
 struct RBNode
 {

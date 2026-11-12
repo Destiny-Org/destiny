@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=18216
+// upstream issue 18216
 
 struct Node
 {

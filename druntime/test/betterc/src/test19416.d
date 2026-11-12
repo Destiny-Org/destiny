@@ -1,5 +1,5 @@
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19416
+// upstream issue 19416
 
 import core.stdc.stdlib : malloc, free;
 import core.exception : onOutOfMemoryError;

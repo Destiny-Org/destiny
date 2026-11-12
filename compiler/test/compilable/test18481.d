@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/18481
+// upstream dmd issue 18481
 // Static array variadic parameters are value types, returning by value is safe
 
 int[2] f1(int[2] arr...) { return arr; }

@@ -6,7 +6,7 @@ fail_compilation/fix21166.d(12):        did you mean to concatenate (`"foo" ~ "b
 ---
 */
 
-// Test case for https://github.com/dlang/dmd/issues/21166
+// Test case for upstream dmd issue 21166
 auto r =
 	"foo"
 	+

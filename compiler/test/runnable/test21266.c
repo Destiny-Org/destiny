@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=21266
+/* upstream issue 21266
  */
 
 // An unreferenced __forceinline function must not generate code, even if

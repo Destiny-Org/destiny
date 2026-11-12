@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21296
+// upstream dmd issue 21296
 
 alias Seq(T...) = T;
 

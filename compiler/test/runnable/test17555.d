@@ -1,4 +1,4 @@
-// test cases of https://github.com/dlang/dmd/issues/17555
+// test cases of upstream dmd issue 17555
 
 enum all = true; // false to enable __VERSION__ checks
 
@@ -307,7 +307,7 @@ void main7() {
     // int[] a2; a2 = [Foo.A: 10]; // Error (not an initializer)
 }
 
-// https://github.com/dlang/dmd/issues/18516
+// upstream dmd issue 18516
 struct Foo { int x; }
 void main8()
 {

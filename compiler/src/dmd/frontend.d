@@ -1,12 +1,12 @@
 /**
  * Contains high-level interfaces for interacting with DMD as a library.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/frontend.d, _id.d)
- * Documentation:  https://dlang.org/phobos/dmd_frontend.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/frontend.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/frontend.d, _id.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/frontend.d
+ * 
  */
 module dmd.frontend;
 
@@ -262,7 +262,7 @@ string findLDCConfig(const(char)[] ldcFilePath)
     auto execDir = ldcFilePath.dirName;
 
     immutable ldcConfig = "ldc2.conf";
-    // https://wiki.dlang.org/Using_LDC
+    // https://github.com/Destiny-Org/destiny
     auto ldcConfigs = [
         getcwd.buildPath(ldcConfig),
         execDir.buildPath(ldcConfig),
@@ -290,7 +290,7 @@ string determineDefaultCompiler()
     import std.path : buildPath;
     import std.process : environment;
     import std.range : front, empty;
-    // adapted from DUB: https://github.com/dlang/dub/blob/350a0315c38fab9d3d0c4c9d30ff6bb90efb54d6/source/dub/dub.d#L1183
+    // adapted from DUB: https://github.com/Destiny-Org/destiny
 
     auto compilers = ["dmd", "gdc", "gdmd", "ldc2", "ldmd2"];
 

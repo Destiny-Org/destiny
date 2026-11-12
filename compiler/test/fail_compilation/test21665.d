@@ -5,7 +5,7 @@ fail_compilation/test21665.d(30): Error: accessing overlapped field `U.s` with a
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=21665
+// upstream issue 21665
 
 struct ShortString {
     private ubyte length;

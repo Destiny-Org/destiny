@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23337
+// upstream issue 23337
 
 int copies, destroyed;
 

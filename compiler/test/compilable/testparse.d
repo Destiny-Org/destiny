@@ -2,12 +2,12 @@
 // REQUIRED_ARGS: -o-
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6719
+// upstream issue 6719
 
 static assert(__traits(compiles, mixin("(const(A))[0..0]")) == false);
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9232
+// upstream issue 9232
 
 struct Foo9232
 {
@@ -25,7 +25,7 @@ void test9232()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9401
+// upstream issue 9401
 
 struct S9401a
 {
@@ -44,7 +44,7 @@ void test9401() nothrow pure @safe
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9649
+// upstream issue 9649
 
 class Outer9649
 {
@@ -60,7 +60,7 @@ void test9649()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9679
+// upstream issue 9679
 
 void test9679(inout int = 0)
 {
@@ -90,7 +90,7 @@ void test9679(inout int = 0)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9901
+// upstream issue 9901
 
 template isGood9901(T)
 {
@@ -106,7 +106,7 @@ void test9901()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10199
+// upstream issue 10199
 
 void test10199()
 {
@@ -115,7 +115,7 @@ label:
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12460
+// upstream issue 12460
 
 void f12460(T)()
 {
@@ -132,7 +132,7 @@ void test12460()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11689
+// upstream issue 11689
 
 void test11689()
 {
@@ -140,12 +140,12 @@ void test11689()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11751
+// upstream issue 11751
 
 static assert(is(float == typeof(0x0.1p1F)));
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11957
+// upstream issue 11957
 
 extern(C++) class C11957
 {
@@ -161,7 +161,7 @@ void test11957()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13049
+// upstream issue 13049
 
 enum mangle13049(T) = T.mangleof;
 alias FP13049 = void function(scope int);                                       // OK
@@ -176,12 +176,12 @@ void testIfConditionWithSTCandType()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20791
+// upstream issue 20791
 extern(C++, "foo", )
 struct S {}
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22019
+// upstream issue 22019
 void test22019()
 {
     final switch (1)
@@ -193,7 +193,7 @@ void test22019()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=23205
+// upstream issue 23205
 
 void test23205()
 {

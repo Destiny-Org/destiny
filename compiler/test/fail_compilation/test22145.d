@@ -5,7 +5,7 @@ fail_compilation/test22145.d(115): Error: assigning scope variable `x` to global
 ---
  */
 
-// issues.dlang.org/show_bug.cgi?id=22145
+// upstream issue 22145
 
 #line 100
 

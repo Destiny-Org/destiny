@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -lib
 
-// https://github.com/dlang/dmd/issues/22153
+// upstream dmd issue 22153
 
 
 static void static_fun();

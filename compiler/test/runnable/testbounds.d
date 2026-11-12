@@ -185,7 +185,7 @@ void test1()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13976
+// upstream issue 13976
 
 void test13976()
 {
@@ -241,7 +241,7 @@ void test13976()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3652
+// upstream issue 3652
 
 void test3652()
 {
@@ -365,7 +365,7 @@ void test3652b() @safe
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9654
+// upstream issue 9654
 
 auto foo9654a(ref           char[8] str) { return str; }
 auto foo9654b(ref     const char[8] str) { return str; }
@@ -389,7 +389,7 @@ static assert( is(typeof(baz9654b("testinfo")) ==     const char[8]));
 static assert( is(typeof(baz9654c("testinfo")) == immutable char[8]));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9712
+// upstream issue 9712
 
 auto func9712(T)(T[2] arg) { return arg; }
 static assert(is(typeof(func9712([1,2])) == int[2]));
@@ -398,7 +398,7 @@ auto deduceLength9712(T,size_t n)(T[n] a) { return a; }
 static assert(is(typeof(deduceLength9712([1,2,3])) == int[3]));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9743
+// upstream issue 9743
 
 void test9743()
 {
@@ -461,7 +461,7 @@ void test9743()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9747
+// upstream issue 9747
 
 void foo9747A(T)(T[4]) {}
 void foo9747C(size_t dim)(char[dim]) {}
@@ -479,7 +479,7 @@ void test9747()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12876
+// upstream issue 12876
 
 void test12876()
 {
@@ -492,24 +492,24 @@ void test12876()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13775
+// upstream issue 13775
 
 void test13775()
 {
     ubyte[4] ubytes = [1,2,3,4];
 
-    // CT-known slicing (https://issues.dlang.org/show_bug.cgi?id=3652)
+    // CT-known slicing (upstream issue 3652)
     auto ok1 = cast(ubyte[2]) ubytes[0 .. 2];
     assert(ok1 == [1, 2]);
 
-    // CT-known slicing with implicit conversion of SliceExp::e1 (https://issues.dlang.org/show_bug.cgi?id=13154)
+    // CT-known slicing with implicit conversion of SliceExp::e1 (upstream issue 13154)
     enum double[] arr = [1.0, 2.0, 3.0];
     auto ok2 = cast(float[2]) [1.0, 2.0, 3.0][0..2];
     auto ok3 = cast(float[2]) arr[1..3];    // currently this is accepted
     assert(ok2 == [1f, 2f]);
     assert(ok3 == [2f, 3f]);
 
-    // CT-known slicing with type coercing (https://issues.dlang.org/show_bug.cgi?id=13775)
+    // CT-known slicing with type coercing (upstream issue 13775)
     auto ok4 = cast( byte[2]) ubytes[0 .. 2];   // CT-known slicing + type coercing
     auto ok5 = cast(short[1]) ubytes[0 .. 2];   // CT-known slicing + type coercing
     assert(ok4 == [1, 2]);
@@ -518,7 +518,7 @@ void test13775()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15889
+// upstream issue 15889
 // Array bounds check should report index and length
 void test15889()
 {

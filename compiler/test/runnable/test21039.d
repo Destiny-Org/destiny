@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21039
+// upstream issue 21039
 
 class Inner {}
 

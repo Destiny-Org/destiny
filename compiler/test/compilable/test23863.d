@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23863
+// upstream issue 23863
 
 alias AliasSeq(T...) = T;
 

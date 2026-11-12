@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19609
+// upstream issue 19609
 // REQUIRED_ARGS: -verrors=simple
 // EXTRA_FILES: imports/test19609a.d imports/test19609b.d imports/test19609c.d
 /*

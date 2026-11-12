@@ -1,4 +1,4 @@
-//https://issues.dlang.org/show_bug.cgi?id=19315
+//upstream issue 19315
 void main()
 {
     #line 100 "file.d"

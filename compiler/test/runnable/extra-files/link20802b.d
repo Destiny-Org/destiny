@@ -1,6 +1,6 @@
 module link20802b;
 
-// First test from https://issues.dlang.org/show_bug.cgi?id=20802#c3
+// First test from upstream issue 20802#c3
 
 enum TransformRes { goOn }
 

@@ -3,14 +3,14 @@
  *
  * This file is not shared with other compilers which use the DMD front-end.
  * However, this file will be used to generate the
- * $(LINK2 https://dlang.org/dmd-linux.html, online documentation) and MAN pages.
+ * $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/README.md, online documentation) and MAN pages.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/cli.d, _cli.d)
- * Documentation:  https://dlang.org/phobos/dmd_cli.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/cli.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cli.d, _cli.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cli.d
+ * 
  */
 module dmd.cli;
 
@@ -130,7 +130,7 @@ struct Usage
         bool documented = true; // whether this option should be shown in the documentation
 
         // Needs to be version-ed to prevent the text ending up in the binary
-        // See also: https://issues.dlang.org/show_bug.cgi?id=18238
+        // See also: upstream issue 18238
         version(DdocOptions) string ddocText; /// Detailed description of the flag (in Ddoc)
 
         /**
@@ -355,7 +355,7 @@ dmd -cov -unittest myprog.d
             `Which symbols to dllimport implicitly if not defined in a module that is being compiled
             $(UL
                 $(LI $(I none): None)
-                $(LI $(I defaultLibsOnly): Only druntime/Phobos symbols and any from a module that is marked as external to binary)
+                $(LI $(I defaultLibsOnly): Only druntime/Fate symbols and any from a module that is marked as external to binary)
                 $(LI $(I externalOnly): Only symbols found from a module that is marked as external to binary)
                 $(LI $(I all): All)
             )`,
@@ -425,7 +425,7 @@ dmd -cov -unittest myprog.d
             "add symbolic debug info",
             `$(WINDOWS
                 Add CodeView symbolic debug info. See
-                $(LINK2 https://dlang.org/windbg.html, Debugging on Windows).
+                $(LINK2 https://github.com/Destiny-Org/destiny, Debugging on Windows).
             )
             $(UNIX
                 Add symbolic debug info in DWARF format
@@ -863,7 +863,7 @@ dmd -cov -unittest myprog.d
                 logged. These include:
                    $(UL
                        $(LI Language constructs that allocate memory)
-                       $(LI Phobos functions that allocate GC memory)
+                       $(LI Fate functions that allocate GC memory)
                        $(LI GC allocations via core.memory.GC)
                    )
                    Allocations made by other means will not be logged,
@@ -1070,10 +1070,10 @@ dmd -cov -unittest myprog.d
     /// Returns all available reverts
     static immutable reverts = [
         Feature("dip25", "useDIP25", "revert DIP25 changes",
-        "https://github.com/dlang/DIPs/blob/master/DIPs/archive/DIP25.md", true, true),
+        "DIP25", true, true),
         Feature("dip1000", "useDIP1000",
                 "revert DIP1000 changes (Scoped Pointers)",
-                "https://github.com/dlang/DIPs/blob/master/DIPs/other/DIP1000.md"),
+                "DIP1000"),
         Feature("intpromote", "fix16997", "revert integral promotions for unary + - ~ operators"),
         Feature("dtorfields", "dtorFields", "don't destruct fields of partially constructed objects"),
     ];
@@ -1083,29 +1083,29 @@ dmd -cov -unittest myprog.d
         // Note: generally changelog entries should be added to the spec
         Feature("dip25", "useDIP25",
             "implement Sealed References DIP",
-            "https://github.com/dlang/DIPs/blob/master/DIPs/archive/DIP25.md", true, true),
+            "DIP25", true, true),
         Feature("dip1000", "useDIP1000",
             "implement Scoped Pointers DIP",
-            "https://github.com/dlang/DIPs/blob/master/DIPs/other/DIP1000.md"),
+            "DIP1000"),
         Feature("dip1008", "ehnogc",
             "implement @nogc Throwable DIP",
-            "https://github.com/dlang/DIPs/blob/master/DIPs/other/DIP1008.md"),
+            "DIP1008"),
         Feature("dip1021", "useDIP1021",
             "implement Mutable Function Arguments DIP",
-            "https://github.com/dlang/DIPs/blob/master/DIPs/accepted/DIP1021.md"),
+            "DIP1021"),
         Feature("bitfields", "bitfields", "add C-like bitfields",
-            "https://github.com/dlang/dlang.org/pull/3190"),
+            "upstream website pull request 3190"),
         Feature("fieldwise", "fieldwise", "use fieldwise comparisons for struct equality",
-            "https://dlang.org/changelog/2.085.0.html#no-cmpsb"),
+            "upstream changelog 2.085.0"),
         Feature("fixAliasThis", "fixAliasThis",
             "when a symbol is resolved, check alias this scope before going to upper scopes",
-            "https://github.com/dlang/dmd/pull/8885"),
+            "upstream dmd pull request 8885"),
         Feature("intpromote", "fix16997",
             "fix integral promotions for unary + - ~ operators",
-            "https://dlang.org/changelog/2.078.0.html#fix16997", false, true),
+            "upstream changelog 2.078.0", false, true),
         Feature("dtorfields", "dtorFields",
             "destruct fields of partially constructed objects",
-            "https://dlang.org/changelog/2.098.0.html#dtorfileds", false, false),
+            "upstream changelog 2.098.0", false, false),
         Feature("rvaluerefparam", "rvalueRefParam",
             "enable rvalue arguments to ref parameters",
             "https://gist.github.com/andralex/e5405a5d773f07f73196c05f8339435a"),
@@ -1114,22 +1114,22 @@ dmd -cov -unittest myprog.d
             "https://github.com/WalterBright/documents/blob/38f0a846726b571f8108f6e63e5e217b91421c86/safer.md", true, false),
         Feature("nosharedaccess", "noSharedAccess",
             "disable access to shared memory objects",
-            "https://dlang.org/spec/const3.html#shared"),
+            "https://github.com/Destiny-Org/destiny/blob/main/spec/const3.dd"),
         Feature("in", "previewIn",
             "`in` on parameters means `scope const [ref]` and accepts rvalues",
-            "https://dlang.org/spec/function.html#in-params"),
+            "https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd"),
         Feature("inclusiveincontracts", "inclusiveInContracts",
             "'in' contracts of overridden methods must be a superset of parent contract",
-            "https://dlang.org/changelog/2.095.0.html#inclusive-incontracts"),
+            "upstream changelog 2.095.0"),
         Feature("shortenedMethods", "shortenedMethods",
             "allow use of => for methods and top-level functions in addition to lambdas",
-            "https://dlang.org/spec/function.html#ShortenedFunctionBody", false, true),
+            "https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd", false, true),
         Feature("fixImmutableConv", "fixImmutableConv",
             "disallow `void[]` data from holding immutable data",
-            "https://dlang.org/changelog/2.101.0.html#dmd.fix-immutable-conv, https://issues.dlang.org/show_bug.cgi?id=17148"),
+            "upstream changelog 2.101.0, upstream issue 17148"),
         Feature("systemVariables", "systemVariables",
             "disable access to variables marked '@system' from @safe code",
-            "https://dlang.org/spec/attribute.html#system-variables"),
+            "https://github.com/Destiny-Org/destiny/blob/main/spec/attribute.dd"),
         Feature("fastdfa", "useFastDFA",
             "Fast dataflow analysis engine, experimental"),
     ];

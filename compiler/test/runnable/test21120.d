@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21120
+// upstream issue 21120
 
 module one.two.three;
 

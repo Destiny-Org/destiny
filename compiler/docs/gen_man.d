@@ -2,7 +2,7 @@
 /**
 Generate the DMD man page automatically.
 
-Copyright: D Language Foundation 2017.
+Copyright: D Language Foundation 2017; Copyright (C) 2026 Destiny contributors.
 
 License:   $(WEB boost.org/LICENSE_1_0.txt, Boost License 1.0).
 */
@@ -15,7 +15,7 @@ dmd \- Digital Mars D2.x Compiler
 .B dmd \fIfiles\fR ... [ \fI-switch\fR ... ]
 .SH DESCRIPTION
 .B dmd
-Compiles source code written in the D programming language.
+Compiles source code written in the Destiny programming language.
 .SH OPTIONS
 .IP "file, file.d, file.htm, file.html"
 D source files to compile
@@ -57,10 +57,10 @@ The value of
 is treated as if it were appended on the command line to
 \fBdmd\fR.
 .SH AUTHOR
-Copyright (c) 1999-%s by The D Language Foundation written by Walter Bright
+Copyright (c) 1999-%s by The D Language Foundation; Copyright (C) 2026 Destiny contributors written by Walter Bright
 .SH "ONLINE DOCUMENTATION"
-.UR https://dlang.org/dmd.html
-https://dlang.org/dmd.html
+.UR https://github.com/Destiny-Org/destiny/blob/main/README.md
+https://github.com/Destiny-Org/destiny/blob/main/README.md
 .UE
 .SH "SEE ALSO"
 .BR destiny.conf (5)

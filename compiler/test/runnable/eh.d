@@ -699,7 +699,7 @@ void test9()
 }
 
 /****************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10964
+// upstream issue 10964
 
 void test10964()
 {
@@ -862,7 +862,7 @@ void test11()
 }
 
 /****************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17481
+// upstream issue 17481
 
 class C17481
 {
@@ -939,7 +939,7 @@ L10:
 
 /****************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=10966
+// upstream issue 10966
 
 void bug10966a(void* p)
 {
@@ -981,7 +981,7 @@ void test10966()
 
 /****************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=11049
+// upstream issue 11049
 
 void test11049()
 {

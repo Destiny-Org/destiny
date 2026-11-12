@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/pull/24176
+// upstream dmd pull request 24176
 // needs release build to reproduce
 import core.atomic : atomicLoad, atomicStore;
 import core.memory : GC;

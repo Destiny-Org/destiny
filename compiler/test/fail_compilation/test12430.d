@@ -6,7 +6,7 @@ fail_compilation/test12430.d(17): Error: simd operator must be an integer consta
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=12430
+// upstream issue 12430
 
 import core.simd;
 

@@ -6,7 +6,7 @@ fail_compilation/test20569.d(23): Error: taking address of `scope` variable `s2`
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=20569
+// upstream issue 20569
 
 struct S
 {

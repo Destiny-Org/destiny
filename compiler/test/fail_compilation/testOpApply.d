@@ -107,7 +107,7 @@ void testCovariantTypes()
 }
 
 /+
-See https://issues.dlang.org/show_bug.cgi?id=21683
+See upstream issue 21683
 
 TEST_OUTPUT:
 ---

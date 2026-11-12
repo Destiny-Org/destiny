@@ -142,7 +142,7 @@ void test14488c(E *e, S *s)
 {
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=18212
+// upstream issue 18212
 // Usage of cfloat,cdouble,cfloat,ifloat,idouble,ireal shouldn't trigger an error in deprecated code
 deprecated void test18212(creal c){}
 deprecated unittest
@@ -156,7 +156,7 @@ deprecated struct Foo
     cfloat b = 2f + 2i;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=18218
+// upstream issue 18218
 static assert(__traits(isDeprecated, cfloat));
 static assert(__traits(isDeprecated, cdouble));
 static assert(__traits(isDeprecated, creal));

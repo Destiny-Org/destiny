@@ -6,7 +6,7 @@ fail_compilation/test16381.d(15): Error: cannot take address of expression `foo(
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=16381
+// upstream issue 16381
 
 __vector(float[4]) foo();
 

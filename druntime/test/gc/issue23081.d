@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23081
+// upstream dmd issue 23081
 // GC scan threads livelock when no global stack pop occurs during markParallel.
 //
 // evStackFilled is a manual-reset event.  markParallel sets it unconditionally

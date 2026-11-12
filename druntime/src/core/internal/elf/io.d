@@ -526,5 +526,5 @@ unittest
     assert(emptyFile);
 
     const elfFile = ElfFile(fileno(emptyFile));
-    assert(!elfFile.isValid()); // no SIGBUS: https://issues.dlang.org/show_bug.cgi?id=21656
+    assert(!elfFile.isValid()); // no SIGBUS: upstream issue 21656
 }

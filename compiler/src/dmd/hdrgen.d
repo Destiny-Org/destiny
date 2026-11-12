@@ -1,14 +1,14 @@
 /**
- * Generate $(LINK2 https://dlang.org/dmd-windows.html#interface-files, D interface files).
+ * Generate $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/README.md, D interface files).
  *
  * Also used to convert AST nodes to D code in general, e.g. for error messages or `printf` debugging.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/hdrgen.d, _hdrgen.d)
- * Documentation:  https://dlang.org/phobos/dmd_hdrgen.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/hdrgen.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/hdrgen.d, _hdrgen.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/hdrgen.d
+ * 
  */
 
 module dmd.hdrgen;
@@ -1116,7 +1116,7 @@ private final class DsymbolPrettyPrintVisitor : Visitor
         }
         if (d.decl.length == 0 || (hgs.hdrgen && d.decl.length == 1 && (*d.decl)[0].isUnitTestDeclaration()))
         {
-            // hack for https://issues.dlang.org/show_bug.cgi?id=8081
+            // hack for upstream issue 8081
             if (hasSTC) buf.put(' ');
             buf.put("{}");
         }
@@ -1243,7 +1243,7 @@ private final class DsymbolPrettyPrintVisitor : Visitor
 
         buf.put(')');
 
-        // https://issues.dlang.org/show_bug.cgi?id=14690
+        // upstream issue 14690
         // Unconditionally perform a full output dump
         // for `pragma(inline)` declarations.
         const saved = hgs.doFuncBodies;
@@ -1799,9 +1799,9 @@ private final class DsymbolPrettyPrintVisitor : Visitor
             if (stcToBuffer(*buf, d.storage_class))
                 buf.put(' ');
             /*
-                https://issues.dlang.org/show_bug.cgi?id=23223
-                https://issues.dlang.org/show_bug.cgi?id=23222
-                https://github.com/dlang/dmd/issues/21707
+                upstream issue 23223
+                upstream issue 23222
+                upstream dmd issue 21707
                 For named symbols (modules, functions, templates, aggregates),
                 print just the name to avoid segfaults, infinite recursion,
                 and for nicer -vcg-ast output. Anonymous symbols (function
@@ -1859,7 +1859,7 @@ private final class DsymbolPrettyPrintVisitor : Visitor
     {
         //printf("FuncDeclaration::toCBuffer() '%s'\n", f.toChars());
 
-        // https://issues.dlang.org/show_bug.cgi?id=24891
+        // upstream issue 24891
         // return/scope storage classes are printed as part of function type
         if (stcToBuffer(*buf, f.storage_class & ~(STC.scope_ | STC.return_ | STC.returnScope | STC.returnRef)))
             buf.put(' ');
@@ -1869,7 +1869,7 @@ private final class DsymbolPrettyPrintVisitor : Visitor
         if (hgs.hdrgen && tf)
         {
             // if the return type is missing (e.g. ref functions or auto)
-            // https://issues.dlang.org/show_bug.cgi?id=20090
+            // upstream issue 20090
             // constructors are an exception: they don't have an explicit return
             // type but we still don't output the body.
             if ((!f.isCtorDeclaration() && !tf.next) || f.storage_class & STC.auto_)
@@ -1915,7 +1915,7 @@ private final class DsymbolPrettyPrintVisitor : Visitor
             typeToBuffer(tf.next, null, *buf, *hgs);
         parametersToBuffer(tf.parameterList, *buf, *hgs);
 
-        // https://issues.dlang.org/show_bug.cgi?id=20074
+        // upstream issue 20074
         void printAttribute(string str)
         {
             buf.put(' ');
@@ -2299,7 +2299,7 @@ private void expressionPrettyPrint(Expression e, ref OutBuffer buf, ref HdrGenSt
             case Tint64:
                 if (v == long.min)
                 {
-                    // https://issues.dlang.org/show_bug.cgi?id=23173
+                    // upstream issue 23173
                     // This is a special case because - is not part of the
                     // integer literal and 9223372036854775808L overflows a long
                     buf.put("cast(long)-9223372036854775808");
@@ -3664,7 +3664,7 @@ void argExpTypesToCBuffer(ref OutBuffer buf, Expressions* arguments)
         // signature to show here and would otherwise print as `void`,
         // which isn't useful when several such arguments are involved.
         // Show its source text instead.
-        // https://github.com/dlang/dmd/issues/18923
+        // upstream dmd issue 18923
         if (arg.type && arg.type.ty == Tvoid && arg.isFuncExp())
             buf.writestring(arg.toErrMsg());
         else
@@ -3966,7 +3966,7 @@ private PREC expPrecedence(ref HdrGenState hgs, Expression e)
             if (ne.loweredFrom)
                 e = ne.loweredFrom;
     }
-    // https://github.com/dlang/dmd/issues/23326
+    // upstream dmd issue 23326
     // Arrow lambdas are not true primaries; treat like assign-level expressions for paren insertion.
     if (auto fe = e.isFuncExp())
     {
@@ -4147,7 +4147,7 @@ private void objectToBuffer(RootObject oarg, ref OutBuffer buf, ref HdrGenState 
     //printf("objectToBuffer()\n");
     /* The logic of this should match what genIdent() does. The _dynamic_cast()
      * function relies on all the pretty strings to be unique for different classes
-     * See https://issues.dlang.org/show_bug.cgi?id=7375
+     * See upstream issue 7375
      * Perhaps it would be better to demangle what genIdent() does.
      */
     if (auto t = isType(oarg))
@@ -4158,7 +4158,7 @@ private void objectToBuffer(RootObject oarg, ref OutBuffer buf, ref HdrGenState 
     else if (auto e = isExpression(oarg))
     {
         if (e.op == EXP.variable)
-            e = e.optimize(WANTvalue); // added to fix https://issues.dlang.org/show_bug.cgi?id=7375
+            e = e.optimize(WANTvalue); // added to fix upstream issue 7375
         expToBuffer(e, PREC.assign, buf, hgs);
     }
     else if (Dsymbol s = isDsymbol(oarg))
@@ -4585,7 +4585,7 @@ private void typeToBufferx(Type t, ref OutBuffer buf, ref HdrGenState hgs)
     {
         //printf("visitTypeStruct() %s\n", t.sym.toChars());
 
-        // https://issues.dlang.org/show_bug.cgi?id=13776
+        // upstream issue 13776
         // Don't use ti.toAlias() to avoid forward reference error
         // while printing messages.
         TemplateInstance ti = t.sym.parent ? t.sym.parent.isTemplateInstance() : null;
@@ -4597,7 +4597,7 @@ private void typeToBufferx(Type t, ref OutBuffer buf, ref HdrGenState hgs)
 
     void visitClass(TypeClass t)
     {
-        // https://issues.dlang.org/show_bug.cgi?id=13776
+        // upstream issue 13776
         // Don't use ti.toAlias() to avoid forward reference error
         // while printing messages.
         TemplateInstance ti = t.sym.parent ? t.sym.parent.isTemplateInstance() : null;
@@ -4611,7 +4611,7 @@ private void typeToBufferx(Type t, ref OutBuffer buf, ref HdrGenState hgs)
     {
         if (hgs.importcHdr && t.id)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=24670
+            // upstream issue 24670
             // `const` must be parenthesized because it can be a return type
             if (t.mod & MODFlags.const_)
                 buf.put("const(");

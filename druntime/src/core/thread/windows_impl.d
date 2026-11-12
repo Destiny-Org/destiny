@@ -531,7 +531,7 @@ package void loadStackAndRegInfo(Thread t, const bool sameThread) nothrow @nogc
     {
         t.m_curr.bstack = getThreadStackBottom( t.m_tdescr.hndl );
 
-        // avoid accessing stack below its mapped range, see https://github.com/dlang/dmd/issues/24142
+        // avoid accessing stack below its mapped range, see upstream dmd issue 24142
         auto limit = getThreadStackLimit( t.m_tdescr.hndl );
         if ( t.m_curr.tstack < limit )
             t.m_curr.tstack = limit;

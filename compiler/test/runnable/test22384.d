@@ -1,4 +1,4 @@
-//https://github.com/dlang/dmd/issues/22384
+//upstream dmd issue 22384
 struct S
 {
     int a = 1;

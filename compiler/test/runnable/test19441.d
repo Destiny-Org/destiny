@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19441
+// upstream issue 19441
 struct S1
 {
     int a;

@@ -26,7 +26,7 @@ fail_compilation/lexer1.d(53): Error: html entity requires 2 code units, use a s
 ---
 */
 
-// https://dlang.dawg.eu/coverage/src/lexer.c.gcov.html
+// 
 x"01 02 03"w;
 0x80000001;
 0.1;

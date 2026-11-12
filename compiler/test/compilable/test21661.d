@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21661
+// upstream issue 21661
 
 module pkg.pkg2.mod;
 

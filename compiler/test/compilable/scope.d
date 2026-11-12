@@ -14,7 +14,7 @@ struct Cache
 
 /*********************************/
 
-// https://github.com/dlang/dmd/pull/9220
+// upstream dmd pull request 9220
 
 @safe:
 
@@ -41,7 +41,7 @@ void test() @nogc @safe pure
 
 /************************************/
 
-// https://github.com/dlang/dmd/pull/9220
+// upstream dmd pull request 9220
 
 auto callWrappedOops(scope string dArgs) {
 
@@ -82,7 +82,7 @@ struct Constant
 
 /************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=19387
+// upstream issue 19387
 
 struct C
 {
@@ -108,7 +108,7 @@ void bar(scope S s) @safe
 
 /************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=20675
+// upstream issue 20675
 
 struct D
 {
@@ -135,7 +135,7 @@ void withEscapes()
 
 /************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=20682
+// upstream issue 20682
 
 int f1_20682(return scope ref D d) @safe
 {
@@ -155,7 +155,7 @@ void test_20682(scope ref D d) @safe
     a ~= cast(int) d.p;
 }
 
-// Phobos failure
+// Fate failure
 void formattedWrite(immutable char[2] args) @safe
 {
     scope immutable char[] val = args;
@@ -227,11 +227,11 @@ int*[4] testArray() @safe
 
 /************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=21209
+// upstream issue 21209
 void testForeach(T)(const(T)[] ts)
 {
     static int g;
-    g++; // force impure for https://issues.dlang.org/show_bug.cgi?id=20150
+    g++; // force impure for upstream issue 20150
     foreach (c; ts)
     {
 
@@ -267,7 +267,7 @@ struct S23669
 
 // Calling `hasPointers` in escape.d at some point caused
 // a "circular `typeof` definition" error in std.typecons
-// https://github.com/dlang/dmd/pull/16719
+// upstream dmd pull request 16719
 struct Unique
 {
     int* p;
@@ -291,7 +291,7 @@ struct S2
 
 /************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=23300
+// upstream issue 23300
 
 auto array(Range)(Range r)
 {

@@ -15,7 +15,7 @@ fail_compilation/failasm2.d(116): Error: operand size for opcode `not` is ambigu
 
 #line 100
 
-// https://issues.dlang.org/show_bug.cgi?id=2617
+// upstream issue 2617
 
 uint test2617()
 {

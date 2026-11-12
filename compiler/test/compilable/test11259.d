@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=11259
+// upstream issue 11259
 
 version (Posix)
 {

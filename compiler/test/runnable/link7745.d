@@ -15,6 +15,6 @@ static assert(forceSemantic7745());
 void f(C c) { auto x = &c.asdfg; }
 
 void main() {
-    // https://issues.dlang.org/show_bug.cgi?id=4820
+    // upstream issue 4820
     nextis!(int)();
 }

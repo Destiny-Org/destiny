@@ -386,7 +386,7 @@ void main()
     ~nd;
 }
 
-/// See https://github.com/dlang/dmd/pull/10716
+/// See upstream dmd pull request 10716
 class NoDeprecation
 {
     int opIn(int i) { return 0; }

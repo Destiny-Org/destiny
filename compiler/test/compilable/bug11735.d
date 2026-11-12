@@ -35,6 +35,6 @@ void main()
     pragma(msg, b);
     pragma(msg, c);
 
-    // https://github.com/dlang/dmd/issues/20894
+    // upstream dmd issue 20894
     pragma(msg, "X%nY");
 }

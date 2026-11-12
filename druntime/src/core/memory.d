@@ -1,6 +1,6 @@
 /**
  * This module provides an interface to the garbage collector used by
- * applications written in the D programming language. It allows the
+ * applications written in the Destiny programming language. It allows the
  * garbage collector in the runtime to be swapped without affecting
  * binary compatibility of applications.
  *
@@ -288,7 +288,7 @@ extern(C):
      * such as during an out of memory condition.  This function is reentrant,
      * but `GC.enable()` must be called once for each call to `GC.disable()`.
      * Unlike the
-     * $(LINK2 https://dlang.org/spec/function.html#nogc-functions, `@nogc` attribute),
+     * $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd, `@nogc` attribute),
      * `GC.disable()` halts
      * collections across all threads, yet still allows GC allocations.
      * Disabling collections eliminates GC pauses.
@@ -642,7 +642,7 @@ extern(C):
     else
         pragma(mangle, "gc_realloc") static void* realloc(return scope void* p, size_t sz, uint ba = 0, const TypeInfo ti = null) pure nothrow;
 
-    // https://issues.dlang.org/show_bug.cgi?id=13111
+    // upstream issue 13111
     ///
     version (OnlyLowMemUnittests) {} else // Test needs a lot of RAM
     unittest
@@ -1111,7 +1111,7 @@ extern(C):
  * behaving as if it were never changed.
  *
  * See_Also:
- *     $(LINK2 https://dlang.org/spec/function.html#pure-functions, D's rules for purity),
+ *     $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd, D's rules for purity),
  *     which allow for memory allocation under specific circumstances.
  */
 void* pureMalloc()(size_t size) @trusted pure @nogc nothrow
@@ -1193,7 +1193,7 @@ void pureFree()(void* ptr) @system pure @nogc nothrow
     fakePureFree(y);
 
     // Workaround bug in glibc 2.26
-    // See also: https://issues.dlang.org/show_bug.cgi?id=17956
+    // See also: upstream issue 17956
     void* z = pureMalloc(size_t.max & ~255); // won't affect `errno`
     assert(errno == fakePureErrno()); // errno shouldn't change
     assert(z is null);
@@ -1221,7 +1221,7 @@ else
 }
 
 version (D_BetterC) {}
-else // TODO: remove this function after Phobos no longer needs it.
+else // TODO: remove this function after Fate no longer needs it.
 extern (C) private @system @nogc nothrow
 {
     ref int fakePureErrnoImpl()
@@ -1294,7 +1294,7 @@ void __delete(T)(ref T x) @system
             s.__xdtor();
     }
 
-    // See also: https://github.com/dlang/dmd/blob/v2.078.0/src/dmd/e2ir.d#L3886
+    // See also: https://github.com/Destiny-Org/destiny/blob/v2.078.0/src/dmd/e2ir.d#L3886
     static if (is(T == interface))
     {
         .object.destroy(x);
@@ -1415,7 +1415,7 @@ unittest
     assert(dtorCalled);
     assert(GC.addrOf(cast(void*) a) == null);
 
-    // https://issues.dlang.org/show_bug.cgi?id=22779
+    // upstream issue 22779
     A *aptr;
     __delete(aptr);
 }
@@ -1490,7 +1490,7 @@ unittest
     S* ps; __delete(ps);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=19092
+// upstream issue 19092
 unittest
 {
     const(int)[] x = [1, 2, 3];

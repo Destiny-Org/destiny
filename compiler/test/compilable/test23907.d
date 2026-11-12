@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23907
+// upstream dmd issue 23907
 // ICE: inout substitution through an enum base type
 
 enum E : inout(int)[] { a = null }

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22852
+// upstream issue 22852
 /* TEST_OUTPUT:
 ---
 fail_compilation/fail22852.c(11): Error: `=`, `;` or `,` expected to end declaration instead of `"string"`

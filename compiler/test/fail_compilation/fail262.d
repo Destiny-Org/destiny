@@ -6,7 +6,7 @@ fail_compilation/fail262.d(16):        did you mean to override `shared const vo
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=1645
+// upstream issue 1645
 // can override base class' const method with non-const method
 import core.stdc.stdio;
 

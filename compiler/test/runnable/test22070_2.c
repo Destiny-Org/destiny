@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22070
+// upstream issue 22070
 
 int printf(const char *, ...);
 
@@ -54,7 +54,7 @@ int main()
     return test23055();
 }
 
-// https://issues.dlang.org/show_bug?id=23055
+// upstream issue 23055
 
 int *px = (int[1]){0};
 

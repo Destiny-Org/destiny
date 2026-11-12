@@ -2,7 +2,7 @@
  * Test C++ abi-tag name mangling.
  * They are a C++11 feature required to bind `std::string`,
  * introduced in G++ 5.1 / clang++ 3.9
- * https://issues.dlang.org/show_bug.cgi?id=19949
+ * upstream issue 19949
  *
  * DISABLED: win32 win64
  * REQUIRED_ARGS: -extern-std=c++11

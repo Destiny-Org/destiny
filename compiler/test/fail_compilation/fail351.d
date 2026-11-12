@@ -5,7 +5,7 @@ fail_compilation/fail351.d(14): Error: expression `this.num[index]` of type `imm
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=2780
+// upstream issue 2780
 
 struct Immutable {
     immutable uint[2] num;

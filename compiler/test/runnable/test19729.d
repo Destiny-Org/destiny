@@ -1,4 +1,4 @@
-//https://issues.dlang.org/show_bug.cgi?id=19729
+//upstream issue 19729
 // PERMUTE_ARGS:
 module test19729;
 

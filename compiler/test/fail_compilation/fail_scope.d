@@ -99,7 +99,7 @@ do
 }
 
 /******************/
-// https://issues.dlang.org/show_bug.cgi?id=15192
+// upstream issue 15192
 
 ref int fun15192(ref int x) @safe
 {
@@ -114,7 +114,7 @@ ref int fun15192_2(return ref int x) @safe
 }
 
 /**************************/
-// https://issues.dlang.org/show_bug.cgi?id=15193
+// upstream issue 15193
 
 ref int foo15193()@safe{
     struct S{
@@ -127,7 +127,7 @@ ref int foo15193()@safe{
 
 
 /*****************************/
-// https://issues.dlang.org/show_bug.cgi?id=16226
+// upstream issue 16226
 
 ref int test16226() @safe
 {

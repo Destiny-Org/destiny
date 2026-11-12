@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24041
+// upstream dmd issue 24041
 // A struct whose semantic finishes inside a gagged analysis that already
 // errored must keep its copy constructor.
 

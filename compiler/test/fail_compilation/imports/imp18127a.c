@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/18127
+// upstream dmd issue 18127
 // union in here, struct in other
 union struct_or_union {
     int x;

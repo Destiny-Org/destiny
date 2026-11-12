@@ -2,7 +2,7 @@
    PERMUTE_ARGS:
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=16540
+// upstream issue 16540
 
 @safe:
 

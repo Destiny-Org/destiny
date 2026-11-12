@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22252
+// upstream issue 22252
 
 /* Test conversion of parameter types:
  *    array of T => pointer to T
@@ -22,7 +22,7 @@ int test3(int fp())
 
 /*********************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22275
+// upstream issue 22275
 
 void test22275(char *dest)
 {
@@ -35,7 +35,7 @@ void test22275(char *dest)
 
 /*********************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22294
+// upstream issue 22294
 
 enum { A, B, C };
 
@@ -45,7 +45,7 @@ int array[C];
 
 /*********************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22313
+// upstream issue 22313
 
 typedef int Integer;
 int castint(int x){
@@ -64,7 +64,7 @@ int castint(int x){
 
 /*********************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22314
+// upstream issue 22314
 
 enum E22314 {
     oldval __attribute__((deprecated)),
@@ -73,7 +73,7 @@ enum E22314 {
 
 /*********************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22322
+// upstream issue 22322
 
 struct S22322
 {
@@ -84,7 +84,7 @@ struct S22322
 
 /*********************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22362
+// upstream issue 22362
 
 typedef struct Foo22362 {
     int x, y;
@@ -99,7 +99,7 @@ int main(int argc, char** argv)
 
 /*********************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22623
+// upstream issue 22623
 
 struct S22623 {
     struct T *child;
@@ -120,7 +120,7 @@ void f22623()
 
 /*********************************************************/
 
-//https://issues.dlang.org/show_bug.cgi?id=22267
+//upstream issue 22267
 typedef signed int int32_t;
 int32_t ret22267()
 {
@@ -131,7 +131,7 @@ _Static_assert(ret22267() == 4, "Ret != 4");
 
 /*********************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22233
+// upstream issue 22233
 
 int foo22233();
 
@@ -142,7 +142,7 @@ void test22233()
 
 /*********************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22286
+// upstream issue 22286
 
 int foo122286(int);
 int foo222286(int, int);

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=9490
+// upstream issue 9490
 class A
 {
     int[1] arr;

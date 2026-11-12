@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22659
+// upstream dmd issue 22659
 
 int[] foo()
 {

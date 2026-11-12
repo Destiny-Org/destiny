@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23031
+/* upstream issue 23031
  */
 
 _Static_assert(sizeof("\x1") == 2, "1");

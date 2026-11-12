@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20157
+// upstream dmd issue 20157
 // testing C intializers using designators
 
 #include <assert.h>

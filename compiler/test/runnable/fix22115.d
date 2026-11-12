@@ -1,6 +1,6 @@
 /* PERMUTE_ARGS: -O -inline
  */
-// https://issues.dlang.org/show_bug.cgi?id=22115
+// upstream issue 22115
 
 
 int sx;

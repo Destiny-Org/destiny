@@ -5,6 +5,6 @@ fail_compilation/test22070.c(10): Error: cannot take address of expression `&""`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22070
+// upstream issue 22070
 
 char(**s1)[3] = &(&"");

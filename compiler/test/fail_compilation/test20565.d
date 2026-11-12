@@ -4,7 +4,7 @@ fail_compilation/test20565.d(107): Error: function `test20565.test.box` the same
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=20565
+// upstream issue 20565
 
 #line 100
 

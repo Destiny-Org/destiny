@@ -1,6 +1,6 @@
 /* Create classes from their modules and names.
  *
- * Copyright: Copyright (C) D Language Foundation 2023
+ * Copyright: Copyright (C) D Language Foundation 2023; Copyright (C) 2026 Destiny contributors
  * License:   $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Authors:   Walter Bright, Steven Schveighoffer
  * Source:    $(DRUNTIMESRC core/_factory.d)

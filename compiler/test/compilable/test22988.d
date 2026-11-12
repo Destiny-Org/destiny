@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22988
+// upstream issue 22988
 
 enum a1 = 0;
 enum b1 = a1 ? 1 << a1 - 1 : 0;

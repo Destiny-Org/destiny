@@ -11,7 +11,7 @@ fail_compilation/test15660.d(36):        Use `cast(void[])` to force copy
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=15660
+// upstream issue 15660
 
 int[] f(ref void[] m) pure
 {
@@ -26,7 +26,7 @@ void main()
     immutable x = f(v);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=17148
+// upstream issue 17148
 void f(int*[] a, const int*[] b) @system
 {
 	void[] a1 = a;

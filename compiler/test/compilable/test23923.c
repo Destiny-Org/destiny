@@ -1,7 +1,7 @@
 /* DISABLED: win32 win64
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=23346
+// upstream issue 23346
 
 struct S1 {
     unsigned d:31;

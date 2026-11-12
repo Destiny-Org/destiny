@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23639
+// upstream issue 23639
 
 // REQUIRED_ARGS: -preview=nosharedaccess
 

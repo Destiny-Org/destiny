@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=1537
+// upstream issue 1537
 
 void foo(char[] s)
 {

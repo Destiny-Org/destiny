@@ -1,7 +1,7 @@
 // REQUIRED_ARGS:
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=19479
+// upstream issue 19479
 
 mixin template genInts19479a()
 {
@@ -40,7 +40,7 @@ void test19479()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=23192
+// upstream issue 23192
 
 alias AliasSeq(Args...) = Args;
 

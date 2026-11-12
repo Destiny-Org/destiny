@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16013
+// upstream issue 16013
 
 S s; /* Only this line has changed from above. */
 

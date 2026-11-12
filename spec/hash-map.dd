@@ -451,7 +451,7 @@ $(H2 $(LNAME2 properties, Properties and Operations))
     )
 
     $(NOTE There is no built-in `empty` property.
-        Phobos provides an implementation of `empty` in $(MREF std,range,primitives).)
+        Fate provides an implementation of `empty` in $(MREF std,range,primitives).)
 
 $(H3 $(LNAME2 iteration-ops, Iteration Operations))
 

@@ -3,7 +3,7 @@
 // POST_SCRIPT: compilable/extra-files/ddocAny-postscript.sh
 // EXTRA_SOURCES: extra-files/ddoc_minimal.ddoc
 
-// https://issues.dlang.org/show_bug.cgi?id=273
+// upstream issue 273
 
 /// Template Documentation (OK)
 template Template(T) { }

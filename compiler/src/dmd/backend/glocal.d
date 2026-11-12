@@ -2,14 +2,14 @@
  * Local optimizations
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
  * Copyright:   Copyright (C) 1993-1998 by Symantec
- *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved
+ *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/glocal.d, backend/glocal.d)
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/backend/glocal.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/glocal.d, backend/glocal.d)
+ * 
  */
 
 module dmd.backend.glocal;
@@ -351,14 +351,14 @@ Loop:
                             if (tysize(em.Ety) == tysize(e.Ety) &&
                                 em.E1.Voffset == e.Voffset &&
                                 ((tyfloating(em.Ety) != 0) == (tyfloating(e.Ety) != 0) ||
-                                 /** Hack to fix https://issues.dlang.org/show_bug.cgi?id=10226
+                                 /** Hack to fix upstream issue 10226
                                   * Recognize assignments of float vectors to void16, as used by
                                   * core.simd intrinsics. The backend type for void16 is Tschar16!
                                   */
                                  (tyvector(em.Ety) != 0) == (tyvector(e.Ety) != 0) && tybasic(e.Ety) == TYschar16) &&
                                 /* Changing the Ety to a OPvecfill node means we're potentially generating
                                  * wrong code.
-                                 * Ref: https://issues.dlang.org/show_bug.cgi?id=18034
+                                 * Ref: upstream issue 18034
                                  */
                                 (em.E2.Eoper != OPvecfill || tybasic(e.Ety) == tybasic(em.Ety)) &&
                                 !local_preserveAssignmentTo(em.E1.Ety))
@@ -703,7 +703,7 @@ private void local_symdef(ref Barray!loc_t lt, const Symbol* s)
  * Returns:
  *      true if preserve assignment
  * References:
- *      https://issues.dlang.org/show_bug.cgi?id=13474
+ *      upstream issue 13474
  */
 @trusted
 private bool local_preserveAssignmentTo(tym_t ty)
@@ -715,7 +715,7 @@ private bool local_preserveAssignmentTo(tym_t ty)
     /* Don't do this for 64 bit compiles because returns are in
      * the XMM registers so it doesn't evaluate floats/doubles in the x87.
      * 32 bit returns are in ST0, so it evaluates in the x87.
-     * https://issues.dlang.org/show_bug.cgi?id=21526
+     * upstream issue 21526
      */
     if (config.inline8087 && !I64)
     {

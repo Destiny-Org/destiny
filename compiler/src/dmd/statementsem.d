@@ -1,14 +1,14 @@
 /**
  * Does semantic analysis for statements.
  *
- * Specification: $(LINK2 https://dlang.org/spec/statement.html, Statements)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd, Statements)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/statementsem.d, _statementsem.d)
- * Documentation:  https://dlang.org/phobos/dmd_statementsem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/statementsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/statementsem.d, _statementsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/statementsem.d
+ * 
  */
 
 module dmd.statementsem;
@@ -234,7 +234,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitExp(ExpStatement s)
     {
-        /* https://dlang.org/spec/statement.html#expression-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         if (!s.exp)
@@ -278,7 +278,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitMixin(MixinStatement cs)
     {
-        /* https://dlang.org/spec/statement.html#mixin-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         //printf("MixinStatement::semantic() %s\n", exp.toChars());
@@ -351,7 +351,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
                         else if (auto ei = vd._init ? vd._init.isExpInitializer() : null)
                         {
                             // Empty tuple: evaluate initializer expression for side effects
-                            // https://github.com/dlang/dmd/issues/20842
+                            // upstream dmd issue 20842
                             if (auto te = ei.exp ? ei.exp.isTupleExp() : null)
                                 if (te.e0)
                                     cs.statements[i] = s = new ExpStatement(vd.loc, te.e0);
@@ -497,7 +497,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
             }
         }
 
-        /* https://issues.dlang.org/show_bug.cgi?id=11653
+        /* upstream issue 11653
          * 'semantic' may return another CompoundStatement
          * (eg. CaseRangeStatement), so flatten it here.
          */
@@ -616,7 +616,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
     void visitWhile(WhileStatement ws)
     {
         /* Rewrite as a for(;condition;) loop
-         * https://dlang.org/spec/statement.html#while-statement
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
         Expression cond = ws.condition;
         Statement _body = ws._body;
@@ -642,7 +642,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitDo(DoStatement ds)
     {
-        /* https://dlang.org/spec/statement.html#do-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
         const inLoopSave = sc.inLoop;
         sc.inLoop = true;
@@ -680,7 +680,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitFor(ForStatement fs)
     {
-        /* https://dlang.org/spec/statement.html#for-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
         //printf("ForStatement::semantic %s\n", fs.toChars());
 
@@ -775,7 +775,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitForeach(ForeachStatement fs)
     {
-        /* https://dlang.org/spec/statement.html#foreach-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         //printf("ForeachStatement::semantic() %p\n", fs);
@@ -818,7 +818,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
             fs.aggr.type.toBasetype().isTypeStruct().sym.dtor &&
             !fs.aggr.isTypeExp() && !fs.aggr.isLvalue())
         {
-            // https://issues.dlang.org/show_bug.cgi?id=14653
+            // upstream issue 14653
             // Extend the life of rvalue aggregate till the end of foreach.
             vinit = copyToTemp(STC.rvalue, "__aggr", fs.aggr);
             vinit.endloc = fs.endloc;
@@ -851,14 +851,14 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
                     eSink.errorSupplemental(fs.loc, "`foreach_reverse` works with bidirectional ranges"~
                         " (implementing `empty`, `back`, and `popBack`), aggregates implementing" ~
                         " `opApplyReverse`, or the result of an aggregate's `.tupleof` property");
-                    eSink.errorSupplemental(fs.loc, "https://dlang.org/phobos/std_range_primitives.html#isBidirectionalRange");
+                    eSink.errorSupplemental(fs.loc, "https://github.com/Destiny-Org/fate/blob/main/std/range/primitives.d");
                 }
                 else
                 {
                     eSink.errorSupplemental(fs.loc, "`foreach` works with input ranges"~
                         " (implementing `empty`, `front`, and `popFront`), aggregates implementing" ~
                         " `opApply`, or the result of an aggregate's `.tupleof` property");
-                    eSink.errorSupplemental(fs.loc, "https://dlang.org/phobos/std_range_primitives.html#isInputRange");
+                    eSink.errorSupplemental(fs.loc, "https://github.com/Destiny-Org/fate/blob/main/std/range/primitives.d");
                 }
             }
 
@@ -1184,7 +1184,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
                     if (auto ta = tab.isTypeSArray())
                     {
                         IntRange dimrange = getIntRange(ta.dim);
-                        // https://issues.dlang.org/show_bug.cgi?id=12504
+                        // upstream issue 12504
                         dimrange.imax = SignExtendedNumber(dimrange.imax.value-1);
                         if (!intRangeFromType(fs.key.type).contains(dimrange))
                         {
@@ -1237,7 +1237,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
                     size_t edim = ale.length;
                     auto telem = (*fs.parameters)[dim - 1].type;
 
-                    // https://issues.dlang.org/show_bug.cgi?id=12936
+                    // upstream issue 12936
                     // if telem has been specified explicitly,
                     // converting array literal elements to telem might make it @nogc.
                     fs.aggr = fs.aggr.implicitCastTo(sc, telem.sarrayOf(edim));
@@ -1332,7 +1332,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
                 fs._body = new CompoundStatement(loc, ds, fs._body);
 
                 Statement s = new ForStatement(loc, forinit, cond, increment, fs._body, fs.endloc);
-                if (auto ls = checkLabeledLoop(sc, fs))   // https://issues.dlang.org/show_bug.cgi?id=15450
+                if (auto ls = checkLabeledLoop(sc, fs))   // upstream issue 15450
                                                           // don't use sc2
                     ls.gotoTarget = s;
                 return retStmt(s);
@@ -1444,7 +1444,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
                     if (!ftt.isRef)
                     {
                         // .front() does not return a ref. We ignore ref on foreach arg.
-                        // see https://issues.dlang.org/show_bug.cgi?id=11934
+                        // see upstream issue 11934
                         if (tfront.needsDestruction()) ignoreRef = true;
                     }
                 }
@@ -1553,7 +1553,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitForeachRange(ForeachRangeStatement fs)
     {
-        /* https://dlang.org/spec/statement.html#foreach-range-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         //printf("ForeachRangeStatement::semantic() %p\n", fs);
@@ -1757,7 +1757,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitIf(IfStatement ifs)
     {
-        /* https://dlang.org/spec/statement.html#IfStatement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         // check in syntax level
@@ -1907,7 +1907,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitPragma(PragmaStatement ps)
     {
-        /* https://dlang.org/spec/statement.html#pragma-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
         import dmd.pragmasem : pragmaStmtSemantic;
         if (!pragmaStmtSemantic(ps, sc))
@@ -1925,7 +1925,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitSwitch(SwitchStatement ss)
     {
-        /* https://dlang.org/spec/statement.html#switch-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         //printf("SwitchStatement::semantic(%p)\n", ss);
@@ -2379,7 +2379,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
         L1:
             if (cs.exp.isIntegerExp() || cs.exp.isStringExp())
             {
-                // https://issues.dlang.org/show_bug.cgi?id=15909
+                // upstream issue 15909
                 // Use O(n) AA-based duplicate detection instead of O(n^2) linear scan
                 auto seen = *cast(bool[CaseExpressionBox]*) &sc.switchCases;
                 auto box = CaseExpressionBox(cs.exp);
@@ -2574,7 +2574,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitGotoDefault(GotoDefaultStatement gds)
     {
-        /* https://dlang.org/spec/statement.html#goto-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         gds.sw = sc.switchStatement;
@@ -2593,7 +2593,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitGotoCase(GotoCaseStatement gcs)
     {
-        /* https://dlang.org/spec/statement.html#goto-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         if (!sc.switchStatement)
@@ -2617,7 +2617,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitReturn(ReturnStatement rs)
     {
-        /* https://dlang.org/spec/statement.html#return-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         //printf("ReturnStatement.dsymbolSemantic() %s\n", toChars(rs));
@@ -2746,7 +2746,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
             const returnSharedRef = (tf.isRef && (fd.inferRetType || tret.isShared()));
             rs.exp.checkSharedAccess(sc, returnSharedRef);
 
-            // for static alias this: https://issues.dlang.org/show_bug.cgi?id=17684
+            // for static alias this: upstream issue 17684
             if (rs.exp.isTypeExp())
                 rs.exp = resolveAliasThis(sc, rs.exp);
 
@@ -2791,7 +2791,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
                     rs.exp = rs.exp.expressionSemantic(sc);
                 }
 
-                // https://issues.dlang.org/show_bug.cgi?id=23063
+                // upstream issue 23063
                 rs.exp = checkNoreturnVarAccess(rs.exp);
 
                 const olderrors = global.startGagging();
@@ -2862,7 +2862,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
             {
                 /* Determine "refness" of function return:
                  * if it's an lvalue, return by ref, else return by value
-                 * https://dlang.org/spec/function.html#auto-ref-functions
+                 * https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
                  */
 
                 void turnOffRef(scope void delegate() supplemental)
@@ -2941,7 +2941,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
                 tbret = tret.toBasetype();
             }
 
-            // https://issues.dlang.org/show_bug.cgi?id=23914
+            // upstream issue 23914
             if (inferRef && !resType.isTypeNoreturn()) // deduce 'auto ref'
                 tf.isRef = false;
 
@@ -3059,7 +3059,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitBreak(BreakStatement bs)
     {
-        /* https://dlang.org/spec/statement.html#break-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         //printf("BreakStatement::semantic()\n");
@@ -3137,7 +3137,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitContinue(ContinueStatement cs)
     {
-        /* https://dlang.org/spec/statement.html#continue-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         //printf("ContinueStatement::semantic() %p\n", cs);
@@ -3224,7 +3224,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitSynchronized(SynchronizedStatement ss)
     {
-        /* https://dlang.org/spec/statement.html#synchronized-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         if (ss.exp)
@@ -3347,7 +3347,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitWith(WithStatement ws)
     {
-        /* https://dlang.org/spec/statement.html#with-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         ScopeDsymbol sym;
@@ -3484,7 +3484,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
         result = ws;
     }
 
-    // https://dlang.org/spec/statement.html#TryStatement
+    // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
     void visitTryCatch(TryCatchStatement tcs)
     {
         //printf("TryCatchStatement.semantic()\n");
@@ -3563,7 +3563,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
         /* If the try body never throws, we can eliminate any catches
          * of recoverable exceptions. Pass `null` instead of `sc.func`
          * so that a recursive call to the enclosing function is not assumed to be `nothrow`:
-         * https://github.com/dlang/dmd/issues/17906
+         * upstream dmd issue 17906
          */
         if (!(tcs._body.blockExit(null, null) & BE.throw_) && ClassDeclaration.exception)
         {
@@ -3636,12 +3636,12 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitScopeGuard(ScopeGuardStatement oss)
     {
-        /* https://dlang.org/spec/statement.html#scope-guard-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         if (oss.tok != TOK.onScopeExit)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=23159
+            // upstream issue 23159
             if (!global.params.useExceptions)
             {
                 eSink.error(oss.loc, "`%s` cannot be used with `-%s`", Token.toChars(oss.tok), SwitchScopeGuard);
@@ -3686,7 +3686,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitThrow(ThrowStatement ts)
     {
-        /* https://dlang.org/spec/statement.html#throw-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         //printf("ThrowStatement::semantic()\n");
@@ -3717,7 +3717,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitGoto(GotoStatement gs)
     {
-        /* https://dlang.org/spec/statement.html#goto-statement
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         //printf("GotoStatement::semantic()\n");
@@ -3810,7 +3810,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitAsm(AsmStatement s)
     {
-        /* https://dlang.org/spec/statement.html#asm
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
 
         //printf("AsmStatement()::semantic()\n");
@@ -3871,7 +3871,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitImport(ImportStatement imps)
     {
-        /* https://dlang.org/spec/module.html#ImportDeclaration
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
          */
 
         foreach (i; 0 .. imps.imports.length)
@@ -3892,12 +3892,12 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
             s.dsymbolSemantic(sc);
 
-            // https://issues.dlang.org/show_bug.cgi?id=19942
+            // upstream issue 19942
             // If the module that's being imported doesn't exist, don't add it to the symbol table
             // for the current scope.
             if (s.mod !is null)
             {
-                addDeferredSemantic2(s);     // https://issues.dlang.org/show_bug.cgi?id=14666
+                addDeferredSemantic2(s);     // upstream issue 14666
                 sc.insert(s);
 
                 foreach (aliasdecl; s.aliasdecls)
@@ -4016,7 +4016,7 @@ private extern(D) Expression applyDelegate(ForeachStatement fs, Expression flde,
     if (de.func.isNested() &&
         !de.func.needThis())
     {
-        // https://issues.dlang.org/show_bug.cgi?id=3560
+        // upstream issue 3560
         fs.aggr = de.e1;
     }
     ec = new CallExp(fs.loc, fs.aggr, flde);
@@ -4152,7 +4152,7 @@ private extern(D) Statement loopReturn(Expression e, Statements* cases, Loc loc)
     if (!cases.length)
     {
         // Easy case, a clean exit from the loop
-        e = new CastExp(loc, e, Type.tvoid); // https://issues.dlang.org/show_bug.cgi?id=13899
+        e = new CastExp(loc, e, Type.tvoid); // upstream issue 13899
         return new ExpStatement(loc, e);
     }
     // Construct a switch statement around the return value
@@ -4257,7 +4257,7 @@ private FuncExp foreachBodyToFunction(Scope* sc, ForeachStatement fs, TypeFuncti
         }
         params.push(new Parameter(fs.loc, stc, p.type, id, null, null, null));
     }
-    // https://issues.dlang.org/show_bug.cgi?id=13840
+    // upstream issue 13840
     // Throwable nested function inside nothrow function is acceptable.
     STC stc = mergeFuncAttrs(STC.safe | STC.pure_ | STC.nogc, fs.func);
     auto tf = new TypeFunction(ParameterList(params), Type.tint32, LINK.d, stc);
@@ -4643,7 +4643,7 @@ public auto makeTupleForeach(Scope* sc, bool isStatic, bool isDecl, ForeachState
 
             const length = te ? te.exps.length : tuple.arguments.length;
             IntRange dimrange = IntRange(SignExtendedNumber(length))._cast(Type.tsize_t);
-            // https://issues.dlang.org/show_bug.cgi?id=12504
+            // upstream issue 12504
             dimrange.imax = SignExtendedNumber(dimrange.imax.value-1);
             if (!intRangeFromType(p.type).contains(dimrange))
             {
@@ -4934,7 +4934,7 @@ private Statements* flatten(Statement statement, Scope* sc)
         case STMT.Exp:
         case STMT.DtorExp:
             auto es = cast(ExpStatement)statement;
-            /* https://issues.dlang.org/show_bug.cgi?id=14243
+            /* upstream issue 14243
              * expand template mixin in statement scope
              * to handle variable destructors.
              */

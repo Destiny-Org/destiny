@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/17824
+// upstream dmd issue 17824
 // DDOC_CONSTRAINT macro should be applied to non-function template constraints
 
 // PERMUTE_ARGS:

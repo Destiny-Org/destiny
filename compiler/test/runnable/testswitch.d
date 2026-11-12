@@ -465,7 +465,7 @@ int wrongcode3139(int x)
 
 static assert(wrongcode3139(-5)==3);
 
-// https://issues.dlang.org/show_bug.cgi?id=3139
+// upstream issue 3139
 static assert(!is(typeof(
         (long x) { switch(x) { case long.max: .. case -long.max:
         default:} return 4; }(3)
@@ -499,7 +499,7 @@ void test7358()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9263
+// upstream issue 9263
 
 void test9263()
 {
@@ -622,7 +622,7 @@ void test23()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14352
+// upstream issue 14352
 
 int transmogrify14352(int input)
 {
@@ -659,7 +659,7 @@ void test14352()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14587
+// upstream issue 14587
 // DMD 2.067.1 generating crashing binary on OSX
 
 struct Card {
@@ -681,7 +681,7 @@ void test14587() {
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15396
+// upstream issue 15396
 // static immutable not recognized as constant within switch statement
 
 void test15396()
@@ -704,7 +704,7 @@ void test15396()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15538
+// upstream issue 15538
 
 struct S15538
 {

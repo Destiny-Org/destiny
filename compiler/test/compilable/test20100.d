@@ -16,7 +16,7 @@ void testClass() {
 	assert(t1 == t1);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20331
+// upstream issue 20331
 void testAnonymousFunction()
 {
     bool function() check = () => true;
@@ -32,7 +32,7 @@ void main() {
     testAnonymousFunction();
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20989
+// upstream issue 20989
  void test20989() @safe
 {
     uint[] arr = [1, 2, 3];
@@ -43,7 +43,7 @@ void main() {
     assert(arr2.ptr is arr2.ptr);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21765
+// upstream issue 21765
 ref int func21765(int);
 void test21765()
 {

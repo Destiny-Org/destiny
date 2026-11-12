@@ -6,7 +6,7 @@ TEST_OUTPUT:
 fail_compilation/noreturn2.d(18): Error: expected return type of `noreturn`, not `void`
 ---
 
-https://github.com/dlang/DIPs/blob/master/DIPs/accepted/DIP1034.md
+DIP1034
 */
 
 alias noreturn = typeof(*null);
@@ -141,7 +141,7 @@ int throwInvalid(int i) nothrow
 }
 
 /+
-https://issues.dlang.org/show_bug.cgi?id=24054
+upstream issue 24054
 TEST_OUTPUT:
 ---
 fail_compilation/noreturn2.d(153): Error: cannot return from `noreturn` function

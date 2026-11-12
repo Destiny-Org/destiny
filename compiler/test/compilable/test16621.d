@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16621
+// upstream issue 16621
 
 template xxx()
 {

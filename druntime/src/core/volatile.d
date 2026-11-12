@@ -1,7 +1,7 @@
 /**
  * This module declares intrinsics for volatile operations.
  *
- * Copyright: Copyright © 2019, The D Language Foundation
+ * Copyright: Copyright © 2019, The D Language Foundation; Copyright (C) 2026 Destiny contributors
  * License:   $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Authors:   Walter Bright, Emily Castellotti
  * Source:    $(DRUNTIMESRC core/volatile.d)

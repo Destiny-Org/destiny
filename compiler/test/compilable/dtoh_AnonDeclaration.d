@@ -98,7 +98,7 @@ extern (C++) struct S
     }
 }
 
-// https://github.com/dlang/dmd/issues/21599
+// upstream dmd issue 21599
 // C++ classes default to private, so a leading anonymous union
 // needs its own `public:`
 extern (C++) class C21599

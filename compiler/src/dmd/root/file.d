@@ -1,12 +1,12 @@
 /**
  * Read a file from disk and store it in memory.
  *
- * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/root/file.d, root/_file.d)
- * Documentation:  https://dlang.org/phobos/dmd_root_file.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/root/file.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/file.d, root/_file.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/file.d
+ * 
  */
 
 module dmd.root.file;
@@ -257,7 +257,7 @@ private
 {
     version (linux) version (PPC)
     {
-        // https://issues.dlang.org/show_bug.cgi?id=22823
+        // upstream issue 22823
         // Define our own version of stat_t, as older versions of the compiler
         // had the st_size field at the wrong offset on PPC.
         alias stat_t_imported = core.sys.posix.sys.stat.stat_t;

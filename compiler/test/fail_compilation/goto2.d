@@ -50,7 +50,7 @@ void test1()
 }
 
 /**************************************************
-https://issues.dlang.org/show_bug.cgi?id=11540
+upstream issue 11540
 goto label + try-catch-finally / with statement
 
 TEST_OUTPUT:
@@ -86,7 +86,7 @@ int interpret3a()
 }
 
 /**************************************************
-https://issues.dlang.org/show_bug.cgi?id=11540
+upstream issue 11540
 goto label + try-catch-finally / with statement
 
 TEST_OUTPUT:
@@ -119,7 +119,7 @@ int interpret3b()
 }
 
 /**************************************************
-https://issues.dlang.org/show_bug.cgi?id=13815
+upstream issue 13815
 
 TEST_OUTPUT:
 ---
@@ -143,7 +143,7 @@ L:                                  // line 7
 }
 
 /**************************************************
-https://github.com/dlang/dmd/issues/18274
+upstream dmd issue 18274
 
 TEST_OUTPUT:
 ---

@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/19905
+// upstream dmd issue 19905
 // Type list (tuple) not expanded in delegate during IFTI
 
 alias AliasSeq(TList...) = TList;

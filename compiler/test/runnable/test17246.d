@@ -2,7 +2,7 @@
  * OPTIONAL_ARGS:
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=17246
+// upstream issue 17246
 
 struct Foo
 {

@@ -5,7 +5,7 @@ fail_compilation/test22759.c(111): Error: cannot modify `const` expression `r`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22759
+// upstream issue 22759
 
 #line 100
 

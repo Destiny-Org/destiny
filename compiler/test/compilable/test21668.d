@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21668
+// upstream issue 21668
 
 struct Opaque;
 

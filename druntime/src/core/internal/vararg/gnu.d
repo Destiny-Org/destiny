@@ -4,7 +4,7 @@
  *
  * Reference: https://github.com/ARM-software/abi-aa/blob/master/aapcs64/aapcs64.rst#appendix-variable-argument-lists
  *
- * Copyright: Copyright D Language Foundation 2025
+ * Copyright: Copyright D Language Foundation 2025; Copyright (C) 2026 Destiny contributors
  * License:   $(HTTP www.boost.org/LICENSE_1_0.txt, Boost License 1.0).
  * Authors:   Various
  * Source: $(DRUNTIMESRC core/internal/vararg/gnu.d)

@@ -114,7 +114,7 @@ int intTest(T)()
     t = 42;                       // tests CastExp
     assert(42 == cast(int)t);
 
-    // These currently don't work for properties due to https://issues.dlang.org/show_bug.cgi?id=8006
+    // These currently don't work for properties due to upstream issue 8006
     static if (!(typeid(T) is typeid(StructProperty!int)) && !(typeid(T) is typeid(ClassProperty!int)))
     {
         t++;              // test a few unary and binary operators

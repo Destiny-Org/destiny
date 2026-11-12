@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19804
+// upstream issue 19804
 
 struct A { float e; }
 

@@ -2,7 +2,7 @@
    by the MSVC compiler, for ImportC.
    This module is intended for only internal use, hence the leading double underscore.
 
-   Copyright: Copyright D Language Foundation 2024-2026
+   Copyright: Copyright D Language Foundation 2024-2026; Copyright (C) 2026 Destiny contributors
    License: $(HTTP www.boost.org/LICENSE_1_0.txt, Boost License 1.0).
    Authors: Harry Gillanders
    Source: $(DRUNTIMESRC __builtins_msvc.d) */

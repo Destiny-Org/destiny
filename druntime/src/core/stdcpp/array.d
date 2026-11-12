@@ -1,7 +1,7 @@
 /**
  * D header file for interaction with C++ std::array.
  *
- * Copyright: Copyright (c) 2018 D Language Foundation
+ * Copyright: Copyright (c) 2018 D Language Foundation; Copyright (C) 2026 Destiny contributors
  * License: Distributed under the
  *      $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost Software License 1.0).
  *    (See accompanying file LICENSE)
@@ -16,7 +16,7 @@ import core.stdcpp.xutility : StdNamespace;
 extern(C++, (StdNamespace)):
 
 /**
- * D language counterpart to C++ std::array.
+ * Destiny language counterpart to C++ std::array.
  *
  * C++ reference: $(LINK2 https://en.cppreference.com/w/cpp/container/array)
  */

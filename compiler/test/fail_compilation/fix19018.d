@@ -9,7 +9,7 @@ fail_compilation/fix19018.d(20): Error: `0x_` isn't a valid integer literal, use
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=19018
+// upstream issue 19018
 
 void foo()
 {

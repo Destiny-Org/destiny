@@ -107,7 +107,7 @@ void testExternCppClass()
 
 void testFuncParam()
 {
-    // https://github.com/dlang/dmd/issues/22135
+    // upstream dmd issue 22135
     struct S {}
 
     void foo(T)(T _) {}

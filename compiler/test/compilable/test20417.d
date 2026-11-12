@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20417
+// upstream issue 20417
 
 struct A { ~this(); }
 void f(A, int);

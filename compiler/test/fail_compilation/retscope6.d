@@ -11,7 +11,7 @@ fail_compilation/retscope6.d(6007): Error: escaping a reference to local variabl
 
 #line 6000
 
-// https://issues.dlang.org/show_bug.cgi?id=17795
+// upstream issue 17795
 
 int* test() @safe
 {
@@ -86,7 +86,7 @@ fail_compilation/retscope6.d(8038):        `q` is not `scope` because of `p = q`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=19035
+// upstream issue 19035
 
 #line 8000
 @safe
@@ -214,7 +214,7 @@ fail_compilation/retscope6.d(12022): Error: escaping a reference to local variab
 
 #line 12000
 
-// https://issues.dlang.org/show_bug.cgi?id=20150
+// upstream issue 20150
 
 int* escape_m_20150(int* r) @safe pure nothrow
 {
@@ -245,7 +245,7 @@ fail_compilation/retscope6.d(13010): Error: assigning reference to local variabl
 */
 
 #line 13000
-// https://issues.dlang.org/show_bug.cgi?id=22221
+// upstream issue 22221
 
 void f_throw(string x) @safe pure
 {
@@ -267,7 +267,7 @@ fail_compilation/retscope6.d(14022): Error: returning scope variable `scopePtr` 
 */
 
 #line 14000
-// https://issues.dlang.org/show_bug.cgi?id=23021
+// upstream issue 23021
 
 ref int infer23021(ref int* x) @safe pure nothrow
 {
@@ -304,7 +304,7 @@ fail_compilation/retscope6.d(14044):        `y` is not `scope` because of `x = y
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23294
+// upstream issue 23294
 
 @safe:
 int g23294;

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=3004
+// upstream issue 3004
 /*
 REQUIRED_ARGS: -ignore -v
 TRANSFORM_OUTPUT: remove_lines("^(predefs|binary|version|config|DFLAG|parse|inline|.*_d_newarrayU|import|\(imported|semantic|entry|library|function  object|function  core|scan pragma\(inline\)|\s*$)")

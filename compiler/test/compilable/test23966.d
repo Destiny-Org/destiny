@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23966
+// upstream issue 23966
 module test23966;
 
 @("gigi")

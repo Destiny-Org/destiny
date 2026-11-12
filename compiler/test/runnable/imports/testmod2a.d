@@ -1,7 +1,7 @@
 module imports.testmod2a;
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=1904
+// upstream issue 1904
 
 // testmod.d
 private void bar(alias a)() {}

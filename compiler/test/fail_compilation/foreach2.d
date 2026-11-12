@@ -10,7 +10,7 @@ fail_compilation/foreach2.d(21): Error: argument type mismatch, `int` to `ref im
 */
 void test4090 ()
 {
-    // From https://issues.dlang.org/show_bug.cgi?id=4090
+    // From upstream issue 4090
     int[] arr = [1,2,3];
     foreach (immutable ref x; arr) {}
     foreach (immutable ref int x; arr) {}

@@ -1,12 +1,12 @@
 /**
  * Template semantics.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/templatesem.d, _templatesem.d)
- * Documentation:  https://dlang.org/phobos/dmd_templatesem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/templatesem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/templatesem.d, _templatesem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/templatesem.d
+ * 
  */
 
 module dmd.templatesem;
@@ -664,7 +664,7 @@ private size_t expressionHash(Expression e)
 
 /************************************
  * This struct is needed for TemplateInstance to be the key in an associative array.
- * Fixing https://issues.dlang.org/show_bug.cgi?id=15813 would make it unnecessary.
+ * Fixing upstream issue 15813 would make it unnecessary.
  */
 struct TemplateInstanceBox
 {
@@ -700,7 +700,7 @@ struct TemplateInstanceBox
             /* Used when a proposed instance is used to see if there's
              * an existing instance.
              */
-            static if (__VERSION__ < 2099) // https://issues.dlang.org/show_bug.cgi?id=22717
+            static if (__VERSION__ < 2099) // upstream issue 22717
                 res = (cast()s.ti).equalsx(cast()ti);
             else
                 res = (cast()ti).equalsx(cast()s.ti);
@@ -874,7 +874,7 @@ void templateInstanceSemantic(TemplateInstance tempinst, Scope* sc, ArgumentList
     {
         if (tempinst.gagged)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=13220
+            // upstream issue 13220
             // Roll back status for later semantic re-running
             tempinst.semanticRun = PASS.initial;
         }
@@ -934,7 +934,7 @@ void templateInstanceSemantic(TemplateInstance tempinst, Scope* sc, ArgumentList
     tempinst.tinst = sc.tinst;
     // Get the instantiating module from the scope minst
     tempinst.minst = sc.minst;
-    // https://issues.dlang.org/show_bug.cgi?id=10920
+    // upstream issue 10920
     // If the enclosing function is non-root symbol,
     // this instance should be speculative.
     if (!tempinst.tinst && sc.func && sc.func.inNonRoot())
@@ -1068,7 +1068,7 @@ void templateInstanceSemantic(TemplateInstance tempinst, Scope* sc, ArgumentList
          *
          * However, if 'this' second instantiation happened in root module,
          * compiler might need to invoke its codegen
-         * (https://issues.dlang.org/show_bug.cgi?id=2500 & https://issues.dlang.org/show_bug.cgi?id=2644).
+         * (upstream issue 2500 & upstream issue 2644).
          * But whole import graph is not determined until all semantic pass finished,
          * so 'inst' should conservatively finish the semantic3 pass for the codegen.
          */
@@ -1095,7 +1095,7 @@ void templateInstanceSemantic(TemplateInstance tempinst, Scope* sc, ArgumentList
             tempinst.inst.minst = mi;
             tempinst.inst.tinst = ti;
 
-            /* https://issues.dlang.org/show_bug.cgi?id=21299
+            /* upstream issue 21299
                `minst` has been updated on the primary instance `inst` so it is
                now coming from a root module, however all Dsymbol `inst.members`
                of the instance still have their `_scope.minst` pointing at the
@@ -1245,7 +1245,7 @@ void templateInstanceSemantic(TemplateInstance tempinst, Scope* sc, ArgumentList
     // Declare each template parameter as an alias for the argument type
     Scope* paramscope = _scope.push();
     paramscope.stc = STC.none;
-    paramscope.visibility = Visibility(Visibility.Kind.public_); // https://issues.dlang.org/show_bug.cgi?id=14169
+    paramscope.visibility = Visibility(Visibility.Kind.public_); // upstream issue 14169
                                               // template parameters should be public
     tempinst.declareParameters(paramscope);
     paramscope.pop();
@@ -1372,7 +1372,7 @@ void templateInstanceSemantic(TemplateInstance tempinst, Scope* sc, ArgumentList
      */
     //if (sc.parent.isFuncDeclaration())
     {
-        /* https://issues.dlang.org/show_bug.cgi?id=782
+        /* upstream issue 782
          * this has problems if the classes this depends on
          * are forward referenced. Find a way to defer semantic()
          * on this template.
@@ -1396,7 +1396,7 @@ void templateInstanceSemantic(TemplateInstance tempinst, Scope* sc, ArgumentList
 
     if (tempinst.aliasdecl)
     {
-        /* https://issues.dlang.org/show_bug.cgi?id=13816
+        /* upstream issue 13816
         * AliasDeclaration tries to resolve forward reference
         * twice (See inuse check in AliasDeclaration.toAlias()). It's
         * necessary to resolve mutual references of instantiated symbols, but
@@ -1432,7 +1432,7 @@ Laftersemantic:
             // Errors are gagged, so remove the template instance from the
             // instance/symbol lists we added it to and reset our state to
             // finish clean and so we can try to instantiate it again later
-            // (see https://issues.dlang.org/show_bug.cgi?id=4302 and https://issues.dlang.org/show_bug.cgi?id=6602).
+            // (see upstream issue 4302 and upstream issue 6602).
             tempdecl.removeInstance(tempdecl_instance_idx);
             if (target_symbol_list)
             {
@@ -1449,7 +1449,7 @@ Laftersemantic:
     }
     else if (errinst)
     {
-        /* https://issues.dlang.org/show_bug.cgi?id=14541
+        /* upstream issue 14541
         * If the previous gagged instance had failed by
         * circular references, currrent "error reproduction instantiation"
         * might succeed, because of the difference of instantiated context.
@@ -1478,7 +1478,7 @@ void templateInstanceSemantic3(TemplateInstance tempinst, Scope* sc, Scope* sc2)
         /* If a template is instantiated inside function, the whole instantiation
          * should be done at that position. But, immediate running semantic3 of
          * dependent templates may cause unresolved forward reference.
-         * https://issues.dlang.org/show_bug.cgi?id=9050
+         * upstream issue 9050
          * To avoid the issue, don't run semantic3 until semantic and semantic2 done.
          */
         TemplateInstances deferred;
@@ -1486,7 +1486,7 @@ void templateInstanceSemantic3(TemplateInstance tempinst, Scope* sc, Scope* sc2)
 
         //printf("Run semantic3 on %s\n", toChars());
 
-        /* https://issues.dlang.org/show_bug.cgi?id=23965
+        /* upstream issue 23965
          * DRuntime hooks are not deprecated, but may be used for deprecated
          * types. Deprecations are disabled while analysing hooks to avoid
          * spurious error messages.
@@ -1646,7 +1646,7 @@ private bool hasNestedArgs(TemplateInstance _this, Objects* args, bool isstatic)
                 return false; // dparent is most nested
             }
         }
-        //https://issues.dlang.org/show_bug.cgi?id=17870
+        //upstream issue 17870
         auto pc = dparent.isClassDeclaration();
         auto ec = enclosing.isClassDeclaration();
         if (pc && ec)
@@ -1848,7 +1848,7 @@ private void expandMembers(TemplateInstance ti,Scope* sc2)
          * So, evaluate the condition for static if's, but not their if/else bodies.
          * Then try to set aliasdecl.
          * Later do the if/else bodies.
-         * https://issues.dlang.org/show_bug.cgi?id=23598
+         * upstream issue 23598
          * It might be better to do this by attaching a lambda to the StaticIfDeclaration
          * to do the oneMembers call after the sid.include(sc2) is run as part of dsymbolSemantic().
          */
@@ -2118,7 +2118,7 @@ bool findTempDecl(TemplateInstance ti, Scope* sc, WithScopeSymbol* pwithsym)
         // s is a lowered AliasDeclaration of the actual TemplateDeclaration.
         // This is the last place where we see the deprecated alias because it is
         // stripped below, so check if the selective import was deprecated.
-        // See https://issues.dlang.org/show_bug.cgi?id=20840.
+        // See upstream issue 20840.
         if (s.isAliasDeclaration())
             s.checkDeprecated(ti.loc, sc);
 
@@ -2596,7 +2596,7 @@ private MATCH matchArg(TemplateParameter tp, Scope* sc, RootObject oarg, size_t 
             {
                 Type t = cast(Type)dedtypes[i];
 
-                if (ttp.dependent && !t.equals(ta)) // https://issues.dlang.org/show_bug.cgi?id=14357
+                if (ttp.dependent && !t.equals(ta)) // upstream issue 14357
                     return matchArgNoMatch();
 
                 /* This is a self-dependent parameter. For example:
@@ -2661,7 +2661,7 @@ private MATCH matchArg(TemplateParameter tp, Scope* sc, RootObject oarg, size_t 
             if (global.endGagging(olderrors) || ei.op == EXP.error)
                 return matchArgNoMatch();
 
-            /* https://issues.dlang.org/show_bug.cgi?id=14520
+            /* upstream issue 14520
              * A property-like function can match to both
              * TemplateAlias and ValueParameter. But for template overloads,
              * it should always prefer alias parameter to be consistent
@@ -2806,7 +2806,7 @@ private MATCH matchArg(TemplateParameter tp, Scope* sc, RootObject oarg, size_t 
             }
             else if (sa && sa == TemplateTypeParameter.tdummy)
             {
-                /* https://issues.dlang.org/show_bug.cgi?id=2025
+                /* upstream issue 2025
                  * Aggregate Types should preferentially
                  * match to the template type parameter.
                  *  template X(alias a) {}  // a == this
@@ -2889,7 +2889,7 @@ private MATCH matchArg(TemplateParameter tp, Scope* sc, RootObject oarg, size_t 
                 return matchArgNoMatch();
         }
         // Note: Dsymbol can't have type qualifiers, so use type if it has them
-        // https://github.com/dlang/dmd/issues/17959
+        // upstream dmd issue 17959
         dedtypes[i] = ta && ta.mod ? ta : sa;
 
         if (psparam)
@@ -3435,7 +3435,7 @@ bool needsCodegen(TemplateInstance ti)
      * and B instantiate the same template, does the compilation of A
      * or the compilation of B do the actual instantiation?
      *
-     * See https://issues.dlang.org/show_bug.cgi?id=2500.
+     * See upstream issue 2500.
      *
      * => Elide codegen if there is at least one instantiation from a non-root module
      *    which doesn't import any root modules.
@@ -3499,7 +3499,7 @@ bool needsCodegen(TemplateInstance ti)
 private bool evaluateConstraint(TemplateDeclaration td, TemplateInstance ti, Scope* sc, Scope* paramscope, Objects* dedargs, FuncDeclaration fd)
 {
     /* Detect recursive attempts to instantiate this template declaration,
-     * https://issues.dlang.org/show_bug.cgi?id=4072
+     * upstream issue 4072
      *  void foo(T)(T x) if (is(typeof(foo(x)))) { }
      *  static assert(!is(typeof(foo(7))));
      * Recursive attempts are regarded as a constraint failure.
@@ -3546,7 +3546,7 @@ private bool evaluateConstraint(TemplateDeclaration td, TemplateInstance ti, Sco
     // Set SCOPE.constraint before declaring function parameters for the static condition
     // (previously, this was immediately before calling evalStaticCondition), so the
     // semantic pass knows not to issue deprecation warnings for these throw-away decls.
-    // https://issues.dlang.org/show_bug.cgi?id=21831
+    // upstream issue 21831
     scx.inTemplateConstraint = true;
 
     assert(!ti.symtab);
@@ -3710,7 +3710,7 @@ bool findBestMatch(TemplateInstance ti, Scope* sc, ArgumentList argumentList)
                    ti.kind, ti.toPrettyChars);
             return false;
         }
-        // TODO: Normalizing tiargs for https://issues.dlang.org/show_bug.cgi?id=7469 is necessary?
+        // TODO: Normalizing tiargs for upstream issue 7469 is necessary?
         return true;
     }
 
@@ -3811,7 +3811,7 @@ bool findBestMatch(TemplateInstance ti, Scope* sc, ArgumentList argumentList)
 
     if (td_last)
     {
-        /* https://issues.dlang.org/show_bug.cgi?id=7469
+        /* upstream issue 7469
          * Normalize tiargs by using corresponding deduced
          * template value parameters and tuples for the correct mangling.
          *
@@ -3882,7 +3882,7 @@ bool findBestMatch(TemplateInstance ti, Scope* sc, ArgumentList argumentList)
 
                 if (tdecl.parameters.length == ti.tiargs.length)
                 {
-                    // https://issues.dlang.org/show_bug.cgi?id=7352
+                    // upstream issue 7352
                     // print additional information, e.g. `foo` is not a type
                     foreach (i, param; *tdecl.parameters)
                     {
@@ -4109,7 +4109,7 @@ private RootObject defaultArg(TemplateParameter tp, Loc instLoc, Scope* sc)
             case Tinstance:
             // same if the default arg is a mixin, traits, typeof
             // since the content might rely on a previous parameter
-            // (https://issues.dlang.org/show_bug.cgi?id=23686)
+            // (upstream issue 23686)
             case Tmixin, Ttypeof, Ttraits :
                 da = ta.syntaxCopy();
                 break;
@@ -4389,7 +4389,7 @@ private MATCHpair deduceFunctionTemplateMatch(TemplateDeclaration td, TemplateIn
         if (fd.type && !fd.isCtorDeclaration() && !(td._scope.stc & STC.static_))
         {
             STC stc = td._scope.stc | fd.storage_class2;
-            // Propagate parent storage class, https://issues.dlang.org/show_bug.cgi?id=5504
+            // Propagate parent storage class, upstream issue 5504
             Dsymbol p = td.parent;
             while (p.isTemplateDeclaration() || p.isTemplateInstance())
                 p = p.parent;
@@ -4571,7 +4571,7 @@ private MATCHpair deduceFunctionTemplateMatch(TemplateDeclaration td, TemplateIn
                 }
                 else
                 {
-                    // https://issues.dlang.org/show_bug.cgi?id=6810
+                    // upstream issue 6810
                     // If declared tuple is not a type tuple,
                     // it cannot be function parameter types.
                     for (size_t i = 0; i < declaredTuple.objects.length; i++)
@@ -4610,7 +4610,7 @@ private MATCHpair deduceFunctionTemplateMatch(TemplateDeclaration td, TemplateIn
                             if (p.defaultArg)
                                 continue;
 
-                            // https://issues.dlang.org/show_bug.cgi?id=19888
+                            // upstream issue 19888
                             if (fparam.defaultArg)
                                 break;
 
@@ -4629,7 +4629,7 @@ private MATCHpair deduceFunctionTemplateMatch(TemplateDeclaration td, TemplateIn
                 if (!fparam.defaultArg)
                     goto Lvarargs;
 
-                /* https://issues.dlang.org/show_bug.cgi?id=2803
+                /* upstream issue 2803
                  * Before the starting of type deduction from the function
                  * default arguments, set the already deduced parameters into paramscope.
                  * It's necessary to avoid breaking existing acceptable code. Cases:
@@ -4769,7 +4769,7 @@ private MATCHpair deduceFunctionTemplateMatch(TemplateDeclaration td, TemplateIn
                 if (!fparam.isLazy() && argtype.ty == Tvoid && farg.op != EXP.function_)
                     return nomatch();
 
-                // https://issues.dlang.org/show_bug.cgi?id=12876
+                // upstream issue 12876
                 // Optimize argument to allow CT-known length matching
                 farg = farg.optimize(WANTvalue, fparam.isReference());
                 //printf("farg = %s %s\n", farg.type.toChars(), farg.toChars());
@@ -4855,11 +4855,11 @@ private MATCHpair deduceFunctionTemplateMatch(TemplateDeclaration td, TemplateIn
                     AggregateDeclaration ad = isAggregate(farg.type);
                     if (ad && ad.aliasthis && !isRecursiveAliasThis(att, argtype))
                     {
-                        // https://issues.dlang.org/show_bug.cgi?id=12537
+                        // upstream issue 12537
                         // The isRecursiveAliasThis() call above
 
                         /* If a semantic error occurs while doing alias this,
-                         * eg purity(https://issues.dlang.org/show_bug.cgi?id=7295),
+                         * eg purity(upstream issue 7295),
                          * just regard it as not a match.
                          *
                          * We also save/restore sc.func.flags to avoid messing up
@@ -4897,7 +4897,7 @@ private MATCHpair deduceFunctionTemplateMatch(TemplateDeclaration td, TemplateIn
                 {
                     if (!farg.isLvalue())
                         return nomatch();
-                    if (!farg.type.isMutable()) // https://issues.dlang.org/show_bug.cgi?id=11916
+                    if (!farg.type.isMutable()) // upstream issue 11916
                         return nomatch();
                 }
                 if (m == MATCH.nomatch && fparam.isLazy() && prmtype.ty == Tvoid && farg.type.ty != Tvoid)
@@ -4951,7 +4951,7 @@ private MATCHpair deduceFunctionTemplateMatch(TemplateDeclaration td, TemplateIn
                             Scope* sco;
 
                             const errors = global.startGagging();
-                            /* ref: https://issues.dlang.org/show_bug.cgi?id=11118
+                            /* ref: upstream issue 11118
                              * The parameter isn't part of the template
                              * ones, let's try to find it in the
                              * instantiation scope 'sc' and the one
@@ -5103,7 +5103,7 @@ Lmatch:
             }
             else
             {
-                // Discussion: https://issues.dlang.org/show_bug.cgi?id=16484
+                // Discussion: upstream issue 16484
                 if (MATCH.convert < matchTiargs)
                     matchTiargs = MATCH.convert;
             }
@@ -5162,7 +5162,7 @@ Lmatch:
         (*dedargs)[i] = oded;
     }
 
-    /* https://issues.dlang.org/show_bug.cgi?id=7469
+    /* upstream issue 7469
      * As same as the code for 7469 in findBestMatch,
      * expand a Tuple in dedargs to normalize template arguments.
      */
@@ -5476,7 +5476,7 @@ bool TemplateInstance_semanticTiargs(Loc loc, Scope* sc, Objects* tiargs, int fl
     sc = sc.push();
     sc.inDefaultArg = false;
 
-    // https://issues.dlang.org/show_bug.cgi?id=24699
+    // upstream issue 24699
     sc.condition = inCondition;
 
     for (size_t j = 0; j < tiargs.length; j++)
@@ -5939,7 +5939,7 @@ void functionResolve(ref MatchAccumulator m, Dsymbol dstart, Loc loc, Scope* sc,
                 return 0;
         }
 
-        // https://issues.dlang.org/show_bug.cgi?id=14450
+        // upstream issue 14450
         // Prefer exact qualified constructor for the creating object type
         if (isCtorCall && tf.mod != m.lastf.type.mod)
         {
@@ -6001,7 +6001,7 @@ void functionResolve(ref MatchAccumulator m, Dsymbol dstart, Loc loc, Scope* sc,
             {
                 Objects dedtypesX;      // empty tiargs
 
-                // https://issues.dlang.org/show_bug.cgi?id=11553
+                // upstream issue 11553
                 // Check for recursive instantiation of tdx.
                 for (TemplatePrevious* p = tdx.previous; p; p = p.prev)
                 {
@@ -6130,7 +6130,7 @@ void functionResolve(ref MatchAccumulator m, Dsymbol dstart, Loc loc, Scope* sc,
                 // declaration that defines a copy constructor. This is already checked
                 // in the semantic of CtorDeclaration, however, when matching functions,
                 // the template instance is not expanded.
-                // https://issues.dlang.org/show_bug.cgi?id=21613
+                // upstream issue 21613
                 auto ad = fd.isThis();
                 auto sd = ad.isStructDeclaration();
                 if (checkHasBothRvalueAndCpCtor(sd, fd.isCtorDeclaration(), ti))
@@ -6172,7 +6172,7 @@ void functionResolve(ref MatchAccumulator m, Dsymbol dstart, Loc loc, Scope* sc,
                 if (c1 < c2) goto Ltd_best;
             }
 
-            // https://issues.dlang.org/show_bug.cgi?id=14450
+            // upstream issue 14450
             // Prefer exact qualified constructor for the creating object type
             if (isCtorCall && fd.type.mod != m.lastf.type.mod)
             {
@@ -6265,11 +6265,11 @@ void functionResolve(ref MatchAccumulator m, Dsymbol dstart, Loc loc, Scope* sc,
         if (callMatch(m.lastf, tf, tthis_best, argumentList, 0, null, sc) == MATCH.nomatch)
             goto Lnomatch;
 
-        /* As https://issues.dlang.org/show_bug.cgi?id=3682 shows,
+        /* As upstream issue 3682 shows,
          * a template instance can be matched while instantiating
          * that same template. Thus, the function type can be incomplete. Complete it.
          *
-         * https://issues.dlang.org/show_bug.cgi?id=9208
+         * upstream issue 9208
          * For auto function, completion should be deferred to the end of
          * its semantic3. Should not complete it in here.
          */
@@ -6904,7 +6904,7 @@ MATCH deduceType(scope RootObject o, scope Scope* sc, scope Type tparam,
 
                 // Found the corresponding parameter tp
                 /+
-                    https://issues.dlang.org/show_bug.cgi?id=23578
+                    upstream issue 23578
                     To pattern match:
                     static if (is(S!int == S!av, alias av))
 
@@ -7048,7 +7048,7 @@ MATCH deduceType(scope RootObject o, scope Scope* sc, scope Type tparam,
                 Type tpn = tparam.nextOf();
                 if (wm && t.ty == Taarray && tparam.isWild())
                 {
-                    // https://issues.dlang.org/show_bug.cgi?id=12403
+                    // upstream issue 12403
                     // In IFTI, stop inout matching on transitive part of AA types.
                     tpn = tpn.substWildTo(MODFlags.mutable);
                 }
@@ -7186,12 +7186,12 @@ MATCH deduceType(scope RootObject o, scope Scope* sc, scope Type tparam,
 
             foreach (fparam; *tp.parameterList.parameters)
             {
-                // https://issues.dlang.org/show_bug.cgi?id=2579
+                // upstream issue 2579
                 // Apply function parameter storage classes to parameter types
                 fparam.type = fparam.type.addStorageClass(fparam.storageClass);
                 fparam.storageClass &= ~STC.TYPECTOR;
 
-                // https://issues.dlang.org/show_bug.cgi?id=15243
+                // upstream issue 15243
                 // Resolve parameter type if it's not related with template parameters
                 if (!reliesOnTemplateParameters(fparam.type, (*parameters)[inferStart .. parameters.length]))
                 {
@@ -7282,7 +7282,7 @@ MATCH deduceType(scope RootObject o, scope Scope* sc, scope Type tparam,
                 {
                     /* Didn't find it as a parameter identifier. Try looking
                      * it up and seeing if is an alias.
-                     * https://issues.dlang.org/show_bug.cgi?id=1454
+                     * upstream issue 1454
                      */
                     auto tid = new TypeIdentifier(tp.loc, tp.tempinst.name);
                     Type tx;
@@ -7294,7 +7294,7 @@ MATCH deduceType(scope RootObject o, scope Scope* sc, scope Type tparam,
                         s = tx.toDsymbol(sc);
                         if (TemplateInstance ti = s ? s.parent.isTemplateInstance() : null)
                         {
-                            // https://issues.dlang.org/show_bug.cgi?id=14290
+                            // upstream issue 14290
                             // Try to match with ti.tempecl,
                             // only when ti is an enclosing instance.
                             Dsymbol p = sc.parent;
@@ -7550,7 +7550,7 @@ MATCH deduceType(scope RootObject o, scope Scope* sc, scope Type tparam,
             }
             else if (!isTopRef(e.type))
             {
-                /* https://issues.dlang.org/show_bug.cgi?id=15653
+                /* upstream issue 15653
                  * In IFTI, recognize top-qualifier conversions
                  * through the value copy, e.g.
                  *      int --> immutable(int)
@@ -7693,7 +7693,7 @@ MATCH deduceType(scope RootObject o, scope Scope* sc, scope Type tparam,
 
         override void visit(ArrayLiteralExp e)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=20092
+            // upstream issue 20092
             if (e.type.toBasetype().nextOf().ty == Tvoid && tparam.ty == Tarray)
             {
                 // tparam:T[] <- e:[] (void[])
@@ -7780,7 +7780,7 @@ MATCH deduceType(scope RootObject o, scope Scope* sc, scope Type tparam,
                 if (tof.parameterList.varargs != tf.parameterList.varargs)
                     return;
 
-                // https://github.com/dlang/dmd/issues/19905
+                // upstream dmd issue 19905
                 // Resolve and expand TypeTuples (e.g. from AliasSeq) in tof's parameters
                 // before comparing counts. We can't call TypeFunction.typeSemantic because
                 // the return type may contain unresolved template parameters.
@@ -7830,7 +7830,7 @@ MATCH deduceType(scope RootObject o, scope Scope* sc, scope Type tparam,
                         break;
                     if (reliesOnTemplateParameters(t, (*parameters)[inferStart .. parameters.length]))
                         return;
-                    // https://issues.dlang.org/show_bug.cgi?id=11774
+                    // upstream issue 11774
                     t = t.syntaxCopy();
                     if (!t.deco)
                     {
@@ -8200,7 +8200,7 @@ private bool resolveTemplateInstantiation(Scope* sc, TemplateParameters* paramet
             }
 
             const errors = global.startGagging();
-            e2 = e2.expressionSemantic(sc); // https://issues.dlang.org/show_bug.cgi?id=13417
+            e2 = e2.expressionSemantic(sc); // upstream issue 13417
             if (global.endGagging(errors))
                 return false;
             e2 = e2.ctfeInterpret();

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22420
+// upstream issue 22420
 
 struct File
 {

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22228
+// upstream issue 22228
 // Note: fixed by reverting pull #11545
 
 auto f()

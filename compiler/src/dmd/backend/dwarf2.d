@@ -3,12 +3,12 @@
  * Reflects declarations from the DWARF 3 to 5 specification, not the The D Language Foundation
  * dwarf implementation
  *
- * Source: $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/dwarf2.d, backend/_dwarf2.d)
+ * Source: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dwarf2.d, backend/_dwarf2.d)
  */
 
 module dmd.backend.dwarf2;
 
-// Online documentation: https://dlang.org/phobos/dmd_backend_dwarf2.html
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dwarf2.d
 
 @safe:
 

@@ -1,5 +1,5 @@
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20088
+// upstream issue 20088
 
 struct S {
     int i;

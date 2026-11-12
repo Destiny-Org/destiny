@@ -33,7 +33,7 @@ void test3(int i)
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=18858
+// upstream issue 18858
 int test(int n)
 {
     final switch(n)

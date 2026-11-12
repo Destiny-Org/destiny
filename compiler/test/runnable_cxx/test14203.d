@@ -3,7 +3,7 @@
 
 /************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=14203
+// upstream issue 14203
 
 extern (C++) float func1();
 

@@ -1,5 +1,5 @@
 
-// https://issues.dlang.org/show_bug.cgi?id=20256
+// upstream issue 20256
 
 extern(C) __gshared string[] rt_options = [ "gcopt=parallel:1" ];
 

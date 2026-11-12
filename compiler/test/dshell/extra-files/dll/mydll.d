@@ -21,7 +21,7 @@ struct S
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=9729
+// upstream issue 9729
 interface I9729
 {
     C9729 foo(I9729);
@@ -42,7 +42,7 @@ class C9729 : I9729
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=10462
+// upstream issue 10462
 void call10462(int delegate() dg)
 {
     assert(dg() == 7);
@@ -64,7 +64,7 @@ void test10462_dll()
     call10462(&i.opCall);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=19660
+// upstream issue 19660
 extern (C)
 {
     __gshared int someValue19660 = 0xF1234;

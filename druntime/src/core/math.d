@@ -1,4 +1,4 @@
-// Written in the D programming language.
+// Written in the Destiny programming language.
 
 /**
  * Builtin mathematical intrinsics
@@ -183,7 +183,7 @@ unittest
 /*************************************
  * Round argument to a specific precision.
  *
- * D language types specify only a minimum precision, not a maximum. The
+ * Destiny language types specify only a minimum precision, not a maximum. The
  * `toPrec()` function forces rounding of the argument `f` to the precision
  * of the specified floating point type `T`.
  * The rounding mode used is inevitably target-dependent, but will be done in

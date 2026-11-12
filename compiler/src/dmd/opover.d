@@ -1,14 +1,14 @@
 /**
  * Handles operator overloading.
  *
- * Specification: $(LINK2 https://dlang.org/spec/operatoroverloading.html, Operator Overloading)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/operatoroverloading.dd, Operator Overloading)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/opover.d, _opover.d)
- * Documentation:  https://dlang.org/phobos/dmd_opover.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/opover.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/opover.d, _opover.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/opover.d
+ * 
  */
 
 module dmd.opover;
@@ -473,11 +473,11 @@ Expression binAliasThis(BinExp e, Scope* sc, Type[2] aliasThisStop)
     AggregateDeclaration ad1 = isAggregate(e.e1.type);
     AggregateDeclaration ad2 = isAggregate(e.e2.type);
     Expression rewrittenLhs;
-    if (!(e.isAssignExp && ad2 && ad1 == ad2)) // https://issues.dlang.org/show_bug.cgi?id=2943
+    if (!(e.isAssignExp && ad2 && ad1 == ad2)) // upstream issue 2943
     {
         if (Expression result = checkAliasThisForLhs(ad1, sc, e, aliasThisStop))
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=19441
+            /* upstream issue 19441
              *
              * alias this may not be used for partial assignment.
              * If a struct has a single member which is aliased this
@@ -509,7 +509,7 @@ Expression binAliasThis(BinExp e, Scope* sc, Type[2] aliasThisStop)
             rewrittenLhs = ae.e1;
         }
     }
-    if (!(e.isAssignExp && ad1 && ad1 == ad2)) // https://issues.dlang.org/show_bug.cgi?id=2943
+    if (!(e.isAssignExp && ad1 && ad1 == ad2)) // upstream issue 2943
     {
         if (Expression result = checkAliasThisForRhs(ad2, sc, e, aliasThisStop))
             return result;
@@ -576,7 +576,7 @@ Expression opOverloadBinary(BinExp e, Scope* sc, Type[2] aliasThisStop)
         eSink.error(e.e2.loc, "`%s.opBinaryRight` isn't a template", e.e2.toErrMsg());
         return ErrorExp.get();
     }
-    if (s_r && s_r == s) // https://issues.dlang.org/show_bug.cgi?id=12778
+    if (s_r && s_r == s) // upstream issue 12778
         s_r = null;
 
     bool choseReverse;
@@ -738,7 +738,7 @@ Expression opOverloadEqual(EqualExp e, Scope* sc, Type[2] aliasThisStop)
             Expression e2x = e.e2;
 
             /* The explicit cast is necessary for interfaces
-             * https://issues.dlang.org/show_bug.cgi?id=4088
+             * upstream issue 4088
              */
             Type to = dmd.dsymbolsem.getType(ClassDeclaration.object);
             if (cd1.isInterfaceDeclaration())
@@ -804,7 +804,7 @@ Expression opOverloadEqual(EqualExp e, Scope* sc, Type[2] aliasThisStop)
         }
 
         /* Do memberwise equality.
-         * https://dlang.org/spec/expression.html#equality_expressions
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
          * Rewrite:
          *      e1 == e2
          * as:
@@ -1153,7 +1153,7 @@ private Expression compare_overload(BinExp e, Scope* sc, Identifier id, ref EXP 
     }
 
     /*
-     * https://issues.dlang.org/show_bug.cgi?id=16657
+     * upstream issue 16657
      * at this point, no matching opEquals was found for structs,
      * so we should not follow the alias this comparison code.
      */
@@ -1255,10 +1255,10 @@ bool inferForeachAggregate(Scope* sc, bool isForeach, ref Expression feaggr, out
         Type tab = aggr.type.toBasetype();
         switch (tab.ty)
         {
-        case Tarray:            // https://dlang.org/spec/statement.html#foreach_over_arrays
-        case Tsarray:           // https://dlang.org/spec/statement.html#foreach_over_arrays
-        case Ttuple:            // https://dlang.org/spec/statement.html#foreach_over_tuples
-        case Taarray:           // https://dlang.org/spec/statement.html#foreach_over_associative_arrays
+        case Tarray:            // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        case Tsarray:           // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        case Ttuple:            // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        case Taarray:           // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
             break;
 
         case Tclass:
@@ -1270,7 +1270,7 @@ bool inferForeachAggregate(Scope* sc, bool isForeach, ref Expression feaggr, out
                 sapply = search_function(ad, isForeach ? Id.apply : Id.applyReverse);
                 if (sapply)
                 {
-                    // https://dlang.org/spec/statement.html#foreach_over_struct_and_classes
+                    // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
                     // opApply aggregate
                     break;
                 }
@@ -1290,7 +1290,7 @@ bool inferForeachAggregate(Scope* sc, bool isForeach, ref Expression feaggr, out
             }
             if (ad.search(Loc.initial, isForeach ? Id.Ffront : Id.Fback))
             {
-                // https://dlang.org/spec/statement.html#foreach-with-ranges
+                // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
                 // range aggregate
                 break;
             }
@@ -1304,7 +1304,7 @@ bool inferForeachAggregate(Scope* sc, bool isForeach, ref Expression feaggr, out
             return false;
         }
 
-        case Tdelegate:        // https://dlang.org/spec/statement.html#foreach_over_delegates
+        case Tdelegate:        // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
             if (auto de = aggr.isDelegateExp())
             {
                 sapply = de.func;

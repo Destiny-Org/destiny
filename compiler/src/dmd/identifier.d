@@ -1,12 +1,12 @@
 /**
  * Defines an identifier, which is the name of a `Dsymbol`.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/identifier.d, _identifier.d)
- * Documentation:  https://dlang.org/phobos/dmd_identifier.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/identifier.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/identifier.d, _identifier.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/identifier.d
+ * 
  */
 
 module dmd.identifier;
@@ -247,18 +247,18 @@ nothrow:
         /**
          * Make sure the identifiers are unique per filename, i.e., per module/mixin
          * (`path/to/foo.d` and `path/to/foo.d-mixin-<line>`). See issues
-         * https://issues.dlang.org/show_bug.cgi?id=16995
-         * https://issues.dlang.org/show_bug.cgi?id=18097
-         * https://issues.dlang.org/show_bug.cgi?id=18111
-         * https://issues.dlang.org/show_bug.cgi?id=18880
-         * https://issues.dlang.org/show_bug.cgi?id=18868
-         * https://issues.dlang.org/show_bug.cgi?id=19058
+         * upstream issue 16995
+         * upstream issue 18097
+         * upstream issue 18111
+         * upstream issue 18880
+         * upstream issue 18868
+         * upstream issue 19058
          *
          * It is a bit trickier for lambdas/dgliterals: we want them to be unique per
          * module/mixin + function/template instantiation context. So we use extra parent
          * argument for that when dealing with lambdas. We could have added it to prefix
          * directly, but that would unnecessary lengthen symbols names. See issue:
-         * https://issues.dlang.org/show_bug.cgi?id=23722
+         * upstream issue 23722
          */
         static struct Key { string locKey; string prefix; const(void)* parent; }
         __gshared uint[Key] counters;

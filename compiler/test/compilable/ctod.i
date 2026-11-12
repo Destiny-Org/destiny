@@ -88,7 +88,7 @@ struct Foo {
 
 struct Foo abc(void);
 
-// https://issues.dlang.org/show_bug.cgi?id=24276
+// upstream issue 24276
 
 union S
 {
@@ -96,7 +96,7 @@ union S
 };
 typedef S T;
 
-// https://issues.dlang.org/show_bug.cgi?id=24200
+// upstream issue 24200
 
 #define __DATE__ 1
 #define __TIME__  1
@@ -104,20 +104,20 @@ typedef S T;
 #define __EOF__  1
 #define __VENDOR__  1
 
-// https://issues.dlang.org/show_bug.cgi?id=24326
+// upstream issue 24326
 enum { A };
 
-// https://issues.dlang.org/show_bug.cgi?id=24670
+// upstream issue 24670
 struct S24326 { int x; };
 const struct S24326 fun(int y);
 
-// https://issues.dlang.org/show_bug.cgi?id=24375
+// upstream issue 24375
 struct foo {
     int x;
 };
 typedef int weird[sizeof(((struct foo *)((void*)0))->x)];
 
-// https://github.com/dlang/dmd/issues/20889
+// upstream dmd issue 20889
 typedef unsigned long long ULONG;
 typedef ULONG ULONG_Deluxe;
 typedef ULONG_Deluxe *ULONG_PTR;

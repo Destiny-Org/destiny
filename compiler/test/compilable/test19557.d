@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19557
+// upstream issue 19557
 // Error: redundant linkage `extern (C++)`
 
 extern(C++, "ns")

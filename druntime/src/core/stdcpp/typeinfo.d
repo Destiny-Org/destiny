@@ -1,9 +1,9 @@
-// Written in the D programming language.
+// Written in the Destiny programming language.
 
 /**
  * Interface to C++ <typeinfo>
  *
- * Copyright: Copyright (c) 2016 D Language Foundation
+ * Copyright: Copyright (c) 2016 D Language Foundation; Copyright (C) 2026 Destiny contributors
  * License:   $(HTTP boost.org/LICENSE_1_0.txt, Boost License 1.0).
  * Authors:   $(HTTP digitalmars.com, Walter Bright)
  * Source:    $(DRUNTIMESRC core/stdcpp/_typeinfo.d)

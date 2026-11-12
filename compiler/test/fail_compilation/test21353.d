@@ -13,7 +13,7 @@ fail_compilation/test21353.d(27): Error: undefined identifier `P` in module `imp
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=21353
+// upstream issue 21353
 
 import imports.imp21353;
 

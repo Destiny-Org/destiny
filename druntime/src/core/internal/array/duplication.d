@@ -95,7 +95,7 @@ U[] _dup(T, U)(T[] a) if (!__traits(isPOD, T))
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22107
+// upstream issue 22107
 @safe unittest
 {
     static int i;
@@ -313,7 +313,7 @@ U[] _dup(T, U)(T[] a) if (!__traits(isPOD, T))
     auto a = arr.dup; // dup does escape
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21983
+// upstream issue 21983
 // dup/idup destroys partially constructed arrays on failure
 @safe unittest
 {
@@ -378,7 +378,7 @@ U[] _dup(T, U)(T[] a) if (!__traits(isPOD, T))
     assert(test!Copy());
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=24453
+// upstream issue 24453
 @safe unittest
 {
     static inout(char)[] foo(return ref scope inout(char)[] s)

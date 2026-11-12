@@ -5,7 +5,7 @@ fail_compilation/fail15755.d(28): Error: `AliasSeq!(123)` has no effect
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=15755
+// upstream issue 15755
 
 struct Foo
 {

@@ -6,7 +6,7 @@ fail_compilation/test16116.d(14): Error: incompatible types for `(v) * (i)`: `__
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=16116
+// upstream issue 16116
 
 void foo() {
     __vector(short[8]) v;

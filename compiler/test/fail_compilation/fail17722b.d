@@ -4,7 +4,7 @@ fail_compilation/fail17722b.d(12): Error: static assert:  `__traits(compiles, a1
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17722
+// upstream issue 17722
 
 void fail17722b()
 {

@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20152
+// upstream dmd issue 20152
 
 static int inited;
 static void init(void);

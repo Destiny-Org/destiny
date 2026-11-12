@@ -38,7 +38,7 @@ int func2(AliasSeq!(int) params = AliasSeq!(0))
     return 0;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21258
+// upstream issue 21258
 int func3(AliasSeq!(int, int) args = AliasSeq!(3, 5))
 {
     return args[0] * args[1];

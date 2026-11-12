@@ -4,12 +4,12 @@
  * 32 bit X86_64 is more or less abandoned.
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
- * Copyright:   Copyright (C) 2009-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 2009-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/machobj.d, backend/machobj.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/machobj.d, backend/machobj.d)
  */
 
 module dmd.backend.machobj;
@@ -3598,7 +3598,7 @@ const struct VersionCommand
     {
         /**
          * This is the absolute minimum supported version of macOS (64 bit) for DMD,
-         * as documented at: https://dlang.org/dmd-osx.html#requirements
+         * as documented at: https://github.com/Destiny-Org/destiny/blob/main/README.md
          * NOTE: Versions earlier than 10.7 do not support thread local storage.
          */
         enum fallbackOSVersion = Version(10, 9).encode;

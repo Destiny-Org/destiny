@@ -1,12 +1,12 @@
 /**
  * Semantic analysis of initializers.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/initsem.d, _initsem.d)
- * Documentation:  https://dlang.org/phobos/dmd_initsem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/initsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/initsem.d, _initsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/initsem.d
+ * 
  */
 
 module dmd.initsem;
@@ -417,7 +417,7 @@ Initializer initializerSemantic(Initializer init, Scope* sc, ref Type tx, NeedIn
 
         /* Save the expression before ctfe
          * Otherwise the error message would contain for example "&[0][0]" instead of "new int"
-         * Regression: https://issues.dlang.org/show_bug.cgi?id=21687
+         * Regression: upstream issue 21687
          */
         Expression currExp = i.exp;
         if (needInterpret)
@@ -442,7 +442,7 @@ Initializer initializerSemantic(Initializer init, Scope* sc, ref Type tx, NeedIn
                 if (i.exp.isSymOffExp())
                 {
                     /* `static variable cannot be read at compile time`
-                     * https://issues.dlang.org/show_bug.cgi?id=22513
+                     * upstream issue 22513
                      * Maybe this would be better addressed in ctfeInterpret()?
                      */
                     needInterpret = NeedInterpret.INITnointerpret;
@@ -577,7 +577,7 @@ Initializer initializerSemantic(Initializer init, Scope* sc, ref Type tx, NeedIn
             }
             else if (search_function(sd, Id.opCall))
             {
-                /* https://issues.dlang.org/show_bug.cgi?id=1547
+                /* upstream issue 1547
                  *
                  * Look for static opCall
                  *
@@ -1383,7 +1383,7 @@ Initializer inferInitializerType(Initializer init, Scope* sc, Type itype, ErrorS
         //printf("ExpInitializer::inferInitializerType() %s\n", init.toChars());
         init.exp = init.exp.expressionSemantic(sc);
 
-        // for static alias this: https://issues.dlang.org/show_bug.cgi?id=17684
+        // for static alias this: upstream issue 17684
         if (init.exp.op == EXP.type)
             init.exp = resolveAliasThis(sc, init.exp);
 
@@ -1586,7 +1586,7 @@ Expression initializerToExpression(Initializer init, Scope* sc, Type itype, Erro
 
         Type telem = itype ? itype.nextOf() : null;
 
-        // https://github.com/dlang/dmd/issues/23900
+        // upstream dmd issue 23900
         if (!t && itype)
             t = itype.toBasetype();
 

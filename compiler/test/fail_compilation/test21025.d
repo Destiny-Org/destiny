@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21025
+// upstream issue 21025
 // REQUIRED_ARGS: -preview=dip1021
 
 /*

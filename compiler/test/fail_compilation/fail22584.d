@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22584
+// upstream dmd issue 22584
 /*
 TEST_OUTPUT:
 ---

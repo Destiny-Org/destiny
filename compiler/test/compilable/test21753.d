@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21753
+// upstream issue 21753
 
 struct Sample {
   int function() func1;

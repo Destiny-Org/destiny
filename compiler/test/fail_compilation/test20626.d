@@ -7,7 +7,7 @@ _error_
 const void()
 ----
 
-https://issues.dlang.org/show_bug.cgi?id=20626
+upstream issue 20626
 */
 
 #line 1

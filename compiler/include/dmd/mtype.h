@@ -1,11 +1,11 @@
 
 /* Compiler implementation of the Destiny programming language
- * Copyright (C) 1999-2026 by The Destiny Language Foundation, All Rights Reserved
+ * Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * written by Walter Bright
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/dlang/dmd/blob/master/src/dmd/mtype.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/mtype.h
  */
 
 #pragma once
@@ -132,7 +132,7 @@ enum VarArgValues
 {
     VARARGnone     = 0,  /// fixed number of arguments
     VARARGvariadic = 1,  /// T t, ...)  can be C-style (core.stdc.stdarg) or D-style (core.vararg)
-    VARARGtypesafe = 2,  /// T t ...) typesafe https://dlang.org/spec/function.html#typesafe_variadic_functions
+    VARARGtypesafe = 2,  /// T t ...) typesafe https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
     VARARGKRvariadic = 3 /// K+R C style variadics (no function prototype)
 };
 typedef unsigned char VarArg;

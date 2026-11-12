@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24214
+// upstream dmd issue 24214
 _Static_assert(__alignof__(int) == _Alignof(int), "1");
 _Static_assert(__alignof(int) == _Alignof(int), "2");
 

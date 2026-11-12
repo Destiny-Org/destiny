@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -unittest
 // PERMUTE_ARGS:
-// https://issues.dlang.org/show_bug.cgi?id=16579
+// upstream issue 16579
 
 struct Thing
 {
@@ -18,7 +18,7 @@ void main()
     return Thing.Instance.iter;   // Added 'return'
 }
 
-// From https://issues.dlang.org/show_bug.cgi?id=16576
+// From upstream issue 16576
 
 alias a = test2!();
 alias b = test3!();

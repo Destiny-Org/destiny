@@ -15,7 +15,7 @@ fail_compilation/misc1.d(128): Deprecation: `j` has no effect
 #line 100
 
 /***************************************************/
-//https://issues.dlang.org/show_bug.cgi?id=12490
+//upstream issue 12490
 
 void hasSideEffect12490(){}
 

@@ -1,12 +1,12 @@
 /**
  * Most of the logic to implement scoped pointers and scoped references is here.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/escape.d, _escape.d)
- * Documentation:  https://dlang.org/phobos/dmd_escape.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/escape.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/escape.d, _escape.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/escape.d
+ * 
  */
 
 module dmd.escape;
@@ -49,7 +49,7 @@ package(dmd) struct EscapeState
 {
     // Maps `sequenceNumber` of a `VarDeclaration` to an object that contains the
     // reason it inferred or didn't infer `scope` for supplemental error messages
-    // https://issues.dlang.org/show_bug.cgi?id=23295
+    // upstream issue 23295
     private __gshared RootObject[int] scopeInferReason;
 
     /// Called by `initDMD` / `deinitializeDMD` to reset global state
@@ -550,7 +550,7 @@ enum ReturnParamDest
  * This works the same as returning the value via a return statement.
  * Although the first argument must be `ref`, it is not regarded as returning by `ref`.
  *
- * See_Also: https://dlang.org.spec/function.html#return-ref-parameters
+ * See_Also: https://github.com/Destiny-Org/destiny
  *
  * Params:
  *   tf = function type
@@ -637,7 +637,7 @@ bool checkAssignEscape(ref Scope sc, Expression e, bool gag, bool byRef)
 
     if (va && e.op == EXP.concatenateElemAssign)
     {
-        /* https://issues.dlang.org/show_bug.cgi?id=17842
+        /* upstream issue 17842
          * Draw an equivalence between:
          *   *q = p;
          * and:
@@ -828,7 +828,7 @@ bool checkAssignEscape(ref Scope sc, Expression e, bool gag, bool byRef)
         VarDeclarations vars;
         findAllOuterAccessedVariables(func, &vars);
 
-        /* https://issues.dlang.org/show_bug.cgi?id=16037
+        /* upstream issue 16037
          * If assigning the address of a delegate to a scope variable,
          * then uncount that address of. This is so it won't cause a
          * closure to be allocated.
@@ -919,7 +919,7 @@ bool checkThrowEscape(ref Scope sc, Expression e, bool gag)
         if (v.isScope() && !v.iscatchvar)       // special case: allow catch var to be rethrown
                                                 // despite being `scope`
         {
-            // https://issues.dlang.org/show_bug.cgi?id=17029
+            // upstream issue 17029
             result |= sc.setUnsafeDIP1000(gag, e.loc, "throwing scope variable `%s`", v);
             return;
         }
@@ -977,7 +977,7 @@ bool checkNewEscape(ref Scope sc, Expression e, bool gag)
                  */
                 !(p.parent == sc.func))
             {
-                // https://issues.dlang.org/show_bug.cgi?id=20868
+                // upstream issue 20868
                 result |= sc.setUnsafeDIP1000(gag, e.loc, "copying scope variable `%s` into allocated memory", v);
                 return;
             }
@@ -1020,7 +1020,7 @@ bool checkNewEscape(ref Scope sc, Expression e, bool gag)
         if (!v.isReference())
             return;
 
-        // https://dlang.org/spec/function.html#return-ref-parameters
+        // https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
         if (p == sc.func)
         {
             //printf("escaping reference to local ref variable %s\n", v.toChars());
@@ -1189,7 +1189,7 @@ private bool checkReturnEscapeImpl(ref Scope sc, Expression e, bool refs, bool g
                 auto eSink = global.errorSink;
                 if (v.isParameter() && !v.isReturn())
                 {
-                    // https://issues.dlang.org/show_bug.cgi?id=23191
+                    // upstream issue 23191
                     if (!gag)
                     {
                         previewErrorFunc(eSink, sc.isDeprecated(), sc.useDIP1000)(e.loc,
@@ -1201,7 +1201,7 @@ private bool checkReturnEscapeImpl(ref Scope sc, Expression e, bool refs, bool g
                 }
                 else
                 {
-                    // https://issues.dlang.org/show_bug.cgi?id=17029
+                    // upstream issue 17029
                     if (sc.setUnsafeDIP1000(gag, e.loc, "returning scope variable `%s`", v))
                     {
                         printScopeReason(previewSupplementalFunc(eSink, sc.isDeprecated(), sc.useDIP1000), v, 10, true);
@@ -1274,7 +1274,7 @@ private bool checkReturnEscapeImpl(ref Scope sc, Expression e, bool refs, bool g
 
         Dsymbol p = v.toParent2();
 
-        // https://issues.dlang.org/show_bug.cgi?id=19965
+        // upstream issue 19965
         if (!refs && checkScopeVarAddr(v, e, sc, gag))
         {
             result = true;
@@ -1315,7 +1315,7 @@ private bool checkReturnEscapeImpl(ref Scope sc, Expression e, bool refs, bool g
             }
             else
             {
-                // https://dlang.org/spec/function.html#return-ref-parameters
+                // https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
                 // Only look for errors if in module listed on command line
                 if (p == sc.func)
                 {
@@ -1784,7 +1784,7 @@ void escapeExp(Expression e, ref scope EscapeByResults er, int deref)
             if (!fd)
                 return;
 
-            // https://issues.dlang.org/show_bug.cgi?id=20149#c10
+            // upstream issue 20149#c10
             if (deref < 0 && dve.var.isCtorDeclaration())
             {
                 er.byExp(e, false);
@@ -1921,7 +1921,7 @@ struct EscapeByResults
      *
      * Additionally, return scope can be inferred wrongly instead of scope, in which
      * case the code could give false positives even without @safe or dip1000:
-     * https://issues.dlang.org/show_bug.cgi?id=23657
+     * upstream issue 23657
      */
 
     /// called on variables being returned by ref / address

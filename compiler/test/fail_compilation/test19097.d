@@ -21,7 +21,7 @@ fail_compilation/test19097.d(157):        `s6m` inferred `scope` because of `s6m
 
 // Test extended return-scope / return-ref semantics, e.g. assigning to `this` or the first parameter
 
-// https://issues.dlang.org/show_bug.cgi?id=19097
+// upstream issue 19097
 
 @safe:
 
@@ -98,7 +98,7 @@ int* escape() @safe
 }
 
 /************************/
-// https://issues.dlang.org/show_bug.cgi?id=22837
+// upstream issue 22837
 struct S4
 {
     int* p;
@@ -116,7 +116,7 @@ int* escape2()
 }
 
 /************************/
-// https://issues.dlang.org/show_bug.cgi?id=22801
+// upstream issue 22801
 struct S5
 {
     int* a;

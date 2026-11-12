@@ -1,7 +1,7 @@
-// https://github.com/dlang/dmd/issues/24085
+// upstream dmd issue 24085
 module std.math.ctfe_log_extended;
 
-// These declarations exercise the compiler builtins without a Phobos dependency.
+// These declarations exercise the compiler builtins without a Fate dependency.
 real log(real);
 real log2(real);
 real log10(real);

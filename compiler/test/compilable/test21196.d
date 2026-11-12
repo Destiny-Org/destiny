@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21674
+// upstream issue 21674
 // REQUIRED_ARGS: -de
 
 struct Module

@@ -13,7 +13,7 @@ void
 */
 
 
-// https://issues.dlang.org/show_bug.cgi?id=21647
+// upstream issue 21647
 
 void foo() { return cast(void)1; }
 
@@ -30,7 +30,7 @@ pragma(msg, main());
 pragma(msg, V);
 
 /*************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8255
+// upstream issue 8255
 
 struct G {}
 struct F(T) { void f(ref T) {} }

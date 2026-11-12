@@ -784,7 +784,7 @@ void test14()
 
 /**************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=3983
+// upstream issue 3983
 
 struct Fug
 {
@@ -812,7 +812,7 @@ void test15()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4953
+// upstream issue 4953
 
 struct S4953a
 {
@@ -870,7 +870,7 @@ void test4953d()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4993
+// upstream issue 4993
 
 // reduced from the bug report
 struct Bar4993
@@ -887,7 +887,7 @@ void test4993()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8133
+// upstream issue 8133
 
 void test8133()
 {
@@ -905,7 +905,7 @@ void test8133()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8522
+// upstream issue 8522
 
 struct Point8522
 {
@@ -924,7 +924,7 @@ void test8522()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12778
+// upstream issue 12778
 
 struct Vec12778X
 {
@@ -957,7 +957,7 @@ void test12778()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14343
+// upstream issue 14343
 
 struct S14343a
 {
@@ -988,7 +988,7 @@ void test14343()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14344
+// upstream issue 14344
 
 struct S14344
 {
@@ -1019,7 +1019,7 @@ class C14344
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=1547
+// upstream issue 1547
 struct A
 {
     int b;
@@ -1038,7 +1038,7 @@ void test1547()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20475
+// upstream issue 20475
 struct S20475
 {
     string[2] x;

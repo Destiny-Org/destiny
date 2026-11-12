@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21432
+// upstream issue 21432
 auto issue21432()
 {
     enum int[] a = [];

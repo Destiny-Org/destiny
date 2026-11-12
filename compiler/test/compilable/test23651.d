@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23651
+// upstream issue 23651
 
 template isCallable(alias callable)
 {

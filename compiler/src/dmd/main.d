@@ -6,12 +6,12 @@
  * utilities needed for arguments parsing, path manipulation, etc...
  * This file is not shared with other compilers which use the DMD front-end.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/main.d, _main.d)
- * Documentation:  https://dlang.org/phobos/dmd_main.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/main.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/main.d, _main.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/main.d
+ * 
  */
 
 module dmd.main;
@@ -338,29 +338,29 @@ private int tryMain(const(char)[][] argv, out Param params)
     {
         version (Windows)
         {
-            browse("https://dlang.org/dmd-windows.html");
+            browse("https://github.com/Destiny-Org/destiny/blob/main/README.md");
         }
         version (linux)
         {
-            browse("https://dlang.org/dmd-linux.html");
+            browse("https://github.com/Destiny-Org/destiny/blob/main/README.md");
         }
         version (OSX)
         {
-            browse("https://dlang.org/dmd-osx.html");
+            browse("https://github.com/Destiny-Org/destiny/blob/main/README.md");
         }
         version (FreeBSD)
         {
-            browse("https://dlang.org/dmd-freebsd.html");
+            browse("https://github.com/Destiny-Org/destiny/blob/main/README.md");
         }
         /*NOTE: No regular builds for openbsd/dragonflybsd (yet) */
         /*
         version (OpenBSD)
         {
-            browse("https://dlang.org/dmd-openbsd.html");
+            browse("https://github.com/Destiny-Org/destiny/blob/main/README.md");
         }
         version (DragonFlyBSD)
         {
-            browse("https://dlang.org/dmd-dragonflybsd.html");
+            browse("https://github.com/Destiny-Org/destiny/blob/main/README.md");
         }
         */
         return EXIT_SUCCESS;
@@ -500,7 +500,7 @@ private int tryMain(const(char)[][] argv, out Param params)
             // BUG: convert file contents to UTF-8 before use
             //printf("file: '%.*s'\n", cast(int)buffer.data.length, buffer.data.ptr);
             // Separate macro definitions from adjacent files lacking a final \n
-            // https://github.com/dlang/dmd/issues/18754
+            // upstream dmd issue 18754
             ddocbuf.writeByte('\n');
         }
         ddocbufIsRead = true;

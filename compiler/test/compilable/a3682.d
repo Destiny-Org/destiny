@@ -1,7 +1,7 @@
 // COMPILED_IMPORTS: imports/b3682.d
 // PERMUTE_ARGS:
 
-// https://issues.dlang.org/show_bug.cgi?id=3682
+// upstream issue 3682
 
 struct Tuple(Types...)
 {

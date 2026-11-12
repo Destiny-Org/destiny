@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21177
+// upstream issue 21177
 /*
 REQUIRED_ARGS: -verrors=simple
 DISABLED: win

@@ -8,7 +8,7 @@ fail_compilation/fail18892.d(13):        struct `MT` defined here
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=18892
+// upstream issue 18892
 
 struct MT
 {

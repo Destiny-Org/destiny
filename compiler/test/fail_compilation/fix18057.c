@@ -4,7 +4,7 @@ fail_compilation/fix18057.c(105): Error: redefinition of `x` with different type
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=22316
+// upstream issue 22316
 
 #line 100
 

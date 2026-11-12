@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=711
+// upstream issue 711
 string result;
 
 template Mixer()

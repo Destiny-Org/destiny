@@ -70,7 +70,7 @@ void[] __arrayAlloc(T)(size_t arrSize) @trusted
     return null;
 }
 
-// https://github.com/dlang/dmd/issues/22517
+// upstream dmd issue 22517
 @system unittest
 {
     auto arr = new void[10];

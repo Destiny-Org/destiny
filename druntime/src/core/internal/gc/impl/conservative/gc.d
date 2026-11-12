@@ -1,13 +1,13 @@
 /**
  * Contains the garbage collector implementation.
  *
- * Copyright: D Language Foundation 2001 - 2021.
+ * Copyright: D Language Foundation 2001 - 2021; Copyright (C) 2026 Destiny contributors.
  * License:   $(HTTP www.boost.org/LICENSE_1_0.txt, Boost License 1.0).
  * Authors:   Walter Bright, David Friedman, Sean Kelly
  */
 module core.internal.gc.impl.conservative.gc;
 
-// D Programming Language Garbage Collector implementation
+// Destiny Programming Language Garbage Collector implementation
 
 /************** Debugging ***************************/
 
@@ -98,7 +98,7 @@ private
         int rt_hasFinalizerInSegment(void* p, size_t size, const(TypeInfo) typeInfo, const scope void[] segment) nothrow;
 
         // Declared as an extern instead of importing core.exception
-        // to avoid inlining - see https://issues.dlang.org/show_bug.cgi?id=13725.
+        // to avoid inlining - see upstream issue 13725.
         noreturn onInvalidMemoryOperationError(void* pretend_sideffect = null, string file = __FILE__, size_t line = __LINE__) @trusted pure nothrow @nogc;
         noreturn onOutOfMemoryError(void* pretend_sideffect = null, string file = __FILE__, size_t line = __LINE__) @trusted pure nothrow @nogc;
     }
@@ -3697,7 +3697,7 @@ Lmark:
         {
             import core.sys.posix.signal : pthread_sigmask, SIG_BLOCK, SIG_SETMASK, sigfillset, sigset_t;
             // block all signals, scanBackground inherits this mask.
-            // see https://issues.dlang.org/show_bug.cgi?id=20256
+            // see upstream issue 20256
             sigset_t new_mask, old_mask;
             sigfillset(&new_mask);
             auto sigmask_rc = pthread_sigmask(SIG_BLOCK, &new_mask, &old_mask);
@@ -4809,7 +4809,7 @@ struct SmallObjectPool
 }
 
 debug(SENTINEL) {} else // no additional capacity with SENTINEL
-unittest // https://issues.dlang.org/show_bug.cgi?id=14467
+unittest // upstream issue 14467
 {
     int[] arr = new int[10];
     assert(arr.capacity);
@@ -4817,7 +4817,7 @@ unittest // https://issues.dlang.org/show_bug.cgi?id=14467
     assert(arr.capacity);
 }
 
-unittest // https://issues.dlang.org/show_bug.cgi?id=15353
+unittest // upstream issue 15353
 {
     import core.memory : GC;
 
@@ -4834,7 +4834,7 @@ unittest // https://issues.dlang.org/show_bug.cgi?id=15353
     GC.collect();
 }
 
-unittest // https://issues.dlang.org/show_bug.cgi?id=15822
+unittest // upstream issue 15822
 {
     import core.memory : GC;
 
@@ -4855,7 +4855,7 @@ unittest // https://issues.dlang.org/show_bug.cgi?id=15822
     GC.collect();
 }
 
-unittest // https://issues.dlang.org/show_bug.cgi?id=1180
+unittest // upstream issue 1180
 {
     import core.exception;
     try
@@ -5070,7 +5070,7 @@ unittest
 {
     import core.memory;
 
-    // https://issues.dlang.org/show_bug.cgi?id=9275
+    // upstream issue 9275
     GC.removeRoot(null);
     GC.removeRoot(cast(void*)13);
 }
@@ -5117,7 +5117,7 @@ unittest
     GC.minimize(); // release huge pool
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=19281
+// upstream issue 19281
 debug (SENTINEL) {} else // cannot allow >= 4 GB with SENTINEL
 debug (MEMSTOMP) {} else // might take too long to actually touch the memory
 version (OnlyLowMemUnittests) {} else
@@ -5159,7 +5159,7 @@ version (D_LP64) unittest
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=19522
+// upstream issue 19522
 unittest
 {
     import core.memory;
@@ -5202,7 +5202,7 @@ unittest
     assert(stats2.maxCollectionTime >= stats1.maxCollectionTime);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20214
+// upstream issue 20214
 unittest
 {
     import core.memory;
@@ -5234,7 +5234,7 @@ unittest
     }
 }
 
-// https://github.com/dlang/dmd/issues/22004
+// upstream dmd issue 22004
 @safe unittest
 {
 outer:
@@ -5259,7 +5259,7 @@ outer:
     }
 }
 
-// https://github.com/dlang/dmd/issues/21615
+// upstream dmd issue 21615
 debug(SENTINEL) {} else // no additional capacity with SENTINEL
 version (OnlyLowMemUnittests) {} else
 @safe unittest

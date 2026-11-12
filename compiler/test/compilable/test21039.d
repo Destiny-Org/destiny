@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21039
+// upstream dmd issue 21039
 // Zero-length static array with scalar initializer caused ICE
 
 struct A { const(char)[0] b = 0; }

@@ -1,5 +1,5 @@
 /* PERMUTE_ARGS: -O
- * https://issues.dlang.org/show_bug.cgi?id=19813
+ * upstream issue 19813
  */
 
 struct BitArray
@@ -95,7 +95,7 @@ void test1()
 
 /***************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=18748
+// upstream issue 18748
 
 int bt_32_imm(in uint* p)
 {
@@ -123,7 +123,7 @@ void test18748()
 
 /***************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=18749
+// upstream issue 18749
 
 ulong f(ulong* p, uint shift)
 {

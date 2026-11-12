@@ -5,7 +5,7 @@ fail_compilation/fix22104.c(108): Error: variable `fix22104.test2.array2` - inco
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=22104
+// upstream issue 22104
 
 #line 100
 

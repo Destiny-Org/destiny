@@ -7,7 +7,7 @@ fail_compilation/test17423.d(28):        `this` inferred `scope` because of `int
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17423
+// upstream issue 17423
 
 struct Bar
 {

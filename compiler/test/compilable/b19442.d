@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19442
+// upstream issue 19442
 enum x1 = 42;
 enum x2 = mixin('x', 1);
 enum x3 = mixin(wchar('x'), 2);

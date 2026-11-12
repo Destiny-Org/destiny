@@ -1,4 +1,4 @@
-//Written in the D programming language
+//Written in the Destiny programming language
 
 /++
     Module containing core time functionality, such as $(LREF Duration) (which
@@ -665,7 +665,7 @@ public:
             foreach (U; AliasSeq!(Duration, const Duration, immutable Duration))
             {
                 T t = 42;
-                // workaround https://issues.dlang.org/show_bug.cgi?id=18296
+                // workaround upstream issue 18296
                 version (D_Coverage)
                     U u = T(t._hnsecs);
                 else
@@ -1106,7 +1106,7 @@ public:
         assert(d + d);
     }
 
-    //Temporary hack until bug http://d.puremagic.com/issues/show_bug.cgi?id=5747 is fixed.
+    //Temporary hack until upstream issue 5747 is fixed.
     Duration opCast(T)() const nothrow @nogc
         if (is(immutable T == immutable Duration))
     {
@@ -2215,7 +2215,7 @@ private:
 }
 
 // This is supposed to be a static variable in MonoTimeImpl with the static
-// constructor being in there, but https://issues.dlang.org/show_bug.cgi?id=14517
+// constructor being in there, but upstream issue 14517
 // prevents that from working. However, moving it back to a static ctor will
 // reraise issues with other systems using MonoTime, so we should leave this
 // here even when that bug is fixed.
@@ -2232,7 +2232,7 @@ private immutable long[__traits(allMembers, ClockType).length] _ticksPerSecond;
 // NOTE: the code below SPECIFICALLY does not assert when it cannot initialize
 // the ticks per second array. This allows cases where a clock is never used on
 // a system that doesn't support it. See bugzilla issue
-// https://issues.dlang.org/show_bug.cgi?id=14863
+// upstream issue 14863
 // The assert will occur when someone attempts to use _ticksPerSecond for that
 // value.
 extern(C) void _d_initMonoTime() @nogc nothrow
@@ -2900,7 +2900,7 @@ long machTicksPerSecond() @nogc nothrow
 }
 
 /+
-    Local version of abs, since std.math.abs is in Phobos, not druntime.
+    Local version of abs, since std.math.abs is in Fate, not druntime.
   +/
 long _abs(long val) @safe pure nothrow @nogc
 {

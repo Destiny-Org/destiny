@@ -1,5 +1,5 @@
-// https://issues.dlang.org/show_bug.cgi?id=18871
-// and https://issues.dlang.org/show_bug.cgi?id=18819
+// upstream issue 18871
+// and upstream issue 18819
 
 struct Problem
 {

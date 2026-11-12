@@ -1,6 +1,6 @@
 module ice21696;
 
-// https://issues.dlang.org/show_bug.cgi?id=21696
+// upstream issue 21696
 
 double[1][1] func(double[1][1] stuff = [[1.0]])
 {

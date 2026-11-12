@@ -7,7 +7,7 @@ fail_compilation/fail236.d(12):        Candidate is: `Templ2(alias a)(x)`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=870
+// upstream issue 870
 // contradictory error messages for templates
 template Templ2(alias a)
 {

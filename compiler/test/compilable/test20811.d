@@ -1,5 +1,5 @@
 // Constructor flow analysis doesn't understand noreturn
-// https://github.com/dlang/dmd/issues/20811
+// upstream dmd issue 20811
 
 struct MustInit
 {

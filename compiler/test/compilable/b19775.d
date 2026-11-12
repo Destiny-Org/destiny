@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19775
+// upstream issue 19775
 enum x1 = 42;
 enum ident(alias a, args...) = mixin(a, args);
 

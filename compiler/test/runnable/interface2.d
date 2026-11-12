@@ -923,8 +923,8 @@ void test27()
 }
 
 /*******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=1747
-// https://issues.dlang.org/show_bug.cgi?id=2013
+// upstream issue 1747
+// upstream issue 2013
 
 void test1747()
 {
@@ -962,11 +962,11 @@ void test1747()
     assert(pia == pc + n);
 
     assert(id.mA() == 1);
-    assert(id.mB() == 2);   // OK <- NG (https://issues.dlang.org/show_bug.cgi?id=2013 case)
+    assert(id.mB() == 2);   // OK <- NG (upstream issue 2013 case)
     assert(id.mD() == 3);
 
     assert(ic.mA() == 1);
-    assert(ic.mB() == 2);   // OK <- NG (https://issues.dlang.org/show_bug.cgi?id=2013 case)
+    assert(ic.mB() == 2);   // OK <- NG (upstream issue 2013 case)
 
     assert(ib.mA() == 1);
     assert(ib.mB() == 2);   // OK <- NG
@@ -1010,14 +1010,14 @@ bool foo4088(Test4088 x, Test4088 y)
 }
 
 /*******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7950
+// upstream issue 7950
 
 template TypeTuple7950(T...){alias T TypeTuple7950;}
 interface I7950a {} // ok
 interface I7950b : I7950a, TypeTuple7950!() {} // fail
 
 /*******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10007
+// upstream issue 10007
 
 struct A10007 {}
 
@@ -1033,7 +1033,7 @@ class Foo10007 : IFoo10007
 }
 
 /*******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10744
+// upstream issue 10744
 
 interface A10744
 {
@@ -1066,7 +1066,7 @@ interface Baz10744 { }
 interface Qux10744 : Baz10744 { }
 
 /*******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11034
+// upstream issue 11034
 
 class A11034(T)
 {

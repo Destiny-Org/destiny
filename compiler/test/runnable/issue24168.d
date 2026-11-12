@@ -3,7 +3,7 @@ REQUIRED_ARGS: -fPIE
 DISABLED: win32 win64
 */
 
-//https://issues.dlang.org/show_bug.cgi?id=24168
+//upstream issue 24168
 
 int i = 42;
 

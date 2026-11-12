@@ -13,7 +13,7 @@ void main() {
     Bug7127b b;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=13975
+// upstream issue 13975
 static immutable int a = 8;
 enum Bar { aa = a }
 

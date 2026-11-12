@@ -1,11 +1,11 @@
 /**
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
- * Copyright:   Copyright (C) 2009-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 2009-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/mscoffobj.d, backend/mscoffobj.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/mscoffobj.d, backend/mscoffobj.d)
  */
 
 module dmd.backend.mscoffobj;
@@ -1763,7 +1763,7 @@ void MsCoffObj_export_symbol(Symbol* s,uint argsize)
     //printf("MsCoffObj_export_symbol(%s,%d)\n",s.Sident.ptr,argsize);
     SegData[seg].SDbuf.write(" /EXPORT:".ptr, 9);
     // obj_mangle2 may not use the buffer dest,
-    //  this will result in https://issues.dlang.org/show_bug.cgi?id=24340
+    //  this will result in upstream issue 24340
     SegData[seg].SDbuf.write(&buf);
 }
 

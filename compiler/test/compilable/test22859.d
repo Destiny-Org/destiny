@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22859
+// upstream issue 22859
 private struct __InoutWorkaroundStruct {}
 @property T rvalueOf(T)(T val) { return val; }
 @property T rvalueOf(T)(inout __InoutWorkaroundStruct = __InoutWorkaroundStruct.init);

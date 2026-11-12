@@ -107,7 +107,7 @@ bool test_toUByte()
 }
 static assert(test_toUByte());
 
-// https://github.com/dlang/dmd/issues/20246
+// upstream dmd issue 20246
 void test_split()
 {
     // bitop.Split64 only used for 32-bit process

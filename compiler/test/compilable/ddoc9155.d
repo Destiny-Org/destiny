@@ -14,7 +14,7 @@ module ddoc9155;
  +  import std.stdio;   //&
  +  writeln("Hello world!");
  +  if (test) {
- +    writefln("D programming language");
+ +    writefln("Destiny programming language");
  +  }
  +
  +      algorithm;
@@ -47,7 +47,7 @@ module ddoc9155;
  *  import std.stdio;   //&
  *  writeln("Hello world!");
  *  if (test) {
- *    writefln("D programming language");
+ *    writefln("Destiny programming language");
  *  }
  *
  *      algorithm;

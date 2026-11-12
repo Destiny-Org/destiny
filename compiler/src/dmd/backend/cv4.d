@@ -7,16 +7,16 @@
  * for a more complete set of publicly available definitions
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/cv4.d, backend/_cv4.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cv4.d, backend/_cv4.d)
  */
 
 module dmd.backend.cv4;
 
 @safe:
 
-// Online documentation: https://dlang.org/phobos/dmd_backend_cv4.html
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cv4.d
 
 // Symbol Indices
 enum

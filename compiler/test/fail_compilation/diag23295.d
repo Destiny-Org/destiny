@@ -11,7 +11,7 @@ fail_compilation/diag23295.d(39):        `e` is not `scope` because of `throw e`
 */
 
 // explain why scope inference failed
-// https://issues.dlang.org/show_bug.cgi?id=23295
+// upstream issue 23295
 
 @safe:
 

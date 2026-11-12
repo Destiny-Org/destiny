@@ -3,7 +3,7 @@ REQUIRED_ARGS: -release -check=assert=on
 PERMUTE_ARGS:  -check=invariant=on
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22945
+// upstream issue 22945
 
 bool hitStruct;
 bool hitClass;

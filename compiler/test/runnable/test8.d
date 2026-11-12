@@ -593,7 +593,7 @@ void test34()
 }
 
 /***********************************/
-// https://issues.dlang.org/show_bug.cgi?id=19178
+// upstream issue 19178
 
 float[3][4] arr2f = 10;
 Int3_4[1] arr3i = 20;

@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -O -inline
 //
-// https://issues.dlang.org/show_bug.cgi?id=20893
-// caused by https://github.com/dlang/dmd/pull/9722
+// upstream issue 20893
+// caused by upstream dmd pull request 9722
 
 int f(int n)
 {

@@ -796,7 +796,7 @@ struct S7426
 }
 
 /*******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14046
+// upstream issue 14046
 
 class A14046
 {
@@ -828,7 +828,7 @@ void test14046()
 }
 
 /*******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15839
+// upstream issue 15839
 
 class AnimatedProgress15839(bool makeClosure)
 {

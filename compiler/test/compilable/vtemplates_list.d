@@ -37,7 +37,7 @@ void test()
     goo2!(1)();
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21489
+// upstream issue 21489
 #line 50
 void test2()
 {

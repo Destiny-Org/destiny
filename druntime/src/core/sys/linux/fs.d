@@ -5,7 +5,7 @@
  * and constants and structures used by various generic file system
  * ioctl's.
  *
- * Copyright: The D Language Foundation 2021.
+ * Copyright: The D Language Foundation 2021; Copyright (C) 2026 Destiny contributors.
  * License : $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Authors : Luís Ferreira
  */

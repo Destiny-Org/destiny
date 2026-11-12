@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=14343
+// upstream issue 14343
 /* TEST_OUTPUT:
 ---
 fail_compilation/fail14343.d(21): Error: cannot modify struct instance `s` of type `S14343b` because it contains `const` or `immutable` members

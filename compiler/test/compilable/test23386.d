@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23386
+// upstream issue 23386
 // Segfault on enum member UDA inside template
 
 template E()

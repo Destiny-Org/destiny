@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=21585
+/* upstream issue 21585
 TEST_OUTPUT:
 ---
 fail_compilation/fix21585.d(103): Error: expected 1 arguments for `toType` but had 0

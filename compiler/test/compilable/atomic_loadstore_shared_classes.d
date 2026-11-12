@@ -13,6 +13,6 @@ void oops()
     auto f1 = new shared Foo;
     atomicStore(f0, f1);
 
-    // https://issues.dlang.org/show_bug.cgi?id=24846
+    // upstream issue 24846
     shared(Foo) f2 = atomicLoad(toLoad);
 }

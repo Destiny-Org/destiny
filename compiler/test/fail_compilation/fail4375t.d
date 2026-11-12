@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -unittest
-// https://issues.dlang.org/show_bug.cgi?id=4375: Dangling else
+// upstream issue 4375: Dangling else
 /*
 TEST_OUTPUT:
 ---

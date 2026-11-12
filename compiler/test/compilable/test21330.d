@@ -6,7 +6,7 @@ AliasSeq!(__unittest_L14_C5_1, __unittest_L14_C5_2)
 AliasSeq!(__unittest_L14_C5_2)
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=21330
+// upstream issue 21330
 
 module test21330;
 

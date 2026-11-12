@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=17635
+// upstream issue 17635
 
 alias T = immutable int;
 

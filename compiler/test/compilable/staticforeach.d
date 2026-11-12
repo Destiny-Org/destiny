@@ -829,14 +829,14 @@ T foo2(T v)@nogc{
     return T.init;
 }
 
-//https://issues.dlang.org/show_bug.cgi?id=18698
+//upstream issue 18698
 
 static foreach(m; __traits(allMembers, staticforeach))
 {
     pragma(msg, m);
 }
 
-//https://issues.dlang.org/show_bug.cgi?id=20072
+//upstream issue 20072
 struct T2{
     static foreach(i;0..1)
         struct S{}
@@ -871,7 +871,7 @@ static:
     }
 }
 
-//https://issues.dlang.org/show_bug.cgi?id=22007
+//upstream issue 22007
 void issue22007()
 {
     immutable int[32] array = 1;

@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -lib -Icompilable/extra-files
 // EXTRA_FILES: extra-files/imp12624.d
-// https://issues.dlang.org/show_bug.cgi?id=12624
+// upstream issue 12624
 
 struct SysTime
 {

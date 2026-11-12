@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=809
+// upstream issue 809
 void test(lazy int dg)
 {
     int delegate() dg_ = &dg;

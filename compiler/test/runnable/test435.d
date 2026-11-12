@@ -71,7 +71,7 @@ void test1()
 
 //------------------------------------------------------------------------------
 
-// https://issues.dlang.org/show_bug.cgi?id=435.
+// upstream issue 435.
 class B
 {
     int i;
@@ -96,7 +96,7 @@ void test2()
 
 //------------------------------------------------------------------------------
 
-// https://issues.dlang.org/show_bug.cgi?id=4905
+// upstream issue 4905
 class C2
 {
     string x;
@@ -120,7 +120,7 @@ void test3()
 
 //------------------------------------------------------------------------------
 
-// https://issues.dlang.org/show_bug.cgi?id=4531 test case 2
+// upstream issue 4531 test case 2
 class MyError : Exception
 {
     this(T...)(T msg)

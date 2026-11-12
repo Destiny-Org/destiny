@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16555
+// upstream issue 16555
 
 void outer(
     double x,

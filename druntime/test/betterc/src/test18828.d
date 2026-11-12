@@ -1,5 +1,5 @@
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18828
+// upstream issue 18828
 
 struct S18828 { }
 

@@ -82,7 +82,7 @@ extern(C++, foobar1)
 extern(C++, __traits(getCppNamespaces, bar1.func)) void func2 () {}
 
 /********************************************
-https://issues.dlang.org/show_bug.cgi?id=21918
+upstream issue 21918
 
 TEST_OUTPUT:
 ---
@@ -118,7 +118,7 @@ pragma(msg, __traits(hasPostblit));
 pragma(msg, __traits(hasPostblit, S()));
 
 /********************************************
-https://issues.dlang.org/show_bug.cgi?id=23178
+upstream issue 23178
 
 TEST_OUTPUT:
 ---

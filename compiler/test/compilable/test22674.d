@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22674
+// upstream issue 22674
 // EXTRA_FILES: imports/cimports2a.i imports/cimports2b.i
 
 import imports.cimports2a;
@@ -9,7 +9,7 @@ void do_foo(){
     free_foo(f);           // use_foo.d(6)
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23357
+// upstream issue 23357
 
 void do_foo2(){
     FooRef2 f = make_foo2();

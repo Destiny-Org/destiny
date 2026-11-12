@@ -15,7 +15,7 @@ fail_compilation/systemvariables_struct.d(57): Error: accessing `@system` field 
 ---
 */
 
-// http://dlang.org/dips/1035
+// https://github.com/Destiny-Org/destiny
 
 struct S
 {

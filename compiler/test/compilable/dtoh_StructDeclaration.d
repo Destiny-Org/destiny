@@ -362,7 +362,7 @@ extern (C++) struct Loc
     void toChars(int showColumns = Loc.showColumns) {}
 }
 
-// https://github.com/dlang/dmd/issues/21496
+// upstream dmd issue 21496
 enum string[string] meta21496 = ["hellos":"worlds"];
 extern(C++) struct metas21496
 {

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21414
+// upstream issue 21414
 
 struct State
 {

@@ -1,6 +1,6 @@
 module issue12520;
 
-// https://issues.dlang.org/show_bug.cgi?id=12520
+// upstream issue 12520
 
 alias Seq(T...) = T;
 

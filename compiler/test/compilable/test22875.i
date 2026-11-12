@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22875
+// upstream issue 22875
 
 typedef union value_u {
     void *p;

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22631
+// upstream issue 22631
 
 enum E : char { A = 3, B };
 
@@ -6,7 +6,7 @@ _Static_assert(sizeof(enum E) == 1, "1");
 _Static_assert(A == 3, "2");
 
 
-// https://issues.dlang.org/show_bug.cgi?id=22705
+// upstream issue 22705
 
 enum L: long long {
     L_A = 1,
@@ -24,7 +24,7 @@ enum U3: unsigned long {
     U3_A = 1,
 };
 
-// https://issues.dlang.org/show_bug.cgi?id=23801
+// upstream issue 23801
 
 enum
 {

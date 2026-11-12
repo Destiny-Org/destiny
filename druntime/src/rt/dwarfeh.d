@@ -1,7 +1,7 @@
 /**
  * Exception handling support for Dwarf-style portable exceptions.
  *
- * Copyright: Copyright (c) 2015-2016 by D Language Foundation
+ * Copyright: Copyright (c) 2015-2016 by D Language Foundation; Copyright (C) 2026 Destiny contributors
  * License: Distributed under the
  *      $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost Software License 1.0).
  *    (See accompanying file LICENSE)
@@ -598,7 +598,7 @@ ClassInfo getClassInfo(_Unwind_Exception* exceptionObject, const(ubyte)* current
     {
         // like __dmd_personality_v0, don't combine when the exceptions are from different functions
         // Fixes "exception thrown and caught while inside finally block"
-        // https://issues.dlang.org/show_bug.cgi?id=19831
+        // upstream issue 19831
         if (currentLsd != ehn.languageSpecificData)
         {
             debug (EH_personality) writeln("break: %p %p", currentLsd, ehn.languageSpecificData);

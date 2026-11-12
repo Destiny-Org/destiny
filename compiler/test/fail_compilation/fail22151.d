@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22151
+// upstream issue 22151
 /*
 TEST_OUTPUT:
 ---
@@ -23,7 +23,7 @@ void test()
     auto ff = &test2;
     *ff = *&test2;
 
-    // https://github.com/dlang/dmd/issues/18281
+    // upstream dmd issue 18281
     const c = *fp == *fp;
     const d = *fp is *fp;
     const e = *fp < *fp;

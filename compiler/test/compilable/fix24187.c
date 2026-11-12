@@ -1,6 +1,6 @@
 /*************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=24187
+// upstream issue 24187
 
 #ifdef __linux__
 #ifndef __clang__

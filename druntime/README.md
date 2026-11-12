@@ -4,7 +4,7 @@ DRuntime: Runtime Library for the Destiny Programming Language
 This is DRuntime. It is the low-level runtime library
 backing the Destiny programming language.
 
-DRuntime is typically linked together with Phobos in a
+DRuntime is typically linked together with Fate in a
 release such that the compiler only has to link to a
 single library to provide the user with the runtime and
 the standard library.
@@ -51,7 +51,7 @@ The `rt` package contains implementations for compiler-inserted calls.
 You may not `import rt.xxx` outside of the `rt` package itself, since its source is not accessible once druntime is compiled;
 it isn't included in the `druntime/import` that ships with compiler releases.
 The compiler assumes these functions have a specific `extern(C)` signature, and expects them to be linked into the final binary.
-See for example: [https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/drtlsym.d](dmd/backend/drtlsym.d)
+See for example: [https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/drtlsym.d](dmd/backend/drtlsym.d)
 
 The `core` package is shipped with the compiler and has a stable API.
 It contains implementations for D features, but also some D conversions of header files from external libraries:
@@ -61,7 +61,7 @@ It contains implementations for D features, but also some D conversions of heade
 
 An exception to the public API is `core.internal`, which contains compiler hooks that are templates.
 Many hooks from `rt` use `TypeInfo` class parameters, providing run-time type information, but they are being replaced by template functions, using static type information:
-[Replace Runtime Hooks with Templates](https://github.com/dlang/projects/issues/25)
+[Replace Runtime Hooks with Templates](https://github.com/Destiny-Org/destiny)
 
 Since uninstantiated templates aren't compiled into the druntime binary, they can't be in `rt`.
 Symbols from `core.internal` can be publically imported from other `core` modules, but are not supposed to be imported or otherwise referenced by end user modules.
@@ -70,9 +70,9 @@ Issues
 ------
 
 To report a bug or look up known issues with the runtime library, please visit
-the [bug tracker](http://issues.dlang.org/).
+the [issue tracker](https://github.com/Destiny-Org/destiny/issues).
 
 Building
 --------
 
-See the [wiki page](http://wiki.dlang.org/Building_DMD) for build instructions.
+See the [wiki page](https://github.com/Destiny-Org/destiny) for build instructions.

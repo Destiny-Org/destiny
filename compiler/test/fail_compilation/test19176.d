@@ -6,7 +6,7 @@ fail_compilation/test19176.d(13): Error: argument `foo()` to __traits(getUnitTes
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=19176
+// upstream issue 19176
 
 void main()
 {

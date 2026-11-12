@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/19439
+// upstream dmd issue 19439
 //
 // The `-lib`/multiobj variant of #20439: a CTFE `new Object` baked into a class's `.init`
 // is emitted with one object module per symbol, so the class init image and its "internal"

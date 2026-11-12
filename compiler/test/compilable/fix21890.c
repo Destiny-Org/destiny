@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21890
+// upstream dmd issue 21890
 // a local variable or parameter hides a typedef of the same name (C11 6.2.1-4)
 
 typedef unsigned char byte;

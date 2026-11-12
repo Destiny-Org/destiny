@@ -10,7 +10,7 @@ static assert(typeof(foo).mangleof == "FNaNbNiNfPvZi");
 auto bar(void* p) { return p; }
 static assert(typeof(bar).mangleof == "FNaNbNiNfPvZQd");
 
-// https://issues.dlang.org/show_bug.cgi?id=19857
+// upstream issue 19857
 
 struct Stack()
 {

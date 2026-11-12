@@ -1,6 +1,6 @@
 /**
- * Documentation:  https://dlang.org/phobos/dmd_strictvisitor.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/src/dmd/strictvisitor.d
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.visitor.strict;

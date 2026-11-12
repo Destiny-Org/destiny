@@ -1,5 +1,5 @@
 /**
- * Written in the D programming language.
+ * Written in the Destiny programming language.
  * This module provides functions to converting different values to const(ubyte)[]
  *
  * Copyright: Copyright Igor Stepanov 2013-2013.
@@ -39,7 +39,7 @@ const(ubyte)[] toUbyte(T)(const scope ref T val) if (__traits(isFloating, T) && 
     {
         static if (floatFormat!T == FloatFormat.Float || floatFormat!T == FloatFormat.Double)
         {
-            static if (is(T : ireal)) // https://issues.dlang.org/show_bug.cgi?id=19932
+            static if (is(T : ireal)) // upstream issue 19932
                 const f = val.im;
             else
                 alias f = val;

@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24021
+// upstream dmd issue 24021
 
 struct S { int x; bool opEquals(S) const { return true; } }
 bool f() { return [S(1)] == [S(2)]; }

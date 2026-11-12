@@ -7,7 +7,7 @@ fail_compilation/test15544.d(22): Error: assigning reference to local `this` to 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=15544
+// upstream issue 15544
 
 void delegate() @safe _del;
 

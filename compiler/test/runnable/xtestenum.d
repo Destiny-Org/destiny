@@ -156,7 +156,7 @@ class C7379
 }
 
 /***********************************/
-// https://issues.dlang.org/show_bug.cgi?id=23515
+// upstream issue 23515
 
 enum Easing : void function()
 {

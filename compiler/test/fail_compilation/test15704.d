@@ -9,7 +9,7 @@ fail_compilation/test15704.d(22): Error: cannot copy `byte` to `void[]`
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=15704
+// upstream issue 15704
 
 void main() @safe {
     Object[] objs = [ new Object() ];

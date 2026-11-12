@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -checkaction=context -preview=dip1000
 
 // Issue 22919 - [dip1000] -checkaction=context gives "assigned to `__assertOp2` with longer lifetime" (
-// https://issues.dlang.org/show_bug.cgi?id=22919
+// upstream issue 22919
 
 @safe:
 struct S

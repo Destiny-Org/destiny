@@ -5,7 +5,7 @@ fail_compilation/test23536.d(106): Error: function `test23536.S.nondtor` cannot 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23536
+// upstream issue 23536
 
 #line 100
 

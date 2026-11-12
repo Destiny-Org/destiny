@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23172
+// upstream issue 23172
 
 enum E : ubyte { // `ubyte` is needed to trigger the bug
     A,
@@ -17,7 +17,7 @@ void errors(bool b, const ref S s) {
     E e = b ? E.A : s.e;
 }
 
-// from https://issues.dlang.org/show_bug.cgi?id=23188
+// from upstream issue 23188
 
 enum Status : byte
 {

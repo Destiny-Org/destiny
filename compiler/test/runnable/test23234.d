@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23234
+// upstream issue 23234
 
 class Bar
 {

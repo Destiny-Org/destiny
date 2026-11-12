@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21073
+// upstream issue 21073
 
 class C
 {

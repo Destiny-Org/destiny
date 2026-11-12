@@ -1,7 +1,7 @@
 /**
  * Windows API header module
  *
- * written in the D programming language
+ * written in the Destiny programming language
  *
  * License: $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Source: $(DRUNTIMESRC core/sys/windows/_vfw.d)

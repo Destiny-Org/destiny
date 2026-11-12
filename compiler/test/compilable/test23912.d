@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23912
+// upstream issue 23912
 // REQUIRED_ARGS: -preview=dip1000
 
 struct Test

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19954
+// upstream issue 19954
 
 template AliasSeq(TList...)
 {

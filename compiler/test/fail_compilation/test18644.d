@@ -7,7 +7,7 @@ fail_compilation/test18644.d(22): Error: escaping local variable through nested 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=18644
+// upstream issue 18644
 
 @safe int* test1() {
     int i;

@@ -8,7 +8,7 @@
  *
  * Also https://github.com/ldc-developers/ldc/issues/3302.
  *
- * [1]: https://issues.dlang.org/show_bug.cgi?id=20861
+ * [1]: upstream issue 20861
  */
 module interfaces.check_implementations_20861;
 

@@ -182,7 +182,7 @@ Options:
 
     // Do a manual schwartzSort until all host compilers have a fix
     // for the invalid "lhs internal pointer" error (probably >= v2.093)
-    // See https://github.com/dlang/phobos/pull/7524
+    // See upstream phobos pull request 7524
     foreach (ref target; targets)
         target.sortKey = sortKey(target);
 

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20811
+// upstream issue 20811
 
 // OK: Mutable array literals are copied before CTFE takes ownership.
 string issue20811a()

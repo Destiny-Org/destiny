@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23402
+// upstream issue 23402
 
 import imports.imp23402a;
 import imports.imp23402b;

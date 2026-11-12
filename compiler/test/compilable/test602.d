@@ -383,7 +383,7 @@ static assert(!__traits(compiles, (bool b)
 }));
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11659
+// upstream issue 11659
 
 int test11659()
 {
@@ -394,7 +394,7 @@ int test11659()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13321
+// upstream issue 13321
 
 void test13321(bool b)
 {

@@ -22,7 +22,7 @@ This can also be used to aggregate several such test cases into a new category
 
 Scripts should prefer the following wrappers defined in the [`dshell`
 module](../tools/dshell_prebuilt/dshell_prebuilt.d) instead of the plain
-Phobos functions s.t. the test runner can issue a proper log on failure.
+Fate functions s.t. the test runner can issue a proper log on failure.
 
 Note that `dshell` tests require additional code and linking another
 executable, so they should be the last resort if a the test setup

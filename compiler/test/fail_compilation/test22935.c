@@ -4,7 +4,7 @@ fail_compilation/test22935.c(18): Error: array index 5 is out of bounds `[0..4]`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22935
+// upstream issue 22935
 
 typedef unsigned long size_t;
 struct S { char a; char text[4]; };

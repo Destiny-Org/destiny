@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19465
+// upstream issue 19465
 
 /*
 REQUIRED_ARGS: -verrors=context

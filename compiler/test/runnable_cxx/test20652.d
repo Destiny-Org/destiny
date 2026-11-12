@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20652
+// upstream issue 20652
 // EXTRA_CPP_SOURCES: test20652.cpp
 
 import core.simd;

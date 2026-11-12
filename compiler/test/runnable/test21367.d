@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21367
+// upstream issue 21367
 
 string result = "";
 

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=751
+// upstream issue 751
 // Compiler segfault on template expansion
 
 extern(C) int printf(const char*, ...);

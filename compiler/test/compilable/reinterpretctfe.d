@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21997
+// upstream issue 21997
 
 struct Strukt
 {
@@ -20,7 +20,7 @@ int mainCtfe()
     assert(baseFunc(3) == 6);
 
     /*
-    Still missing delegates: https://issues.dlang.org/show_bug.cgi?id=17487
+    Still missing delegates: upstream issue 17487
 
     static struct S {
         int i;

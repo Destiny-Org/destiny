@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19585
+// upstream issue 19585
 struct S19585
 {
     M2 stdin;

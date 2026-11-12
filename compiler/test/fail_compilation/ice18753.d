@@ -8,7 +8,7 @@ fail_compilation/ice18753.d(18):        while evaluating: `static assert(isForwa
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=18753
+// upstream issue 18753
 
 struct ChunkByImpl
 {

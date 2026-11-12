@@ -3,10 +3,10 @@ TEST_OUTPUT:
 ---
 fail_compilation/fail118.d(45): Error: invalid `foreach` aggregate `Iter` of type `Iter`
 fail_compilation/fail118.d(45):        `foreach` works with input ranges (implementing `empty`, `front`, and `popFront`), aggregates implementing `opApply`, or the result of an aggregate's `.tupleof` property
-fail_compilation/fail118.d(45):        https://dlang.org/phobos/std_range_primitives.html#isInputRange
+fail_compilation/fail118.d(45):        https://github.com/Destiny-Org/fate/blob/main/std/range/primitives.d
 fail_compilation/fail118.d(46): Error: invalid `foreach` aggregate `Iter` of type `Iter`
 fail_compilation/fail118.d(46):        `foreach` works with input ranges (implementing `empty`, `front`, and `popFront`), aggregates implementing `opApply`, or the result of an aggregate's `.tupleof` property
-fail_compilation/fail118.d(46):        https://dlang.org/phobos/std_range_primitives.html#isInputRange
+fail_compilation/fail118.d(46):        https://github.com/Destiny-Org/fate/blob/main/std/range/primitives.d
 fail_compilation/fail118.d(49): Error: invalid `foreach` aggregate `s` of type `S*`
 fail_compilation/fail118.d(51): Error: undefined identifier `unknown`
 fail_compilation/fail118.d(39): Error: undefined identifier `doesNotExist`
@@ -15,7 +15,7 @@ fail_compilation/fail118.d(53): Error: invalid `foreach` aggregate `error()` of 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=441
+// upstream issue 441
 // Crash on foreach of mixed-in aggregate.
 template opHackedApply()
 {

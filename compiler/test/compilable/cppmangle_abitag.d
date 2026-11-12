@@ -2,7 +2,7 @@
 // REQUIRED_ARGS: -extern-std=c++11
 /*
  * Test C++ abi-tag name mangling.
- * https://issues.dlang.org/show_bug.cgi?id=19949
+ * upstream issue 19949
  */
 
 import core.attribute;
@@ -63,7 +63,7 @@ static assert(fe.mangleof == "_Z2feB3ENNv");
 static assert(fei!0.mangleof == "_Z3feiILi0EE2E0B3ENNv");
 
 // Linux std::string
-// https://issues.dlang.org/show_bug.cgi?id=14956#c13
+// upstream issue 14956#c13
 extern(C++, "std")
 {
     struct allocator(T);

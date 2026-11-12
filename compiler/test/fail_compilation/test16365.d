@@ -7,7 +7,7 @@ fail_compilation/test16365.d(27): Error: using `dg.funcptr` is not allowed in a 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=16365
+// upstream issue 16365
 
 struct S
 {

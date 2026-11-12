@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20025
+// upstream issue 20025
 struct B
 {
         static int value = 77;

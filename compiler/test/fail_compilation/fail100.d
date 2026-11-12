@@ -5,7 +5,7 @@ fail_compilation/fail100.d(24): Error: return value `f` of type `Class[]` does n
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=85
+// upstream issue 85
 // Array of classes doesn't function as array of interfaces
 interface I
 {

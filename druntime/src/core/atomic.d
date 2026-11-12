@@ -1035,7 +1035,7 @@ version (CoreUnittest)
             assert(cast(size_t) loaded.next == 1);
         }
 
-        // https://issues.dlang.org/show_bug.cgi?id=20629
+        // upstream issue 20629
         static struct Struct
         {
             uint a, b;
@@ -1046,7 +1046,7 @@ version (CoreUnittest)
         assert(cast(uint) s1.b == 4);
     }
 
-    // https://issues.dlang.org/show_bug.cgi?id=20844
+    // upstream issue 20844
     static if (hasDWCAS)
     {
         debug: // tests CAS in-contract
@@ -1180,7 +1180,7 @@ version (CoreUnittest)
             byte* prevPtr = atomicFetchSub(ptr, 4);
             assert(prevPtr == &array[5]);
             assert(*prevPtr == 11);
-            assert(*ptr == 3); // https://issues.dlang.org/show_bug.cgi?id=21578
+            assert(*ptr == 3); // upstream issue 21578
         }
         {
             auto array = ulongArray;
@@ -1188,11 +1188,11 @@ version (CoreUnittest)
             ulong* prevPtr = atomicFetchSub(ptr, 4);
             assert(prevPtr == &array[5]);
             assert(*prevPtr == 12);
-            assert(*ptr == 4); // https://issues.dlang.org/show_bug.cgi?id=21578
+            assert(*ptr == 4); // upstream issue 21578
         }
     }
 
-    @betterC pure nothrow @nogc @safe unittest // https://issues.dlang.org/show_bug.cgi?id=16651
+    @betterC pure nothrow @nogc @safe unittest // upstream issue 16651
     {
         shared ulong a = 2;
         uint b = 1;
@@ -1205,7 +1205,7 @@ version (CoreUnittest)
         assert(atomicLoad(c) == 1);
     }
 
-    pure nothrow @safe unittest // https://issues.dlang.org/show_bug.cgi?id=16230
+    pure nothrow @safe unittest // upstream issue 16230
     {
         shared int i;
         static assert(is(typeof(atomicLoad(i)) == int));

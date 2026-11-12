@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21832
+// upstream dmd issue 21832
 // resize array of implicitly non-copyable items
 
 void bugGH21832()

@@ -6,7 +6,7 @@ fail_compilation/test17959.d(19): Error: assigning scope variable `this` to non-
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17959
+// upstream issue 17959
 
 class Foo
 {

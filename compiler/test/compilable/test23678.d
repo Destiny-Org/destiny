@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23678
+// upstream dmd issue 23678
 // REQUIRED_ARGS: -betterC
 
 struct S

@@ -1,14 +1,14 @@
 /**
  * Checks whether member access or array casting is allowed in `@safe` code.
  *
- * Specification: $(LINK2 https://dlang.org/spec/function.html#function-safety, Function Safety)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd, Function Safety)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/safe.d, _safe.d)
- * Documentation:  https://dlang.org/phobos/dmd_safe.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/safe.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/safe.d, _safe.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/safe.d
+ * 
  */
 
 module dmd.safe;
@@ -100,7 +100,7 @@ bool checkUnsafeAccess(Scope* sc, Expression e, bool readonly, bool printmsg)
             else
             {
                 // @@@DEPRECATED_2.116@@@
-                // https://issues.dlang.org/show_bug.cgi?id=20655
+                // upstream issue 20655
                 // Inferring `@system` because of union access breaks code,
                 // so make it a deprecation safety violation as of 2.106
                 // To turn into an error, remove `isSafeBypassingInference` check in the
@@ -123,7 +123,7 @@ bool checkUnsafeAccess(Scope* sc, Expression e, bool readonly, bool printmsg)
     }
 
     // @@@DEPRECATED_2.119@@@
-    // https://issues.dlang.org/show_bug.cgi?id=24477
+    // upstream issue 24477
     // Should probably be turned into an error in a new edition
     if (v.type.hasUnsafeBitpatterns() && v.overlapped && sc.setUnsafePreview(
         FeatureState.default_, !printmsg, e.loc,
@@ -191,7 +191,7 @@ bool isSafeCast(Expression e, Type tfrom, Type tto, ref string msg)
     auto tfromb = tfrom.toBasetype();
     auto ttob = tto.toBasetype();
 
-    // Casting to void* is always safe, https://github.com/dlang/dmd/issues/20514
+    // Casting to void* is always safe, upstream dmd issue 20514
     if (ttob.isTypePointer() && ttob.nextOf().toBasetype().ty == Tvoid)
         return true;
 
@@ -230,7 +230,7 @@ bool isSafeCast(Expression e, Type tfrom, Type tto, ref string msg)
         return true;
     }
 
-    if (ttob.ty == Tarray && tfromb.ty == Tsarray) // https://issues.dlang.org/show_bug.cgi?id=12502
+    if (ttob.ty == Tarray && tfromb.ty == Tsarray) // upstream issue 12502
         tfromb = tfromb.nextOf().arrayOf();
 
     if (ttob.ty == Tarray   && tfromb.ty == Tarray ||

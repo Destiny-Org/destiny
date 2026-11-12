@@ -64,7 +64,7 @@ template Foo(T, int V)
 {
     void foo(...)
     {
-        static if (is(Object _ : X!TL, alias X, TL...)) {}  // https://issues.dlang.org/show_bug.cgi?id=10044
+        static if (is(Object _ : X!TL, alias X, TL...)) {}  // upstream issue 10044
 
         auto x = __traits(hasMember, Object, "noMember");
         auto y = is(Object : X!TL, alias X, TL...);
@@ -411,7 +411,7 @@ struct T12
 }
 
 
-// https://issues.dlang.org/show_bug.cgi?id=6591
+// upstream issue 6591
 import core.stdc.stdio : printf, F = FILE;
 
 void foo6591()()
@@ -420,7 +420,7 @@ void foo6591()()
 }
 
 
-// https://issues.dlang.org/show_bug.cgi?id=8081
+// upstream issue 8081
 version(unittest) {
     pure nothrow unittest {}
     pure nothrow unittest {}
@@ -431,7 +431,7 @@ version(unittest) {
 }
 
 
-// https://issues.dlang.org/show_bug.cgi?id=10334
+// upstream issue 10334
 
 template Foo10334(T) if (Bar10334!()) {}                ///
 template Foo10334(T) if (Bar10334!100) {}               ///
@@ -460,7 +460,7 @@ mixin Test10334!int a;          ///
 mixin Test10334!(int,long) b;   ///
 mixin Test10334!"str" c;        ///
 
-// https://issues.dlang.org/show_bug.cgi?id=12266
+// upstream issue 12266
 auto clamp12266a(T1, T2, T3)(T1 x, T2 min_val, T3 max_val)
 {
     return 0;
@@ -474,10 +474,10 @@ pure clamp12266b(T1, T2, T3)(T1 x, T2 min_val, T3 max_val)
     return 0;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=13832
+// upstream issue 13832
 alias Dg13832 = ref int delegate();
 
-// https://issues.dlang.org/show_bug.cgi?id=16590
+// upstream issue 16590
 class TestClass {
     int aa;
     int b1, b2;
@@ -539,7 +539,7 @@ class Foo2A {
 
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=15676
+// upstream issue 15676
 struct Foo3A(T)
 {
     @disable this(this);

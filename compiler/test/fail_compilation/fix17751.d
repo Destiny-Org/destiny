@@ -5,7 +5,7 @@ fail_compilation/fix17751.d(15): Error: last parameter to `__simd()` must be a c
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=17751
+// upstream issue 17751
 
 import core.simd;
 

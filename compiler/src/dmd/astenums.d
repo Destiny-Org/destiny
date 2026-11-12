@@ -1,11 +1,11 @@
 /**
  * Defines enums common to dmd and dmd as parse library.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/astenums.d, _astenums.d)
- * Documentation:  https://dlang.org/phobos/dmd_astenums.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/astenums.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/astenums.d, _astenums.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/astenums.d
+ * 
  */
 
 module dmd.astenums;
@@ -18,7 +18,7 @@ enum Sizeok : ubyte
     done,               /// size of aggregate is set correctly
 }
 
-/// D Language version
+/// Destiny Language version
 enum Edition : ushort
 {
     v2023 = 2023,    /// Edition.min for default edition
@@ -333,14 +333,14 @@ enum AliasThisRec : int
 
 /***************
  * Variadic argument lists
- * https://dlang.org/spec/function.html#variadic
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
  */
 enum VarArg : ubyte
 {
     none     = 0,  /// fixed number of arguments
     variadic = 1,  /// (T t, ...)  can be C-style (core.stdc.stdarg) or D-style (core.vararg)
-    typesafe = 2,  /// (T t ...) typesafe https://dlang.org/spec/function.html#typesafe_variadic_functions
-                   ///   or https://dlang.org/spec/function.html#typesafe_variadic_functions
+    typesafe = 2,  /// (T t ...) typesafe https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+                   ///   or https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
     KRvariadic = 3, /// K+R C style variadics (no function prototype)
 }
 
@@ -407,7 +407,7 @@ enum InitKind : ubyte
 
 /// A linkage attribute as defined by `extern(XXX)`
 ///
-/// https://dlang.org/spec/attribute.html#linkage
+/// https://github.com/Destiny-Org/destiny/blob/main/spec/attribute.dd
 enum LINK : ubyte
 {
     default_,
@@ -429,7 +429,7 @@ enum CPPMANGLE : ubyte
 
 /// Function match levels
 ///
-/// https://dlang.org/spec/function.html#function-overloading
+/// https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
 enum MATCH : int
 {
     nomatch,   /// no match

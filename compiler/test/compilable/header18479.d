@@ -13,7 +13,7 @@ public import a.object;
 ---
 */
 
-// https://github.com/dlang/dmd/issues/18479
+// upstream dmd issue 18479
 // import of module named `object` with package qualifier must not be dropped from header
 module header18479;
 import a.object;

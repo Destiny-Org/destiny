@@ -5,7 +5,7 @@ fail_compilation/fail111.d(12): Error: cannot have array of `int(int)`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=289
+// upstream issue 289
 // Compiler allows (and crashes on) dynamic arrays of typedefs of "immediate"-function types
 alias int ft(int);
 

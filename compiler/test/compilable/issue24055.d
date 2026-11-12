@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24055
+// upstream dmd issue 24055
 
 int f() { int x = -5; uint y = 7; x /= y; return x; }
 int g() { int x = -5; uint y = 7; x %= y; return x; }

@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=22971
+/* upstream issue 22971
  */
 
          char aaa[1] = "";

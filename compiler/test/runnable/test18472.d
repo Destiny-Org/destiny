@@ -2,8 +2,8 @@
 */
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18472
-// https://github.com/dlang/dmd/pull/14676
+// upstream issue 18472
+// upstream dmd pull request 14676
 
 @nogc nothrow pure:
 immutable(Char)[] format(Char, Args...)(in Char[] fmt, Args args)

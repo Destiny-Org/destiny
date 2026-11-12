@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=15762
+// upstream issue 15762
 
 enum Windows1252Char : ubyte { init }
 

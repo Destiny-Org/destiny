@@ -1,12 +1,12 @@
 /**
  * A `Dsymbol` representing a renamed import.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/dimport.d, _dimport.d)
- * Documentation:  https://dlang.org/phobos/dmd_dimport.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/dimport.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dimport.d, _dimport.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dimport.d
+ * 
  */
 
 module dmd.dimport;
@@ -111,7 +111,7 @@ extern (C++) final class Import : Dsymbol
      * Mark the imported packages as accessible from the current
      * scope. This access check is necessary when using FQN b/c
      * we're using a single global package tree.
-     * https://issues.dlang.org/show_bug.cgi?id=313
+     * upstream issue 313
      */
     extern (D) void addPackageAccess(ScopeDsymbol scopesym)
     {
@@ -124,13 +124,13 @@ extern (C++) final class Import : Dsymbol
             foreach (id; packages[1 .. $]) // [b, c]
             {
                 auto sym = p.symtab.lookup(id);
-                // https://issues.dlang.org/show_bug.cgi?id=17991
+                // upstream issue 17991
                 // An import of truly empty file/package can happen
-                // https://issues.dlang.org/show_bug.cgi?id=20151
+                // upstream issue 20151
                 // Package in the path conflicts with a module name
                 if (sym is null)
                     break;
-                // https://issues.dlang.org/show_bug.cgi?id=23327
+                // upstream issue 23327
                 // Package conflicts with symbol of the same name
                 p = sym.isPackage();
                 if (p is null)

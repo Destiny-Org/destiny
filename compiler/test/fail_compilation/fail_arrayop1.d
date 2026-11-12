@@ -7,7 +7,7 @@ fail_compilation/fail_arrayop1.d(11): Error: invalid array operation `a + a` (po
 fail_compilation/fail_arrayop1.d(11):        did you mean to concatenate (`a ~ a`) instead ?
 ---
 */
-void test2199(int[] a)  // https://issues.dlang.org/show_bug.cgi?id=2199 - Segfault using array operation in function call (from fail266.d)
+void test2199(int[] a)  // upstream issue 2199 - Segfault using array operation in function call (from fail266.d)
 {
 #line 11
     test2199(a + a);
@@ -19,7 +19,7 @@ TEST_OUTPUT:
 fail_compilation/fail_arrayop1.d(29): Error: invalid array operation `-a` (possible missing [])
 ---
 */
-void fail323()      // from fail323.d, maybe was a part of https://issues.dlang.org/show_bug.cgi?id=3471 fix?
+void fail323()      // from fail323.d, maybe was a part of upstream issue 3471 fix?
 {
     void foo(double[]) {}
 

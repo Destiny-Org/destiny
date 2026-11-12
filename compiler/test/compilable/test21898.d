@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21898
+// upstream issue 21898
 
 alias Works(T) = immutable(T);
 alias Fails(T) = immutable T;

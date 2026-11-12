@@ -1,4 +1,4 @@
-//https://issues.dlang.org/show_bug.cgi?id=22291
+//upstream issue 22291
 
 alias AliasSeq(T...) = T;
 void noParameters()

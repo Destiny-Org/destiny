@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20438
+// upstream issue 20438
 import core.memory;
 
 void main()

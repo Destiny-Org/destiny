@@ -7,7 +7,7 @@
 /++
 # Links
 
-[D Site]: https://dlang.org 'D lives here'
+[D Site]: https://github.com/Destiny-Org/destiny 'D lives here'
 [unused reference]: https://nowhere.com
 
 A link to [printf].
@@ -16,7 +16,7 @@ A link to [the base object][Object].
 
 Not a link because it's an associative array: int[Object].
 
-An inline link to [the D homepage](https://dlang.org).
+An inline link to [the D homepage](https://github.com/Destiny-Org/destiny).
 
 A reference link to [the **D** homepage][d site].
 
@@ -26,14 +26,14 @@ A simple link to [dub].
 
 A slightly less simple link to [dub][].
 
-An image: ![D-Man](https://dlang.org/images/d3.png)
+An image: ![D-Man](https://github.com/Destiny-Org/destiny)
 Another image: ![D-Man again][dman-error]
 
-[dub]: <https://code.dlang.org>
-[dman-error]: https://dlang.org/images/dman-error.jpg
+[dub]: <https://github.com/Destiny-Org/destiny>
+[dman-error]: https://github.com/Destiny-Org/destiny
 
 $(P
-    [tour]: https://tour.dlang.org
+    [tour]: https://github.com/Destiny-Org/destiny
 
     Here's a [reference to the tour][tour] inside a macro.
 )

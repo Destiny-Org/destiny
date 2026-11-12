@@ -37,7 +37,7 @@ void test10462()
     test10462_dll();
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=19660
+// upstream issue 19660
 extern (C)
 {
     export extern __gshared int someValue19660;

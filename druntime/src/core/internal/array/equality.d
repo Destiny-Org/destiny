@@ -66,7 +66,7 @@ bool isEqual(T1, T2)(scope T1[] lhs, scope T2[] rhs, size_t length)
         // casting void to ubyte.
         pragma(inline, true)
         static ref at(T)(scope T[] r, size_t i) @trusted
-        // exclude opaque structs due to https://issues.dlang.org/show_bug.cgi?id=20959
+        // exclude opaque structs due to upstream issue 20959
         if (!(is(T == struct) && !is(typeof(T.sizeof))))
         {
             static if (is(T == void))
@@ -140,7 +140,7 @@ bool isEqual(T1, T2)(scope T1[] lhs, scope T2[] rhs, size_t length)
     assert(arr2 == arr3);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=18252
+// upstream issue 18252
 @safe unittest
 {
     string[int][] a1, a2;
@@ -155,7 +155,7 @@ bool isEqual(T1, T2)(scope T1[] lhs, scope T2[] rhs, size_t length)
     assert(a1 != a2);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21094
+// upstream issue 21094
 unittest
 {
     static class C

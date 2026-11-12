@@ -306,7 +306,7 @@ $(H2 $(LNAME2 bitfields, Bit Field Declarations))
 
     $(BEST_PRACTICE
     If data portability is desired, use
-    $(LINK2 https://dlang.org/phobos/std_bitmanip.html#bitfields, std.bitmanip.bitfields).
+    $(LINK2 https://github.com/Destiny-Org/fate/blob/main/std/bitmanip.d, std.bitmanip.bitfields).
     If data compatibility with the associated C compiler is desired, use these bit fields.
     Although not guaranteed, sticking with `int` and `uint` bit fields will yield the
     most binary compatibility.
@@ -1227,7 +1227,7 @@ $(H2 $(LEGACY_LNAME2 StructCopyConstructor, struct-copy-constructor, Struct Copy
         compiler hooks in druntime which deal with dynamic arrays and
         associative arrays have not yet all been updated to support copy
         constructors properly
-        ($(HTTPS github.com/dlang/dmd/issues/20970, issue #20970)), any type
+        ($(HTTPS github.com/Destiny-Org/destiny, upstream dmd issues 20970 issue #20970)), any type
         that might be used in a dynamic array or associative array should use a
         postblit constructor rather than a copy constructor. The copy
         constructor will not be called in all the cases where it should be for
@@ -1774,7 +1774,7 @@ $(GNAME Postblit):
         compiler hooks in druntime which deal with dynamic arrays and
         associative arrays have not yet all been updated to support copy
         constructors properly
-        ($(HTTPS github.com/dlang/dmd/issues/20970, issue #20970)), any type
+        ($(HTTPS github.com/Destiny-Org/destiny, upstream dmd issues 20970 issue #20970)), any type
         that might be used in a dynamic array or associative array should use a
         postblit constructor rather than a copy constructor. The copy
         constructor will not be called in all the cases where it should be for

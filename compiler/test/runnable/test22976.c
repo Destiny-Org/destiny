@@ -1,7 +1,7 @@
-/* https://issues.dlang.org/show_bug.cgi?id=22976
+/* upstream issue 22976
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=22705
+// upstream issue 22705
 
 int printf(const char *s, ...);
 void exit(int);

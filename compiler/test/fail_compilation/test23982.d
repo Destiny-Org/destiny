@@ -6,7 +6,7 @@ fail_compilation/test23982.d(35): Error: assigning scope variable `a` to non-sco
 fail_compilation/test23982.d(26):        `a` is not `scope` because of `b = a`
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=23982
+// upstream issue 23982
 // Issue 23982 - segfault when printing scope inference failure
 @safe:
 

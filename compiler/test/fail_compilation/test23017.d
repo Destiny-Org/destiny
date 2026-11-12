@@ -5,7 +5,7 @@ fail_compilation/test23017.d(16): Error: class `test23017.CppChildA` with C++ li
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23017
+// upstream issue 23017
 // C++ class may not derive from D class
 extern(D) class DClass {}
 extern(C++) class CppClass

@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/18077
+// upstream dmd issue 18077
 module issue18077;
 
 // Case 1: Original pattern with valid pointer initialization

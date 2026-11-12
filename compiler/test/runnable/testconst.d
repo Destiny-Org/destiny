@@ -1574,7 +1574,7 @@ void test87()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=2751
+// upstream issue 2751
 
 
 void test88(immutable(int[3]) a)
@@ -1603,7 +1603,7 @@ void test88(immutable(int[3]) a)
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3748
+// upstream issue 3748
 
 // version = error8;
 // version = error11;
@@ -1878,7 +1878,7 @@ void test3748c(inout int = 1)
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4968
+// upstream issue 4968
 
 void test4968()
 {
@@ -1924,7 +1924,7 @@ void test4968()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=1961
+// upstream issue 1961
 
 inout(char)[] strstr(inout(char)[] source, const(char)[] pattern)
 {
@@ -2042,7 +2042,7 @@ void test88()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4251
+// upstream issue 4251
 
 void test4251a()
 {
@@ -2185,7 +2185,7 @@ void test4251b()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5473
+// upstream issue 5473
 
 void test5473()
 {
@@ -2227,7 +2227,7 @@ void test5473()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5493
+// upstream issue 5493
 
 void test5493()
 {
@@ -2282,7 +2282,7 @@ void test5493()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5493 + inout
+// upstream issue 5493 + inout
 
 void test5493inout()
 {
@@ -2330,7 +2330,7 @@ void test5493inout()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6782
+// upstream issue 6782
 
 struct Tuple6782(T...)
 {
@@ -2368,7 +2368,7 @@ void test6782()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6864
+// upstream issue 6864
 
 int fn6864( const int n) { return 1; }
 int fn6864(shared int n) { return 2; }
@@ -2387,7 +2387,7 @@ void test6864()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6865
+// upstream issue 6865
 
 shared(inout(int)) foo6865(shared(inout(int)) n){ return n; }
 void test6865()
@@ -2397,7 +2397,7 @@ void test6865()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6866
+// upstream issue 6866
 
 struct S6866
 {
@@ -2414,7 +2414,7 @@ void test6866()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6867
+// upstream issue 6867
 
 inout(char)[] test6867(inout(char)[] a)
 {
@@ -2428,7 +2428,7 @@ inout(char)[] test6867(inout(char)[] a)
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6870
+// upstream issue 6870
 
 void test6870()
 {
@@ -2440,8 +2440,8 @@ void test6870()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6338
-// https://issues.dlang.org/show_bug.cgi?id=6922
+// upstream issue 6338
+// upstream issue 6922
 
 alias int T;
 
@@ -2469,7 +2469,7 @@ static assert(is( inout(shared(immutable(T))) == immutable(T) ));
 static assert(is( inout(immutable(shared(T))) == immutable(T) ));
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6912
+// upstream issue 6912
 
 void test6912()
 {
@@ -2586,7 +2586,7 @@ void test6912()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6930
+// upstream issue 6930
 
 void test6930a()
 {
@@ -2658,7 +2658,7 @@ void test6930b(inout int = 0)
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11868
+// upstream issue 11868
 
 void f11868(A...)(A) { }
 
@@ -2674,7 +2674,7 @@ void test11868()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11924
+// upstream issue 11924
 
 inout(StringType) localize11924(StringType)(inout StringType str, string locale)
 {
@@ -2696,7 +2696,7 @@ struct S11924
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11966
+// upstream issue 11966
 
 inout(char)[] stripped11966 (inout(char)[] path)
 {
@@ -2722,7 +2722,7 @@ void test11966()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14788
+// upstream issue 14788
 
 auto make14788(K, V)(inout V[K] aa)
 {
@@ -2741,7 +2741,7 @@ void test14788()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12089
+// upstream issue 12089
 
 void foo12089(inout(char[]) a)
 {
@@ -2755,7 +2755,7 @@ void decodeImpl12089(S)(auto ref S str)
 {}
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12524
+// upstream issue 12524
 
 inout(int) dup12524(inout(const(int)) val)
 {
@@ -2772,7 +2772,7 @@ void test12524(inout(int))
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6941
+// upstream issue 6941
 
 static assert((const(shared(int[])[])).stringof == "const(shared(int[])[])");   // fail
 static assert((const(shared(int[])[])).stringof != "const(shared(const(int[]))[])"); // fail
@@ -2781,7 +2781,7 @@ static assert((inout(shared(int[])[])).stringof == "inout(shared(int[])[])");   
 static assert((inout(shared(int[])[])).stringof != "inout(shared(inout(int[]))[])");    // fail
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6872
+// upstream issue 6872
 
 static assert((shared(inout(int)[])).stringof == "shared(inout(int)[])");
 static assert((shared(inout(const(int)[]))).stringof == "shared(inout(const(int)[]))");
@@ -2789,7 +2789,7 @@ static assert((shared(inout(const(int)[])[])).stringof == "shared(inout(const(in
 static assert((shared(inout(const(immutable(int)[])[])[])).stringof == "shared(inout(const(immutable(int)[])[])[])");
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6939
+// upstream issue 6939
 
 void test6939()
 {
@@ -2809,7 +2809,7 @@ void test6939()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6940
+// upstream issue 6940
 
 void test6940()
 {
@@ -2831,7 +2831,7 @@ void test6940()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6982
+// upstream issue 6982
 
 void test6982()
 {
@@ -2848,7 +2848,7 @@ void test6982()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7038
+// upstream issue 7038
 
 static assert(is(S7038 == const));
 const struct S7038{ int x; }
@@ -2860,7 +2860,7 @@ static assert(is(S7038b == shared));
 immutable struct S7038c{ int x; }
 static assert(is(S7038c == immutable));
 
-// https://issues.dlang.org/show_bug.cgi?id=22515
+// upstream issue 22515
 // Classes fixed for consistency with structs
 static assert(is(C7038 == const));
 const class C7038{ int x; }
@@ -2878,7 +2878,7 @@ void test7038()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7105
+// upstream issue 7105
 
 void copy(inout(int)** tgt, inout(int)* src){ *tgt = src; }
 
@@ -2912,7 +2912,7 @@ void test7105()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7202
+// upstream issue 7202
 
 void test7202()
 {
@@ -2927,7 +2927,7 @@ void test7202()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7554
+// upstream issue 7554
 
 T outer7554(T)(immutable T function(T) pure foo) pure {
     pure int inner() {
@@ -2960,7 +2960,7 @@ void test7518() {
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7669
+// upstream issue 7669
 
 shared(inout U)[n] id7669(U, size_t n)( shared(inout U)[n] );
 void test7669()
@@ -2969,7 +2969,7 @@ void test7669()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7757
+// upstream issue 7757
 
 inout(int)      foo7757a(int x, lazy inout(int)      def) { return def; }
 inout(int)[]    foo7757b(int x, lazy inout(int)[]    def) { return def; }
@@ -3002,7 +3002,7 @@ void test7757()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8098
+// upstream issue 8098
 
 class Outer8098
 {
@@ -3036,7 +3036,7 @@ void test8098()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8099
+// upstream issue 8099
 
 void test8099()
 {
@@ -3071,7 +3071,7 @@ void test8099()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8201
+// upstream issue 8201
 
 void test8201()
 {
@@ -3083,7 +3083,7 @@ void test8201()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8212
+// upstream issue 8212
 
 struct S8212 { int x; }
 
@@ -3098,7 +3098,7 @@ void test8212()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8366
+// upstream issue 8366
 
 class B8366
 {
@@ -3149,7 +3149,7 @@ void test8366()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8408
+// upstream issue 8408
 
 template hasMutableIndirection8408(T)
 {
@@ -3227,7 +3227,7 @@ void test8408()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8688
+// upstream issue 8688
 
 void test8688()
 {
@@ -3241,7 +3241,7 @@ void test8688()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10946 (regression by fixing bug 8688, from 2.061)
+// upstream issue 10946 (regression by fixing bug 8688, from 2.061)
 
 enum xlen10946 = 4;
 alias immutable(char)[xlen10946] e3;
@@ -3251,7 +3251,7 @@ alias immutable(char)[vlen10946] i3;
 alias immutable(char[vlen10946]) i4; // NG -> OK
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9046
+// upstream issue 9046
 
 void test9046()
 {
@@ -3290,7 +3290,7 @@ void test9046()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9090
+// upstream issue 9090
 
 void test9090()
 {
@@ -3301,7 +3301,7 @@ void test9090()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9461
+// upstream issue 9461
 
 void test9461()
 {
@@ -3333,7 +3333,7 @@ void test9209() {
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10758
+// upstream issue 10758
 
 struct X10758
 {
@@ -3476,7 +3476,7 @@ void test10758(ref inout(int) wx, inout(int)* wp, inout(int)[] wa, inout(S10758)
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10761
+// upstream issue 10761
 
 inout(int)* function(inout(int)*) fptr10761(inout(int)*)
 {
@@ -3550,7 +3550,7 @@ void test10761()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11226
+// upstream issue 11226
 
 void test11226()
 {
@@ -3578,7 +3578,7 @@ void test11226()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11257
+// upstream issue 11257
 
 struct R11257
 {
@@ -3595,7 +3595,7 @@ void test11257()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11215
+// upstream issue 11215
 
 shared(inout(void)**) f11215(inout int);
 
@@ -3603,7 +3603,7 @@ static assert(is(typeof(f11215(0)) == shared(void**)));
 static assert(is(typeof(f11215((const int).init)) == shared(const(void)**)));
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11489
+// upstream issue 11489
 
 void test11489(inout int = 0)
 {
@@ -3676,7 +3676,7 @@ void test11489(inout int = 0)
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11768
+// upstream issue 11768
 
 void test11768(inout int = 0)
 {
@@ -3688,7 +3688,7 @@ void test11768(inout int = 0)
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12403
+// upstream issue 12403
 
 void test12403()
 {
@@ -3703,7 +3703,7 @@ void test12403()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13011
+// upstream issue 13011
 
 void test13011()
 {
@@ -3717,7 +3717,7 @@ void test13011()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13030
+// upstream issue 13030
 
 void va13030(Args...)(const Args args) {}
 
@@ -3727,8 +3727,8 @@ void func13030(int delegate(int n) a)
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13802
-// https://issues.dlang.org/show_bug.cgi?id=13803
+// upstream issue 13802
+// upstream issue 13803
 
 static assert((              string     ).stringof ==               "string"       );
 static assert((              string[]   ).stringof ==               "string[]"     );
@@ -3794,7 +3794,7 @@ static assert((   immutable dstring[1]  ).stringof ==    "immutable(dstring[1])"
 static assert((   immutable dstring[int]).stringof ==    "immutable(dstring[int])" );
 
 /************************************/
-// https://github.com/dlang/dmd/issues/21194
+// upstream dmd issue 21194
 // Global char[] initialized with dup of string literal must be in writable memory
 
 char[]  ta = "foo".dup;

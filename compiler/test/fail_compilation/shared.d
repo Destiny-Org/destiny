@@ -101,7 +101,7 @@ fail_compilation/shared.d(2222): Error: return value `a` of type `shared(const(O
  */
 
 #line 2100
-// Derived from https://issues.dlang.org/show_bug.cgi?id=20908
+// Derived from upstream issue 20908
 ref shared(int) test20908()
 {
     shared int* pi;
@@ -226,7 +226,7 @@ auto ref Object test_inference_4(const return ref shared Object a)
     return a;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23226
+// upstream issue 23226
 // Allow accessing non-shared `this`
 struct BitRange
 {
@@ -266,7 +266,7 @@ void test_casting_safe() @safe
 
 #line 3100
 
-// https://issues.dlang.org/show_bug.cgi?id=23783
+// upstream issue 23783
 
 /*
 TEST_OUTPUT:

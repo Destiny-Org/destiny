@@ -1,5 +1,5 @@
 
-// https://issues.dlang.org/show_bug.cgi?id=3543
+// upstream issue 3543
 
 // merge with commontype.d?
 

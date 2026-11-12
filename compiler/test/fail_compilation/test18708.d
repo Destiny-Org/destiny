@@ -6,7 +6,7 @@ fail_compilation/test18708.d(34): Error: one path skips field `s`
 fail_compilation/test18708.d(39): Error: one path skips field `s`
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=18708
+// upstream issue 18708
 
 struct S { int y; @disable this(); }
 

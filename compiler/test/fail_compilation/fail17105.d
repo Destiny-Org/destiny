@@ -6,7 +6,7 @@ fail_compilation/fail17105.d(20): Error: missing 4th parameter to `__simd()`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17105
+// upstream issue 17105
 
 module foo;
 import core.simd;

@@ -7,7 +7,7 @@ fail_compilation/test15672.d(27): Error: cast from `void*` to `byte*` is not all
 fail_compilation/test15672.d(27):        `void` data may contain pointers and target element type is mutable
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=15672
+// upstream issue 15672
 
 alias byte T;
 alias const(byte) CT;

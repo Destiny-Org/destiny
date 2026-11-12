@@ -2,7 +2,7 @@
 // EXTRA_FILES: imports/fwdref9514.d imports/fwdref12201a.d
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6766
+// upstream issue 6766
 
 class Foo6766
 {
@@ -17,7 +17,7 @@ struct Bar6766
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8609
+// upstream issue 8609
 
 struct Tuple8609(T)
 {
@@ -49,7 +49,7 @@ struct Bar8609b
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8698
+// upstream issue 8698
 
 interface IRoot8698a {}
 interface IClass8698a : IRoot8698a { }
@@ -68,7 +68,7 @@ void test8698b(Class8698b.Value) { }
 interface IRoot8698b {}
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9514
+// upstream issue 9514
 
 template TStructHelpers9514a()
 {
@@ -113,7 +113,7 @@ template FieldNames9514b()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10015
+// upstream issue 10015
 
 struct S10015(T) { alias X = int; }
 
@@ -121,7 +121,7 @@ alias Y10015 = s10015.X;
 S10015!int s10015;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10101
+// upstream issue 10101
 
 int front10101(int);
 
@@ -148,7 +148,7 @@ void test10101()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11019
+// upstream issue 11019
 
 class A11019
 {
@@ -163,7 +163,7 @@ class B11019 : A11019
 class D11019 : B11019 {}
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11166
+// upstream issue 11166
 
 template Tup11166(T...) { alias Tup11166 = T; }
 
@@ -194,7 +194,7 @@ struct S11166b
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12152
+// upstream issue 12152
 
 class A12152
 {
@@ -209,7 +209,7 @@ class B12152 : A12152
 static assert(is(A12152.Y == int));
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12201
+// upstream issue 12201
 
 template T12201()
 {
@@ -259,7 +259,7 @@ struct S12201b
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12531
+// upstream issue 12531
 
 struct Node12531(T)
 {
@@ -275,7 +275,7 @@ void test12531()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12543
+// upstream issue 12543
 
 class C12543;
 static assert(C12543.sizeof == (void*).sizeof);
@@ -283,7 +283,7 @@ static assert(C12543.alignof == (void*).sizeof);
 static assert(C12543.mangleof == "C10testfwdref6C12543");
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14010
+// upstream issue 14010
 
 enum E14010;
 static assert(E14010.mangleof == "E10testfwdref6E14010");
@@ -292,7 +292,7 @@ struct S14010;
 static assert(S14010.mangleof == "S10testfwdref6S14010");
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12983
+// upstream issue 12983
 
 alias I12983 = int;
 class B12983(T) { alias MyC = C12983!string; }
@@ -308,7 +308,7 @@ void f12983();
 void f12983(I12983);
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12984
+// upstream issue 12984
 
 class B12984a { alias MyD = D12984a!int; }
 class C12984a : B12984a { }
@@ -344,7 +344,7 @@ static assert(__traits(classInstanceSize, B12984b) == (void*).sizeof * 2 + int.s
 static assert(__traits(classInstanceSize, C12984b) == (void*).sizeof * 2 + int.sizeof * 2);
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14390
+// upstream issue 14390
 
 class B14390a { alias MyD = D14390a!int; }
 class C14390a : B14390a { void f(int) {} }
@@ -357,7 +357,7 @@ class D14390b(T) { alias MyE = E14390b!float; }
 class E14390b(T) : D14390b!int { void m() { auto c = new C14390b(); } }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13860
+// upstream issue 13860
 
 /*
 TEST_OUTPUT:
@@ -387,7 +387,7 @@ void test13860()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14083
+// upstream issue 14083
 
 class NBase14083
 {
@@ -437,7 +437,7 @@ static assert(
 }());
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14549
+// upstream issue 14549
 
 string foo14549(T)()
 {
@@ -481,7 +481,7 @@ class Bar14549
 }
 
 // ----
-// https://issues.dlang.org/show_bug.cgi?id=14609
+// upstream issue 14609
 // regression case
 
 interface Foo14609(T)
@@ -495,7 +495,7 @@ class Frop14609 : Foo14609!int
 }
 
 /***************************************************/
-// test case 1, comes from Phobos
+// test case 1, comes from Fate
 /*
 TEST_OUTPUT:
 ---
@@ -604,7 +604,7 @@ void test15726x()
 }
 
 /***************************************************/
-// test case 2, comes from Phobos
+// test case 2, comes from Fate
 
 struct RefCounted15726y(T)
 {
@@ -653,7 +653,7 @@ void test15726y()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15726
+// upstream issue 15726
 
 struct RC15726(T)
 {

@@ -1,6 +1,6 @@
 // This file is part of Visual D
 //
-// Visual D integrates the D programming language into Visual Studio
+// Visual D integrates the Destiny programming language into Visual Studio
 // Copyright (c) 2010-2011 by Rainer Schuetze, All Rights Reserved
 //
 // Distributed under the Boost Software License, Version 1.0.
@@ -120,7 +120,7 @@ class NodeAllocData
     }
 }
 
-// moved out of Node due to regression http://d.puremagic.com/issues/show_bug.cgi?id=9101
+// moved out of Node due to regression upstream issue 9101
 mixin template ForwardCtor()
 {
     this()

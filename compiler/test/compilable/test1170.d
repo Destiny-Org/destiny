@@ -1,8 +1,8 @@
-// https://issues.dlang.org/show_bug.cgi?id=1170
+// upstream issue 1170
 type x;
 mixin("alias int type;");
 
-// https://issues.dlang.org/show_bug.cgi?id=10739
+// upstream issue 10739
 template DECLARE_HANDLE() {
     struct HINTERNET { int h; }
 }

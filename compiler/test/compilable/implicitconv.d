@@ -14,7 +14,7 @@ static assert(!__traits(compiles, { const(wchar_t)[]     bar = foo; } ));
 static assert(!__traits(compiles, { immutable(wchar_t)*  bar = foo; } ));
 static assert(!__traits(compiles, { const(wchar_t)*      bar = foo; } ));
 
-// https://issues.dlang.org/show_bug.cgi?id=17141
+// upstream issue 17141
 static assert(is(typeof(true ? char.init : char.init) == char));
 static assert(is(typeof(true ? char.init : wchar.init) == dchar));
 static assert(is(typeof(true ? char.init : dchar.init) == dchar));

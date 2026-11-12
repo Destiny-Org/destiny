@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19822
+// upstream issue 19822
 struct Quat
 {
     static struct Vec { int x; }

@@ -3,7 +3,7 @@
 import imports.testcontracts;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3602
+// upstream issue 3602
 
 class Derived3602 : Base3602
 {
@@ -19,7 +19,7 @@ class Derived3602 : Base3602
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5230
+// upstream issue 5230
 
 class Derived5230 : Base5230
 {
@@ -30,7 +30,7 @@ class Derived5230 : Base5230
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17502
+// upstream issue 17502
 class Foo17502
 {
     auto foo()
@@ -155,7 +155,7 @@ class Z17502
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17893
+// upstream issue 17893
 
 final class Foo17893(T)
 {
@@ -174,7 +174,7 @@ final class Foo17893(T)
 Foo17893!int foo17893;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15984
+// upstream issue 15984
 
 alias Bar15984 = extern (C) void function(void*);
 

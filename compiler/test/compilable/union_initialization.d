@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20068
+// upstream issue 20068
 
 union B
 {
@@ -12,7 +12,7 @@ union B
 }
 
 /**************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21229
+// upstream issue 21229
 
 struct NeedsInit
 {

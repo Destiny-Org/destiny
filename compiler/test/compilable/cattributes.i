@@ -32,7 +32,7 @@ int testx(int a, int b, int c, int d, int e, int f)
 
 /*****************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=24094
+// upstream issue 24094
 
 void test24094() {
     __declspec(align(16)) short data[64];

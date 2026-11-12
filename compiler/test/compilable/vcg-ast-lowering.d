@@ -158,7 +158,7 @@ _d_class_cast!(C)
 }
 ---
 */
-// https://github.com/dlang/dmd/issues/23335
+// upstream dmd issue 23335
 
 module test;
 

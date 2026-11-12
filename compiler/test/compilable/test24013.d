@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=24013
+// upstream issue 24013
 
 struct PropDescriptor(T)
 {

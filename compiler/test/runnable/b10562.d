@@ -76,13 +76,13 @@ void main()
                     [ [ 4, 5, 6 ], [ 4, 5, 6 ] ] ]);
     }
     {
-        // https://issues.dlang.org/show_bug.cgi?id=10562
+        // upstream issue 10562
         int[3] value = [ 1, 2, 3 ];
         int[3][2] a = value;  // <-- COMPILATION ERROR
         assert(a == [ [ 1, 2, 3 ], [ 1, 2, 3 ] ]);
     }
     {
-        // https://issues.dlang.org/show_bug.cgi?id=20465
+        // upstream issue 20465
         int[][3][2] arr;
         assert(arr == [[ null, null, null ], [ null, null, null ]]);
 
@@ -91,7 +91,7 @@ void main()
         // assert(arr == [[ slice, slice, slice ], [ slice, slice, slice ]]);
     }
     {
-        // https://github.com/dlang/dmd/issues/22386
+        // upstream dmd issue 22386
         const int[3][2] a = [[1:2, 3],[0: 0, 1:2, 2:3]];
         assert(a == [ [ 0, 2, 3 ], [ 0, 2, 3 ] ]);
 

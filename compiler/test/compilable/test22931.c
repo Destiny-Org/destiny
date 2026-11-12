@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22931
+// upstream issue 22931
 
 void fn()
 {

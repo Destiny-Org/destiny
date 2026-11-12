@@ -5,7 +5,7 @@ fail_compilation/test18607.d(10): Error: function `test18607.test!int` no `retur
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=18607
+// upstream issue 18607
 
 int* test(T...)() pure @safe {
         L:foreach(_; T) {

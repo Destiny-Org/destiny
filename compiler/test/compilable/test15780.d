@@ -1,5 +1,5 @@
 // PERMUTE_ARGS:
-// https://issues.dlang.org/show_bug.cgi?id=15780
+// upstream issue 15780
 
 void foo(alias fields)() {
     foreach(i, field; fields) {

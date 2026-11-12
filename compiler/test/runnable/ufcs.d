@@ -197,7 +197,7 @@ void test5()
     {
         // f5_1 .. f5_5 are symbols which declared in module scope
         assert(100.f5_1() == 1);
-        assert(001.f5_1() == 1); // https://issues.dlang.org/show_bug.cgi?id=8346
+        assert(001.f5_1() == 1); // upstream issue 8346
         assert("s".f5_2() == 2);
         assert(1.4.f5_3() == 3);
         assert(100.f5_4() == 1);
@@ -421,7 +421,7 @@ class C5 : B5
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=662
+// upstream issue 662
 
 enum Etest
 {
@@ -466,7 +466,7 @@ void test682()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3382
+// upstream issue 3382
 
 @property T twice(T)(T x){ return x * x; }
 char toupper(char c){ return ('a'<=c && c<='z') ? cast(char)(c - 'a' + 'A') : c; }
@@ -528,7 +528,7 @@ void test3382()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6185
+// upstream issue 6185
 
 ref T front(T)(T[] array) { return array[0]; }
 bool empty(T)(T[] array) { return array.length == 0; }
@@ -555,7 +555,7 @@ void test6185()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6070
+// upstream issue 6070
 
 enum test6070a = ["test"].foo6070();
 enum test6070b = foo6070(["test"]);
@@ -563,7 +563,7 @@ enum test6070b = foo6070(["test"]);
 string foo6070(string[] s) { return ""; }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7670
+// upstream issue 7670
 
 struct A7670
 {
@@ -581,7 +581,7 @@ void test7670()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7703
+// upstream issue 7703
 void f7703(T)(T a) { }
 
 void test7703()
@@ -594,7 +594,7 @@ void test7703()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7773
+// upstream issue 7773
 
 //import core.stdc.stdio;
 void writeln7773(int n){}
@@ -605,7 +605,7 @@ void test7773()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7943
+// upstream issue 7943
 
 struct Foo7943
 {
@@ -623,7 +623,7 @@ void test7943()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8180
+// upstream issue 8180
 
 int writeln8180(T...)(T args) { return 1; }
 
@@ -640,7 +640,7 @@ void test8180()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8245
+// upstream issue 8245
 
           string toStr8245(immutable(char)* p) { return null; }
 @property string asStr8245(immutable(char)* p) { return null; }
@@ -653,7 +653,7 @@ void test8245()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8252
+// upstream issue 8252
 
 bool f(int x) { return !x; }
 
@@ -664,7 +664,7 @@ void test8252()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8453
+// upstream issue 8453
 
 T[] sort8453(T)(T[] a) { return a; }
 
@@ -676,7 +676,7 @@ void test8453()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8503
+// upstream issue 8503
 
 //UTF-8 chars
 void α8503(int i) {}
@@ -688,7 +688,7 @@ void test8503()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9014
+// upstream issue 9014
 
 @property ref int foo9014(int[] a)
 {
@@ -703,7 +703,7 @@ void test9014()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9590
+// upstream issue 9590
 
 auto func9590(E)(lazy E expr) { }
 
@@ -720,7 +720,7 @@ void test9590()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9946
+// upstream issue 9946
 
 size_t count9946(alias x)(int[] haystack)
 {
@@ -736,7 +736,7 @@ void test9946()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10618
+// upstream issue 10618
 
 template Temp10618(T)
 {
@@ -749,7 +749,7 @@ void test10618()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10003
+// upstream issue 10003
 
 void foo10003(void *p) {}
 void test10003()
@@ -759,7 +759,7 @@ void test10003()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10041
+// upstream issue 10041
 
 auto writeln10041(T...)(T args) { return typeof(args[0]).stringof; }
 
@@ -771,7 +771,7 @@ void test10041()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10047
+// upstream issue 10047
 
 struct Typedef10047(T)
 {
@@ -791,7 +791,7 @@ void test10047()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10166
+// upstream issue 10166
 
 auto foo10166()
 {
@@ -806,7 +806,7 @@ void bar10166(alias handler, T)(T t, int i)
 void buzz10166() {}
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10526
+// upstream issue 10526
 
 struct S10526
 {
@@ -835,7 +835,7 @@ void test10526()
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10609
+// upstream issue 10609
 
 int foo10609(int x) { return x; }
 
@@ -848,7 +848,7 @@ void test10609()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11312
+// upstream issue 11312
 
 struct S11312;
 
@@ -863,7 +863,7 @@ void test11312()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15123
+// upstream issue 15123
 
 auto keys15123(K, V)(V[K] aa) { return [1]; }
 auto values15123(K, V)(V[K] aa) { return [2]; }

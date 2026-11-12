@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=10273
+// upstream issue 10273
 // ICE in CTFE
 /*
 TEST_OUTPUT:

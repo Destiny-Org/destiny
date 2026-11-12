@@ -1,14 +1,14 @@
 /**
  * Implements conversion from expressions to delegates for lazy parameters.
  *
- * Specification: $(LINK2 https://dlang.org/spec/function.html#lazy-params, Lazy Parameters)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd, Lazy Parameters)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/delegatize.d, _delegatize.d)
- * Documentation:  https://dlang.org/phobos/dmd_delegatize.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/delegatize.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/delegatize.d, _delegatize.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/delegatize.d
+ * 
  */
 
 module dmd.delegatize;
@@ -294,7 +294,7 @@ bool ensureStaticLinkTo(Dsymbol s, Dsymbol p)
             if (!fd.isThis() && !fd.isNested())
                 break;
 
-            // https://issues.dlang.org/show_bug.cgi?id=15332
+            // upstream issue 15332
             // change to delegate if fd is actually nested.
             if (auto fld = fd.isFuncLiteralDeclaration())
                 fld.tok = TOK.delegate_;

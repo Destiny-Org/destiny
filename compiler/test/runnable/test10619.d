@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=10619
+upstream issue 10619
 
 PERMUTE_ARGS:
 RUN_OUTPUT:

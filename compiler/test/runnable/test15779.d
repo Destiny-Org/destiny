@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -gx
 
-// https://issues.dlang.org/show_bug.cgi?id=15779
+// upstream issue 15779
 
 import core.thread;
 

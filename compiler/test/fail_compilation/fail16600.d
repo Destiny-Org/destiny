@@ -7,7 +7,7 @@ fail_compilation/fail16600.d(17):     `fail16600.S.this(string __param_0) immuta
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=16600
+// upstream issue 16600
 
 struct S
 {

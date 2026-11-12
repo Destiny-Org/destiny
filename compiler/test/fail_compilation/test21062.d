@@ -10,7 +10,7 @@ fail_compilation/test21062.d(21):        `in` is a keyword, perhaps append `_` t
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=21062
+// upstream issue 21062
 // Confusing error when using a keyword as an identifier for a declaration
 
 bool synchronized;

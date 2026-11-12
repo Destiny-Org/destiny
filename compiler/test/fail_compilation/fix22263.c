@@ -6,7 +6,7 @@ fail_compilation/fix22263.c(133): Error: variable `fix22263.x6` conflicts with v
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=22263
+// upstream issue 22263
 
 #line 100
 

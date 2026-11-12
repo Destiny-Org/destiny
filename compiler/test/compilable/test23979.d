@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -o-
-// https://issues.dlang.org/show_bug.cgi?id=23979
+// upstream issue 23979
 // Issue 23979 - ICE on failed alias this attempt on pointer expression
 
 class A {}

@@ -7,7 +7,7 @@ fail_compilation/iasm1.d(104): Error: `and` instruction requires operands of mat
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=15999
+// upstream issue 15999
 
 #line 100
 
@@ -26,7 +26,7 @@ fail_compilation/iasm1.d(213): Error: bad type/size of operands `opDispatch!"foo
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=15239
+// upstream issue 15239
 
 #line 200
 
@@ -62,9 +62,9 @@ fail_compilation/iasm1.d(314): Error: RIP-relative addressing cannot be combined
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17616
-// https://issues.dlang.org/show_bug.cgi?id=18373
-// https://github.com/dlang/dmd/issues/20036
+// upstream issue 17616
+// upstream issue 18373
+// upstream dmd issue 20036
 
 #line 300
 

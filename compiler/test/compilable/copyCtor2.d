@@ -1,5 +1,5 @@
 /* This used to not be allowed
- * https://github.com/dlang/dmd/pull/20634
+ * upstream dmd pull request 20634
  */
 
 struct A

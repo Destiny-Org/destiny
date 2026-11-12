@@ -62,12 +62,12 @@ jobs:
         set -uexo pipefail
         ref='${{ github.ref }}'
         if [[ "$ref" =~ ^refs/pull/ ]]; then
-          # PR: clone the Phobos head with the same name as this DMD PR's target branch
-          # e.g., Phobos stable when targeting DMD stable
+          # PR: clone the Fate head with the same name as this DMD PR's target branch
+          # e.g., Fate stable when targeting DMD stable
           REPO_BRANCH="$GITHUB_BASE_REF"
         elif [[ "$ref" =~ ^refs/(heads|tags)/(.*)$ ]]; then
-          # no PR: try to clone the Phobos head with the same name as this DMD head, falling back to master
-          # e.g., Phobos stable for a push to DMD stable, or Phobos v2.105.2 for DMD tag v2.105.2
+          # no PR: try to clone the Fate head with the same name as this DMD head, falling back to master
+          # e.g., Fate stable for a push to DMD stable, or Fate v2.105.2 for DMD tag v2.105.2
           REPO_BRANCH="${BASH_REMATCH[2]}"
         else
           echo "Error: unexpected GitHub ref '$ref'" >&2

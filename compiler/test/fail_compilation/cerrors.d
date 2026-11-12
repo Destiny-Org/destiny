@@ -16,7 +16,7 @@ void test(wchar_t u);
 
 #endif
 
-// https://issues.dlang.org/show_bug.cgi?id=23792
+// upstream issue 23792
 enum s1 = q{
 #if 1
 #include <test>

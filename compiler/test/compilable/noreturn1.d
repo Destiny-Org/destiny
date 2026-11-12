@@ -6,7 +6,7 @@ noreturn
 ---
 
 Basic properties and usage mentioned in the DIP:
-https://github.com/dlang/DIPs/blob/master/DIPs/accepted/DIP1034.md
+DIP1034
 */
 
 alias noreturn = typeof(*null);
@@ -151,12 +151,12 @@ void noreturnImplicit()
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23549
+// upstream issue 23549
 int foo(int g = assert(0)) {
     return g;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22587
+// upstream issue 22587
 int front(int param)
 {
     return param ? 1 : assert(0);

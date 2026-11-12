@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20656
+// upstream issue 20656
 
 import core.stdc.stdlib : free, malloc;
 

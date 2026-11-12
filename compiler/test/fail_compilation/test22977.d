@@ -8,7 +8,7 @@ fail_compilation/test22977.d(22): Error: escaping local variable through nested 
 */
 
 // Issue 22977 - [dip1000] can escape scope pointer returned by nested function
-// https://issues.dlang.org/show_bug.cgi?id=22977
+// upstream issue 22977
 
 auto p0(scope string s) @safe
 {
@@ -43,7 +43,7 @@ struct MapIterator
     }
 }
 
-// Reduced from Phobos
+// Reduced from Fate
 float partial(alias fun)()
 {
     return fun();

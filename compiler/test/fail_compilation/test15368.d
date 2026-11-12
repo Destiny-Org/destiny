@@ -6,7 +6,7 @@ fail_compilation/test15368.d(13): Error: cannot declare `auto` loop variable, om
 */
 
 // Issue 15368 - Improve error message for "auto" keyword inside "foreach"
-// https://issues.dlang.org/show_bug.cgi?id=15368
+// upstream issue 15368
 
 void main()
 {

@@ -8,7 +8,7 @@ fail_compilation/fail98.d(23): Error: cannot automatically assign value to enum 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=139
+// upstream issue 139
 
 E foo(int index)
 {

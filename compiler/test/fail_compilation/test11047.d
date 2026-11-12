@@ -5,7 +5,7 @@ fail_compilation/test11047.d(11): Error: value of `x` is not known at compile ti
 fail_compilation/test11047.d(11): Error: value of `x` is not known at compile time
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=11047
+// upstream issue 11047
 
 int x;
 @(++x, ++x) void foo(){}

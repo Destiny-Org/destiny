@@ -5,7 +5,7 @@ fail_compilation/fail96.d(21): Error: template instance `foo!long` `foo` is not 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=153
+// upstream issue 153
 
 template bar(T)
 {

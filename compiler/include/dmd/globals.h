@@ -1,10 +1,10 @@
 /* Compiler implementation of the Destiny programming language
- * Copyright (C) 1999-2026 by The Destiny Language Foundation, All Rights Reserved
+ * Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * written by Walter Bright
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/dlang/dmd/blob/master/src/dmd/globals.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/globals.h
  */
 
 #pragma once
@@ -215,17 +215,17 @@ struct Param
     void* editionFiles;          // Edition corresponding to a filespec
 
     // Options for `-preview=/-revert=`
-    FeatureState useDIP25;       // implement https://wiki.dlang.org/DIP25
-    FeatureState useDIP1000;     // implement https://dlang.org/spec/memory-safe-d.html#scope-return-params
+    FeatureState useDIP25;       // implement https://github.com/Destiny-Org/destiny
+    FeatureState useDIP1000;     // implement https://github.com/Destiny-Org/destiny/blob/main/spec/memory-safe-d.dd
     d_bool ehnogc;                 // use @nogc exception handling
-    d_bool useDIP1021;             // implement https://github.com/dlang/DIPs/blob/master/DIPs/accepted/DIP1021.md
+    d_bool useDIP1021;             // implement DIP1021
     FeatureState fieldwise;      // do struct equality testing field-wise rather than by memcmp()
     d_bool fixAliasThis;           // if the current scope has an alias this, check it before searching upper scopes
     FeatureState rvalueRefParam; // allow rvalues to be arguments to ref parameters
                                  // https://dconf.org/2019/talks/alexandrescu.html
                                  // https://gist.github.com/andralex/e5405a5d773f07f73196c05f8339435a
                                  // https://digitalmars.com/d/archives/digitalmars/D/Binding_rvalues_to_ref_parameters_redux_325087.html
-                                 // Implementation: https://github.com/dlang/dmd/pull/9817
+                                 // Implementation: upstream dmd pull request 9817
     FeatureState safer;          // safer by default (more @safe checks in unattributed code)
                                  // https://github.com/WalterBright/documents/blob/38f0a846726b571f8108f6e63e5e217b91421c86/safer.md
 
@@ -233,11 +233,11 @@ struct Param
     d_bool previewIn;              // `in` means `[ref] scope const`, accepts rvalues
     d_bool inclusiveInContracts;   // 'in' contracts of overridden methods must be a superset of parent contract
     d_bool shortenedMethods;       // allow => in normal function declarations
-    d_bool fixImmutableConv;       // error on unsound immutable conversion - https://github.com/dlang/dmd/pull/14070
+    d_bool fixImmutableConv;       // error on unsound immutable conversion - upstream dmd pull request 14070
     d_bool fix16997;               // fix integral promotions for unary + - ~ operators
-                                 // https://issues.dlang.org/show_bug.cgi?id=16997
+                                 // upstream issue 16997
     FeatureState dtorFields;     // destruct fields of partially constructed objects
-                                 // https://issues.dlang.org/show_bug.cgi?id=14246
+                                 // upstream issue 14246
     FeatureState systemVariables; // limit access to variables marked @system from @safe code
     d_bool useFastDFA;             // Use fast data flow analysis engine
 

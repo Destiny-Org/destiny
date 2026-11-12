@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19809
+// upstream issue 19809
 mixin template Impl(M...)
 {
     int opCmp(Object o) { return 0; }

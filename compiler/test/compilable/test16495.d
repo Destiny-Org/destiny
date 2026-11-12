@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16495
+// upstream issue 16495
 
 void types()
 {

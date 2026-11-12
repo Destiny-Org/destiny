@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23407
+// upstream issue 23407
 
 struct Foo {    int x; };
 _Static_assert(sizeof(struct Foo) == sizeof(int), "");

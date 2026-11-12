@@ -7,7 +7,7 @@ fail_compilation/fix22253.c(109): Error: `init` is not a member of `char`
 fail_compilation/fix22253.c(113): Error: `tupleof` is not a member of `S`
 ---
  */
-// https://issues.dlang.org/show_bug.cgi?id=22253
+// upstream issue 22253
 
 #line 100
 

@@ -87,7 +87,7 @@ TEST_OUTPUT:
 ---
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=8838
+// upstream issue 8838
 
 int[] foo8() @safe
 {
@@ -312,7 +312,7 @@ fail_compilation/retscope.d(320): Error: scope parameter `p` may not be returned
 int[3] escape8(scope int[] p) @safe { return p[0 .. 3]; } // should not error
 char*[3] escape9(scope char*[] p) @safe { return p[0 .. 3]; }
 
-// https://issues.dlang.org/show_bug.cgi?id=24663
+// upstream issue 24663
     int*[3] escape8b(scope int*[3] p) @safe { return p[]; }
 ref int*[3] escape9b(      int*[3] p) @safe { return p[]; }
 
@@ -645,7 +645,7 @@ struct Result(R)
 
 /************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=17117
+// upstream issue 17117
 
 ref int foo21(return ref int s)
 {

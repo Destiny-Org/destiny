@@ -6,7 +6,7 @@ fail_compilation/test22344.c(301): Error: function `test22344.foo` redeclaration
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=22344
+// upstream issue 22344
 
 #line 100
 
@@ -17,7 +17,7 @@ int func(int b)
     return 0;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22761
+// upstream issue 22761
 
 #line 200
 

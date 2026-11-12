@@ -1163,7 +1163,7 @@ void test45()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=3986
+// upstream issue 3986
 
 struct SiberianHamster
 {
@@ -1178,7 +1178,7 @@ void test46()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8741
+// upstream issue 8741
 
 struct Vec8741
 {
@@ -1334,7 +1334,7 @@ void test52()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=4339
+// upstream issue 4339
 
 struct A53 {
     invariant() {   }
@@ -1498,7 +1498,7 @@ void test56()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5859
+// upstream issue 5859
 
 int dtor_cnt = 0;
 struct S57
@@ -1647,7 +1647,7 @@ void test57()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5574
+// upstream issue 5574
 
 struct foo5574a
 {
@@ -1668,7 +1668,7 @@ struct bar5574b
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5777
+// upstream issue 5777
 
 int sdtor58 = 0;
 S58* ps58;
@@ -1694,7 +1694,7 @@ void test58()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6308
+// upstream issue 6308
 
 struct C59
 {
@@ -1727,7 +1727,7 @@ void test59()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5737
+// upstream issue 5737
 
 void test5737()
 {
@@ -1763,7 +1763,7 @@ void test5737()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6119
+// upstream issue 6119
 
 void test6119()
 {
@@ -1795,7 +1795,7 @@ void test6119()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6364
+// upstream issue 6364
 
 struct Foo6364
 {
@@ -1821,7 +1821,7 @@ void test6364()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6499
+// upstream issue 6499
 
 struct S6499
 {
@@ -1935,7 +1935,7 @@ void test60()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=4316
+// upstream issue 4316
 
 struct A4316
 {
@@ -1968,7 +1968,7 @@ void test6177()
 
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6470
+// upstream issue 6470
 
 struct S6470
 {
@@ -1999,7 +1999,7 @@ void test6470()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6636
+// upstream issue 6636
 
 struct S6636
 {
@@ -2021,7 +2021,7 @@ void test6636()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6637
+// upstream issue 6637
 
 struct S6637
 {
@@ -2040,7 +2040,7 @@ void test6637()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7353
+// upstream issue 7353
 
 struct S7353
 {
@@ -2079,7 +2079,7 @@ void test7353()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8036
+// upstream issue 8036
 
 struct S8036a
 {
@@ -2120,7 +2120,7 @@ void test61()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7506
+// upstream issue 7506
 
 void test7506()
 {
@@ -2150,7 +2150,7 @@ void test7506()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7516
+// upstream issue 7516
 
 struct S7516
 {
@@ -2273,7 +2273,7 @@ void test7516e()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7530
+// upstream issue 7530
 
 void test7530()
 {
@@ -2330,7 +2330,7 @@ void test62()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7579
+// upstream issue 7579
 
 void test7579a()
 {
@@ -2403,7 +2403,7 @@ void test7579b()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8335
+// upstream issue 8335
 
 struct S8335
 {
@@ -2449,7 +2449,7 @@ void test8335()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8356
+// upstream issue 8356
 
 void test8356()
 {
@@ -2471,7 +2471,7 @@ void test8356()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8475
+// upstream issue 8475
 
 T func8475(T)(T x) @safe pure
 {
@@ -2513,7 +2513,7 @@ Foo9320 test9320(Foo9320 a, Foo9320 b, Foo9320 c) {
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9386
+// upstream issue 9386
 
 struct Test9386
 {
@@ -2626,7 +2626,7 @@ void test9386()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9441
+// upstream issue 9441
 
 auto x9441 = X9441(0.123);
 
@@ -2689,7 +2689,7 @@ void test9720()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9899
+// upstream issue 9899
 
 struct S9899
 {
@@ -2707,7 +2707,7 @@ void test9899() @safe pure nothrow
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9907
+// upstream issue 9907
 
 void test9907()
 {
@@ -2771,7 +2771,7 @@ void test9907()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9985
+// upstream issue 9985
 
 struct S9985
 {
@@ -2815,7 +2815,7 @@ void test9985()
 
 /**********************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=17457
+// upstream issue 17457
 
 void delegate() dg17457;
 
@@ -2842,7 +2842,7 @@ void test17457()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9994
+// upstream issue 9994
 
 void test9994()
 {
@@ -2862,7 +2862,7 @@ void test9994()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10053
+// upstream issue 10053
 
 struct S10053A
 {
@@ -2876,7 +2876,7 @@ struct S10053B
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10055
+// upstream issue 10055
 
 void test10055a()
 {
@@ -2977,7 +2977,7 @@ void test10055b()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10160
+// upstream issue 10160
 
 struct S10160 { this(this) {} }
 
@@ -2991,7 +2991,7 @@ void test10160()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10094
+// upstream issue 10094
 
 void test10094()
 {
@@ -3013,7 +3013,7 @@ void test10094()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10079
+// upstream issue 10079
 
 // dtor || postblit
 struct S10079a
@@ -3060,7 +3060,7 @@ static assert(__traits(compiles, &check10079!S10079e));
 static assert(__traits(compiles, &check10079!S10079f));
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10244
+// upstream issue 10244
 
 void test10244()
 {
@@ -3088,7 +3088,7 @@ void test10244()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10694
+// upstream issue 10694
 
 struct Foo10694 { ~this() { } }
 
@@ -3104,7 +3104,7 @@ void test10694() pure
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10787
+// upstream issue 10787
 
 int global10787;
 
@@ -3123,7 +3123,7 @@ shared static ~this() nothrow pure @safe
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10789
+// upstream issue 10789
 
 struct S10789
 {
@@ -3190,7 +3190,7 @@ void test10789()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10972
+// upstream issue 10972
 
 int test10972()
 {
@@ -3254,7 +3254,7 @@ int test10972()
 static assert(test10972()); // CTFE
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=11134
+// upstream issue 11134
 
 void test11134()
 {
@@ -3290,7 +3290,7 @@ void test11134()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=11197
+// upstream issue 11197
 
 struct S11197a
 {
@@ -3324,7 +3324,7 @@ void fun7474(T...)() { T x; }
 void test7474() { fun7474!S7474(); }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=11286
+// upstream issue 11286
 
 struct A11286
 {
@@ -3342,7 +3342,7 @@ void test11286()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=11505
+// upstream issue 11505
 
 struct Foo11505
 {
@@ -3362,7 +3362,7 @@ void test11505()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=12045
+// upstream issue 12045
 
 bool test12045()
 {
@@ -3413,7 +3413,7 @@ bool test12045()
 static assert(test12045());
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=12591
+// upstream issue 12591
 
 struct S12591(T)
 {
@@ -3436,7 +3436,7 @@ void test12591()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=12660
+// upstream issue 12660
 
 struct X12660
 {
@@ -3477,7 +3477,7 @@ void test12660() @nogc
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=12686
+// upstream issue 12686
 
 struct Foo12686
 {
@@ -3505,7 +3505,7 @@ void test12686()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=13089
+// upstream issue 13089
 
 struct S13089
 {
@@ -3665,7 +3665,7 @@ void test13586()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=14443
+// upstream issue 14443
 
 T enforce14443(E : Throwable = Exception, T)(T value)
 {
@@ -3810,9 +3810,9 @@ void test14443()
 
 /**********************************/
 // postblit/dtor call on static array assignment
-// https://issues.dlang.org/show_bug.cgi?id=13661
-// https://issues.dlang.org/show_bug.cgi?id=14022
-// https://issues.dlang.org/show_bug.cgi?id=14023
+// upstream issue 13661
+// upstream issue 14022
+// upstream issue 14023
 
 bool test13661()
 {
@@ -4020,7 +4020,7 @@ bool test14023()
 static assert(test14023());
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13669 - dtor call on static array variable
+// upstream issue 13669 - dtor call on static array variable
 
 bool test13669()
 {
@@ -4065,7 +4065,7 @@ void test13095()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=14264
+// upstream issue 14264
 
 void test14264()
 {
@@ -4097,7 +4097,7 @@ void test14264()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=14686
+// upstream issue 14686
 
 int test14686()
 {
@@ -4141,7 +4141,7 @@ int test14686()
 static assert(test14686());
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=14815
+// upstream issue 14815
 
 int test14815()
 {
@@ -4184,7 +4184,7 @@ int test14815()
 static assert(test14815());
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=16197
+// upstream issue 16197
 
 struct Elem {
     static string r;
@@ -4203,7 +4203,7 @@ void test16197() {
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=14860
+// upstream issue 14860
 
 int test14860()
 {
@@ -4226,7 +4226,7 @@ int test14860()
 static assert(test14860());
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=14246
+// upstream issue 14246
 
 struct A14246 {
      int a = 3;
@@ -4258,7 +4258,7 @@ void test14246() {
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=14696
+// upstream issue 14696
 
 void test14696(int len = 2)
 {
@@ -4369,7 +4369,7 @@ void test14696(int len = 2)
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=14838
+// upstream issue 14838
 
 int test14838() pure nothrow @safe
 {
@@ -4423,7 +4423,7 @@ static assert(test14838());
 
 /**********************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=14639
+// upstream issue 14639
 
 struct Biggy {
     ulong[50000] a;
@@ -4531,7 +4531,7 @@ void test65()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=15661
+// upstream issue 15661
 
 struct X15661
 {
@@ -4572,7 +4572,7 @@ void test15661()
 
 /**********************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=18045
+// upstream issue 18045
 
 struct A18045
 {
@@ -4623,7 +4623,7 @@ class C66
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=16652
+// upstream issue 16652
 
 struct Vector
 {
@@ -4656,7 +4656,7 @@ void test16652()
 
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=19676
+// upstream issue 19676
 
 void test19676()
 {
@@ -4686,7 +4686,7 @@ void test19676()
 
 /**********************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=14708
+// upstream issue 14708
 
 __gshared bool dtor14078 = false;
 
@@ -4779,7 +4779,7 @@ void test68()
 
 /**********************************/
 
-// https://github.com/dlang/dmd/pull/12012
+// upstream dmd pull request 12012
 
 extern (C++)
 {
@@ -4814,7 +4814,7 @@ void testPR12012()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=24010
+// upstream issue 24010
 
 alias AliasSeq(TList...) = TList;
 

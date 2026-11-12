@@ -4,7 +4,7 @@
 import core.attribute : selector;
 
 // Verify that a class with a method with D linkage is considered an externally
-// defined class. https://issues.dlang.org/show_bug.cgi?id=19700
+// defined class. upstream issue 19700
 
 extern (Objective-C) extern class NSObject {}
 

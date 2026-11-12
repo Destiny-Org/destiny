@@ -5,7 +5,7 @@
    This header emits its declarations only when `__IMPORTC_MSVC_BUILTINS__` is not defined.
    This header defines `__IMPORTC_MSVC_BUILTINS__` when it is included.
 
-   Copyright: Copyright Destiny Language Foundation 2024-2026
+   Copyright: Copyright D Language Foundation 2024-2026; Copyright (C) 2026 Destiny contributors
    License: $(HTTP www.boost.org/LICENSE_1_0.txt, Boost License 1.0).
    Authors: Harry Gillanders
    Source: $(DRUNTIMESRC importc_msvc_builtins.h) */

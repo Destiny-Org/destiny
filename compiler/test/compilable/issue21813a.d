@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21813
+// upstream issue 21813
 Target.OS defaultTargetOS()
 {
     return Target.OS.linux;

@@ -432,7 +432,7 @@ void test40()
 }
 
 /******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9442
+// upstream issue 9442
 
 class C
 {
@@ -452,7 +452,7 @@ void test9442()
 }
 
 /******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10451
+// upstream issue 10451
 
 struct Foo10451;
 
@@ -469,7 +469,7 @@ void test10451()
 }
 
 /******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11010
+// upstream issue 11010
 
 struct S11010 { S11010* p; }
 
@@ -493,7 +493,7 @@ void test11010()
 }
 
 /******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13045
+// upstream issue 13045
 
 void test13045a()
 {
@@ -549,7 +549,7 @@ void test13045b()
 }
 
 /******************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15680
+// upstream issue 15680
 
 void test15680()
 {

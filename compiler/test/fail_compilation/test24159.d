@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=24159
+// upstream issue 24159
 // REQUIRED_ARGS: -betterC
 /*
 TEST_OUTPUT:

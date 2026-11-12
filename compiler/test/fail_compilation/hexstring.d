@@ -47,7 +47,7 @@ immutable ubyte[] f14 = x"1122"w;
 immutable ubyte[3][1] f16 = cast(ubyte[3][1])x"FFBBFF";
 immutable ubyte[3][1][1] f17 = cast(ubyte[3][1][1])x"FFCCFF";
 
-// https://issues.dlang.org/show_bug.cgi?id=24832
+// upstream issue 24832
 struct S
 {
     ushort l0, l1, l2, l3, l4, l5;

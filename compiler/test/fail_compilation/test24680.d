@@ -6,7 +6,7 @@ fail_compilation/test24680.d(19): Error: escaping a reference to local variable 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=24680
+// upstream issue 24680
 
 class C
 {

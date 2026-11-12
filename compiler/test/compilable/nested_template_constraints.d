@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21752
+// upstream issue 21752
 
 void foo(A)(A a)
 {}

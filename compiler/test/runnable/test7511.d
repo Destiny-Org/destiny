@@ -7,7 +7,7 @@ Success
 extern(C) int printf(const char*, ...);
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7511
+// upstream issue 7511
 
 struct S7511(T)
 {
@@ -192,7 +192,7 @@ void test7511d()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9952
+// upstream issue 9952
 
 @system void writeln9952(int) {}    // impure throwable
 
@@ -220,7 +220,7 @@ void test9952()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10373
+// upstream issue 10373
 
 template isMutable10373(T)
 {
@@ -300,7 +300,7 @@ void test10373()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10329
+// upstream issue 10329
 
 auto foo10329(T)(T arg)
 {
@@ -332,7 +332,7 @@ void test10329() pure nothrow @safe
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=11896
+// upstream issue 11896
 
 class Foo11896a(T = int)
 {
@@ -399,7 +399,7 @@ void test11896c()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=12392
+// upstream issue 12392
 
 void f12392(T)() {}
 alias fa12392 = f12392;

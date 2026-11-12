@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23166
+// upstream dmd issue 23166
 
 import imports.imp23166;
 

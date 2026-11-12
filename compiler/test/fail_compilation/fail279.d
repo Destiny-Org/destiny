@@ -5,7 +5,7 @@ fail_compilation/fail279.d(14): Error: mixin `fail279.Template!0.Template!1.Temp
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=2920
+// upstream issue 2920
 // recursive templates blow compiler stack
 // template_16
 

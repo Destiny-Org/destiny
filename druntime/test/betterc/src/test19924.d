@@ -1,5 +1,5 @@
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19924
+// upstream issue 19924
 
 import core.bitop;
 

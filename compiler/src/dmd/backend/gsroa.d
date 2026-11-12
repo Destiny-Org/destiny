@@ -6,12 +6,12 @@
  * SROA (Scalar Replacement Of Aggregates) is the common term for this.
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
- * Copyright:   Copyright (C) 2016-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 2016-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/gsroa.d, backend/gsroa.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/gsroa.d, backend/gsroa.d)
  */
 
 module dmd.backend.gsroa;
@@ -111,7 +111,7 @@ private void sliceStructs_Gather(ref const symtab_t symtab, SymInfo[] sia, const
                                             !tyxmmreg(targ1.Tty) &&  tyxmmreg(targ2.Tty))
 
                                         {
-                                            /* https://issues.dlang.org/show_bug.cgi?22438
+                                            /* upstream issue 22438
                                              * disable till fixed
                                              */
                                             if (log) printf(" [%d] can't because xmmgpr or gprxmm\n", cast(int)si);
@@ -189,8 +189,8 @@ private void sliceStructs_Gather(ref const symtab_t symtab, SymInfo[] sia, const
                                 sia[si].canSlice = false;
                             }
                             // Disable SROA on OSX32 (because XMM registers?)
-                            // https://issues.dlang.org/show_bug.cgi?id=15206
-                            // https://github.com/dlang/dmd/pull/8034
+                            // upstream issue 15206
+                            // upstream dmd pull request 8034
                             else if (!(config.exe & EX_OSX))
                             {
                                 sliceStructs_Gather(symtab, sia, e.E1);
@@ -263,7 +263,7 @@ private void sliceStructs_Replace(ref symtab_t symtab, const SymInfo[] sia, elem
                         {
                             /* Ensure complex OPpair operands are floating point types
                              * because [1] may have defaulted them to a pointer type.
-                             * https://issues.dlang.org/show_bug.cgi?id=18936
+                             * upstream issue 18936
                              */
                             tym_t tyop;
                             switch (tybasic(e.Ety))
@@ -540,7 +540,7 @@ int nthSlice(const(elem)* e)
     /* if sz is less than sliceSize, this causes problems because if, say,
      * sz is 4 while sliceSize is 8, and sz gets enregistered, then assigning to
      * the lower 4 bytes of sz will zero out the upper 4 bytes.
-     * https://github.com/dlang/dmd/pull/13220
+     * upstream dmd pull request 13220
      */
     if (sz != sliceSize)
         return NOTSLICE;

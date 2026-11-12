@@ -10,7 +10,7 @@ main:
 */
 
 // Issue 23068 - [betterC] BetterC does not respect -checkaction=halt
-// https://issues.dlang.org/show_bug.cgi?id=23068
+// upstream issue 23068
 
 extern(C) void main()
 {

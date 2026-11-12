@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21246
+// upstream issue 21246
 // EXTRA_FILES: imports/test21246.d
 /*
 TEST_OUTPUT:

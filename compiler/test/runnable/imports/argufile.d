@@ -82,7 +82,7 @@ enum Mangle : char
 
 // dustmited version of the deprecated doFormat.
 // See the full file at:
-// https://github.com/dlang/undeaD/blob/master/src/undead/doformat.d
+// https://github.com/Destiny-Org/destiny
 void doFormat(void delegate(dchar) putc, TypeInfo[] arguments, va_list ap)
 {
     import core.stdc.stdlib : alloca, malloc;

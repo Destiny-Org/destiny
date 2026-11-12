@@ -1,6 +1,6 @@
 /* PERMUTE_ARGS:
  */
-// https://issues.dlang.org/show_bug.cgi?id=16292
+// upstream issue 16292
 
 void main()
 {

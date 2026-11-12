@@ -1,12 +1,12 @@
 /**
  * Compute the cost of inlining a function call by counting expressions.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/inlinecost.d, _inlinecost.d)
- * Documentation:  https://dlang.org/phobos/dmd_inlinecost.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/inlinecost.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/inlinecost.d, _inlinecost.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/inlinecost.d
+ * 
  */
 
 module dmd.inlinecost;
@@ -372,7 +372,7 @@ public:
         }
 
         FuncDeclaration fd = e.var.isFuncDeclaration();
-        if (fd && fd.isNested()) // https://issues.dlang.org/show_bug.cgi?id=7199 for test case
+        if (fd && fd.isNested()) // upstream issue 7199 for test case
             cost = COST_MAX;
         else
             cost++;
@@ -488,7 +488,7 @@ public:
     override void visit(CallExp e)
     {
         //printf("CallExp.inlineCost3() %s\n", toChars());
-        // https://issues.dlang.org/show_bug.cgi?id=3500
+        // upstream issue 3500
         // super.func() calls must be devirtualized, and the inliner
         // can't handle that at present.
         if (e.e1.op == EXP.dotVariable && (cast(DotVarExp)e.e1).e1.op == EXP.super_)

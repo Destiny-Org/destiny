@@ -350,7 +350,7 @@ void test13()
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7123
+// upstream issue 7123
 
 private struct DelegateFaker7123(F)
 {
@@ -565,7 +565,7 @@ struct Test24
 static assert(__traits(getVisibility, __traits(getOverloads, Test24, "test24")[1]) == "private");
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=1369
+// upstream issue 1369
 
 void test1369()
 {
@@ -621,7 +621,7 @@ static assert([__traits(allMembers, S2234b)] == ["x"]);
 static assert([__traits(allMembers, S2234c)] == ["foo"]);
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5878
+// upstream issue 5878
 
 template J5878(A)
 {
@@ -658,7 +658,7 @@ static assert([__traits(allMembers,Test6674)] == [
     "toString","toHash","opCmp","opEquals","Monitor","factory"]);
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6073
+// upstream issue 6073
 
 struct S6073 {}
 
@@ -670,13 +670,13 @@ alias T6073!(__traits(parent, S6073)) U6073;    // error
 static assert(__traits(isSame, V6073, U6073));  // same instantiation == same arguemnts
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7027
+// upstream issue 7027
 
 struct Foo7027 { int a; }
 static assert(!__traits(compiles, { return Foo7027.a; }));
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9213
+// upstream issue 9213
 
 class Foo9213 { int a; }
 static assert(!__traits(compiles, { return Foo9213.a; }));
@@ -710,7 +710,7 @@ static assert(__traits(isVirtualMethod, FF.YYY));
 static assert(__traits(getVirtualMethods, FF, "YYY").length == 1);
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7608
+// upstream issue 7608
 
 struct S7608a(bool T)
 {
@@ -735,7 +735,7 @@ void test7608()
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7858
+// upstream issue 7858
 
 void test7858()
 {
@@ -770,7 +770,7 @@ void test7858()
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8971
+// upstream issue 8971
 
 template Tuple8971(TL...){ alias TL Tuple8971; }
 
@@ -786,7 +786,7 @@ class A8971
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8972
+// upstream issue 8972
 
 struct A8972
 {
@@ -869,7 +869,7 @@ void getVisibility()
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9546
+// upstream issue 9546
 
 void test9546()
 {
@@ -920,7 +920,7 @@ void test9546()
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9091
+// upstream issue 9091
 
 template isVariable9091(X...) if (X.length == 1)
 {
@@ -1066,7 +1066,7 @@ void test9237()
 }
 
 /*************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5978
+// upstream issue 5978
 
 void test5978()
 {
@@ -1091,7 +1091,7 @@ void test7408()
 }
 
 /*************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9552
+// upstream issue 9552
 
 class C9552
 {
@@ -1138,7 +1138,7 @@ void test9136()
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9939
+// upstream issue 9939
 
 struct Test9939
 {
@@ -1158,7 +1158,7 @@ struct Test9939
 static assert([__traits(allMembers, Test9939)] == ["f", "A", "B", "NamedEnum"]);
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10043
+// upstream issue 10043
 
 void test10043()
 {
@@ -1168,7 +1168,7 @@ void test10043()
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10096
+// upstream issue 10096
 
 struct S10096X
 {
@@ -1271,7 +1271,7 @@ void test_isOverrideFunction ()
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11711
+// upstream issue 11711
 // Add __traits(getAliasThis)
 
 alias TypeTuple(T...) = T;
@@ -1296,14 +1296,14 @@ void test11711()
     static assert(is(typeof(__traits(getMember, S2.init, __traits(getAliasThis, S2)[0]))
                 == TypeTuple!(int, string)));
 
-    // https://issues.dlang.org/show_bug.cgi?id=19439
+    // upstream issue 19439
     // Return empty tuple for non-aggregate types.
     static assert(__traits(getAliasThis, int).length == 0);
 }
 
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12278
+// upstream issue 12278
 
 class Foo12278
 {
@@ -1318,7 +1318,7 @@ struct InPlace12278(T)
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12571
+// upstream issue 12571
 
 mixin template getScopeName12571()
 {
@@ -1332,7 +1332,7 @@ void test12571()
 }
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12237
+// upstream issue 12237
 
 auto f12237(T)(T a)
 {
@@ -1371,7 +1371,7 @@ void async(ARGS...)(ARGS)
 alias test17495 = async!(int, int);
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15094
+// upstream issue 15094
 
 void test15094()
 {
@@ -1392,7 +1392,7 @@ void testIsDisabled()
     static assert(!__traits(isDisabled, D1));
 }
 
-// https://github.com/dlang/dmd/issues/22496
+// upstream dmd issue 22496
 @disable int i;
 @disable void f() {}
 
@@ -1402,7 +1402,7 @@ static assert(__traits(isDisabled, f));
 static assert(__traits(isDisabled, .f));
 
 /********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10100
+// upstream issue 10100
 
 enum E10100
 {

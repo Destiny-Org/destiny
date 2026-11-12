@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19476
+// upstream issue 19476
 
 mixin template operators() {
     int foo(int op = 1, T)(T rhs) {

@@ -3,7 +3,7 @@
    PERMUTE_ARGS:
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=16538
+// upstream issue 16538
 
 const(int) retConst1();
 int retConst2();

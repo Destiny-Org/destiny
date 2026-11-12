@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23181
+// upstream issue 23181
 void main()
 {
     int count;

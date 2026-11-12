@@ -2,12 +2,12 @@
  * Top level code for the code generator.
  *
  * Copyright:   Copyright (C) 1985-1998 by Symantec
- *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved
+ *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/x86/cgcod.d, backend/cgcod.d)
- * Documentation:  https://dlang.org/phobos/dmd_backend_x86_cgcod.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/backend/x86/cgcod.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cgcod.d, backend/cgcod.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cgcod.d
+ * 
  */
 
 module dmd.backend.x86.cgcod;
@@ -3088,7 +3088,7 @@ void scodelem(ref CGstate cg, ref CodeBuilder cdb, elem* e,ref regm_t pretregs,r
 
     assert((cg.mfuncreg & (cg.regcon.cse.mval & ~oldregcon)) == 0);
 
-    /* https://issues.dlang.org/show_bug.cgi?id=3521
+    /* upstream issue 3521
      * The problem is:
      *    reg op (reg = exp)
      * where reg must be preserved (in keepregs) while the expression to be evaluated

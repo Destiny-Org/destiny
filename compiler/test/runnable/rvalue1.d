@@ -116,7 +116,7 @@ void test6()
 }
 
 /********************************/
-// https://github.com/dlang/dmd/pull/17050#issuecomment-2543370370
+// upstream dmd pull request 17050
 
 struct MutableString(size_t E) {}
 
@@ -142,7 +142,7 @@ void test7()
 }
 
 /********************************/
-// https://github.com/dlang/dmd/issues/20562
+// upstream dmd issue 20562
 
 struct S8
 {
@@ -243,7 +243,7 @@ void test10()
 }
 
 /********************************/
-// https://github.com/dlang/dmd/issues/22111
+// upstream dmd issue 22111
 
 __gshared int copyCount11;
 __gshared int moveCount11;

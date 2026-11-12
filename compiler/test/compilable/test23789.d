@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23789
+// upstream issue 23789
 // EXTRA_FILES: imports/c23789.i
 
 import imports.c23789;

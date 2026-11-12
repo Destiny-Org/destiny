@@ -1,10 +1,10 @@
-// https://issues.dlang.org/show_bug.cgi?id=22180
+// upstream issue 22180
 
 align(8) { int x; }
 //pragma(msg, x.alignof);
 static assert(x.alignof == 8);
 
-// https://github.com/dlang/dmd/issues/20218
+// upstream dmd issue 20218
 
 struct S
 {

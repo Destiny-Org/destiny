@@ -16,7 +16,7 @@ fail_compilation/attributediagnostic.d(36):        `attributediagnostic.system2`
 */
 
 // Issue 17374 - Improve inferred attribute error message
-// https://issues.dlang.org/show_bug.cgi?id=17374
+// upstream issue 17374
 
 auto layer2() @safe { layer1(); }
 auto layer1() { layer0(); }

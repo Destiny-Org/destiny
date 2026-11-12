@@ -8,7 +8,7 @@ fail_compilation/failcstuff5.c(458): Error: cannot take address of bitfield `s.f
 */
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22584
+// upstream issue 22584
 #line 400
 long test22584(long p1, long p2);
 
@@ -18,7 +18,7 @@ long test22584(long, long)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22749
+// upstream issue 22749
 #line 450
 struct S22749
 {

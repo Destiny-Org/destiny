@@ -88,7 +88,7 @@ int testu()
 static assert(testu() == 1);
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=24193
+// upstream issue 24193
 
 union U24193 {
     struct S {

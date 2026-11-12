@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=11294
+// upstream issue 11294
 
 string result;
 
@@ -37,7 +37,7 @@ void test11294()
 }
 
 
-// https://issues.dlang.org/show_bug.cgi?id=13392
+// upstream issue 13392
 void foo(T)(T t)
 {
     void* p = cast(void*) t; //Callas alias this

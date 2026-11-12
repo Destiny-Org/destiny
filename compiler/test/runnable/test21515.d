@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21515
+// upstream issue 21515
 // DISABLED: win32 win64
 
 // ABI layout of native complex

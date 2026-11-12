@@ -240,7 +240,7 @@ void test8()
 
 /*********************************************************/
 
-// https://github.com/dlang/dmd/issues/20907
+// upstream dmd issue 20907
 struct Bar { enum bar = 1; }
 void foo(A)(A[], A[1 << A.bar]) {}
 void test20907()

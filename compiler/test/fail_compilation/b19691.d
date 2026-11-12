@@ -4,7 +4,7 @@
 fail_compilation/b19691.d(12): Error: forward reference to template `this`
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=19691
+// upstream issue 19691
 module b19691;
 
 struct S1 {

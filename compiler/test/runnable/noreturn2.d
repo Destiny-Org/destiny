@@ -145,7 +145,7 @@ void testAccess()
         return a;
     });
 
-    // https://github.com/dlang/dmd/issues/20286
+    // upstream dmd issue 20286
     testAssertFailure(__LINE__ + 4, msg, function noreturn()
     {
         static void foo(noreturn) {}
@@ -154,7 +154,7 @@ void testAccess()
         assert(false, "Unreachable!"); // Ditto
     });
 
-    // https://github.com/dlang/dmd/issues/22956
+    // upstream dmd issue 22956
     testAssertFailure(__LINE__ + 3, "Assertion failure",
     {
         void function(noreturn) fun;
@@ -186,7 +186,7 @@ void testAccess()
             return;
     });
 
-    // https://github.com/dlang/dmd/issues/22430
+    // upstream dmd issue 22430
     testAssertFailure(__LINE__ + 3, msg,
     {
         noreturn a;
@@ -258,7 +258,7 @@ void testFuncCall()
     assert(WithDtor.destroyed == 1);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=24701
+// upstream issue 24701
 void testCast()
 {
     noreturn foo;
@@ -273,7 +273,7 @@ void testCast()
     assert(0);
 }
 
-// https://github.com/dlang/dmd/issues/20108
+// upstream dmd issue 20108
 int divide(int dividend, int divisor)
 {
     return divisor == 0

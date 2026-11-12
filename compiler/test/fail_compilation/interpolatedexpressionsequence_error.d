@@ -7,7 +7,7 @@ fail_compilation/interpolatedexpressionsequence_error.d(14,22): Error: undefined
 fail_compilation/interpolatedexpressionsequence_error.d(15,16): Error: expression expected, not `End of File`
 ---
 */
-// https://github.com/dlang/dmd/issues/23084
+// upstream dmd issue 23084
 
 auto a = i"$(x)";
 auto b = i`before $(1) between $(z) after`;

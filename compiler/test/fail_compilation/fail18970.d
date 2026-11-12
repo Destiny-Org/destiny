@@ -10,7 +10,7 @@ fail_compilation/fail18970.d(33): Error: template instance `fail18970.S2.opDispa
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=18970
+// upstream issue 18970
 
 struct S
 {

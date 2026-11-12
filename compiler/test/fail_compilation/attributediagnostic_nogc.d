@@ -15,7 +15,7 @@ fail_compilation/attributediagnostic_nogc.d(48):        and allocating a closure
 */
 #line 18
 // Issue 17374 - Improve inferred attribute error message
-// https://issues.dlang.org/show_bug.cgi?id=17374
+// upstream issue 17374
 
 auto layer2() @nogc { layer1(); }
 auto layer1() { layer0(); }

@@ -1,6 +1,6 @@
 /*
  * Test C++ abi-tag name mangling.
- * https://issues.dlang.org/show_bug.cgi?id=19949
+ * upstream issue 19949
  *
  * ABI tags are only supported on Linux & OSX,
  * however OSX doesn't use it in its standard library.

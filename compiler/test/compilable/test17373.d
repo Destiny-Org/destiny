@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=17373
+// upstream issue 17373
 interface Foo { void visit (int); }
 interface Bar { void visit(double); }
 interface FooBar : Foo, Bar {}
@@ -18,7 +18,7 @@ interface Simple
 }
 static assert(__traits(getOverloads, Simple, "square").length == 2);
 
-// https://issues.dlang.org/show_bug.cgi?id=19064
+// upstream issue 19064
 interface InputStream {}
 interface OutputStream{}
 interface Stream : InputStream, OutputStream{}

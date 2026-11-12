@@ -704,7 +704,7 @@ $(GNAME EqualExpression):
     $(H5 $(LNAME2 struct_equality, Struct Equality))
 
     $(P For struct objects, equality means the result of the
-        $(LINK2 https://dlang.org/spec/operatoroverloading.html#equals, `opEquals()` member function).
+        $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/operatoroverloading.dd, `opEquals()` member function).
         If an `opEquals()` is not provided, one will be generated.
         Equality is defined as the logical product of all equality
         results of the corresponding object fields.
@@ -1154,7 +1154,7 @@ $(H3 $(LNAME2 division, Division))
     $(P are illegal if encountered during Compile Time Execution.)
 
     $(UNDEFINED_BEHAVIOR is exhibited if they are encountered during run time.
-        $(LINK2 https://dlang.org/phobos/core_checkedint.html, `core.checkedint`)
+        $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/druntime/src/core/checkedint.d, `core.checkedint`)
         can be used to check for them and select a defined behavior.
     )
 
@@ -2056,7 +2056,7 @@ $(H4 $(LNAME2 slice_to_static_array, Slice Conversion to Static Array))
         -------------
         )
 
-    $(COMMENT Not implemented yet - https://issues.dlang.org/show_bug.cgi?id=13700
+    $(COMMENT Not implemented yet - upstream issue 13700
     $(P Certain other forms of slice expression can be implicitly converted to a static array
         when the slice length can be known at compile-time.)
 

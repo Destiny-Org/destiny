@@ -39,7 +39,7 @@ void func() {
     int a;
     int nested() => a; // and at nested scopes too
 
-    // Issue 24088 - https://issues.dlang.org/show_bug.cgi?id=24088
+    // Issue 24088 - upstream issue 24088
     S!int f() => S!int();
 }
 
@@ -48,7 +48,7 @@ struct T
     void inc() {}
     this(this) => inc();
 
-    // https://github.com/dlang/dmd/issues/21576
+    // upstream dmd issue 21576
     this(int) => inc();
 
     this(byte) { return inc(); }

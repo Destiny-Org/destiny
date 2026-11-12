@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23439
+// upstream issue 23439
 // PERMUTE_ARGS: -lowmem
 class C23439
 {

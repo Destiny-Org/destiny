@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=21598
+upstream issue 21598
 
 REQUIRED_ARGS: -checkaction=context -debug
 PERMUTE_ARGS:

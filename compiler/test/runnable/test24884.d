@@ -2,7 +2,7 @@
 REQUIRED_ARGS: -inline
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=24884
+// upstream issue 24884
 
 pragma(inline, false)
 bool norm(int a) => 0;

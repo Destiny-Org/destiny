@@ -1,5 +1,5 @@
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17965
+// upstream issue 17965
 
 import core.stdc.math;
 

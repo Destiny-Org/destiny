@@ -10,7 +10,7 @@ TEST_OUTPUT:
 			"driver": {
 				"name": "Digital Mars D",
 				"version": "$r:\d+\.\d+\.\d+$",
-				"informationUri": "https://dlang.org/dmd.html"
+				"informationUri": "https://github.com/Destiny-Org/destiny/blob/main/README.md"
 			}
 		},
 		"invocations": [{

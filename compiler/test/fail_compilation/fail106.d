@@ -5,7 +5,7 @@ fail_compilation/fail106.d(12): Error: cannot modify `immutable` expression `"AB
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=239
+// upstream issue 239
 // Internal error: changing string literal elements
 void main()
 {

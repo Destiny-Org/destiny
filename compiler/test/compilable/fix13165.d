@@ -1,7 +1,7 @@
 /* REQUIRED_ARGS: -w -profile
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=13165
+// upstream issue 13165
 
 void main()
 {

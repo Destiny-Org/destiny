@@ -1,12 +1,12 @@
 /**
  * Find out in what ways control flow can exit a statement block.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/blockexit.d, _blockexit.d)
- * Documentation:  https://dlang.org/phobos/dmd_blockexit.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/blockexit.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/blockexit.d, _blockexit.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/blockexit.d
+ * 
  */
 
 module dmd.blockexit;
@@ -123,7 +123,7 @@ int blockExit(Statement s, FuncDeclaration func, ErrorSink eSink)
 
             // Tracks the last case/default reachable via fallthrough. Updated via s.last() so
             // it sees through compound blocks and skips intermediate non-case statements (e.g.
-            // static foreach loop variable declarations). https://github.com/dlang/dmd/issues/20242
+            // static foreach loop variable declarations). upstream dmd issue 20242
             Statement slastCase = null;
             foreach (s; cs.statements)
             {
@@ -145,7 +145,7 @@ int blockExit(Statement s, FuncDeclaration func, ErrorSink eSink)
                     else if (func && func.getModule().filetype != FileType.c)
                     {
                         const(char)* gototype = s.isCaseStatement() ? "case" : "default";
-                        // https://issues.dlang.org/show_bug.cgi?id=22999
+                        // upstream issue 22999
                         auto eSink = global.errorSink;
                         eSink.error(s.loc, "switch case fallthrough - use 'goto %s;' if intended", gototype);
                     }
@@ -392,7 +392,7 @@ int blockExit(Statement s, FuncDeclaration func, ErrorSink eSink)
                 Identifier id = c.type.toBasetype().isClassHandle().ident;
                 if (c.internalCatch && (cresult & BE.fallthru))
                 {
-                    // https://issues.dlang.org/show_bug.cgi?id=11542
+                    // upstream issue 11542
                     // leave blockExit flags of the body
                     cresult &= ~BE.fallthru;
                 }
@@ -455,7 +455,7 @@ int blockExit(Statement s, FuncDeclaration func, ErrorSink eSink)
         {
             if (s.internalThrow)
             {
-                // https://issues.dlang.org/show_bug.cgi?id=8675
+                // upstream issue 8675
                 // Allow throwing 'Throwable' object even if eSink.
                 result = BE.fallthru;
                 return;

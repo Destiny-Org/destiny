@@ -20,7 +20,7 @@ security wherever measurements show a real gain.
 | Decision | Choice | Reason |
 |---|---|---|
 | Opt-in or default | **Default for all code.** No edition gate, no legacy mode. | Destiny does not need to stay compatible with pre-2026 D code. |
-| Existing code | **Updated** to compile and pass under the new rules: druntime, Phobos and the compiler test suite. | A default that the standard library cannot meet is not usable. |
+| Existing code | **Updated** to compile and pass under the new rules: druntime, Fate and the compiler test suite. | A default that the standard library cannot meet is not usable. |
 | Phobos | **Forked and renamed Fate** as `Destiny-Org/fate`, kept in the sibling directory `../fate` that the build already uses. | Keeps the existing build layout; only the clone URL changes. |
 | Compiler source | **Not affected.** The compiler is built by a host D compiler (upstream dmd/ldc/gdc), so Destiny's defaults do not apply to it. | Avoids a bootstrap problem. |
 | Order | Four sub-projects, done one at a time, each leaving a passing build. | Each one depends on the one before it. |
@@ -47,14 +47,14 @@ finishes them; it does not invent new ones from scratch.
 - druntime: add `scope` / `return scope` / `return ref` where references
   are not stored, fix real escapes, and mark genuinely unsafe low-level
   code `@system`.
-- Phobos: same treatment. Upstream Phobos already builds with
+- Fate: same treatment. Upstream Phobos already builds with
   `-preview=dip1000` in many modules, so this is the smallest step.
 - Tests: tests that check the old, non-DIP1000 behaviour are updated to
   expect the new diagnostics or are removed when they only test removed
   behaviour. `fail_compilation` tests with `REQUIRED_ARGS: -preview=dip1000`
   drop the now-redundant flag.
 
-**Done when:** the full test suite (compiler, druntime, Phobos) passes on
+**Done when:** the full test suite (compiler, druntime, Fate) passes on
 the VM with no `-preview=dip1000` anywhere.
 
 ## Sub-project 2: `@safe` by default
@@ -73,7 +73,7 @@ removed.
 - `main` and module constructors follow the normal rule.
 - ImportC (`.c` files) stays `@system`.
 
-**Updating existing code:** every druntime and Phobos function that does
+**Updating existing code:** every druntime and Fate function that does
 pointer arithmetic, casts, unions with pointers, inline asm and so on is
 marked `@system`, or `@trusted` with a safe interface. Each `@trusted`
 added is reviewed, and the reason it is safe is written next to it in a
@@ -81,7 +81,7 @@ comment. Tests that rely on unannotated code being `@system` get explicit
 `@system` annotations.
 
 **Done when:** the full suite passes, and a count of `@trusted` blocks in
-druntime and Phobos is recorded (used as a baseline by sub-project 4).
+druntime and Fate is recorded (used as a baseline by sub-project 4).
 
 ## Sub-project 3: Ownership and borrow checking by default
 
@@ -108,16 +108,16 @@ Driven by measurement only. No change goes in without a before/after
 number.
 
 **Baselines** (taken before sub-project 1 and after each sub-project):
-- compile time and peak memory for building druntime, Phobos, and a
+- compile time and peak memory for building druntime, Fate, and a
   fixed set of test programs;
 - run time of a fixed benchmark set (compiler test `runnable` programs
   plus a few CPU-bound programs);
-- number of `@trusted` and `@system` functions in druntime and Phobos.
+- number of `@trusted` and `@system` functions in druntime and Fate.
 
 **Work:**
 - Profile the compiler on the compile-time baselines and fix the top
   hotspots, including any slowdown that sub-projects 1–3 add.
-- Review every `@trusted` in druntime and Phobos; shrink or remove those
+- Review every `@trusted` in druntime and Fate; shrink or remove those
   that do not need it.
 - Turn on hardening that costs little at run time, if measurements show
   that. Candidates: bounds checks kept in release builds for `@safe`
@@ -144,11 +144,11 @@ For each sub-project:
 
 ## Risks
 
-- **Size.** druntime is about 264k lines and Phobos about 300k. Updating
+- **Size.** druntime is about 264k lines and Fate about 300k. Updating
   them is the bulk of the work. Each sub-project is broken into
   per-package steps so progress stays reviewable.
 - **Upstream drift.** After the fork, upstream fixes to dmd, druntime and
-  Phobos no longer arrive automatically.
+  Fate no longer arrive automatically.
 - **Third-party D libraries** will not compile without changes. Accepted
   as a consequence of dropping pre-2026 compatibility.
 

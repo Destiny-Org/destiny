@@ -4,7 +4,7 @@ TEST_OUTPUT:
 AliasSeq!(func)
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=21282
+// upstream issue 21282
 
 template I(T...) { alias I = T; }
 

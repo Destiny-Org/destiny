@@ -1,4 +1,4 @@
-//https://issues.dlang.org/show_bug.cgi?id=19203
+//upstream issue 19203
 struct BoolWithErr {
     bool b;
     string error;

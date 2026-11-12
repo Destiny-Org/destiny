@@ -6,7 +6,7 @@ import core.demangle;
 
 void main(string[] args)
 {
-    // https://issues.dlang.org/show_bug.cgi?id=4014
+    // upstream issue 4014
     // -gf should drag in full definitions of Object, Duration and ClockType
     Object o = new Object;
     Duration duration; // struct
@@ -77,7 +77,7 @@ void main(string[] args)
 }
 
 ///////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=15432
+// upstream issue 15432
 void call15432(string col) {}
 
 int test15432() // line 8
@@ -87,7 +87,7 @@ int test15432() // line 8
 }
 enum lineAfterTest15432 = __LINE__;
 
-// https://issues.dlang.org/show_bug.cgi?id=19747
+// upstream issue 19747
 enum lineScopeExitTest19747 = __LINE__ + 3;
 int test19747()
 {
@@ -142,7 +142,7 @@ void testLineNumbers19747(IDiaSession session, IDiaSymbol globals)
     assert(found);
 }
 
-// https://github.com/dlang/dmd/issues/19587
+// upstream dmd issue 19587
 enum lineReturnTest19587 = __LINE__ + 4;
 void test19587(string col)
 {
@@ -193,7 +193,7 @@ void testLineNumbers19719(IDiaSession session, IDiaSymbol globals)
 
 
 ///////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=18984
+// upstream issue 18984
 // Debugging stack struct's which are returned causes incorrect debuginfo
 
 struct S18984
@@ -233,7 +233,7 @@ S18984 test18984(IDiaSession session, IDiaSymbol globals)
 }
 
 ///////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=19307
+// upstream issue 19307
 // variables moved to closure
 struct Struct
 {
@@ -316,7 +316,7 @@ void test19307(IDiaSession session, IDiaSymbol globals)
 }
 
 ///////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=19318
+// upstream issue 19318
 // variables captured from outer functions not visible in debugger
 int foo19318(int z) @nogc
 {
@@ -407,7 +407,7 @@ void testE982(IDiaSession session, IDiaSymbol globals)
 }
 
 ///////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=20253
+// upstream issue 20253
 string func20253(string s1, string s2)
 {
     throw new Exception("x");
@@ -442,7 +442,7 @@ void test20253(IDiaSession session, IDiaSymbol globals)
 }
 
 ///////////////////////////////////////////////
-// https://github.com/dlang/dmd/issues/21384
+// upstream dmd issue 21384
 int sum21384(int a, int b, int c)
 {
 	int s = a + b + c;
@@ -526,7 +526,7 @@ void test21384(IDiaSession session, IDiaSymbol globals)
 }
 
 ///////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=18147
+// upstream issue 18147
 string genMembers18147()
 {
     string s;
@@ -610,7 +610,7 @@ void test18147(IDiaSession session, IDiaSymbol globals)
 
 }
 
-// https://github.com/dlang/dmd/issues/21382
+// upstream dmd issue 21382
 class Dsym21382
 {
     final int finalFun() { return 7; }
@@ -632,7 +632,7 @@ void test21382(IDiaSession session, IDiaSymbol globals)
     virtualSym.get_virtual(&virt) == S_OK && virt || assert(false, "testpdb.Dsym21382.virtualFun is virtual");
 }
 
-// https://github.com/dlang/dmd/issues/19591
+// upstream dmd issue 19591
 class C19591
 {
     int field = 3;
@@ -656,7 +656,7 @@ void test19591(IDiaSession session, IDiaSymbol globals)
     shrdSym || assert(false, "testpdb.C19591.shrd not found");
 }
 
-// https://github.com/dlang/dmd/issues/18950
+// upstream dmd issue 18950
 int x18950;
 ref int foo18950() { return x18950; }
 
@@ -675,7 +675,7 @@ void test18950(IDiaSession session, IDiaSymbol globals)
         || assert(false, "testpdb.foo18950: bad return type");
 }
 
-// https://github.com/dlang/dmd/issues/21665
+// upstream dmd issue 21665
 struct S21665
 {
     int itg;

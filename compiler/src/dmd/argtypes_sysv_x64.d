@@ -1,12 +1,12 @@
 /**
  * Break down a D type into basic (register) types for the x86_64 System V ABI.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     Martin Kinkelin
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/argtypes_sysv_x64.d, _argtypes_sysv_x64.d)
- * Documentation:  https://dlang.org/phobos/dmd_argtypes_sysv_x64.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/argtypes_sysv_x64.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/argtypes_sysv_x64.d, _argtypes_sysv_x64.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.argtypes_sysv_x64;

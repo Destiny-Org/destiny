@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23235
+/* upstream issue 23235
  */
 
 @safe:

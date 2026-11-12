@@ -1,7 +1,7 @@
 /* REQUIRED_ARGS: -defaultlib= -c -O
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=23047
+// upstream issue 23047
 version(D_SIMD):
 alias long2 = __vector(long[2]);
 

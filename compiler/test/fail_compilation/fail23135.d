@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23135
+/* upstream issue 23135
 REQUIRED_ARGS: -de
 TEST_OUTPUT:
 ---

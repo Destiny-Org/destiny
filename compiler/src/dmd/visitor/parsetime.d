@@ -3,8 +3,8 @@
  *
  * Other visitors derive from this class.
  *
- * Documentation:  https://dlang.org/phobos/dmd_parsetimevisitor.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/src/dmd/parsetimevisitor.d
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.visitor.parsetime;

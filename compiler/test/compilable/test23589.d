@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23589
+// upstream issue 23589
 struct TemplStr(string Description_) {}
 
 template A() {

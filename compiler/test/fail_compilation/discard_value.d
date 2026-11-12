@@ -32,8 +32,8 @@ void main()
     true && v == 0;
     true || v == 0;
     "" != "";
-    "" == ""; // https://issues.dlang.org/show_bug.cgi?id=24359
-    fun().i == 4; // https://issues.dlang.org/show_bug.cgi?id=12390
+    "" == ""; // upstream issue 24359
+    fun().i == 4; // upstream issue 12390
 
     int[] slice = [0, 1];
     slice == slice[0 .. 0];
@@ -44,7 +44,7 @@ class C
     bool opEquals(ref const S) pure nothrow const;
 }
 
-// https://github.com/dlang/dmd/issues/19239
+// upstream dmd issue 19239
 void test()
 {
     S s;

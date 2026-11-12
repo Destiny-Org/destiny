@@ -1,7 +1,7 @@
 /* REQUIRED_ARGS: -preview=dip1000
  */
 
-// Related to: https://github.com/dlang/dmd/pull/8504
+// Related to: upstream dmd pull request 8504
 
 @safe:
 
@@ -22,7 +22,7 @@ void foo(scope int* pf)
     boop(rf, pf);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22801
+// upstream issue 22801
 struct Wrapper
 {
     int* ptr;
@@ -45,7 +45,7 @@ void assign(ref scope int* x, return ref int y) @safe
     x = &y;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22967
+// upstream issue 22967
 // inference of `return ref` when assigned to first parameter
 struct WrapperT()
 {

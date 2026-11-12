@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22884
+// upstream issue 22884
 
 int printf(const char*, ...);
 typedef void (*funcptr)(void);

@@ -7,7 +7,7 @@ fail_compilation/fail20461.d(106): Error: assigning reference to local variable 
 
 #line 100
 
-// https://issues.dlang.org/show_bug.cgi?id=20461
+// upstream issue 20461
 
 void test() @safe
 {

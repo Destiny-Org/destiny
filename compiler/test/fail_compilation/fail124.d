@@ -25,7 +25,7 @@ void main()
     cc.f();
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20830
+// upstream issue 20830
 interface T { }
 
 class D : T, T, T { }

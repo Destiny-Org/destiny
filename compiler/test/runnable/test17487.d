@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/17487
+// upstream dmd issue 17487
 import core.stdc.stdio;
 
 // version = PRINT;

@@ -8,7 +8,7 @@ fail_compilation/test3818.d(110): Error: declaration expected, not `{`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=3818
+// upstream issue 3818
 
 #line 100
 

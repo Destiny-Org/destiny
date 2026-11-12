@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=17421
+// upstream issue 17421
 
 import core.stdc.stdarg;
 

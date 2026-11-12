@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=402
+// upstream issue 402
 // compiler crash with mixin and forward reference
 /*
 TEST_OUTPUT:

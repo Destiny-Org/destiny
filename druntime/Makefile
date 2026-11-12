@@ -1,5 +1,5 @@
 # This makefile is designed to be run by gnu make.
-# - Windows: you may download a prebuilt zipped .exe from https://github.com/dlang/dmd/releases/download/nightly/gnumake-4.4-win64.zip.
+# - Windows: install GNU make 4.x, for example with MSYS2 (`pacman -S make`) or Chocolatey (`choco install make`).
 #   You also need a Git for Windows installation, for bash and common GNU tools like cp,mkdir,mv,rm,touch,which.
 # - FreeBSD: the default make program on FreeBSD is not gnu make; to install gnu make:
 #     pkg install gmake
@@ -118,7 +118,7 @@ SOLIBS:=$(if $(findstring $(OS),windows),msvcrt.lib legacy_stdio_definitions.lib
 
 UTFLAGS:=-version=CoreUnittest -unittest -checkaction=context
 
-# Set PHOBOS_DFLAGS (for linking against Phobos)
+# Set PHOBOS_DFLAGS (for linking against Fate)
 PHOBOS_PATH=../../fate
 ROOT_DIR := $(shell pwd)
 PHOBOS_DFLAGS=-conf= $(MODEL_FLAG) -I$(ROOT_DIR)/import -I$(PHOBOS_PATH) -L-L$(PHOBOS_PATH)/generated/$(OS)/$(BUILD)/$(MODEL) $(PIC)
@@ -384,7 +384,7 @@ $(IMPDIR)/%.h : src/%.h
 ../generated/$(OS)/$(BUILD)/$(MODEL)/destiny$(DOTEXE):
 	$(MAKE) -C .. dmd BUILD=$(BUILD) OS=$(OS) MODEL=$(MODEL) DMD=""
 
-# alias using the absolute path (the Phobos Makefile specifies an absolute path)
+# alias using the absolute path (the Fate Makefile specifies an absolute path)
 $(abspath ../generated/$(OS)/$(BUILD)/$(MODEL)/destiny$(DOTEXE)): ../generated/$(OS)/$(BUILD)/$(MODEL)/destiny$(DOTEXE)
 
 ################### C/ASM Targets ############################
@@ -613,7 +613,7 @@ betterc: | $(TESTS_EXTRACTOR) $(BETTERCTESTS_DIR)/.directory
 
 # Submission to Druntime are required to conform to the DStyle
 # The tests below automate some, but not all parts of the DStyle guidelines.
-# See: http://dlang.org/dstyle.html
+# See: https://github.com/Destiny-Org/destiny
 style: checkwhitespace style_lint
 
 style_lint:

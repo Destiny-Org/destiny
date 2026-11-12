@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23089
+// upstream issue 23089
 extern(System) int i23089;
 
 extern(System):

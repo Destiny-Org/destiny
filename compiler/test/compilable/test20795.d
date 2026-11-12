@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20795
+// upstream issue 20795
 
 // REQUIRED_ARGS: -preview=dip1000
 

@@ -15,12 +15,12 @@
  * - $(LINK2 https://github.com/ldc-developers/ldc, LDC repository)
  * - $(LINK2 https://github.com/D-Programming-GDC/gcc, GDC repository)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/target.d, _target.d)
- * Documentation:  https://dlang.org/phobos/dmd_target.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/target.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/target.d, _target.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/target.d
+ * 
  */
 
 module dmd.target;
@@ -97,7 +97,7 @@ ubyte defaultTargetOSMajor() @safe
 /**
  * Add default `version` identifier for dmd, and set the
  * target platform in `params`.
- * https://dlang.org/spec/version.html#predefined-versions
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/version.dd
  *
  * Needs to be run after all arguments parsing (command line, DFLAGS environment
  * variable and config file) in order to add final flags (such as `X86_64` or
@@ -1234,7 +1234,7 @@ extern (C++) struct Target
             if (os == Target.OS.Windows)
             {
                 // Win64 special case: by-value for slices and delegates due to
-                // high number of usages in druntime/Phobos (compiled without
+                // high number of usages in druntime/Fate (compiled without
                 // -preview=in but supposed to link against -preview=in code)
                 const ty = t.toBasetype().ty;
                 if (ty == TY.Tarray || ty == TY.Tdelegate)
@@ -1336,7 +1336,7 @@ extern (C++) struct Target
      */
     extern (C++) bool isCalleeDestroyingArgs(TypeFunction tf) @safe
     {
-        /* BUG preventing this from working: https://github.com/dlang/dmd/pull/16145
+        /* BUG preventing this from working: upstream dmd pull request 16145
         if (tf.linkage == LINK.d)
             return false;
         */

@@ -120,7 +120,7 @@ if (!__traits(isScalar, T1) && !__traits(isScalar, T2))
         else
         {
             // TODO: fix this legacy bad behavior, see
-            // https://issues.dlang.org/show_bug.cgi?id=17244
+            // upstream issue 17244
             static assert(is(U1 == U2), "Internal error.");
             import core.stdc.string : memcmp;
             auto c = (() @trusted => memcmp(&at(s1, u), &at(s2, u), U1.sizeof))();
@@ -223,7 +223,7 @@ if (!__traits(isScalar, T1) && !__traits(isScalar, T2))
 // arrays of arrays with mixed modifiers
 @safe unittest
 {
-    // https://issues.dlang.org/show_bug.cgi?id=17876
+    // upstream issue 17876
     bool less1(immutable size_t[][] a, size_t[][] b) { return a < b; }
     bool less2(const void[][] a, void[][] b) { return a < b; }
     bool less3(inout size_t[][] a, size_t[][] b) { return a < b; }
@@ -241,7 +241,7 @@ if (!__traits(isScalar, T1) && !__traits(isScalar, T2))
 // custom aggregate types
 @safe unittest
 {
-    // https://issues.dlang.org/show_bug.cgi?id=24044
+    // upstream issue 24044
     // Support float opCmp(...) with array
     static struct F
     {

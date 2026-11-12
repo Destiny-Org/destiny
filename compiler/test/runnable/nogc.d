@@ -15,7 +15,7 @@ extern(C) int printf(const char*, ...);
 }
 
 /***********************/
-// https://issues.dlang.org/show_bug.cgi?id=3032
+// upstream issue 3032
 
 void test3032() @nogc
 {
@@ -29,7 +29,7 @@ void test3032() @nogc
 }
 
 /***********************/
-// https://issues.dlang.org/show_bug.cgi?id=12642
+// upstream issue 12642
 
 __gshared int[1] data12642;
 
@@ -50,7 +50,7 @@ void test12642() @nogc
 }
 
 /***********************/
-// https://issues.dlang.org/show_bug.cgi?id=12936
+// upstream issue 12936
 
 void test12936() @nogc
 {
@@ -81,7 +81,7 @@ void testIndexedArrayLiteral() @nogc
 
 void testArrayLiteralLvalue()
 {
-    // https://github.com/dlang/dmd/pull/16784
+    // upstream dmd pull request 16784
     // Test that this array literal is *not* put on the stack because
     // it gets its address taken
     static int* getPtr(int i) => &[1, 2, 3][i];

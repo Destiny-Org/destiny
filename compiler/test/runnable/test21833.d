@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -O -inline
-// https://issues.dlang.org/show_bug.cgi?id=20855
+// upstream issue 20855
 
 void testit()
 {

@@ -2,7 +2,7 @@
  *
  * Not optimized for speed.
  *
- * Copyright: Copyright D Language Foundation 2022.
+ * Copyright: Copyright D Language Foundation 2022; Copyright (C) 2026 Destiny contributors.
  * License:   $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Authors:   Walter Bright
  * Source:    $(DRUNTIMESRC core/_int128.d)

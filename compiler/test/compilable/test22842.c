@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22842
+// upstream issue 22842
 
 /*******************************/
 
@@ -51,7 +51,7 @@ int low2()
 
 /***********************************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22876
+// upstream issue 22876
 
 int mint1()
 {

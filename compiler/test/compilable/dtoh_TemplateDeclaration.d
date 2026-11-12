@@ -222,7 +222,7 @@ extern (C++) struct B
     A!int x;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20604
+// upstream issue 20604
 extern(C++)
 {
     struct Foo (T)

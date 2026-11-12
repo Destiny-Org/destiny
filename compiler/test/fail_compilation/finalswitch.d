@@ -25,7 +25,7 @@ fail_compilation/finalswitch.d(92):        ... (4 more, -v to show) ...
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=4517
+// upstream issue 4517
 enum E : ushort
 {
     A, B
@@ -41,7 +41,7 @@ void test4517()
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=9368
+// upstream issue 9368
 enum E1
 {
     a,
@@ -75,7 +75,7 @@ void test286()
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22038
+// upstream issue 22038
 
 enum H {
     m1, m2, m3, m4, m5,

@@ -194,7 +194,7 @@ void test9()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20349
+// upstream issue 20349
 
 double f20349(double a, int b)
 {
@@ -208,7 +208,7 @@ void test20349()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20963
+// upstream issue 20963
 
 void test20963()
 {

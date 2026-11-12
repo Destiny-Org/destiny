@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22342
+// upstream issue 22342
 
 int printf(const char *, ...);
 int counter = 0;

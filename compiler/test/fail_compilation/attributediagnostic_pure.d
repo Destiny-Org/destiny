@@ -7,7 +7,7 @@ fail_compilation/attributediagnostic_pure.d(14):        and executing an `asm` s
 */
 
 // Issue 17374 - Improve inferred attribute error message
-// https://issues.dlang.org/show_bug.cgi?id=17374
+// upstream issue 17374
 
 auto gc()
 {

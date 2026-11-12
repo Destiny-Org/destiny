@@ -1,12 +1,12 @@
 /**
  * Do mangling for C++ linkage for Digital Mars C++ and Microsoft Visual C++.
  *
- * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors: Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/mangle/cppwin.d, _cppmanglewin.d)
- * Documentation:  https://dlang.org/phobos/dmd_cppmanglewin.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/mangle/cppwin.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mangle/cppwin.d, _cppmanglewin.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.mangle.cppwin;
@@ -502,7 +502,7 @@ extern(D):
     {
         // <static variable mangle> ::= ? <qualified name> <protection flag> <const/volatile flag> <type>
         assert(d);
-        // fake mangling for fields to fix https://issues.dlang.org/show_bug.cgi?id=16525
+        // fake mangling for fields to fix upstream issue 16525
         if (!(d.storage_class & (STC.extern_ | STC.field | STC.gshared)))
         {
             eSink.error(d.loc, "%s `%s` internal compiler error: C++ static non-__gshared non-extern variables not supported", d.kind, d.toPrettyChars);

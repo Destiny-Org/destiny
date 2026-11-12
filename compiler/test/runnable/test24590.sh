@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# https://issues.dlang.org/show_bug.cgi?id=24590
+# upstream issue 24590
 # Make sure module destructors aren't run if druntime initialization failed,
 # e.g., due to a throwing module constructor.
 

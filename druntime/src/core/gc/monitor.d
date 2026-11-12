@@ -1,7 +1,7 @@
 /**
 * Contains hooks to monitor garbage collector allocations and deallocations.
 *
-* Copyright: Copyright D Language Foundation 2026.
+* Copyright: Copyright D Language Foundation 2026; Copyright (C) 2026 Destiny contributors.
 * License:   $(HTTP www.boost.org/LICENSE_1_0.txt, Boost License 1.0).
 * Authors:   Mathias Lang
 */

@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24117
+// upstream dmd issue 24117
 
 bool f(int x) { return cast(ushort)(x << 31) != 0; }
 

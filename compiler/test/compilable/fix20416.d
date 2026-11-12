@@ -3,7 +3,7 @@
 
 /********************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=20416
+// upstream issue 20416
 
 alias P = int*;
 
@@ -18,7 +18,7 @@ P bar()
 
 /********************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=20416
+// upstream issue 20416
 
 
 struct S

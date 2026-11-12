@@ -1,6 +1,6 @@
 @"hi" @42 @int @null module user_defined_attributes;
 
-// https://github.com/dlang/dmd/issues/23271
+// upstream dmd issue 23271
 static assert(__traits(getAttributes, user_defined_attributes).length == 4);
 static assert(__traits(getAttributes, user_defined_attributes)[0] == "hi");
 static assert(__traits(getAttributes, user_defined_attributes)[1] == 42);

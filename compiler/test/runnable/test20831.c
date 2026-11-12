@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20831
+// upstream dmd issue 20831
 #include "assert.h"
 
 int* p;

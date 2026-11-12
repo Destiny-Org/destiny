@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23854
+// upstream dmd issue 23854
 
 void main()
 {

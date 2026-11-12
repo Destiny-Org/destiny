@@ -31,7 +31,7 @@ fail_compilation/test9701.d(62): Error: found `static` when expecting `identifie
 
 // This test exists to verify that parsing of enum member attributes rejects invalid attributes
 
-// https://issues.dlang.org/show_bug.cgi?id=9701
+// upstream issue 9701
 
 enum Enum
 {

@@ -5,7 +5,7 @@ fail_compilation/fail22138.d(107): Error: returning scope variable `e` is not al
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=22138
+// upstream issue 22138
 
 #line 100
 

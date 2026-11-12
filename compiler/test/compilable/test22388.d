@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22388
+// upstream issue 22388
 
 void setTimer(void delegate()) @system;
 void setTimer(void delegate() @safe) @safe;

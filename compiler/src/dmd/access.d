@@ -1,14 +1,14 @@
 /**
  * Enforce visibility constraints such as `public` and `private`.
  *
- * Specification: $(LINK2 https://dlang.org/spec/attribute.html#visibility_attributes, Visibility Attributes)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/attribute.dd, Visibility Attributes)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/access.d, _access.d)
- * Documentation:  https://dlang.org/phobos/dmd_access.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/access.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/access.d, _access.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/access.d
+ * 
  */
 
 module dmd.access;
@@ -221,7 +221,7 @@ bool checkAccess(Loc loc, Scope* sc, Expression e, Dsymbol d)
  *
  * Because a global symbol table tree is used for imported packages/modules,
  * access to them needs to be checked based on the imports in the scope chain
- * (see https://issues.dlang.org/show_bug.cgi?id=313).
+ * (see upstream issue 313).
  *
  */
 bool checkAccess(Scope* sc, Package p)

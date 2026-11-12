@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug?id=23837
+// upstream issue 23837
 
 struct stbrp_context
 {

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?ide=23936
+// upstream issue 23936
 
 #pragma pack(push,16)
 typedef struct AAATAG {

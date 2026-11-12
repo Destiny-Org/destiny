@@ -7,8 +7,8 @@ Usage:
 
 See `--help` for targets.
 
-detab, tolf, install targets - require the D Language Tools (detab.exe, tolf.exe)
-  https://github.com/dlang/tools.
+detab, tolf, install targets - require the Destiny Language Tools (detab.exe, tolf.exe)
+  https://github.com/Destiny-Org/tools.
 
 zip target - requires Info-ZIP or equivalent (zip32.exe)
   http://www.info-zip.org/Zip.html#Downloads
@@ -132,7 +132,7 @@ Command-line parameters
         return;
     }
 
-    // workaround issue https://issues.dlang.org/show_bug.cgi?id=13727
+    // workaround upstream issue 13727
     version (CRuntime_DigitalMars)
     {
         pragma(msg, "Warning: Parallel builds disabled because of Issue 13727!");
@@ -612,7 +612,7 @@ alias clean = makeRule!((builder, rule) => builder
 
 alias toolsRepo = makeRule!((builder, rule) => builder
     .target(env["TOOLS_DIR"])
-    .msg("(GIT) DLANG/TOOLS")
+    .msg("(GIT) TOOLS")
     .condition(() => !exists(rule.target))
     .commandFunction(delegate() {
         auto toolsDir = env["TOOLS_DIR"];
@@ -650,11 +650,9 @@ alias style = makeRule!((builder, rule)
         .target(dscannerDir)
         .condition(() => !exists(dscannerDir))
         .command([
-            // FIXME: Omitted --shallow-submodules because it requires a more recent
-            //        git version which is not available on buildkite
-            env["GIT"], "clone", "--depth=1", "--recurse-submodules",
-            "--branch=v0.14.0",
-            "https://github.com/dlang-community/D-Scanner", dscannerDir
+            // Destiny-Org/d-scanner bundles its dependencies, so no submodules are needed
+            env["GIT"], "clone", "--depth=1",
+            env["GIT_HOME"] ~ "/d-scanner", dscannerDir
         ])
     );
 
@@ -1045,7 +1043,7 @@ void parseEnvironment()
         }
         version (X86)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=20466
+            // upstream issue 20466
             static if (__VERSION__ < 2090)
             {
                 pragma(msg, "Warning: PIC will be off by default for this build of DMD because of Issue 20466!");
@@ -1061,7 +1059,7 @@ void parseEnvironment()
     }
 
     env.setDefault("GIT", "git");
-    env.setDefault("GIT_HOME", "https://github.com/dlang");
+    env.setDefault("GIT_HOME", "https://github.com/Destiny-Org");
     env.setDefault("SYSCONFDIR", "/etc");
     env.setDefault("TMP", tempDir);
     env.setDefault("RES", srcDir.buildPath("dmd", "res"));
@@ -1086,7 +1084,7 @@ void parseEnvironment()
     auto generated = env["GENERATED"] = dmdRepo.buildPath("generated");
     auto g = env["G"] = generated.buildPath(os, build, model);
     mkdirRecurse(g);
-    env.setDefault("TOOLS_DIR", compilerDir.dirName.buildPath("tools"));
+    env.setDefault("TOOLS_DIR", dmdRepo.dirName.buildPath("tools"));
 
     auto hostDmdDef = env.getDefault("HOST_DMD", null);
     if (hostDmdDef.length == 0)

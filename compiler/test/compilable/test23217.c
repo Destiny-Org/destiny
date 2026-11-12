@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23217
+// upstream issue 23217
 
 typedef struct {
  int a,b,c;

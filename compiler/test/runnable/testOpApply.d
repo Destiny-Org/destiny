@@ -1,7 +1,7 @@
 /* PERMUTE_ARGS: -preview=dip1000
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=15624
+// upstream issue 15624
 
 struct Foo {
         int x;
@@ -141,7 +141,7 @@ void testInverseAttributes()
     safe();
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20907
+// upstream issue 20907
 Lockstep!() lockstep()
 {
     return Lockstep!()();

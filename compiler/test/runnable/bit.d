@@ -96,7 +96,7 @@ void test3()
 }
 
 /********************************************/
-// https://github.com/dlang/dmd/issues/18247
+// upstream dmd issue 18247
 
 struct S4
 {
@@ -111,7 +111,7 @@ void test4()
 }
 
 /********************************************/
-// https://github.com/dlang/dmd/issues/24114
+// upstream dmd issue 24114
 
 struct S5
 {

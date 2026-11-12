@@ -534,7 +534,7 @@ unittest
 
 unittest
 {
-    // https://issues.dlang.org/show_bug.cgi?id=13073: original code uses int subtraction which is susceptible to
+    // upstream issue 13073: original code uses int subtraction which is susceptible to
     // integer overflow, causing the following case to fail.
     int[] a = [int.max, int.max];
     int[] b = [int.min, int.min];
@@ -544,7 +544,7 @@ unittest
 
 unittest
 {
-    // Original test case from https://issues.dlang.org/show_bug.cgi?id=13073
+    // Original test case from upstream issue 13073
     uint x = 0x22_DF_FF_FF;
     uint y = 0xA2_DF_FF_FF;
     assert(!(x < y && y < x));

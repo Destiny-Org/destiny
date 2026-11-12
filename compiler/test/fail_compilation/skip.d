@@ -8,7 +8,7 @@ fail_compilation/skip.d(45): Error: `switch` skips declaration of variable `skip
 fail_compilation/skip.d(47):        declared here
 ---
  */
-// https://issues.dlang.org/show_bug.cgi?id=10524
+// upstream issue 10524
 
 struct S
 {
@@ -37,7 +37,7 @@ void test10524()
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=14532
+// upstream issue 14532
 
 void test14532()
 {

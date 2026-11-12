@@ -1,7 +1,7 @@
 // PERMUTE_ARGS:
 // EXTRA_SOURCES: imports/test61a.d
 
-// https://issues.dlang.org/show_bug.cgi?id=6556
+// upstream issue 6556
 
 debug=BUG;
 

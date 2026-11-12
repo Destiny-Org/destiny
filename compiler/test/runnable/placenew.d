@@ -107,7 +107,7 @@ void test7()
 }
 
 /*************************************************/
-// https://github.com/dlang/dmd/issues/21203
+// upstream dmd issue 21203
 
 struct Y8
 {
@@ -133,7 +133,7 @@ void test8()
 }
 
 /*************************************************/
-// https://github.com/dlang/dmd/issues/21549
+// upstream dmd issue 21549
 
 struct Test9
 {

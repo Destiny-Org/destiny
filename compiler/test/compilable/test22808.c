@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22808
+// upstream issue 22808
 
 typedef int(*cmp)(int, int);
 

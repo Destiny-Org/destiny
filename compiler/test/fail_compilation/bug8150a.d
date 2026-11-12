@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=8150: nothrow check doesn't work for constructor
+// upstream issue 8150: nothrow check doesn't work for constructor
 /*
 TEST_OUTPUT:
 ---

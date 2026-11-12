@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21153
+// upstream dmd issue 21153
 alias AliasSeq(TList...) = TList;
 class DataClass;
 void reduce(DataClass[] r)

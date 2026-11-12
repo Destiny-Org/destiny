@@ -286,7 +286,7 @@ void test12()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9178
+// upstream issue 9178
 
 void test9178()
 {
@@ -297,7 +297,7 @@ void test9178()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9652
+// upstream issue 9652
 
 struct Bug9652
 {
@@ -353,7 +353,7 @@ struct Bug9652
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9741
+// upstream issue 9741
 
 import imports.a9741;
 
@@ -364,7 +364,7 @@ alias X9741 = ShowAttributes!(B9741);
 @A9741 struct B9741 {}
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12160
+// upstream issue 12160
 
 auto before12160(alias Hook)(string) { return 0; }
 
@@ -384,7 +384,7 @@ void test12160()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10208
+// upstream issue 10208
 
 @( 10)                enum int x10208_01 =  100;
 @( 20)                     int x10208_02;
@@ -416,8 +416,8 @@ static assert(__traits(getAttributes, x10208_13)[0] == 130); // Error -> OK
 static assert(__traits(getAttributes, x10208_14)[0] == 140); // Error -> OK
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11677
-// https://issues.dlang.org/show_bug.cgi?id=11678
+// upstream issue 11677
+// upstream issue 11678
 
 bool test_uda(alias func)() @safe
 {
@@ -446,7 +446,7 @@ static assert(test_uda!func11678b());
 static assert(test_uda!func11678c());
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11678
+// upstream issue 11678
 
 class C11678
 {
@@ -461,7 +461,7 @@ static ~this() @(10) @(20) {}
 shared static ~this() @(10) @(20) {}
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11679
+// upstream issue 11679
 
 void test11679()
 {
@@ -470,7 +470,7 @@ void test11679()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11680
+// upstream issue 11680
 
 @(10) gvar11680 = 1;  // OK <- NG
 @(10) gfun11680() {}  // OK <- NG
@@ -482,7 +482,7 @@ void test11680()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11844
+// upstream issue 11844
 
 auto make_encode11844(T, string name)()
 {
@@ -688,7 +688,7 @@ void test20()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20831
+// upstream issue 20831
 
 void foo20831(int f, float, @("test") string s = "test") {}
 
@@ -697,14 +697,14 @@ static if(is(typeof(foo20831) Params20831 == __parameters))
 
 /************************************************/
 
-// https://github.com/dlang/dmd/issues/19788
+// upstream dmd issue 19788
 @10 void f(@20 int x)
 {
     static assert([__traits(getAttributes, x)] == [20]);
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15804
+// upstream issue 15804
 
 template test15804()
 {
@@ -750,7 +750,7 @@ template test15804()
 alias a15804 = test15804!();
 
 /************************************************/
-// https://github.com/dlang/dmd/issues/22282
+// upstream dmd issue 22282
 
 struct S22282
 {

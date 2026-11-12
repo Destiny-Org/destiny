@@ -6,7 +6,7 @@ fail_compilation/fail117.d(36): Error: expression `foo.mixin MGettor!(b) getb;` 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=420
+// upstream issue 420
 // mixin make dmd break
 //import std.stdio;
 

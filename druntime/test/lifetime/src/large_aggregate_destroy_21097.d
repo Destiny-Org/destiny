@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21097
+// upstream issue 21097
 
 // The crucial part of the test cases is testing `destroy`. At the same time, we test
 // `core.internal.lifetime.emplaceInitializer` (which is currently called by `destroy`).

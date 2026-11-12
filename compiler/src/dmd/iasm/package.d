@@ -1,14 +1,14 @@
 /**
- * Inline assembler for the D programming language compiler.
+ * Inline assembler for the Destiny programming language compiler.
  *
- * Specification: $(LINK2 https://dlang.org/spec/iasm.html, Inline Assembler)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd, Inline Assembler)
  *
- *              Copyright (C) 2018-2026 by The D Language Foundation, All Rights Reserved
+ *              Copyright (C) 2018-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/iasm.d, _iasm.d)
- * Documentation:  https://dlang.org/phobos/dmd_iasm.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/iasm.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/iasm.d, _iasm.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/iasm/package.d
+ * 
  */
 
 module dmd.iasm;

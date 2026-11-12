@@ -6,7 +6,7 @@ fail_compilation/issue22394.d(15):        instantiated from here: `__lambda_L11_
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22394
+// upstream issue 22394
 
 alias l = a => a + 1;
 

@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=22976
+/* upstream issue 22976
  */
 
 struct {

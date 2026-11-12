@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -o-
-// https://issues.dlang.org/show_bug.cgi?id=24055
+// upstream issue 24055
 // is(x == __parameters) does not work on function pointer/delegate types
 
 void function(int) fp;

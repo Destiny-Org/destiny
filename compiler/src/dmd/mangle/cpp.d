@@ -4,12 +4,12 @@
  * This is the POSIX side of the implementation.
  * It exports two functions to C++, `toCppMangleItanium` and `cppTypeInfoMangleItanium`.
  *
- * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors: Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/mangle/cpp.d, _cppmangle.d)
- * Documentation:  https://dlang.org/phobos/dmd_cppmangle.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/mangle/cpp.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mangle/cpp.d, _cppmangle.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  *
  * References:
  *  Follows Itanium C++ ABI 1.86 section 5.1
@@ -245,7 +245,7 @@ private final class CppMangleVisitor : Visitor
     {
         auto tf = this.context.res.asFuncDecl().type.isTypeFunction();
         Type rt = preSemantic.nextOf();
-        // https://issues.dlang.org/show_bug.cgi?id=22739
+        // upstream issue 22739
         // auto return type means that rt is null.
         // if so, just pick up the type from the instance
         if (!rt)
@@ -481,7 +481,7 @@ private final class CppMangleVisitor : Visitor
                 {
                     auto parent = this.context.res.asType().toDsymbol(null).parent;
                     parentti = parent.isTemplateInstance();
-                    // https://issues.dlang.org/show_bug.cgi?id=22760
+                    // upstream issue 22760
                     // The template instance may sometimes have the form
                     // S1!int.S1, therefore the above instruction might yield null
                     if (parentti is null && parent.parent)
@@ -682,7 +682,7 @@ private final class CppMangleVisitor : Visitor
 
         bool needsTa = false;
 
-        // https://issues.dlang.org/show_bug.cgi?id=20413
+        // upstream issue 20413
         // N..E is not needed when substituting members of the std namespace.
         // This is observed in the GCC and Clang implementations.
         // The Itanium specification is not clear enough on this specific case.
@@ -871,7 +871,7 @@ private final class CppMangleVisitor : Visitor
         if (!isStd(si))
             /* Do this after the source_name() call to keep components[]
              * in the right order.
-             * https://issues.dlang.org/show_bug.cgi?id=17947
+             * upstream issue 17947
              */
             append(si);
     }
@@ -1046,7 +1046,7 @@ private final class CppMangleVisitor : Visitor
      */
     void mangle_variable(VarDeclaration d, bool isNested)
     {
-        // fake mangling for fields to fix https://issues.dlang.org/show_bug.cgi?id=16525
+        // fake mangling for fields to fix upstream issue 16525
         if (!(d.storage_class & (STC.extern_ | STC.field | STC.gshared)))
         {
             .error(d.loc, "%s `%s` internal compiler error: C++ static non-`__gshared` non-`extern` variables not supported", d.kind, d.toPrettyChars);
@@ -1499,7 +1499,7 @@ private final class CppMangleVisitor : Visitor
             Dsymbol p = s.toParent();
             if (p && p.isTemplateInstance())
             {
-                 /* https://issues.dlang.org/show_bug.cgi?id=17947
+                 /* upstream issue 17947
                   * Substitute the template instance symbol, not the struct/enum symbol
                   */
                 if (substitute(p))
@@ -1541,7 +1541,7 @@ private final class CppMangleVisitor : Visitor
             Dsymbol p = s.toParent();
             if (p && p.isTemplateInstance())
             {
-                 /* https://issues.dlang.org/show_bug.cgi?id=17947
+                 /* upstream issue 17947
                   * Substitute the template instance symbol, not the class symbol
                   */
                 if (substitute(p))
@@ -1773,7 +1773,7 @@ extern(C++):
          */
         if (t.isImaginary() || t.isComplex())
         {
-            // https://issues.dlang.org/show_bug.cgi?id=22806
+            // upstream issue 22806
             // Complex and imaginary types are represented in the same way as
             // arrays or vectors in C++.  First substitute the outer type, then
             // write out the mangle string of the underlying type.
@@ -2342,7 +2342,7 @@ private extern(C++) final class ComponentVisitor : Visitor
      * because it messes with templates.
      *
      * See_Also:
-     *  https://issues.dlang.org/show_bug.cgi?id=18922
+     *  upstream issue 18922
      *
      * Params:
      *   ns = C++ namespace to do substitution for
@@ -2435,7 +2435,7 @@ private bool isNamespaceEqual (CPPNamespaceDeclaration a, CPPNamespaceDeclaratio
  * This is why why need to keep a list of tags that were written,
  * and insert the missing one after parameter mangling has been written.
  * Since there's a lot of operations that are not easily doable in DMD
- * (since we can't use Phobos), this special container is implemented.
+ * (since we can't use Fate), this special container is implemented.
  */
 private struct ABITagContainer
 {

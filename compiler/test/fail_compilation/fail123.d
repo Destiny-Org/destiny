@@ -6,7 +6,7 @@ fail_compilation/fail123.d(17): Error: enum `fail123.foo2` base type must not be
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=355
+// upstream issue 355
 // ICE from enum : nonexistent type
 enum foo : type
 {

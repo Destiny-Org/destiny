@@ -18,7 +18,7 @@ fail_compilation\noreturn.d(72): Error: Accessed expression of type `noreturn`
 fail_compilation\noreturn.d(80):        called from here: `casting(2)`
 fail_compilation/noreturn.d(120): Error: uncaught CTFE exception `object.Exception("")`
 ---
-https://github.com/dlang/DIPs/blob/master/DIPs/accepted/DIP1034.md
+DIP1034
 */
 
 alias noreturn = typeof(*null);
@@ -121,7 +121,7 @@ enum throwEnum = throw new Exception("");
 
 
 /*
-https://issues.dlang.org/show_bug.cgi?id=23063
+upstream issue 23063
 
 TEST_OUTPUT:
 ---

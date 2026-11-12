@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23002
+/* upstream issue 23002
  */
 
 typedef int x;

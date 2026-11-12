@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23083
+// upstream issue 23083
 int calls = 0;
 
 int[2] f()

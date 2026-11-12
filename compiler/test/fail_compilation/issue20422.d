@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20422
+// upstream issue 20422
 
 /*
 REQUIRED_ARGS: -m32

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=24338
+// upstream issue 24338
 
 enum Foo: char[4]
 {

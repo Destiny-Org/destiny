@@ -1,14 +1,14 @@
 /**
  * Defines AST nodes for statements.
  *
- * Specification: $(LINK2 https://dlang.org/spec/statement.html, Statements)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd, Statements)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/statement.d, _statement.d)
- * Documentation:  https://dlang.org/phobos/dmd_statement.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/statement.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/statement.d, _statement.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/statement.d
+ * 
  */
 
 module dmd.statement;
@@ -36,7 +36,7 @@ import dmd.visitor;
 import dmd.visitor.postorder;
 
 /***********************************************************
- * Specification: https://dlang.org/spec/statement.html
+ * Specification: https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) abstract class Statement : ASTNode
 {
@@ -371,7 +371,7 @@ extern (C++) final class PeelStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#ExpressionStatement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) class ExpStatement : Statement
 {
@@ -440,7 +440,7 @@ extern (C++) final class DtorExpStatement : ExpStatement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#mixin-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 // Note: was called CompileStatement
 extern (C++) final class MixinStatement : Statement
@@ -708,7 +708,7 @@ extern (C++) final class ForwardingStatement : Statement
 
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#while-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class WhileStatement : Statement
 {
@@ -751,7 +751,7 @@ extern (C++) final class WhileStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#do-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class DoStatement : Statement
 {
@@ -792,7 +792,7 @@ extern (C++) final class DoStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#for-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class ForStatement : Statement
 {
@@ -850,7 +850,7 @@ extern (C++) final class ForStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#foreach-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class ForeachStatement : Statement
 {
@@ -904,7 +904,7 @@ extern (C++) final class ForeachStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#foreach-range-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class ForeachRangeStatement : Statement
 {
@@ -950,7 +950,7 @@ extern (C++) final class ForeachRangeStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#if-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class IfStatement : Statement
 {
@@ -997,7 +997,7 @@ extern (C++) final class IfStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/version.html#ConditionalStatement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/version.dd
  */
 extern (C++) final class ConditionalStatement : Statement
 {
@@ -1026,7 +1026,7 @@ extern (C++) final class ConditionalStatement : Statement
 
 
 /***********************************************************
- * https://dlang.org/spec/version.html#StaticForeachStatement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/version.dd
  * Static foreach statements, like:
  *      void main()
  *      {
@@ -1058,7 +1058,7 @@ extern (C++) final class StaticForeachStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#pragma-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class PragmaStatement : Statement
 {
@@ -1086,7 +1086,7 @@ extern (C++) final class PragmaStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/version.html#StaticAssert
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/version.dd
  */
 extern (C++) final class StaticAssertStatement : Statement
 {
@@ -1110,14 +1110,14 @@ extern (C++) final class StaticAssertStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#switch-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class SwitchStatement : Statement
 {
     Parameter param;
     Expression condition;           /// switch(condition)
     Statement _body;                ///
-    bool isFinal;                   /// https://dlang.org/spec/statement.html#final-switch-statement
+    bool isFinal;                   /// https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
     Loc endloc;
 
     bool hasDefault;                /// true if has default statement
@@ -1161,7 +1161,7 @@ extern (C++) final class SwitchStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#CaseStatement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class CaseStatement : Statement
 {
@@ -1191,7 +1191,7 @@ extern (C++) final class CaseStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#CaseRangeStatement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class CaseRangeStatement : Statement
 {
@@ -1219,7 +1219,7 @@ extern (C++) final class CaseRangeStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#DefaultStatement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class DefaultStatement : Statement
 {
@@ -1245,7 +1245,7 @@ extern (C++) final class DefaultStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#GotoStatement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class GotoDefaultStatement : Statement
 {
@@ -1268,7 +1268,7 @@ extern (C++) final class GotoDefaultStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#GotoStatement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class GotoCaseStatement : Statement
 {
@@ -1317,7 +1317,7 @@ extern (C++) final class SwitchErrorStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#return-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class ReturnStatement : Statement
 {
@@ -1349,7 +1349,7 @@ extern (C++) final class ReturnStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#break-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class BreakStatement : Statement
 {
@@ -1373,7 +1373,7 @@ extern (C++) final class BreakStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#continue-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class ContinueStatement : Statement
 {
@@ -1397,7 +1397,7 @@ extern (C++) final class ContinueStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#SynchronizedStatement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class SynchronizedStatement : Statement
 {
@@ -1433,7 +1433,7 @@ extern (C++) final class SynchronizedStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#with-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class WithStatement : Statement
 {
@@ -1468,7 +1468,7 @@ extern (C++) final class WithStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#try-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class TryCatchStatement : Statement
 {
@@ -1507,7 +1507,7 @@ extern (C++) final class TryCatchStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#Catch
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class Catch : RootObject
 {
@@ -1540,7 +1540,7 @@ extern (C++) final class Catch : RootObject
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#try-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class TryFinallyStatement : Statement
 {
@@ -1587,7 +1587,7 @@ extern (C++) final class TryFinallyStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#scope-guard-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class ScopeGuardStatement : Statement
 {
@@ -1613,7 +1613,7 @@ extern (C++) final class ScopeGuardStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#throw-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class ThrowStatement : Statement
 {
@@ -1665,7 +1665,7 @@ extern (C++) final class DebugStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#goto-statement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class GotoStatement : Statement
 {
@@ -1695,7 +1695,7 @@ extern (C++) final class GotoStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#LabeledStatement
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) final class LabelStatement : Statement
 {
@@ -1765,7 +1765,7 @@ extern (C++) final class LabelDsymbol : Dsymbol
 }
 
 /***********************************************************
- * https://dlang.org/spec/statement.html#asm
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
  */
 extern (C++) class AsmStatement : Statement
 {
@@ -1803,7 +1803,7 @@ extern (C++) class AsmStatement : Statement
 }
 
 /***********************************************************
- * https://dlang.org/spec/iasm.html
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd
  */
 extern (C++) final class InlineAsmStatement : AsmStatement
 {
@@ -1888,7 +1888,7 @@ extern (C++) final class CompoundAsmStatement : CompoundStatement
 }
 
 /***********************************************************
- * https://dlang.org/spec/module.html#ImportDeclaration
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
  */
 extern (C++) final class ImportStatement : Statement
 {

@@ -1,5 +1,5 @@
 
-// https://issues.dlang.org/show_bug.cgi?id=23030
+// upstream issue 23030
 
 typedef struct {
     int i;

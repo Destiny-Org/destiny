@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16574
+// upstream issue 16574
 template Recursive(T) if (is(T == class))
 {
     // fails because T is still forward referenced

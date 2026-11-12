@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24020
+// upstream dmd issue 24020
 
 /*
 TEST_OUTPUT:
@@ -26,7 +26,7 @@ string g()
     return s;
 }
 
-// https://github.com/dlang/dmd/issues/24153
+// upstream dmd issue 24153
 string h()
 {
     string r;

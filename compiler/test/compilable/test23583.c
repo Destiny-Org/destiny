@@ -1,8 +1,8 @@
 
-// https://issues.dlang.org/show_bug.cgi?id=23580
-// https://issues.dlang.org/show_bug.cgi?id=23581
-// https://issues.dlang.org/show_bug.cgi?id=23582
-// https://issues.dlang.org/show_bug.cgi?id=23583
+// upstream issue 23580
+// upstream issue 23581
+// upstream issue 23582
+// upstream issue 23583
 
 #include <string.h>
 

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20051
+// upstream issue 20051
 struct Templ2(Args...)
 {
 }

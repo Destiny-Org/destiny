@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16107
+// upstream issue 16107
 
 bool check()
 {

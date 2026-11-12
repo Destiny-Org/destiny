@@ -3,8 +3,8 @@ REQUIRED_ARGS: -d
 PERMUTE_ARGS:
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=16115
-// https://github.com/dlang/dmd/pull/3979
+// upstream issue 16115
+// upstream dmd pull request 3979
 
 int n;
 

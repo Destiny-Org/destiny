@@ -25,7 +25,7 @@ fail_compilation/misc_parser_err_cov1.d(41): Error: expression expected, not `;`
 module misc_parser_err_cov1;
 
 
-//https://issues.dlang.org/show_bug.cgi?id=19995
+//upstream issue 19995
 #line 29
 void foo(in);
 void bar(int, const @tation);

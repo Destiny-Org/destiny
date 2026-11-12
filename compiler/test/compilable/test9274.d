@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=9274
+// upstream issue 9274
 struct S
 {
     float[] arr;
@@ -10,7 +10,7 @@ static assert(!is(S == T[], T)); // fails
 static assert(is(S : float[]));
 static assert(is(S : T[], T));
 
-//https://issues.dlang.org/show_bug.cgi?id=9274
+//upstream issue 9274
 struct A(T)
 {}
 

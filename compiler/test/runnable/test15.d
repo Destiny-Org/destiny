@@ -1397,7 +1397,7 @@ void test72()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19758
+// upstream issue 19758
 
 void test19758()
 {
@@ -1418,7 +1418,7 @@ void test19758()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19968
+// upstream issue 19968
 
 void test19968()
 {

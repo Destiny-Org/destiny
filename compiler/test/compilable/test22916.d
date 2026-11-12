@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -preview=dip1000
 
-// https://issues.dlang.org/show_bug.cgi?id=22916
+// upstream issue 22916
 // Issue 22916 - [dip1000] copy of ref return still treated as scope variable (edit)
 
 @safe:
@@ -17,7 +17,7 @@ void main0()
     a.assign(a.index());
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23682
+// upstream issue 23682
 ref char* front_p(ref return scope char** p) { return *p; }
 ref char* front_r(    return scope char** p) { return *p; }
 

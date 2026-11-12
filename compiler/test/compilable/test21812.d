@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21812
+// upstream issue 21812
 
 struct S(A...)
 {

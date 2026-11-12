@@ -7,7 +7,7 @@ fail_compilation/fail17612.d(19):        config file: not found
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17612
+// upstream issue 17612
 
 module object;
 

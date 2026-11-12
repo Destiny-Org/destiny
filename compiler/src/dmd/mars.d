@@ -4,12 +4,12 @@
  * utilities needed for arguments parsing, path manipulation, etc...
  * This file is not shared with other compilers which use the DMD front-end.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/mars.d, _mars.d)
- * Documentation:  https://dlang.org/phobos/dmd_mars.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/mars.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mars.d, _mars.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mars.d
+ * 
  */
 
 module dmd.mars;
@@ -96,7 +96,7 @@ void printInternalFailure(ref OutBuffer buf)
 {
     buf.write("---\n" ~
     "ERROR: This is a compiler bug.\n" ~
-            "Please report it via https://github.com/dlang/dmd/issues\n" ~
+            "Please report it via https://github.com/Destiny-Org/destiny/issues\n" ~
             "with, preferably, a reduced, reproducible example and the information below.\n" ~
     "DustMite (https://github.com/CyberShadow/DustMite/wiki) can help with the reduction.\n" ~
     "---\nDMD ");
@@ -119,7 +119,7 @@ void usage(ref OutBuffer buf)
     auto help = CLIUsage.usage;
     const inifileCanon = FileName.canonicalName(global.inifilename);
     buf.printf("
-Documentation: https://dlang.org/
+Documentation: https://github.com/Destiny-Org/destiny
 Config file: %.*s
 Usage:
   dmd [<option>...] <file>...
@@ -679,9 +679,9 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             continue;
         }
 
-        if (arg == "-allinst")               // https://dlang.org/dmd.html#switch-allinst
+        if (arg == "-allinst")               // https://github.com/Destiny-Org/destiny/blob/main/README.md
             params.allInst = true;
-        else if (startsWith(p + 1, "cpp="))  // https://dlang.org/dmd.html#switch-cpp
+        else if (startsWith(p + 1, "cpp="))  // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             if (p[5])
             {
@@ -693,15 +693,15 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 return false;
             }
         }
-        else if (arg == "-de")               // https://dlang.org/dmd.html#switch-de
+        else if (arg == "-de")               // https://github.com/Destiny-Org/destiny/blob/main/README.md
             global.errorSink.useDeprecated = DiagnosticReporting.error;
-        else if (arg == "-d")                // https://dlang.org/dmd.html#switch-d
+        else if (arg == "-d")                // https://github.com/Destiny-Org/destiny/blob/main/README.md
             global.errorSink.useDeprecated = DiagnosticReporting.off;
-        else if (arg == "-dw")               // https://dlang.org/dmd.html#switch-dw
+        else if (arg == "-dw")               // https://github.com/Destiny-Org/destiny/blob/main/README.md
             global.errorSink.useDeprecated = DiagnosticReporting.inform;
-        else if (arg == "-c")                // https://dlang.org/dmd.html#switch-c
+        else if (arg == "-c")                // https://github.com/Destiny-Org/destiny/blob/main/README.md
             driverParams.link = false;
-        else if (startsWith(p + 1, "checkaction")) // https://dlang.org/dmd.html#switch-checkaction
+        else if (startsWith(p + 1, "checkaction")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             /* Parse:
              *    -checkaction=D|C|halt|context
@@ -729,7 +729,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 return false;
             }
         }
-        else if (startsWith(p + 1, "check")) // https://dlang.org/dmd.html#switch-check
+        else if (startsWith(p + 1, "check")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             enum len = "-check=".length;
             mixin(checkOptionsMixin("check",
@@ -800,7 +800,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 return false;
             }
         }
-        else if (startsWith(p + 1, "color")) // https://dlang.org/dmd.html#switch-color
+        else if (startsWith(p + 1, "color")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             // Parse:
             //      -color
@@ -827,11 +827,11 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             else
                 params.v.color = true;
         }
-        else if (startsWith(p + 1, "conf=")) // https://dlang.org/dmd.html#switch-conf
+        else if (startsWith(p + 1, "conf=")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             // ignore, already handled above
         }
-        else if (startsWith(p + 1, "cov")) // https://dlang.org/dmd.html#switch-cov
+        else if (startsWith(p + 1, "cov")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.cov = true;
             // Parse:
@@ -947,7 +947,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 goto Lnoarg;
             params.timeTraceFile = mem.xstrdup(tmp);
         }
-        else if (arg == "-map") // https://dlang.org/dmd.html#switch-map
+        else if (arg == "-map") // https://github.com/Destiny-Org/destiny/blob/main/README.md
             driverParams.map = true;
         else if (arg == "-multiobj")
             params.multiobj = true;
@@ -959,9 +959,9 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             params.mixinOut.doOutput = true;
             params.mixinOut.name = mem.xstrdup(tmp).toDString;
         }
-        else if (arg == "-g") // https://dlang.org/dmd.html#switch-g
+        else if (arg == "-g") // https://github.com/Destiny-Org/destiny/blob/main/README.md
             driverParams.symdebug = true;
-        else if (startsWith(p + 1, "gdwarf")) // https://dlang.org/dmd.html#switch-gdwarf
+        else if (startsWith(p + 1, "gdwarf")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             if (driverParams.dwarf)
             {
@@ -984,11 +984,11 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             driverParams.symdebug = true;
             driverParams.symdebugref = true;
         }
-        else if (arg == "-gs")  // https://dlang.org/dmd.html#switch-gs
+        else if (arg == "-gs")  // https://github.com/Destiny-Org/destiny/blob/main/README.md
             driverParams.alwaysframe = true;
-        else if (arg == "-gx")  // https://dlang.org/dmd.html#switch-gx
+        else if (arg == "-gx")  // https://github.com/Destiny-Org/destiny/blob/main/README.md
             driverParams.stackstomp = true;
-        else if (arg == "-lowmem") // https://dlang.org/dmd.html#switch-lowmem
+        else if (arg == "-lowmem") // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             // ignore, already handled in early argument parsing
         }
@@ -996,25 +996,25 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
         {
             continue; // skip druntime options, e.g. used to configure the GC
         }
-        else if (arg == "-marm64") // https://dlang.org/dmd.html#switch-marm64
+        else if (arg == "-marm64") // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             target.isAArch64 = true;
             target.isX86    = false;
             target.isX86_64 = false;
         }
-        else if (arg == "-m32") // https://dlang.org/dmd.html#switch-m32
+        else if (arg == "-m32") // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             target.isAArch64 = false;
             target.isX86     = true;
             target.isX86_64  = false;
         }
-        else if (arg == "-m64") // https://dlang.org/dmd.html#switch-m64
+        else if (arg == "-m64") // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             target.isAArch64 = false;
             target.isX86     = false;
             target.isX86_64  = true;
         }
-        else if (arg == "-m32mscoff") // https://dlang.org/dmd.html#switch-m32mscoff
+        else if (arg == "-m32mscoff") // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             target.isAArch64 = false;
             target.isX86     = true;
@@ -1024,7 +1024,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
         {
             driverParams.mscrtlib = arg[10 .. $];
         }
-        else if (startsWith(p + 1, "profile")) // https://dlang.org/dmd.html#switch-profile
+        else if (startsWith(p + 1, "profile")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             // Parse:
             //      -profile
@@ -1044,9 +1044,9 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             else
                 params.trace = true;
         }
-        else if (arg == "-v") // https://dlang.org/dmd.html#switch-v
+        else if (arg == "-v") // https://github.com/Destiny-Org/destiny/blob/main/README.md
             params.v.verbose = true;
-        else if (startsWith(p + 1, "vasm")) // https://dlang.org/dmd.html#switch-vasm
+        else if (startsWith(p + 1, "vasm")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             driverParams.vasm = true;
             enum len = "-vasm".length;
@@ -1064,11 +1064,11 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
         }
         else if (arg == "-vcg-ast")
             params.vcg_ast = true;
-        else if (arg == "-vnan")  // https://dlang.org/dmd.html#switch-vnan
+        else if (arg == "-vnan")  // https://github.com/Destiny-Org/destiny/blob/main/README.md
             params.v.nanInit = true;
-        else if (arg == "-vtls") // https://dlang.org/dmd.html#switch-vtls
+        else if (arg == "-vtls") // https://github.com/Destiny-Org/destiny/blob/main/README.md
             params.v.tls = true;
-        else if (startsWith(p + 1, "vtemplates")) // https://dlang.org/dmd.html#switch-vtemplates
+        else if (startsWith(p + 1, "vtemplates")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.v.templates = true;
             if (p[1 + "vtemplates".length] == '=')
@@ -1084,11 +1084,11 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 }
             }
         }
-        else if (arg == "-vcolumns") // https://dlang.org/dmd.html#switch-vcolumns
+        else if (arg == "-vcolumns") // https://github.com/Destiny-Org/destiny/blob/main/README.md
             params.v.showColumns = true;
-        else if (arg == "-vgc") // https://dlang.org/dmd.html#switch-vgc
+        else if (arg == "-vgc") // https://github.com/Destiny-Org/destiny/blob/main/README.md
             params.v.gc = true;
-        else if (startsWith(p + 1, "verrors")) // https://dlang.org/dmd.html#switch-verrors
+        else if (startsWith(p + 1, "verrors")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             if (p[8] != '=')
             {
@@ -1150,7 +1150,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             const triple = Triple(p + len);
             target.setTriple(triple);
         }
-        else if (startsWith(p + 1, "mcpu")) // https://dlang.org/dmd.html#switch-mcpu
+        else if (startsWith(p + 1, "mcpu")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             enum len = "-mcpu=".length;
             // Parse:
@@ -1187,7 +1187,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 return false;
             }
         }
-        else if (startsWith(p + 1, "os")) // https://dlang.org/dmd.html#switch-os
+        else if (startsWith(p + 1, "os")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             enum len = "-os=".length;
             // Parse:
@@ -1218,7 +1218,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 return false;
             }
         }
-        else if (startsWith(p + 1, "extern-std")) // https://dlang.org/dmd.html#switch-extern-std
+        else if (startsWith(p + 1, "extern-std")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             enum len = "-extern-std=".length;
             // Parse:
@@ -1253,7 +1253,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 return false;
             }
         }
-        else if (startsWith(p + 1, "transition")) // https://dlang.org/dmd.html#switch-transition
+        else if (startsWith(p + 1, "transition")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             enum len = "-transition=".length;
             // Parse:
@@ -1313,7 +1313,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 return false;
             }
         }
-        else if (startsWith(p + 1, "preview") ) // https://dlang.org/dmd.html#switch-preview
+        else if (startsWith(p + 1, "preview") ) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             enum len = "-preview=".length;
             // Parse:
@@ -1336,7 +1336,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             if (params.useDIP1000 == FeatureState.enabled)
                 params.useDIP25 = FeatureState.enabled;
         }
-        else if (startsWith(p + 1, "revert") ) // https://dlang.org/dmd.html#switch-revert
+        else if (startsWith(p + 1, "revert") ) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             enum len = "-revert=".length;
             // Parse:
@@ -1351,27 +1351,27 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 return false;
             }
         }
-        else if (arg == "-w")   // https://dlang.org/dmd.html#switch-w
+        else if (arg == "-w")   // https://github.com/Destiny-Org/destiny/blob/main/README.md
             global.errorSink.useWarnings = DiagnosticReporting.error;
-        else if (arg == "-wi")  // https://dlang.org/dmd.html#switch-wi
+        else if (arg == "-wi")  // https://github.com/Destiny-Org/destiny/blob/main/README.md
             global.errorSink.useWarnings = DiagnosticReporting.inform;
-        else if (arg == "-wo")  // https://dlang.org/dmd.html#switch-wo
+        else if (arg == "-wo")  // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             // Obsolete features has been obsoleted until a DIP for "editions"
             // has been drafted and ratified in the language spec.
             // Rather, these old features will just be accepted without warning.
             // See also: @__edition_latest_do_not_use
         }
-        else if (arg == "-O")   // https://dlang.org/dmd.html#switch-O
+        else if (arg == "-O")   // https://github.com/Destiny-Org/destiny/blob/main/README.md
             driverParams.optimize = true;
-        else if (arg == "-o-")  // https://dlang.org/dmd.html#switch-o-
+        else if (arg == "-o-")  // https://github.com/Destiny-Org/destiny/blob/main/README.md
             params.obj = false;
         else if (p[1] == 'o')
         {
             const(char)* path;
             switch (p[2])
             {
-            case 'd':                       // https://dlang.org/dmd.html#switch-od
+            case 'd':                       // https://github.com/Destiny-Org/destiny/blob/main/README.md
                 if (!p[3])
                     goto Lnoarg;
                 path = p + 3 + (p[3] == '=');
@@ -1381,7 +1381,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 }
                 params.objdir = path.toDString;
                 break;
-            case 'f':                       // https://dlang.org/dmd.html#switch-of
+            case 'f':                       // https://github.com/Destiny-Org/destiny/blob/main/README.md
                 if (!p[3])
                     goto Lnoarg;
                 path = p + 3 + (p[3] == '=');
@@ -1391,7 +1391,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 }
                 params.objname = path.toDString;
                 break;
-            case 'p':                       // https://dlang.org/dmd.html#switch-op
+            case 'p':                       // https://github.com/Destiny-Org/destiny/blob/main/README.md
                 if (p[3])
                     goto Lerror;
                 params.preservePaths = true;
@@ -1408,17 +1408,17 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 goto Lerror;
             }
         }
-        else if (p[1] == 'D')       // https://dlang.org/dmd.html#switch-D
+        else if (p[1] == 'D')       // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.ddoc.doOutput = true;
             switch (p[2])
             {
-            case 'd':               // https://dlang.org/dmd.html#switch-Dd
+            case 'd':               // https://github.com/Destiny-Org/destiny/blob/main/README.md
                 if (!p[3])
                     goto Lnoarg;
                 params.ddoc.dir = (p + 3 + (p[3] == '=')).toDString();
                 break;
-            case 'f':               // https://dlang.org/dmd.html#switch-Df
+            case 'f':               // https://github.com/Destiny-Org/destiny/blob/main/README.md
                 if (!p[3])
                     goto Lnoarg;
                 params.ddoc.name = (p + 3 + (p[3] == '=')).toDString();
@@ -1429,17 +1429,17 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 goto Lerror;
             }
         }
-        else if (p[1] == 'H' && p[2] == 'C')  // https://dlang.org/dmd.html#switch-HC
+        else if (p[1] == 'H' && p[2] == 'C')  // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.cxxhdr.doOutput = true;
             switch (p[3])
             {
-            case 'd':               // https://dlang.org/dmd.html#switch-HCd
+            case 'd':               // https://github.com/Destiny-Org/destiny/blob/main/README.md
                 if (!p[4])
                     goto Lnoarg;
                 params.cxxhdr.dir = (p + 4 + (p[4] == '=')).toDString;
                 break;
-            case 'f':               // https://dlang.org/dmd.html#switch-HCf
+            case 'f':               // https://github.com/Destiny-Org/destiny/blob/main/README.md
                 if (!p[4])
                     goto Lnoarg;
                 params.cxxhdr.name = (p + 4 + (p[4] == '=')).toDString;
@@ -1468,17 +1468,17 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 goto Lerror;
             }
         }
-        else if (p[1] == 'H')       // https://dlang.org/dmd.html#switch-H
+        else if (p[1] == 'H')       // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.dihdr.doOutput = true;
             switch (p[2])
             {
-            case 'd':               // https://dlang.org/dmd.html#switch-Hd
+            case 'd':               // https://github.com/Destiny-Org/destiny/blob/main/README.md
                 if (!p[3])
                     goto Lnoarg;
                 params.dihdr.dir = (p + 3 + (p[3] == '=')).toDString;
                 break;
-            case 'f':               // https://dlang.org/dmd.html#switch-Hf
+            case 'f':               // https://github.com/Destiny-Org/destiny/blob/main/README.md
                 if (!p[3])
                     goto Lnoarg;
                 params.dihdr.name = (p + 3 + (p[3] == '=')).toDString;
@@ -1494,12 +1494,12 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             params.linkswitches.push(p + 5);
             params.linkswitchIsForCC.push(true);
         }
-        else if (p[1] == 'X')       // https://dlang.org/dmd.html#switch-X
+        else if (p[1] == 'X')       // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.json.doOutput = true;
             switch (p[2])
             {
-            case 'f':               // https://dlang.org/dmd.html#switch-Xf
+            case 'f':               // https://github.com/Destiny-Org/destiny/blob/main/README.md
                 if (!p[3])
                     goto Lnoarg;
                 params.json.name = (p + 3 + (p[3] == '=')).toDString;
@@ -1528,9 +1528,9 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 goto Lerror;
             }
         }
-        else if (arg == "-ignore")      // https://dlang.org/dmd.html#switch-ignore
+        else if (arg == "-ignore")      // https://github.com/Destiny-Org/destiny/blob/main/README.md
             params.ignoreUnsupportedPragmas = true;
-        else if (arg == "-inline")      // https://dlang.org/dmd.html#switch-inline
+        else if (arg == "-inline")      // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.useInline = true;
             params.dihdr.fullOutput = true;
@@ -1604,7 +1604,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 includeModulePatterns.push(p + 3);
             }
         }
-        else if (arg == "-dip25")       // https://dlang.org/dmd.html#switch-dip25
+        else if (arg == "-dip25")       // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             // @@@ DEPRECATION 2.112 @@@
             eSink.deprecation(Loc.initial, "`-dip25` no longer has any effect");
@@ -1619,7 +1619,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
         {
             params.ehnogc = true;
         }
-        else if (arg == "-lib")         // https://dlang.org/dmd.html#switch-lib
+        else if (arg == "-lib")         // https://github.com/Destiny-Org/destiny/blob/main/README.md
             driverParams.lib = params.fullyQualifiedObjectFiles = true;
         else if (arg == "-nofloat")
             driverParams.nofloat = true;
@@ -1627,21 +1627,21 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
         {
             // Ignore
         }
-        else if (arg == "-release")     // https://dlang.org/dmd.html#switch-release
+        else if (arg == "-release")     // https://github.com/Destiny-Org/destiny/blob/main/README.md
             params.release = true;
-        else if (arg == "-betterC")     // https://dlang.org/dmd.html#switch-betterC
+        else if (arg == "-betterC")     // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.betterC = true;
             params.allInst = true;
         }
-        else if (arg == "-noboundscheck") // https://dlang.org/dmd.html#switch-noboundscheck
+        else if (arg == "-noboundscheck") // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             /// @@@DEPRECATED_2.113@@@
             // Deprecated since forever, deprecation message added in 2.111. Remove in 2.113
             eSink.deprecation(Loc.initial, "`-noboundscheck` is deprecated. Use `-boundscheck=off` instead");
             params.boundscheck = CHECKENABLE.off;
         }
-        else if (startsWith(p + 1, "boundscheck")) // https://dlang.org/dmd.html#switch-boundscheck
+        else if (startsWith(p + 1, "boundscheck")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             // Parse:
             //      -boundscheck=[on|safeonly|off]
@@ -1667,11 +1667,11 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             else
                 goto Lerror;
         }
-        else if (arg == "-nothrow") // https://dlang.org/dmd.html#switch-nothrow
+        else if (arg == "-nothrow") // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.useExceptions = false;
         }
-        else if (arg == "-nothrow-optimizations") // https://dlang.org/dmd.html#switch-nothrow-optimizations
+        else if (arg == "-nothrow-optimizations") // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.nothrowOptimizations = true;
         }
@@ -1682,7 +1682,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             params.useUnitTests = true;
             params.useUnitTestsRootOnly = true;
         }
-        else if (p[1] == 'I')              // https://dlang.org/dmd.html#switch-I
+        else if (p[1] == 'I')              // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.imppath.push(ImportPathInfo(p + 2 + (p[2] == '=')));
         }
@@ -1693,7 +1693,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             importPathInfo.isOutOfBinary = true;
             params.imppath.push(importPathInfo);
         }
-        else if (p[1] == 'm' && p[2] == 'v' && p[3] == '=') // https://dlang.org/dmd.html#switch-mv
+        else if (p[1] == 'm' && p[2] == 'v' && p[3] == '=') // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             if (p[4] && strchr(p + 5, '='))
             {
@@ -1702,11 +1702,11 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             else
                 goto Lerror;
         }
-        else if (p[1] == 'J')             // https://dlang.org/dmd.html#switch-J
+        else if (p[1] == 'J')             // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.fileImppath.push(p + 2 + (p[2] == '='));
         }
-        else if (startsWith(p + 1, "debug") && p[6] != 'l') // https://dlang.org/dmd.html#switch-debug
+        else if (startsWith(p + 1, "debug") && p[6] != 'l') // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             // Parse:
             //      -debug
@@ -1725,7 +1725,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             else
                 params.debugEnabled = true;
         }
-        else if (startsWith(p + 1, "version")) // https://dlang.org/dmd.html#switch-version
+        else if (startsWith(p + 1, "version")) // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             // Parse:
             //      -version=identifier
@@ -1764,24 +1764,24 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             driverParams.debugx = true;
         else if (arg == "--y")
             driverParams.debugy = true;
-        else if (p[1] == 'L')                        // https://dlang.org/dmd.html#switch-L
+        else if (p[1] == 'L')                        // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.linkswitches.push(p + 2 + (p[2] == '='));
             params.linkswitchIsForCC.push(false);
         }
-        else if (p[1] == 'P')                        // https://dlang.org/dmd.html#switch-P
+        else if (p[1] == 'P')                        // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.cppswitches.push(p + 2 + (p[2] == '='));
         }
-        else if (startsWith(p + 1, "defaultlib="))   // https://dlang.org/dmd.html#switch-defaultlib
+        else if (startsWith(p + 1, "defaultlib="))   // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             driverParams.defaultlibname = (p + 1 + 11).toDString;
         }
-        else if (startsWith(p + 1, "debuglib="))     // https://dlang.org/dmd.html#switch-debuglib
+        else if (startsWith(p + 1, "debuglib="))     // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             driverParams.debuglibname = (p + 1 + 9).toDString;
         }
-        else if (startsWith(p + 1, "deps"))          // https://dlang.org/dmd.html#switch-deps
+        else if (startsWith(p + 1, "deps"))          // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             if (params.moduleDeps.doOutput)
             {
@@ -1801,7 +1801,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             }
             params.moduleDeps.buffer = new OutBuffer();
         }
-        else if (startsWith(p + 1, "makedeps"))          // https://dlang.org/dmd.html#switch-makedeps
+        else if (startsWith(p + 1, "makedeps"))          // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             if (params.makeDeps.name)
             {
@@ -1824,16 +1824,16 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
             // Else output to stdout.
             params.makeDeps.doOutput = true;
         }
-        else if (arg == "-main")             // https://dlang.org/dmd.html#switch-main
+        else if (arg == "-main")             // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.addMain = true;
         }
-        else if (startsWith(p + 1, "man"))   // https://dlang.org/dmd.html#switch-man
+        else if (startsWith(p + 1, "man"))   // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.help.manual = true;
             return false;
         }
-        else if (arg == "-run")              // https://dlang.org/dmd.html#switch-run
+        else if (arg == "-run")              // https://github.com/Destiny-Org/destiny/blob/main/README.md
         {
             params.run = true;
             size_t length = argc - i - 1;

@@ -1,5 +1,5 @@
 /**
- * Written in the D programming language.
+ * Written in the Destiny programming language.
  * This module provides functions to uniform calculating hash values for different types
  *
  * Copyright: Copyright Igor Stepanov 2013-2013.
@@ -72,7 +72,7 @@ associative arrays. False for all classes except final classes that do
 not override `toHash`.
 
 Note: according to the spec as of
-https://github.com/dlang/dlang.org/commit/d66eff16491b0664c0fc00ba80a7aa291703f1f2
+https://github.com/Destiny-Org/destiny
 the contents of unnamed paddings between fields is undefined. Currently
 this hashing implementation assumes that the padding contents (if any)
 for all instances of `T` are the same. The correctness of this
@@ -567,7 +567,7 @@ if (!is(T == enum) && (is(T == struct) || is(T == union))
     mixin(_hashOfStruct);
 }
 
-//struct or union hash - https://issues.dlang.org/show_bug.cgi?id=19332 (support might be removed in future)
+//struct or union hash - upstream issue 19332 (support might be removed in future)
 size_t hashOf(T)(scope auto ref T val, size_t seed = 0)
 if (!is(T == enum) && (is(T == struct) || is(T == union))
     && (is(T == const) || is(T == immutable))

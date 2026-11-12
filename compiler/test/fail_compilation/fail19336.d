@@ -7,7 +7,7 @@ fail_compilation/fail19336.d(17): Error: circular reference to `fail19336.b`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=19336
+// upstream issue 19336
 
 struct Foo
 {

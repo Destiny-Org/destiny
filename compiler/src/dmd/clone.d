@@ -2,12 +2,12 @@
  * Builds struct member functions if needed and not defined by the user.
  * Includes `opEquals`, `opAssign`, post blit, copy constructor and destructor.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/clone.d, _clone.d)
- * Documentation:  https://dlang.org/phobos/dmd_clone.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/clone.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/clone.d, _clone.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/clone.d
+ * 
  */
 
 module dmd.clone;
@@ -97,7 +97,7 @@ STC mergeFuncAttrs(STC s1, const FuncDeclaration f) pure @safe
  * Returns:
  *      if found, returns FuncDeclaration of opAssign, otherwise null
  * References:
- *      https://dlang.org/spec/operatoroverloading.html#assignment
+ *      https://github.com/Destiny-Org/destiny/blob/main/spec/operatoroverloading.dd
  */
 FuncDeclaration hasIdentityOpAssign(AggregateDeclaration ad, Scope* sc)
 {
@@ -249,7 +249,7 @@ private bool needOpAssign(StructDeclaration sd)
  * if defined).
  *
  * References:
- *      https://dlang.org/spec/struct.html#assign-overload
+ *      https://github.com/Destiny-Org/destiny/blob/main/spec/struct.dd
  * Params:
  *      sd = struct to generate opAssign for
  *      sc = context
@@ -293,7 +293,7 @@ FuncDeclaration buildOpAssign(StructDeclaration sd, Scope* sc)
     if (sd.dtor || sd.postblit)
     {
         // if the type is not assignable, we cannot generate opAssign
-        if (!sd.type.isAssignable()) // https://issues.dlang.org/show_bug.cgi?id=13044
+        if (!sd.type.isAssignable()) // upstream issue 13044
             return null;
         stc = mergeFuncAttrs(stc, sd.dtor);
         if (stc & STC.safe)
@@ -390,7 +390,7 @@ FuncDeclaration buildOpAssign(StructDeclaration sd, Scope* sc)
     sc2.linkage = LINK.d;
     fop.dsymbolSemantic(sc2);
     fop.semantic2(sc2);
-    // https://issues.dlang.org/show_bug.cgi?id=15044
+    // upstream issue 15044
     //semantic3(fop, sc2); // isn't run here for lazy forward reference resolution.
 
     sc2.pop();
@@ -532,7 +532,7 @@ private FuncDeclaration hasIdentityOpEquals(AggregateDeclaration ad, Scope* sc)
  * Build opEquals for struct.
  *      const bool opEquals(const S s) { ... }
  *
- * By fixing https://issues.dlang.org/show_bug.cgi?id=3789
+ * By fixing upstream issue 3789
  * opEquals is changed to be never implicitly generated.
  * Now, struct objects comparison s1 == s2 is translated to:
  *      s1.tupleof == s2.tupleof
@@ -756,7 +756,7 @@ FuncDeclaration buildXopCmp(StructDeclaration sd, Scope* sc)
  * Returns:
  *      need to generate toHash()
  * References:
- *   https://dlang.org/spec/hash-map.html#using_struct_as_key
+ *   https://github.com/Destiny-Org/destiny/blob/main/spec/hash-map.dd
  */
 private bool needToHash(StructDeclaration sd)
 {
@@ -865,10 +865,10 @@ FuncDeclaration buildXtoHash(StructDeclaration sd, Scope* sc)
     const(char)[] code =
         ".object.size_t h = 0;" ~
         "foreach (i, T; typeof(p.tupleof))" ~
-        // workaround https://issues.dlang.org/show_bug.cgi?id=17968
+        // workaround upstream issue 17968
         "    static if(is(T* : const(.object.Object)*)) " ~
         "        h = h * 33 + typeid(const(.object.Object)).getHash(cast(const void*)&p.tupleof[i]);" ~
-        // and another workaround for bitfields https://github.com/dlang/dmd/issues/20473
+        // and another workaround for bitfields upstream dmd issue 20473
         "    else static if (!__traits(compiles, &p.tupleof[i])) {" ~
         "        auto t = p.tupleof[i];" ~
         "        h = h * 33 + typeid(T).getHash(cast(const void*)&t);" ~
@@ -1030,7 +1030,7 @@ private DtorDeclaration buildFieldDtor(AggregateDeclaration ad, Loc declLoc, ref
         if (!sdv.dtor)
             continue;
 
-        // fix: https://issues.dlang.org/show_bug.cgi?id=17257
+        // fix: upstream issue 17257
         // braces for shrink wrapping scope of a
         {
             xdtor_fwd = sdv.dtor; // this dtor is temporary it could be anything
@@ -1379,8 +1379,8 @@ private DtorDeclaration buildExternDDtor(AggregateDeclaration ad, Scope* sc)
  * Returns:
  *      generated invariant, null if not needed
  * References:
- * https://dlang.org/spec/class.html#invariants
- * https://dlang.org/spec/struct.html#Invariant
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/class.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/struct.dd
  */
 FuncDeclaration buildInv(AggregateDeclaration ad, Scope* sc)
 {
@@ -1613,7 +1613,7 @@ FuncDeclaration buildPostBlit(StructDeclaration sd, Scope* sc)
         }
         postblitCalls.push(new ExpStatement(loc, ex)); // combine in forward order
 
-        /* https://issues.dlang.org/show_bug.cgi?id=10972
+        /* upstream issue 10972
          * When subsequent field postblit calls fail,
          * this field should be destructed for Exception Safety.
          */
@@ -1935,7 +1935,7 @@ void needCopyOrMoveCtor(StructDeclaration sd, out bool hasCopyCtor, out bool has
  *  sc = the scope where the constructor is generated
  *  move = true means generate the move constructor, otherwise copy constructor
  * References:
- *   https://dlang.org/spec/struct.html#struct-copy-constructor
+ *   https://github.com/Destiny-Org/destiny/blob/main/spec/struct.dd
  */
 void buildCopyOrMoveCtor(StructDeclaration sd, Scope* sc, bool move)
 {

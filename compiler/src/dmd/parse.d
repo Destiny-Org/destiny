@@ -1,14 +1,14 @@
 /**
  * Takes a token stream from the lexer, and parses it into an abstract syntax tree.
  *
- * Specification: $(LINK2 https://dlang.org/spec/grammar.html, D Grammar)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/grammar.dd, D Grammar)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/parse.d, _parse.d)
- * Documentation:  https://dlang.org/phobos/dmd_parse.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/parse.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/parse.d, _parse.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/parse.d
+ * 
  */
 
 module dmd.parse;
@@ -131,7 +131,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
         nextToken();
 
         /* parse ModuleFullyQualifiedName
-         * https://dlang.org/spec/module.html#ModuleFullyQualifiedName
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
          */
 
         if (token.value != TOK.identifier)
@@ -218,9 +218,9 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
      * Parse the ModuleAttributes preceding a module declaration.
      * ModuleDeclaration:
      *    ModuleAttributes(opt) module ModuleFullyQualifiedName ;
-     * https://dlang.org/spec/module.html#ModuleAttributes
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
      * Params:
-     *  msg = set to the AssignExpression from DeprecatedAttribute https://dlang.org/spec/module.html#DeprecatedAttribute
+     *  msg = set to the AssignExpression from DeprecatedAttribute https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
      *  isdeprecated = set to true if a DeprecatedAttribute is seen
      */
     private
@@ -1030,7 +1030,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
                     AST.Dsymbols* a2 = null;
                     if (token.value == TOK.semicolon)
                     {
-                        /* https://issues.dlang.org/show_bug.cgi?id=2354
+                        /* upstream issue 2354
                          * Accept single semicolon as an empty
                          * DeclarationBlock following attribute.
                          *
@@ -1671,7 +1671,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
                     stc |= STC.ref_ | STC.returnRef;
                     nextToken();            // consume it
                 }
-                else if (prefix & STC.ref_) // https://dlang.org/spec/function.html#struct-return-methods
+                else if (prefix & STC.ref_) // https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
                     stc |= STC.returnRef;   // treat member function `ref int fp() return;` as `int fp() return ref;`
                 break;
             }
@@ -4027,7 +4027,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
             break;
 
         case TOK.mixin_:
-            // https://dlang.org/spec/expression.html#mixin_types
+            // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
             loc = token.loc;
             nextToken();
             if (token.value != TOK.leftParenthesis)
@@ -4105,7 +4105,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
     private AST.Type parseBasicTypeStartingAt(AST.TypeQualified tid, bool dontLookDotIdents)
     {
         AST.Type maybeArray = null;
-        // See https://issues.dlang.org/show_bug.cgi?id=1215
+        // See upstream issue 1215
         // A basic type can look like MyType (typical case), but also:
         //  MyType.T -> A type
         //  MyType[expr] -> Either a static array of MyType or a type (iif MyType is a Ttuple)
@@ -4175,7 +4175,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
                 }
             case TOK.leftBracket:
                 {
-                    if (dontLookDotIdents) // workaround for https://issues.dlang.org/show_bug.cgi?id=14911
+                    if (dontLookDotIdents) // workaround for upstream issue 14911
                         goto Lend;
 
                     nextToken();
@@ -4250,7 +4250,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
      * Returns:
      *      t with the suffixes added
      * See_Also:
-     *      https://dlang.org/spec/declaration.html#TypeSuffixes
+     *      https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
      */
     private AST.Type parseTypeSuffixes(AST.Type t)
     {
@@ -4352,7 +4352,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
      *  pudas        = any user defined attributes seen so far. Merged with any more found
      * Returns:
      *  type declared
-     * Reference: https://dlang.org/spec/declaration.html#Declarator
+     * Reference: https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
      */
     private AST.Type parseDeclarator(AST.Type t, ref int palt, Identifier* pident,
         AST.TemplateParameters** tpl = null, STC storageClass = STC.none,
@@ -5138,7 +5138,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
         // form can contain newlines and leak internal placeholders like
         // `__error__` into this message. Fall back to a generic string
         // in that case instead of reproducing the raw internal AST dump.
-        // See https://github.com/dlang/dmd/issues/19824
+        // See upstream dmd issue 19824
         const(char)* ts = t.toChars();
         if (strchr(ts, '\n'))
             ts = "<error type>";
@@ -5156,7 +5156,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
      * Parse AliasReassignment:
      *   identifier = type;
      * Parser is sitting on the identifier.
-     * https://dlang.org/spec/declaration.html#alias-reassignment
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
      * Params:
      *  comment = if not null, comment to attach to symbol
      * Returns:
@@ -5180,7 +5180,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
     /********************************
      * Parse declarations that start with `alias`
      * Parser is sitting on the `alias`.
-     * https://dlang.org/spec/declaration.html#alias
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
      * Params:
      *  comment = if not null, comment to attach to symbol
      * Returns:
@@ -5199,7 +5199,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
 
         /* Look for:
          *   alias Identifier this;
-         * https://dlang.org/spec/class.html#alias-this
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/class.dd
          */
         if (token.value == TOK.identifier && peekNext() == TOK.this_)
         {
@@ -5241,7 +5241,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
         /* Look for:
          *  alias identifier = type;
          *  alias identifier(...) = type;
-         * https://dlang.org/spec/declaration.html#alias
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
          */
         if (token.value == TOK.identifier && hasOptionalParensThen(peek(&token), TOK.assign))
         {
@@ -5749,7 +5749,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
         case TOK.semicolon:
             if (!literal)
             {
-                // https://issues.dlang.org/show_bug.cgi?id=15799
+                // upstream issue 15799
                 // Semicolon becomes a part of function declaration
                 // only when 'do' is not required
                 if (!requireDo)
@@ -6236,7 +6236,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
         case TOK.vector:
         case TOK.traits:
         case TOK.leftParenthesis:
-            /* https://issues.dlang.org/show_bug.cgi?id=15163
+            /* upstream issue 15163
              * If tokens can be handled as
              * old C-style declaration or D expression, prefer the latter.
              */
@@ -6308,7 +6308,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
         Lexp:
             {
                 AST.Expression exp = parseExpression();
-                /* https://issues.dlang.org/show_bug.cgi?id=15103
+                /* upstream issue 15103
                  * Improve declaration / initialization syntax error message
                  * Error: found 'foo' when expecting ';' following expression
                  * becomes Error: found `(` when expecting `;` or `=`, did you mean `Foo foo = 42`?
@@ -6321,7 +6321,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
                 else
                 {
                     /*
-                     * https://issues.dlang.org/show_bug.cgi?id=22529
+                     * upstream issue 22529
                      * Avoid empty declaration error in case of missing semicolon
                      * followed by another token and another semicolon. E.g.:
                      *
@@ -6852,7 +6852,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
                         auto cur = parseStatement(ParseStatementFlags.curlyScope);
                         statements.push(cur);
 
-                        // https://issues.dlang.org/show_bug.cgi?id=21739
+                        // upstream issue 21739
                         // Stop at the last break s.t. the following non-case statements are
                         // not merged into the current case. This can happen for
                         // case 1: ... break;
@@ -7087,12 +7087,12 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
 
         case TOK.import_:
             {
-                /* https://issues.dlang.org/show_bug.cgi?id=16088
+                /* upstream issue 16088
                  *
                  * At this point it can either be an
-                 * https://dlang.org/spec/grammar.html#ImportExpression
+                 * https://github.com/Destiny-Org/destiny/blob/main/spec/grammar.dd
                  * or an
-                 * https://dlang.org/spec/grammar.html#ImportDeclaration.
+                 * https://github.com/Destiny-Org/destiny/blob/main/spec/grammar.dd
                  * See if the next token after `import` is a `(`; if so,
                  * then it is an import expression.
                  */
@@ -7178,7 +7178,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
                 case TOK.rightParenthesis:
                     parens--;
                     continue;
-                // https://issues.dlang.org/show_bug.cgi?id=21163
+                // upstream issue 21163
                 // lambda params can have the `scope` storage class, e.g
                 // `S s = { (scope Type Id){} }`
                 case TOK.scope_:
@@ -7423,7 +7423,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
     /********************
      * Parse inline assembler block.
      * Enters with token on the `asm`.
-     * https://dlang.org/spec/iasm.html
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd
      *
      * AsmStatement:
      *   asm FunctionAttributes(opt) { AsmInstructionListopt }
@@ -8067,7 +8067,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
             // To recognize the shortened function declaration syntax
             case TOK.goesTo:
                 /*
-                    1. https://issues.dlang.org/show_bug.cgi?id=24088
+                    1. upstream issue 24088
 
                     2. We need to make sure the would-be
                        declarator has an identifier otherwise function literals
@@ -8924,7 +8924,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
             }
         case TOK.assert_:
             {
-                // https://dlang.org/spec/expression.html#assert_expressions
+                // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
                 AST.Expression msg = null;
 
                 nextToken();
@@ -8946,7 +8946,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
             }
         case TOK.mixin_:
             {
-                // https://dlang.org/spec/expression.html#mixin_expressions
+                // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
                 nextToken();
                 if (token.value != TOK.leftParenthesis)
                     error(token.loc, "found `%s` when expecting `%s` following `mixin`", token.toChars(), Token.toChars(TOK.leftParenthesis));
@@ -9927,10 +9927,10 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
      * Params:
      *    thisexp = If not null, it is the `this` reference for the creation
      *              of an inner class.
-     *              https://dlang.org/spec/class.html#nested-explicit
-     *              https://dlang.org/spec/expression.html#postfix_expressions
+     *              https://github.com/Destiny-Org/destiny/blob/main/spec/class.dd
+     *              https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
      *              If null, then it is a NewExpression.
-     *              https://dlang.org/spec/expression.html#NewExpression
+     *              https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
      * Returns:
      *   NewExpression
      */

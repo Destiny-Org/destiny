@@ -8,7 +8,7 @@ fail_compilation/fail18985.d(13):        perhaps implement `auto opOpAssign(stri
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=18985
+// upstream issue 18985
 
 class C {}
 

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23431
+// upstream issue 23431
 // REQUIRED_ARGS: -lowmem
 void test23431()
 {

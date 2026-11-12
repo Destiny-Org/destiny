@@ -8,7 +8,7 @@ fail_compilation/test20696.d(111): Error: template instance `test20696.S!()` err
 
 #line 100
 
-// https://issues.dlang.org/show_bug.cgi?id=20696
+// upstream issue 20696
 
 struct S()
 {

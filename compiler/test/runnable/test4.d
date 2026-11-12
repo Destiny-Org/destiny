@@ -1370,7 +1370,7 @@ void test59()
 
 
 /* ================================ */
-// https://issues.dlang.org/show_bug.cgi?id=10664
+// upstream issue 10664
 
 Exception collectExceptionE(int delegate () expression, ref int result)
 {

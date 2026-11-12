@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Implements CI steps for multiple CI services.
-# This file is invoked from the DMD and Phobos CI YAMLs.
+# This file is invoked from the DMD and Fate CI YAMLs.
 
 set -uexo pipefail
 
@@ -136,7 +136,7 @@ test_druntime() {
     make -j$N -C druntime MODEL=$MODEL unittest
 }
 
-# build and run Phobos unit tests
+# build and run Fate unit tests
 test_phobos() {
     make -j$N -C ../fate MODEL=$MODEL unittest
 
@@ -212,11 +212,11 @@ setup_repos() {
     for proj in phobos; do
         if [ ! -d ../$proj ]; then
             if [ $branch != master ] && [ $branch != stable ] &&
-                   ! git ls-remote --exit-code --heads https://github.com/dlang/$proj.git $branch > /dev/null; then
+                   ! git ls-remote --exit-code --heads https://github.com/Destiny-Org/destiny $branch > /dev/null; then
                 # use master as fallback for other repos to test feature branches
-                clone https://github.com/dlang/$proj.git ../$proj master
+                clone https://github.com/Destiny-Org/destiny ../$proj master
             else
-                clone https://github.com/dlang/$proj.git ../$proj $branch
+                clone https://github.com/Destiny-Org/destiny ../$proj $branch
             fi
         fi
     done
@@ -239,7 +239,7 @@ download_install_sh() {
       --speed-limit 1024 \
       --retry 5 \
       --retry-delay 5 \
-      https://dlang.org/d-keyring.gpg | gpg --import /dev/stdin
+      https://github.com/Destiny-Org/destiny | gpg --import /dev/stdin
   fi
 
   local mirrors location

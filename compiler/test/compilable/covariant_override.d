@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21538
+// upstream issue 21538
 // REQUIRED_ARGS: -preview=dip1000
 
 interface I
@@ -21,7 +21,7 @@ class CA : A
     override void f(void delegate() @system dg) @safe { }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20904
+// upstream issue 20904
 auto blah(void delegate())
 {
 }

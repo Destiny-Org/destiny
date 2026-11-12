@@ -5,7 +5,7 @@ fail_compilation/test23058.c(110): Error: array index 5 is out of bounds `[0..4]
 ---
  */
 
-/* https://issues.dlang.org/show_bug.cgi?id=23058
+/* upstream issue 23058
  */
 
 #line 100

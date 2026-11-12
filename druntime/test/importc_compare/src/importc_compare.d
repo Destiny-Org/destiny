@@ -36,9 +36,9 @@ immutable ErrorFilter[] knownProblems = [
     ErrorFilter("core.stdc.config.c_complex_real", "", "Windows", 32, ""), // complex real is two long doubles so same for x86 Windows
     ErrorFilter("core.stdc.config.__c_complex_real", "", "Windows", 32, ""),
     ErrorFilter("core.stdc.fenv.fenv_t", "", "FreeBSD", 0, ""),
-    ErrorFilter("core.stdc.locale.lconv", "", "Apple", 0, "https://issues.dlang.org/show_bug.cgi?id=24652"),
-    ErrorFilter("core.stdc.locale.lconv", "", "FreeBSD", 0, "https://issues.dlang.org/show_bug.cgi?id=24652"),
-    ErrorFilter("core.stdc.locale.lconv", "", "Windows", 0, "https://issues.dlang.org/show_bug.cgi?id=24652"),
+    ErrorFilter("core.stdc.locale.lconv", "", "Apple", 0, "upstream issue 24652"),
+    ErrorFilter("core.stdc.locale.lconv", "", "FreeBSD", 0, "upstream issue 24652"),
+    ErrorFilter("core.stdc.locale.lconv", "", "Windows", 0, "upstream issue 24652"),
     ErrorFilter("core.stdc.math.double_t", "", "linux", 0, ""),
     ErrorFilter("core.stdc.math.float_t", "", "linux", 0, ""),
     ErrorFilter("core.stdc.math.double_t", "", "Hurd", 0, ""),

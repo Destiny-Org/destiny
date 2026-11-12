@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=17752
+// upstream issue 17752
 // REQUIRED_ARGS: -de
 void main (string[] args)
 {

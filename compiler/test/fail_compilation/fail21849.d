@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21849
+// upstream issue 21849
 // REQUIRED_ARGS: -verrors=context -vcolumns
 /* TEST_OUTPUT:
 ---
@@ -31,7 +31,7 @@ void fail21849c()
 }
 
 // Test correct context with line directive present
-// https://github.com/dlang/dmd/issues/20929
+// upstream dmd issue 20929
 #line 32
 void fail21849d()
 {

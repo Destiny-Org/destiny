@@ -439,7 +439,7 @@ void test4662()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5284
+// upstream issue 5284
 
 void bug5284_1()
 {
@@ -550,7 +550,7 @@ void test8390() {
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8651
+// upstream issue 8651
 
 void test8651()
 {
@@ -605,7 +605,7 @@ void test8651()
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9656
+// upstream issue 9656
 
 void test9656()
 {
@@ -651,7 +651,7 @@ void test9656()
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10282
+// upstream issue 10282
 
 void test10282()
 {
@@ -669,7 +669,7 @@ void test10282()
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10433
+// upstream issue 10433
 
 void test10433()
 {
@@ -684,7 +684,7 @@ void test10433()
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10684
+// upstream issue 10684
 
 void test10684a()
 {
@@ -716,7 +716,7 @@ void test10684b()
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11376
+// upstream issue 11376
 
 template TL11376(T...)
 {
@@ -732,7 +732,7 @@ auto sumArrs11376(T0, T1)(T0[] a, T1[] b)
 static assert(!__traits(compiles, sumArrs11376(TL11376!(string[], string).init)));
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11525
+// upstream issue 11525
 
 void test11525()
 {
@@ -756,7 +756,7 @@ void test11525()
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12250
+// upstream issue 12250
 
 void f12250(inout int[] p, inout int[] q, int[] r)
 {
@@ -774,7 +774,7 @@ void test12250()
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12179
+// upstream issue 12179
 
 void test12179()
 {
@@ -792,7 +792,7 @@ void test12179()
     foo(a[] |= a[]);
     foo(a[] ^^= a[]);
 
-    // from https://issues.dlang.org/show_bug.cgi?id=11992
+    // from upstream issue 11992
     int[]   arr1;
     int[][] arr2;
     arr1 ~= (a[] = [1] + a[]); // OK
@@ -800,7 +800,7 @@ void test12179()
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12780
+// upstream issue 12780
 
 void test12780()
 {
@@ -854,7 +854,7 @@ void test12780()
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13497
+// upstream issue 13497
 
 void test13497()
 {
@@ -866,7 +866,7 @@ void test13497()
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14649
+// upstream issue 14649
 
 void test14649()
 {
@@ -891,7 +891,7 @@ void test14649()
 }
 
 /************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14851
+// upstream issue 14851
 
 void test14851()
 {

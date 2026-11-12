@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=12527
+// upstream issue 12527
 
 @system:
     alias Fun = void function() @safe;

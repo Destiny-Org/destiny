@@ -1,12 +1,12 @@
 /**
  * Portable routines for functions that have different implementations on different platforms.
  *
- * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/root/port.d, root/_port.d)
- * Documentation:  https://dlang.org/phobos/dmd_root_port.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/root/port.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/port.d, root/_port.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/port.d
+ * 
  */
 
 module dmd.root.port;

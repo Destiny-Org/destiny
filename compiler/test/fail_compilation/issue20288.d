@@ -6,7 +6,7 @@ fail_compilation/issue20288.d(12):        class `C` defined here
 ---
 */
 
-// https://github.com/dlang/dmd/issues/20288
+// upstream dmd issue 20288
 void test()
 {
     class C { ~this(){} }

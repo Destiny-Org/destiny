@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=21779
+upstream issue 21779
 
 PERMUTE_ARGS: -checkaction=context
 ARG_SETS: -release

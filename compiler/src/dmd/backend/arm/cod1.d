@@ -4,15 +4,15 @@
  * Handles function calls: putting arguments in registers / on the stack, and jumping to the function.
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
  * Copyright:   Copyright (C) 1984-1998 by Symantec
- *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved
+ *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/arm/cod1.d, backend/cod1.d)
- * Documentation:  https://dlang.org/phobos/dmd_backend_arm_cod1.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/backend/arm/cod1.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/arm/cod1.d, backend/cod1.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/arm/cod1.d
+ * 
  */
 
 module dmd.backend.arm.cod1;
@@ -1246,10 +1246,10 @@ void getlvalue(ref CGstate cg,ref CodeBuilder cdb,ref code pcs,elem* e,regm_t ke
             }
             else if (tyvector(s.Stype.Tty) && sz < tysize(s.Stype.Tty))
             {
-                // https://issues.dlang.org/show_bug.cgi?id=21673
-                // https://issues.dlang.org/show_bug.cgi?id=21676
-                // https://issues.dlang.org/show_bug.cgi?id=23009
-                // PR: https://github.com/dlang/dmd/pull/13977
+                // upstream issue 21673
+                // upstream issue 21676
+                // upstream issue 23009
+                // PR: upstream dmd pull request 13977
                 // cannot read or write to partial vector
                 debug if (debugr) printf("'%s' not reg cand due to vector type\n", s.Sident.ptr);
                 s.Sflags &= ~GTregcand;

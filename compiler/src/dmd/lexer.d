@@ -1,14 +1,14 @@
 /**
  * Implements the lexical analyzer, which converts source code into lexical tokens.
  *
- * Specification: $(LINK2 https://dlang.org/spec/lex.html, Lexical)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd, Lexical)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/lexer.d, _lexer.d)
- * Documentation:  https://dlang.org/phobos/dmd_lexer.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/lexer.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/lexer.d, _lexer.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/lexer.d
+ * 
  */
 
 module dmd.lexer;
@@ -1181,7 +1181,7 @@ class Lexer
                 return;
             case '#':
                 {
-                    // https://issues.dlang.org/show_bug.cgi?id=22825
+                    // upstream issue 22825
                     // Special token sequences are terminated by newlines,
                     // and should not be skipped over.
                     this.tokenizeNewlines = true;
@@ -1344,7 +1344,7 @@ class Lexer
 
     /********
      * Parse the given string literal escape sequence into a single character.
-     * D https://dlang.org/spec/lex.html#escape_sequences
+     * D https://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd
      * C11 6.4.4.4
      * Params:
      *  loc = location to use for error messages
@@ -2109,7 +2109,7 @@ class Lexer
     Params:
         t = the token to set the resulting string to
     * References:
-    *   D https://dlang.org/spec/lex.html#double_quoted_strings
+    *   D https://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd
     *   ImportC C11 6.4.5
     */
     private void escapeStringConstant(Token* t, bool supportInterpolation = false)
@@ -2228,7 +2228,7 @@ class Lexer
 
     /**************************************
      * Reference:
-     *    https://dlang.org/spec/lex.html#characterliteral
+     *    https://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd
      */
     private TOK charConstant(Token* t)
     {
@@ -3165,7 +3165,7 @@ class Lexer
                                 TOK.float80Literal: "`real` for the current target".ptr][result];
             error(scanloc, "number `%s%s` is not representable as a %s", sbufptr, suffix, type);
             const char* extra = result == TOK.float64Literal ? "`real` literals can be written using the `L` suffix. " : "";
-            eSink.errorSupplemental(scanloc, "%shttps://dlang.org/spec/lex.html#floatliteral", extra);
+            eSink.errorSupplemental(scanloc, "%shttps://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd", extra);
         }
         debug
         {
@@ -3231,7 +3231,7 @@ class Lexer
      * Returns:
      *  true if the special token sequence was handled
      * References:
-     *  https://dlang.org/spec/lex.html#special-token-sequence
+     *  https://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd
      */
     bool parseSpecialTokenSequence()
     {

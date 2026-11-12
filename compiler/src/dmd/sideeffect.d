@@ -1,12 +1,12 @@
 /**
  * Find side-effects of expressions.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/sideeffect.d, _sideeffect.d)
- * Documentation:  https://dlang.org/phobos/dmd_sideeffect.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/sideeffect.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/sideeffect.d, _sideeffect.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/sideeffect.d
+ * 
  */
 
 module dmd.sideeffect;
@@ -47,7 +47,7 @@ bool isTrivialExp(Expression e)
 
         override void visit(Expression e)
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=11201
+            /* upstream issue 11201
              * CallExp is always non trivial expression,
              * especially for inlining.
              */
@@ -108,8 +108,8 @@ bool hasSideEffect(Expression e, bool assumeImpureCalls = false)
  */
 int callSideEffectLevel(FuncDeclaration f)
 {
-    /* https://issues.dlang.org/show_bug.cgi?id=12760
-     * https://issues.dlang.org/show_bug.cgi?id=16384
+    /* upstream issue 12760
+     * upstream issue 16384
      *
      * ctor calls and invariant calls always have side effects
      */
@@ -322,14 +322,14 @@ bool discardValue(Expression e)
             VarDeclaration v = (cast(VarExp)e).var.isVarDeclaration();
             if (v && (v.storage_class & STC.temp))
             {
-                // https://issues.dlang.org/show_bug.cgi?id=5810
+                // upstream issue 5810
                 // Don't complain about an internal generated variable.
                 return false;
             }
             break;
         }
     case EXP.call:
-        // https://issues.dlang.org/show_bug.cgi?id=24359
+        // upstream issue 24359
         auto ce = e.isCallExp();
         if (const f = ce.f)
         {
@@ -350,8 +350,8 @@ bool discardValue(Expression e)
     case EXP.question:
         {
             CondExp ce = cast(CondExp)e;
-            /* https://issues.dlang.org/show_bug.cgi?id=6178
-             * https://issues.dlang.org/show_bug.cgi?id=14089
+            /* upstream issue 6178
+             * upstream issue 14089
              * Either CondExp::e1 or e2 may have
              * redundant expression to make those types common. For example:
              *
@@ -466,7 +466,7 @@ Expression extractSideEffect(Scope* sc, const char[] name,
      * results in an assignment, and then the interpreter says it cannot evaluate the
      * side effect assignment variable. But we don't have to worry about side
      * effects in function calls anyway, because then they won't CTFE.
-     * https://issues.dlang.org/show_bug.cgi?id=17145
+     * upstream issue 17145
      */
     if (!alwaysCopy &&
         (sc.ctfe ? !hasSideEffect(e) : isTrivialExp(e)))

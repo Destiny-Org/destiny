@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21479
+// upstream issue 21479
 enum Side
 {
     left,

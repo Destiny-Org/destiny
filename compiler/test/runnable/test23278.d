@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23278
+// upstream dmd issue 23278
 
 float[2][2] f()
 {

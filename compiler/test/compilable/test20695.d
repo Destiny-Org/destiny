@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20695
+// upstream issue 20695
 struct Bar
 {
     this(const ref Bar o) {}

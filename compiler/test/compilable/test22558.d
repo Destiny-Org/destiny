@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22558
+// upstream issue 22558
 module core.stdc.stdio;
 
 version (X86_64)

@@ -1,7 +1,7 @@
 /**
  * D header file for interaction with C++ std::string.
  *
- * Copyright: Copyright (c) 2019 D Language Foundation
+ * Copyright: Copyright (c) 2019 D Language Foundation; Copyright (C) 2026 Destiny contributors
  * License: Distributed under the
  *      $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost Software License 1.0).
  *    (See accompanying file LICENSE)
@@ -91,7 +91,7 @@ extern(C++, (StdNamespace)) struct char_traits(CharT)
         {
             enum crt = __traits(getTargetInfo, "cppRuntimeLibrary");
             static if (crt.length >= 6 && crt[0 .. 6] == "msvcrt")
-                enum use_wmemmove = false; // https://issues.dlang.org/show_bug.cgi?id=20456
+                enum use_wmemmove = false; // upstream issue 20456
             else
                 enum use_wmemmove = true;
         }
@@ -115,7 +115,7 @@ extern(C++, (StdNamespace)) struct char_traits(CharT)
 //alias std_wstring = basic_string!wchar_t; // TODO: we can't mangle wchar_t properly (yet?)
 
 /**
- * D language counterpart to C++ std::basic_string.
+ * Destiny language counterpart to C++ std::basic_string.
  *
  * C++ reference: $(LINK2 https://en.cppreference.com/w/cpp/string/basic_string)
  */

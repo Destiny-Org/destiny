@@ -6,7 +6,7 @@ fail_compilation/fail297.d(25):        perhaps overload the operator with `auto 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=1969
+// upstream issue 1969
 // ICE(cod1.c) using undefined operator with one const operand
 // ICE or wrong-code. D2 only. Internal error: backend\cod1.c 1673
 /* Root cause: BinExp::typeCombine() is checking for an _exact_ match, but

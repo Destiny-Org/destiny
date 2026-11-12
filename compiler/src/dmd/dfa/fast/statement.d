@@ -8,12 +8,12 @@
  * 3. Handling Loops: Managing state for `for`, `while`, and `do` loops.
  * 4. Handling Jumps: Resolving `break`, `continue`, `goto`, and `return`.
  *
- * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   $(LINK2 https://cattermole.co.nz, Richard (Rikki) Andrew Cattermole)
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/dfa/fast/statement.d, dfa/fast/statement.d)
- * Documentation: https://dlang.org/phobos/dmd_dfa_fast_statement.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/dfa/fast/statement.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/statement.d, dfa/fast/statement.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/statement.d
+ * 
  */
 module dmd.dfa.fast.statement;
 import dmd.dfa.fast.analysis;

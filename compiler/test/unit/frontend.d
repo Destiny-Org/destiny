@@ -351,7 +351,7 @@ unittest
     assert(global.errors == 0);
 }
 
-// Issue https://issues.dlang.org/show_bug.cgi?id=22906
+// upstream issue 22906
 @("semantics on non regular module")
 unittest
 {

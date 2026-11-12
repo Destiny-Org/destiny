@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -w
 
-// https://issues.dlang.org/show_bug.cgi?id=8696
+// upstream issue 8696
 // incorrect dangling else with version():
 version (all):
 

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23705
+// upstream issue 23705
 
 // DISABLED: win32
 

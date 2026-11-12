@@ -4,7 +4,7 @@ fail_compilation/test23719.c(15): Error: since `abc` is a pointer, use `abc->b` 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23719
+// upstream issue 23719
 
 struct S { int a, b; };
 

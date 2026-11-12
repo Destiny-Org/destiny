@@ -6,7 +6,7 @@ fail_compilation/issue24065.d(16): Error: assigning reference to local `r` to no
 ---
 */
 
-// https://github.com/dlang/dmd/issues/24065
+// upstream dmd issue 24065
 
 int delegate() @safe dg;
 

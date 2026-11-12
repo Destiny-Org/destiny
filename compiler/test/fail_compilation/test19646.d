@@ -4,7 +4,7 @@ fail_compilation/test19646.d(12): Error: cast from `const(int)*` to `int*` can't
 fail_compilation/test19646.d(12):        Source type is incompatible with target type containing a pointer
 fail_compilation/test19646.d(18): Error: `@safe` variable `z` cannot be initialized by calling `@system` function `f`
 ---
-https://issues.dlang.org/show_bug.cgi?id=19646
+upstream issue 19646
  */
 
 @safe:

@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/18382
+// upstream dmd issue 18382
 void main()
 {
     int[2][] foo = [[1, 1]];

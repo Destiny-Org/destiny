@@ -5,7 +5,7 @@ struct timespec
     int s;
 };
 
-/* https://issues.dlang.org/show_bug.cgi?id=24303 */
+/* upstream issue 24303 */
 
 typedef struct {} Slice;
 
@@ -19,6 +19,6 @@ void langmap(struct Lang *self)
     Slice slice = *self->slices;
 }
 
-/* https://issues.dlang.org/show_bug.cgi?id=24306 */
+/* upstream issue 24306 */
 
 struct T;

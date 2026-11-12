@@ -6,7 +6,7 @@ fail_compilation/fail152.d(22): Error: template instance `fail152.a!double` erro
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=1028
+// upstream issue 1028
 // Segfault using tuple inside asm code.
 void a(X...)(X expr)
 {

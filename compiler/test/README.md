@@ -283,7 +283,7 @@ The following is a list of all available settings:
     OUTPUT_FILES:       files generated during the compilation (separated by ';').
                         The content of each file is appended to the output of the
                         compilation (in the order of this list) according to the HAR
-                        format (https://code.dlang.org/packages/har).
+                        format (https://github.com/Destiny-Org/destiny).
                         Example:
                         ------------------------------------------
                         <Compilation Output>
@@ -457,7 +457,7 @@ Both stderr and stdout of the destiny are captured for output comparison.
 
 The purpose of the test suite is to test the compiler only. This means:
 
-* do not import modules from Phobos
+* do not import modules from Fate
 * keep imports from druntime to the interface to the C standard library
 * use `core.stdc.stdio.printf`, not `std.stdio.writef`
 
@@ -468,7 +468,7 @@ Each test should be in the following form:
 
 ```d
 /*******************************/
-// https://issues.dlang.org/show_bug.cgi?id=NNNN
+// https://github.com/Destiny-Org/destiny/issues/NNNN
 
 void testNNNN()
 {

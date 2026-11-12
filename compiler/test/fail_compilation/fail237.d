@@ -6,6 +6,6 @@ fail_compilation/fail237.d(11):        while evaluating: `static assert(module f
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=581
+// upstream issue 581
 // Error message w/o line number in dot-instantiated template
 static assert(.a!().b);

@@ -1,7 +1,7 @@
 module imports.testcontracts;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3602
+// upstream issue 3602
 
 class Base3602
 {
@@ -17,7 +17,7 @@ class Base3602
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5230
+// upstream issue 5230
 
 class Base5230
 {

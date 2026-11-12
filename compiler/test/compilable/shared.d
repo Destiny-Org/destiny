@@ -10,7 +10,7 @@ ref shared(int) f(return ref shared int y)
     return y;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20908
+// upstream issue 20908
 struct S
 {
     int i = 2;
@@ -55,7 +55,7 @@ void test20908()
     shared U u;
 }
 
-// https://github.com/dlang/dmd/issues/20496
+// upstream dmd issue 20496
 void test20496()
 {
     shared(int)[] dynamicArray;
@@ -140,7 +140,7 @@ auto ref test_inference_2(return ref shared C3 c)
 
 pragma(msg, typeof(test_inference_2));
 
-// https://issues.dlang.org/show_bug.cgi?id=21793
+// upstream issue 21793
 
 struct Child
 {
@@ -156,14 +156,14 @@ struct Parent
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23732
+// upstream issue 23732
 class Class {}
 void main()
 {
     auto b = new shared Class();
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23790
+// upstream issue 23790
 bool cas(shared bool*, bool, bool) { return true; }
 
 struct Argh
@@ -175,7 +175,7 @@ struct Argh
     }
 }
 
-// https://github.com/dlang/dmd/issues/23233
+// upstream dmd issue 23233
 class ClassWithSharedMember
 {
     void fail(shared(uint)* x);

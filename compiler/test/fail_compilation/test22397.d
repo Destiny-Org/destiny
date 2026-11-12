@@ -7,7 +7,7 @@ fail_compilation/test22397.d(15): Error: this array literal causes a GC allocati
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22397
+// upstream issue 22397
 @nogc void main()
 {
     @("uda") int[] a = [1, 2];      // should error

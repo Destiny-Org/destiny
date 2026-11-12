@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -inline -O
 
-// https://issues.dlang.org/show_bug.cgi?id=23307
+// upstream issue 23307
 import core.simd;
 
 static if(__traits(compiles, int4))

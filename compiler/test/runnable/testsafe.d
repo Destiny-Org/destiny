@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-//https://issues.dlang.org/show_bug.cgi?id=5415
+//upstream issue 5415
 
 @safe
 void pointercast()
@@ -31,7 +31,7 @@ void pointercast2()
 
 @safe
 void pointerarithmetic()
-{//https://issues.dlang.org/show_bug.cgi?id=4132
+{//upstream issue 4132
     void* a;
     int b;
 
@@ -137,7 +137,7 @@ struct uD
 }
 
 @safe
-void safeunions()   // improved for https://issues.dlang.org/show_bug.cgi?id=11510
+void safeunions()   // improved for upstream issue 11510
 {
     SafeUnion1 su1;
     SafeUnion2 su2;
@@ -273,7 +273,7 @@ void use__gshared()
 
 @safe
 void voidinitializers()
-{//https://issues.dlang.org/show_bug.cgi?id=4885
+{//upstream issue 4885
     static assert(!__traits(compiles, () @safe { uint* ptr = void; } ));
     static assert( __traits(compiles, () @safe { uint i = void; } ));
     static assert( __traits(compiles, () @safe { uint[2] a = void; } ));
@@ -290,14 +290,14 @@ void voidinitializers()
 
 @safe
 void pointerindex()
-{//https://issues.dlang.org/show_bug.cgi?id=9195
+{//upstream issue 9195
     static assert(!__traits(compiles, () @safe { int* p; auto a = p[30]; }));
     static assert( __traits(compiles, () @safe{ int* p; auto a = p[0]; }));
 }
 
 @safe
 void basiccast()
-{//https://issues.dlang.org/show_bug.cgi?id=5088
+{//upstream issue 5088
     auto a = cast(int)cast(const int)1;
     auto b = cast(real)cast(const int)1;
     auto c = cast(real)cast(const real)2.0;
@@ -410,7 +410,7 @@ void classcast()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6278
+// upstream issue 6278
 
 @safe
 {
@@ -429,7 +429,7 @@ class B6278 : A6278 {
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7803
+// upstream issue 7803
 
 @safe int f7803() {
     scope(success) {/* ... */}
@@ -442,13 +442,13 @@ nothrow int g7803() {
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6405
+// upstream issue 6405
 
 void foo6405(int[][] args...) @trusted { }
 void test6405() @safe { foo6405([1,2,3], [1,2,3]); }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12502
+// upstream issue 12502
 
 void test12502() @safe
 {
@@ -460,7 +460,7 @@ void test12502() @safe
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14162
+// upstream issue 14162
 
 @trusted auto trusted(alias fun)() { return fun(); }
 

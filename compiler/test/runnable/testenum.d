@@ -109,7 +109,7 @@ void test6()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=2407
+// upstream issue 2407
 
 int i2407;
 
@@ -223,7 +223,7 @@ void test2407()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3096
+// upstream issue 3096
 
 void test3096()
 {
@@ -252,30 +252,30 @@ void test3096()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7719
+// upstream issue 7719
 
 enum foo7719 = bar7719;
 enum { bar7719 = 1 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9845
+// upstream issue 9845
 
 enum { A9845 = B9845 }
 enum { B9845 = 1 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9846
+// upstream issue 9846
 
 const int A9846 = B9846;
 enum { B9846 = 1 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10105
+// upstream issue 10105
 
 enum E10105 : char[1] { a = "a" }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10113
+// upstream issue 10113
 
 enum E10113 : string
 {
@@ -299,7 +299,7 @@ void test10113()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10503
+// upstream issue 10503
 
 @property int octal10503(string num)()
 {
@@ -313,7 +313,7 @@ enum
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10505
+// upstream issue 10505
 
 enum
 {
@@ -331,7 +331,7 @@ static assert(is(typeof(d10505) == int));
 static assert(is(typeof(e10505) == typeof(null)));
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10561
+// upstream issue 10561
 
 void test10561()
 {
@@ -367,7 +367,7 @@ void test10561()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10612
+// upstream issue 10612
 
 int[E10612] ie10612;
 E10612[int] ei10612;
@@ -376,7 +376,7 @@ E10612[E10612] ee10612;
 enum E10612 { a }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10788
+// upstream issue 10788
 
 enum v10788 = e10788;
 enum : int { e10788 }
@@ -417,7 +417,7 @@ void test8()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13220
+// upstream issue 13220
 
 enum E13220a;
 @(1) enum E13220b;

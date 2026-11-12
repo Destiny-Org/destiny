@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23620
+// upstream issue 23620
 struct Index
 {
     uint value;

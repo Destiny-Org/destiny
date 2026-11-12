@@ -1,9 +1,9 @@
-// Written in the D programming language
+// Written in the Destiny programming language
 
 /**
  * Internal math utilities.
  *
- * Copyright: The D Language Foundation 2021.
+ * Copyright: The D Language Foundation 2021; Copyright (C) 2026 Destiny contributors.
  * License: $(HTTP boost.org/LICENSE_1_0.txt, Boost License 1.0).
  * Authors: Luís Ferreira
  * Source: $(DRUNTIMESRC core/internal/util/_math.d)

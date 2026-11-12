@@ -1,6 +1,6 @@
 /*
 REQUIRED_ARGS: -debug
-https://issues.dlang.org/show_bug.cgi?id=20507
+upstream issue 20507
 */
 
 

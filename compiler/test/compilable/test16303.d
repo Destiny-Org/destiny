@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16303
+// upstream issue 16303
 
 void yayf(void function(int*) fp);
 void yayd(void delegate(int*) dg);

@@ -1,8 +1,8 @@
 /* DISABLED: win32 linux32 hurd32
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=23875
-// https://issues.dlang.org/show_bug.cgi?id=23880
+// upstream issue 23875
+// upstream issue 23880
 
 int __attribute__((vector_size(16))) neptune()
 {
@@ -27,7 +27,7 @@ __attribute__((__vector_size__(16))) int pluto(int i)
     return i ? v1 : v2;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=24125
+// upstream issue 24125
 
 typedef int   __i128 __attribute__ ((__vector_size__ (16), __may_alias__));
 

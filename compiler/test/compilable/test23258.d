@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23258
+// upstream issue 23258
 
 struct SumType(Types...)
 {

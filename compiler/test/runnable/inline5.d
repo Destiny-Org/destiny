@@ -2,7 +2,7 @@
 // EXTRA_FILES: imports/inline5_1.d imports/inline5_2.d
 // REQUIRED_ARGS: -inline
 
-// https://github.com/dlang/dmd/issues/23668
+// upstream dmd issue 23668
 
 module inline5;
 

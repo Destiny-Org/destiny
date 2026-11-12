@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22006
+// upstream issue 22006
 void test22006()
 {
     alias AliasSeq(TList...) = TList;

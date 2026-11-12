@@ -1,6 +1,6 @@
 // DISABLED: win32 win64
 
-// https://issues.dlang.org/show_bug.cgi?id=23427
+// upstream issue 23427
 
 _Static_assert(sizeof(unsigned) == 4, "1");
 

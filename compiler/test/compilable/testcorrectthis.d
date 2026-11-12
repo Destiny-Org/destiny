@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=10886
+// upstream issue 10886
 
 struct A
 {
@@ -15,7 +15,7 @@ struct B
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21288
+// upstream issue 21288
 
 struct XA
 {

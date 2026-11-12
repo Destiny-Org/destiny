@@ -5,7 +5,7 @@ fail_compilation/test19112.d(15): Error: cannot implicitly convert expression `a
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=19112
+// upstream issue 19112
 
 void main()
 {

@@ -1,10 +1,10 @@
 // PERMUTE_ARGS: -O -inline
 
 // Test value-range propagation.
-// https://issues.dlang.org/show_bug.cgi?id=3147
-// https://issues.dlang.org/show_bug.cgi?id=6000
-// https://issues.dlang.org/show_bug.cgi?id=5225
-// https://issues.dlang.org/show_bug.cgi?id=24855
+// upstream issue 3147
+// upstream issue 6000
+// upstream issue 5225
+// upstream issue 24855
 
 void add()
 {
@@ -376,7 +376,7 @@ void bug1977_comment20()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9617
+// upstream issue 9617
 
 void test9617()
 {
@@ -490,7 +490,7 @@ void test10310()
     ubyte x = ((y & 252) ^ 2) + 1;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=15289
+// upstream issue 15289
 void test15289a()
 {
     int [] arr = [1, 2, 3, 4];

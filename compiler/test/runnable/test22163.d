@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22163
+// upstream issue 22163
 void fun(float[2] arr)
 {
     assert(arr[0] == 10.0);

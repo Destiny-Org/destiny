@@ -38,7 +38,7 @@ void test8765()
         assert(file && file == "runnable/testassert.d");
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20114
+// upstream issue 20114
 void test20114()
 {
     // Function call returning simple type
@@ -170,7 +170,7 @@ void test20375() @safe
     RefCounted.postblits = 0;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21471
+// upstream issue 21471
 void test21471()
 {
     {
@@ -200,7 +200,7 @@ void test21471()
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20581
+// upstream issue 20581
 void test20581() @safe
 {
     static auto retro(return scope int[] s) @safe
@@ -285,7 +285,7 @@ void testAssignments()
     assert(getMessage(assert(--c())) == "0 != true");
 }
 
-/// https://issues.dlang.org/show_bug.cgi?id=21472
+/// upstream issue 21472
 void testTupleFormat()
 {
     alias AliasSeq(T...) = T;
@@ -342,7 +342,7 @@ void testTupleFormat()
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21682
+// upstream issue 21682
 void testStaticOperators()
 {
     static class environment {

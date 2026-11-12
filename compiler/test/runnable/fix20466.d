@@ -1,7 +1,7 @@
 /* REQUIRED_ARGS: -O -fPIC
  * DISABLED: win32 win64
  */
-// https://issues.dlang.org/show_bug.cgi?id=20466
+// upstream issue 20466
 
 extern (C++) final class Parameter
 {

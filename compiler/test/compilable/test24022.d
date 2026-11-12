@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=24022
+// upstream issue 24022
 // EXTRA_FILES: imports/imp24022.c
 import imports.imp24022;
 

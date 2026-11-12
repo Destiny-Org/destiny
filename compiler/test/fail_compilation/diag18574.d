@@ -7,7 +7,7 @@ fail_compilation/diag18574.d(16):        `diag18574.Baz` has fields, consider ma
 fail_compilation/diag18574.d(16): Error: `diag18574.Test`: base type must be `interface`, not `int`
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=18574
+// upstream issue 18574
 
 class Foo {}
 class Bar {}

@@ -120,7 +120,7 @@ nothrow int foo6()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6518
+// upstream issue 6518
 
 template TypeTuple(T...) { alias T TypeTuple; }
 void test6518()
@@ -145,7 +145,7 @@ struct S9332
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13201
+// upstream issue 13201
 
 class C13201
 {

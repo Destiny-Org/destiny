@@ -8,7 +8,7 @@ fail_compilation/fix18575.d(39): Error: returning `s.ghi(t)` escapes a reference
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=18575
+// upstream issue 18575
 
 @safe:
 

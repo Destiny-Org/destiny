@@ -1,5 +1,5 @@
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19561
+// upstream issue 19561
 
 import core.memory;
 

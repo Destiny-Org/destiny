@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=24181
+// upstream issue 24181
 
 #include <assert.h>
 

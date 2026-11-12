@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19491
+// upstream issue 19491
 
 class Foo
 {

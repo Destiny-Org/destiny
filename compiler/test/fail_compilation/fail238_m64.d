@@ -10,7 +10,7 @@ fail_compilation/fail238_m64.d(35):        while evaluating `pragma(msg, M!(q))`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=581
+// upstream issue 581
 // Error message w/o line number in dot-instantiated template
 template X(){}
 

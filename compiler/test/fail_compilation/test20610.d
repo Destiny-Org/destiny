@@ -4,7 +4,7 @@ fail_compilation/test20610.d(20): Error: cannot modify `const` expression `field
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=20610
+// upstream issue 20610
 
 struct S
 {

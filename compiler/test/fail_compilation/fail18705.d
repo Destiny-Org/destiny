@@ -7,7 +7,7 @@ fail_compilation/fail18705.d(15):        `fail18705.fail(ref string v)` declared
 ---
 */
 
-// https://github.com/dlang/dmd/issues/18705
+// upstream dmd issue 18705
 // Confirms the "not callable" error explicitly mentions the rvalue/ref
 // mismatch instead of only a generic type list.
 string val() { return "3"; }

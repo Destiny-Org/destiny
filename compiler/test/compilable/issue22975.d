@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22975
+// upstream issue 22975
 void test22975a(int) {};
 
 alias test22975b = test22975a;

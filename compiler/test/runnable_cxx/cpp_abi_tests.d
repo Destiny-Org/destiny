@@ -207,7 +207,7 @@ extern(C++, `ns1`)
 
 extern(C++)
 {
-    // https://issues.dlang.org/show_bug.cgi?id=19563
+    // upstream issue 19563
 
     struct SmallStruct
     {
@@ -223,7 +223,7 @@ extern(C++)
 }
 
 /*********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=23195
+// upstream issue 23195
 
 extern (C++)
 {

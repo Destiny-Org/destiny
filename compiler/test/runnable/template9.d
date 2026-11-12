@@ -205,7 +205,7 @@ void test7()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5946
+// upstream issue 5946
 
 template TTest8()
 {
@@ -222,7 +222,7 @@ void test8()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=693
+// upstream issue 693
 
 template TTest9(alias sym)
 {
@@ -241,7 +241,7 @@ void test9()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=1780
+// upstream issue 1780
 
 template Tuple1780(Ts ...) { alias Ts Tuple1780; }
 
@@ -258,7 +258,7 @@ void test1780()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=1659
+// upstream issue 1659
 
 class Foo1659 { }
 class Bar1659 : Foo1659 { }
@@ -272,7 +272,7 @@ void test1659()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=2025
+// upstream issue 2025
 
 struct S2025 {}
 void f2025() {}
@@ -299,7 +299,7 @@ static assert(Baz2025!S2025 == 1);  // 2 -> 1
 static assert(Baz2025!f2025 == 2);
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=3608
+// upstream issue 3608
 
 template foo3608(T, U){}
 
@@ -323,7 +323,7 @@ void test3608()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5015
+// upstream issue 5015
 
 import breaker;
 
@@ -338,7 +338,7 @@ template _ElemType(T) {
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5185
+// upstream issue 5185
 
 class C5185(V)
 {
@@ -354,7 +354,7 @@ void test5185()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5893
+// upstream issue 5893
 
 class C5893
 {
@@ -377,7 +377,7 @@ void test5893()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5988
+// upstream issue 5988
 
 template Templ5988(alias T)
 {
@@ -393,7 +393,7 @@ Templ5988!C5988b foo5988b;      // Uncomment version
 void test5988b() { C5988b!int a; }  // Works
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6404
+// upstream issue 6404
 
 // receive only rvalue
 void rvalue(T)(auto ref T x) if (!__traits(isRef, x)) {}
@@ -421,7 +421,7 @@ void test6404()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=2246
+// upstream issue 2246
 
 class A2246(T,d){
     T p;
@@ -457,7 +457,7 @@ void test2246(){
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=2296
+// upstream issue 2296
 
 void foo2296(size_t D)(int[D] i...){}
 void test2296()
@@ -466,7 +466,7 @@ void test2296()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=1684
+// upstream issue 1684
 
 template Test1684( uint memberOffset ){}
 
@@ -499,7 +499,7 @@ void bug4984() {
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=2579
+// upstream issue 2579
 
 void foo2579(T)(T delegate(in Object) dlg)
 {
@@ -511,7 +511,7 @@ void test2579()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=2803
+// upstream issue 2803
 
 auto foo2803(T)(T t = 0) { return t; }
 
@@ -581,7 +581,7 @@ void test2803()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6613
+// upstream issue 6613
 
 alias Tuple6613(T...) = T;
 
@@ -597,14 +597,14 @@ void test6613()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=4953
+// upstream issue 4953
 
 void bug4953(T = void)(short x) {}
 static assert(is(typeof(bug4953(3))));
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5886
-// https://issues.dlang.org/show_bug.cgi?id=5393
+// upstream issue 5886
+// upstream issue 5393
 
 mixin template Foo5886(T)
 {
@@ -672,7 +672,7 @@ void test5393()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5896
+// upstream issue 5896
 
 struct X5896
 {
@@ -697,7 +697,7 @@ void test5896()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6312
+// upstream issue 6312
 
 void h6312() {}
 
@@ -721,7 +721,7 @@ void test6312()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6825
+// upstream issue 6825
 
 void test6825()
 {
@@ -737,7 +737,7 @@ void test6825()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6789
+// upstream issue 6789
 
 template isStaticArray6789(T)
 {
@@ -757,7 +757,7 @@ void test6789()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=2778
+// upstream issue 2778
 
 struct ArrayWrapper2778(T)
 {
@@ -820,7 +820,7 @@ void test2778get()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6208
+// upstream issue 6208
 
 int getRefNonref(T)(ref T s){ return 1; }
 int getRefNonref(T)(    T s){ return 2; }
@@ -935,7 +935,7 @@ void test6208c()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6805
+// upstream issue 6805
 
 struct T6805
 {
@@ -947,7 +947,7 @@ struct T6805
 static assert(is(T6805.xxx.Type == int));
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6738
+// upstream issue 6738
 
 struct Foo6738
 {
@@ -966,7 +966,7 @@ void test6738()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7498
+// upstream issue 7498
 
 template IndexMixin(){
     void insert(T)(T value){  }
@@ -982,7 +982,7 @@ class MultiIndexContainer{
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6780
+// upstream issue 6780
 
 @property int foo6780()(){ return 10; }
 
@@ -999,7 +999,7 @@ void test6780()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6810
+// upstream issue 6810
 
 int f6810(int n)(int) { return 1;}
 int f6810(U...)(U)    { assert(0); }
@@ -1013,7 +1013,7 @@ void test6810()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6891
+// upstream issue 6891
 
 struct S6891(int N, T)
 {
@@ -1027,7 +1027,7 @@ void test6891()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6994
+// upstream issue 6994
 
 struct Foo6994
 {
@@ -1050,7 +1050,7 @@ void test6994()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6764
+// upstream issue 6764
 
 enum N6764 = 1; //use const for D1
 
@@ -1070,8 +1070,8 @@ void test6764()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=3467
-// https://issues.dlang.org/show_bug.cgi?id=6806
+// upstream issue 3467
+// upstream issue 6806
 
 struct Foo3467( uint n )
 {
@@ -1098,7 +1098,7 @@ struct TS6806(uint n) { pragma(msg, typeof(n)); }
 static assert(is(TS6806!(1u) == TS6806!(1)));
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=4413
+// upstream issue 4413
 
 struct Foo4413
 {
@@ -1119,7 +1119,7 @@ void test4413()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=4675
+// upstream issue 4675
 
 template isNumeric(T)
 {
@@ -1137,7 +1137,7 @@ void test4675()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5525
+// upstream issue 5525
 
 template foo5525(T)
 {
@@ -1153,7 +1153,7 @@ void test5525()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5801
+// upstream issue 5801
 
 int a5801;
 void bar5801(T = double)(typeof(a5801) i) {}
@@ -1165,7 +1165,7 @@ void test5801()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=5832
+// upstream issue 5832
 
 struct Bar5832(alias v) {}
 
@@ -1195,7 +1195,7 @@ static assert( isBar5832b!(Bar5832!1234));
 static assert(!isBar5832c!(Bar5832!1234));
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=2550
+// upstream issue 2550
 
 template pow10_2550(long n)
 {
@@ -1253,7 +1253,7 @@ void test10()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=3092
+// upstream issue 3092
 
 template Foo3092(A...)
 {
@@ -1262,7 +1262,7 @@ template Foo3092(A...)
 static assert(is(Foo3092!(int, "foo") == int));
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7037
+// upstream issue 7037
 
 struct Foo7037 {}
 struct Bar7037 { Foo7037 f; alias f this; }
@@ -1277,7 +1277,7 @@ void test7037()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7110
+// upstream issue 7110
 
 struct S7110
 {
@@ -1311,7 +1311,7 @@ alias T7110!(  (e7110[0]) ) D1; // passes
 alias T7110!(   e7110[0]  ) D2; // fails: e7110 must be an array or pointer type, not S7110
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7124
+// upstream issue 7124
 
 template StaticArrayOf(T : E[dim], E, size_t dim)
 {
@@ -1343,7 +1343,7 @@ void test7124()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7359
+// upstream issue 7359
 
 bool foo7359(T)(T[] a ...)
 {
@@ -1357,7 +1357,7 @@ void test7359()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7363
+// upstream issue 7363
 
 template t7363()
 {
@@ -1389,7 +1389,7 @@ alias S4371!("hi!") t;
 static if (is(t U == S4371!(U))) { }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7416
+// upstream issue 7416
 
 void t7416(alias a)() if(is(typeof(a())))
 {}
@@ -1400,7 +1400,7 @@ void test7416() {
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7563
+// upstream issue 7563
 
 class Test7563
 {
@@ -1418,7 +1418,7 @@ void test7563()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7572
+// upstream issue 7572
 
 class F7572
 {
@@ -1437,7 +1437,7 @@ void test7572()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7580
+// upstream issue 7580
 
 struct S7580(T)
 {
@@ -1469,7 +1469,7 @@ void test7580()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7585
+// upstream issue 7585
 
 extern(C) alias void function() Callback;
 
@@ -1506,7 +1506,7 @@ void test7585()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7643
+// upstream issue 7643
 
 template T7643(A...){ alias A T7643; }
 
@@ -1515,7 +1515,7 @@ alias T7643!(long, "x", string, "y") Specs7643;
 alias T7643!( Specs7643[] ) U7643;  // Error: tuple A is used as a type
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7671
+// upstream issue 7671
 
        inout(int)[3]  id7671n1             ( inout(int)[3] );
        inout( U )[n]  id7671x1(U, size_t n)( inout( U )[n] );
@@ -1533,7 +1533,7 @@ void test7671()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7672
+// upstream issue 7672
 
 T foo7672(T)(T a){ return a; }
 
@@ -1547,7 +1547,7 @@ void test7672(inout(int[]) a = null, inout(int*) p = null)
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7684
+// upstream issue 7684
 
        U[]  id7684(U)(        U[]  );
 shared(U[]) id7684(U)( shared(U[]) );
@@ -1559,7 +1559,7 @@ void test7684()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7694
+// upstream issue 7694
 
 void match7694(alias m)()
 {
@@ -1580,7 +1580,7 @@ struct T7694
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7755
+// upstream issue 7755
 
 template to7755(T)
 {
@@ -1635,7 +1635,7 @@ void test11b()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7769
+// upstream issue 7769
 
 void f7769(K)(inout(K) value){}
 void test7769()
@@ -1644,7 +1644,7 @@ void test7769()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7812
+// upstream issue 7812
 
 template A7812(T...) {}
 
@@ -1658,7 +1658,7 @@ template D7812()
 static assert(!__traits(compiles, D7812!()));
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7873
+// upstream issue 7873
 
 inout(T)* foo(T)(inout(T)* t)
 {
@@ -1678,7 +1678,7 @@ void test7873()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=7933
+// upstream issue 7933
 
 struct Boo7933(size_t dim){int a;}
 struct Baa7933(size_t dim)
@@ -1697,7 +1697,7 @@ void test7933()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8094
+// upstream issue 8094
 
 struct Tuple8094(T...) {}
 
@@ -1735,14 +1735,14 @@ void test12()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=14290
+// upstream issue 14290
 
 struct Foo14290(int i) {}
 alias Foo14290a = Foo14290!1;
 static assert(!is(Foo14290!2 == Foo14290a!T, T...));
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8125
+// upstream issue 8125
 
 void foo8125(){}
 
@@ -1830,7 +1830,7 @@ void test15()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8129
+// upstream issue 8129
 
 class X8129 {}
 class A8129 {}
@@ -1864,7 +1864,7 @@ void test8129()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8238
+// upstream issue 8238
 
 void test8238()
 {
@@ -1880,7 +1880,7 @@ void test8238()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8669
+// upstream issue 8669
 
 struct X8669
 {
@@ -1946,7 +1946,7 @@ void test8669()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8833
+// upstream issue 8833
 
 template TypeTuple8833(T...) { alias TypeTuple = T; }
 
@@ -1963,7 +1963,7 @@ void test8833()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=8976
+// upstream issue 8976
 
 void f8976(ref int) { }
 
@@ -1988,7 +1988,7 @@ void test8976()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8940
+// upstream issue 8940
 
 const int n8940; // or `immutable`
 shared static this() { n8940 = 3; }
@@ -2009,8 +2009,8 @@ void test8940()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=6969
-// https://issues.dlang.org/show_bug.cgi?id=8990
+// upstream issue 6969
+// upstream issue 8990
 
 class A6969() { alias C6969!() C1; }
 class B6969   { alias A6969!() A1; }
@@ -2021,7 +2021,7 @@ struct B8990(T) { A8990!T* a; }
 struct C8990    { B8990!C8990* b; }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9018
+// upstream issue 9018
 
 template Inst9018(alias Template, T)
 {
@@ -2037,7 +2037,7 @@ static assert(!__traits(compiles, Inst9018!(Template9018, int))); // Assert pass
 static assert(!__traits(compiles, Inst9018!(Template9018, int))); // Assert fails
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9022
+// upstream issue 9022
 
 class C9022
 {
@@ -2082,7 +2082,7 @@ void test9022()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9026
+// upstream issue 9026
 
 mixin template node9026()
 {
@@ -2115,7 +2115,7 @@ void test9026()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9038
+// upstream issue 9038
 
 mixin template Foo9038()
 {
@@ -2150,7 +2150,7 @@ void test9038()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9050
+// upstream issue 9050
 
 struct A9050(T) {}
 
@@ -2167,7 +2167,7 @@ auto foo9050()(A9050!int base) pure
 auto s9050 = foo9050(A9050!int());
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=10936 (dup of 9050)
+// upstream issue 10936 (dup of 9050)
 
 struct Vec10936(string s)
 {
@@ -2186,7 +2186,7 @@ struct Vec10936(string s)
 Vec10936!"" v;
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9076
+// upstream issue 9076
 
 template forward9076(args...)
 {
@@ -2201,7 +2201,7 @@ void test9076()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9083
+// upstream issue 9083
 
 template isFunction9083(X...) if (X.length == 1)
 {
@@ -2239,7 +2239,7 @@ class C9083
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9100
+// upstream issue 9100
 
 template Id(alias A) { alias Id = A; }
 template ErrId(alias A) { static assert(0); }
@@ -2295,7 +2295,7 @@ void test9100()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9101
+// upstream issue 9101
 
 class Node9101
 {
@@ -2308,7 +2308,7 @@ class Node9101
 enum x9101 = __traits(compiles, Node9101.ForwardCtorNoId!());
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9124
+// upstream issue 9124
 
 struct Foo9124a(N...)
 {
@@ -2361,7 +2361,7 @@ void test9124b()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9143
+// upstream issue 9143
 
 struct Foo9143a(bool S, bool L)
 {
@@ -2400,7 +2400,7 @@ void test9143()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9266
+// upstream issue 9266
 
 template Foo9266(T...)
 {
@@ -2416,7 +2416,7 @@ void test9266()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9361
+// upstream issue 9361
 
 struct Unit9361(A)
 {
@@ -2437,7 +2437,7 @@ void test9361()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9536
+// upstream issue 9536
 
 struct S9536
 {
@@ -2458,7 +2458,7 @@ void test9536()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9578
+// upstream issue 9578
 
 template t9578(alias f) { void tf()() { f(); } }
 
@@ -2475,7 +2475,7 @@ void test9578()
 }
 
 /**********************************/
-// https://issues.dlang.org/show_bug.cgi?id=9596
+// upstream issue 9596
 
 int foo9596a(K, V)(inout(       V  [K])) { return 1; }
 int foo9596a(K, V)(inout(shared(V) [K])) { return 2; }
@@ -2507,7 +2507,7 @@ void test9596()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9806
+// upstream issue 9806
 
 struct S9806a(alias x)
 {
@@ -2543,7 +2543,7 @@ alias S9806c!1 One9806c;
 alias S9806c!0.Next!() OneAgain9806c;
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9837
+// upstream issue 9837
 
 void test9837()
 {
@@ -2584,7 +2584,7 @@ void test9837()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9874
+// upstream issue 9874
 
 bool foo9874() { return true; }
 void bar9874(T)(T) if (foo9874()) {} // OK
@@ -2675,7 +2675,7 @@ void test9885()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9971
+// upstream issue 9971
 
 void goo9971()()
 {
@@ -2699,7 +2699,7 @@ void test9971()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9977
+// upstream issue 9977
 
 void test9977()
 {
@@ -2738,7 +2738,7 @@ static assert(T8848b!([1:2,3:4]) == [1:2,3:4]);
 static assert(T8848c!(null) == null);
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9990
+// upstream issue 9990
 
 auto initS9990() { return "hi"; }
 
@@ -2747,7 +2747,7 @@ class C9990(alias init) {}
 alias SC9990 = C9990!(initS9990);
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10067
+// upstream issue 10067
 
 struct assumeSize10067(alias F) {}
 
@@ -2761,7 +2761,7 @@ template useItemAt10067(size_t idx, T)
 useItemAt10067!(0, char) mapS10067;
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4072
+// upstream issue 4072
 
 void bug4072(T)(T x)
     if (is(typeof(bug4072(x))))
@@ -2770,7 +2770,7 @@ void bug4072(T)(T x)
 static assert(!is(typeof(bug4072(7))));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10074
+// upstream issue 10074
 
 template foo10074(F)
 {
@@ -2785,7 +2785,7 @@ bool foo10074(F)(F f)
 static assert(!is(typeof(foo10074(1))));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10083
+// upstream issue 10083
 
 // [a-c] IFTI can find syntactic eponymous member
 template foo10083a(T)
@@ -2875,7 +2875,7 @@ void test10083()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10134
+// upstream issue 10134
 
 template ReturnType10134(alias func)
 {
@@ -2922,7 +2922,7 @@ template b10134()
 pragma(msg, getResultType10134!(a10134!()));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10313
+// upstream issue 10313
 
 void test10313()
 {
@@ -2941,7 +2941,7 @@ void test10313()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10498
+// upstream issue 10498
 
 template triggerIssue10498a()
 {
@@ -2993,7 +2993,7 @@ void test10498b()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10537
+// upstream issue 10537
 
 struct Iota10537
 {
@@ -3018,7 +3018,7 @@ dstring rewriteCode10537(dstring code)
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10558
+// upstream issue 10558
 
 template Template10558() {}
 
@@ -3037,7 +3037,7 @@ template foo10558(alias T)
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10592
+// upstream issue 10592
 
 void test10592()
 {
@@ -3066,7 +3066,7 @@ void test10592()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11242
+// upstream issue 11242
 
 inout(T[]) fromString11242(T)(inout(char[]) s, T[] dst)
 {
@@ -3080,7 +3080,7 @@ void test11242()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10811
+// upstream issue 10811
 
 void foo10811a(R1, R2)(R1, R2) {}
 template foo10811a(alias pred) { void foo10811a(R1, R2)(R1, R2) {} }
@@ -3098,7 +3098,7 @@ void test10811()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10969
+// upstream issue 10969
 
 template A10969(T, U...) { alias A10969 = T; }
 void foo10969(T, U...)(A10969!(T, U) a) {}
@@ -3113,7 +3113,7 @@ void test10969()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11271
+// upstream issue 11271
 
 struct SmartPtr11271(T)
 {
@@ -3128,7 +3128,7 @@ void test11271()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11533
+// upstream issue 11533
 
 version (none)
 {
@@ -3179,7 +3179,7 @@ void test11533()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11553
+// upstream issue 11553
 
 struct Pack11553(T ...)
 {
@@ -3234,7 +3234,7 @@ static if ( hl11553!(Pack11553!(5))) { pragma(msg, "All good 2"); }
 static if (!hl11553!(Pack11553!( ))) { pragma(msg, "All good 3"); }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11818
+// upstream issue 11818
 
 enum E11818 { e0, e1 }
 
@@ -3252,7 +3252,7 @@ void test11818()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11843
+// upstream issue 11843
 
 void test11843()
 {
@@ -3276,7 +3276,7 @@ void test11843()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11872
+// upstream issue 11872
 
 class Foo11872
 {
@@ -3307,7 +3307,7 @@ void test11872()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12042
+// upstream issue 12042
 
 struct S12042
 {
@@ -3332,7 +3332,7 @@ int test12042()
 static assert(test12042());
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12077
+// upstream issue 12077
 
 struct S12077(A) {}
 
@@ -3344,7 +3344,7 @@ alias U12077(      T : Base!Args, alias Base, Args...) = Base;
 static assert(__traits(isSame, U12077!(S12077!int), S12077));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12262
+// upstream issue 12262
 
 template Inst12262(T) { int x; }
 
@@ -3355,7 +3355,7 @@ static assert(fqnSym12262!(Inst12262!(Object)) == 2);
 static assert(fqnSym12262!(Inst12262!(Object).x) == 1);
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12264
+// upstream issue 12264
 
 struct S12264(A) {}
 
@@ -3380,7 +3380,7 @@ static assert(TY12264!(S12264!int) == 2);
 static assert(TZ12264!(S12264!int) == 2);
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12122
+// upstream issue 12122
 
 enum N12122 = 1;
 
@@ -3393,7 +3393,7 @@ void test12122()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12186
+// upstream issue 12186
 
 template map_front12186(fun...)
 {
@@ -3414,7 +3414,7 @@ void test12186()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12207
+// upstream issue 12207
 
 void test12207()
 {
@@ -3429,7 +3429,7 @@ void test12207()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12263
+// upstream issue 12263
 
 template A12263(alias a) { int x; }
 template B12263(alias a) { int x; }
@@ -3443,7 +3443,7 @@ static assert(fqnSym12263!(A12263!(Object)));
 static assert(fqnSym12263!(B12263!(Object)));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12290
+// upstream issue 12290
 
 void test12290()
 {
@@ -3528,7 +3528,7 @@ void test12290()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12292
+// upstream issue 12292
 
 void test12292()
 {
@@ -3540,7 +3540,7 @@ void test12292()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12376
+// upstream issue 12376
 
 static auto encode12376(size_t sz)(dchar ch) if (sz > 1)
 {
@@ -3553,7 +3553,7 @@ void test12376()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12447
+// upstream issue 12447
 
 enum   test12447(string str) = str; // [1]
 string test12447(T...)(T args) if (T.length) { return args[0]; }    // [2]
@@ -3568,7 +3568,7 @@ static assert(test12447("foo") == "foo");
 static assert(test12447!("bar") == "bar");
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12651
+// upstream issue 12651
 
 alias TemplateArgsOf12651(alias T : Base!Args, alias Base, Args...) = Args;
 
@@ -3577,7 +3577,7 @@ struct S12651(T) { }
 static assert(!__traits(compiles, TemplateArgsOf12651!(S12651!int, S, float)));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12719
+// upstream issue 12719
 
 struct A12719
 {
@@ -3606,7 +3606,7 @@ struct W12719(R)
 W12719!int a12719;
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12746
+// upstream issue 12746
 
 template foo12746()
 {
@@ -3628,7 +3628,7 @@ void test12746()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12748
+// upstream issue 12748
 
 void foo12748(S, C : typeof(S.init[0]))(S s, C c)
 {
@@ -3640,7 +3640,7 @@ void test12748()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9708
+// upstream issue 9708
 
 struct S9708
 {
@@ -3654,13 +3654,13 @@ void test9708()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12880
+// upstream issue 12880
 
 void f12880(T)(in T value) { static assert(is(T == string)); }
 void test12880() { f12880(string.init); }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13087
+// upstream issue 13087
 
 struct Vec13087
 {
@@ -3682,7 +3682,7 @@ template component13087(alias vec, char c)
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13127
+// upstream issue 13127
 
 /+void test13127(inout int = 0)
 {
@@ -3903,7 +3903,7 @@ void test13127a()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13159
+// upstream issue 13159
 
 template maxSize13159(T...)
 {
@@ -3932,7 +3932,7 @@ struct Node13159
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13180
+// upstream issue 13180
 
 void test13180()
 {
@@ -3970,7 +3970,7 @@ void test13180()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13204
+// upstream issue 13204
 
 struct A13204(uint v)
 {
@@ -4002,7 +4002,7 @@ void test13204()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8462 (dup of 13204)
+// upstream issue 8462 (dup of 13204)
 
 alias FP8462 = void function(C8462.Type arg);
 
@@ -4013,7 +4013,7 @@ class C8462
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13218
+// upstream issue 13218
 
 template isCallable13218(T...)
     if (T.length == 1)
@@ -4047,7 +4047,7 @@ struct R13218
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13219
+// upstream issue 13219
 
 struct Map13219(V) {}
 
@@ -4067,7 +4067,7 @@ void test13219()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13223
+// upstream issue 13223
 
 void test13223()
 {
@@ -4133,7 +4133,7 @@ void test13223a()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13235
+// upstream issue 13235
 
 struct Tuple13235(T...)
 {
@@ -4179,7 +4179,7 @@ void test13235()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13252
+// upstream issue 13252
 
 alias TypeTuple13252(T...) = T;
 
@@ -4203,7 +4203,7 @@ static assert(is(typeof(TypeTuple13252!(const     S13252())[0]) ==     const(S13
 static assert(is(typeof(TypeTuple13252!(immutable S13252())[0]) == immutable(S13252)));     // OK <- NG
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13294
+// upstream issue 13294
 
 void test13294()
 {
@@ -4223,7 +4223,7 @@ void test13294()
         f(src, dst);
     }
 
-    // https://issues.dlang.org/show_bug.cgi?id=13351
+    // upstream issue 13351
     T add(T)(in T x, in T y)
     {
         T z;
@@ -4237,7 +4237,7 @@ void test13294()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13299
+// upstream issue 13299
 
 struct Foo13299
 {
@@ -4268,7 +4268,7 @@ void test13299()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13333
+// upstream issue 13333
 
 template AliasThisTypeOf13333(T)
 {
@@ -4320,7 +4320,7 @@ void test13333()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13374
+// upstream issue 13374
 
 int f13374(alias a)()  { return 1; }
 int f13374(string s)() { return 2; }
@@ -4333,7 +4333,7 @@ void test13374()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14109
+// upstream issue 14109
 
 string f14109() { return "a"; }
 string g14109()() { return "a"; }
@@ -4345,7 +4345,7 @@ alias Y14109 = S14109!(g14109!());
 static assert(is(X14109 == Y14109));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13378
+// upstream issue 13378
 
 struct Vec13378(size_t n, T, string as)
 {
@@ -4361,7 +4361,7 @@ void test13378()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13379
+// upstream issue 13379
 
 void test13379()
 {
@@ -4400,7 +4400,7 @@ MinType13379!T min13379(T...)(T args)   // #4 MinType!uint (speculative && thist
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13417
+// upstream issue 13417
 
 struct V13417(size_t N, E, alias string AS)
 {
@@ -4417,7 +4417,7 @@ void test13417()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13484
+// upstream issue 13484
 
 int foo13484()(void delegate() hi) { return 1; }
 int foo13484(T)(void delegate(T) hi) { return 2; }
@@ -4429,7 +4429,7 @@ void test13484()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13675
+// upstream issue 13675
 
 enum E13675;
 
@@ -4445,7 +4445,7 @@ void test13675()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13694
+// upstream issue 13694
 
 auto foo13694(T)(string A,         T[] G ...) { return 1; }
 auto foo13694(T)(string A, long E, T[] G ...) { return 2; }
@@ -4461,7 +4461,7 @@ void test13694()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13760
+// upstream issue 13760
 
 void test13760()
 {
@@ -4473,7 +4473,7 @@ void test13760()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13714
+// upstream issue 13714
 
 struct JSONValue13714
 {
@@ -4502,7 +4502,7 @@ void test13714()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13807
+// upstream issue 13807
 
 T f13807(T)(inout(T)[] arr)
 {
@@ -4517,7 +4517,7 @@ void test13807()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14174
+// upstream issue 14174
 import imports.testmangle;
 
 struct Config14174(a, b) {}
@@ -4556,7 +4556,7 @@ void test14174()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14836
+// upstream issue 14836
 
 template a14836x(alias B, C...)
 {
@@ -4579,7 +4579,7 @@ void test14836()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14357
+// upstream issue 14357
 
 template Qux14357(T : U*, U : V*, V)
 {
@@ -4591,7 +4591,7 @@ template Qux14357(T : U*, U : V*, V)
 static assert(!__traits(compiles, Qux14357!(float**, int*)));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14481
+// upstream issue 14481
 
 template someT14481(alias e)
 {
@@ -4610,7 +4610,7 @@ struct Hoge14481
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14520
+// upstream issue 14520
 
 template M14520(alias  a) { enum M14520 = 1; }
 template M14520(string s) { enum M14520 = 2; }
@@ -4624,7 +4624,7 @@ static assert(M14520!f14520b == 1);
 static assert(M14520!f14520c == 1);
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14568
+// upstream issue 14568
 
 struct Interval14568()
 {
@@ -4667,8 +4667,8 @@ template SubOps14568(Args...)
 struct Nat14568 { mixin SubOps14568!(null); }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14603
-// https://issues.dlang.org/show_bug.cgi?id=14604
+// upstream issue 14603
+// upstream issue 14604
 
 struct S14603
 {
@@ -4689,11 +4689,11 @@ struct S14604
 }
 alias Id14604(alias thing) = thing;
 alias c14604 = Id14604!(S14604.opDispatch!"go");     // ok
-// https://issues.dlang.org/show_bug.cgi?id=14604
+// upstream issue 14604
 alias d14604 = Id14604!(S14604.go);                  // 'Error: template instance opDispatch!"go" cannot resolve forward reference'
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14735
+// upstream issue 14735
 
 enum CS14735 { yes, no }
 
@@ -4707,7 +4707,7 @@ void test14735()
 {
     char[64] buf;
 
-    // Supported from 2.063: (https://dlang.org/changelog/2.063.html#implicitarraycast)
+    // Supported from 2.063: (upstream changelog 2.063)
     assert(indexOf14735a(buf[0..32], '\0') == 2);
     assert(indexOf14735b(buf[0..32], '\0') == 2);
 
@@ -4717,7 +4717,7 @@ void test14735()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14743
+// upstream issue 14743
 
 class A14743
 {
@@ -4726,7 +4726,7 @@ class A14743
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14802
+// upstream issue 14802
 
 void test14802()
 {
@@ -4766,7 +4766,7 @@ void test14802()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14886
+// upstream issue 14886
 
 void test14886()
 {
@@ -4788,9 +4788,9 @@ void test14886()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15156
+// upstream issue 15156
 
-// https://issues.dlang.org/show_bug.cgi?id=15156
+// upstream issue 15156
 auto f15116a(T)(string s, string arg2) { return 1; }
 auto f15116b(T)(int    i, string arg2) { return 2; }
 
@@ -4808,7 +4808,7 @@ void test15116()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15152
+// upstream issue 15152
 
 void test15152()
 {
@@ -4824,7 +4824,7 @@ void test15152()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15352
+// upstream issue 15352
 
 struct S15352(T, T delegate(uint idx) supplier)
 {
@@ -4854,7 +4854,7 @@ void test15352()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15623
+// upstream issue 15623
 
 struct WithFoo15623a { void foo() {} }
 struct WithFoo15623b { void foo() {} }
@@ -4885,7 +4885,7 @@ static assert( __traits(compiles, { alias Baz = CallsFoo15623!WithFoo15623d; ret
 static assert(!__traits(compiles, { alias Baz = CallsFoo15623!WithoutFoo15623d; return Baz.init; }()));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15781
+// upstream issue 15781
 
 void test15781()
 {
@@ -4908,7 +4908,7 @@ void test15781()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=16042
+// upstream issue 16042
 
 struct Foo16042 {}
 
@@ -4958,7 +4958,7 @@ void test16042b()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15243
+// upstream issue 15243
 
 struct S15243(Types...)
 {
@@ -4987,7 +4987,7 @@ void test15243()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15653
+// upstream issue 15653
 
 alias TypeTuple15653(T...) = T;
 

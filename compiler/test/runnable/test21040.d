@@ -1,6 +1,6 @@
 // REQUIRED_ARGS:
 // PERMUTE_ARGS: -mcpu=native
-// https://issues.dlang.org/show_bug.cgi?id=21040
+// upstream issue 21040
 
 import core.simd;
 

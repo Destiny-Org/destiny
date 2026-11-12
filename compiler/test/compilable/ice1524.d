@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=1524
+// upstream issue 1524
 // ICE(constfold.c) on using "is" with strings in CTFE
 
 /* 1524 PATCH Assertion failure: '0' on line 863 in file 'constfold.c'

@@ -27,7 +27,7 @@ fail_compilation/finalswitch_verbose.d(40):        `m20`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22038
+// upstream issue 22038
 enum H {
     m1, m2, m3, m4, m5,
     m6, m7, m8, m9, m10,

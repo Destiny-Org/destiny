@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22422
+// upstream dmd issue 22422
 
 class C {}
 class D {}

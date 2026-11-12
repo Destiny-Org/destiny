@@ -4,7 +4,7 @@
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=23347
+// upstream issue 23347
 
 void fork() { }
 

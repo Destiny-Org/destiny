@@ -16,7 +16,7 @@ version(none) void dotest(T) (T* ptr)
 }
 else void dotest(T) (T* ptr)
 {
-    // https://issues.dlang.org/show_bug.cgi?id=21484
+    // upstream issue 21484
     GC.clrAttr(ptr, uint.max);
     GC.setAttr(ptr, GC.BlkAttr.NO_MOVE);
     GC.getAttr(ptr);

@@ -123,7 +123,7 @@ struct S4
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8117
+// upstream issue 8117
 
 struct S8117
 {
@@ -142,7 +142,7 @@ void test8117()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9665
+// upstream issue 9665
 
 struct X9665
 {
@@ -188,7 +188,7 @@ void test9665()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11246
+// upstream issue 11246
 
 struct Foo11246
 {
@@ -229,7 +229,7 @@ void test11246()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13515
+// upstream issue 13515
 
 Object[string][100] aa13515;
 
@@ -259,7 +259,7 @@ void test13515()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14409
+// upstream issue 14409
 
 class B14409 { this(int) {} }
 class C14409 : B14409
@@ -274,7 +274,7 @@ class C14409 : B14409
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14376
+// upstream issue 14376
 
 auto map14376()
 {
@@ -300,7 +300,7 @@ struct S14376
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14351
+// upstream issue 14351
 
 class B14351
 {
@@ -323,7 +323,7 @@ class D14351c : B14351
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14450
+// upstream issue 14450
 
 struct S14450a      // non-template struct + non template ctors - OK
 {
@@ -372,7 +372,7 @@ void test14450()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14944
+// upstream issue 14944
 
 static int[2] tbl14944;
 
@@ -392,7 +392,7 @@ void test14944()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15258
+// upstream issue 15258
 // a field initialization affects other overlapped fields
 
 class C15258
@@ -410,7 +410,7 @@ class C15258
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15869
+// upstream issue 15869
 
 struct Set {
     @disable this(this);
@@ -440,7 +440,7 @@ void test15869()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19389
+// upstream issue 19389
 
 struct Foo19389 {
     int x;
@@ -466,7 +466,7 @@ void test19389()
 }
 
 /***************************************************/
-// https://github.com/dlang/dmd/issues/22604
+// upstream dmd issue 22604
 
 struct S22604
 {

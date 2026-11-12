@@ -1,10 +1,10 @@
 // REQUIRED_ARGS: -preview=dtorfields
 //
-// https://issues.dlang.org/show_bug.cgi?id=21709
+// upstream issue 21709
 // PERMUTE_ARGS: -betterC
 
 /******************************************
- * https://issues.dlang.org/show_bug.cgi?id=20934
+ * upstream issue 20934
  */
 struct HasDtor
 {
@@ -24,7 +24,7 @@ extern(C++) class Extern
 }
 
 /******************************************
- * https://issues.dlang.org/show_bug.cgi?id=21213
+ * upstream issue 21213
  */
 class Parent
 {
@@ -37,7 +37,7 @@ class Child : Parent
 }
 
 /******************************************
- * https://issues.dlang.org/show_bug.cgi?id=21225
+ * upstream issue 21225
  */
 
 struct NothrowConstructed

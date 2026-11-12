@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20388
+// upstream issue 20388
 
 void main() {
     foo!(mixin("(int a) { return a; }"))();

@@ -5,7 +5,7 @@ fail_compilation/fail17354.d(17): Error: cannot implicitly override base class m
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=17354
+// upstream issue 17354
 
 final class Foo
 {

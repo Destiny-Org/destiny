@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22609
+// upstream dmd issue 22609
 struct S
 {
     private ~this() {}

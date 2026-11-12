@@ -1,14 +1,14 @@
 /**
  * Handle introspection functionality of the `__traits()` construct.
  *
- * Specification: $(LINK2 https://dlang.org/spec/traits.html, Traits)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/traits.dd, Traits)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/traits.d, _traits.d)
- * Documentation:  https://dlang.org/phobos/dmd_traits.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/traits.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/traits.d, _traits.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/traits.d
+ * 
  */
 
 module dmd.traits;
@@ -825,7 +825,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
         auto se = new StringExp(e.loc, id.toString());
         return se.expressionSemantic(sc);
     }
-    if (e.ident == Id.fullyQualifiedName) // https://dlang.org/spec/traits.html#fullyQualifiedName
+    if (e.ident == Id.fullyQualifiedName) // https://github.com/Destiny-Org/destiny/blob/main/spec/traits.dd
     {
         if (dim != 1)
             return dimError(1);
@@ -939,7 +939,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
         auto s = getDsymbolWithoutExpCtx(o);
         if (s)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=12496
+            // upstream issue 12496
             // Consider:
             // class T1
             // {
@@ -963,9 +963,9 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
                 }
             }
 
-            if (auto fd = s.isFuncDeclaration()) // https://issues.dlang.org/show_bug.cgi?id=8943
+            if (auto fd = s.isFuncDeclaration()) // upstream issue 8943
                 s = fd.toAliasFunc();
-            if (!s.isImport()) // https://issues.dlang.org/show_bug.cgi?id=8922
+            if (!s.isImport()) // upstream issue 8922
                 s = s.toParent();
         }
         if (!s || s.isImport())
@@ -1114,7 +1114,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
             if (auto sm = sym.search(e.loc, id))
                 return True();
 
-            // https://issues.dlang.org/show_bug.cgi?id=23951
+            // upstream issue 23951
             if (auto decl = sym.isDeclaration())
             {
                 ex = typeDotIdExp(e.loc, decl.type, id);
@@ -1161,7 +1161,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
                 import dmd.access : symbolIsVisible;
                 import dmd.safe : setUnsafe;
                 auto msym = getDsymbolWithoutExpCtx(ex);
-                // https://github.com/dlang/dmd/issues/19721
+                // upstream dmd issue 19721
                 if (msym && !symbolIsVisible(sc, msym))
                 {
                     if (sc.setUnsafe(false, e.loc, "accessing member `%s`", id))
@@ -1444,7 +1444,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
     if (e.ident == Id.getFunctionAttributes)
     {
         /* Extract all function attributes as a tuple (const/shared/inout/pure/nothrow/etc) except UDAs.
-         * https://dlang.org/spec/traits.html#getFunctionAttributes
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/traits.dd
          */
         if (dim != 1)
             return dimError(1);
@@ -1458,7 +1458,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
             return ErrorExp.get();
         }
 
-        // https://issues.dlang.org/show_bug.cgi?id=19706
+        // upstream issue 19706
         // When getting the attributes of the instance of a
         // templated member function semantic tiargs does
         // not perform semantic3 on the instance.
@@ -1486,7 +1486,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
     if (e.ident == Id.isReturnOnStack)
     {
         /* Extract as a boolean if function return value is on the stack
-         * https://dlang.org/spec/traits.html#isReturnOnStack
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/traits.dd
          */
         if (dim != 1)
             return dimError(1);
@@ -1737,13 +1737,13 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
         }
         if (auto imp = s.isImport())
         {
-            // https://issues.dlang.org/show_bug.cgi?id=9692
-            // https://issues.dlang.org/show_bug.cgi?id=20008
+            // upstream issue 9692
+            // upstream issue 20008
             if (imp.pkg)
                 s = imp.pkg;
         }
 
-        // https://issues.dlang.org/show_bug.cgi?id=16044
+        // upstream issue 16044
         if (auto p = s.isPackage())
         {
             if (auto pm = p.isPackageMod())
@@ -1757,8 +1757,8 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
             eSink.errorSupplemental(e.loc, "`%s` must evaluate to either a module, a struct, a union, a class, an interface or a template instantiation", s.toChars());
             return ErrorExp.get();
         }
-        // https://issues.dlang.org/show_bug.cgi?id=13668
-        // https://github.com/dlang/dmd/issues/22524
+        // upstream issue 13668
+        // upstream dmd issue 22524
         // resolve forward references
         if (sds.semanticRun < PASS.semanticdone)
             sds.dsymbolSemantic(sc);
@@ -1782,7 +1782,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
                     return 0;
             }
 
-            // https://issues.dlang.org/show_bug.cgi?id=20915
+            // upstream issue 20915
             // skip version and debug identifiers
             if (sm.isVersionSymbol() || sm.isDebugSymbol())
                 return 0;
@@ -1790,8 +1790,8 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
             //printf("\t[%i] %s %s\n", i, sm.kind(), sm.toChars());
             if (sm.ident)
             {
-                // https://issues.dlang.org/show_bug.cgi?id=10096
-                // https://issues.dlang.org/show_bug.cgi?id=10100
+                // upstream issue 10096
+                // upstream issue 10100
                 // Skip over internal members in __traits(allMembers)
                 if ((sm.isCtorDeclaration() && sm.ident != Id.ctor) ||
                     (sm.isDtorDeclaration() && sm.ident != Id.dtor) ||
@@ -1807,9 +1807,9 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
                 {
                     return 0;
                 }
-                if (sm.isTypeInfoDeclaration()) // https://issues.dlang.org/show_bug.cgi?id=15177
+                if (sm.isTypeInfoDeclaration()) // upstream issue 15177
                     return 0;
-                if ((!sds.isModule() && !sds.isPackage()) && sm.isImport()) // https://issues.dlang.org/show_bug.cgi?id=17057
+                if ((!sds.isModule() && !sds.isPackage()) && sm.isImport()) // upstream issue 17057
                     return 0;
 
                 //printf("\t%s\n", sm.ident.toChars());
@@ -1927,7 +1927,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
 
             // Carefully detach the scope from the parent and throw it away as
             // we only need it to evaluate the expression
-            // https://issues.dlang.org/show_bug.cgi?id=15428
+            // upstream issue 15428
             sc2.detach();
 
             if (global.endGagging(errors) || err)
@@ -1944,7 +1944,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
         if (dim != 2)
             return dimError(2);
 
-        // https://issues.dlang.org/show_bug.cgi?id=20761
+        // upstream issue 20761
         // tiarg semantic may expand in place the list of arguments, for example:
         //
         //     before tiarg sema:  __traits(isSame, seq!(0,0), seq!(1,1))
@@ -1979,7 +1979,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
                 o.toErrMsg());
             return ErrorExp.get();
         }
-        if (auto imp = s.isImport()) // https://issues.dlang.org/show_bug.cgi?id=10990
+        if (auto imp = s.isImport()) // upstream issue 10990
             s = imp.mod;
 
         auto sds = s.isScopeDsymbol();
@@ -2090,7 +2090,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
             return ErrorExp.get();
         }
 
-        // https://issues.dlang.org/show_bug.cgi?id=23534
+        // upstream issue 23534
         //
         // For enums, we need to get the enum initializer
         // (the first enum member), not the initializer of the
@@ -2231,7 +2231,7 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
         auto tup = new TupleExp(e.loc, exps);
         return tup.expressionSemantic(sc);
     }
-    //https://issues.dlang.org/show_bug.cgi?id=22291
+    //upstream issue 22291
     if (e.ident == Id.parameters)
     {
         //No args are valid
@@ -2314,7 +2314,7 @@ private bool isSame(RootObject o1, RootObject o2, Scope* sc)
             return true;
     }
 
-    // https://issues.dlang.org/show_bug.cgi?id=12001, allow isSame, <BasicType>, <BasicType>
+    // upstream issue 12001, allow isSame, <BasicType>, <BasicType>
     Type t1 = isType(o1);
     Type t2 = isType(o2);
     if (t1 && t2)
@@ -2359,7 +2359,7 @@ private bool isSame(RootObject o1, RootObject o2, Scope* sc)
     if (auto fa2 = s2.isFuncAliasDeclaration())
         s2 = fa2.toAliasFunc();
 
-    // https://issues.dlang.org/show_bug.cgi?id=11259
+    // upstream issue 11259
     // compare import symbol to a package symbol
     static bool cmp(Dsymbol s1, Dsymbol s2)
     {
@@ -2373,7 +2373,7 @@ private bool isSame(RootObject o1, RootObject o2, Scope* sc)
     if (s1 == s2)
         return true;
 
-    // https://issues.dlang.org/show_bug.cgi?id=18771
+    // upstream issue 18771
     // OverloadSets are equal if they contain the same functions
     auto overSet1 = s1.isOverloadSet();
     if (!overSet1)

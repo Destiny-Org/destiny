@@ -661,7 +661,7 @@ void issue14626()
 }
 
 /// test duplicated keys in AA literal
-/// https://issues.dlang.org/show_bug.cgi?id=15290
+/// upstream issue 15290
 void issue15290()
 {
     string[int] aa = [ 0: "a", 0: "b" ];
@@ -697,7 +697,7 @@ void issue15367()
 }
 
 /// test AA as key
-/// https://issues.dlang.org/show_bug.cgi?id=16974
+/// upstream issue 16974
 void issue16974()
 {
     int[int] a = [1 : 2], a2 = [1 : 2];
@@ -710,7 +710,7 @@ void issue16974()
 }
 
 /// test safety for alias-this'd AA that have unsafe opCast
-/// https://issues.dlang.org/show_bug.cgi?id=18071
+/// upstream issue 18071
 void issue18071()
 {
     static struct Foo
@@ -730,7 +730,7 @@ void issue18071()
 
 /// Test that `require` works even with types whose opAssign
 /// doesn't return a reference to the receiver.
-/// https://issues.dlang.org/show_bug.cgi?id=20440
+/// upstream issue 20440
 void issue20440() @safe
 {
     static struct S
@@ -945,7 +945,7 @@ void testClear()
     assert(aa[5] == 6);
 }
 
-// https://github.com/dlang/dmd/issues/17503
+// upstream dmd issue 17503
 void testTypeInfoCollect()
 {
     import core.memory;
@@ -1061,7 +1061,7 @@ void testStringKey()
     const(char)[] keyName = "1";
     properties[keyName] = 1;
 
-    // https://github.com/dlang/dmd/issues/23320
+    // upstream dmd issue 23320
     const keyName2 = keyName;
     properties[keyName2] = 2;
 }

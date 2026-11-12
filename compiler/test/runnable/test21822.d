@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21822
+// upstream issue 21822
 
 bool testAliasedString()
 {

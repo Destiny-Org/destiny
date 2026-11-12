@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=18199
+// upstream issue 18199
 
 //
 // struct initializer cases

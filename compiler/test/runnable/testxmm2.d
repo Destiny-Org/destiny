@@ -11,7 +11,7 @@ import core.stdc.string;
 alias TypeTuple(T...) = T;
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21474
+// upstream issue 21474
 
 struct along
 {
@@ -44,7 +44,7 @@ int4 cmpss_repro(float4 a)
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=23461
+// upstream issue 23461
 
 int4 and(int a) { return a && true; }
 int4 or(int a) { return a || false; }
@@ -223,7 +223,7 @@ void test3() { }
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=23462
+// upstream issue 23462
 
 int4 notMask(int4 a) { return a == 0; }
 
@@ -286,7 +286,7 @@ void testdbl()
 
 version (none)//(D_AVX2)
 {
-// https://issues.dlang.org/show_bug.cgi?id=24283
+// upstream issue 24283
 
 import core.simd;
 import core.stdc.stdio;

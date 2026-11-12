@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23181
+/* upstream issue 23181
 TEST_OUTPUT:
 ---
 $p:druntime/import/core/lifetime.d$($n$): Error: struct `fail23181.fail23181.NoPostblit` is not copyable because it has a disabled postblit

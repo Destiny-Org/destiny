@@ -1,6 +1,6 @@
 // This file is part of Visual D
 //
-// Visual D integrates the D programming language into Visual Studio
+// Visual D integrates the Destiny programming language into Visual Studio
 // Copyright (c) 2010-2011 by Rainer Schuetze, All Rights Reserved
 //
 // Distributed under the Boost Software License, Version 1.0.
@@ -15,7 +15,7 @@ static @property int[string] sPredefinedVersions()
 {
     if(!predefinedVersions)
     {
-        // see http://dlang.org/version.html
+        // see https://github.com/Destiny-Org/destiny
         //  1: always defined
         // -1: always undefined
         //  0: to be determined by compiler option

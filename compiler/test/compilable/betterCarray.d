@@ -18,7 +18,7 @@ int foo(int[] a, int i)
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19234
+// upstream issue 19234
 void issue19234()
 {
     static struct A {}
@@ -28,7 +28,7 @@ void issue19234()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22922
+// upstream issue 22922
 void issue22922()
 {
     int[] x = [];

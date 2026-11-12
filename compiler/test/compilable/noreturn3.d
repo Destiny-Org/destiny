@@ -2,7 +2,7 @@
 REQUIRED_ARGS: -w -o- -d
 
 More complex examples from the DIP
-https://github.com/dlang/DIPs/blob/master/DIPs/accepted/DIP1034.md
+DIP1034
 */
 
 alias noreturn = typeof(*null);
@@ -50,7 +50,7 @@ auto inferReturn(int i)
 }
 
 // /*****************************************************************************/
-// // https://issues.dlang.org/show_bug.cgi?id=22004
+// // upstream issue 22004
 
 alias fun22004 = _ => {}();
 alias gun22004 = _ => assert(0);
@@ -127,7 +127,7 @@ void inference()
 
 
 /******************************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21957
+// upstream issue 21957
 // Calculate proper alignment and size for noreturn members
 
 enum longPad = long.alignof - int.sizeof;
@@ -230,7 +230,7 @@ struct EmptyStruct2
 static assert(EmptyStruct2.sizeof == 1);
 static assert(EmptyStruct2.noRet.offsetof == 0);
 
-// https://issues.dlang.org/show_bug.cgi?id=22858
+// upstream issue 22858
 // Shouldn't mess with the alignment of other zero-sized types.
 
 struct S22858

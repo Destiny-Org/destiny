@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22626
+// upstream issue 22626
 // REQUIRED_ARGS: -preview=nosharedaccess
 
 shared int k;
@@ -21,7 +21,7 @@ class Oops
         static assert (!__traits(compiles, k = 2));
     }
 
-    // https://issues.dlang.org/show_bug.cgi?id=24705
+    // upstream issue 24705
     synchronized void foo(int n)
     {
         // Error: direct access to shared `n` is not allowed, see `core.atomic`

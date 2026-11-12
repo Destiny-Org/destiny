@@ -11,7 +11,7 @@ fail_compilation/test19790.d(27): Error: template instance `test19790.match!(fun
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=19790 (github issue)
+// upstream issue 19790 (github issue)
 
 template match(handlers...)
 {

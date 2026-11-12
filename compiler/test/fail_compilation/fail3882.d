@@ -9,7 +9,7 @@ fail_compilation/fail3882.d(33): Error: `@mustuse` on functions is reserved for 
 import core.attribute;
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3882
+// upstream issue 3882
 
 @mustuse @safe pure nothrow T strictlyPure(T)(T x)
 {
@@ -21,7 +21,7 @@ void main()
     int x = 3;
     strictlyPure(x);
 
-    // https://issues.dlang.org/show_bug.cgi?id=12649
+    // upstream issue 12649
     auto fp = &strictlyPure!int;
     fp(x);
 }

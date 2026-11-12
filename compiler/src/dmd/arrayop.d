@@ -1,14 +1,14 @@
 /**
  * Implement array operations, such as `a[] = b[] + c[]`.
  *
- * Specification: $(LINK2 https://dlang.org/spec/arrays.html#array-operations, Array Operations)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/arrays.dd, Array Operations)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/arrayop.d, _arrayop.d)
- * Documentation:  https://dlang.org/phobos/dmd_arrayop.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/arrayop.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/arrayop.d, _arrayop.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/arrayop.d
+ * 
  */
 
 module dmd.arrayop;
@@ -114,8 +114,8 @@ bool checkNonAssignmentArrayOp(Expression e, bool suggestion = false)
  * evaluation order as the actual array operations have no
  * side-effect.
  * References:
- * https://github.com/dlang/dmd/blob/cdfadf8a18f474e6a1b8352af2541efe3e3467cc/druntime/src/object.d#L4694
- * https://github.com/dlang/dmd/blob/master/druntime/src/core/internal/array/operations.d
+ * https://github.com/Destiny-Org/destiny/blob/cdfadf8a18f474e6a1b8352af2541efe3e3467cc/druntime/src/object.d#L4694
+ * https://github.com/Destiny-Org/destiny/blob/main/druntime/src/core/internal/array/operations.d
  */
 Expression arrayOp(BinExp e, Scope* sc)
 {

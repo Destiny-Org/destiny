@@ -1,7 +1,7 @@
 /* DISABLED: win osx
  */
 
-/* https://issues.dlang.org/show_bug.cgi?id=23011
+/* upstream issue 23011
  */
 
 extern char **myenviron asm("environ");

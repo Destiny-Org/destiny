@@ -50,7 +50,7 @@
         |}
         |
         |/***************************************************/
-        |// https://issues.dlang.org/show_bug.cgi?id=24264
+        |// upstream issue 24264
         |// EXTRA_SOURCES: imports/ccov2.c
         |
         |import ccov2;

@@ -11,7 +11,7 @@ fail_compilation/issue20704.d(38): Error: template instance `issue20704.f2!(C)` 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=20704
+// upstream issue 20704
 
 void f1(T)(const auto ref T arg = T.init) {}
 void f2(T)(const      ref T arg = T.init) {}

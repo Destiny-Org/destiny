@@ -1,7 +1,7 @@
 /* REQUIRED_ARGS: -betterC
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17787
+// upstream issue 17787
 version (D_BetterC)
 {
 }

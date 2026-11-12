@@ -68,7 +68,7 @@ unittest
         format!`enum dstr = q"(%s)";`("\r\nfoo\r\nbar\nbaz\r\n"),
         `static assert(dstr == "\nfoo\nbar\nbaz\n");`,
 
-        // https://github.com/dlang/dmd/issues/17751
+        // upstream dmd issue 17751
         format!`enum tstr = q{%s};`("\r\nfoo\r\nbar\nbaz\r\n"),
         `static assert(tstr == "\nfoo\nbar\nbaz\n");`,
     ];

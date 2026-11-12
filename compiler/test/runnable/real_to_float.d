@@ -1,4 +1,4 @@
-/* The test related to https://github.com/dlang/dmd/issues/22322
+/* The test related to upstream dmd issue 22322
  * The issue title:
  * "converting real to float uses double rounding for 64-bit code
  * causing unexpected results"
@@ -20,7 +20,7 @@ void test22322(real r)
     assert(frd == 0x1.000004p-1);
 }
 
-// https://github.com/dlang/dmd/issues/18316
+// upstream dmd issue 18316
 pragma(inline, false)
 void test18316(real closest)
 {
@@ -40,7 +40,7 @@ void test18316(real closest)
     assert (dig22 == closest);  // Fails; should pass
 }
 
-// https://github.com/dlang/dmd/issues/19733
+// upstream dmd issue 19733
 pragma(inline, false)
 void test19733(real r)
 {

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22635
+// upstream issue 22635
 // opCast prevent calling destructor for const this
 
 struct Foo

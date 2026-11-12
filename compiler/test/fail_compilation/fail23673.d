@@ -6,7 +6,7 @@ fail_compilation/fail23673.d(26):        too few arguments, expected 1, got 0
 ---
 */
 
-// https://github.com/dlang/dmd/issues/23673
+// upstream dmd issue 23673
 
 struct S
 {

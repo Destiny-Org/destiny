@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -preview=dip1021
-// https://issues.dlang.org/show_bug.cgi?id=21882
+// upstream issue 21882
 bool buildPath()
 {
     struct ByCodeUnitImpl

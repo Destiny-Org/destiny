@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23605
+// upstream dmd issue 23605
 // EXTRA_CPP_SOURCES: test23605.cpp
 // EXTRA_FILES: extra-files/test23605.h
 // CXXFLAGS(osx linux freebsd openbsd netbsd dragonflybsd solaris): -std=c++11 -O2

@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21244
+// upstream dmd issue 21244
 // This used to segfault the compiler. The below error message can change.
 /*
 * TEST_OUTPUT:

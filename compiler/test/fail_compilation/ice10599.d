@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=10599
+// upstream issue 10599
 // ICE(interpret.c)
 /*
 TEST_OUTPUT:

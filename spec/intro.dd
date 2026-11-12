@@ -10,7 +10,7 @@ D programs are structured as modules that can be compiled separately and linked 
 to create native libraries or executables.)
 
 $(P This document is the reference manual for the Destiny Programming Language. For more information and
-other documents$(COMMA) see $(LINK2 https://dlang.org/, The Destiny Language Website).)
+other documents$(COMMA) see $(LINK2 https://github.com/Destiny-Org/destiny, The Destiny Language Website).)
 
 $(H2 $(LNAME2 phases-of-compilation, Phases of Compilation))
 

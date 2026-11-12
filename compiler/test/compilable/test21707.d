@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21707
+// upstream dmd issue 21707
 // Segfault with -vcg-ast and foreach on a tuple sequence
 
 /+

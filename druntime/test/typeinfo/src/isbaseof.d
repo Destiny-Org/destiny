@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20178
+// upstream issue 20178
 
 interface I {}
 interface J : I {}

@@ -116,7 +116,7 @@ private template substInoutForm(T)
 
 unittest
 {
-    // https://github.com/dlang/dmd/issues/21452
+    // upstream dmd issue 21452
     struct S { int x; }
     struct T { int x; alias x this; }
 
@@ -325,7 +325,7 @@ enum hasElaborateDestructor(S) = __traits(needsDestruction, S);
     static assert(!hasElaborateDestructor!(int[]));
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=24865
+// upstream issue 24865
 @safe unittest
 {
     static struct S2 { ~this() {} }
@@ -337,12 +337,12 @@ enum hasElaborateDestructor(S) = __traits(needsDestruction, S);
     static assert(!hasElaborateDestructor!S6);
 }
 
-// https://github.com/dlang/dmd/issues/21967
+// upstream dmd issue 21967
 version (CoreUnittest)
 private struct Test21967
 {
     // Note: Foward referencing was failing due to:
-    // https://github.com/dlang/dmd/issues/22524
+    // upstream dmd issue 22524
     static assert(hasElaborateDestructor!C);
     enum before = hasElaborateDestructor!C;
     static assert(before);
@@ -468,7 +468,7 @@ unittest
         static assert(!hasElaborateAssign!(S[0]));
         static assert(!hasElaborateAssign!(S[]));
     }
-    // https://issues.dlang.org/show_bug.cgi?id=24834
+    // upstream issue 24834
     /+
     {
         static struct S { this(ref S) {} }
@@ -709,7 +709,7 @@ template hasIndirections(T)
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=12000
+// upstream issue 12000
 @safe unittest
 {
     static struct S(T)
@@ -725,7 +725,7 @@ template hasIndirections(T)
     A!int dummy;
 }
 
-// https://github.com/dlang/dmd/issues/20812
+// upstream dmd issue 20812
 @safe unittest
 {
     static assert( hasIndirections!void);

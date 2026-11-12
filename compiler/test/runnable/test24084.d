@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -O -inline
-// https://github.com/dlang/dmd/issues/24084
+// upstream dmd issue 24084
 
 struct Mean(T)
 {

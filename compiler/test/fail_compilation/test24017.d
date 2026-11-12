@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24017
+// upstream dmd issue 24017
 
 /*
 TEST_OUTPUT:

@@ -2289,7 +2289,7 @@ static assert(memtest8() == 6 + 17);
 
 // --------- CTFE REF PASSING TESTS --------
 
-// https://issues.dlang.org/show_bug.cgi?id=1950 - CTFE doesn't work correctly for structs passed by ref
+// upstream issue 1950 - CTFE doesn't work correctly for structs passed by ref
 struct S1950
 {
     int x;
@@ -2401,7 +2401,7 @@ int nested2(int x)
 
 static assert(nested2(7) == 17 + 8 + 10);
 
-// https://issues.dlang.org/show_bug.cgi?id=1605
+// upstream issue 1605
 // D1 & D2. break in switch with goto breaks in ctfe
 int bug1605()
 {
@@ -2420,7 +2420,7 @@ int bug1605()
 
 static assert(bug1605() == 27);
 
-// https://issues.dlang.org/show_bug.cgi?id=2564
+// upstream issue 2564
 // D2 only. CTFE: the index in a tuple foreach is uninitialized (bogus error)
 // NOTE: Beware of optimizer bug 3264.
 
@@ -2435,7 +2435,7 @@ int bug2564()
 static int bug2564b = bug2564();
 
 
-// https://issues.dlang.org/show_bug.cgi?id=1461
+// upstream issue 1461
 // D1 + D2. Local variable as template alias parameter breaks CTFE
 void bug1461()
 {
@@ -2645,8 +2645,8 @@ static assert(lazyTest2(17) == 18);
 
 /************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=4020
-// https://issues.dlang.org/show_bug.cgi?id=4027
+// upstream issue 4020
+// upstream issue 4027
 // D2 only
 struct PostblitCrash
 {
@@ -2804,7 +2804,7 @@ void bug4257b()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5117
+// upstream issue 5117
 
 static int dummy5117 = test5117();
 
@@ -2852,7 +2852,7 @@ struct S5117b
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6439
+// upstream issue 6439
 
 struct A6439
 {
@@ -2892,7 +2892,7 @@ static assert(!is(typeof(Compileable!(
     }(3)
 ))));
 
-// https://issues.dlang.org/show_bug.cgi?id=6504 regression
+// upstream issue 6504 regression
 void test6504()
 {
     for (int i = 0; i < 3; ++i)
@@ -2903,7 +2903,7 @@ void test6504()
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=8818 regression
+// upstream issue 8818 regression
 void test8818()
 {
     static bool test()
@@ -3138,7 +3138,7 @@ void test108()
 }
 */
 
-/***** https://issues.dlang.org/show_bug.cgi?id=5678 *****/
+/***** upstream issue 5678 *****/
 
 /*
 struct Bug5678
@@ -3175,7 +3175,7 @@ struct Test110s { this(int, int, int){} }
 auto test110 = [Test110f(1, Test110s(1, 2, 3))];
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6907
+// upstream issue 6907
 // FIXME: Shouldn't this go in core.memory now that `delete` has been removed?
 
 int test6907()
@@ -3233,7 +3233,7 @@ int test6907()
     // delete on S1
     {
         S1* p;
-        // https://issues.dlang.org/show_bug.cgi?id=22779
+        // upstream issue 22779
         // Uncomment after druntime fix
         version (none)
         {
@@ -3272,7 +3272,7 @@ int test6907()
 static assert(test6907());
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9023
+// upstream issue 9023
 
 bool test9023()
 {
@@ -3297,7 +3297,7 @@ bool test9023()
 static assert(test9023());
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15817
+// upstream issue 15817
 
 S[] split15817(S)(S s)
 {
@@ -3345,7 +3345,7 @@ void test9954()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10483
+// upstream issue 10483
 
 struct Bug10483
 {
@@ -3393,7 +3393,7 @@ void test112()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10687
+// upstream issue 10687
 
 enum Foo10687 : uint { A, B, C, D, E }
 immutable uint[5][] m10687 = [[0, 1, 2, 3, 4]];
@@ -3466,7 +3466,7 @@ bool test114()
 static assert(test114());
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14140
+// upstream issue 14140
 
 struct S14140
 {
@@ -3509,7 +3509,7 @@ void test14140()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14862
+// upstream issue 14862
 
 struct S14862
 {
@@ -3537,7 +3537,7 @@ void test14862()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15681
+// upstream issue 15681
 
 void test15681()
 {
@@ -3638,7 +3638,7 @@ bool test20400()
 static assert(test20400());
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21878
+// upstream issue 21878
 
 struct A21878
 {
@@ -3672,7 +3672,7 @@ void test21878()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20133
+// upstream issue 20133
 
 void bar20133(ref string text)
 {
@@ -3728,7 +3728,7 @@ void test20133()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22530
+// upstream issue 22530
 
 class D22530 { }
 

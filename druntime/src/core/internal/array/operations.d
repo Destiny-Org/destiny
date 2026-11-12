@@ -182,7 +182,7 @@ template typeCheck(bool fail, T, Args...)
         {
             // no `cast(T)` before assignment for vectors
             static if (is(typeof((T res, RHT b) => mixin("res " ~ op ~ " b")) RT == return)
-                    && // workaround https://issues.dlang.org/show_bug.cgi?id=17758
+                    && // workaround upstream issue 17758
                     (op != "=" || is(Unqual!T == Unqual!RHT)))
                 alias typeCheck = typeCheck!(fail, T, Args[0 .. idx - 1], RT, Args[idx + 1 .. $]);
             else static if (fail)
@@ -293,7 +293,7 @@ enum scalarExp(Args...) =
         {
             auto op = arg[0] == 'u' ? arg[1 .. $] : arg;
             // Explicitly use the old integral promotion rules
-            // See also: https://dlang.org/changelog/2.078.0.html#fix16997
+            // See also: upstream changelog 2.078.0
             static if (is(Type : int))
                 stack[$ - 1] = "cast(typeof(" ~ stack[$ -1] ~ "))" ~ op ~ "cast(int)("~ stack[$ - 1] ~ ")";
             else
@@ -421,7 +421,7 @@ string toString(size_t num)
     import core.internal.string : unsignedToTempString;
     version (D_BetterC)
     {
-        // Workaround for https://issues.dlang.org/show_bug.cgi?id=19268
+        // Workaround for upstream issue 19268
         if (__ctfe)
         {
             char[20] fixedbuf = void;
@@ -624,7 +624,7 @@ unittest
 
 @nogc nothrow pure @safe unittest
 {
-    // https://issues.dlang.org/show_bug.cgi?id=17964
+    // upstream issue 17964
     uint bug(){
         uint[] a = [1, 2, 3, 5, 6, 7];
         uint[] b = [1, 2, 3, 5, 6, 7];
@@ -634,7 +634,7 @@ unittest
     enum x = bug();
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=19796
+// upstream issue 19796
 nothrow pure @safe unittest
 {
     double[] data = [0.5];
@@ -644,7 +644,7 @@ nothrow pure @safe unittest
     assert(result[0] == -0.5);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21110
+// upstream issue 21110
 pure unittest
 {
     import core.exception;
@@ -669,7 +669,7 @@ pure unittest
     assertThrown!AssertError(func(), "Array operations with mismatched lengths must throw an error");
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=24272
+// upstream issue 24272
 unittest
 {
     static struct B

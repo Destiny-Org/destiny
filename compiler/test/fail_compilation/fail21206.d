@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21206
+// upstream issue 21206
 /* TEST_OUTPUT:
 ---
 fail_compilation/fail21206.d(10): Error: function `toString` cannot return type `string` because its linkage is `extern(C++)`

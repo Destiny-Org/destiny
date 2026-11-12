@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22727
+// upstream issue 22727
 
 int fooc(int a) { return a; }
 

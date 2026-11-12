@@ -171,7 +171,7 @@ void test2()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13907
+// upstream issue 13907
 
 void f13907_1(wchar[1] a) {}
 void f13907_2(wchar[2] a) {}
@@ -191,8 +191,8 @@ void test13907()
     static assert(!__traits(compiles, { f13907_1("\U00010000" ); }));
     f13907_2("\U00010000"w);
     f13907_2("\U00010000");
-    f13907_3("\U00010000"w);    // Re-enable implicit length extension, from https://issues.dlang.org/show_bug.cgi?id=13999
-    f13907_3("\U00010000" );    // Re-enable implicit length extension, from https://issues.dlang.org/show_bug.cgi?id=13999
+    f13907_3("\U00010000"w);    // Re-enable implicit length extension, from upstream issue 13999
+    f13907_3("\U00010000" );    // Re-enable implicit length extension, from upstream issue 13999
 
     assert(f13907_12("a") == 1);
     assert(f13907_12("ab") == 2);
@@ -216,13 +216,13 @@ void test13907()
     static wchar[20] wsa = "hello world";  // ok
     static dchar[20] dsa = "hello world";  // ok
 
-    // https://issues.dlang.org/show_bug.cgi?id=13966
+    // upstream issue 13966
     string[1][] arr;
     arr ~= ["class"];
     enum immutable(char[5]) sarrstr = "class";
     arr ~= [sarrstr];
 
-    // https://issues.dlang.org/show_bug.cgi?id=13999
+    // upstream issue 13999
     string[dchar[2]] aa13999 = ["あ": "bar"];
     assert(aa13999["あ"] == "bar");
     dchar[2] key13999 = "あ";
@@ -266,7 +266,7 @@ void testHexstring()
     static assert(toStr!y == `x"1122334455667788AABBCCDDEEFF0099"`);
 
     // Hex string postfixes
-    // https://issues.dlang.org/show_bug.cgi?id=24363
+    // upstream issue 24363
     wstring wStr = x"AA BB CC DD"w;
     immutable int[] dStr = x"AA BB CC DD"d;
     assert(wStr[0] == 0xAABB);
@@ -278,7 +278,7 @@ void testHexstring()
     static immutable ulong[] z1 = [0x1111_1111_1111_1111, 0x0000_000E_0000_0000];
     static assert(z0 !is z1);
 
-    // https://github.com/dlang/dmd/issues/20635
+    // upstream dmd issue 20635
     f20635(cast(ubyte[]) x"00");
     f20635(cast(const ubyte[]) x"00");
     f20635(cast(immutable ubyte[]) x"00");

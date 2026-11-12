@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23058
+/* upstream issue 23058
  */
 
 int printf(const char *s, ...);

@@ -4,12 +4,12 @@
  * The AST is traversed, and every function call is considered for inlining using `inlinecost.d`.
  * The function call is then inlined if this cost is below a threshold.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/inline.d, _inline.d)
- * Documentation:  https://dlang.org/phobos/dmd_inline.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/inline.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/inline.d, _inline.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/inline.d
+ * 
  */
 
 module dmd.inline;
@@ -502,7 +502,7 @@ public:
         ids.foundReturn = true;
 
         auto exp = doInlineAs!Expression(s.exp, ids);
-        if (!exp) // https://issues.dlang.org/show_bug.cgi?id=14560
+        if (!exp) // upstream issue 14560
                   // 'return' must not leave in the expand result
             return;
         static if (asStatements)
@@ -549,7 +549,7 @@ public:
                  * a temporary, then returning the temporary. If the temporary is used as an
                  * lvalue, it will work.
                  * This only happens with struct returns.
-                 * See https://issues.dlang.org/show_bug.cgi?id=2127 for an example.
+                 * See upstream issue 2127 for an example.
                  *
                  * On constructor call making __inlineretval is merely redundant, because
                  * the returned reference is exactly same as vthis, and the 'this' variable
@@ -1699,7 +1699,7 @@ public:
             /* If the arguments generate temporaries that need destruction, the destruction
              * must be done after the function body is executed.
              * The easiest way to accomplish that is to do the inlining as an Expression.
-             * https://issues.dlang.org/show_bug.cgi?id=16652
+             * upstream issue 16652
              */
             bool asStates = asStatements;
             if (asStates)
@@ -2197,7 +2197,7 @@ private bool canInline(FuncDeclaration fd, bool hasThis, bool statementsToo, PAS
 
         /* Lifetime of structs in static arrays should be managed by
          * runtime hooks, so leave non-POD static arrays alone.
-         * https://github.com/dlang/dmd/pull/16145#issuecomment-1932776873
+         * upstream dmd pull request 16145
          */
         static bool needsLowering(Type t)
         {
@@ -2226,7 +2226,7 @@ private bool canInline(FuncDeclaration fd, bool hasThis, bool statementsToo, PAS
             goto Lno;
         }
 
-        /* https://issues.dlang.org/show_bug.cgi?id=14560
+        /* upstream issue 14560
          * If fd returns void, all explicit `return;`s
          * must not appear in the expanded result.
          * See also ReturnStatement.doInlineAs!Statement().
@@ -2420,11 +2420,11 @@ private void expandInline(CallExp ecall, FuncDeclaration fd, FuncDeclaration par
         fd.inlineNest--;
 
         import dmd.expressionsem : toLvalue;
-        // https://issues.dlang.org/show_bug.cgi?id=11322
+        // upstream issue 11322
         if (tf.isRef)
             e = e.toLvalue(null, "`ref` return");
 
-        // https://issues.dlang.org/show_bug.cgi?id=15210
+        // upstream issue 15210
         if (tf.next.ty == Tvoid && e && e.type.ty != Tvoid && e.type.ty != Tnoreturn)
         {
             e = new CastExp(callLoc, e, Type.tvoid);

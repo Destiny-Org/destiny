@@ -46,7 +46,7 @@ fma()
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=5227
+// upstream issue 5227
 
 import std.math;
 

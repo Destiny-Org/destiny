@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -unittest -main -O
-// https://issues.dlang.org/show_bug.cgi?id=15568
+// upstream issue 15568
 
 auto filter(alias pred)(D[])
 {

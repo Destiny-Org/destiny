@@ -2,12 +2,12 @@
  * Does the semantic 1 pass on the AST, which looks at symbol declarations but not initializers
  * or function bodies.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/dsymbolsem.d, _dsymbolsem.d)
- * Documentation:  https://dlang.org/phobos/dmd_dsymbolsem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/dsymbolsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dsymbolsem.d, _dsymbolsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dsymbolsem.d
+ * 
  */
 
 module dmd.dsymbolsem;
@@ -318,7 +318,7 @@ void makeNested(AggregateDeclaration _this)
     {
         _this.enclosing = fd;
 
-        /* https://issues.dlang.org/show_bug.cgi?id=14422
+        /* upstream issue 14422
          * If a nested class parent is a function, its
          * context pointer (== `outer`) should be void* always.
          */
@@ -644,7 +644,7 @@ Dsymbol search_correct(Scope* _this, Identifier ident)
             // aliases: e.g. `Foo foo;` legitimately suggesting the
             // variable `foo` itself is not circular in the same way
             // and should still be shown.
-            // https://github.com/dlang/dmd/issues/18763
+            // upstream dmd issue 18763
             if (decl.isAliasDeclaration() && decl.inuse)
                 return null;
         }
@@ -995,7 +995,7 @@ private Type aggregateDeclGetType(AggregateDeclaration _this)
     /* Apply storage classes to forward references. (Issue 22254)
      * Note: Avoid interfaces for now. Implementing qualifiers on interface
      * definitions exposed some issues in their TypeInfo generation in DMD.
-     * Related PR: https://github.com/dlang/dmd/pull/13312
+     * Related PR: upstream dmd pull request 13312
      */
     if (_this.semanticRun == PASS.initial && !_this.isInterfaceDeclaration())
     {
@@ -1171,7 +1171,7 @@ private bool aliasOverloadInsert(AliasDeclaration ad, Dsymbol s)
         return ad._import && ad.equals(s);
     }
 
-    // https://issues.dlang.org/show_bug.cgi?id=23865
+    // upstream issue 23865
     // only insert if the symbol can be part of a set
     const s1 = s.toAlias();
     const isInsertCandidate = s1.isFuncDeclaration() || s1.isOverDeclaration() || s1.isTemplateDeclaration();
@@ -1264,7 +1264,7 @@ private bool templateOverloadInsert(TemplateDeclaration _this, Dsymbol s){
         return _this.funcroot.overloadInsert(_this);
     }
 
-    // https://issues.dlang.org/show_bug.cgi?id=15795
+    // upstream issue 15795
     // if candidate is an alias and its sema is not run then
     // insertion can fail because the thing it alias is not known
     if (AliasDeclaration ad = s.isAliasDeclaration())
@@ -1297,7 +1297,7 @@ private bool templateOverloadInsert(TemplateDeclaration _this, Dsymbol s){
 private bool importOverloadInsert(Import _this, Dsymbol s){
     /* Allow multiple imports with the same package base, but disallow
      * alias collisions
-     * https://issues.dlang.org/show_bug.cgi?id=5412
+     * upstream issue 5412
      */
     assert(_this.ident && _this.ident == s.ident);
     if (_this.aliasId)
@@ -1668,7 +1668,7 @@ bool checkDeprecated(Dsymbol d, Loc loc, Scope* sc)
     if (sc.isDeprecated())
         return false;
     // Don't complain if we're inside a template constraint
-    // https://issues.dlang.org/show_bug.cgi?id=21831
+    // upstream issue 21831
     if (sc.inTemplateConstraint)
         return false;
 
@@ -1928,7 +1928,7 @@ Expression resolveAliasThis(Scope* sc, Expression e, bool gag = false, bool find
                 {
                     if (auto fd = ve.var.isFuncDeclaration())
                     {
-                        // https://issues.dlang.org/show_bug.cgi?id=13009
+                        // upstream issue 13009
                         // Support better match for the overloaded alias this.
                         bool hasOverloads;
                         if (auto f = fd.overloadModMatch(loc, tthis, hasOverloads))
@@ -2155,7 +2155,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         Declaration d = sx.isDeclaration();
         if (d && !d.isTupleDeclaration())
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=18429
+            /* upstream issue 18429
              *
              * If the identifier in the AliasThis declaration
              * is defined later and is a voldemort type, we must
@@ -2254,7 +2254,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         dsym.semanticRun = PASS.semantic;
 
         // 'static foreach' variables should not inherit scope properties
-        // https://issues.dlang.org/show_bug.cgi?id=19482
+        // upstream issue 19482
         if ((dsym.storage_class & (STC.foreach_ | STC.local)) == (STC.foreach_ | STC.local))
         {
             dsym._linkage = LINK.d;
@@ -2279,7 +2279,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         {
             if (sc.inCfile)
             {
-                // https://issues.dlang.org/show_bug.cgi?id=24447
+                // upstream issue 24447
                 // extern int x = 3; is allowed in C
                 dsym.storage_class &= ~STC.extern_;
             }
@@ -2620,7 +2620,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                     // Infer from literal syntax first to avoid prematurely
                     // semantic-analyzing expressions that may depend on
                     // incomplete types (e.g. recursive initializers).
-                    // https://github.com/dlang/dmd/issues/22887
+                    // upstream dmd issue 22887
                     bool dimInferred = inferSArrayDim(tsa, ie, dsym.loc, sc);
                     if (!dimInferred && shouldTryDeepSArrayDimInference(ie, sc))
                     {
@@ -2754,7 +2754,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                     const loc = (s ? s : dsym).loc;
                     eSink.errorSupplemental(loc, "required by type `%s`", dsym.type.toChars());
                 }
-                eSink.errorSupplemental(dsym.loc, "see https://dlang.org/spec/struct.html#opaque_struct_unions");
+                eSink.errorSupplemental(dsym.loc, "see https://github.com/Destiny-Org/destiny/blob/main/spec/struct.dd");
                 eSink.errorSupplemental(dsym.loc, "perhaps declare a variable with pointer type `%s*` instead", dsym.type.toChars());
 
                 // Flag variable as error to avoid invalid error messages due to unknown size
@@ -2968,7 +2968,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
             else if (!dsym.type.hasPointers())
             {
                 dsym.storage_class &= ~STC.scope_;     // silently ignore; may occur in generic code
-                // https://issues.dlang.org/show_bug.cgi?id=23168
+                // upstream issue 23168
                 if (dsym.storage_class & STC.returnScope)
                 {
                     dsym.storage_class &= ~(STC.return_ | STC.returnScope);
@@ -3113,7 +3113,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                 eSink.error(dsym.loc, "%s `%s` globals, statics, fields, manifest constants, ref and out parameters cannot be `scope`", dsym.kind, dsym.toPrettyChars);
             }
 
-            // @@@DEPRECATED_2.097@@@  https://dlang.org/deprecate.html#scope%20as%20a%20type%20constraint
+            // @@@DEPRECATED_2.097@@@  https://github.com/Destiny-Org/destiny
             // Deprecated in 2.087
             // Remove this when the feature is removed from the language
             if (!(dsym.storage_class & STC.scope_))
@@ -3251,12 +3251,12 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
 
             ExpInitializer ei = dsym._init.isExpInitializer();
 
-            if (ei) // https://issues.dlang.org/show_bug.cgi?id=13424
+            if (ei) // upstream issue 13424
                     // Preset the required type to fail in FuncLiteralDeclaration::semantic3
                 ei.exp = inferExpType(ei.exp, dsym.type);
 
             /*
-             * https://issues.dlang.org/show_bug.cgi?id=24474
+             * upstream issue 24474
              * at function scope, the compiler thinks the type of the variable is not known yet
              * (semantically complete) so looks like typeof gets locked in a cyclic situation
              * semantics is actually done. just set it for importc
@@ -3317,7 +3317,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                             else if (dsym.type.toBasetype().ty == Tclass)
                             {
                                 /* Unsafe to allocate on stack if constructor is not `scope` because the `this` can leak.
-                                 * https://issues.dlang.org/show_bug.cgi?id=23145
+                                 * upstream issue 23145
                                  */
                                 if (ne.member && !(ne.member.storage_class & STC.scope_))
                                 {
@@ -3425,7 +3425,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                 }
                 else
                 {
-                    // https://issues.dlang.org/show_bug.cgi?id=14166
+                    // upstream issue 14166
                     // Don't run CTFE for the temporary variables inside typeof
                     dsym._init = dsym._init.initializerSemantic(sc, dsym.type, sc.intypeof == 1 ? INITnointerpret : INITinterpret, global.errorSink);
                 }
@@ -3459,7 +3459,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                             // If exp is already resolved we are done, our original init exp
                             // could have a type painting that we need to respect
                             // e.g.  ['a'] typed as string, or [['z'], ""] as string[]
-                            // See https://issues.dlang.org/show_bug.cgi?id=15711
+                            // See upstream issue 15711
                         }
                         else
                         {
@@ -3469,7 +3469,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                             if (needctfe)
                                 sc = sc.startCTFE();
                             sc = sc.push();
-                            sc.varDecl = dsym; // https://issues.dlang.org/show_bug.cgi?id=24051
+                            sc.varDecl = dsym; // upstream issue 24051
                             exp = exp.expressionSemantic(sc);
                             exp = resolveProperties(sc, exp);
                             sc = sc.pop();
@@ -3683,7 +3683,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         // Load if not already done so
         if (!imp.mod)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=22857
+            // upstream issue 22857
             // if parser errors occur when loading a module
             // we should just stop compilation
             if (imp.load(sc))
@@ -3709,7 +3709,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
 
         // if inside a template instantiation, the instantianting
         // module gets the import.
-        // https://issues.dlang.org/show_bug.cgi?id=17181
+        // upstream issue 17181
         Module importer = sc._module;
         if (sc.minst && sc.tinst)
         {
@@ -3771,7 +3771,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
             else
             {
                 Dsymbol s = imp.mod.search_correct(imp.names[i]);
-                // https://issues.dlang.org/show_bug.cgi?id=23908
+                // upstream issue 23908
                 // Don't suggest symbols from the importer's module
                 if (s && s.parent != importer)
                     eSink.error(imp.loc, "%s `%s` import `%s` not found, did you mean %s `%s`?", imp.mod.kind, imp.mod.toPrettyChars, imp.names[i].toErrMsg(), s.kind(), s.toPrettyChars());
@@ -3905,7 +3905,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
     }
 
     /***********************************************************
-     * https://dlang.org/spec/module.html#mixin-declaration
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
      */
     override void visit(MixinDeclaration cd)
     {
@@ -4006,7 +4006,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         else
             return;
 
-        // https://issues.dlang.org/show_bug.cgi?id=24645
+        // upstream issue 24645
         // This is a short-circuit. Usually, static assert conditions are evaluated
         // in semantic2, but it's not uncommon to use this pattern:
         // ---
@@ -4248,7 +4248,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         Scope* scy = sc.push(tm);
         scy.parent = tm;
 
-        /* https://issues.dlang.org/show_bug.cgi?id=930
+        /* upstream issue 930
          *
          * If the template that is to be mixed in is in the scope of a template
          * instance, we have to also declare the type aliases in the new mixin scope.
@@ -4545,7 +4545,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                 }
             }
         }
-        // https://issues.dlang.org/show_bug.cgi?id=22593
+        // upstream issue 22593
         else if (auto ti = ctd.parent.isTemplateInstance())
         {
             checkHasBothRvalueAndCpCtor(sd, ctd, ti);
@@ -4630,7 +4630,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                     assert (cldec.cppDtorVtblIndex == -1); // double-call check already by dd.type
                     // Walk up the base chain: an intermediate class may have no explicit
                     // dtor (cppDtorVtblIndex == -1) yet still inherit a dtor vtbl slot.
-                    // https://github.com/dlang/dmd/issues/22709
+                    // upstream dmd issue 22709
                     int inheritedDtorVtblIndex = -1;
                     for (auto base = cldec.baseClass; base; base = base.baseClass)
                         if (base.cppDtorVtblIndex != -1)
@@ -5163,7 +5163,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                     printf("this = %p %s\n", sd, sd.toChars());
                     printf("type = %d sym = %p, %s\n", sd.type.ty, sym, sym.toPrettyChars());
                 }
-                // https://issues.dlang.org/show_bug.cgi?id=19024
+                // upstream issue 19024
                 eSink.error(sd.loc, "%s `%s` already exists at %s. Perhaps in another function with the same name?", sd.kind, sd.toPrettyChars, sym.loc.toChars());
             }
         }
@@ -5185,7 +5185,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
 
         version (none)
         {
-            // @@@DEPRECATED_2.110@@@ https://dlang.org/deprecate.html#scope%20as%20a%20type%20constraint
+            // @@@DEPRECATED_2.110@@@ https://github.com/Destiny-Org/destiny
             // Deprecated in 2.100
             // Make an error in 2.110
             if (sd.storage_class & STC.scope_)
@@ -5546,9 +5546,9 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
 
         if (cldec.baseok < Baseok.done)
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=12078
-             * https://issues.dlang.org/show_bug.cgi?id=12143
-             * https://issues.dlang.org/show_bug.cgi?id=15733
+            /* upstream issue 12078
+             * upstream issue 12143
+             * upstream issue 15733
              * While resolving base classes and interfaces, a base may refer
              * the member of this derived class. In that time, if all bases of
              * this class can  be determined, we can go forward the semantc process
@@ -5646,7 +5646,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                     }
                 }
 
-                /* https://issues.dlang.org/show_bug.cgi?id=11034
+                /* upstream issue 11034
                  * Class inheritance hierarchy
                  * and instance size of each classes are orthogonal information.
                  * Therefore, even if tc.sym.sizeof == Sizeok.none,
@@ -5830,7 +5830,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         {
             cldec.symtab = new DsymbolTable();
 
-            /* https://issues.dlang.org/show_bug.cgi?id=12152
+            /* upstream issue 12152
              * The semantic analysis of base classes should be finished
              * before the members semantic analysis of this class, in order to determine
              * vtbl in this class. However if a base class refers the member of this class,
@@ -6082,7 +6082,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
 
         if (cldec.type.ty == Tclass && (cast(TypeClass)cldec.type).sym != cldec)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=17492
+            // upstream issue 17492
             ClassDeclaration cd = (cast(TypeClass)cldec.type).sym;
             version (none)
             {
@@ -6096,7 +6096,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         {
             // The type is no good, but we should keep the
             // the type so that we have more accurate error messages
-            // See: https://issues.dlang.org/show_bug.cgi?id=23552
+            // See: upstream issue 23552
             cldec.errors = true;
             if (cldec.deferred)
                 cldec.deferred.errors = true;
@@ -6125,10 +6125,10 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
 
         version (none)
         {
-            // @@@DEPRECATED_2.110@@@ https://dlang.org/deprecate.html#scope%20as%20a%20type%20constraint
+            // @@@DEPRECATED_2.110@@@ https://github.com/Destiny-Org/destiny
             // Deprecated in 2.100
             // Make an error in 2.110
-            // Don't forget to remove code at https://github.com/dlang/dmd/blob/b2f8274ba76358607fc3297a1e9f361480f9bcf9/src/dmd/dsymbolsem.d#L1032-L1036
+            // Don't forget to remove code at https://github.com/Destiny-Org/destiny/blob/b2f8274ba76358607fc3297a1e9f361480f9bcf9/src/dmd/dsymbolsem.d#L1032-L1036
             if (cldec.storage_class & STC.scope_)
                 eSink.deprecation(cldec.loc, "`scope` as a type constraint is deprecated.  Use `scope` at the usage site.");
         }
@@ -6434,10 +6434,10 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
 
         version (none)
         {
-            // @@@DEPRECATED_2.120@@@ https://dlang.org/deprecate.html#scope%20as%20a%20type%20constraint
+            // @@@DEPRECATED_2.120@@@ https://github.com/Destiny-Org/destiny
             // Deprecated in 2.087
             // Made an error in 2.100, but removal depends on `scope class` being removed too
-            // Don't forget to remove code at https://github.com/dlang/dmd/blob/b2f8274ba76358607fc3297a1e9f361480f9bcf9/src/dmd/dsymbolsem.d#L1032-L1036
+            // Don't forget to remove code at https://github.com/Destiny-Org/destiny/blob/b2f8274ba76358607fc3297a1e9f361480f9bcf9/src/dmd/dsymbolsem.d#L1032-L1036
             if (idec.storage_class & STC.scope_)
                 eSink.error(idec.loc, "`scope` as a type constraint is obsolete.  Use `scope` at the usage site.");
         }
@@ -6499,7 +6499,7 @@ private extern(C++) class AddMemberVisitor : Visitor
             if (dsym.isAliasDeclaration() && !dsym._scope)
                 dsym.setScope(sc);
             Dsymbol s2 = sds.symtabLookup(dsym, dsym.ident);
-            /* https://issues.dlang.org/show_bug.cgi?id=17434
+            /* upstream issue 17434
              *
              * If we are trying to add an import to the symbol table
              * that has already been introduced, then keep the one with
@@ -6628,7 +6628,7 @@ private extern(C++) class AddMemberVisitor : Visitor
         {
             Module m = sc._module;
 
-            // https://issues.dlang.org/show_bug.cgi?id=17441
+            // upstream issue 17441
             // While isAncestorPackageOf does an equality check, the fix for the issue adds a check to see if
             // each package's .isModule() properites are equal.
             //
@@ -6945,7 +6945,7 @@ void aliasSemantic(AliasDeclaration ds, Scope* sc)
     //printf("AliasDeclaration::semantic() %s %p\n", ds.toChars(), ds.aliassym);
 
     // as DsymbolSemanticVisitor::visit(AliasDeclaration), in case we're called first.
-    // see https://issues.dlang.org/show_bug.cgi?id=21001
+    // see upstream issue 21001
     ds.storage_class |= sc.stc & STC.deprecated_;
     ds.visibility = sc.visibility;
     ds.userAttribDecl = sc.userAttribDecl;
@@ -7023,7 +7023,7 @@ void aliasSemantic(AliasDeclaration ds, Scope* sc)
         global.gag = 0;
     }
 
-    // https://issues.dlang.org/show_bug.cgi?id=18480
+    // upstream issue 18480
     // Detect `alias sym = sym;` to prevent creating loops in overload overnext lists.
     if (auto tident = ds.type.isTypeIdentifier())
     {
@@ -7908,7 +7908,7 @@ private extern(C++) class SearchVisitor : Visitor
                     Import i2 = s2.isImport();
                     if (!(i1 && i2 && (i1.mod == i2.mod || (!i1.parent.isImport() && !i2.parent.isImport() && i1.ident.equals(i2.ident)))))
                     {
-                        /* https://issues.dlang.org/show_bug.cgi?id=8668
+                        /* upstream issue 8668
                          * Public selective import adds AliasDeclaration in module.
                          * To make an overload set, resolve aliases in here and
                          * get actual overload roots which accessible via s and s2.
@@ -7932,7 +7932,7 @@ private extern(C++) class SearchVisitor : Visitor
                         }
 
                         /* Two different overflow sets can have the same members
-                         * https://issues.dlang.org/show_bug.cgi?id=16709
+                         * upstream issue 16709
                          */
                         auto so = s.isOverloadSet();
                         if (so && so2)
@@ -7965,7 +7965,7 @@ private extern(C++) class SearchVisitor : Visitor
                          * own convenience aliases (such as `size_t`) should
                          * not conflict with an explicitly imported C header's
                          * declaration of the same name.
-                         * https://issues.dlang.org/show_bug.cgi?id=20709
+                         * upstream issue 20709
                          */
                         if (s.isCsymbol() && s2.getModule() && s2.getModule().ident == Id.object && !s2.getModule().parent)
                             continue;
@@ -8196,7 +8196,7 @@ private extern(C++) class SearchVisitor : Visitor
                  * toir.c).
                  */
 
-                // https://issues.dlang.org/show_bug.cgi?id=16213
+                // upstream issue 16213
                 // For static arrays $ is known at compile time,
                 // so declare it as a manifest constant.
                 auto tsa = ce.type ? ce.type.isTypeSArray() : null;
@@ -8319,7 +8319,7 @@ private extern(C++) class SearchVisitor : Visitor
 
         if (errors == global.errors)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=10752
+            // upstream issue 10752
             // Can cache the result only when it does not cause
             // access error so the side-effect should be reproduced in later search.
             m.searchCacheIdent = ident;
@@ -8498,7 +8498,7 @@ private extern(C++) class SetScopeVisitor : Visitor
         // Might need a scope to resolve forward references. The check for
         // semanticRun prevents unnecessary setting of _scope during deferred
         // setScope phases for aggregates which already finished semantic().
-        // See https://issues.dlang.org/show_bug.cgi?id=16607
+        // See upstream issue 16607
         if (ad.semanticRun < PASS.semanticdone)
             visit(cast(Dsymbol)ad);
     }
@@ -8601,7 +8601,7 @@ extern(C++) class ImportAllVisitor : Visitor
         if (imp.mod) return; // Already done
 
         /*
-         * https://issues.dlang.org/show_bug.cgi?id=15525
+         * upstream issue 15525
          *
          * Loading the import has failed,
          * most likely because of parsing errors.
@@ -8609,7 +8609,7 @@ extern(C++) class ImportAllVisitor : Visitor
          */
         if (imp.load(sc))
         {
-            // https://issues.dlang.org/show_bug.cgi?id=23873
+            // upstream issue 23873
             // For imports that are not at module or function level,
             // e.g. aggregate level, the import symbol is added to the
             // symbol table and later semantic is performed on it.
@@ -8887,7 +8887,7 @@ private extern(C++) class SetFieldOffsetVisitor : Visitor
         if (vd.offset)
         {
             // already a field
-            fieldState.offset = ad.structsize; // https://issues.dlang.org/show_bug.cgi?id=13613
+            fieldState.offset = ad.structsize; // upstream issue 13613
             return;
         }
         for (size_t i = 0; i < ad.fields.length; i++)
@@ -8895,7 +8895,7 @@ private extern(C++) class SetFieldOffsetVisitor : Visitor
             if (ad.fields[i] == vd)
             {
                 // already a field
-                fieldState.offset = ad.structsize; // https://issues.dlang.org/show_bug.cgi?id=13613
+                fieldState.offset = ad.structsize; // upstream issue 13613
                 return;
             }
         }
@@ -8915,7 +8915,7 @@ private extern(C++) class SetFieldOffsetVisitor : Visitor
             if (!ts.sym.determineSize(vd.loc))
             {
                 // Don't cache errors from speculative semantic, might be resolvable later.
-                // https://issues.dlang.org/show_bug.cgi?id=16574
+                // upstream issue 16574
                 if (!global.gag)
                 {
                     vd.type = Type.terror;
@@ -9181,7 +9181,7 @@ private extern(C++) class SetFieldOffsetVisitor : Visitor
                 return;
             }
 
-            /* https://issues.dlang.org/show_bug.cgi?id=13613
+            /* upstream issue 13613
              * If the fields in this.members had been already
              * added in ad.fields, just update *poffset for the subsequent
              * field offset calculation.
@@ -9944,7 +9944,7 @@ bool determineSize(AggregateDeclaration ad, Loc loc)
         if (ad.type != Type.terror)
             eSink.error(loc, "%s `%s` no size because of forward reference", ad.kind, ad.toPrettyChars);
         // Don't cache errors from speculative semantic, might be resolvable later.
-        // https://issues.dlang.org/show_bug.cgi?id=16574
+        // upstream issue 16574
         if (!global.gag)
         {
             ad.type = Type.terror;
@@ -10257,7 +10257,7 @@ bool isAbstract(ClassDeclaration cd)
     if (cd.errors)
         return no();
 
-    /* https://issues.dlang.org/show_bug.cgi?id=11169
+    /* upstream issue 11169
         * Resolve forward references to all class member functions,
         * and determine whether this class is abstract.
         */

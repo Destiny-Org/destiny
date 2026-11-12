@@ -1,5 +1,5 @@
 
-// https://issues.dlang.org/show_bug.cgi?id=23618
+// upstream issue 23618
 
 import core.stdc.stdio;
 

@@ -100,7 +100,7 @@ fail_compilation/imports/imp18127b.c(77):        C structs with the same name fr
 ---
 */
 
-// https://github.com/dlang/dmd/issues/18127
+// upstream dmd issue 18127
 
 import imports.imp18127a;
 import imports.imp18127b;

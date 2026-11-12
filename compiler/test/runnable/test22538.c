@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22537
+// upstream issue 22537
 
 static int sun();
 
@@ -6,7 +6,7 @@ int sunlight() { return sun(); }
 
 int sun() { return 0; }
 
-// https://issues.dlang.org/show_bug.cgi?id=22538
+// upstream issue 22538
 
 static int moon();
 

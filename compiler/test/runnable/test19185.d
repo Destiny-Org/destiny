@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19185
+// upstream issue 19185
 
 int fun()
 {

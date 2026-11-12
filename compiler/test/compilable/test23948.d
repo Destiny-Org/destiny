@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23948
+// upstream issue 23948
 
 void foo1(const(char)* fun = __FILE__)() {
 

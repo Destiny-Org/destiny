@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22812
+// upstream issue 22812
 /* TEST_OUTPUT:
 ---
 fail_compilation/fail22812.c(11): Error: left parenthesis expected to follow `#pragma pack`

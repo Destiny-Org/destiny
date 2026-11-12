@@ -762,7 +762,7 @@ $(H3 $(LNAME2 pure-optimization, Optimization))
 $(H2 $(LNAME2 nothrow-functions, Nothrow Functions))
 
         $(P Nothrow functions can only throw exceptions derived
-        from $(LINK2 https://dlang.org/phobos/object.html#.Error, $(D class Error)).
+        from $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/druntime/src/object.d, $(D class Error)).
         )
 
         $(P Nothrow functions are $(DDSUBLINK spec/type, covariance, covariant) with throwing ones.)
@@ -4049,7 +4049,7 @@ $(H2 $(LNAME2 nogc-functions, No-GC Functions))
         that implies it will not cause any GC collections to run. However,
         another thread may still allocate with the GC and trigger a collection.
         The recommended way to prevent GC collections from being run is to call
-        $(LINK2 https://dlang.org/phobos/core_memory.html#GC.disable, core.memory.GC.disable())
+        $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/druntime/src/core/memory.d, core.memory.GC.disable())
         instead. This will stop collections from being run in any thread until a corresponding
         call to `core.memory.GC.enable()` is run. GC allocations can still be performed
         when `GC.disable()` is in effect.)
@@ -4099,7 +4099,7 @@ $(H3 $(LNAME2 safe-functions, Safe Functions))
             * Overlap with fields that could become $(RELATIVE_LINK2 safe-values, unsafe values)
         $(LI Calling any $(RELATIVE_LINK2 system-functions, System Functions).)
         $(LI No catching of exceptions that are not derived from
-        $(LINK2 https://dlang.org/phobos/object.html#.Exception, $(D class Exception)).)
+        $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/druntime/src/object.d, $(D class Exception)).)
         $(LI $(DDSUBLINK spec/iasm, asmstatements, Inline assembler) must be marked as
             `@trusted`.)
         $(LI No explicit casting (except with a matching `@safe` `opCast`) of:)
@@ -4418,7 +4418,7 @@ $(H3 $(LNAME2 null-dereferences, Null Dereferences))
           - On all systems when an expression causes a null pointer to be indexed,
             causing a memory access that is not prevented by the system.
             $(RED Warning:) $(TT dmd)
-            [has not implemented](https://github.com/dlang/dmd/issues/17776) this yet.
+            [has not implemented](upstream dmd issue 17776) this yet.
 
 $(H3 $(LNAME2 safe-aliasing, Safe Aliasing))
 

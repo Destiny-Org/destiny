@@ -3,7 +3,7 @@
 // EXTRA_SOURCES: extra-files/minimal/object.d
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19234
+// upstream issue 19234
 void issue19234()
 {
     static struct A {}
@@ -13,7 +13,7 @@ void issue19234()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22005
+// upstream issue 22005
 void issue22005()
 {
     enum int[4] foo = [1,2,3,4];
@@ -23,7 +23,7 @@ void issue22005()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22006
+// upstream issue 22006
 void issue22006()
 {
     alias size_t = typeof(int.sizeof);

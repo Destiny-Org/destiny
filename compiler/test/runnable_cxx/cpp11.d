@@ -29,7 +29,7 @@ else
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19658
+// upstream issue 19658
 
 enum i8_19658 : byte { a }
 enum u8_19658 : ubyte { a }

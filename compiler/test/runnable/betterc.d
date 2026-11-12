@@ -11,7 +11,7 @@ void test(int ij)
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18010
+// upstream issue 18010
 
 void test1()
 {
@@ -26,7 +26,7 @@ void test2(int[] a1, int[] a2)
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17843
+// upstream issue 17843
 
 struct S
 {
@@ -47,7 +47,7 @@ extern (C) void main()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17605
+// upstream issue 17605
 
 extern (C) void test17605()
 {
@@ -57,7 +57,7 @@ extern (C) void test17605()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18472
+// upstream issue 18472
 
 void test18472()
 {
@@ -74,7 +74,7 @@ void test18472()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18493
+// upstream issue 18493
 
 struct S18493
 {
@@ -176,7 +176,7 @@ void testRuntimeLowerings()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18457
+// upstream issue 18457
 
 __gshared int dtor;
 
@@ -203,7 +203,7 @@ void test18457()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20737
+// upstream issue 20737
 int tlsVar;
 
 int test20737()
@@ -213,7 +213,7 @@ int test20737()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22427
+// upstream issue 22427
 void test22427()
 {
     if("a" == "a")

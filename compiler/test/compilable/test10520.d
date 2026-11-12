@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -debug -profile
 
-// https://issues.dlang.org/show_bug.cgi?id=10520
+// upstream issue 10520
 // [profile+nothrow] Building with profiler results in "is not nothrow" error on some contracts
 
 void f() { }

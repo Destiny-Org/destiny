@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20000
+// upstream issue 20000
 
 interface A { int a(); }
 interface B { int b(); }

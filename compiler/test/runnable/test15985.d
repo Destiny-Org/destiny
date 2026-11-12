@@ -1,7 +1,7 @@
 /* PERMUTE_ARGS: -allinst
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=15985
+// upstream issue 15985
 
 void ff()()
 {

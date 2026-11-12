@@ -8,7 +8,7 @@ fail_compilation/test16228.d(23): Error: function `test16228.S.bar` `static` mem
 
 
 
-// https://issues.dlang.org/show_bug.cgi?id=16228
+// upstream issue 16228
 
 int* wrap ( return ref int input )
 {
@@ -24,7 +24,7 @@ struct S
 }
 
 
-// https://issues.dlang.org/show_bug.cgi?id=18963
+// upstream issue 18963
 
 T Identity(T)(return T t) { return t; }
 

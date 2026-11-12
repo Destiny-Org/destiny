@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21179
+// upstream dmd issue 21179
 
 void bigEndianToNative(ubyte[2] a) {}
 

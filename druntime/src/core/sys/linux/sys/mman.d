@@ -562,7 +562,7 @@ else
     // }
 }
 
-// Workaround https://issues.dlang.org/show_bug.cgi?id=17883
+// Workaround upstream issue 17883
 // http://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/unix/sysv/linux/sparc/bits/mman.h
 version (SPARC_Any)
 {

@@ -30,7 +30,7 @@ void f(){
     static assert(is(typeof(sb) == shared B));
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=10488
+// upstream issue 10488
 version(none)
 void g(){
     auto a = A.getInstance();

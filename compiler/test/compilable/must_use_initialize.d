@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23236
+// upstream issue 23236
 // can't initialize a @mustuse member in constructor
 
 import core.attribute;

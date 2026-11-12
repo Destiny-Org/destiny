@@ -9,7 +9,7 @@ fail_compilation/test9701b.d(17):        `e1` is declared here
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=9701
+// upstream issue 9701
 
 enum Enum
 {

@@ -5,7 +5,7 @@ fail_compilation/fail24238.d(14): Error: cannot cast `a` of type `int[]` to `voi
 fail_compilation/fail24238.d(15): Error: cannot cast `v` of type `void[]` to `byte[0][]` with zero-size elements
 ---
 */
-// https://github.com/dlang/dmd/issues/24238
+// upstream dmd issue 24238
 
 void main()
 {

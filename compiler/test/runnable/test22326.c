@@ -5,7 +5,7 @@
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22326
+// upstream issue 22326
 
 struct S {
     char c;

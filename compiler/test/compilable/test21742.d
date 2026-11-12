@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21742
+// upstream issue 21742
 
 int foo()() { return 0; }
 

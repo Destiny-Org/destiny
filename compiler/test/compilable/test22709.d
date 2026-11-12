@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22709
+// upstream dmd issue 22709
 // extern(C++) destructor in base class should not be flagged as hidden
 
 extern(C++):

@@ -253,7 +253,7 @@ enum arrayOpaque : int[4]; // Cannot be exported to C++
 
 extern(D) enum hidden_d = 42; // Linkage prevents being exported to C++
 
-// https://github.com/dlang/dmd/issues/21487
+// upstream dmd issue 21487
 extern(C++) struct Hello21487
 {
     enum string name = "hello";

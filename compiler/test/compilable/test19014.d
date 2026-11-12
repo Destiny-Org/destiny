@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19014
+// upstream issue 19014
 
 import core.stdc.config;
 

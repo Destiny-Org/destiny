@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19498
+// upstream issue 19498
 void main()
 {
     import core.runtime;

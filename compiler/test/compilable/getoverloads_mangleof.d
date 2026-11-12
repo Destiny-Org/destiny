@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23021
+// upstream dmd issue 23021
 // getOverloads indexed result .mangleof caused assertion failure
 
 class A { void func() const {} }

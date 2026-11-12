@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21504
+// upstream dmd issue 21504
 
 // Test that:
 // 1. __traits(compiles) tests fail when violating an explicitly set attribute.

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20868
+// upstream issue 20868
 // REQUIRED_ARGS: -preview=dip1000
 
 void scoped (scope void delegate() dg)

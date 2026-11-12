@@ -1,6 +1,6 @@
 // DISABLED: win32 win64
 
-// https://github.com/dlang/dmd/issues/22259
+// upstream dmd issue 22259
 
 #include <complex.h>
 #include <stdio.h>

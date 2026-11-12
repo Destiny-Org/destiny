@@ -30,7 +30,7 @@ src_lifetime=$(src_gc) ../../src/rt/lifetime.d
 # ../../src/object.d causes duplicate symbols
 core_ut = -unittest -version=CoreUnittest
 
-# https://issues.dlang.org/show_bug.cgi?id=22843
+# upstream issue 22843
 # needs to run under valgrind
 # versions before 3.13.0 don't handle clone() correctly, skip them
 $(ROOT)/issue22843.done: $(ROOT)/issue22843$(DOTEXE)

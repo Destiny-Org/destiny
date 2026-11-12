@@ -3,12 +3,12 @@
  *
  * Specification: C11
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/cparse.d, _cparse.d)
- * Documentation:  https://dlang.org/phobos/dmd_cparse.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/cparse.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cparse.d, _cparse.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cparse.d
+ * 
  */
 
 module dmd.cparse;
@@ -583,7 +583,7 @@ final class CParser(AST) : Parser!AST
                     auto cur = cparseStatement(ParseStatementFlags.curlyScope);
                     statements.push(cur);
 
-                    // https://issues.dlang.org/show_bug.cgi?id=21739
+                    // upstream issue 21739
                     // Stop at the last break s.t. the following non-case statements are
                     // not merged into the current case. This can happen for
                     // case 1: ... break;
@@ -2100,7 +2100,7 @@ final class CParser(AST) : Parser!AST
                 if (asmName)
                 {
                     /*
-                    https://issues.dlang.org/show_bug.cgi?id=23012
+                    upstream issue 23012
                     Ideally this would be translated to a pragma(mangle)
                     decl. This is not possible because ImportC symbols are
                     (currently) merged before semantic analysis is performed,
@@ -3144,7 +3144,7 @@ final class CParser(AST) : Parser!AST
             {
                 /* Because there are instances in .h files of "const pointer to mutable",
                  * skip applying transitive `const`
-                 * https://issues.dlang.org/show_bug.cgi?id=22534
+                 * upstream issue 22534
                  */
                 auto tn = cast(AST.TypeNext)t;
                 tn.next = constApply(tn.next);
@@ -5913,7 +5913,7 @@ final class CParser(AST) : Parser!AST
                 if (token.value == TOK.identifier)
                 {
                     auto id = token.ident;
-                    // https://github.com/dlang/dmd/issues/20423
+                    // upstream dmd issue 20423
                     // skip macros that could shadow special builtins
                     if (id == Id.va_arg)
                     {

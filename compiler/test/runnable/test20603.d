@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20603
+// upstream issue 20603
 
 enum immutable(int)* x = new int(3);
 enum const(int)* y = new int(5);

@@ -151,5 +151,5 @@ void OpAssignCases(alias X)()
 
 void main()
 {
-    OpAssignCases!TestOpAssignAuto(); // https://issues.dlang.org/show_bug.cgi?id=5181
+    OpAssignCases!TestOpAssignAuto(); // upstream issue 5181
 }

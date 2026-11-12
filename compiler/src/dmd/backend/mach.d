@@ -6,7 +6,7 @@
 
 module dmd.backend.mach;
 
-// Online documentation: https://dlang.org/phobos/dmd_backend_mach.html
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/mach.d
 // location of system .h files on Mac: xcrun --show-sdk-path
 // location of machine.h: usr/include/mach
 // https://alexdremov.me/mystery-of-mach-o-object-file-builders/

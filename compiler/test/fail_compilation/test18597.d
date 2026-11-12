@@ -6,7 +6,7 @@ fail_compilation/test18597.d(26): Error: field `Unaligned.p` assigning to misali
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=18597
+// upstream issue 18597
 
 @safe:
 

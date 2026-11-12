@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21225
+// upstream dmd issue 21225
 void x(void){
 }
 #define x 3

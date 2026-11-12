@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23822
+// upstream issue 23822
 
 // REQUIRED_ARGS: -de
 

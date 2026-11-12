@@ -1,5 +1,5 @@
 
-// https://issues.dlang.org/show_bug.cgi?id=17419
+// upstream issue 17419
 /* TEST_OUTPUT:
 ---
 fail_compilation/fail17419.d(10): Error: argument to `__traits(getLinkage, 64)` is not a declaration

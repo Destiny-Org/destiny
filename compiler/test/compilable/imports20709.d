@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20709
+// upstream dmd issue 20709
 // EXTRA_SOURCES: imports/imports20709_c.c
 // A C header's size_t/ptrdiff_t/hash_t should win over object.d's aliases.
 

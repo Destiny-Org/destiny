@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=9029
+// upstream issue 9029
 enum NameOf(alias S) = S.stringof;
 
 static assert(NameOf!int == "int");
@@ -17,7 +17,7 @@ static assert(BothMatch!Struct == "type");
 static assert(BothMatch!foo9029 == "alias");
 static assert(BothMatch!5 == "alias");
 
-// https://issues.dlang.org/show_bug.cgi?id=19884
+// upstream issue 19884
 mixin template genCtEvaluate()
 {
     void evaluate(alias op)() { }

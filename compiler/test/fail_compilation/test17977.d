@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=15399
+upstream issue 15399
 REQUIRED_ARGS: -preview=dip1000
 TEST_OUTPUT:
 ---

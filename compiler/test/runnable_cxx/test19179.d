@@ -1,6 +1,6 @@
 // EXTRA_CPP_SOURCES: cpp19179.cpp
 
-// https://issues.dlang.org/show_bug.cgi?id=19179
+// upstream issue 19179
 
 import core.stdc.stdio;
 

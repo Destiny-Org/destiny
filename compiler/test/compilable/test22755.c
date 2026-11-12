@@ -1,4 +1,4 @@
-// issues.dlang.org/show_bug.cgi?id=22755
+// upstream issue 22755
 
 void *malloc(unsigned);
 

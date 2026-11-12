@@ -7,7 +7,7 @@ fail_compilation/fail134.d(15): Error: template instance `fail134.bar!(f)` error
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=651
+// upstream issue 651
 // Assertion failure: 'global.errors' on line 2622 in file 'template.c'
 void f() {}
 template foo(T) {}

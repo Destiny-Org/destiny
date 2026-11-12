@@ -123,7 +123,7 @@ T* _d_newitemT(T)(string file = __FILE__, int line = __LINE__, string funcname =
     static if (is(T == struct))
     {
         // Prime the TypeInfo name so it does not affect the allocated byte count.
-        // See https://github.com/dlang/dmd/issues/20832
+        // See upstream dmd issue 20832
         static string typeName(TypeInfo_Struct ti) nothrow @trusted => ti.name;
         auto tnPure = cast(string function(TypeInfo_Struct ti) nothrow pure @trusted)&typeName;
         cast(void)tnPure(typeid(T));

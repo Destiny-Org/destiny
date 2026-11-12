@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22209
+// upstream issue 22209
 
 struct U { size_t[4] a; }
 

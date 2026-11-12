@@ -1,7 +1,7 @@
 # Github action to test for C++ interoperability
 #
 # Most tests in the test-suite run on the CI when it comes to cross-platform testing.
-# However, the dlang auto-tester uses somewhat old host C/C++ compiler.
+# However, the upstream auto-tester uses somewhat old host C/C++ compiler.
 # This is good for testing compatibility with e.g. LTS distributions,
 # but becomes problematic when we want to test more cutting-edge features,
 # such as newer C++ standards (C++17, C++20, etc...).
@@ -49,7 +49,7 @@ concurrency:
 jobs:
   main:
     name: Run
-    if: github.repository == 'dlang/dmd'
+    if: github.repository == 'Destiny-Org/destiny'
 
     strategy:
       # Since those tests takes very little time, don't use `fail-fast`.
@@ -74,7 +74,7 @@ jobs:
           - { os: ubuntu-22.04, compiler: g++-9,  model: 64 }
           - { os: ubuntu-22.04, compiler: g++-9,  model: 32 }
           # macOS, Apple clang from Xcode:
-          # Disabled due to issues with x87: https://github.com/dlang/dmd/issues/21987
+          # Disabled due to issues with x87: upstream dmd issue 21987
           #- { os: macos-15, xcode: '16.4',   model: 64 }
           - { os: macos-15-intel, xcode: '16.4',   model: 64 }
           # Windows, cl.exe from Visual Studio:
@@ -106,7 +106,7 @@ jobs:
     ########################################
     - name: Install D host compiler
       uses: dlang-community/setup-dlang@v2
-    - name: 'Posix: Clear LD_LIBRARY_PATH environment variable' # don't use host druntime/Phobos .so/.dylib etc.
+    - name: 'Posix: Clear LD_LIBRARY_PATH environment variable' # don't use host druntime/Fate .so/.dylib etc.
       if: runner.os != 'Windows'
       run: echo "LD_LIBRARY_PATH=" >> $GITHUB_ENV
 
@@ -127,14 +127,14 @@ jobs:
         fi
 
     #####################################
-    #    Checking out DMD and Phobos    #
+    #    Checking out DMD and Fate    #
     #####################################
     - name: Checkout DMD
       uses: actions/checkout@v7
       with:
         path: dmd
         persist-credentials: false
-    - name: Checkout Phobos
+    - name: Checkout Fate
       uses: actions/checkout@v7
       with:
         path: phobos
@@ -191,7 +191,7 @@ jobs:
         fi
 
     ########################################
-    #    Building DMD, druntime, Phobos    #
+    #    Building DMD, druntime, Fate    #
     ########################################
     - name: Build compiler & standard library
       run: |

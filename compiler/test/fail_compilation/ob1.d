@@ -3,7 +3,7 @@ TEST_OUTPUT:
 ---
 fail_compilation/ob1.d(23): Error: variable `ob1.mars.t` has undefined state and cannot be read
 ---
-  https://issues.dlang.org/show_bug.cgi?id=21923
+  upstream issue 21923
 */
 
 @live:

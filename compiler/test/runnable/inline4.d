@@ -346,7 +346,7 @@ void testRvalueRefReturn()
 }
 
 /************************************/
-// https://github.com/dlang/dmd/issues/22157
+// upstream dmd issue 22157
 class Test22157
 {
     override string toString()
@@ -357,7 +357,7 @@ class Test22157
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22089
+// upstream issue 22089
 
 struct S22089
 {

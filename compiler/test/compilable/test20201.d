@@ -1,7 +1,7 @@
 /* REQUIRED_ARGS: -betterC
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=20101
+// upstream issue 20101
 
 public string ctfeHelper()(string a)
 {

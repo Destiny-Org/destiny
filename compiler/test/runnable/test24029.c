@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=24029
+// upstream issue 24029
 
 int x = 0;
 int y = 0;

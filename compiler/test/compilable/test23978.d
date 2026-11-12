@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -preview=dip1021 -lowmem
-// https://issues.dlang.org/show_bug.cgi?id=23978
+// upstream issue 23978
 
 // Note: this is a memory corruption bug.
 // Memory returned by `GC.realloc` retains references to old memory in it,

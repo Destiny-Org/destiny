@@ -1,9 +1,9 @@
 // EXTRA_FILES: cppmangle2.d
 // Test C++ name mangling.
-// https://issues.dlang.org/show_bug.cgi?id=4059
-// https://issues.dlang.org/show_bug.cgi?id=5148
-// https://issues.dlang.org/show_bug.cgi?id=7024
-// https://issues.dlang.org/show_bug.cgi?id=10058
+// upstream issue 4059
+// upstream issue 5148
+// upstream issue 7024
+// upstream issue 10058
 
 import core.stdc.stdio;
 
@@ -235,7 +235,7 @@ version (CppMangle_Itanium)
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4059
+// upstream issue 4059
 
 struct elem9 { }
 
@@ -253,7 +253,7 @@ version (CppMangle_Itanium)
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5148
+// upstream issue 5148
 
 extern (C++)
 {
@@ -280,7 +280,7 @@ void test10()
     foo10(e,e);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=19504
+// upstream issue 19504
 extern(C++) struct Class19504 {
     pragma(mangle, "HOHOHO")
     ~this();
@@ -288,7 +288,7 @@ extern(C++) struct Class19504 {
 static assert(Class19504.__xdtor.mangleof == "HOHOHO");
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10058
+// upstream issue 10058
 
 extern (C++)
 {
@@ -323,7 +323,7 @@ version (CppMangle_Itanium)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11696
+// upstream issue 11696
 
 class Expression;
 struct Loc {}
@@ -346,7 +346,7 @@ version (CppMangle_Itanium)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13337
+// upstream issue 13337
 
 extern(C++, N13337a.N13337b.N13337c)
 {
@@ -369,7 +369,7 @@ version (CppMangle_Itanium)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15789
+// upstream issue 15789
 
 extern (C++) void test15789a(T...)(T args);
 
@@ -379,7 +379,7 @@ void test15789()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7030
+// upstream issue 7030
 
 extern(C++)
 {
@@ -504,7 +504,7 @@ extern (C++)
 
 version (CppMangle_Itanium)
 {
-    // https://issues.dlang.org/show_bug.cgi?id=17947
+    // upstream issue 17947
     static assert(std.pair!(void*, void*).swap.mangleof == "_ZNSt4pairIPvS0_E4swapERS1_");
     static assert(std.allocator!int.fooa.mangleof == "_ZNKSaIiE4fooaEv");
     static assert(std.allocator!int.foob.mangleof == "_ZNSaIiE4foobEv");
@@ -544,7 +544,7 @@ version (CppMangle_Itanium)
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17772
+// upstream issue 17772
 
 extern(C++, SPACE)
 int test37(T)(){ return 0;}
@@ -559,7 +559,7 @@ version (CppMangle_Itanium) // all non-Windows machines
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15388
+// upstream issue 15388
 
 extern (C++) void test15388(typeof(null));
 
@@ -573,7 +573,7 @@ version (CppMangle_MSVC)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14086
+// upstream issue 14086
 
 extern (C++) class Test14086
 {
@@ -619,7 +619,7 @@ version (CppMangle_MSVC)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18888
+// upstream issue 18888
 
 extern (C++)
 struct T18888(T)
@@ -650,7 +650,7 @@ version (CppMangle_MSVC)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18890
+// upstream issue 18890
 
 extern (C++) class C18890
 {
@@ -695,7 +695,7 @@ version (CppMangle_MSVC)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18891
+// upstream issue 18891
 
 extern (C++) class C18891
 {
@@ -883,7 +883,7 @@ else version (CppMangle_MSVC)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18957
+// upstream issue 18957
 // extern(C++) doesn't mangle 'std' correctly on posix systems
 
 version (CppMangle_Itanium)
@@ -902,7 +902,7 @@ version (CppMangle_Itanium)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19043
+// upstream issue 19043
 // Incorrect mangling for extern(C++) const template parameter on windows
 
 extern(C++) struct test19043(T) {}
@@ -916,7 +916,7 @@ version (CppMangle_MSVC)
       "??$test19043b@U?$test19043@$$CBD@@@@YAXU?$test19043@$$CBD@@@Z");
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=16479
+// upstream issue 16479
 //  Missing substitution while mangling C++ template parameter for functions
 version (CppMangle_Itanium) extern (C++)
 {
@@ -1089,7 +1089,7 @@ version (CppMangle_Itanium) extern (C++)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19278
+// upstream issue 19278
 // extern(C++, "name") doesn't accept expressions
 
 extern(C++, "hello" ~ "world")
@@ -1133,7 +1133,7 @@ else version (CppMangle_Itanium)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18958
+// upstream issue 18958
 // Issue 18958 - extern(C++) wchar, dchar mangling not correct
 
 version (Posix)
@@ -1154,7 +1154,7 @@ version (CppMangle_MSVC)
     }
 }
 
-// https://github.com/dlang/dmd/pull/10021/files#r294055424
+// upstream dmd pull request 10021
 version (CppMangle_Itanium)
 {
     extern(C++, PR10021_NS) struct PR10021_Struct(T){}
@@ -1162,7 +1162,7 @@ version (CppMangle_Itanium)
     static assert(PR10021_fun!0.mangleof == `_Z11PR10021_funILi0EEvN10PR10021_NS14PR10021_StructIiEE`);
 }
 
-// https://github.com/dlang/dmd/pull/10021#discussion_r294095749
+// upstream dmd pull request 10021
 version (CppMangle_Itanium)
 {
     extern(C++, "a", "b")
@@ -1175,7 +1175,7 @@ version (CppMangle_Itanium)
     static assert(PR10021_Struct2.func2.mangleof == `_ZN1a1b15PR10021_Struct25func2EPS1_`);
 }
 
-/// https://issues.dlang.org/show_bug.cgi?id=20022
+/// upstream issue 20022
 version (CppMangle_Itanium)
 {
     extern(C++, `ns20022`) enum Enum20022_1 { A = 1, }
@@ -1200,7 +1200,7 @@ version (CppMangle_Itanium)
     static assert(fun20022_6.mangleof == `_ZN7ns2002210fun20022_6ENS_11Enum20022_2E`);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20094
+// upstream issue 20094
 version (CppMangle_Itanium)
 {
     extern(C++, "ns20094")
@@ -1213,7 +1213,7 @@ version (CppMangle_Itanium)
     static assert(test20094.mangleof == `_Z9test20094PN7ns2009412xvector20094INS0_IhEEEE`);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20223
+// upstream issue 20223
 version (CppMangle_Itanium)
 {
     extern(C++)
@@ -1239,7 +1239,7 @@ version (CppMangle_Itanium)
     static assert(test20223_5.mangleof == `_Z11test20223_5R13Struct20223_1R13Struct20223_3IPKcES5_`);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20224
+// upstream issue 20224
 version (CppMangle_Itanium)
 {
     extern(C++) public int test20224_1(T)(set20224!T set);  // ok
@@ -1282,7 +1282,7 @@ extern(C++, `bar`)
     void func19542(T)();
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20700
+// upstream issue 20700
 // Only testing on WIn64 because the mangling includes 'E',
 // and the bug can be tested on either platform
 version (CppMangle_MSVC) version (Win64) extern(C++)

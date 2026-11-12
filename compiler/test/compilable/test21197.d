@@ -1,6 +1,6 @@
 /* REQUIRED_ARGS: -preview=dip1000
  */
-// https://issues.dlang.org/show_bug.cgi?id=21197
+// upstream issue 21197
 
 @safe void check2()
 {

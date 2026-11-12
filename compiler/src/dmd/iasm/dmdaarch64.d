@@ -1,13 +1,13 @@
 /**
  * Inline assembler implementation for DMD.
- * https://dlang.org/spec/iasm.html
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd
  *
- * Copyright:   Copyright (C) 2025-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 2025-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     Walter Bright
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/iasmaarch64.d, _iasmaarch64.d)
- * Documentation:  https://dlang.org/phobos/dmd_iasmaarch64.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/iasmaarch64.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/iasmaarch64.d, _iasmaarch64.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.iasm.dmdaarch64;

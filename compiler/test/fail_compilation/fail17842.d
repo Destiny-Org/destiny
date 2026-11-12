@@ -6,7 +6,7 @@ fail_compilation/fail17842.d(23): Error: copying scope variable `obj` into alloc
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=17842
+// upstream issue 17842
 
 void* testp(scope void* p) @safe
 {

@@ -6,7 +6,7 @@ fail_compilation/fail19965.d(36): Error: assigning address of variable `f` to `a
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=19965
+// upstream issue 19965
 
 struct Buffer
 {

@@ -91,7 +91,7 @@ template templateVariableBar(T) if (is(T == int))
 
 auto flit = 3 / 2.0;
 
-// https://issues.dlang.org/show_bug.cgi?id=11217
+// upstream issue 11217
 void foo11217()(    const int[] arr) {}
 void foo11217()(immutable int[] arr) {}
 void foo11217()(      ref int[] arr) {}
@@ -101,7 +101,7 @@ void foo11217()(    scope int[] arr) {}
 void foo11217()(       in int[] arr) {}
 void foo11217()(    inout int[] arr) {}
 
-// https://issues.dlang.org/show_bug.cgi?id=13275
+// upstream issue 13275
 void test13275()
 {
     if (        auto n = 1) {}
@@ -141,7 +141,7 @@ void test13275()
     foreach (shared const(int) e; [1,2]) {}
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=9766
+// upstream issue 9766
 align (1) struct S9766
 {
 align {}
@@ -162,7 +162,7 @@ align(2) struct S12200_2
 align(1):
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=14694
+// upstream issue 14694
 inout(T)[] overlap(T)(inout(T)[] r1, inout(T)[] r2) @trusted pure nothrow
 {
     alias U = inout(T);
@@ -174,7 +174,7 @@ inout(T)[] overlap(T)(inout(T)[] r1, inout(T)[] r2) @trusted pure nothrow
     return b < e ? b[0 .. e - b] : null;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=16140
+// upstream issue 16140
 void gun()()
 {
     int[] res;
@@ -185,14 +185,14 @@ void gun()()
         else break;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=14690
+// upstream issue 14690
 pragma(inline, true)
 int fun(int a, int b)
 {
     return 3;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=16649
+// upstream issue 16649
 void leFoo()()
 {
     sign = a == 2 ? false : (y < 0) ^ sign;
@@ -200,7 +200,7 @@ void leFoo()()
     sign = 2 + 3 | 7 + 5;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=17371
+// upstream issue 17371
 interface LeInterface
 {}
 class LeClass
@@ -212,7 +212,7 @@ class LeClass
 }
 const levar = new class LeClass, LeInterface {};
 
-// https://issues.dlang.org/show_bug.cgi?id=20074
+// upstream issue 20074
 class CC
 {
     void fun()() @safe
@@ -223,6 +223,6 @@ class CC
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=17663
+// upstream issue 17663
 private:
 public struct Export {}

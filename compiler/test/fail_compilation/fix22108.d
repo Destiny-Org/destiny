@@ -5,7 +5,7 @@ fail_compilation/fix22108.d(12): Error: returning scope variable `p` is not allo
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22108
+// upstream issue 22108
 
 @safe ref int test(return ref scope int* p)
 {

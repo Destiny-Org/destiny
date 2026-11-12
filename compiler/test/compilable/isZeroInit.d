@@ -79,7 +79,7 @@ static if (is(Vector!(int[4])))
     static assert(!__traits(isZeroInit, Holder!(Vector!(int[4]), 1)));
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=24776
+// upstream issue 24776
 struct S6 {
     union {
         int i1;
@@ -97,7 +97,7 @@ struct S7
 }
 static assert(!__traits(isZeroInit, S7));
 
-// https://issues.dlang.org/show_bug.cgi?id=23841
+// upstream issue 23841
 union U
 {
     float x = 0;

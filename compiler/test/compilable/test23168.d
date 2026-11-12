@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23168
+// upstream issue 23168
 // Issue 23168 - [DIP1000] return scope wrongly rewritten for structs with no indirections
 
 @safe:
@@ -17,7 +17,7 @@ int* use()
 }
 
 // Prevent forward reference 'regression'
-// See https://github.com/dlang/dmd/pull/14232#issuecomment-1162906573
+// See upstream dmd pull request 14232
 struct S
 {
     void f() scope {}

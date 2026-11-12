@@ -41,7 +41,7 @@ class Bar
 }
 
 /***********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6677
+// upstream issue 6677
 
 int global6677;
 
@@ -62,7 +62,7 @@ shared static this() nothrow pure @safe
 }
 
 /***********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7533
+// upstream issue 7533
 struct Foo7533(int n)
 {
     pure static this() { }

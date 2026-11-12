@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -inline
 
-// https://issues.dlang.org/show_bug.cgi?id=20420
+// upstream issue 20420
 
 struct S { ~this(); }
 

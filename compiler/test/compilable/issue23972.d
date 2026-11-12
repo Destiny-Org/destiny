@@ -2,7 +2,7 @@
 // PERMUTE_ARGS:
 // POST_SCRIPT: compilable/extra-files/issue23972.sh
 
-// https://github.com/dlang/dmd/issues/23972
+// upstream dmd issue 23972
 
 enum E
 {

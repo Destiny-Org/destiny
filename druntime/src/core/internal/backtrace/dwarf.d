@@ -268,7 +268,7 @@ struct TraceInfoBuffer
     private char[1536] buf = void;
     private size_t position;
 
-    // BUG: https://issues.dlang.org/show_bug.cgi?id=21285
+    // BUG: upstream issue 21285
     @safe pure nothrow @nogc
     {
         ///
@@ -558,7 +558,7 @@ void resolveAddresses(ref const DebugSections sections, Location[] locations, si
                         }
                         // DMD emits entries with FQN, but other implementations
                         // (e.g. LDC) make use of directories
-                        // See https://github.com/dlang/druntime/pull/2945
+                        // See upstream druntime pull request 2945
                         if (sourceFile.dirIndex != 0 && sourceFile.dirIndex <= lp.includeDirectories.length)
                             loc.directory = lp.includeDirectories[sourceFile.dirIndex - 1];
 

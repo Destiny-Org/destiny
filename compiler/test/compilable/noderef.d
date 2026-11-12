@@ -1,5 +1,5 @@
 // PERMUTE_ARGS:
-// https://github.com/dlang/dmd/pull/5860
+// upstream dmd pull request 5860
 
 int[] bar() @safe;
 

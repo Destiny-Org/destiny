@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20499
+// upstream dmd issue 20499
 
 
 struct Outer {

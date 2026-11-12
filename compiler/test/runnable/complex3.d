@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23778
+// upstream issue 23778
 
 
 enum __c_long_double : double;

@@ -20,7 +20,7 @@ fail_compilation/retscope2.d(107): Error: assigning address of variable `s` to `
 
 /**********************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=17123
+// upstream issue 17123
 
 void test200()
 {
@@ -121,7 +121,7 @@ fail_compilation/retscope2.d(721): Error: returning `s.get1()` escapes a referen
 */
 
 #line 700
-// https://issues.dlang.org/show_bug.cgi?id=17049
+// upstream issue 17049
 
 @safe S700* get2(return ref S700 _this)
 {
@@ -256,7 +256,7 @@ fail_compilation/retscope2.d(1233): Error: returning `t.foo()` escapes a referen
 */
 
 #line 1200
-// https://issues.dlang.org/show_bug.cgi?id=17388
+// upstream issue 17388
 
 struct S17388
 {
@@ -303,7 +303,7 @@ fail_compilation/retscope2.d(1306): Error: escaping a reference to local variabl
 
 #line 1300
 
-// https://issues.dlang.org/show_bug.cgi?id=17370
+// upstream issue 17370
 
 void test1300() @safe
 {

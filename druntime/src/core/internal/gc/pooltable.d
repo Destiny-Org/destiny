@@ -1,7 +1,7 @@
 /**
  * A sorted array to quickly lookup pools.
  *
- * Copyright: D Language Foundation 2001 - 2021
+ * Copyright: D Language Foundation 2001 - 2021; Copyright (C) 2026 Destiny contributors
  * License:   $(HTTP www.boost.org/LICENSE_1_0.txt, Boost License 1.0).
  * Authors:   Walter Bright, David Friedman, Sean Kelly, Martin Nowak
  */

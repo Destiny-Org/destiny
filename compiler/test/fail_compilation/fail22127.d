@@ -4,7 +4,7 @@ fail_compilation/fail22127.d(101): Error: user-defined attributes are not allowe
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=22127
+// upstream issue 22127
 
 #line 100
 

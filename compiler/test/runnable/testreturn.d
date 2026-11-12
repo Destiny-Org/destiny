@@ -9,7 +9,7 @@ extern(C) int printf(const char*, ...);
 alias TypeTuple(T...) = T;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13336
+// upstream issue 13336
 
 struct S13336
 {
@@ -156,7 +156,7 @@ void test13336()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15018
+// upstream issue 15018
 
 struct S15018(int n)
 {

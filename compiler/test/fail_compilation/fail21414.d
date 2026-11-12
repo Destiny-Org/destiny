@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21414
+// upstream dmd issue 21414
 
 /* REQUIRED_ARGS: -o-
 TEST_OUTPUT:

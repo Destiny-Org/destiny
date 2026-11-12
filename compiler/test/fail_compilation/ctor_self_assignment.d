@@ -6,7 +6,7 @@ fail_compilation/ctor_self_assignment.d(17): Deprecation: cannot initialize fiel
 fail_compilation/ctor_self_assignment.d(15):        did you mean to use parameter `locaction`?
 ---
 */
-// https://forum.dlang.org/post/teghfhpmvkdcfwfeovua@forum.dlang.org
+// https://github.com/Destiny-Org/destiny
 
 alias Location = int;
 

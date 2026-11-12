@@ -11,7 +11,7 @@ import core.stdc.string;
 alias TypeTuple(T...) = T;
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=16087
+// upstream issue 16087
 
 static if (__traits(compiles, void8))   static assert(void8.alignof == 8);
 static if (__traits(compiles, double1)) static assert(double1.alignof == 8);
@@ -856,7 +856,7 @@ void test7411()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7951
+// upstream issue 7951
 
 float[4] test7951()
 {
@@ -1392,7 +1392,7 @@ float4 test5(void16 a, void16 b)
 
 /*****************************************/
 /+
-// https://issues.dlang.org/show_bug.cgi?id=9200
+// upstream issue 9200
 
 void bar9200(double[2] a)
 {
@@ -1417,8 +1417,8 @@ void test9200()
 
 /*****************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=9304
-// https://issues.dlang.org/show_bug.cgi?id=9322
+// upstream issue 9304
+// upstream issue 9322
 
 float4 foo9304(float4 a)
 {
@@ -1494,7 +1494,7 @@ void test9449_2()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13841
+// upstream issue 13841
 
 void test13841()
 {
@@ -1520,7 +1520,7 @@ void test13841()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12776
+// upstream issue 12776
 
 void test12776()
 {
@@ -1558,7 +1558,7 @@ void test13988()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15123
+// upstream issue 15123
 
 void test15123()
 {
@@ -1572,7 +1572,7 @@ void test15123()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15144
+// upstream issue 15144
 
 void test15144()
 {
@@ -1597,7 +1597,7 @@ void test15144()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11585
+// upstream issue 11585
 
 ubyte16 test11585(ubyte16* d)
 {
@@ -1608,7 +1608,7 @@ ubyte16 test11585(ubyte16* d)
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13927
+// upstream issue 13927
 
 void test13927(ulong2 a)
 {
@@ -1648,7 +1648,7 @@ void testprefetch()
 
 /*****************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=16488
+// upstream issue 16488
 
 void foo_byte16(byte t, byte s)
 {
@@ -1862,7 +1862,7 @@ else
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=16703
+// upstream issue 16703
 
 float index(float4 f4, size_t i)
 {
@@ -1929,7 +1929,7 @@ void testOPvecunsto()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10447
+// upstream issue 10447
 
 void test10447()
 {
@@ -1940,7 +1940,7 @@ void test10447()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17237
+// upstream issue 17237
 
 static if (__traits(compiles, int8))
 {
@@ -1960,7 +1960,7 @@ static if (__traits(compiles, int8))
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17344
+// upstream issue 17344
 
 void test17344()
 {
@@ -1971,7 +1971,7 @@ void test17344()
 
 /*****************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=17356
+// upstream issue 17356
 
 void test17356()
 {
@@ -1982,7 +1982,7 @@ void test17356()
 
 /*****************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=17695
+// upstream issue 17695
 
 void test17695(__vector(ubyte[16]) a)
 {
@@ -2016,7 +2016,7 @@ void refIntrinsics()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17720
+// upstream issue 17720
 
 void test17720()
 {
@@ -2139,7 +2139,7 @@ void test7()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18867
+// upstream issue 18867
 
 ulong2 foo18867(ulong s)
 {
@@ -2162,7 +2162,7 @@ auto test20052()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20981
+// upstream issue 20981
 
 void test20981()
 {
@@ -2176,7 +2176,7 @@ void16 simd_stox(XMM opcode)(void16 op1, void16 op2)
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21469
+// upstream issue 21469
 
 int4 foo21469(short a)
 {
@@ -2184,7 +2184,7 @@ int4 foo21469(short a)
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20041
+// upstream issue 20041
 
 immutable(float4) foo20041()
 {
@@ -2208,7 +2208,7 @@ void test20041()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21364
+// upstream issue 21364
 
 struct X21364
 {
@@ -2232,7 +2232,7 @@ void test21364()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19632
+// upstream issue 19632
 
 void test19632()
 {
@@ -2245,7 +2245,7 @@ void test19632()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19443
+// upstream issue 19443
 
 void test19443()
 {
@@ -2258,7 +2258,7 @@ void test19443()
 
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22438
+// upstream issue 22438
 
 struct T22438 { int x; double d; }
 
@@ -2347,7 +2347,7 @@ void testshdup()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21673
+// upstream issue 21673
 float4 _mm_move_ss(float4 a, float4 b)
 {
     a.ptr[0] = b.array[0];
@@ -2364,7 +2364,7 @@ void test21673()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21676
+// upstream issue 21676
 double2 loadUnaligned21676(const(double)* pvec)
 {
     double2 result;
@@ -2397,7 +2397,7 @@ void test21676()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=23009
+// upstream issue 23009
 double2 _mm_loadl_pd(double2 a, const(double)* mem_addr)
 {
     a[0] = *mem_addr;
@@ -2416,7 +2416,7 @@ void test23009()
 }
 
 /*****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=23077
+// upstream issue 23077
 
 float test23077(float x)
 {
@@ -2425,7 +2425,7 @@ float test23077(float x)
     return *cast(float*)&i; // this cast is not allowed in @safe code
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23085
+// upstream issue 23085
 
 float test23085(float x)
 {
@@ -2434,7 +2434,7 @@ float test23085(float x)
     return *cast(float*)&i; // this cast is not allowed in @safe code
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23084
+// upstream issue 23084
 
 __vector(int[4]) test23084a(__vector(int[4]) a)
 {
@@ -2451,7 +2451,7 @@ __vector(int[4]) test23084b(__vector(int[4]) a)
 
 /*****************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=23218
+// upstream issue 23218
 
 int4 convtest(int[4] a)
 {   return cast(int4)a; }

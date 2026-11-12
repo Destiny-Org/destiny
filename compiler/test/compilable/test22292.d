@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22292
+// upstream issue 22292
 
 // Original case
 
@@ -90,7 +90,7 @@ template Test3()
 
 alias test3 = Test3!();
 
-// From https://issues.dlang.org/show_bug.cgi?id=22114
+// From upstream issue 22114
 
 template Test4()
 {

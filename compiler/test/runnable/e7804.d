@@ -154,7 +154,7 @@ void main()
     (new SingleSymTuple).test();
 }
 
-/* https://issues.dlang.org/show_bug.cgi?id=19708 */
+/* upstream issue 19708 */
 struct Foo19708 {}
 struct Bar19708 {}
 template Baz19708(T) { struct Baz19708{T t;} }

@@ -5,7 +5,7 @@
  * License:   $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Authors:   Sean Kelly
  * Source:    $(DRUNTIMESRC core/_runtime.d)
- * Documentation: https://dlang.org/phobos/core_runtime.html
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/druntime/src/core/runtime.d
  */
 
 module core.runtime;

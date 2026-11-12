@@ -52,7 +52,7 @@ int tempfun(T, U)(T t, U u)
     return 3;
 }
 
-// https://github.com/dlang/dmd/issues/22980
+// upstream dmd issue 22980
 void test22980()
 {
     alias T = int;

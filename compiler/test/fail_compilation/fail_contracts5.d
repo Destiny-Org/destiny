@@ -22,7 +22,7 @@ fail_compilation/fail_contracts5.d(33): Error: function `fail_contracts5.C2.foo`
 fail_compilation/fail_contracts5.d(32): Error: constructor `fail_contracts5.C2.this` `in` and `out` contracts can only appear without a body when they are virtual interface functions or abstract
 ---
 */
-// https://github.com/dlang/dmd/issues/21403
+// upstream dmd issue 21403
 abstract class C1 {}
 
 class C2 : C1

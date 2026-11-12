@@ -149,7 +149,7 @@ struct S { int i; int* p; }
 }
 
 /*******************************
- * https://issues.dlang.org/show_bug.cgi?id=21854
+ * upstream issue 21854
  */
 
 @live void test21854()

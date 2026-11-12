@@ -1,5 +1,5 @@
 // Author: Ali Çehreli
-// See https://forum.dlang.org/post/o2n7f8$2p1t$1@digitalmars.com
+// See https://github.com/Destiny-Org/destiny
 
 import core.stdc.stdio : printf;
 
@@ -41,7 +41,7 @@ void causeExceptionChain(size_t chainLength, size_t errorIndex)
         if (n != 0)
         {
             // Redundant 'return' keyword due to
-            // https://issues.dlang.org/show_bug.cgi?id=16960
+            // upstream issue 16960
             return throws(n - 1);
         }
     }

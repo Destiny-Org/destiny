@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22757
+// upstream issue 22757
 
 typedef struct S S;
 

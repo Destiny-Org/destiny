@@ -6,8 +6,8 @@ fail_compilation/test23875.c(13): Error: value for vector_size expected, not `x`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23875
-// https://issues.dlang.org/show_bug.cgi?id=23880
+// upstream issue 23875
+// upstream issue 23880
 
 int __attribute__((vector_size(10))) neptune();
 int __attribute__((vector_size(x))) saturn();

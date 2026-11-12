@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/pull/21740
+// upstream dmd pull request 21740
 int strcmp(const char *, const char *);
 
 void  \u00e9 (void)

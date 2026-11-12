@@ -2,7 +2,7 @@
  * D header file to interface with the
  * $(HTTP pubs.opengroup.org/onlinepubs/9699919799/basedefs/aio.h.html, Posix AIO API).
  *
- * Copyright: Copyright D Language Foundation 2018.
+ * Copyright: Copyright D Language Foundation 2018; Copyright (C) 2026 Destiny contributors.
  * License:   $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Authors:   $(HTTPS github.com/darredevil, Alexandru Razvan Caciulescu)
  */

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19320
+// upstream issue 19320
 
 // REQUIRED_ARGS: -O -cov
 

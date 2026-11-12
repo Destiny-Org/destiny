@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23952
+// upstream dmd issue 23952
 
 import core.stdc.string;
 

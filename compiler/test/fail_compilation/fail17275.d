@@ -5,7 +5,7 @@ fail_compilation/fail17275.d(12): Error: `inout` on `return` means `inout` must 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17275
+// upstream issue 17275
 
 struct DSO
 {

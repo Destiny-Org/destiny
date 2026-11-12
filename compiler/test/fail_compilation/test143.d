@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -de
-// https://issues.dlang.org/show_bug.cgi?id=143
+// upstream issue 143
 // EXTRA_FILES: imports/test143.d
 /*
 TEST_OUTPUT:

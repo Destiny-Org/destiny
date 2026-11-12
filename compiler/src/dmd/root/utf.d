@@ -1,12 +1,12 @@
 /**
  * Functions related to UTF encoding.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/root/utf.d, _utf.d)
- * Documentation:  https://dlang.org/phobos/dmd_root_utf.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/root/utf.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/utf.d, _utf.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/utf.d
+ * 
  */
 
 module dmd.root.utf;
@@ -20,8 +20,8 @@ import dmd.common.outbuffer : OutBuffer;
 bool utf_isValidDchar(dchar c)
 {
     // TODO: Whether non-char code points should be rejected is pending review.
-    // 0xFFFE and 0xFFFF are valid for internal use, like Phobos std.utf.isValidDChar
-    // See also https://issues.dlang.org/show_bug.cgi?id=1357
+    // 0xFFFE and 0xFFFF are valid for internal use, like Fate std.utf.isValidDChar
+    // See also upstream issue 1357
     if (c < 0xD800) // Almost all characters in a typical document.
         return true;
     if (c > 0xDFFF && c <= 0x10FFFF)

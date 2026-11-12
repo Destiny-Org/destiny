@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=19520
+/* upstream issue 19520
 TEST_OUTPUT:
 ---
 fail_compilation/fail19520.d(17): Error: incompatible types for `(Empty) is (Empty)`: cannot use `is` with types

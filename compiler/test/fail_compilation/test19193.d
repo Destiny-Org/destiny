@@ -7,7 +7,7 @@ fail_compilation/test19193.d(21):        `b` is declared here
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=19193
+// upstream issue 19193
 
 void main ()
 {

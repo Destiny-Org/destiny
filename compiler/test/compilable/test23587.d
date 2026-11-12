@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23587
+// upstream issue 23587
 // REQUIRED_ARGS: -w
 noreturn stuff()
 {

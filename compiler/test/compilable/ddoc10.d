@@ -3,7 +3,7 @@
 // POST_SCRIPT: compilable/extra-files/ddocAny-postscript.sh
 // EXTRA_SOURCES: extra-files/ddoc_minimal.ddoc
 
-// https://issues.dlang.org/show_bug.cgi?id=294
+// upstream issue 294
 
 /// The foo
 struct Foo(T) { }
@@ -178,7 +178,7 @@ struct T
 }
 
 
-// https://issues.dlang.org/show_bug.cgi?id=14547
+// upstream issue 14547
 
 /// doc-comment
 int x14547 = 1;

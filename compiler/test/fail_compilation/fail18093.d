@@ -5,7 +5,7 @@ fail_compilation/fail18093.d(16):        did you mean to override `extern(C++) v
 fail_compilation/fail18093.d(25): Error: mixin `fail18093.GenericTransitiveVisitor!(ASTCodegen).ParseVisitMethods!(ASTCodegen)` error instantiating
 fail_compilation/fail18093.d(28): Error: template instance `fail18093.GenericTransitiveVisitor!(ASTCodegen)` error instantiating
 ---
- * https://issues.dlang.org/show_bug.cgi?id=18093
+ * upstream issue 18093
  */
 
 

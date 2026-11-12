@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=18646
+// upstream issue 18646
 class SuperClass {}
 
 class TemplatedClass(T : SuperClass) {}

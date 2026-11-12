@@ -1,11 +1,11 @@
 /**
  * Compile-time checks associated with the @mustuse attribute.
  *
- * Copyright: Copyright (C) 2022-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright: Copyright (C) 2022-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/mustuse.d, _mustuse.d)
- * Documentation:  https://dlang.org/phobos/dmd_mustuse.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/mustuse.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mustuse.d, _mustuse.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mustuse.d
+ * 
  */
 
 module dmd.mustuse;

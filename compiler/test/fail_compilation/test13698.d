@@ -1,6 +1,6 @@
 
 // REQUIRED_ARGS: -m64
-// https://issues.dlang.org/show_bug.cgi?id=13698
+// upstream issue 13698
 /*
 TEST_OUTPUT:
 ---

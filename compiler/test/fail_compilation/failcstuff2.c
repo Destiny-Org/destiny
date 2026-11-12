@@ -38,7 +38,7 @@ fail_compilation/failcstuff2.c(381): Error: cannot take address of register vari
 */
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22069
+// upstream issue 22069
 #line 50
 void test22069()
 {
@@ -53,7 +53,7 @@ void test22069()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22067
+// upstream issue 22067
 #line 100
 struct S22067
 {
@@ -86,7 +86,7 @@ void test22067()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22068
+// upstream issue 22068
 #line 150
 void test22068()
 {
@@ -96,7 +96,7 @@ void test22068()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22405
+// upstream issue 22405
 #line 300
 struct S22405
 {
@@ -110,7 +110,7 @@ void test22405(struct S22405 *s)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22413
+// upstream issue 22413
 #line 350
 
 void test22413a()

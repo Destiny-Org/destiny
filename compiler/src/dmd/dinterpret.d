@@ -1,14 +1,14 @@
 /**
  * The entry point for CTFE.
  *
- * Specification: ($LINK2 https://dlang.org/spec/function.html#interpretation, Compile Time Function Execution (CTFE))
+ * Specification: ($LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd, Compile Time Function Execution (CTFE))
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/dinterpret.d, _dinterpret.d)
- * Documentation:  https://dlang.org/phobos/dmd_dinterpret.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/dinterpret.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dinterpret.d, _dinterpret.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dinterpret.d
+ * 
  */
 
 module dmd.dinterpret;
@@ -94,7 +94,7 @@ public Expression ctfeInterpret(Expression e)
             break;
     }
 
-    assert(e.type); // https://issues.dlang.org/show_bug.cgi?id=14642
+    assert(e.type); // upstream issue 14642
     //assert(e.type.ty != Terror);    // FIXME
     if (e.type.ty == Terror)
         return ErrorExp.get();
@@ -645,7 +645,7 @@ private Expression interpretFunction(UnionExp* pue, FuncDeclaration fd, InterSta
             ctfeGlobals.stack.push(vx);
             assert(!hasValue(vx)); // vx is made uninitialized
 
-            // https://issues.dlang.org/show_bug.cgi?id=14299
+            // upstream issue 14299
             // v.ctfeAdrOnStack should be saved already
             // in the stack before the overwrite.
             v.ctfeAdrOnStack = oldadr;
@@ -725,7 +725,7 @@ private Expression interpretFunction(UnionExp* pue, FuncDeclaration fd, InterSta
         else
         {
             /* missing a return statement can happen with C functions
-             * https://issues.dlang.org/show_bug.cgi?id=23056
+             * upstream issue 23056
              */
             fdError("no return value from function");
             e = CTFEExp.cantexp;
@@ -1778,7 +1778,7 @@ public:
         if (goal == CTFEGoal.LValue)
         {
             // We might end up here with istate being zero
-            // https://issues.dlang.org/show_bug.cgi?id=16382
+            // upstream issue 16382
             if (istate && istate.fd.vthis)
             {
                 result = ctfeEmplaceExp!VarExp(e.loc, istate.fd.vthis);
@@ -1867,7 +1867,7 @@ public:
         }
         else
         {
-            // https://issues.dlang.org/show_bug.cgi?id=20811
+            // upstream issue 20811
             // Create a copy of mutable string literals, so that any change in
             // value via an index or slice will not survive CTFE.
             *pue = copyLiteral(e);
@@ -2175,7 +2175,7 @@ public:
                 }
                 else if (v.isDataseg() || (v.storage_class & STC.manifest))
                 {
-                    /* https://issues.dlang.org/show_bug.cgi?id=14304
+                    /* upstream issue 14304
                      * e is a value that is not yet owned by CTFE.
                      * Mark as "cached", and use it directly during interpretation.
                      */
@@ -2272,7 +2272,7 @@ public:
         else
             eSink.error(loc, "cannot interpret declaration `%s` at compile time", d.toErrMsg());
 
-        // https://issues.dlang.org/show_bug.cgi?id=21960
+        // upstream issue 21960
         // Manifest constants (e.g. enum members) cache a shared value expression.
         // Don't let that expression's original declaration loc leak into errors
         // reported at a different point of use.
@@ -2630,7 +2630,7 @@ public:
         }
 
         // Only create new ArrayLiteralExp if needed (don't forget to check basis as well!)
-        // https://github.com/dlang/dmd/issues/21039
+        // upstream dmd issue 21039
         if (expsx !is e.elements || basis !is e.basis)
         {
             // todo: all tuple expansions should go in semantic phase.
@@ -3045,7 +3045,7 @@ public:
                 if (exceptionOrCant(ctorfail))
                     return;
 
-                /* https://issues.dlang.org/show_bug.cgi?id=14465
+                /* upstream issue 14465
                  * Repaint the loc, because a super() call
                  * in the constructor modifies the loc of ClassReferenceExp
                  * in CallExp::interpret().
@@ -3794,7 +3794,7 @@ public:
                     newval = truncateBitField(newval, bf);
 
             // Determine the return value
-            if (goal == CTFEGoal.LValue) // https://issues.dlang.org/show_bug.cgi?id=14371
+            if (goal == CTFEGoal.LValue) // upstream issue 14371
                 result = e1;
             else
             {
@@ -4015,13 +4015,13 @@ public:
             foreach (i, ref oldelem; *oldelems)
             {
                 Expression newelem = paintTypeOntoLiteral(elemtype, (*newelems)[i]);
-                // https://issues.dlang.org/show_bug.cgi?id=9245
+                // upstream issue 9245
                 if (e.e2.isLvalue())
                 {
                     if (Expression ex = evaluatePostblit(istate, newelem))
                         return ex;
                 }
-                // https://issues.dlang.org/show_bug.cgi?id=13661
+                // upstream issue 13661
                 if (Expression ex = evaluateDtor(istate, oldelem))
                     return ex;
                 oldelem = newelem;
@@ -4038,7 +4038,7 @@ public:
 
             if (t1b.ty == Tsarray && e.op == EXP.construct && e.e2.isLvalue())
             {
-                // https://issues.dlang.org/show_bug.cgi?id=9245
+                // upstream issue 9245
                 if (Expression ex = evaluatePostblit(istate, newval))
                     return ex;
             }
@@ -4120,7 +4120,7 @@ public:
             else if (VectorExp ve = e1.isVectorExp())
             {
                 // ve is not handled but a proper error message is returned
-                // this is to prevent https://issues.dlang.org/show_bug.cgi?id=20042
+                // this is to prevent upstream issue 20042
                 lowerbound = 0;
                 upperbound = ve.dim;
             }
@@ -4229,7 +4229,7 @@ public:
                 {
                     // Currently overlapping for struct array is allowed.
                     // The order of elements processing depends on the overlapping.
-                    // https://issues.dlang.org/show_bug.cgi?id=14024
+                    // upstream issue 14024
 
                     Type elemtype = aggregate.type.nextOf();
                     bool needsPostblit = e.e2.isLvalue();
@@ -4376,7 +4376,7 @@ public:
                             }
                             if (needsDtor)
                             {
-                                // https://issues.dlang.org/show_bug.cgi?id=14860
+                                // upstream issue 14860
                                 if (Expression ex = evaluateDtor(istate, tmpelem))
                                     return ex;
                             }
@@ -4853,8 +4853,8 @@ public:
                 else if (auto ae = ea.isAddrExp())
                     result = interpretRegion(ae.e1, istate);
 
-                // https://issues.dlang.org/show_bug.cgi?id=18871
-                // https://issues.dlang.org/show_bug.cgi?id=18819
+                // upstream issue 18871
+                // upstream issue 18819
                 else if (auto ale = ea.isArrayLiteralExp())
                     result = interpretRegion(ale, istate);
 
@@ -5696,7 +5696,7 @@ public:
         {
             ale.ownedByCtfe = OwnedBy.ctfe;
 
-            // https://issues.dlang.org/show_bug.cgi?id=14686
+            // upstream issue 14686
             foreach (elem; *ale.elements)
             {
                 if (!elem) continue;
@@ -6288,8 +6288,8 @@ public:
             return;
         }
 
-        // https://issues.dlang.org/show_bug.cgi?id=19897
-        // https://issues.dlang.org/show_bug.cgi?id=20710
+        // upstream issue 19897
+        // upstream issue 20710
         // Zero-elements fields don't have an initializer. See: scrubArray function
         if ((*se.elements)[i] is null)
             (*se.elements)[i] = voidInitLiteral(e.type, v).copy();
@@ -6675,7 +6675,7 @@ private Expression scrubReturnValue(Loc loc, Expression e)
                 continue;
 
             // A struct .init may contain void members.
-            // Static array members are a weird special case https://issues.dlang.org/show_bug.cgi?id=10994
+            // Static array members are a weird special case upstream issue 10994
             if (structlit && isVoid(e, true))
             {
                 e = null;

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=18976
+// upstream issue 18976
 
 class Expression : Statement {}
 class Statement {}

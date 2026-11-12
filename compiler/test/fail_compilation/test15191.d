@@ -10,9 +10,9 @@ fail_compilation/test15191.d(69): Error: taking address of `scope` variable `x` 
 */
 
 // Test taking the address of a `ref return` using & and [] operators
-// https://issues.dlang.org/show_bug.cgi?id=15191
-// https://issues.dlang.org/show_bug.cgi?id=22519
-// https://issues.dlang.org/show_bug.cgi?id=22539
+// upstream issue 15191
+// upstream issue 22519
+// upstream issue 22539
 
 @safe:
 ref int foo(return ref int s)
@@ -69,7 +69,7 @@ int*[] sliceOfRefEscape()
 	return identityArr(x)[]; // check transitive scope in return statement
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23079
+// upstream issue 23079
 int** p;
 
 ref int* get() @safe

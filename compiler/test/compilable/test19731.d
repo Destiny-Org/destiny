@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19731
+// upstream issue 19731
 
 class Out19731
 {

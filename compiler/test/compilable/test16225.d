@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -O -m64
 // PERMUTE_ARGS:
 
-// https://issues.dlang.org/show_bug.cgi?id=16225
+// upstream issue 16225
 
 struct C
 {

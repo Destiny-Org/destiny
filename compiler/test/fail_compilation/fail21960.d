@@ -5,7 +5,7 @@ fail_compilation/fail21960.d(16): Error: cannot implicitly convert expression `E
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=21960
+// upstream issue 21960
 
 enum E { One, Two }
 

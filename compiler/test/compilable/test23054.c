@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23054 */
+/* upstream issue 23054 */
 
 struct S { int x; };
 struct S* s = &(struct S){1};

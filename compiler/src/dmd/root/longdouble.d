@@ -1,12 +1,12 @@
 /**
  * 80-bit floating point value implementation if the C/D compiler does not support them natively.
  *
- * Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * All Rights Reserved, written by Rainer Schuetze
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE or copy at https://www.boost.org/LICENSE_1_0.txt)
- * https://github.com/dlang/dmd/blob/master/src/root/longdouble.d
+ * https://github.com/Destiny-Org/destiny/blob/main/src/root/longdouble.d
  */
 
 module dmd.root.longdouble;
@@ -333,7 +333,7 @@ void ld_setull(longdouble_soft* pthis, ulong d)
     }
 }
 
-// using an argument as result to avoid RVO, see https://issues.dlang.org/show_bug.cgi?id=18758
+// using an argument as result to avoid RVO, see upstream issue 18758
 longdouble_soft ldexpl(longdouble_soft ld, int exp)
 {
     version(AsmX86)

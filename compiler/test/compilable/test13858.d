@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -w
-// https://issues.dlang.org/show_bug.cgi?id=13858
+// upstream issue 13858
 
 void foo() { assert(0); }
 

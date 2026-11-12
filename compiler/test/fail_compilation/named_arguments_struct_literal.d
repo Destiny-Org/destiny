@@ -5,7 +5,7 @@ fail_compilation/named_arguments_struct_literal.d(14): Error: trying to initiali
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=24281
+// upstream issue 24281
 
 struct S { int y, z = 3; }
 

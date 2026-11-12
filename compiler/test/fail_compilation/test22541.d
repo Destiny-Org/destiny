@@ -6,7 +6,7 @@ fail_compilation/test22541.d(102):        perhaps annotate the parameter with `r
 ---
  */
 
-/* https://issues.dlang.org/show_bug.cgi?id=22541
+/* upstream issue 22541
  */
 
 #line 100

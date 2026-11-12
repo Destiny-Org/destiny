@@ -20,7 +20,7 @@ fail_compilation/test20245.d(94):        `this` inferred `scope` because of `&th
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=20245
+// upstream issue 20245
 @safe int* foo(ref int x) {
     int* a = &x;
     escape(&x);
@@ -46,7 +46,7 @@ int* gPtr;
     gPtr = ptr;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21212
+// upstream issue 21212
 class MinPointerRecorder
 {
     int* minPrice;
@@ -64,7 +64,7 @@ void main() @safe
     auto x = *r.minPrice; // "13"
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22782
+// upstream issue 22782
 struct DontDoThis
 {
     immutable char[12] content;
@@ -80,7 +80,7 @@ void main1() @safe
     DontDoThis('a');
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22783
+// upstream issue 22783
 const(char)* charPtr;
 
 // argument is not, or should not be scope

@@ -1,12 +1,12 @@
 /**
  * Defines a D type.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/mtype.d, _mtype.d)
- * Documentation:  https://dlang.org/phobos/dmd_mtype.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/mtype.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mtype.d, _mtype.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mtype.d
+ * 
  */
 
 module dmd.mtype;
@@ -46,7 +46,7 @@ enum SIZE_INVALID = (~cast(ulong)0);   // error return from size() functions
 static if (__VERSION__ < 2095)
 {
     // Fix linker errors when building with older compilers.
-    // See: https://issues.dlang.org/show_bug.cgi?id=21299
+    // See: upstream issue 21299
     private alias StringValueType = StringValue!Type;
 }
 
@@ -99,12 +99,12 @@ Expression typeToExpressionHelper(TypeQualified t, Expression e, size_t i = 0)
                 break;
 
             // ... '[type]'
-            case DYNCAST.type:          // https://issues.dlang.org/show_bug.cgi?id=1215
+            case DYNCAST.type:          // upstream issue 1215
                 e = new ArrayExp(t.loc, e, new TypeExp(t.loc, cast(Type)id));
                 break;
 
             // ... '[expr]'
-            case DYNCAST.expression:    // https://issues.dlang.org/show_bug.cgi?id=1215
+            case DYNCAST.expression:    // upstream issue 1215
                 e = new ArrayExp(t.loc, e, cast(Expression)id);
                 break;
 
@@ -1561,7 +1561,7 @@ extern (C++) final class TypeDelegate : TypeNext
  * This is a shell containing a TraitsExp that can be
  * either resolved to a type or to a symbol.
  *
- * The point is to allow AliasDeclarationY to use `__traits()`, see $(LINK https://issues.dlang.org/show_bug.cgi?id=7804).
+ * The point is to allow AliasDeclarationY to use `__traits()`, see upstream issue 7804.
  */
 extern (C++) final class TypeTraits : Type
 {
@@ -2206,7 +2206,7 @@ extern (C++) final class TypeTag : Type
 /***********************************************************
  * Represents a function's formal parameters + variadics info.
  * Length, indexing and iteration are based on a depth-first tuple expansion.
- * https://dlang.org/spec/function.html#ParameterList
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
  */
 extern (C++) struct ParameterList
 {
@@ -2538,7 +2538,7 @@ extern (C++) final class Parameter : ASTNode
     {
         // Workaround for failing covariance when finding a common type of delegates,
         // some of which have parameters with inferred scope
-        // https://issues.dlang.org/show_bug.cgi?id=21285
+        // upstream issue 21285
         // The root cause is that scopeinferred is not part of the mangle, and mangle
         // is used for type equality checks
         if (to & STC.returninferred)
@@ -2729,7 +2729,7 @@ ScopeRef buildScopeRef(STC stc) pure nothrow @nogc @safe
         case STC.none:           result = ScopeRef.None;        break;
 
         /* can occur in case test/compilable/testsctreturn.d
-         * related to https://issues.dlang.org/show_bug.cgi?id=20149
+         * related to upstream issue 20149
          * where inout adds `return` without `scope` or `ref`
          */
         case STC.return_:              result = ScopeRef.Return;      break;

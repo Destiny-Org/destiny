@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23039
+/* upstream issue 23039
  */
 
 const int x = 1;

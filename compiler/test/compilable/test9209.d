@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-// https://issues.dlang.org/show_bug.cgi?id=9209
+// upstream issue 9209
 
 auto array(T)(T t){ return t; }
 

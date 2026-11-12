@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=15478
+// upstream issue 15478
 
 void test15478_1()
 {
@@ -24,7 +24,7 @@ void test15478_2()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=21870
+// upstream issue 21870
 struct S21870
 {
     @property size_t count() const

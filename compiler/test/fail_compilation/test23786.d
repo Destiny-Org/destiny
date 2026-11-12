@@ -12,7 +12,7 @@ fail_compilation/test23786.d(34):        `test23786.baz(int i)` declared here
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23786
+// upstream issue 23786
 
 module test23786;
 

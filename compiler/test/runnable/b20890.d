@@ -1,5 +1,5 @@
 module b20890;
-// https://issues.dlang.org/show_bug.cgi?id=20890
+// upstream issue 20890
 
 struct S0 { }
 void format0(string spec, S0[1] s)

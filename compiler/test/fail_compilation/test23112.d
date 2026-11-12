@@ -7,7 +7,7 @@ fail_compilation/test23112.d(106):        `a` declared here
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23112
+// upstream issue 23112
 
 #line 100
 

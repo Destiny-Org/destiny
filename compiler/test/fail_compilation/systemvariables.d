@@ -23,7 +23,7 @@ fail_compilation/systemvariables.d(30):        `eInt` is declared here
 ---
 */
 
-// http://dlang.org/dips/1035
+// https://github.com/Destiny-Org/destiny
 
 
 @system int gInt;

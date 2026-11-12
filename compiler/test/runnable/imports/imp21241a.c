@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21241
+// upstream dmd issue 21241
 enum {aValue=1};
 static int foo(void){
     return aValue;

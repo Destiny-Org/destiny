@@ -1,14 +1,14 @@
 /***
  * Semantic analysis of expressions.
  *
- * Specification: ($LINK2 https://dlang.org/spec/expression.html, Expressions)
+ * Specification: ($LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd, Expressions)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/expressionsem.d, _expressionsem.d)
- * Documentation:  https://dlang.org/phobos/dmd_expressionsem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/expressionsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/expressionsem.d, _expressionsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/expressionsem.d
+ * 
  */
 
 module dmd.expressionsem;
@@ -653,7 +653,7 @@ void fillTupleExpExps(TupleExp _this, TupleDeclaration tup)
         else if (auto eo = o.isExpression())
         {
             auto e = eo.copy();
-            e.loc = _this.loc;    // https://issues.dlang.org/show_bug.cgi?id=15669
+            e.loc = _this.loc;    // upstream issue 15669
             _this.exps.push(e);
         }
         else if (auto t = o.isType())
@@ -1562,7 +1562,7 @@ extern (D) Expression incompatibleTypes(BinExp e, Scope* sc = null)
             e.e1.toErrMsg(), thisOp, e.e2.toErrMsg(), ts[0], ts[1]);
     }
 
-    // https://github.com/dlang/dmd/issues/17758
+    // upstream dmd issue 17758
     // `~` concatenates arrays; using it on two pointers (e.g. two
     // `const(char)*`) is a common mistake, typically when a C string
     // was meant to be treated as a D array. Point users at the
@@ -1616,7 +1616,7 @@ private Expression checkOpAssignTypes(BinExp binExp, Scope* sc)
     // @@@DEPRECATED_2.122@@@
     // Deprecated in 2.112, make it an error in 2.122
     // T opAssign floating yields a floating. Prevent truncating conversions (float to int).
-    // See https://issues.dlang.org/show_bug.cgi?id=3841.
+    // See upstream issue 3841.
     // Should we also prevent double to float (type.isFloating() && type.size() < t2.size()) ?
     if (!sc.inCfile &&
         (op == EXP.addAssign || op == EXP.minAssign ||
@@ -1755,7 +1755,7 @@ private Expression extractOpDollarSideEffect(Scope* sc, UnaExp ue)
 {
     Expression e0;
     Expression e1 = Expression.extractLast(ue.e1, e0);
-    // https://issues.dlang.org/show_bug.cgi?id=12585
+    // upstream issue 12585
     // Extract the side effect part if ue.e1 is comma.
 
     /* Even if opDollar is needed, 'e1' should be evaluate only once. So
@@ -2139,7 +2139,7 @@ private Expression callCpCtor(Scope* sc, Expression e, Type destinationType, boo
         tmp.nrvo = true;
     if (sd.hasCopyCtor && destinationType)
     {
-        // https://issues.dlang.org/show_bug.cgi?id=22619
+        // upstream issue 22619
         // If the destination type is inout we can preserve it
         // only if inside an inout function; if we are not inside
         // an inout function, then we will preserve the type of
@@ -2331,7 +2331,7 @@ private Expression searchUFCS(Scope* sc, UnaExp ue, Identifier ident)
 
     if (auto dti = ue.isDotTemplateInstanceExp())
     {
-        // https://issues.dlang.org/show_bug.cgi?id=23968
+        // upstream issue 23968
         // Typically, deprecated alias declarations are caught
         // when `TemplateInstance.findTempDecl` is called,
         // however, in this case the tempdecl field is updated
@@ -2522,7 +2522,7 @@ private Expression resolveUFCS(Scope* sc, CallExp ce)
             }
         }
 
-        /* https://issues.dlang.org/show_bug.cgi?id=13953
+        /* upstream issue 13953
          *
          * If a struct has an alias this to an associative array
          * and remove is used on a struct instance, we have to
@@ -2672,7 +2672,7 @@ private Expression resolveUFCSProperties(Scope* sc, Expression e1, Expression e2
         e = e.trySemantic(sc);
         if (!e1PassSemantic && !e)
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=20448
+            /* upstream issue 20448
              *
              * If both versions have failed to pass semantic,
              * f(e1) = e2 gets priority in error printing
@@ -2842,7 +2842,7 @@ Lagain:
                 d.checkDisabled(loc, sc);
         }
 
-        // https://issues.dlang.org/show_bug.cgi?id=12023
+        // upstream issue 12023
         // if 's' is a tuple variable, the tuple is returned.
         s = s.toAlias();
 
@@ -3172,7 +3172,7 @@ L1:
  */
 private bool haveSameThis(FuncDeclaration outerFunc, FuncDeclaration calledFunc)
 {
-    // https://issues.dlang.org/show_bug.cgi?id=24013
+    // upstream issue 24013
     // traits(getOverloads) inserts an alias to select the overload.
     // When searching for the right this we need to use the aliased
     // overload/function, not the alias.
@@ -3408,9 +3408,9 @@ private bool checkPurity(VarDeclaration v, Loc loc, Scope* sc)
         return false; // ...or manifest constants
 
     // accessing empty structs is pure
-    // https://issues.dlang.org/show_bug.cgi?id=18694
-    // https://issues.dlang.org/show_bug.cgi?id=21464
-    // https://issues.dlang.org/show_bug.cgi?id=23589
+    // upstream issue 18694
+    // upstream issue 21464
+    // upstream issue 23589
     if (v.type.ty == Tstruct)
     {
         StructDeclaration sd = (cast(TypeStruct)v.type).sym;
@@ -3428,7 +3428,7 @@ private bool checkPurity(VarDeclaration v, Loc loc, Scope* sc)
     bool err = false;
     if (v.isDataseg())
     {
-        // https://issues.dlang.org/show_bug.cgi?id=7533
+        // upstream issue 7533
         // Accessing implicit generated __gate is pure.
         if (v.ident == Id.gate)
             return false;
@@ -3698,7 +3698,7 @@ private bool checkPostblit(Type t, ref Loc loc, Scope* sc)
 
     if (global.params.useTypeInfo && Type.dtypeinfo)
     {
-        // https://issues.dlang.org/show_bug.cgi?id=11395
+        // upstream issue 11395
         // Require TypeInfo generation for array concatenation
         semanticTypeInfo(sc, t);
     }
@@ -4094,7 +4094,7 @@ private Type arrayExpressionToCommonType(Scope* sc, ref Expressions exps)
         e = e.implicitCastTo(sc, t0);
         if (e.op == EXP.error)
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=13024
+            /* upstream issue 13024
              * a workaround for the bug in typeMerge -
              * it should paint e1 and e2 by deduced common type,
              * but doesn't in this particular case.
@@ -4217,7 +4217,7 @@ private bool preFunctionParameters(Scope* sc, ArgumentList argumentList, ErrorSi
         arg = arg.arrayFuncConv(sc);
         if (arg.op == EXP.type)
         {
-            // for static alias this: https://issues.dlang.org/show_bug.cgi?id=17684
+            // for static alias this: upstream issue 17684
             arg = resolveAliasThis(sc, arg);
 
             if (arg.op == EXP.type)
@@ -4326,7 +4326,7 @@ private bool functionParameters(Loc loc, Scope* sc,
             {
                 // resolveNamedArgs returns null without an error message when there are
                 // too many positional arguments; report the error here
-                // https://github.com/dlang/dmd/issues/20875
+                // upstream dmd issue 20875
                 const nArgs = argumentList.arguments ? argumentList.arguments.length : 0;
                 if (nArgs > nparams && tf.parameterList.varargs == VarArg.none)
                     eSink.error(loc, "expected %llu arguments, not %llu for non-variadic function type `%s`",
@@ -4439,7 +4439,7 @@ private bool functionParameters(Loc loc, Scope* sc,
             (*arguments)[i] = checkNoreturnVarAccess(arg);
         }
 
-        if (tf.parameterList.varargs == VarArg.typesafe && i + 1 == nparams) // https://dlang.org/spec/function.html#variadic
+        if (tf.parameterList.varargs == VarArg.typesafe && i + 1 == nparams) // https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
         {
             //printf("\t\tvarargs == 2, p.type = '%s'\n", p.type.toChars());
             if (MATCH m = arg.implicitConvTo(p.type))
@@ -4462,7 +4462,7 @@ private bool functionParameters(Loc loc, Scope* sc,
                      *
                      * The array literal in the initializer of the hidden variable
                      * is now optimized.
-                     * https://issues.dlang.org/show_bug.cgi?id=2356
+                     * upstream issue 2356
                      */
                     Type tbn = (cast(TypeArray)tb).next;    // array element type
                     Type tret = p.isLazyArray();
@@ -4484,7 +4484,7 @@ private bool functionParameters(Loc loc, Scope* sc,
                         a = a.addDtorHook(sc);
                         (*elements)[u] = a;
                     }
-                    // https://issues.dlang.org/show_bug.cgi?id=14395
+                    // upstream issue 14395
                     // Convert to a static array literal, or its slice.
                     arg = new ArrayLiteralExp(loc, tbn.sarrayOf(nargs - i), elements);
                     if (tb.ty == Tarray)
@@ -5768,7 +5768,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         // This is done by rewriting this expression as wthis.ident.
         // The innermost with() scope of the hierarchy to satisfy the condition
         // above wins.
-        // https://issues.dlang.org/show_bug.cgi?id=6400
+        // upstream issue 6400
         for (Scope* sc2 = sc; sc2; sc2 = sc2.enclosing)
         {
             if (!sc2.scopesym)
@@ -6468,7 +6468,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         {
             // `(Type)` is actually `(var)` so if `(var)` is a member requiring `this`
             // then rewrite as `(this.var)` in case it would be followed by a DotVar
-            // to fix https://issues.dlang.org/show_bug.cgi?id=9490
+            // to fix upstream issue 9490
             VarExp ve = e.isVarExp();
             if (ve && ve.var && exp.parens && !ve.var.isStatic() && !(sc.stc & STC.static_) &&
                 sc.func && sc.func.needThis && ve.var.isMember2())
@@ -6747,7 +6747,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         //for error messages if the argument in [] is not convertible to size_t
         const originalNewtype = exp.newtype;
 
-        // https://issues.dlang.org/show_bug.cgi?id=11581
+        // upstream issue 11581
         // With the syntax `new T[edim]` or `thisexp.new T[edim]`,
         // T should be analyzed first and edim should go into arguments iff it's
         // not a tuple.
@@ -7023,7 +7023,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                     return setError();
                 }
 
-                // https://issues.dlang.org/show_bug.cgi?id=19941
+                // upstream issue 19941
                 // Run semantic on all field initializers to resolve any forward
                 // references. This is the same as done for structs in sd.fill().
                 for (ClassDeclaration c = cd; c; c = c.baseClass)
@@ -7101,7 +7101,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 return setError();
             }
 
-            // https://issues.dlang.org/show_bug.cgi?id=22639
+            // upstream issue 22639
             // If the new expression has arguments, we either should call a
             // regular constructor of a copy constructor if the first argument
             // is the same type as the struct
@@ -7177,7 +7177,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             }
             if (!nargs)
             {
-                // https://issues.dlang.org/show_bug.cgi?id=20422
+                // upstream issue 20422
                 // Without this check the compiler would give a misleading error
                 eSink.error(exp.loc, "missing length argument for array");
                 return setError();
@@ -7451,7 +7451,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             if (vd.checkNestedReference(sc, e.loc))
                 return setError();
 
-            // https://issues.dlang.org/show_bug.cgi?id=12025
+            // upstream issue 12025
             // If the variable is not actually used in runtime code,
             // the purity violation error is redundant.
             //checkPurity(sc, vd);
@@ -7532,7 +7532,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
         sc = sc.push(); // just create new scope
         sc.ctfe = false; // temporary stop CTFE
-        sc.visibility = Visibility(Visibility.Kind.public_); // https://issues.dlang.org/show_bug.cgi?id=12506
+        sc.visibility = Visibility(Visibility.Kind.public_); // upstream issue 12506
 
         /* fd.treq might be incomplete type,
             * so should not semantic it.
@@ -7600,7 +7600,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         // Type is a "delegate to" or "pointer to" the function literal
         if ((exp.fd.isNested() && exp.fd.tok == TOK.delegate_) || (exp.tok == TOK.reserved && exp.fd.treq && exp.fd.treq.ty == Tdelegate))
         {
-            // https://issues.dlang.org/show_bug.cgi?id=22686
+            // upstream issue 22686
             // if the delegate return type is an error
             // abort semantic of the FuncExp and propagate
             // the error
@@ -8066,12 +8066,12 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                     if (!sd.noDefaultCtor && !(exp.arguments && exp.arguments.length))
                         goto Lx;
 
-                    /* https://issues.dlang.org/show_bug.cgi?id=20695
+                    /* upstream issue 20695
                        If all constructors are copy constructors, then
                        try default construction.
                      */
                     if (!sd.hasRegularCtor(false) &&
-                        // https://issues.dlang.org/show_bug.cgi?id=22639
+                        // upstream issue 22639
                         // we might still have a copy constructor that could be called
                         (*exp.arguments)[0].type.mutableOf != sd.type.mutableOf())
                         goto Lx;
@@ -8082,7 +8082,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                     if (checkFrameAccess(exp.loc, sc, sd, sle.elements.length))
                         return setError();
 
-                    // https://issues.dlang.org/show_bug.cgi?id=14556
+                    // upstream issue 14556
                     // Set concrete type to avoid further redundant semantic().
                     sle.type = exp.e1.type;
 
@@ -8173,7 +8173,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
                 // Make sure to use the enum type itself rather than its
                 // base type
-                // https://issues.dlang.org/show_bug.cgi?id=16346
+                // upstream issue 16346
                 if (exp.e1.type.ty == Tenum)
                 {
                     t1 = exp.e1.type;
@@ -8228,7 +8228,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                  */
                 if (f is f2)
                 {
-                    // https://github.com/dlang/dmd/issues/21899
+                    // upstream dmd issue 21899
                     // Same function found via two different paths (e.g. direct import and
                     // selective import alias), not an actual conflict.
                 }
@@ -8393,7 +8393,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                     }
                     else if (ue.e1.op == EXP.super_ || isSuperCall)
                         exp.directcall = true;
-                    else if ((cd.storage_class & STC.final_) != 0) // https://issues.dlang.org/show_bug.cgi?id=14211
+                    else if ((cd.storage_class & STC.final_) != 0) // upstream issue 14211
                         exp.directcall = true;
 
                     if (ad != cd)
@@ -8404,7 +8404,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 }
             }
             // If we've got a pointer to a function then deference it
-            // https://issues.dlang.org/show_bug.cgi?id=16483
+            // upstream issue 16483
             if (exp.e1.type.isPtrToFunction())
             {
                 Expression e = new PtrExp(exp.loc, exp.e1);
@@ -8443,7 +8443,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                     return setError();
                 }
 
-                // https://issues.dlang.org/show_bug.cgi?id=18719
+                // upstream issue 18719
                 // If `exp` is a call expression to another constructor
                 // then it means that all struct/class fields will be
                 // initialized after this call.
@@ -8490,7 +8490,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
             exp.e1 = new DotVarExp(exp.e1.loc, exp.e1, exp.f, false);
             exp.e1 = exp.e1.expressionSemantic(sc);
-            // https://issues.dlang.org/show_bug.cgi?id=21095
+            // upstream issue 21095
             if (exp.e1.op == EXP.error)
                 return setError();
             t1 = exp.e1.type;
@@ -8739,7 +8739,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                     // `FuncResolveFlag.overloadOnly`. To make sure that a proper error message
                     // is printed, redo the call with `FuncResolveFlag.standard`.
                     //
-                    // https://issues.dlang.org/show_bug.cgi?id=22157
+                    // upstream issue 22157
                     if (exp.f.overnext)
                         exp.f = resolveFuncCall(exp.loc, sc, exp.f, tiargs, null, exp.argumentList, FuncResolveFlag.standard);
 
@@ -8790,7 +8790,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
         if (!exp.type)
         {
-            exp.e1 = e1org; // https://issues.dlang.org/show_bug.cgi?id=10922
+            exp.e1 = e1org; // upstream issue 10922
                             // avoid recursive expression printing
             FuncDeclaration fd = null;
             if (auto dve = exp.e1.isDotVarExp())
@@ -9030,7 +9030,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
             if (sc.func)
             {
-                // https://issues.dlang.org/show_bug.cgi?id=11720
+                // upstream issue 11720
                 if ((s.isFuncDeclaration() ||
                      s.isAggregateDeclaration() ||
                      s.isEnumDeclaration() ||
@@ -9059,7 +9059,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
                 if (!sc.inCfile)
                 {
-                    /* https://issues.dlang.org/show_bug.cgi?id=21272
+                    /* upstream issue 21272
                      * If we are in a foreach body we need to extract the
                      * function containing the foreach
                      */
@@ -9237,7 +9237,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 s = new AliasDeclaration(e.loc, e.id, tded);
             s.dsymbolSemantic(sc);
 
-            /* The reason for the !tup is unclear. It fails Phobos unittests if it is not there.
+            /* The reason for the !tup is unclear. It fails Fate unittests if it is not there.
              * More investigation is needed.
              */
             if (!tup && !sc.insert(s))
@@ -9458,7 +9458,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 assert(0);
             }
 
-            // https://issues.dlang.org/show_bug.cgi?id=18753
+            // upstream issue 18753
             if (tded)
                 return yes();
             return no();
@@ -9701,7 +9701,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
     override void visit(MixinExp exp)
     {
-        /* https://dlang.org/spec/expression.html#mixin_expressions
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
          */
 
         static if (LOGSEMANTIC)
@@ -9807,7 +9807,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
     override void visit(AssertExp exp)
     {
-        // https://dlang.org/spec/expression.html#assert_expressions
+        // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
         static if (LOGSEMANTIC)
         {
             printf("AssertExp::semantic('%s')\n", exp.toErrMsg());
@@ -9843,7 +9843,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             /*
             Stores the result of an operand expression into a temporary
             if necessary, e.g. if it is an impure fuction call containing side
-            effects as in https://issues.dlang.org/show_bug.cgi?id=20114
+            effects as in upstream issue 20114
 
             Params:
                 op = an expression which may require a temporary (added to
@@ -9854,7 +9854,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             */
             Expression maybePromoteToTmp(ref Expression op)
             {
-                // https://issues.dlang.org/show_bug.cgi?id=20989
+                // upstream issue 20989
                 // Flag that _d_assert_fail will never dereference `array.ptr` to avoid safety
                 // errors for `assert(!array.ptr)` => `_d_assert_fail!"!"(array.ptr)`
                 {
@@ -9888,7 +9888,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                     if (op.type.ty == Tvoid)
                         return op;
 
-                    // https://issues.dlang.org/show_bug.cgi?id=21590
+                    // upstream issue 21590
                     // Don't create unnecessary temporaries and detect `assert(a = b)`
                     if (op.isAssignExp() || op.isBinAssignExp())
                     {
@@ -9949,7 +9949,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             bool isEqualsCallExpression;
             if (const callExp = exp.e1.isCallExp())
             {
-                // https://issues.dlang.org/show_bug.cgi?id=20331
+                // upstream issue 20331
                 // callExp.f may be null if the assert contains a call to
                 // a function pointer or literal
                 if (const callExpFunc = callExp.f)
@@ -9975,7 +9975,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
                     // structs with opEquals get rewritten to a DotVarExp:
                     // a.opEquals(b)
-                    // https://issues.dlang.org/show_bug.cgi?id=20100
+                    // upstream issue 20100
                     if (args.length == 1)
                     {
                         auto dv = callExp.e1.isDotVarExp();
@@ -10068,7 +10068,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                  global.params.useAssert == CHECKENABLE.on)
         {
             // Set condition as message, before semantic/inlining rewrite it
-            // (https://github.com/dlang/dmd/issues/18075)
+            // (upstream dmd issue 18075)
             exp.msg = new StringExp(Loc.initial, exp.e1.toString());
         }
 
@@ -10132,7 +10132,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         }
         else if (exp.e1.type && exp.e1.type.isTypeNoreturn())
         {
-            // https://github.com/dlang/dmd/issues/20189
+            // upstream dmd issue 20189
             exp.type = Type.tnoreturn;
         }
         else
@@ -10272,7 +10272,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                         }
                         else
                             // Exempt functions for backwards compatibility reasons.
-                            // See: https://issues.dlang.org/show_bug.cgi?id=20470#c1
+                            // See: upstream issue 20470#c1
                             var = ve.var;
                     }
                     break;
@@ -10288,7 +10288,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                             var = d;
                         else
                             // Exempt functions for backwards compatibility reasons.
-                            // See: https://issues.dlang.org/show_bug.cgi?id=20470#c1
+                            // See: upstream issue 20470#c1
                             e = new DsymbolExp(exp.loc, s);
                     }
                     else
@@ -10330,7 +10330,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             if (!functionSemantic(fd))
                 return setError();
 
-            /* https://issues.dlang.org/show_bug.cgi?id=13843
+            /* upstream issue 13843
              * If fd obviously has no overloads, we should
              * normalize AST, and it will give a chance to wrap fd with FuncExp.
              */
@@ -10365,7 +10365,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 t1mod &= ~MODFlags.shared_;
             exp.type = exp.type.addMod(t1mod);
 
-            // https://issues.dlang.org/show_bug.cgi?id=23109
+            // upstream issue 23109
             // Run semantic on the DotVarExp type
             if (auto handle = exp.type.isClassHandle())
             {
@@ -10399,8 +10399,8 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 }
             }
 
-            if (v && (v.isDataseg() || // fix https://issues.dlang.org/show_bug.cgi?id=8238
-                      (!v.needThis() && v.semanticRun > PASS.initial)))  // fix https://issues.dlang.org/show_bug.cgi?id=17258
+            if (v && (v.isDataseg() || // fix upstream issue 8238
+                      (!v.needThis() && v.semanticRun > PASS.initial)))  // fix upstream issue 17258
             {
                 // (e1, v)
                 checkAccess(exp.loc, sc, exp.e1, v);
@@ -10463,7 +10463,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         if (ad && ad.isClassDeclaration() && ad.type != e.e1.type)
         {
             // A downcast is required for interfaces
-            // https://issues.dlang.org/show_bug.cgi?id=3706
+            // upstream issue 3706
             e.e1 = new CastExp(e.loc, e.e1, ad.type);
             e.e1 = e.e1.expressionSemantic(sc);
         }
@@ -10586,7 +10586,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 }
             }
         }
-        /* https://issues.dlang.org/show_bug.cgi?id=809
+        /* upstream issue 809
          *
          * If the address of a lazy variable is taken,
          * the expression is rewritten so that the type
@@ -10605,7 +10605,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 {
                     if (callExp.e1.type.toBasetype().ty == Tdelegate)
                     {
-                        /* https://issues.dlang.org/show_bug.cgi?id=20551
+                        /* upstream issue 20551
                          *
                          * Cannot take address of lazy parameter in @safe code
                          * because it might end up being a pointer to undefined
@@ -10679,7 +10679,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             if (f)
             {
                 f = f.toAliasFunc(); // FIXME, should see overloads
-                                     // https://issues.dlang.org/show_bug.cgi?id=1983
+                                     // upstream issue 1983
                 if (!dve.hasOverloads)
                     f.tookAddressOf++;
 
@@ -10715,7 +10715,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                  * mark here that we took its address because castTo()
                  * may not be called with an exact match.
                  *
-                 * https://issues.dlang.org/show_bug.cgi?id=19285 :
+                 * upstream issue 19285 :
                  * We also need to make sure we aren't inside a typeof. Ideally the compiler
                  * would do typeof(...) semantic analysis speculatively then collect information
                  * about what it used rather than relying on what are effectively semantically-global
@@ -10846,7 +10846,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
         if (sc.inCfile && exp.type && exp.type.toBasetype().ty == Tvoid)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=23752
+            // upstream issue 23752
             // `&*((void*)(0))` is allowed in C
             result = exp;
             return;
@@ -10926,7 +10926,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             return;
         }
 
-        // for static alias this: https://issues.dlang.org/show_bug.cgi?id=17684
+        // for static alias this: upstream issue 17684
         if (e.e1.op == EXP.type)
             e.e1 = resolveAliasThis(sc, e.e1);
 
@@ -10942,7 +10942,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         {
             result = e.incompatibleTypes();
         }
-        // https://issues.dlang.org/show_bug.cgi?id=13910
+        // upstream issue 13910
         // Today NotExp can take an array as its operand.
         if (checkNonAssignmentArrayOp(e.e1))
             return setError();
@@ -11064,7 +11064,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             return;
         }
 
-        // https://issues.dlang.org/show_bug.cgi?id=24701
+        // upstream issue 24701
         auto r = checkNoreturnVarAccess(exp.e1);
         if (r != exp.e1 && exp.to && !exp.to.isTypeNoreturn())
         {
@@ -11075,7 +11075,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         if (exp.to && !exp.to.isTypeSArray() && !exp.to.isTypeFunction())
             exp.e1 = exp.e1.arrayFuncConv(sc);
 
-        // for static alias this: https://issues.dlang.org/show_bug.cgi?id=17684
+        // for static alias this: upstream issue 17684
         if (exp.e1.op == EXP.type)
             exp.e1 = resolveAliasThis(sc, exp.e1);
 
@@ -11095,7 +11095,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             return setError();
         }
 
-        // https://issues.dlang.org/show_bug.cgi?id=19954
+        // upstream issue 19954
         if (exp.e1.type.ty == Ttuple)
         {
             if (exp.to)
@@ -11115,7 +11115,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         }
 
         // only allow S(x) rewrite if cast specified S explicitly.
-        // See https://issues.dlang.org/show_bug.cgi?id=18545
+        // See upstream issue 18545
         const bool allowImplicitConstruction = exp.to !is null;
 
         if (!exp.to) // Handle cast(const) and cast(immutable), etc.
@@ -11214,7 +11214,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         // casts these conditions and potentially some logic in `e2ir.toElemCast` can be removed.
         if (tob.ty == Tarray)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=19840
+            // upstream issue 19840
             if (auto ad = isAggregate(t1b))
             {
                 if (ad.aliasthis)
@@ -11237,7 +11237,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 auto tFrom = t1b.nextOf();
                 auto tTo = tob.nextOf();
 
-                // https://issues.dlang.org/show_bug.cgi?id=20130
+                // upstream issue 20130
                 if (exp.e1.op != EXP.string_ || !ex.isStringExp)
                 {
                     const uint fromSize = cast(uint)tFrom.size();
@@ -11996,8 +11996,8 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 TypeAArray taa = cast(TypeAArray)t1b;
                 /* We can skip the implicit conversion if they differ only by
                  * constness
-                 * https://issues.dlang.org/show_bug.cgi?id=2684
-                 * see also bug https://issues.dlang.org/show_bug.cgi?id=2954 b
+                 * upstream issue 2684
+                 * see also upstream issue 2954 b
                  */
                 if (!keyCompatibleWithoutCasting(exp.e2, taa.index))
                 {
@@ -12245,7 +12245,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
     {
         if (sd.zeroInit && !sd.isNested())
         {
-            // https://issues.dlang.org/show_bug.cgi?id=14606
+            // upstream issue 14606
             // Always use BlitExp for the special expression: (struct = 0)
             return IntegerExp.literal!0;
         }
@@ -12441,7 +12441,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 Expression e = die.dotIdSemanticProp(sc, 1);
                 if (e && isDotOpDispatch(e))
                 {
-                    /* https://issues.dlang.org/show_bug.cgi?id=19687
+                    /* upstream issue 19687
                      *
                      * On this branch, e2 is semantically analyzed in resolvePropertiesX,
                      * but that call is done with gagged errors. That is the only time when
@@ -12497,7 +12497,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 e2x = e2x.arrayFuncConv(sc);
             e2x = resolveProperties(sc, e2x);
             if (e2x.op == EXP.type)
-                e2x = resolveAliasThis(sc, e2x); //https://issues.dlang.org/show_bug.cgi?id=17684
+                e2x = resolveAliasThis(sc, e2x); //upstream issue 17684
             if (e2x.op == EXP.error)
                 return setResult(e2x);
             // We delay checking the value for structs/classes as these might have
@@ -12696,7 +12696,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                     if (!sd.ctor)
                         sd.ctor = sd.searchCtor();
 
-                    // https://issues.dlang.org/show_bug.cgi?id=15661
+                    // upstream issue 15661
                     // Look for the form from last of comma chain.
                     auto e2y = lastComma(e2x);
 
@@ -12704,7 +12704,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                     DotVarExp dve = (ce && ce.e1.op == EXP.dotVariable)
                         ? cast(DotVarExp)ce.e1 : null;
                     if (sd.ctor && ce && dve && dve.var.isCtorDeclaration() &&
-                        // https://issues.dlang.org/show_bug.cgi?id=19389
+                        // upstream issue 19389
                         canElideCopy(ce, t1) &&
                         e2y.type.implicitConvTo(t1))
                     {
@@ -12745,7 +12745,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                         result = e;
                         return;
                     }
-                    // https://issues.dlang.org/show_bug.cgi?id=21586
+                    // upstream issue 21586
                     // Rewrite CondExp or e1 will miss direct construction, e.g.
                     // e1 = a ? S(1) : ...; -> AST: e1 = a ? (S(0)).this(1) : ...;
                     // a temporary created and an extra destructor call.
@@ -12845,7 +12845,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                         }
                     }
 
-                    // https://issues.dlang.org/show_bug.cgi?id=19251
+                    // upstream issue 19251
                     // if e2 cannot be converted to e1.type, maybe there is an alias this
                     if (!e2x.implicitConvTo(t1))
                     {
@@ -12876,7 +12876,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                          *  e1 = init, e1.ctor(e2)
                          */
 
-                        /* Fix Issue 5153 : https://issues.dlang.org/show_bug.cgi?id=5153
+                        /* Fix Issue 5153 : upstream issue 5153
                          * Using `new` to initialize a struct object is a common mistake, but
                          * the error message from the compiler is not very helpful in that
                          * case. If exp.e2 is a NewExp and the type of new is the same as
@@ -12914,7 +12914,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                     if (search_function(sd, Id.opCall))
                     {
                         /* Look for static opCall
-                         * https://issues.dlang.org/show_bug.cgi?id=2702
+                         * upstream issue 2702
                          * Rewrite as:
                          *  e1 = typeof(e1).opCall(arguments)
                          */
@@ -12932,7 +12932,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                             return setError();
                     }
                 }
-                else // https://issues.dlang.org/show_bug.cgi?id=11355
+                else // upstream issue 11355
                 {
                     AggregateDeclaration ad2 = isAggregate(e2x.type);
                     if (ad2 && ad2.aliasthis && !isRecursiveAliasThis(aliasThisStop[1], exp.e2.type))
@@ -13161,7 +13161,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             const fun = sc.func;
             if (exp.op == EXP.assign && !tn.isMutable() &&
                 // allow modifiation in module ctor, see
-                // https://issues.dlang.org/show_bug.cgi?id=9884
+                // upstream issue 9884
                 (!fun || (fun && !fun.isStaticCtorDeclaration())))
             {
                 eSink.error(exp.loc, "slice `%s` is not mutable", se.toErrMsg());
@@ -13304,7 +13304,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             }
             else
             {
-                /* https://issues.dlang.org/show_bug.cgi?id=15778
+                /* upstream issue 15778
                  * A string literal has an array type of immutable
                  * elements by default, and normally it cannot be convertible to
                  * array type of mutable elements. But for element-wise assignment,
@@ -13325,7 +13325,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             {
                 e2x = e2x.implicitCastTo(sc, exp.e1.type);
 
-                // Fix Issue 13435: https://issues.dlang.org/show_bug.cgi?id=13435
+                // Fix Issue 13435: upstream issue 13435
 
                 // If the implicit cast has failed and the assign expression is
                 // the initialization of a struct member field
@@ -13399,7 +13399,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 (isUnaArrayOp(exp.e2.op) || isBinArrayOp(exp.e2.op)))
             {
                 exp.type = exp.e1.type;
-                if (exp.op == EXP.construct) // https://issues.dlang.org/show_bug.cgi?id=10282
+                if (exp.op == EXP.construct) // upstream issue 10282
                                         // tweak mutability of e1 element
                     exp.e1.type = exp.e1.type.nextOf().mutableOf().arrayOf();
                 result = arrayOp(exp, sc);
@@ -13760,7 +13760,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         }
         else if ((tb1.ty == Tarray) && exp.e2.implicitConvTo(tb1next))
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=19782
+            /* upstream issue 19782
              *
              * If e2 is implicitly convertible to tb1next, the conversion
              * might be done through alias this, in which case, e2 needs to
@@ -14062,7 +14062,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             Expression e;
             if (t2.ty == Tpointer)
             {
-                // https://dlang.org/spec/expression.html#add_expressions
+                // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
                 // "If both operands are pointers, and the operator is -, the pointers are
                 // subtracted and the result is divided by the size of the type pointed to
                 // by the operands. It is an error if the pointers point to different types."
@@ -14071,7 +14071,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
                 if (!p1.equivalent(p2))
                 {
-                    // See https://github.com/dlang/dmd/pull/7332
+                    // See upstream dmd pull request 7332
                     eSink.error(exp.loc, "cannot subtract pointers to different types: `%s` and `%s`.",
                         t1.toErrMsg(), t2.toErrMsg());
                     return setError();
@@ -14255,7 +14255,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
     override void visit(CatExp exp)
     {
-        // https://dlang.org/spec/expression.html#cat_expressions
+        // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
         //printf("CatExp.semantic() %s\n", toChars());
         if (Expression e = exp.opOverloadBinary(sc, aliasThisStop))
         {
@@ -14298,7 +14298,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         // Check for: array ~ array
         if (tb1next && tb2next && (tb1next.implicitConvTo(tb2next) >= MATCH.constant || tb2next.implicitConvTo(tb1next) >= MATCH.constant || exp.e1.op == EXP.arrayLiteral && exp.e1.implicitConvTo(tb2) || exp.e2.op == EXP.arrayLiteral && exp.e2.implicitConvTo(tb1)))
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=9248
+            /* upstream issue 9248
              * Here to avoid the case of:
              *    void*[] a = [cast(void*)1];
              *    void*[] b = [cast(void*)2];
@@ -14307,7 +14307,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
              *    a ~ [cast(void*)b];
              */
 
-            /* https://issues.dlang.org/show_bug.cgi?id=14682
+            /* upstream issue 14682
              * Also to avoid the case of:
              *    int[][] a;
              *    a ~ [];
@@ -14323,7 +14323,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             if (exp.e1.op == EXP.arrayLiteral)
             {
                 exp.e2 = doCopyOrMove(sc, exp.e2, null, false);
-                // https://issues.dlang.org/show_bug.cgi?id=14686
+                // upstream issue 14686
                 // Postblit call appears in AST, and this is
                 // finally translated  to an ArrayLiteralExp in below optimize().
             }
@@ -14843,7 +14843,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
         Expression e1x = exp.e1.expressionSemantic(sc);
 
-        // for static alias this: https://issues.dlang.org/show_bug.cgi?id=17684
+        // for static alias this: upstream issue 17684
         if (e1x.op == EXP.type)
             e1x = resolveAliasThis(sc, e1x);
 
@@ -14870,7 +14870,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         sc.merge(exp.loc, ctorflow);
         ctorflow.freeFieldinit();
 
-        // for static alias this: https://issues.dlang.org/show_bug.cgi?id=17684
+        // for static alias this: upstream issue 17684
         if (e2x.op == EXP.type)
             e2x = resolveAliasThis(sc, e2x);
 
@@ -15206,7 +15206,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         }
         if (exp.e1.op == EXP.type || exp.e2.op == EXP.type)
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=12520
+            /* upstream issue 12520
              * empty tuples are represented as types so special cases are added
              * so that they can be compared for equality with tuples of values.
              */
@@ -15353,7 +15353,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
         if (!isArrayComparison || unifyArrayTypes(t1, t2, sc))
         {
-            // https://issues.dlang.org/show_bug.cgi?id=23783
+            // upstream issue 23783
             if (exp.e1.checkSharedAccess(sc) || exp.e2.checkSharedAccess(sc))
                 return setError();
             if (auto e = typeCombine(exp, sc))
@@ -15385,7 +15385,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         {
             //printf("Lowering to __equals %s %s\n", exp.e1.toErrMsg(), exp.e2.toErrMsg());
 
-            // https://issues.dlang.org/show_bug.cgi?id=22390
+            // upstream issue 22390
             // Equality comparison between array of noreturns simply lowers to length equality comparison
             if (t1.nextOf.isTypeNoreturn() && t2.nextOf.isTypeNoreturn())
             {
@@ -15404,7 +15404,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             lowering = new DotIdExp(exp.loc, lowering, Id.object);
             lowering = new DotIdExp(exp.loc, lowering, hook);
 
-            /* https://issues.dlang.org/show_bug.cgi?id=23674
+            /* upstream issue 23674
              *
              * Optimize before creating the call expression to the
              * druntime hook as the optimizer may output errors
@@ -15635,7 +15635,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         Type t1 = exp.e1.type;
         Type t2 = exp.e2.type;
 
-        // https://issues.dlang.org/show_bug.cgi?id=23767
+        // upstream issue 23767
         // `cast(void*) 0` should be treated as `null` so the ternary expression
         // gets the pointer type of the other branch
         if (sc.inCfile)
@@ -15678,7 +15678,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         // If either operand is void the result is void, we have to cast both
         // the expression to void so that we explicitly discard the expression
         // value if any
-        // https://issues.dlang.org/show_bug.cgi?id=16598
+        // upstream issue 16598
         else if (t1.ty == Tvoid || t2.ty == Tvoid)
         {
             exp.type = Type.tvoid;
@@ -15727,7 +15727,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             printf("e2 : %s\n", exp.e2.type.toErrMsg());
         }
 
-        /* https://issues.dlang.org/show_bug.cgi?id=14696
+        /* upstream issue 14696
          * If either e1 or e2 contain temporaries which need dtor,
          * make them conditional.
          * Rewrite:
@@ -15981,7 +15981,7 @@ Expression binSemantic(BinExp e, Scope* sc)
     Expression e1x = e.e1.expressionSemantic(sc);
     Expression e2x = e.e2.expressionSemantic(sc);
 
-    // for static alias this: https://issues.dlang.org/show_bug.cgi?id=17684
+    // for static alias this: upstream issue 17684
     if (e1x.op == EXP.type)
         e1x = resolveAliasThis(sc, e1x);
     if (e2x.op == EXP.type)
@@ -16168,7 +16168,7 @@ private Expression dotIdSemanticPropX(DotIdExp exp, Scope* sc)
         }
     }
 
-    // https://issues.dlang.org/show_bug.cgi?id=14416
+    // upstream issue 14416
     // Template has no built-in properties except for 'stringof'.
     if ((exp.e1.isDotTemplateExp() || exp.e1.isTemplateExp()) && exp.ident != Id.stringof)
     {
@@ -16309,7 +16309,7 @@ Expression dotIdSemanticProp(DotIdExp exp, Scope* sc, bool gag)
                 if ((v.storage_class & STC.manifest) && v._init && !exp.wantsym)
                 {
                     /* Normally, the replacement of a symbol with its initializer is supposed to be in semantic2().
-                     * Introduced by https://github.com/dlang/dmd/pull/5588 which should probably
+                     * Introduced by upstream dmd pull request 5588 which should probably
                      * be reverted. `wantsym` is the hack to work around the problem.
                      */
                     if (v.inuse)
@@ -16491,7 +16491,7 @@ Expression dotIdSemanticProp(DotIdExp exp, Scope* sc, bool gag)
         {
             if (AggregateDeclaration ad = isAggregate(t1bn))
             {
-                if (!ad.members) // https://issues.dlang.org/show_bug.cgi?id=11312
+                if (!ad.members) // upstream issue 11312
                     return null;
             }
         }
@@ -16886,7 +16886,7 @@ MATCH matchType(FuncExp funcExp, Type to, Scope* sc, FuncExp* presult, ErrorSink
             (*presult) = cast(FuncExp)funcExp.copy();
             (*presult).type = to;
 
-            // https://issues.dlang.org/show_bug.cgi?id=12508
+            // upstream issue 12508
             // Tweak function body for covariant returns.
             (*presult).fd.modifyReturns(sc, tof.next);
         }
@@ -17091,7 +17091,7 @@ bool checkValue(Expression e)
 
     if (e.type && e.type.toBasetype().ty == Tvoid)
     {
-        // https://issues.dlang.org/show_bug.cgi?id=5010
+        // upstream issue 5010
         if (auto ce = e.isCallExp())
         {
             if (ce.f && ce.f.type)
@@ -17148,7 +17148,7 @@ bool checkSharedAccess(Expression e, Scope* sc, bool returnRef = false)
         // It is then exposed by other modules such as core.atomic and core.stdc.atomic.
         // This is available as long as druntime is on the import path and the platform supports that operation.
 
-        // https://issues.dlang.org/show_bug.cgi?id=24846
+        // upstream issue 24846
 
         Package parent = sc._module.parent.isPackage();
         if (parent !is null)
@@ -17172,7 +17172,7 @@ bool checkSharedAccess(Expression e, Scope* sc, bool returnRef = false)
     {
         bool sharedError(Expression e)
         {
-            // https://dlang.org/phobos/core_atomic.html
+            // https://github.com/Destiny-Org/destiny/blob/main/druntime/src/core/atomic.d
             eSink.error(e.loc, "direct access to shared `%s` is not allowed, see `core.atomic`", e.toErrMsg());
             return true;
         }
@@ -17180,7 +17180,7 @@ bool checkSharedAccess(Expression e, Scope* sc, bool returnRef = false)
         // Error by default
         bool visit(Expression e)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=23639
+            // upstream issue 23639
             // Should be able to cast(shared)
             if (!e.isCastExp() && e.type.isShared())
                 return sharedError(e);
@@ -17205,13 +17205,13 @@ bool checkSharedAccess(Expression e, Scope* sc, bool returnRef = false)
 
         bool visitVar(VarExp e)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=20908
+            // upstream issue 20908
             // direct access to init symbols is ok as they
             // cannot be modified.
             if (e.var.isSymbolDeclaration())
                 return false;
 
-            // https://issues.dlang.org/show_bug.cgi?id=22626
+            // upstream issue 22626
             // Synchronized functions don't need to use core.atomic
             // when accessing `this`.
             if (sc.func && sc.func.isSynchronized())
@@ -17248,12 +17248,12 @@ bool checkSharedAccess(Expression e, Scope* sc, bool returnRef = false)
             {
                 if (e.e1.isThisExp())
                 {
-                    // https://issues.dlang.org/show_bug.cgi?id=22626
+                    // upstream issue 22626
                     if (sc.func && sc.func.isSynchronized())
                         return false;
 
-                    // https://issues.dlang.org/show_bug.cgi?id=23790
-                    // https://github.com/dlang/dmd/issues/23233
+                    // upstream issue 23790
+                    // upstream dmd issue 23233
                     if (e.e1.type.isTypeStruct() || e.e1.type.isTypeClass())
                         return false;
                 }
@@ -17535,7 +17535,7 @@ Expression toLvalue(Expression _this, Scope* sc, const(char)* action, Expression
             eSink.error(_this.loc, "cannot %s compiler-generated variable `__ctfe`", action);
             return ErrorExp.get();
         }
-        if (var.ident == Id.dollar) // https://issues.dlang.org/show_bug.cgi?id=13574
+        if (var.ident == Id.dollar) // upstream issue 13574
         {
             eSink.error(_this.loc, "cannot %s operator `$`", action);
             return ErrorExp.get();
@@ -17573,7 +17573,7 @@ Expression toLvalue(Expression _this, Scope* sc, const(char)* action, Expression
                             if (!(sc.ctorflow.fieldinit[i].csx & CSX.this_ctor))
                             {
                                 /* If the address of vd is taken, assume it is thereby initialized
-                                 * https://issues.dlang.org/show_bug.cgi?id=15869
+                                 * upstream issue 15869
                                  */
                                 modifyFieldVar(_this.loc, sc, vd, e1);
                             }
@@ -17758,7 +17758,7 @@ Modifiable checkModifiable(Expression exp, Scope* sc, ModifyFlags flag = ModifyF
             if (dotVarExp.e1.op == EXP.this_)
                 return dotVarExp.var.checkModify(dotVarExp.loc, sc, dotVarExp.e1, flag);
 
-            /* https://issues.dlang.org/show_bug.cgi?id=12764
+            /* upstream issue 12764
              * If inside a constructor and an expression of type `this.field.var`
              * is encountered, where `field` is a struct declaration with
              * default construction disabled, we must make sure that
@@ -17810,7 +17810,7 @@ Modifiable checkModifiable(Expression exp, Scope* sc, ModifyFlags flag = ModifyF
                                     scope modifyLevel = v.checkModify(dotVarExp.loc, sc, dve.e1, !onlyUnion ? (flag | ModifyFlags.fieldAssign) : flag);
                                     if (modifyLevel == Modifiable.initialization)
                                     {
-                                        // https://issues.dlang.org/show_bug.cgi?id=22118
+                                        // upstream issue 22118
                                         // v is a union type field that was assigned
                                         // a variable, therefore it counts as initialization
                                         if (v.ctorinit)
@@ -18085,7 +18085,7 @@ bool checkAddressable(Expression e, Scope* sc, const(char)* action)
         switch (ex.op)
         {
             case EXP.dotVariable:
-                // https://issues.dlang.org/show_bug.cgi?id=22749
+                // upstream issue 22749
                 // Error about taking address of any bitfield, regardless of
                 // whether SCOPE.Cfile is set.
                 if (auto bf = ex.isDotVarExp().var.isBitFieldDeclaration())
@@ -18855,7 +18855,7 @@ private bool modifyFieldVar(Loc loc, Scope* sc, VarDeclaration var, Expression e
 
                 fieldInit.csx |= CSX.this_ctor;
                 fieldInit.loc = e1.loc;
-                if (var.overlapped) // https://issues.dlang.org/show_bug.cgi?id=15258
+                if (var.overlapped) // upstream issue 15258
                 {
                     foreach (j, v; ad.fields)
                     {
@@ -18973,7 +18973,7 @@ void semanticTypeInfo(Scope* sc, Type t)
         {
             getTypeInfoType(sd.loc, t, sc);
 
-            // https://issues.dlang.org/show_bug.cgi?id=15149
+            // upstream issue 15149
             // if the typeid operand type comes from a
             // result of auto function, it may be yet speculative.
             // unSpeculative(sc, sd);
@@ -19068,7 +19068,7 @@ bool checkDisabled(Declaration d, Loc loc, Scope* sc, bool isAliasedDeclaration 
     {
         if (auto postblit = d.isPostBlitDeclaration())
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=21885
+            /* upstream issue 21885
              *
              * If the generated postblit is disabled, it
              * means that one of the fields has a disabled
@@ -19338,7 +19338,7 @@ private bool needsTypeInference(TemplateInstance ti, Scope* sc, int flag = 0)
             }
 
             /* If there is more than one function template which matches, we may
-             * need type inference (see https://issues.dlang.org/show_bug.cgi?id=4430)
+             * need type inference (see upstream issue 4430)
              */
             return ++count > 1 ? 1 : 0;
         });
@@ -19433,7 +19433,7 @@ bool fill(StructDeclaration sd, Loc loc, ref Expressions elements, bool ctorinit
             }
             else
             {
-                // fixes https://issues.dlang.org/show_bug.cgi?id=1432 by enabling this path always
+                // fixes upstream issue 1432 by enabling this path always
 
                 /* Prefer explicitly initialized field
                  * union U { int a; int b = 2; }
@@ -19469,7 +19469,7 @@ bool fill(StructDeclaration sd, Loc loc, ref Expressions elements, bool ctorinit
         else if (vx._init)
         {
             assert(!vx._init.isVoidInitializer());
-            if (vx.inuse)   // https://issues.dlang.org/show_bug.cgi?id=18057
+            if (vx.inuse)   // upstream issue 18057
             {
                 eSink.error(loc, "%s `%s` recursive initialization of field", vx.kind(), vx.toPrettyChars());
                 errors = true;
@@ -19485,7 +19485,7 @@ bool fill(StructDeclaration sd, Loc loc, ref Expressions elements, bool ctorinit
                     sd.type.toErrMsg(), vx.toErrMsg());
                 errors = true;
             }
-            /* https://issues.dlang.org/show_bug.cgi?id=12509
+            /* upstream issue 12509
              * Get the element of static array type.
              */
             Type telem = vx.type;
@@ -20222,7 +20222,7 @@ private Expression rewriteAAIndexAssign(BinExp exp, Scope* sc, ref Type[2] alias
                 return ey;
             ex = overexp;
 
-            // https://issues.dlang.org/show_bug.cgi?id=14144
+            // upstream issue 14144
             // The whole expression should have the common type
             // of opAssign() return and assigned AA entry.
             // Even if there's no common type, expression should be typed as void.

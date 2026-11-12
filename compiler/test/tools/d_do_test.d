@@ -1118,7 +1118,7 @@ unittest
 
     assert(`S('\xff').this(1)`.unifyDirSep("/") == `S('\xff').this(1)`);
     assert(`invalid UTF character \U80000000`.unifyDirSep("/") == `invalid UTF character \U80000000`);
-    assert("https://code.dlang.org".unifyDirSep("\\") == "https://code.dlang.org");
+    assert("https://github.com/Destiny-Org/destiny".unifyDirSep("\\") == "https://github.com/Destiny-Org/destiny");
 }
 
 /**
@@ -1847,7 +1847,7 @@ int tryMain(string[] args)
             enforce(!m, m.hit);
 
             // Prepare and append the content of each OUTPUT_FILE conforming to
-            // the HAR (https://code.dlang.org/packages/har) format, e.g.
+            // the HAR (https://github.com/Destiny-Org/destiny) format, e.g.
             // === <FILENAME_1>
             // <CONTENT_1>
             // === <FILENAME_2>

@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22790
+// upstream dmd issue 22790
 
 void test_static(int array[static 4]) {
     _Static_assert(sizeof(array) == sizeof(int*), "array must decay to pointer");

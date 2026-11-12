@@ -2,14 +2,14 @@
  * Global loop optimizations
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
  * Copyright:   Copyright (C) 1985-1998 by Symantec
- *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved
+ *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/gloop.d, backend/gloop.d)
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/backend/gloop.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/gloop.d, backend/gloop.d)
+ * 
  */
 
 module dmd.backend.gloop;
@@ -2891,7 +2891,7 @@ private void elimbasivs(ref GlobalOptimizer go, ref BlockOpt bo, ref Loop l)
 
             /* If the incr is a decrement, and the relational is < or <=,
              * and its unsigned, then don't do it because it could drop below 0.
-             * https://issues.dlang.org/show_bug.cgi?id=16189
+             * upstream issue 16189
              */
             if ((einc.Eoper == OPminass || einc.E2.Eoper == OPconst && el_tolong(einc.E2) < 0) &&
                 (ref_.Eoper == OPlt || ref_.Eoper == OPle) &&
@@ -3350,7 +3350,7 @@ private bool catchRef(ref BlockOpt bo, Symbol* x, ref Loop l)
         /* this is conservative, just checking if x is used outside the loop.
          * A better check would see if the body of the loop throws, and would
          * check the enclosing catch/finally blocks and their exit blocks.
-         * https://issues.dlang.org/show_bug.cgi?22104
+         * upstream issue 22104
          */
         if (vec_testbit(x.Ssymnum, b.Binlv))
             return true;

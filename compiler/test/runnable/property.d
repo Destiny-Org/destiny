@@ -26,7 +26,7 @@ int test1()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6259
+// upstream issue 6259
 
 struct S6259
 {

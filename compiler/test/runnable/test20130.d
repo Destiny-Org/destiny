@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20130
+// upstream issue 20130
 
 void main() {
     auto a1 = cast(char[])  "12345678";

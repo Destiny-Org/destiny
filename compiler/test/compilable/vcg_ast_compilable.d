@@ -53,7 +53,7 @@ find!()
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=24431
+// upstream issue 24431
 auto binaryFun(E)(E b)
 {
     return 'a' == b;

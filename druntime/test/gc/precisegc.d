@@ -1,9 +1,9 @@
 // precise GC related:
-// https://issues.dlang.org/show_bug.cgi?id=3463
-// https://issues.dlang.org/show_bug.cgi?id=4358
-// https://issues.dlang.org/show_bug.cgi?id=9094
-// https://issues.dlang.org/show_bug.cgi?id=13801
-// https://issues.dlang.org/show_bug.cgi?id=18900
+// upstream issue 3463
+// upstream issue 4358
+// upstream issue 9094
+// upstream issue 13801
+// upstream issue 18900
 module testgc;
 
 import core.memory;

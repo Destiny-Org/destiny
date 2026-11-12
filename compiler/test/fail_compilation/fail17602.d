@@ -6,7 +6,7 @@ fail_compilation/fail17602.d(17): Error: cannot implicitly convert expression `S
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17602
+// upstream issue 17602
 
 import imports.imp17602;
 

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22254
+// upstream issue 22254
 
 struct Template(T) { T t; }
 

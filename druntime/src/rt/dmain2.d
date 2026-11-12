@@ -499,7 +499,7 @@ private extern (C) int _d_run_main2(char[][] args, size_t totalArgsLength, MainF
             // Do not pass Druntime options to the program
             if (parseOpts && arg.length >= 6 && arg[0 .. 6] == "--DRT-")
                 continue;
-            // https://issues.dlang.org/show_bug.cgi?id=20459
+            // upstream issue 20459
             if (arg == "--")
                 parseOpts = false;
             argsCopy[j++] = (argBuff[0 .. arg.length] = arg[]);

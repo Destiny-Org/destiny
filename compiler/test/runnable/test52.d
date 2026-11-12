@@ -6,7 +6,7 @@ count = 3
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=2311
+// upstream issue 2311
 
 extern(C) int printf(const char*, ...);
 

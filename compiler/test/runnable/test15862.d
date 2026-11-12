@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=15862
+// upstream issue 15862
 
 /*
 PERMUTE_ARGS:

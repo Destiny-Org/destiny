@@ -64,7 +64,7 @@ TEST_OUTPUT:
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=24108
+// upstream issue 24108
 typedef enum { a, } E;
 
 typedef const enum : short { a2, } E2; // C23 feature

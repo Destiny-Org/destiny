@@ -2,10 +2,10 @@ Ddoc
 
 $(TOC Table of Contents,
         $(P This is the specification for the Destiny Programming Language.
-        For more information see $(AHTTP dlang.org, dlang.org).)
+        For more information see $(AHTTP github.com/Destiny-Org/destiny, github.com/Destiny-Org/destiny).)
 
         $(NOT_EBOOK $(P This is also available as a
-        $(LINK2 $(ROOT_DIR)dlangspec.mobi, Mobi ebook).
+        $(LINK2 $(ROOT_DIR)destinyspec.mobi, Mobi ebook).
         $(COMMENT uncomment this once the Kindle ebook has been updated
             or as a
             $(AMAZONLINK B005CCQPKK, Kindle ebook).

@@ -299,7 +299,7 @@ private bool _d_isbaseof2(To)(scope ClassInfo oc, scope ref size_t offset)
     assert(_d_interface_cast!I1(cast(void*)ci) !is null);
 }
 
-// https://github.com/dlang/dmd/issues/21646
+// upstream dmd issue 21646
 @system pure unittest {
     static class C {
         @disable void opCast(T)();

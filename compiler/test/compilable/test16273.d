@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16273
+// upstream issue 16273
 
 class A()
 {

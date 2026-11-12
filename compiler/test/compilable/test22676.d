@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22676
+// upstream issue 22676
 template fullyQualifiedName(T)
 {
     static if (is(T : real))

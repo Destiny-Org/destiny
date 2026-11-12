@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20334
+// upstream dmd issue 20334
 // EXTRA_FILES: imports/imp20344.c
 import imports.imp20344;
 string s = X;

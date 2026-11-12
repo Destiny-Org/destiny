@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=18026
+// upstream issue 18026
 bool f(T)(T x)
 {
     return false;

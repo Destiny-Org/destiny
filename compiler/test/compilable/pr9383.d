@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -preview=dip1000
-// https://github.com/dlang/dmd/pull/9383
+// upstream dmd pull request 9383
 
 void test() @safe
 {

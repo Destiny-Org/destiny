@@ -6,7 +6,7 @@ fail_compilation/test22899.c(106): Error: found `}` when expecting `;` following
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22904
+// upstream issue 22904
 
 #line 100
 

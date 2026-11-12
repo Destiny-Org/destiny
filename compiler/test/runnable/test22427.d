@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22427
+// upstream dmd issue 22427
 
 noreturn exit1()
 {

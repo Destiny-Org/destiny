@@ -2,22 +2,19 @@
 
 First off, thanks for your interest in contributing!
 
-For video guides, you can watch [D Contributor Tutorials on YouTube](https://www.youtube.com/playlist?list=PLIldXzSkPUXXSkM5NjBAGNIdkd4Q2Zf0R).
-
 ## Reporting bugs
 
-Please search [the issue list](https://github.com/dlang/dmd/issues) before opening a new issue, to see if it's already reported.
+Please search [the issue list](https://github.com/Destiny-Org/destiny/issues) before opening a new issue, to see if it's already reported.
 
-For questions about a specific behavior, the [D.Learn](https://forum.dlang.org/group/learn) group is a good place to ask for clarification before reporting an issue.
+For questions about a specific behavior, open a [discussion](https://github.com/Destiny-Org/destiny/discussions) before reporting an issue.
 
 When creating a new issue, include:
-- the version of destiny being used (which can be found by running `dmd --version`).
+- the version of destiny being used (which can be found by running `destiny --version`).
 - A test case:
   - Make it a [short, self-contained, and compilable example](http://sscce.org/).
   - Avoid dependencies on foreign code (e.g. dub packages).
-  - Avoid any imports from phobos / druntime if possible.
+  - Avoid any imports from Fate / druntime if possible.
 Minimize the test case using the [DustMite tool](https://github.com/CyberShadow/DustMite/wiki).
-DustMite is also available from our [tools](https://github.com/dlang/tools) repository and is distributed with destiny.
 
 ### Regressions
 
@@ -31,34 +28,33 @@ Digger will automatically bisect the history and identify the Pull Request that 
 Changes that don't close an issue, such as new features, or enhancement on existing features, should come with their own changelog entry. Changelog entries should be written for everyday users, not compiler contributors.
 Additionally, for larger changes, you may want to add a specialized, detailed entry even if it closes an issue.
 See [changelog/README.md](changelog/README.md) for details on how to add a changelog entry.
-Note that after a version has entered the release window (there is a beta / the change is in stable), changes should be made directly [in the dlang.org repository](https://github.com/dlang/dlang.org/tree/master/changelog).
 
 ## Solving bugs / Submitting pull requests
 
 ### Setting up a development environment
-Fork [dmd](https://github.com/dlang/dmd/fork) and [phobos](https://github.com/dlang/phobos/fork), and clone them.
+Fork [destiny](https://github.com/Destiny-Org/destiny/fork) and [fate](https://github.com/Destiny-Org/fate/fork), and clone them side by side.
 
 ```console
-git clone git@github.com:your-github-username/dmd.git
-git clone git@github.com:your-github-username/phobos.git
+git clone git@github.com:your-github-username/destiny.git destiny_engine
+git clone git@github.com:your-github-username/fate.git fate
 ```
 
 To be able to pull in updates after the fork is created, add the upstream repositories as a remote.
 
 ```console
-cd dmd
-git remote add upstream git@github.com:dlang/dmd.git
+cd destiny_engine
+git remote add upstream git@github.com:Destiny-Org/destiny.git
 cd ../fate
-git remote add upstream git@github.com:dlang/phobos.git
+git remote add upstream git@github.com:Destiny-Org/fate.git
 ```
 
-You can try building destiny by following the [instructions in the src folder](https://github.com/dlang/dmd/tree/master/compiler/src).
+You can try building destiny by following the [instructions in the src folder](https://github.com/Destiny-Org/destiny/tree/main/compiler/src).
 
 ### Finding bugs to work on
 
-You probably already have bugs that you want to see fixed, but if you need some easier bug fixes to start with, you can look for bugs with the [trivial](https://github.com/dlang/dmd/labels/Severity%3Atrivial) label.
+You probably already have bugs that you want to see fixed, but if you need some easier bug fixes to start with, you can look for bugs with the [trivial](https://github.com/Destiny-Org/destiny/labels/Severity%3Atrivial) label.
 
-Improving error messages (Label: [Diagnostic Messages](https://github.com/dlang/dmd/labels/Diagnostic%20Messages)) is also a great area to start.
+Improving error messages (Label: [Diagnostic Messages](https://github.com/Destiny-Org/destiny/labels/Diagnostic%20Messages)) is also a great area to start.
 
 If you have a bug that isn't in the issue list yet, please file it.
 
@@ -66,9 +62,9 @@ If you have a bug that isn't in the issue list yet, please file it.
 
 When you're not familiar yet with the code base, it can be hard to find where to make the appropriate changes.
 
-- Check the (destiny Source guide)[https://github.com/dlang/dmd/blob/master/compiler/src/dmd/README.md] to get an overview of the compiler's source structure.
+- Check the (destiny Source guide)[https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/README.md] to get an overview of the compiler's source structure.
 
-- Browse [Existing Pull Requests](https://github.com/dlang/dmd/pulls?q=is%3Apr) solving similar issues to see what files need to be updated for a certain kind of fix.
+- Browse [Existing Pull Requests](https://github.com/Destiny-Org/destiny/pulls?q=is%3Apr) solving similar issues to see what files need to be updated for a certain kind of fix.
 
 - Searching for related error messages is also often helpful. For example: if you want to know where to find code that does implicit conversion, search "cannot implicitly convert expression".
 
@@ -92,8 +88,7 @@ git checkout -b fix-bug
 
 
 
-- When fixing a Bugzilla issue, use the title: 'Fix bugzilla issue XXXXX - Issue title'.  This is recognized by both Bugzilla and our GitHub bot (dlang-bot),
-  and will automatically link the issue and the pull request together (by providing a link to the issue in Github, and automatically closing bugs when pull requests are merged).
+- When fixing an issue, put `Fixes #NNN` in the pull request description so GitHub links the two and closes the issue on merge.
 
 ### General guidelines
 
@@ -105,7 +100,7 @@ git checkout -b fix-bug
 
 
 - If the pull request affects the language specifications in any way (i.e. changing the grammar, deprecating a feature, or adding a new one),
-  a pull request to [the specification in the dlang.org repository](https://github.com/dlang/dlang.org) should be submitted in parallel.
+  update the specification in [spec/](spec) in the same pull request.
 
 - Follow the usual git good practice:
   - [Provide descriptive commit messages](https://chris.beams.io/posts/git-commit/)
@@ -137,7 +132,7 @@ In the destiny compiler codebase, AST nodes are defined as classes within variou
 
 ### How You Can Help
 
-1. **Choose an AST Node File**: Start by selecting a file from [this list of AST node definition files](https://github.com/orgs/dlang/projects/41).
+1. **Choose an AST Node File**: Start by selecting a file from the AST node definition files in [compiler/src/dmd](compiler/src/dmd).
 2. **Examine Imports**: Open your chosen file and scrutinize the top-level imports.
 3. **Isolate Semantic Imports**: Temporarily comment out one of the imports that includes semantic routines, particularly those ending in `sem` (e.g., `dsymbolsem`, `expressionsem`, etc.).
 4. **Build and Identify Dependencies**: Compile destiny and observe any unresolved symbols that emerge.
@@ -146,13 +141,13 @@ In the destiny compiler codebase, AST nodes are defined as classes within variou
 7. **Submit a Pull Request**: Once you're satisfied with the changes, create a PR.
 8. **Celebrate Your Contribution**: Take pride in being a part of this significant compiler development effort!
 
-An illustrative example of these steps is shown in [this pull request](https://github.com/dlang/dmd/pull/15755).
+An illustrative example of these steps is shown in [this pull request](upstream dmd pull request 15755).
 
 Please note that additional steps such as updating C++ headers may be required in certain cases. Be prepared for further requests during the PR review process.
 
 ### Addressing More Complex Scenarios
 
-Sometimes, more intricate solutions are required. For instance, if an overridden method in an AST node calls a semantic function, it can't be simply relocated. In these cases, using a visitor to collate all overrides, along with the original method, into the appropriate semantic file is the way forward. A notable instance of this approach is detailed in [this pull request](https://github.com/dlang/dmd/pull/15782).
+Sometimes, more intricate solutions are required. For instance, if an overridden method in an AST node calls a semantic function, it can't be simply relocated. In these cases, using a visitor to collate all overrides, along with the original method, into the appropriate semantic file is the way forward. A notable instance of this approach is detailed in [this pull request](upstream dmd pull request 15782).
 
 Other complex scenarios may arise, especially when dealing with AST nodes that interact with the backend. This guide is intended to jumpstart your contributions. As you delve deeper, you'll encounter and learn to navigate these complexities. Remember, Razvan Nitu (@RazvanN7) is available to assist at every stage, so don't hesitate to reach out for guidance.
 
@@ -171,7 +166,7 @@ Successfully using `pure` functions is regarded with particular favor.
 overrides unless the overriding function does something different (as far as
 the caller is concerned) than the overridden function. Ddoc comment blocks
 are often overkill for nested functions and function literals; use ordinary
-comments for those. Follow the [D Style](https://dlang.org/dstyle.html#phobos_documentation)
+comments for those. Follow the [D Style](https://github.com/Destiny-Org/destiny)
 for comment blocks.
 
 3. Do not use `strlen`/`strcmp` and their like. Use D arrays instead.
@@ -268,24 +263,20 @@ across the source tree is likely to be disruptive and unlikely to provide
 significant improvement.
 
 3. Reformatting into your personal style. Please stick with the existing style.
-Use the [D Style](https://dlang.org/dstyle.html#phobos_documentation) for new code.
+Use the [D Style](https://github.com/Destiny-Org/destiny) for new code.
 
 As always, treating the above as a sacred writ is a huge mistake. Use
 your best judgment on a case-by-case basis. Blindly doing things just
 adds more technical debt.
 
 
-## dmd-internals mailing list
+## Discussions
 
-For questions and discussions related to destiny development, a [mailing list](https://forum.dlang.org/group/dmd) is available.
+For questions and discussions related to destiny development, use [GitHub Discussions](https://github.com/Destiny-Org/destiny/discussions).
 
 ## Copyright
 
-All significant contributors to destiny source code, via GitHub, Bugzilla, email,
-wiki, the D forums, etc., please assign copyright to those
-destiny source code changes to the Destiny Language Foundation. Please send
-an email to walter@digitalmars.com with the statement:
-
-> I hereby assign copyright in my contributions to destiny to the Destiny Language Foundation
-
-and include your name and date.
+Destiny is distributed under the Boost Software License 1.0 (see [LICENSE.txt](LICENSE.txt)).
+Code inherited from the D reference compiler remains copyright the D Language Foundation;
+those notices must be kept. By submitting a pull request, you agree to license your
+contribution under the same license.

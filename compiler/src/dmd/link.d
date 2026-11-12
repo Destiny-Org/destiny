@@ -1,12 +1,12 @@
 /**
  * Invoke the linker as a separate process.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/link.d, _link.d)
- * Documentation:  https://dlang.org/phobos/dmd_link.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/link.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/link.d, _link.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/link.d
+ * 
  */
 
 module dmd.link;
@@ -683,7 +683,7 @@ public int runLINK(bool verbose, ErrorSink eSink)
             perror("unable to create pipe to linker");
             return -1;
         }
-        // vfork instead of fork to avoid https://issues.dlang.org/show_bug.cgi?id=21089
+        // vfork instead of fork to avoid upstream issue 21089
         childpid = vfork();
         if (childpid == 0)
         {
@@ -756,7 +756,7 @@ version (Windows)
         if (verbose)
             eSink.message(Loc.initial, "%s %s", cmd, args);
         // Normalize executable path separators
-        // https://issues.dlang.org/show_bug.cgi?id=9330
+        // upstream issue 9330
         cmd = toWinPath(cmd);
         version (CRuntime_Microsoft)
         {
@@ -1338,7 +1338,7 @@ public int runPreprocessor(Loc loc, const(char)[] cpp, const(char)[] filename, c
  *      0 on success
  * Reference:
  *      Based on
- *      https://github.com/dlang/visuald/blob/master/tools/pipedmd.d#L252
+ *      https://github.com/Destiny-Org/destiny
  */
 version (Windows)
 int runProcessCollectStdout(const(wchar)* szCommand, ubyte[] buffer, scope void delegate(ubyte[]) sink)
@@ -1395,7 +1395,7 @@ int runProcessCollectStdout(const(wchar)* szCommand, ubyte[] buffer, scope void 
 
     if (!bSuccess)
     {
-        printf("failed launching %ls\n", cast(wchar*)szCommand); // https://issues.dlang.org/show_bug.cgi?id=21958
+        printf("failed launching %ls\n", cast(wchar*)szCommand); // upstream issue 21958
         return 1;
     }
 

@@ -1,7 +1,7 @@
 module imports.template_ovs3;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=1900
+// upstream issue 1900
 // template overload set
 
 import imports.template_ovs1;
@@ -32,6 +32,6 @@ struct S1900
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=1900
+// upstream issue 1900
 
 struct Traits1900(T) if (!is(T == class)) { enum name = "any"; }

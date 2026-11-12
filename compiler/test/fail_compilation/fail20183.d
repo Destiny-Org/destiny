@@ -9,7 +9,7 @@ fail_compilation/fail20183.d(1004):        `fail20183.addr(return ref int b)` de
 
 #line 1000
 
-// https://issues.dlang.org/show_bug.cgi?id=20183
+// upstream issue 20183
 @safe:
 
 int* addr(return ref int b) { return &b; }

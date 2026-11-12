@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=22113
+upstream issue 22113
 Allow main to return noreturn.
 
 ARG_SETS: -version=Use_D_Main

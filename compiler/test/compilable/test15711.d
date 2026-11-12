@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=15711
+// upstream issue 15711
 
 struct Quu {
     string val;

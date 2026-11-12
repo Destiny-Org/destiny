@@ -5,7 +5,7 @@ fail_compilation/test17764.d(109): Error: assigning scope variable `c` to global
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=17764
+// upstream issue 17764
 
 #line 100
 

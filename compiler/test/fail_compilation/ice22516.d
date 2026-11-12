@@ -1,5 +1,5 @@
 /++
-https://issues.dlang.org/show_bug.cgi?id=22516
+upstream issue 22516
 
 TEST_OUTPUT:
 ---

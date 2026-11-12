@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21514
+// upstream issue 21514
 // REQUIRED_ARGS: -verrors=simple
 // DISABLED: win32 win64
 /* TEST_OUTPUT:

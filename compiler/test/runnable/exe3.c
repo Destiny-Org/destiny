@@ -1011,7 +1011,7 @@ int main()
         {       printf(_8087 ? "with 8087\n" : "without 8087\n");
 
                 //testclassify();
-//              testflt(); https://github.com/dlang/dmd/issues/21142
+//              testflt(); upstream dmd issue 21142
                 dblops();
                 fltops();
                 conversions();

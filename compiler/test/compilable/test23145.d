@@ -1,7 +1,7 @@
 /* REQUIRED_ARGS: -wi
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23145
+// upstream issue 23145
 
 #line 100
 

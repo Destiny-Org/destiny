@@ -2,19 +2,19 @@
  * Local optimizations of elem trees
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
  * Does strength reduction optimizations on the elem trees,
  * i.e. rewriting trees to less expensive trees.
  *
  * Copyright:   Copyright (C) 1985-1998 by Symantec
- *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved
+ *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/cgelem.d, backend/cgelem.d)
- * Documentation:  https://dlang.org/phobos/dmd_backend_cgelem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/backend/cgelem.d
- *              Add coverage tests to https://github.com/dlang/dmd/blob/master/test/runnable/testcgelem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cgelem.d, backend/cgelem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cgelem.d
+ * 
+ *              Add coverage tests to https://github.com/Destiny-Org/destiny/blob/main/test/runnable/testcgelem.d
  */
 
 module dmd.backend.cgelem;
@@ -467,7 +467,7 @@ private elem* fixconvop(elem* e)
     {   if (e.Eoper != OPshlass && e.Eoper != OPshrass && e.Eoper != OPashrass)
             e.E2 = el_una(icop,tym,e2);
 
-        // https://issues.dlang.org/show_bug.cgi?id=23618
+        // upstream issue 23618
         if ((cop == OPu16_32 || cop == OPu8_16) && e.Eoper == OPashrass)
             e.Eoper = OPshrass;     // always unsigned right shift for MARS
 
@@ -4004,7 +4004,7 @@ static if (0)  // Doesn't work too well, removed
         // If floating point, replace (x = -y) with (x = y ^ signbit)
         if (op2 == OPneg && (tyreal(e2.Ety) || tyimaginary(e2.Ety)) &&
             (e2.E1.Eoper == OPvar || e2.E1.Eoper == OPind) &&
-           /* Turned off for x87 because of https://issues.dlang.org/show_bug.cgi?id=24819
+           /* Turned off for x87 because of upstream issue 24819
             * and this is unnecessary anyway because of the FCHS x87 instruction
             */
            !config.inline8087 &&
@@ -4054,7 +4054,7 @@ static if (0)  // Doesn't work too well, removed
 // this clause needs investigation because the code doesn't match the comment
             // Disable this rewrite if we're using x87 and `e1` is a FP-value
             // but `e2` is not, or vice versa
-            // https://issues.dlang.org/show_bug.cgi?id=18197
+            // upstream issue 18197
             (config.fpxmmregs ||
              (tyfloating(e2.E1.Ety) != 0) == (tyfloating(e2.Ety) != 0))
            )

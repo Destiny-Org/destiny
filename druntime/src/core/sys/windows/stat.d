@@ -50,7 +50,7 @@ version (CRuntime_Microsoft)
 
     // These assume time_t is 32 bits (which druntime's definition currently is)
     // Add pragma(mangle) to use _stat64 etc. when time_t is made 64-bit
-    // See also: https://issues.dlang.org/show_bug.cgi?id=21134
+    // See also: upstream issue 21134
     int stat(const(char)*, struct_stat *);
     int fstat(int, struct_stat *) @trusted;
     int _wstat(const(wchar)*, struct_stat *);

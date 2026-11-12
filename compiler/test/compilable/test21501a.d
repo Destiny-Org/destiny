@@ -1,5 +1,5 @@
 // EXTRA_SOURCES: imports/test21501b.d imports/test21501c.d
-// https://issues.dlang.org/show_bug.cgi?id=21501
+// upstream issue 21501
 
 module test21501a;
 import imports.test21501b;

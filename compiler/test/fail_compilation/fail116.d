@@ -6,7 +6,7 @@ fail_compilation/fail116.d(16): Error: template instance `square!1.2` does not m
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=405
+// upstream issue 405
 // typeof in TemplateParameterList causes compiletime segmentfault
 template square(typeof(x) x)
 {

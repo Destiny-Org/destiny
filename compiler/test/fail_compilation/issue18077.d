@@ -6,7 +6,7 @@ fail_compilation/issue18077.d(29): Error: template instance `issue18077.SumType!
 ---
 */
 
-// https://github.com/dlang/dmd/issues/18077
+// upstream dmd issue 18077
 
 enum isHashable(T) = __traits(compiles, T.init.tupleof[0][0].sizeof);
 

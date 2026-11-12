@@ -11,7 +11,7 @@ fail_compilation/test19107.d(18):        Candidate is: `all(alias pred, T)(T t)`
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=19107
+// upstream issue 19107
 
 import imports.test19107b;
 

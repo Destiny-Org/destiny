@@ -1,12 +1,12 @@
 /**
  * Convert statements to Intermediate Representation (IR) for the back-end.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/glue/s2ir.d, _s2ir.d)
- * Documentation: $(LINK https://dlang.org/phobos/dmd_glue_2ir.html)
- * Coverage:    $(LINK https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/glue/s2ir.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/s2ir.d, _s2ir.d)
+ * Documentation: $(LINK https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd)
+ * 
  */
 
 module dmd.glue.s2ir;
@@ -1045,7 +1045,7 @@ void Statement_toIR(Statement s, ref IRState irs, StmtState* stmtstate)
                     /* The linker will attempt to merge together identical functions,
                      * even if the catch types differ. So add a reference to the
                      * catch type here.
-                     * https://issues.dlang.org/show_bug.cgi?id=10664
+                     * upstream issue 10664
                      */
                     auto tc = cs.type.toBasetype().isTypeClass();
                     if (!tc.sym.vclassinfo)

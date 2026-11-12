@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22543
+// upstream dmd issue 22543
 
 enum int[string] aa = [
     "a": 42,

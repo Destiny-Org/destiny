@@ -2,13 +2,13 @@
  * Associative Array implementation
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
- * Copyright:   Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright), Dave Fladebo
  * License:     Distributed under the Boost Software License, Version 1.0.
  *              https://www.boost.org/LICENSE_1_0.txt
- * Source:      https://github.com/dlang/dmd/blob/master/src/dmd/backend/aarray.d
+ * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/dmd/backend/aarray.d
  */
 
 module dmd.backend.aarray;

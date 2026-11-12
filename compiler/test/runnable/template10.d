@@ -284,7 +284,7 @@ void test5()
 
 /********************************************/
 // inline tests
-// https://issues.dlang.org/show_bug.cgi?id=14730
+// upstream issue 14730
 
 void test6a()
 {

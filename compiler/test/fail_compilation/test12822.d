@@ -6,7 +6,7 @@ fail_compilation/test12822.d(14): Error: using `dg.funcptr` is not allowed in a 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=12822
+// upstream issue 12822
 void test2(int delegate() dg) @safe
 {
     static int i;

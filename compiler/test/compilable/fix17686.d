@@ -2,7 +2,7 @@
  * PERMUTE_ARGS:
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=17686
+// upstream issue 17686
 
 interface INode
 {

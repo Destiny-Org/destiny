@@ -6,7 +6,7 @@ fail_compilation/test24694.d(25): Error: assigning reference to local variable `
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=24694
+// upstream issue 24694
 
 class C
 {

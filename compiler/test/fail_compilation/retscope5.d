@@ -11,7 +11,7 @@ fail_compilation/retscope5.d(5010): Error: assigning address of variable `t` to 
 
 #line 5000
 
-// https://issues.dlang.org/show_bug.cgi?id=17725
+// upstream issue 17725
 
 void test() @safe
 {

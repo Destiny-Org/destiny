@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16047
+// upstream issue 16047
 module test16047;
 
 void main()

@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -wi
 
-// https://issues.dlang.org/show_bug.cgi?id=22930
+// upstream issue 22930
 
 int printf(const char *, ...);
 void exit(int);

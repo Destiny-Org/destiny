@@ -5,7 +5,7 @@ fail_compilation/test19473.d(31):        error on member `test19473.P.p`
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=19473
+// upstream issue 19473
 
 struct A {
         P p;

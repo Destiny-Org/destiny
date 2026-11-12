@@ -1,8 +1,8 @@
 /* REQUIRED_ARGS: -O -m64
  */
 
-// no longer caught at compile time, because of https://github.com/dlang/dmd/issues/24084
-// originally reported by https://issues.dlang.org/show_bug.cgi?id=20903
+// no longer caught at compile time, because of upstream dmd issue 24084
+// originally reported by upstream issue 20903
 
 long test()
 {

@@ -11,7 +11,7 @@ fail_compilation/fail21347.d(18):        unmatched `{`
 ---
 */
 
-// https://github.com/dlang/dmd/issues/21347
+// upstream dmd issue 21347
 // diagnostic: Parser never stops looking for ',' on array literal syntax error
 
 void test21347()

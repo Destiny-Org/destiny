@@ -1,5 +1,5 @@
 /**
-https://issues.dlang.org/show_bug.cgi?id=21799
+upstream issue 21799
 
 PERMUTE_ARGS:
 **/

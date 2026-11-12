@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19122
+// upstream issue 19122
 struct HasDestructor
 {
     ~this()

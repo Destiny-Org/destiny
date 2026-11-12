@@ -7,7 +7,7 @@ fail_compilation/test17451.d(44): Error: template instance `test17451.HashMap!(T
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17451
+// upstream issue 17451
 
 interface ManualEvent {}
 

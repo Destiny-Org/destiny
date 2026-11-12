@@ -125,7 +125,7 @@ void test4()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12070
+// upstream issue 12070
 
 void test12070()
 {
@@ -160,7 +160,7 @@ void test12070()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12124
+// upstream issue 12124
 
 struct S12124
 {
@@ -170,7 +170,7 @@ struct S12124
 }
 
 /**************************************/
-// https://github.com/dlang/dmd/issues/20927
+// upstream dmd issue 20927
 
 struct NoStatic0 { auto opCall() => 2; }
 struct NoStatic1 { int x; NoStatic1 opCall() => NoStatic1(3); }

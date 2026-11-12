@@ -6,7 +6,7 @@ fail_compilation/test24084.d(112): Error: cannot use try-catch statements with `
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=24084
+// upstream issue 24084
 
 #line 100
 

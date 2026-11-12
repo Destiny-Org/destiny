@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21956
+// upstream issue 21956
 
 noreturn[noreturn] nrnr;
 

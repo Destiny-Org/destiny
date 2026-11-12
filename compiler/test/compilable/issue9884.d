@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=9884
+// upstream issue 9884
 module issue9884;
 
 const(int)[] data;

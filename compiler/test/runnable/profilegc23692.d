@@ -26,7 +26,7 @@ void main()
         // The program should finish in less than a second, but allow
         // more for different hardware.
         // Previously it could take more than 600 seconds,
-        // see https://github.com/dlang/dmd/issues/23692.
+        // see upstream dmd issue 23692
         assert(MonoTime.currTime - start < 30.seconds);
     }
 }

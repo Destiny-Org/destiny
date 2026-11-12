@@ -13,8 +13,8 @@ fail_compilation/fail22366.d(32): Error: copying scope variable `s` into allocat
 */
 
 // Test escaping scope variables through AA keys / values
-// https://issues.dlang.org/show_bug.cgi?id=22366
-// https://issues.dlang.org/show_bug.cgi?id=23531
+// upstream issue 22366
+// upstream issue 23531
 
 void fun(scope string s) @safe
 {

@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23025
+/* upstream issue 23025
  */
 
 const char *s; // tentative definition

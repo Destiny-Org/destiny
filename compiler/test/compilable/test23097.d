@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23097
+/* upstream issue 23097
 REQUIRED_ARGS: -verrors=simple -verrors=spec
 TEST_OUTPUT:
 ---

@@ -16,7 +16,7 @@ void main ()
     assert(Baguette.init.tupleof);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21590
+// upstream issue 21590
 void issue21590()
 {
    int a, b = 1;
@@ -36,7 +36,7 @@ void issue21590()
 	assert(a += b);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21798
+// upstream issue 21798
 void issue()
 {
 	assert(issue());

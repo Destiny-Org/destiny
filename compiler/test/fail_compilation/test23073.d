@@ -7,7 +7,7 @@ fail_compilation/test23073.d(22):        `c` is not `scope` because of `c.next =
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23073
+// upstream issue 23073
 // scope inference from pure doesn't consider self-assignment
 
 @safe:

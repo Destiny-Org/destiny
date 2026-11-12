@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=12504
+// upstream issue 12504
 void main()
 {
     {

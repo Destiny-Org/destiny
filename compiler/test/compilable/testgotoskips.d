@@ -1,7 +1,7 @@
 /*
     Tests to defend against false positives from the goto skips over decl errors
 */
-// https://issues.dlang.org/show_bug.cgi?id=23271
+// upstream issue 23271
 class A {
         private static A[] active;
         private void test() {
@@ -16,7 +16,7 @@ class A {
         }
 }
 
-// https://github.com/dlang/dmd/issues/18018
+// upstream dmd issue 18018
 int main ()
 {
    string[string] aa;

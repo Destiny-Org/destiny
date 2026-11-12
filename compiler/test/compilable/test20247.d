@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20247
+// upstream dmd issue 20247
 
 // is() pattern matching should strip shared from static array
 static if (is(shared(int[1]) == shared(T), T))

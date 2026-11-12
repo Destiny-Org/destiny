@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20270
+// upstream issue 20270
 import core.sys.posix.sys.wait : waitpid;
 import core.sys.posix.unistd : fork, _exit;
 import core.thread : Thread;

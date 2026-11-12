@@ -1,12 +1,12 @@
 /**
  * Semantic analysis for D types.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/typesem.d, _typesem.d)
- * Documentation:  https://dlang.org/phobos/dmd_typesem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/typesem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/typesem.d, _typesem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/typesem.d
+ * 
  */
 
 module dmd.typesem;
@@ -1335,7 +1335,7 @@ void Type_init()
 
     static if (__VERSION__ == 2081)
     {
-        // Related issue: https://issues.dlang.org/show_bug.cgi?id=19134
+        // Related upstream issue 19134
         // D 2.081.x regressed initializing class objects at compile time.
         // As a workaround initialize this global at run-time instead.
         TypeTuple.empty = new TypeTuple();
@@ -1495,7 +1495,7 @@ private void resolveTupleIndex(Loc loc, Scope* sc, Dsymbol s, out Expression pe,
  *      pe = set if expression otherwise null
  *      pt = set if type otherwise null
  *      ps = set if symbol otherwise null
- *      typeid = set if in TypeidExpression https://dlang.org/spec/expression.html#TypeidExpression
+ *      typeid = set if in TypeidExpression https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
  */
 private void resolveHelper(TypeQualified mt, Loc loc, Scope* sc, Dsymbol s, Dsymbol scopesym,
     out Expression pe, out Type pt, out Dsymbol ps, bool intypeid = false)
@@ -1631,14 +1631,14 @@ private void resolveHelper(TypeQualified mt, Loc loc, Scope* sc, Dsymbol s, Dsym
 
         if (VarDeclaration v = s.isVarDeclaration())
         {
-            // https://issues.dlang.org/show_bug.cgi?id=19913
+            // upstream issue 19913
             // v.type would be null if it is a forward referenced member.
             if (v.type is null)
                 v.dsymbolSemantic(sc);
             if (v.storage_class & (STC.const_ | STC.immutable_ | STC.manifest) ||
                 v.type.isConst() || v.type.isImmutable())
             {
-                // https://issues.dlang.org/show_bug.cgi?id=13087
+                // upstream issue 13087
                 // this.field is not constant always
                 if (!v.isThisDeclaration())
                     return helper3();
@@ -1674,7 +1674,7 @@ private void resolveHelper(TypeQualified mt, Loc loc, Scope* sc, Dsymbol s, Dsym
         if (!v.type ||
             !v.type.deco && v.inuse)
         {
-            if (v.inuse) // https://issues.dlang.org/show_bug.cgi?id=9494
+            if (v.inuse) // upstream issue 9494
                 eSink.error(loc, "circular reference to %s `%s`", v.kind(), v.toPrettyChars());
             else
                 eSink.error(loc, "forward reference to %s `%s`", v.kind(), v.toPrettyChars());
@@ -1805,7 +1805,7 @@ bool isCopyable(Type t)
         if (ts.sym.hasCopyCtor)
         {
             // check if there is a matching overload of the copy constructor and whether it is disabled or not
-            // `assert(ctor)` fails on Win32 and Win32_64. See: https://auto-tester.puremagic.com/pull-history.ghtml?projectid=1&repoid=1&pullid=10575
+            // `assert(ctor)` fails on Win32 and Win32_64. See: the upstream auto-tester history
             Dsymbol ctor = search_function(ts.sym, Id.ctor);
             assert(ctor);
             scope el = new IdentifierExp(Loc.initial, Id.p); // dummy lvalue
@@ -1964,7 +1964,7 @@ void purityLevel(TypeFunction typeFunction)
 }
 
 /*************************************
- * https://issues.dlang.org/show_bug.cgi?id=14488
+ * upstream issue 14488
  * Check if the inner most base type is complex or imaginary.
  * Should only give alerts when set to emit transitional messages.
  * Params:
@@ -1977,7 +1977,7 @@ extern (D) bool checkComplexTransition(Type type, Loc loc, Scope* sc)
     if (sc.isDeprecated())
         return false;
     // Don't complain if we're inside a template constraint
-    // https://issues.dlang.org/show_bug.cgi?id=21831
+    // upstream issue 21831
     if (sc.inTemplateConstraint)
         return false;
 
@@ -2225,7 +2225,7 @@ extern (D) MATCH callMatch(FuncDeclaration fd, TypeFunction tf, Type tthis, Argu
         match = MATCH.convert; // match ... with a "conversion" match level
     }
 
-    // https://issues.dlang.org/show_bug.cgi?id=22997
+    // upstream issue 22997
     if (parameterList.varargs == VarArg.none && nparams > argumentList.length && !parameterList.hasDefaultArgs)
     {
         if (errorHelper)
@@ -2401,7 +2401,7 @@ private extern(D) bool isCopyConstructorCallable (StructDeclaration argStruct,
     if (!pMessage)
         return false;
 
-    /* https://issues.dlang.org/show_bug.cgi?id=22202
+    /* upstream issue 22202
      *
      * If a function was deduced by semantic on the CallExp,
      * it means that resolveFuncCall completed successfully.
@@ -2426,7 +2426,7 @@ private extern(D) bool isCopyConstructorCallable (StructDeclaration argStruct,
 
     if (f.isDisabled() && !f.isGenerated)
     {
-        /* https://issues.dlang.org/show_bug.cgi?id=24301
+        /* upstream issue 24301
          * Copy constructor is explicitly disabled
          */
         buf.printf("`%s` copy constructor cannot be used because it is annotated with `@disable`",
@@ -2449,7 +2449,7 @@ private extern(D) bool isCopyConstructorCallable (StructDeclaration argStruct,
     }
     else if (f.isGenerated && f.isDisabled())
     {
-        /* https://issues.dlang.org/show_bug.cgi?id=23097
+        /* upstream issue 23097
          * Compiler generated copy constructor failed.
          */
         buf.printf("generating a copy constructor for `struct %s` failed, therefore instances of it are uncopyable",
@@ -2459,7 +2459,7 @@ private extern(D) bool isCopyConstructorCallable (StructDeclaration argStruct,
     {
         /* Although a copy constructor may exist, no suitable match was found.
          * i.e: `inout` constructor creates `const` object, not mutable.
-         * Fallback to using the original generic error before https://issues.dlang.org/show_bug.cgi?id=22202.
+         * Fallback to using the original generic error before upstream issue 22202.
          */
         return nocpctor();
     }
@@ -2566,7 +2566,7 @@ private extern(D) MATCH argumentMatchParameter (FuncDeclaration fd, TypeFunction
     if (!p.isReference())
         return m;
 
-    // https://issues.dlang.org/show_bug.cgi?id=13783
+    // upstream issue 13783
     // Don't use toBasetype() to handle enum types.
     Type ta = targ;
     Type tp = tprm;
@@ -2630,8 +2630,8 @@ private extern(D) MATCH argumentMatchParameter (FuncDeclaration fd, TypeFunction
 
     /* If the match is not already perfect or if the arg
        is not a lvalue then try the `alias this` chain
-       see  https://issues.dlang.org/show_bug.cgi?id=15674
-       and https://issues.dlang.org/show_bug.cgi?id=21905
+       see  upstream issue 15674
+       and upstream issue 21905
     */
     if (ta != tp || !arg.isLvalue())
     {
@@ -2674,7 +2674,7 @@ private const(char)* getParamError(TypeFunction tf, Expression arg, Parameter pa
     if (!global.errorSink.emitAdditionalContext())
         return null;
     // show qualification when toChars() is the same but types are different
-    // https://issues.dlang.org/show_bug.cgi?id=19948
+    // upstream issue 19948
     // when comparing the type with strcmp, we need to drop the qualifier
     bool qual = !arg.type.mutableOf().equals(par.type.mutableOf()) &&
         strcmp(arg.type.mutableOf().toChars(), par.type.mutableOf().toChars()) == 0;
@@ -3504,7 +3504,7 @@ Type typeSemantic(Type type, Loc loc, Scope* sc)
 
             mtype.index.resolve(indexLoc, sc, e, t, s);
 
-            // https://issues.dlang.org/show_bug.cgi?id=15478
+            // upstream issue 15478
             if (s)
                 e = symbolToExp(s, loc, sc, false);
 
@@ -3882,7 +3882,7 @@ Type typeSemantic(Type type, Loc loc, Scope* sc)
                 e = iz.initializerToExpression(sc2, null, eSink);
                 sc2.pop();
             }
-            if (e.op == EXP.function_) // https://issues.dlang.org/show_bug.cgi?id=4820
+            if (e.op == EXP.function_) // upstream issue 4820
             {
                 FuncExp fe = e.isFuncExp();
                 // Replace function literal with a function symbol,
@@ -3974,7 +3974,7 @@ Type typeSemantic(Type type, Loc loc, Scope* sc)
                         {
                             Parameter narg = (*tt.arguments)[j];
 
-                            // https://issues.dlang.org/show_bug.cgi?id=12744
+                            // upstream issue 12744
                             // If the storage classes of narg
                             // conflict with the ones in fparam, it's ignored.
                             STC stc  = fparam.storageClass | narg.storageClass;
@@ -4097,14 +4097,14 @@ Type typeSemantic(Type type, Loc loc, Scope* sc)
                         }
                         else if (tf.next && !tf.next.hasPointers() && tf.next.toBasetype().ty != Tvoid)
                         {
-                            fparam.storageClass &= ~STC.return_;   // https://issues.dlang.org/show_bug.cgi?id=18963
+                            fparam.storageClass &= ~STC.return_;   // upstream issue 18963
                         }
                     }
 
                     if (isStackAllocatedVariadic)
                     {
                         /* This is because they can be constructed on the stack
-                         * https://dlang.org/spec/function.html#typesafe_variadic_functions
+                         * https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
                          */
                         eSink.error(loc, "typesafe variadic function parameter `%s` of type `%s` cannot be marked `return`",
                             fparam.ident ? fparam.ident.toErrMsg() : "", t.toErrMsg());
@@ -4177,7 +4177,7 @@ Type typeSemantic(Type type, Loc loc, Scope* sc)
                     // We're seeing a new tuple
                     else if (tupleOrigIdx == size_t.max || tupleOrigIdx < oidx)
                     {
-                        /* https://issues.dlang.org/show_bug.cgi?id=18572
+                        /* upstream issue 18572
                          *
                          * If a tuple parameter has a default argument, when expanding the parameter
                          * tuple the default argument tuple must also be expanded.
@@ -4213,14 +4213,14 @@ Type typeSemantic(Type type, Loc loc, Scope* sc)
                     {
                         if (!farg.isLvalue() || farg.isBitField())
                             eparam.storageClass &= ~STC.ref_; // value parameter
-                        eparam.storageClass &= ~STC.auto_;    // https://issues.dlang.org/show_bug.cgi?id=14656
+                        eparam.storageClass &= ~STC.auto_;    // upstream issue 14656
                         eparam.storageClass |= STC.autoref;
                     }
                     else if (mtype.incomplete && (eparam.storageClass & STC.ref_))
                     {
                         // the default argument may have been temporarily removed,
                         // see usage of `TypeFunction.incomplete`.
-                        // https://issues.dlang.org/show_bug.cgi?id=19891
+                        // upstream issue 19891
                         eparam.storageClass &= ~STC.auto_;
                         eparam.storageClass |= STC.autoref;
                     }
@@ -4288,7 +4288,7 @@ Type typeSemantic(Type type, Loc loc, Scope* sc)
         if (mtype.next.ty != Tfunction)
             return error();
 
-        /* In order to deal with https://issues.dlang.org/show_bug.cgi?id=4028
+        /* In order to deal with upstream issue 4028
          * perhaps default arguments should
          * be removed from next before the merge.
          */
@@ -4351,7 +4351,7 @@ Type typeSemantic(Type type, Loc loc, Scope* sc)
             Module varDeclModule = varDecl.getModule(); //This can be null
 
             eSink.error(loc, "variable `%s` is used as a type", mtype.toErrMsg());
-            //Check for null to avoid https://issues.dlang.org/show_bug.cgi?id=22574
+            //Check for null to avoid upstream issue 22574
             if ((varDeclModule !is null) && varDeclModule != sc._module) // variable is imported
             {
                 eSink.errorSupplemental(
@@ -4816,7 +4816,7 @@ Type trySemantic(Type type, Loc loc, Scope* sc)
     {
         // If `typeSemantic` succeeded, there may have been deprecations that
         // were gagged due the `startGagging` above.  Run again to display
-        // those deprecations.  https://issues.dlang.org/show_bug.cgi?id=19107
+        // those deprecations.  upstream issue 19107
         if (global.gaggedDeprecations > 0)
             typeSemantic(tcopy, loc, sc);
     }
@@ -4853,7 +4853,7 @@ Type merge(Type type)
                 // usually generates regular integer types (e.g. in cast(const ubyte[2])) which
                 // it may try to merge, which then leads to failing implicit conversions as 2LU != 2
                 // according to Expression.equals. Only merge array types with size_t lengths for now.
-                // https://github.com/dlang/dmd/issues/21179
+                // upstream dmd issue 21179
                 if (ie.type != Type.tsize_t)
                     return type;
 
@@ -5127,7 +5127,7 @@ Expression getProperty(Type t, Scope* scope_, Loc loc, Identifier ident, int fla
         if (s && !symbolIsVisible(scope_, s))
             s = null;
         if (s && s.isDtorDeclaration())
-            // Don't suggest `~this()` as it isn't valid syntax to call it (https://issues.dlang.org/show_bug.cgi?id=23938)
+            // Don't suggest `~this()` as it isn't valid syntax to call it (upstream issue 23938)
             s = null;
 
         if (mt == Type.terror)
@@ -5745,8 +5745,8 @@ void resolve(Type mt, Loc loc, Scope* sc, out Expression pe, out Type pt, out Ds
         Dsymbol scopesym;
         Dsymbol s = sc.search(loc, mt.ident, scopesym);
         /*
-         * https://issues.dlang.org/show_bug.cgi?id=1170
-         * https://issues.dlang.org/show_bug.cgi?id=10739
+         * upstream issue 1170
+         * upstream issue 10739
          *
          * If a symbol is not found, it might be declared in
          * a mixin-ed string or a mixin-ed template, so before
@@ -5772,7 +5772,7 @@ void resolve(Type mt, Loc loc, Scope* sc, out Expression pe, out Type pt, out Ds
 
         if (s)
         {
-            // https://issues.dlang.org/show_bug.cgi?id=16042
+            // upstream issue 16042
             // If `f` is really a function template, then replace `f`
             // with the function template declaration.
             if (auto f = s.isFuncDeclaration())
@@ -5843,7 +5843,7 @@ void resolve(Type mt, Loc loc, Scope* sc, out Expression pe, out Type pt, out Ds
         if (!mt.exp.isTypeidExp())
             /* Treat typeof(typeid(exp)) as needing
              * the full semantic analysis of the typeid.
-             * https://issues.dlang.org/show_bug.cgi?id=20958
+             * upstream issue 20958
              */
             sc2.intypeof = 1;
 
@@ -5860,7 +5860,7 @@ void resolve(Type mt, Loc loc, Scope* sc, out Expression pe, out Type pt, out Ds
         mt.exp = exp2;
 
         if ((mt.exp.op == EXP.type || mt.exp.op == EXP.scope_) &&
-            // https://issues.dlang.org/show_bug.cgi?id=23863
+            // upstream issue 23863
             // compile time sequences are valid types
             !mt.exp.type.isTypeTuple())
         {
@@ -5871,7 +5871,7 @@ void resolve(Type mt, Loc loc, Scope* sc, out Expression pe, out Type pt, out Ds
             /* Today, 'typeof(func)' returns void if func is a
              * function template (TemplateExp), or
              * template lambda (FuncExp).
-             * It's actually used in Phobos as an idiom, to branch code for
+             * It's actually used in Fate as an idiom, to branch code for
              * template functions.
              */
         }
@@ -5880,7 +5880,7 @@ void resolve(Type mt, Loc loc, Scope* sc, out Expression pe, out Type pt, out Ds
         {
             // f might be a unittest declaration which is incomplete when compiled
             // without -unittest. That causes a segfault in checkForwardRef, see
-            // https://issues.dlang.org/show_bug.cgi?id=20626
+            // upstream issue 20626
             if ((!f.isUnitTestDeclaration() || global.params.useUnitTests) && checkForwardRef(f, loc))
                 goto Lerr;
         }
@@ -6251,7 +6251,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
         }
         if (ident == Id.stringof)
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=3796
+            /* upstream issue 3796
              * this should demangle e.type.deco rather than
              * pretty-printing the type.
              */
@@ -6408,7 +6408,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
         if (ident == Id._init || ident == Id.offsetof || ident == Id.stringof || ident == Id.__xalignof)
         {
             // init should return a new VectorExp
-            // https://issues.dlang.org/show_bug.cgi?id=12776
+            // upstream issue 12776
             // offsetof does not work on a cast expression, so use e directly
             // stringof should not add a cast to the output
             return visitType(mt);
@@ -6462,7 +6462,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
             else if (mt.dim.toUInteger() < 1 && checkUnsafeDotExp(sc, e, ident, flag))
             {
                 // .ptr on static array is @safe unless size is 0
-                // https://issues.dlang.org/show_bug.cgi?id=20853
+                // upstream issue 20853
                 return ErrorExp.get();
             }
             e = e.castTo(sc, e.type.nextOf().pointerTo());
@@ -6621,7 +6621,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
 
         bool gagError = flag & 1;
 
-        __gshared int nest;      // https://issues.dlang.org/show_bug.cgi?id=17380
+        __gshared int nest;      // upstream issue 17380
 
         static Expression returnExp(Expression e)
         {
@@ -6639,7 +6639,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
         assert(mt.ty == Tstruct || mt.ty == Tclass);
         auto sym = mt.toDsymbol(sc).isAggregateDeclaration();
         assert(sym);
-        if (// https://issues.dlang.org/show_bug.cgi?id=22054
+        if (// upstream issue 22054
             // if a class or struct does not have a body
             // there is no point in searching for its members
             sym.members &&
@@ -6651,7 +6651,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
             ident != Id.offsetof &&
             ident != Id.bitoffsetof &&
             ident != Id.bitwidth &&
-            // https://issues.dlang.org/show_bug.cgi?id=15045
+            // upstream issue 15045
             // Don't forward special built-in member functions.
             ident != Id.ctor &&
             ident != Id.dtor &&
@@ -6743,7 +6743,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
         }
         assert(e.op != EXP.dot);
 
-        // https://issues.dlang.org/show_bug.cgi?id=14010
+        // upstream issue 14010
         if (!sc.inCfile && ident == Id._mangleof)
         {
             return mt.getProperty(sc, e.loc, ident, flag & 1);
@@ -6808,7 +6808,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
         {
             s.checkDeprecated(e.loc, sc);
 
-            // Fix for https://github.com/dlang/dmd/issues/20610
+            // Fix for upstream dmd issue 20610
             if (ad.originalType)
             {
                 if (auto tid = ad.originalType.isTypeIdentifier())
@@ -6852,7 +6852,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
             if (!v.type ||
                 !v.type.deco && v.inuse)
             {
-                if (v.inuse) // https://issues.dlang.org/show_bug.cgi?id=9494
+                if (v.inuse) // upstream issue 9494
                     eSink.error(e.loc, "circular reference to %s `%s`", v.kind(), v.toPrettyChars());
                 else
                     eSink.error(e.loc, "forward reference to %s `%s`", v.kind(), v.toPrettyChars());
@@ -6965,7 +6965,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
                  * has a `this` that matches the type
                  * of the lhs of the dot expression.
                  *
-                 * https://issues.dlang.org/show_bug.cgi?id=23617
+                 * upstream issue 23617
                  */
                 auto fd = hasThis(sc);
                 if (fd && fd.isThis() == mt.sym)
@@ -7003,7 +7003,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
         {
             printf("TypeEnum::dotExp(e = '%s', ident = '%s') '%s'\n", e.toChars(), ident.toChars(), mt.toChars());
         }
-        // https://issues.dlang.org/show_bug.cgi?id=14010
+        // upstream issue 14010
         if (ident == Id._mangleof)
         {
             return mt.getProperty(sc, e.loc, ident, flag & 1);
@@ -7056,7 +7056,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
         }
         assert(e.op != EXP.dot);
 
-        // https://issues.dlang.org/show_bug.cgi?id=12543
+        // upstream issue 12543
         if (ident == Id.__sizeof || ident == Id.__xalignof || ident == Id._mangleof)
         {
             return mt.Type.getProperty(sc, e.loc, ident, 0);
@@ -7221,7 +7221,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
                     return dve;
                 }
 
-                /* https://issues.dlang.org/show_bug.cgi?id=15839
+                /* upstream issue 15839
                  * Find closest parent class through nested functions.
                  */
                 for (auto p = mt.sym.toParentLocal(); p; p = p.toParentLocal())
@@ -7277,7 +7277,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
             if (!v.type ||
                 !v.type.deco && v.inuse)
             {
-                if (v.inuse) // https://issues.dlang.org/show_bug.cgi?id=9494
+                if (v.inuse) // upstream issue 9494
                     eSink.error(e.loc, "circular reference to %s `%s`", v.kind(), v.toPrettyChars());
                 else
                     eSink.error(e.loc, "forward reference to %s `%s`", v.kind(), v.toPrettyChars());
@@ -7472,7 +7472,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
 
             // If static function, get the most visible overload.
             // Later on the call is checked for correctness.
-            // https://issues.dlang.org/show_bug.cgi?id=12511
+            // upstream issue 12511
             Dsymbol d2 = d;
             if (auto fd = d.isFuncDeclaration())
             {
@@ -7704,7 +7704,7 @@ Expression defaultInit(Type mt, Loc loc, const bool isCfile = false)
         Declaration d = new SymbolDeclaration(mt.sym.loc, mt.sym);
         assert(d);
         d.type = mt;
-        d.storage_class |= STC.rvalue; // https://issues.dlang.org/show_bug.cgi?id=14398
+        d.storage_class |= STC.rvalue; // upstream issue 14398
         return new VarExp(mt.sym.loc, d);
     }
 
@@ -8136,7 +8136,7 @@ Covariant covariant(Type src, Type t, STC* pstc = null, bool cppCovariant = fals
         Lcov:
             notcovariant |= !fparam1.isCovariant(t1.isRef, fparam2);
 
-            /* https://issues.dlang.org/show_bug.cgi?id=23135
+            /* upstream issue 23135
              * extern(C++) mutable parameters are not covariant with const.
              */
             if (t1.linkage == LINK.cpp && cppCovariant)
@@ -8206,8 +8206,8 @@ Covariant covariant(Type src, Type t, STC* pstc = null, bool cppCovariant = fals
         {
             // NULL is covariant with any pointer type, but not with any
             // dynamic arrays, associative arrays or delegates.
-            // https://issues.dlang.org/show_bug.cgi?id=8589
-            // https://issues.dlang.org/show_bug.cgi?id=19618
+            // upstream issue 8589
+            // upstream issue 19618
             Type t2bn = t2n.toBasetype();
             if (t2bn.ty == Tnull || t2bn.ty == Tpointer || t2bn.ty == Tclass)
                 goto Lcovariant;
@@ -8246,7 +8246,7 @@ Lcovariant:
     else if (t1.isReturn && !t2.isReturn)
         goto Lnotcovariant;
 
-    /* https://issues.dlang.org/show_bug.cgi?id=23135
+    /* upstream issue 23135
      * extern(C++) mutable member functions are not covariant with const.
      */
     if (t1.linkage == LINK.cpp && cppCovariant && t1.isNaked != t2.isNaked)
@@ -8361,8 +8361,8 @@ STC parameterStorageClass(TypeFunction tf, Type tthis, Parameter p, VarDeclarati
         /*
          * Indirect calls may escape p through a nested context
          * See:
-         *   https://issues.dlang.org/show_bug.cgi?id=24212
-         *   https://issues.dlang.org/show_bug.cgi?id=24213
+         *   upstream issue 24212
+         *   upstream issue 24213
          */
         if (indirect)
             return stc;
@@ -8885,7 +8885,7 @@ Type aliasthisOf(Type type)
             return Type.terror;
 
         auto t = fd.type.nextOf();
-        if (!t) // https://issues.dlang.org/show_bug.cgi?id=14185
+        if (!t) // upstream issue 14185
             return Type.terror;
         t = t.substWildTo(type.mod == 0 ? MODFlags.mutable : type.mod);
         return t;

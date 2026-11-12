@@ -2,7 +2,7 @@
  * DISABLED: win32 win64
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=22923
+// upstream issue 22923
 
 static int xs;
 int printf(char *, ...);

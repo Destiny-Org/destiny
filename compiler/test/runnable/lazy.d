@@ -254,7 +254,7 @@ void test6682()
 }
 
 /*********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9109
+// upstream issue 9109
 
 void test9109()
 {
@@ -269,7 +269,7 @@ void test9109()
 }
 
 /*********************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15835
+// upstream issue 15835
 
 class C15835 {}
 

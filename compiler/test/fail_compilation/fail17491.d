@@ -10,7 +10,7 @@ fail_compilation/fail17491.d(34): Error: cannot modify expression `S17491(0).fie
 fail_compilation/fail17491.d(35): Error: cannot take address of expression `S17491(0).field` because it is not an lvalue
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=17491
+// upstream issue 17491
 struct S17491
 {
     int field;

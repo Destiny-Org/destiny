@@ -37,7 +37,7 @@ void test3()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7983
+// upstream issue 7983
 
 class A7983 {
         void f() {

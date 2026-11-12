@@ -1,7 +1,7 @@
 /* EXTRA_SOURCES: imports/test17541_2.d imports/test17541_3.d
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=17541
+// upstream issue 17541
 
 module one;
 

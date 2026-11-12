@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=21518
+upstream issue 21518
 TEST_OUTPUT:
 ---
 fail_compilation/test21518.d(19): Error: cannot implicitly convert expression `[dg]` of type `const(void delegate() pure nothrow @nogc @system)[]` to `void delegate() @safe[]`

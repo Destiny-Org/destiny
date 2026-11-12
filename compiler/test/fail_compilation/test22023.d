@@ -4,7 +4,7 @@ fail_compilation/test22023.d(102): Error: typesafe variadic function parameter `
 ---
 */
 
-// issues.dlang.org/show_bug.cgi?id=22023
+// upstream issue 22023
 
 #line 100
 

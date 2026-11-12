@@ -1,12 +1,12 @@
 /**
  * Encapsulates the vagaries of which of the three D compilers (gdc, ldc or dmd) is being built
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/mars.d, _targetcompiler.d)
- * Documentation:  https://dlang.org/phobos/dmd_targetcompiler.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/targetcompiler.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mars.d, _targetcompiler.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/targetcompiler.d
+ * 
  */
 
 module dmd.targetcompiler;
@@ -210,7 +210,7 @@ mixin template HostObjectNotFound()
         {
             eSink.errorSupplemental(loc, "ldc2 might not be correctly installed.");
             eSink.errorSupplemental(loc, "Please check your ldc2.conf configuration file.");
-            eSink.errorSupplemental(loc, "Installation instructions can be found at http://wiki.dlang.org/LDC.");
+            eSink.errorSupplemental(loc, "Installation instructions can be found at https://github.com/Destiny-Org/destiny");
         }
         else version (MARS)
         {

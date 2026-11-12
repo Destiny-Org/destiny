@@ -261,7 +261,7 @@ void test7049() @safe
 
 /********************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=16747
+// upstream issue 16747
 
 void test16747() @safe
 {
@@ -280,7 +280,7 @@ void test11()
 }
 
 /********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17432
+// upstream issue 17432
 
 int test17432(scope int delegate() dg)
 {
@@ -324,7 +324,7 @@ template test14(T)
 test14!(char[] function(return char[])) x14;
 
 /********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17935
+// upstream issue 17935
 
 struct ByChunk(IO)
 {
@@ -350,7 +350,7 @@ struct IO
 }
 
 /********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20569
+// upstream issue 20569
 
 void test20569() @safe
 {

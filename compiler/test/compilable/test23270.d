@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23270
+// upstream dmd issue 23270
 // NaN and infinity should print as valid D expressions
 static assert(float.nan.stringof == "float.nan");
 static assert(double.nan.stringof == "double.nan");

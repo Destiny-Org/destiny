@@ -48,7 +48,7 @@ void test1()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=2411
+// upstream issue 2411
 
 struct S2411
 {
@@ -73,7 +73,7 @@ void test2411()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=2442
+// upstream issue 2442
 
 template canForeach(T, E)
 {
@@ -115,7 +115,7 @@ void test2442()
     immutable S3 ms3;
     static assert(!__traits(compiles, { foreach (int x; ms3) {} }));    // ambiguous
 
-    // from https://github.com/dlang/dmd/pull/120
+    // from upstream dmd pull request 120
     static class C
     {
         int opApply(int delegate(ref              int v) dg)              { return 0; }
@@ -153,7 +153,7 @@ void test2442()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=2443
+// upstream issue 2443
 
 struct S2443
 {
@@ -180,7 +180,7 @@ void test2443()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3187
+// upstream issue 3187
 
 class Collection
 {
@@ -205,7 +205,7 @@ void test3187()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4090
+// upstream issue 4090
 
 void test4090a()
 {
@@ -249,7 +249,7 @@ void test4090b()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5605
+// upstream issue 5605
 
 struct MyRange
 {
@@ -287,7 +287,7 @@ void test5605()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7004
+// upstream issue 7004
 
 void func7004(A...)(A args)
 {
@@ -301,7 +301,7 @@ void test7004()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7406
+// upstream issue 7406
 
 template TypeTuple7406(T...)
 {
@@ -332,7 +332,7 @@ void test7406()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6659
+// upstream issue 6659
 
 void test6659()
 {
@@ -422,7 +422,7 @@ void test6659c()
 
 /***************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=10221
+// upstream issue 10221
 
 void test10221()
 {
@@ -451,7 +451,7 @@ void test10221()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7814
+// upstream issue 7814
 
 struct File7814
 {
@@ -480,7 +480,7 @@ void test7814()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10049
+// upstream issue 10049
 
 struct ByLine10049
 {
@@ -520,7 +520,7 @@ void test11955()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6652
+// upstream issue 6652
 
 void test6652()
 {
@@ -621,7 +621,7 @@ void test6652()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8595
+// upstream issue 8595
 
 struct OpApply8595
 {
@@ -641,7 +641,7 @@ string test8595()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9068
+// upstream issue 9068
 
 struct Foo9068
 {
@@ -728,7 +728,7 @@ loop_with_dtors:
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11885
+// upstream issue 11885
 
 struct Foo11885
 {
@@ -815,7 +815,7 @@ loop_with_dtors:
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10475
+// upstream issue 10475
 
 void test10475a()
 {
@@ -893,7 +893,7 @@ void test10475b()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11291
+// upstream issue 11291
 
 void test11291()
 {
@@ -922,7 +922,7 @@ void test11291()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12103
+// upstream issue 12103
 
 alias TypeTuple12103(TL...) = TL;
 
@@ -950,7 +950,7 @@ void test12103()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12739
+// upstream issue 12739
 
 struct S12739
 {
@@ -968,7 +968,7 @@ void test12739() nothrow
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12932
+// upstream issue 12932
 
 void test12932() @nogc
 {
@@ -981,7 +981,7 @@ void test12932() @nogc
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13756
+// upstream issue 13756
 
 void test13756()
 {
@@ -1049,7 +1049,7 @@ void test13756()
         static assert(is(typeof(k) == const int));
     }
 
-    // https://github.com/dlang/dmd/issues/21456
+    // upstream dmd issue 21456
     foreach (long k, long v; aa)
     {
         assert(k == 1 && v == 20);
@@ -1066,7 +1066,7 @@ void test13756()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14653
+// upstream issue 14653
 
 static string result14653;
 
@@ -1118,7 +1118,7 @@ void test14653()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15777
+// upstream issue 15777
 
 template funA15777()
 {
@@ -1158,7 +1158,7 @@ void test15777()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=17041
+// upstream issue 17041
 
 auto ref int[2] foo17041(A...)(auto ref A args)
 {
@@ -1209,7 +1209,7 @@ void testLDC326()
 }
 
 /***************************************/
-// https://github.com/dlang/dmd/issues/22629
+// upstream dmd issue 22629
 
 struct Collection2
 {

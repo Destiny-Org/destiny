@@ -1,11 +1,11 @@
 /**
  * Provides SARIF (Static Analysis Results Interchange Format) reporting functionality.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/sarif.d, sarif.d)
- * Coverage:    $(LINK2 https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/sarif.d, Code Coverage)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/sarif.d, sarif.d)
+ * 
  *
  * Description:
  * - This module generates SARIF reports for DMD errors, warnings, and messages.
@@ -152,7 +152,7 @@ class ErrorSinkSarif : ErrorSinkCompiler
         writeEscapeJSONString(ob, cleanedVersion);
         ob.writestring(
             "\",\n" ~
-            "\t\t\t\t\"informationUri\": \"https://dlang.org/dmd.html\"\n" ~
+            "\t\t\t\t\"informationUri\": \"https://github.com/Destiny-Org/destiny/blob/main/README.md\"\n" ~
             "\t\t\t}\n" ~
             "\t\t},\n" ~
             "\t\t\"invocations\": [{\n" ~

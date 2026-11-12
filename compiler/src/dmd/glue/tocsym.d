@@ -1,12 +1,12 @@
 /**
  * Convert a D symbol to a symbol the linker understands (with mangled name).
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/glue/tocsym.d, _tocsym.d)
- * Documentation:  https://dlang.org/phobos/dmd_tglue_ocsym.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/glue/tocsym.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/tocsym.d, _tocsym.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.glue.tocsym;
@@ -449,7 +449,7 @@ Symbol* toSymbol(Dsymbol s)
             /* MS-LINK cannot handle multiple COMDATs with the same name.
              * This can happen with two .c files that define the same function.
              * They get compiled into one .obj file with the `oneobj` setting.
-             * https://issues.dlang.org/show_bug.cgi?id=24129
+             * upstream issue 24129
              */
             if (driverParams.oneobj)
             {

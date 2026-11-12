@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21839
+// upstream dmd issue 21839
 // ICE with void[N].init passed to template function
 
 void tf(U)(U) {}

@@ -1,14 +1,14 @@
 /**
  * Defines a package and module.
  *
- * Specification: $(LINK2 https://dlang.org/spec/module.html, Modules)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd, Modules)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/dmodule.d, _dmodule.d)
- * Documentation:  https://dlang.org/phobos/dmd_dmodule.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/dmodule.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dmodule.d, _dmodule.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dmodule.d
+ * 
  */
 
 module dmd.dmodule;
@@ -718,7 +718,7 @@ extern (C++) final class Module : Package
         /* If it has the extension ".dd", it is also a documentation
          * source file. Documentation source files may begin with "Ddoc"
          * but do not have to if they have the .dd extension.
-         * https://issues.dlang.org/show_bug.cgi?id=15465
+         * upstream issue 15465
          */
         if (FileName.equalsExt(arg, dd_ext))
         {
@@ -798,7 +798,7 @@ extern (C++) final class Module : Package
         if (md)
         {
             // Mark the package path as accessible from the current module
-            // https://issues.dlang.org/show_bug.cgi?id=21661
+            // upstream issue 21661
             // Code taken from Import.addPackageAccess()
             if (md.packages.length > 0)
             {
@@ -891,7 +891,7 @@ extern (C++) final class Module : Package
                     if (mprev.md is null)
                         eSink.errorSupplemental(loc, "`%s` has no module declaration, so its module name was inferred as `%s` from the filename", srcname, mprev.toChars());
                 }
-                // https://issues.dlang.org/show_bug.cgi?id=14446
+                // upstream issue 14446
                 // Return previously parsed module to avoid AST duplication ICE.
                 return mprev;
             }

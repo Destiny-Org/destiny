@@ -12,7 +12,7 @@ $(HEADERNAV_TOC)
     as a C compiler to compile and link 100% C programs.
     )
 
-    $(NOTE ImportC and $(LINK2 https://dlang.org/spec/betterc.html, BetterC) are very different.
+    $(NOTE ImportC and $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/betterc.dd, BetterC) are very different.
     ImportC is an actual C compiler. BetterC is a subset of D that relies only on the
     existence of the C Standard library. BetterC code can be linked with ImportC code, too.)
 
@@ -180,7 +180,7 @@ $(H2 $(LNAME2 preprocessor, Preprocessor))
 
     $(H4 $(LNAME2 importc-h, $(TT importc.h)))
 
-    $(P The druntime file $(LINK2 https://github.com/dlang/dmd/blob/master/druntime/src/importc.h, $(TT src/importc.h))
+    $(P The druntime file $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/druntime/src/importc.h, $(TT src/importc.h))
     will automatically be $(TT #include)d first. $(TT importc.h) provides adjustments to the source code to
     account for various C compiler extensions not supported by ImportC.)
 
@@ -337,7 +337,7 @@ $(CCODE
 )
 
     $(P $(TT __IMPORTC__) is defined in
-    $(LINK2 https://github.com/dlang/dmd/blob/master/druntime/src/importc.h, $(TT src/importc.h))
+    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/druntime/src/importc.h, $(TT src/importc.h))
     which is automatically
     included when the preprocessor is run. $(TT importc.h) contains many macro
     definitions that are used to adapt various C source code vagaries to ImportC.)
@@ -466,19 +466,19 @@ float bar(float x, float y)
 $(H2 $(LNAME2 _builtins, $(TT src/__importc_builtins.di)))
 
     $(P The first thing the compiler does when preprocessing is complete is to import
-    $(LINK2 https://github.com/dlang/dmd/blob/master/druntime/src/__importc_builtins.di, $(TT src/__importc_builtins.di)).
+    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/druntime/src/__importc_builtins.di, $(TT src/__importc_builtins.di)).
     It provides support for various builtins provided by other C compilers.
     $(TT __importc_builtins.di) is a D file.)
 
 $(H2 $(LNAME2 _builtins_msvc, $(TT src/__builtins_msvc.d)))
 
     $(P Support for MSVC's compiler intrinsics is provided via the
-    $(LINK2 https://github.com/dlang/dmd/blob/master/druntime/src/__builtins_msvc.d, $(TT __builtins_msvc)) module,
+    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/druntime/src/__builtins_msvc.d, $(TT __builtins_msvc)) module,
     which is implemented in D.)
 
     $(P Unlike $(TT __importc_builtins.di), $(TT __builtins_msvc) is not imported by default,
     instead the $(TT __builtins_msvc) module is imported by the
-    $(LINK2 https://github.com/dlang/dmd/blob/master/druntime/src/include/importc_msvc_builtins.h, $(TT importc_msvc_builtins.h) header).)
+    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/druntime/src/include/importc_msvc_builtins.h, $(TT importc_msvc_builtins.h) header).)
 
 $(H2 $(LNAME2 implementation, Implementation))
 
@@ -650,11 +650,11 @@ $(H2 $(LNAME2 extensions, Extensions))
     $(P The `asm` keyword may be used to embed assembler instructions, its
     syntax is implementation defined. The Digital Mars D compiler only supports
     the dialect of inline assembly as described in the documentation of the
-    $(LINK2 https://dlang.org/spec/iasm.html, D x86 Inline Assembler).)
+    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd, D x86 Inline Assembler).)
 
     $(P `asm(mangleName)` in a function or variable declaration may be used to specify the
     mangle name for a symbol. Its use is analogous to
-    $(LINK2 https://dlang.org/spec/pragma.html#mangle, pragma mangle).)
+    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/pragma.dd, pragma mangle).)
 
 $(CCODE
 char **myenviron asm("environ") = 0;
@@ -1142,9 +1142,9 @@ $(H2 $(LNAME2 other-solutions, Other Solutions))
 
     $(H3 $(LNAME2 dpp, dpp by Atila Neves))
 
-    $(P $(LINK2 https://code.dlang.org/packages/dpp/0.2.1, dpp code))
+    $(P $(LINK2 https://github.com/Destiny-Org/destiny, dpp code))
 
-    $(P $(LINK2 https://dlang.org/blog/2019/04/08/project-highlight-dpp/, dpp Article))
+    $(P $(LINK2 https://github.com/Destiny-Org/destiny, dpp Article))
 
     $(P From the Article:)
 
@@ -1158,9 +1158,9 @@ $(H2 $(LNAME2 other-solutions, Other Solutions))
 
     $(H3 $(LNAME2 dstep, DStep by Jacob Carlborg))
 
-    $(P $(LINK2 https://code.dlang.org/packages/dstep, DStep code))
+    $(P $(LINK2 https://github.com/Destiny-Org/destiny, DStep code))
 
-    $(P $(LINK2 https://dlang.org/blog/2019/04/22/dstep-1-0-0/, DStep Article))
+    $(P $(LINK2 https://github.com/Destiny-Org/destiny, DStep Article))
 
     $(P From the Article:)
 
@@ -1172,7 +1172,7 @@ $(H2 $(LNAME2 other-solutions, Other Solutions))
 
     $(H3 $(LNAME2 htod, htod by Walter Bright))
 
-    $(P $(LINK2 https://dlang.org/htod.html, htod) converts a C $(TT .h) file
+    $(P $(LINK2 https://github.com/Destiny-Org/destiny, htod) converts a C $(TT .h) file
     to a D source file, suitable for importing into D code.
     $(B htod) is built from the front end of the Digital Mars C and C++ compiler.
     It works just like a C or C++ compiler except that its output is source

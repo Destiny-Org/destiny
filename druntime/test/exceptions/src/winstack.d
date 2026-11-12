@@ -50,7 +50,7 @@ void main()
         }
     }
 
-    // see https://issues.dlang.org/show_bug.cgi?id=23859
+    // see upstream issue 23859
     try
     {
         recurseThrow(200);

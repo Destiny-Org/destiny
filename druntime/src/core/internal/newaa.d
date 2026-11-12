@@ -670,7 +670,7 @@ auto _d_aaDel(T : V[K], K, V, K2)(T a, auto ref K2 key)
 
         ++aa.deleted;
         // `shrink` reallocates, and allocating from a finalizer leads to
-        // InvalidMemoryError: https://issues.dlang.org/show_bug.cgi?id=21442
+        // InvalidMemoryError: upstream issue 21442
         if (aa.length * SHRINK_DEN < aa.dim * SHRINK_NUM && !__ctfe && !gc_inFinalizer())
             aa.shrink();
 

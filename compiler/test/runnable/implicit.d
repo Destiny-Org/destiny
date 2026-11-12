@@ -163,7 +163,7 @@ void testDIP29_3()
     immutable z1 = pureMaker3c()[];
     immutable z2 = pureMaker3c()[0..2];
 
-    // https://issues.dlang.org/show_bug.cgi?id=12467
+    // upstream issue 12467
     // conversion from lvalue of mutable static array to immutable slice
     char[3] arr = "foo";
     static assert(!__traits(compiles, { string str = arr[]; }));
@@ -196,7 +196,7 @@ void testDIP29_4()
 }
 
 /***********************************/
-// https://issues.dlang.org/show_bug.cgi?id=14155
+// upstream issue 14155
 
 immutable int g14155;
 
@@ -246,7 +246,7 @@ void test14155_for_testDIP29_4()
 }
 
 /***********************************/
-// https://issues.dlang.org/show_bug.cgi?id=14141
+// upstream issue 14141
 
 struct S14141
 {
@@ -410,7 +410,7 @@ void testDIP29_6()
     }));
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=14155
+// upstream issue 14155
 
 void test14155_for_testDIP29_6()
 {
@@ -431,7 +431,7 @@ void test14155_for_testDIP29_6()
 }
 
 /***********************************/
-// https://issues.dlang.org/show_bug.cgi?id=13640
+// upstream issue 13640
 
 struct S13640
 {
@@ -451,7 +451,7 @@ struct S13640
 }
 
 /***********************************/
-// https://issues.dlang.org/show_bug.cgi?id=15778
+// upstream issue 15778
 
 void test15778()
 {

@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20473
+// upstream dmd issue 20473
 // REQUIRED_ARGS: -preview=bitfields
 
 struct S1

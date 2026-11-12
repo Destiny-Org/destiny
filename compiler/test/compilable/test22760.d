@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22760
+// upstream issue 22760
 
 extern(C++) void f(T)(T)
 {

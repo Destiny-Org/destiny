@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=11717
+// upstream issue 11717
 
 enum int[4] A = [1,2,3,4];
 enum int[4] B = [1,2,3,4];
@@ -30,7 +30,7 @@ static if (__traits(compiles, int4))
     static assert(F.array == [1, 4, 9, 16]);
 }
 
-// https://github.com/dlang/dmd/issues/20114
+// upstream dmd issue 20114
 
 int* find(int[] arr, int needle)
 {

@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -O -inline
 
-//https://issues.dlang.org/show_bug.cgi?id=20143
+//upstream issue 20143
 real fun(int x) { return 0.0; }
 
 double bug()

@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -debug -O -release
-// https://issues.dlang.org/show_bug.cgi?id=22277
+// upstream issue 22277
 
 bool secret = false;
 

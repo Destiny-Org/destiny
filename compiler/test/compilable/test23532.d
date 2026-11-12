@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23532
+// upstream issue 23532
 // DISABLED: win32 win64
 struct _Complex(T)
 {

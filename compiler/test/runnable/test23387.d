@@ -2,7 +2,7 @@
  * EXTRA_SOURCES: imports/maker.i imports/freer.i
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=23387
+// upstream issue 23387
 
 /+ maker.i
 typedef struct Foo *FooRef;

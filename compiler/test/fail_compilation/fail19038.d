@@ -4,8 +4,8 @@ fail_compilation/fail19038.d(21): Error: cannot implicitly convert expression `a
 fail_compilation/fail19038.d(23): Error: cannot modify `const` expression `c[0]`
 ---
  * Credit: yshui
- * https://github.com/dlang/dmd/pull/8413#issuecomment-401104961
- * https://issues.dlang.org/show_bug.cgi?id=19038
+ * upstream dmd pull request 8413
+ * upstream issue 19038
  */
 
 

@@ -673,7 +673,7 @@ void main()
 ---------
 )
 
-$(P More information can be found at $(LINK2 https://wiki.dlang.org/Dense_multidimensional_arrays, Dlang Wiki - Dense Multidimensional Arrays).)
+$(P More information can be found at the upstream D wiki page "Dense multidimensional arrays".)
 
 $(H2 $(LNAME2 array-properties, Array Properties))
 

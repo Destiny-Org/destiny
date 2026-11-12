@@ -2,7 +2,7 @@
  * PERMUTE_ARGS:
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=18534
+// upstream issue 18534
 
 auto blah(char ch) { return ch; }
 

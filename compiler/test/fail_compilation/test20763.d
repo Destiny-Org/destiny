@@ -18,7 +18,7 @@ fail_compilation/test20763.d(30):        perhaps use `ulong.init`
 ---
 */
 
-// https://github.com/dlang/dmd/issues/20763
+// upstream dmd issue 20763
 void test()
 {
     alias I = ulong;

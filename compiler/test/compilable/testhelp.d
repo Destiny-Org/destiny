@@ -4,9 +4,9 @@ PERMUTE_ARGS:
 TEST_OUTPUT:
 ----
 $r:Destiny(32|64) Compiler .*$
-Copyright (C) 1999-$n$ by The D Language Foundation, All Rights Reserved written by Walter Bright
+Copyright (C) 1999-$n$ by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors written by Walter Bright
 
-Documentation: https://dlang.org/
+Documentation: https://github.com/Destiny-Org/destiny
 Config file: $p:compilable/extra-files/empty.conf$
 Usage:
   dmd [<option>...] <file>...

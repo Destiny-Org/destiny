@@ -36,7 +36,7 @@ void test7()
     pkgDIP37.datetime.def();
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=17629
+// upstream issue 17629
 void test17629()
 {
     import pkgDIP37.test17629;

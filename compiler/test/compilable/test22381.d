@@ -9,7 +9,7 @@ _D9test223814maskFPtZv:
 ---
 */
 
-// https://github.com/dlang/dmd/issues/22381
+// upstream dmd issue 22381
 
 void mask(ushort* p)
 {

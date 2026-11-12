@@ -1,12 +1,12 @@
 /**
  * Implement $(LINK2 https://digitalmars.com/articles/b62.html, Value Range Propagation).
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/intrange.d, _intrange.d)
- * Documentation:  https://dlang.org/phobos/dmd_intrange.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/intrange.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/intrange.d, _intrange.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/intrange.d
+ * 
  */
 
 module dmd.intrange;
@@ -618,7 +618,7 @@ struct IntRange
             return widest();
 
         // Don't treat the whole range as divide by 0 if only one end of a range is 0.
-        // https://issues.dlang.org/show_bug.cgi?id=15289
+        // upstream issue 15289
         if (rhs.imax.value == 0)
         {
             rhs.imax.value--;

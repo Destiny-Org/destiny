@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21478
+// upstream dmd issue 21478
 
 // Test struct that implements copy constructor follows rvalue expression spec:
 //      If both ref and non-ref parameter overloads are present,

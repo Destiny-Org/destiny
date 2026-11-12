@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -preview=dip1000
 
-// https://github.com/dlang/dmd/pull/9374
+// upstream dmd pull request 9374
 
 struct OnlyResult
 {

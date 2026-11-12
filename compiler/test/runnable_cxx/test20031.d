@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20031
+// upstream dmd issue 20031
 // A C++ compiler need not emit the complete-object constructor of an abstract class; a D class
 // deriving from it constructs its base subobject through the base-object constructor.
 // EXTRA_CPP_SOURCES: test20031.cpp

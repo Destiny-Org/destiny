@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=21219
+upstream issue 21219
 
 REQUIRED_ARGS: -o- -HC
 TEST_OUTPUT:

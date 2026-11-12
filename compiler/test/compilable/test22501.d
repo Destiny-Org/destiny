@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22501
+// upstream dmd issue 22501
 
 struct A {
     ubyte[16] bytes;

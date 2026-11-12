@@ -1,12 +1,12 @@
 /**
  * Perform constant folding.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/optimize.d, _optimize.d)
- * Documentation:  https://dlang.org/phobos/dmd_optimize.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/optimize.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/optimize.d, _optimize.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/optimize.d
+ * 
  */
 
 module dmd.optimize;
@@ -118,7 +118,7 @@ Expression expandVar(int result, VarDeclaration v)
                     }
                     else if (ei.op == EXP.string_)
                     {
-                        // https://issues.dlang.org/show_bug.cgi?id=14459
+                        // upstream issue 14459
                         // Do not constfold the string literal
                         // if it's typed as a C string, because the value expansion
                         // will drop the pointer identity.
@@ -196,7 +196,7 @@ private Expression fromConstInitializer(int result, Expression e1)
 
     // If it is a comma expression involving a declaration, we mustn't
     // perform a copy -- we'd get two declarations of the same variable.
-    // See https://issues.dlang.org/show_bug.cgi?id=4465.
+    // See upstream issue 4465.
     if (e.op == EXP.comma && e.isCommaExp().e1.isDeclarationExp())
         e = e1;
     else if (e.type != e1.type && e1.type && e1.type.ty != Tident)
@@ -751,7 +751,7 @@ Expression optimize(Expression e, int result, bool keepLvalue = false)
             VarDeclaration vf = e.var.isVarDeclaration();
             if (vf && !vf.overlapped && !vf.isBitFieldDeclaration())
             {
-                /* https://issues.dlang.org/show_bug.cgi?id=13021
+                /* upstream issue 13021
                  * Prevent optimization if vf has overlapped fields.
                  */
                 ex = sle.getField(e.type, vf.offset);
@@ -829,7 +829,7 @@ Expression optimize(Expression e, int result, bool keepLvalue = false)
 
             if (e1sz == esz)
             {
-                // https://issues.dlang.org/show_bug.cgi?id=12937
+                // upstream issue 12937
                 // If target type is void array, trying to paint
                 // e.e1 with that type will cause infinite recursive optimization.
                 if (e.type.nextOf().ty == Tvoid)
@@ -878,7 +878,7 @@ Expression optimize(Expression e, int result, bool keepLvalue = false)
                 !cdfrom.isInterfaceDeclaration())
                 return returnE_e1();    // can always convert a class to Object
             // Need to determine correct offset before optimizing away the cast.
-            // https://issues.dlang.org/show_bug.cgi?id=16980
+            // upstream issue 16980
             if (cdfrom.size(e.loc) == SIZE_INVALID)
                 return errorReturn();
             assert(cdfrom.sizeok == Sizeok.done);
@@ -1241,7 +1241,7 @@ Expression optimize(Expression e, int result, bool keepLvalue = false)
             if (CTFEExp.isCantExp(ret))
                 ret = e;
         }
-        // https://issues.dlang.org/show_bug.cgi?id=14649
+        // upstream issue 14649
         // Leave the slice form so it might be
         // a part of array operation.
         // Assume that the backend codegen will handle the form `e[]`
@@ -1346,9 +1346,9 @@ Expression optimize(Expression e, int result, bool keepLvalue = false)
         if (e.type == Type.tstring)
             if (auto ce1 = e.e1.isCatExp())
             {
-                // https://issues.dlang.org/show_bug.cgi?id=12798
+                // upstream issue 12798
                 // optimize ((expr ~ str1) ~ str2)
-                // https://issues.dlang.org/show_bug.cgi?id=24078
+                // upstream issue 24078
                 // This optimization is only valid if `expr` is a string.
                 // Otherwise it leads to:
                 // `["c"] ~ "a" ~ "b"` becoming `["c"] ~ "ab"`

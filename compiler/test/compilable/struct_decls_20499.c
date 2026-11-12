@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20499
+// upstream dmd issue 20499
 
 //
 // attribute((aligned())) is so we can tell if attributes are being applied.

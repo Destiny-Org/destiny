@@ -22,7 +22,7 @@ enum text = import("makedeps-import.txt");
 static assert(text == "Imported text\x0a");
 
 /*******************************/
-// https://issues.dlang.org/show_bug.cgi?id=21844
+// upstream issue 21844
 enum bool failingModuleImport = __traits(compiles, ((){ import does.not.exist; })());
 enum bool failingFileImport = __traits(compiles, ((){ return import("does.not.exists.txt");})());
 enum bool workingFileImport = __traits(compiles, ((){ return import("makedeps-import-codemixin.txt");})());

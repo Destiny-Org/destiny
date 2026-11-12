@@ -12,7 +12,7 @@ fail_compilation/test18282.d(54): Error: escaping a reference to local variable 
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=18282
+// upstream issue 18282
 
 string* f() @safe
 {
@@ -67,7 +67,7 @@ fail_compilation/test18282.d(1016): Error: escaping a reference to parameter `th
 
 #line 1000
 
-// https://issues.dlang.org/show_bug.cgi?id=18282
+// upstream issue 18282
 
 void test18282() @safe
 {

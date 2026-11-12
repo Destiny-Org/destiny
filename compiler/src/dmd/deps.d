@@ -22,11 +22,11 @@
  *   source/importb.d
  * ---
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/deps.d, makedeps.d)
- * Documentation:  https://dlang.org/phobos/dmd_deps.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/deps.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/deps.d, makedeps.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/deps.d
+ * 
  */
 module dmd.deps;
 
@@ -142,10 +142,10 @@ void addImportExpDep(ref Output moduleDeps, ref Output makeDeps, const(char)[] f
 void addImportDep(ref Output moduleDeps, Import imp, Module imod)
 {
     // object self-imports itself, so skip that
-    // https://issues.dlang.org/show_bug.cgi?id=7547
+    // upstream issue 7547
     // don't list pseudo modules __entrypoint.d, __main.d
-    // https://issues.dlang.org/show_bug.cgi?id=11117
-    // https://issues.dlang.org/show_bug.cgi?id=11164
+    // upstream issue 11117
+    // upstream issue 11164
     if (moduleDeps.buffer is null || (imp.id == Id.object && imod.ident == Id.object) ||
         strcmp(imod.ident.toChars(), "__main") == 0)
         return;

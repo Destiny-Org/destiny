@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-// Copyright (c) 1999-2016 by The D Language Foundation
+// Copyright (c) 1999-2016 by The D Language Foundation; Copyright (C) 2026 Destiny contributors
 // All Rights Reserved
 // written by Walter Bright
 // https://www.digitalmars.com
@@ -4843,7 +4843,7 @@ L1:     pop     EAX;
 }
 
 /****************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=16400
+// upstream issue 16400
 
 extern(C) void f16400(int, ...)
 {
@@ -4857,7 +4857,7 @@ void test16400()
 }
 
 /****************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=16963
+// upstream issue 16963
 
 void bar16963() { assert(0); }
 
@@ -4874,7 +4874,7 @@ void test16963()
 
 /****************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=5922
+// upstream issue 5922
 
 void test5922()
 {
@@ -4890,7 +4890,7 @@ void test5922()
 
 /****************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=21914
+// upstream issue 21914
 
 extern (C++) int insidx(int a, int b)
 {

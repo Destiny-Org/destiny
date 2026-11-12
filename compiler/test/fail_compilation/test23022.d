@@ -6,7 +6,7 @@ fail_compilation/test23022.d(14): Error: returning `p` escapes a reference to va
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23022
+// upstream issue 23022
 // Typesafe variadic parameter should not infer return
 
 auto ir(string[] p...)

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22619
+// upstream issue 22619
 
 struct W1 {
 	int x;

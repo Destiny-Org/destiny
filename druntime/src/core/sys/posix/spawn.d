@@ -1,7 +1,7 @@
 /**
  * D header file for spawn.h.
  *
- * Copyright: Copyright (C) 2018 by The D Language Foundation, All Rights Reserved
+ * Copyright: Copyright (C) 2018 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Petar Kirov
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Source:    $(DRUNTIMESRC core/sys/posix/_spawn.d)

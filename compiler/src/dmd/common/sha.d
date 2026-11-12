@@ -5,14 +5,14 @@
  * This is a copy of std.digest.sha, but stripped of bells and whistles
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
- * Copyright:    Copyright (C) 2012-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:    Copyright (C) 2012-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/common/md5.d)
- * Documentation:  https://dlang.org/phobos/dmd_common_md5.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/common/md5.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/md5.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.common.sha;
@@ -71,7 +71,7 @@ struct SHA(uint hashBlockSize, uint digestSize)
                 {
                     version (D_InlineAsm_X86_64)
                         // constants as extra argument for PIC
-                        // see https://issues.dlang.org/show_bug.cgi?id=9378
+                        // see upstream issue 9378
                         transformSSSE3(state, block, &sse3_constants);
                     else
                         transformSSSE3(state, block);

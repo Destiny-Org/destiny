@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=11720
+// upstream issue 11720
 
 void test11720()
 {
@@ -26,7 +26,7 @@ void bar()
 
 /*********************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=18266
+// upstream issue 18266
 
 void test18266()
 {

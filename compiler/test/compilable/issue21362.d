@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21362
+// upstream dmd issue 21362
 // CTFE delegate-to-bool conversion causes ICE
 
 bool f(void delegate() dg) { if (dg) return true; else return false; }

@@ -5,7 +5,7 @@ this
 ~this 1
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=21586
+// upstream issue 21586
 
 import core.stdc.stdio : printf;
 

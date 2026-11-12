@@ -7,7 +7,7 @@ fail_compilation/test22102.c(255): Error: expected identifier for declarator
 ---
 */
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22102
+// upstream issue 22102
 
 #line 250
 typedef int int22102;

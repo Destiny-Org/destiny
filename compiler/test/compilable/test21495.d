@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21495
+// upstream dmd issue 21495
 extern (C++)
 {
     enum string[string] meta = [

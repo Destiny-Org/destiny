@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23768
+// upstream issue 23768
 
 typedef struct {
   union {
@@ -38,7 +38,7 @@ void test23768()
 }
 
 /**************************/
-// https://issues.dlang.org/show_bug.cgi?id=24026
+// upstream issue 24026
 
 struct A
 {

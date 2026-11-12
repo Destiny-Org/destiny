@@ -1,7 +1,7 @@
 /* REQUIRED_ARGS: runnable/extra-files/test24129b.c
  */
 
-// https:issues.dlang.org/show_bug_cgi?id=24129
+// https:upstream issue 24129
 
 inline int dup()
 {

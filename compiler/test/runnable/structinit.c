@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=24031
+// upstream issue 24031
 
 #include <assert.h>
 
@@ -45,7 +45,7 @@ void test2()
 
 /**************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=24266
+// upstream issue 24266
 
 struct S3
 {
@@ -64,7 +64,7 @@ void test3()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=24274
+// upstream issue 24274
 
 struct S0
 {
@@ -125,7 +125,7 @@ void test6()
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=24495
+// upstream issue 24495
 struct Subitem {
     int x;
     int y;
@@ -168,7 +168,7 @@ void test7() {
 
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=24277
+// upstream issue 24277
 struct S8
 {
     int s;
@@ -202,7 +202,7 @@ void test8()
 }
 
 /**************************************/
-// https://github.com/dlang/dmd/issues/21210
+// upstream dmd issue 21210
 
 struct Sa {int x, y;};
 struct Sb {

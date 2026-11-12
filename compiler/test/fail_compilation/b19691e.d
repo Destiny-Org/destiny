@@ -6,7 +6,7 @@ fail_compilation/b19691e.d(16): Error: constructor `b19691e.S2.this(int a, S1 s 
 fail_compilation/b19691e.d(16): Error: forward reference to template `this`
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=19691
+// upstream issue 19691
 module b19691e;
 
 struct S1

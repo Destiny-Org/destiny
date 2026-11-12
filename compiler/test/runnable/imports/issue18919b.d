@@ -35,7 +35,7 @@ void func1(string file = __FILE__, size_t line = __LINE__,
         cast(int) mod.length, mod.ptr);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21211
+// upstream issue 21211
 void func2(const(char)* file = __FILE__.ptr, size_t line = __LINE__,
     const(char)* func = __FUNCTION__.ptr,
     const(char)* pfunc = __PRETTY_FUNCTION__.ptr,
@@ -46,7 +46,7 @@ void func2(const(char)* file = __FILE__.ptr, size_t line = __LINE__,
         file, cast(int) line, func, pfunc, mod);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=18919
+// upstream issue 18919
 struct Loc3
 {
     string file;
@@ -249,7 +249,7 @@ void func12(const(char)*[] args = [baseName(__FILE__.ptr),
     printf("\n");
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=24519
+// upstream issue 24519
 void func13(string file = __FILE__[])
 {
     printf("%s: %s\n", __FUNCTION__.ptr, file.ptr);

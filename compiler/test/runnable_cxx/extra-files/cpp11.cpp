@@ -14,7 +14,7 @@ void testnullnull(std::nullptr_t n1, std::nullptr_t n2)
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19658
+// upstream issue 19658
 
 enum class i8_19658 : std::int8_t;
 enum class u8_19658 : std::uint8_t;

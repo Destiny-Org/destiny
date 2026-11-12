@@ -56,7 +56,7 @@ int pr16199c()
     return 8;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=24639
+// upstream issue 24639
 #define NEGATIVE_I32 -1
 #define NEGATIVE_U32 -2U
 #define NEGATIVE_I64 -3LL
@@ -64,7 +64,7 @@ int pr16199c()
 #define NEGATIVE_F32 -5.0f
 #define NEGATIVE_F64 -6.0
 
-// https://github.com/dlang/dmd/pull/22347 - bare function-like macro calls
+// upstream dmd pull request 22347 - bare function-like macro calls
 #define DOUBLE(x) ((x) * 2)
 #define BARE_CALL DOUBLE(5)          // bare function-like macro call (no outer parens)
 #define PAREN_CALL (DOUBLE(5))       // parenthesized call (already works)

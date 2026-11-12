@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23789
+// upstream issue 23789
 
 struct __declspec(align(64)) M128A {
     char c;

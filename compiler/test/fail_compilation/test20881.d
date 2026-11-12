@@ -10,7 +10,7 @@ fail_compilation/test20881.d(29): Error: assigning address of variable `s` to `g
 */
 @safe:
 
-// https://issues.dlang.org/show_bug.cgi?id=20881
+// upstream issue 20881
 struct S
 {
     int* ptr;

@@ -9,7 +9,7 @@ fail_compilation/test21546.d(215): Error: cannot implicitly convert expression `
 fail_compilation/test21546.d(305): Error: cannot implicitly convert expression `[dgi]` of type `immutable(int) delegate() return ref[]` to `int delegate() return ref[]`
 ---
  */
-// https://issues.dlang.org/show_bug.cgi?id=21546
+// upstream issue 21546
 
 #line 100
 

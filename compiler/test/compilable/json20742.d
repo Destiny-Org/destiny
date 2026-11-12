@@ -45,7 +45,7 @@ TEST_OUTPUT:
 ]
 ----
 
-https://issues.dlang.org/show_bug.cgi?id=20742
+upstream issue 20742
 */
 
 version(Showme)

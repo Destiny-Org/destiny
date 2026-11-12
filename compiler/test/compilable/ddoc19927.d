@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/19927
+// upstream dmd issue 19927
 // DDoc dropped later overloads when a template contains
 // multiple plain functions sharing the template's name.
 

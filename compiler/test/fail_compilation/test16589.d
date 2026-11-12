@@ -15,7 +15,7 @@ fail_compilation/test16589.d(52): Error: returning `& s` escapes a reference to 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=16589
+// upstream issue 16589
 
 struct S
 {

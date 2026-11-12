@@ -297,7 +297,7 @@ int foo9() {
 static assert(foo9()==2);
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6077
+// upstream issue 6077
 
 void test6077() {
     static string scat(string s1, string s2)
@@ -367,7 +367,7 @@ int test4()
 static assert(test4() == 24666);
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8400
+// upstream issue 8400
 
 void test8400()
 {
@@ -377,7 +377,7 @@ void test8400()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8939
+// upstream issue 8939
 
 void foo8939(T)(ref T) { } // same for `auto ref`
 void bar8939(ref const int) { }
@@ -429,7 +429,7 @@ class C8939regression
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9058
+// upstream issue 9058
 
 template TypeTuple9058(TL...) { alias TypeTuple9058 = TL; }
 template EnumMembers9058(T)
@@ -447,7 +447,7 @@ void test9058()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12306
+// upstream issue 12306
 
 void test12306()
 {
@@ -468,7 +468,7 @@ void test12306()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13977
+// upstream issue 13977
 
 void test13977()
 {
@@ -498,7 +498,7 @@ void test13977()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13978
+// upstream issue 13978
 
 void test13978()
 {
@@ -544,7 +544,7 @@ void test3697or()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14459
+// upstream issue 14459
 
 void test14459()
 {
@@ -573,7 +573,7 @@ void test14459()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15607
+// upstream issue 15607
 
 static immutable char[2][4] code_base = [ "??", 12 ];
 static assert(code_base[0] == "??");

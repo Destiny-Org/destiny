@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22594
+// upstream dmd issue 22594
 // PERMUTE_ARGS:
 
 import core.memory : GC;

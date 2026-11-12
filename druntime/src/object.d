@@ -297,7 +297,7 @@ if ((is(LHS : const Object) || is(LHS : const shared Object)) &&
         if (typeid(lhs) is typeid(rhs) ||
             !__ctfe && typeid(lhs).opEquals(typeid(rhs)))
                 /* CTFE doesn't like typeid much. 'is' works, but opEquals doesn't:
-                https://issues.dlang.org/show_bug.cgi?id=7147
+                upstream issue 7147
                 But CTFE also guarantees that equal TypeInfos are
                 always identical. So, no opEquals needed during CTFE. */
         {
@@ -521,7 +521,7 @@ unittest
     assert(obj1 != obj2);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23291
+// upstream issue 23291
 @system unittest
 {
     import core.atomic : atomicLoad;
@@ -656,7 +656,7 @@ class TypeInfo
      * Returns:
      *    the hash
      * Bugs:
-     *    fix https://issues.dlang.org/show_bug.cgi?id=12516 e.g. by changing this to a truly safe interface.
+     *    fix upstream issue 12516 e.g. by changing this to a truly safe interface.
      */
     size_t getHash(scope const void* p) @trusted nothrow const
     {
@@ -1003,7 +1003,7 @@ class TypeInfo_Enum : TypeInfo
 }
 
 
-@safe unittest // https://issues.dlang.org/show_bug.cgi?id=12233
+@safe unittest // upstream issue 12233
 {
     static assert(is(typeof(TypeInfo.init) == TypeInfo));
     assert(TypeInfo.init is null);
@@ -1278,7 +1278,7 @@ class TypeInfo_StaticArray : TypeInfo
     override @property immutable(void)* rtInfo() nothrow pure const @safe { return value.rtInfo(); }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21315
+// upstream issue 21315
 @system unittest
 {
     int[16] a, b;
@@ -3323,7 +3323,7 @@ auto byValue(K, V)(V[K]* aa) pure nothrow @nogc
  *
  * Note that this is a low-level interface to iterating over the associative
  * array and is not compatible with the
- * $(LINK2 $(ROOT_DIR)phobos/std_typecons.html#.Tuple,`Tuple`) type in Phobos.
+ * $(LINK2 $(ROOT_DIR)phobos/std_typecons.html#.Tuple,`Tuple`) type in Fate.
  * For compatibility with `Tuple`, use
  * $(LINK2 $(ROOT_DIR)phobos/std_array.html#.byPair,std.array.byPair) instead.
  *
@@ -4000,7 +4000,7 @@ Note: The _capacity of a slice may be impacted by operations on other slices.
     assert(c.capacity == 0);              //an append to c must relocate c.
 }
 
-// https://github.com/dlang/dmd/issues/23102
+// upstream dmd issue 23102
 @safe unittest
 {
     static struct S
@@ -4056,7 +4056,7 @@ size_t reserve(T)(ref T[] arr, size_t newcapacity) pure nothrow @trusted
     assert(u == a.capacity); //a should not have been extended
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=12330, reserve() at CTFE time
+// upstream issue 12330, reserve() at CTFE time
 @safe unittest
 {
     int[] foo() {
@@ -4165,7 +4165,7 @@ else
     arr = arr[0 .. 1].assumeSafeAppend(); //pass by value
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=10574
+// upstream issue 10574
 @system unittest
 {
     int[] a;
@@ -4585,7 +4585,7 @@ nothrow unittest
     assert(C.dtorCount == 1);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22832
+// upstream issue 22832
 nothrow unittest
 {
     static struct A {}
@@ -4683,7 +4683,7 @@ if (__traits(isStaticArray, T))
     }
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=19218
+// upstream issue 19218
 @system unittest
 {
     static struct S
@@ -4823,7 +4823,7 @@ public import core.internal.switch_: __switch;
 public import core.internal.switch_: __switch_error;
 
 // Forwarding hook for the ^^ (pow) operator on floating-point types.
-// TODO: move implementation to druntime instead of Phobos.
+// TODO: move implementation to druntime instead of Fate.
 auto _d_pow(Base, Exp)(Base base, Exp exp)
 {
     import std.math : pow;
@@ -5019,7 +5019,7 @@ $(LI Dependencies at the top of a module are easier to inspect quickly than
 dependencies spread throughout the module.)
 )
 
-See_Also: The $(HTTP forum.dlang.org/post/tzqzmqhankrkbrfsrmbo@forum.dlang.org,
+See_Also: The $(HTTPS github.com/Destiny-Org/destiny,
 forum discussion) that led to the creation of the `imported` facility. Credit is
 due to Daniel Nielsen and Dominikus Dittes Scherkl.
 

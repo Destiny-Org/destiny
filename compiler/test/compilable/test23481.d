@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23481
+// upstream issue 23481
 
 struct flagenum(I = ubyte)
 {

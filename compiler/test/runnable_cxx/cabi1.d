@@ -209,7 +209,7 @@ void test15()
 
 /******************************************/
 
-// see https://issues.dlang.org/show_bug.cgi?id=17277
+// see upstream issue 17277
 struct S16 {
   char[5] a;
   struct {

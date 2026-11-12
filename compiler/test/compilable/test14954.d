@@ -1,5 +1,5 @@
 /*
-https://issues.dlang.org/show_bug.cgi?id=14954
+upstream issue 14954
 
 EXTRA_SOURCES: imports/test14954_implementation.d
 LINK:

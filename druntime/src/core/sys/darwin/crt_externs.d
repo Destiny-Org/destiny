@@ -1,7 +1,7 @@
 /**
  * D header file for $(LINK2 https://opensource.apple.com/source/Libc/Libc-1244.30.3/include/crt_externs.h.auto.html, libc/crt_externs.h).
  *
- * Copyright: Copyright (c) 2018 D Language Foundation
+ * Copyright: Copyright (c) 2018 D Language Foundation; Copyright (C) 2026 Destiny contributors
  * License:   $(HTTP www.boost.org/LICENSE_1_0.txt, Boost License 1.0).
  * Authors:   Jacob Carlborg
  * Source:    $(DRUNTIMESRC core/sys/darwin/_crt_externs.d)

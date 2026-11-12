@@ -7,7 +7,7 @@ fail_compilation/fail18923.d(13):        `fail18923.foo(double function(double) 
 ---
 */
 
-// https://github.com/dlang/dmd/issues/18923
+// upstream dmd issue 18923
 // Untyped lambda arguments that couldn't be matched should show their
 // source text instead of a generic, unhelpful `void`.
 void foo(double function(double) @safe,

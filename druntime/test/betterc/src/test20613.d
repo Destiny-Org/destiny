@@ -1,5 +1,5 @@
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20613
+// upstream issue 20613
 
 extern(C) int main() @nogc nothrow pure
 {

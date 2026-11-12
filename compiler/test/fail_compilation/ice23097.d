@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23097
+/* upstream issue 23097
 TEST_OUTPUT:
 ---
 fail_compilation/ice23097.d(13): Error: undefined identifier `ICE`

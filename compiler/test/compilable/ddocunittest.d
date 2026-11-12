@@ -297,7 +297,7 @@ else
 unittest { int x6b; }
 
 // ------------------------------------
-// https://issues.dlang.org/show_bug.cgi?id=9474
+// upstream issue 9474
 
 ///
 void foo9474() { }
@@ -344,7 +344,7 @@ template Template9474()
 unittest { alias Template9474!() T; }
 
 // ------------------------------------
-// https://issues.dlang.org/show_bug.cgi?id=9713
+// upstream issue 9713
 
 ///
 void fooNoDescription() {}
@@ -355,7 +355,7 @@ unittest { if (true) {fooNoDescription(); } /* comment */ }
 
 // ------------------------------------
 
-/// test for https://issues.dlang.org/show_bug.cgi?id=9757
+/// test for upstream issue 9757
 void foo9757() {}
 /// ditto
 void bar9757() {}
@@ -392,7 +392,7 @@ unittest
 }
 
 // ------------------------------------
-// https://issues.dlang.org/show_bug.cgi?id=9758
+// upstream issue 9758
 
 /// test
 void foo(){}
@@ -401,7 +401,7 @@ void foo(){}
 unittest {  }
 
 // ------------------------------------
-// https://issues.dlang.org/show_bug.cgi?id=10519
+// upstream issue 10519
 
 ///
 bool balancedParens10519(string, char, char) { return true; }
@@ -413,7 +413,7 @@ unittest
 }
 
 // ------------------------------------
-// https://issues.dlang.org/show_bug.cgi?id=12097
+// upstream issue 12097
 
 /// declaration
 struct S12097
@@ -441,7 +441,7 @@ unittest
 }
 
 // ------------------------------------
-// https://issues.dlang.org/show_bug.cgi?id=14594
+// upstream issue 14594
 
 /*******************
  * testA

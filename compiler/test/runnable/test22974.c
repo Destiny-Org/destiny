@@ -1,6 +1,6 @@
 // EXTRA_SOURCES: imports/test22974b.c
 
-/* https://issues.dlang.org/show_bug.cgi?id=22974
+/* upstream issue 22974
  */
 
 int main()

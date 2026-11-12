@@ -15,7 +15,7 @@ fail_compilation/test22339.c(102): Error: `=`, `;` or `,` expected to end declar
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=22339
+// upstream issue 22339
 
 #line 100
 

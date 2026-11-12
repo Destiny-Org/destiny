@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23877
+// upstream issue 23877
 
 unsigned short __bswap_16 (unsigned short __bsx)
 {

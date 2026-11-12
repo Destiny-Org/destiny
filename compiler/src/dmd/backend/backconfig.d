@@ -2,12 +2,12 @@
  * Configure the back end (optimizer and code generator)
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
- * Copyright:   Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/backconfig.d, backend/backconfig.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/backconfig.d, backend/backconfig.d)
  */
 
 module dmd.backend.backconfig;
@@ -205,8 +205,8 @@ void out_config_init(
             cfg.flags3 |= CFG3pic;
             if (0 && model == 64)
                 cfg.flags |= CFGalwaysframe; // autotester fails without this
-                                                // https://issues.dlang.org/show_bug.cgi?id=21042
-                                                // https://github/dlang/dmd/issues/19746
+                                                // upstream issue 21042
+                                                // upstream dmd issue 19746
         }
         if (symdebug)
             cfg.flags |= CFGalwaysframe;

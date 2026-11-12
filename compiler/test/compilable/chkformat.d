@@ -1,5 +1,5 @@
-// https://issues.dlang.org/show_bug.cgi?id=20643
-// https://issues.dlang.org/show_bug.cgi?id=20644
+// upstream issue 20643
+// upstream issue 20644
 // REQUIRED_ARGS: -verrors=simple
 /*
 TEST_OUTPUT:

@@ -1,12 +1,12 @@
-// https://github.com/dlang/dmd/issues/21461
-// https://github.com/dlang/dmd/issues/20387
-// https://github.com/dlang/dmd/issues/18073
+// upstream dmd issue 21461
+// upstream dmd issue 20387
+// upstream dmd issue 18073
 // Static arrays are value types, so assigning one in CTFE has to copy the
 // payload. Previously only static arrays of structs were copied, so for any
 // other element type both variables ended up sharing one array literal and
 // mutating either was visible through the other.
 
-// https://github.com/dlang/dmd/issues/21461
+// upstream dmd issue 21461
 int[1] construct()
 {
     int[1] s = [1];
@@ -68,7 +68,7 @@ char[4] fromString()
 }
 static assert(fromString() == "abcd");
 
-// https://github.com/dlang/dmd/issues/20387
+// upstream dmd issue 20387
 ubyte[1] byRef()
 {
     ubyte[1] arr = [0];
@@ -78,7 +78,7 @@ ubyte[1] byRef()
 }
 static assert(byRef() == [0]);
 
-// https://github.com/dlang/dmd/issues/18073
+// upstream dmd issue 18073
 // Copying a const static array parameter used to be rejected outright.
 int fromConstParam(const uint[2] arr)
 {

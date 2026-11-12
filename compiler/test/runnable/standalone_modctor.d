@@ -7,7 +7,7 @@ import core.attribute : standalone;
 
 immutable int* x;
 
-// https://github.com/dlang/dmd/issues/23117
+// upstream dmd issue 23117
 // a standalone ctor must run exactly once, even when several modules in the
 // same compilation define one and form an import cycle.
 __gshared int aCount;

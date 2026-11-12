@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=17494
+// upstream issue 17494
 // REQUIRED_ARGS: -revert=dtorfields
 struct S
 {
@@ -12,7 +12,7 @@ class C
     this() nothrow {}
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=17505
+// upstream issue 17505
 struct Array
 {
     int[] _payload;
@@ -29,7 +29,7 @@ class Scanner
     this() @safe {}
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=17506
+// upstream issue 17506
 struct TreeMap
 {
     this() @disable;

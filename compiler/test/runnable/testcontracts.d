@@ -192,7 +192,7 @@ void test5()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3273
+// upstream issue 3273
 
 // original case
 struct Bug3273
@@ -205,7 +205,7 @@ struct Bug3273
 ref int func3273()
 out(r)
 {
-    // Regression check of https://issues.dlang.org/show_bug.cgi?id=3390
+    // Regression check of upstream issue 3390
     static assert(!__traits(compiles, r = 1));
 }
 do
@@ -223,7 +223,7 @@ void test6()
 /*******************************************/
 
 /+
-// https://issues.dlang.org/show_bug.cgi?id=3722
+// upstream issue 3722
 
 class Bug3722A
 {
@@ -335,7 +335,7 @@ void test13()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4785
+// upstream issue 4785
 
 int cnt;
 
@@ -360,7 +360,7 @@ void test4785()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5039
+// upstream issue 5039
 
 class C5039 {
     int x;
@@ -375,7 +375,7 @@ class C5039 {
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5204
+// upstream issue 5204
 
 interface IFoo5204
 {
@@ -388,7 +388,7 @@ class Foo5204 : IFoo5204
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6417
+// upstream issue 6417
 
 class Bug6417
 {
@@ -422,7 +422,7 @@ void test6417()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6549
+// upstream issue 6549
 
 class C6549
 {
@@ -472,7 +472,7 @@ void test6549()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7218
+// upstream issue 7218
 
 void test7218()
 {
@@ -491,7 +491,7 @@ void test7218()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7335
+// upstream issue 7335
 
 class A7335
 {
@@ -539,7 +539,7 @@ void test7335()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7517
+// upstream issue 7517
 
 void test7517()
 {
@@ -623,7 +623,7 @@ void test7517()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7699
+// upstream issue 7699
 
 class P7699
 {
@@ -637,7 +637,7 @@ class D7699 : P7699
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7883
+// upstream issue 7883
 
 // Segmentation fault
 class AA7883
@@ -713,7 +713,7 @@ class DC7883 : CC7883
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7892
+// upstream issue 7892
 
 struct S7892
 {
@@ -743,7 +743,7 @@ class C7892
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8066
+// upstream issue 8066
 
 struct CLCommandQueue
 {
@@ -757,7 +757,7 @@ struct CLCommandQueue
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8073
+// upstream issue 8073
 
 struct Container8073
 {
@@ -796,7 +796,7 @@ void test8073()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8093
+// upstream issue 8093
 
 void test8093()
 {
@@ -833,7 +833,7 @@ void test8093()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9383
+// upstream issue 9383
 
 class A9383
 {
@@ -919,8 +919,8 @@ void test9383()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15524
-// Different from https://issues.dlang.org/show_bug.cgi?id=9383 cases, closed variable size is bigger than REGSIZE.
+// upstream issue 15524
+// Different from upstream issue 9383 cases, closed variable size is bigger than REGSIZE.
 
 class A15524
 {
@@ -1053,7 +1053,7 @@ class Test15524b
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10479
+// upstream issue 10479
 
 class B10479
 {
@@ -1067,7 +1067,7 @@ class D10479 : B10479
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10596
+// upstream issue 10596
 
 class Foo10596
 {
@@ -1077,7 +1077,7 @@ class Foo10596
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10721
+// upstream issue 10721
 
 class Foo10721
 {
@@ -1098,7 +1098,7 @@ struct Bar10721
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10981
+// upstream issue 10981
 
 class C10981
 {
@@ -1109,7 +1109,7 @@ class C10981
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14779
+// upstream issue 14779
 
 class C14779
 {
@@ -1128,7 +1128,7 @@ void test14779()
 }
 
 /*******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15984
+// upstream issue 15984
 
 I15984 i15984;
 C15984 c15984;

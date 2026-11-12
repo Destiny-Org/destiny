@@ -69,7 +69,7 @@ fail_compilation/fob1.d(503): Error: more than one mutable reference to `a` in a
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=20781
+// upstream issue 20781
 
 #line 500
 

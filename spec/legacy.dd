@@ -23,7 +23,7 @@ $(COMMENT
         $(TROW $(RELATIVE_LINK2 alias-instance-member, Aliasing an instance member),
             Use `typeof(instance).member` instead, 2024)
         $(TROW Escaping $(DDSUBLINK spec/attribute, scope, `scope`) data,
-            `scope` is $(LINK2 https://github.com/dlang/DIPs/blob/master/DIPs/other/DIP1000.md,
+            `scope` is $(LINK2 DIP1000,
             enforced) in `@safe` code, 2024)
 
         $(COMMENT Not enforced yet)

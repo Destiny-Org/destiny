@@ -8,7 +8,7 @@ fail_compilation/test17892.d(31): Error: returning `s.pointer3()` escapes a refe
 */
 
 
-// https://issues.dlang.org/show_bug.cgi?id=17892
+// upstream issue 17892
 
 struct S
 {

@@ -17,7 +17,7 @@ struct S
 struct S s = { 1, 2 };
 _Static_assert(sizeof(struct S) == 8, "in");
 
-// https://github.com/dlang/dmd/issues/21765
+// upstream dmd issue 21765
 // __attribute__((aligned(N))) can only increase struct alignment
 
 // aligned(2) on struct with int (natural alignment = 4): attribute is ignored, alignment stays 4

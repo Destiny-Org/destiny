@@ -4,7 +4,7 @@
 // This file is intended to contain all compilable traits-related tests in an
 // effort to keep the number of files in the `compilable` folder to a minimum.
 
-// https://issues.dlang.org/show_bug.cgi?id=19152
+// upstream issue 19152
 module traits;
 
 class C19152
@@ -61,7 +61,7 @@ static assert(__traits(isModule, imports.pkgmodule));
 static assert(!__traits(isModule, MyStruct));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19942
+// upstream issue 19942
 
 static assert(!__traits(compiles, { a.init; }));
 static assert(!__traits(compiles, { import m : a; a.init; }));
@@ -91,10 +91,10 @@ static assert(__traits(getLocation, Outer.Nested)[1] == 83);
 static assert(__traits(getLocation, Outer.method)[1] == 85);
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=19902
+// upstream issue 19902
 // Define hasElaborateCopyConstructor trait
 // but done as two independent traits per conversation
-// in https://github.com/dlang/dmd/pull/10265
+// in upstream dmd pull request 10265
 
 struct S
 {
@@ -193,7 +193,7 @@ struct S5
 static assert(!__traits(isCopyable, S5));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20884
+// upstream issue 20884
 
 struct S20884
 {
@@ -208,7 +208,7 @@ static assert(is(          typeof(mixin("T20884." ~ m20884)) == immutable(int)))
 static assert(is(                           typeof(T20884.x) == immutable(int)));
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=20761
+// upstream issue 20761
 
 alias Seq(T...) = T;
 
@@ -310,7 +310,7 @@ static assert (__traits(getCppNamespaces,GetNamespaceTestTemplated4!int) == Seq!
 static assert (__traits(getCppNamespaces,GetNamespaceTestTemplated4!int.GetNamespaceTestTemplated5) == Seq!("ns2","ns"));
 static assert (__traits(getCppNamespaces,GetNamespaceTestTemplated4!int.GetNamespaceTestTemplated6!int) == Seq!("ns2","ns"));
 
-// Currently ignored due to https://issues.dlang.org/show_bug.cgi?id=21373
+// Currently ignored due to upstream issue 21373
 extern(C++, `decl`)
 mixin template GetNamespaceTestTemplatedMixin()
 {

@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -O
 
-// https://issues.dlang.org/show_bug.cgi?id=14114
+// upstream issue 14114
 
 import core.volatile;
 

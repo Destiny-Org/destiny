@@ -7,12 +7,12 @@
  * 2. Contract Validation: Ensuring functions fulfill their `out` contracts (e.g., returning non-null).
  * 3. Logic Errors: Detecting assertions that are provably false at compile time.
  *
- * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   $(LINK2 https://cattermole.co.nz, Richard (Rikki) Andrew Cattermole)
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/dfa/fast/report.d, dfa/fast/report.d)
- * Documentation: https://dlang.org/phobos/dmd_dfa_fast_report.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/dfa/fast/report.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/report.d, dfa/fast/report.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/report.d
+ * 
  */
 module dmd.dfa.fast.report;
 import dmd.dfa.fast.structure;

@@ -1,5 +1,5 @@
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9818
+// upstream issue 9818
 
 /*
 TEST_OUTPUT:

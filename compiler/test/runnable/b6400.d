@@ -10,7 +10,7 @@ Bar
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=6400
+// upstream issue 6400
 
 enum int base(string name) = 10 * (name[$-1] - '0');
 struct Foo { int opDispatch(string name)() { pragma(msg, "Foo"); return base!name + 1; } }

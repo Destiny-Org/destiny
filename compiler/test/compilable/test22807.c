@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22807
+// upstream issue 22807
 
 
 struct OldFashionedHeader {

@@ -200,7 +200,7 @@ void test8()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4059
+// upstream issue 4059
 
 struct elem9 { }
 
@@ -267,7 +267,7 @@ void test13956()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5148
+// upstream issue 5148
 
 extern (C++)
 {
@@ -344,7 +344,7 @@ void testvalist()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12825
+// upstream issue 12825
 
 extern(C++) class C12825
 {
@@ -495,7 +495,7 @@ extern (C++, std)
 
     class exception { }
 
-    // https://issues.dlang.org/show_bug.cgi?id=14956
+    // upstream issue 14956
     extern(C++, N14956)
     {
         struct S14956 { }
@@ -758,7 +758,7 @@ extern(C++, N13337.M13337)
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14195
+// upstream issue 14195
 
 struct Delegate1(T) {}
 struct Delegate2(T1, T2) {}
@@ -784,7 +784,7 @@ void test14195()
 
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14200
+// upstream issue 14200
 
 template Tuple14200(T...)
 {
@@ -801,7 +801,7 @@ void test14200()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14956
+// upstream issue 14956
 
 extern(C++) void test14956(S14956 s);
 
@@ -1037,7 +1037,7 @@ void testeh3()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15576
+// upstream issue 15576
 
 extern (C++, ns15576)
 {
@@ -1055,14 +1055,14 @@ void test15576()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15579
+// upstream issue 15579
 
 version (DigitalMars)
 {
     version (linux)
     {
         // Test removed for DMD/linux-only.
-        // https://issues.dlang.org/show_bug.cgi?id=23660
+        // upstream issue 23660
     }
     else
         version = TEST15579;
@@ -1153,7 +1153,7 @@ version (TEST15579)
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15610
+// upstream issue 15610
 
 extern(C++) class Base2
 {
@@ -1179,7 +1179,7 @@ void test15610()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15455
+// upstream issue 15455
 
 struct X6
 {
@@ -1224,7 +1224,7 @@ void test15455()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15372
+// upstream issue 15372
 
 extern(C++) int foo15372(T)(int v);
 
@@ -1236,7 +1236,7 @@ void test15372()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15802
+// upstream issue 15802
 
 extern(C++) {
     template Foo15802(T) {
@@ -1252,7 +1252,7 @@ void test15802()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=16536
+// upstream issue 16536
 // mangling mismatch on OSX
 
 version(OSX) extern(C++) uint64_t pass16536(uint64_t);
@@ -1263,7 +1263,7 @@ void test16536()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15589
+// upstream issue 15589
 // extern(C++) virtual destructors are not put in vtbl[]
 
 extern(C++)
@@ -1374,7 +1374,7 @@ extern(C++)
 __gshared char[32] traceBuf;
 __gshared size_t traceBufPos;
 
-// workaround for https://issues.dlang.org/show_bug.cgi?id=18986
+// workaround for upstream issue 18986
 version(OSX)
     enum cppCtorReturnsThis = false;
 else version(FreeBSD)
@@ -1416,7 +1416,7 @@ void test15589b()
 
 /****************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=18928
+// upstream issue 18928
 // Win64: extern(C++) bad codegen, wrong calling convention
 
 extern(C++) struct Small18928
@@ -1445,7 +1445,7 @@ void test18928()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18953
+// upstream issue 18953
 // Win32: extern(C++) struct destructor not called correctly through runtime
 
 extern(C++)
@@ -1469,7 +1469,7 @@ void test18953()
 
 /****************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=18966
+// upstream issue 18966
 
 extern(C++):
 class Base18966
@@ -1567,7 +1567,7 @@ void test18966()
 
 /****************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=19134
+// upstream issue 19134
 
 class Base19134
 {
@@ -1595,7 +1595,7 @@ void test19134()
     assert(d.foo() == 660);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=18955
+// upstream issue 18955
 version (linux)
     alias std_string = std.basic_string!(char);
 else

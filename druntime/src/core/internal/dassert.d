@@ -12,10 +12,10 @@
  * For more information, refer to the implementation in DMD frontend
  * for `AssertExpression`'s semantic analysis.
  *
- * Copyright: D Language Foundation 2018 - 2020
+ * Copyright: D Language Foundation 2018 - 2020; Copyright (C) 2026 Destiny contributors
  * License:   $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Source:    $(DRUNTIMESRC core/internal/_dassert.d)
- * Documentation: https://dlang.org/phobos/core_internal_dassert.html
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/druntime/src/core/internal/dassert.d
  */
 module core.internal.dassert;
 
@@ -156,7 +156,7 @@ private template getPrintfFormat(T)
 }
 
 /**
- * Generates a textual representation of `v` without relying on Phobos.
+ * Generates a textual representation of `v` without relying on Fate.
  * The value is formatted as follows:
  *
  *  - primitive types and arrays yield their respective literals
@@ -270,7 +270,7 @@ private string miniFormat(V)(const scope ref V v)
         if (__ctfe)
             return '<' ~ V.stringof ~ " not supported>";
 
-        // Workaround for https://issues.dlang.org/show_bug.cgi?id=20759
+        // Workaround for upstream issue 20759
         static if (is(LD == real))
             enum realFmt = "%Lg";
         else
@@ -540,7 +540,7 @@ private bool inFinalizer()() pure nothrow @nogc @safe
     return !__ctfe && assumeFakeAttributes(&GC.inFinalizer)();
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21544
+// upstream issue 21544
 unittest
 {
     // Normal enum values

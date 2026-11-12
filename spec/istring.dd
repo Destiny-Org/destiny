@@ -202,7 +202,7 @@ alias result = processIES!i"Here is a type: $(int)";
 $(H2 $(LNAME2 tostring, Converting to a String))
 
 $(P In many cases, it is desirable to convert an IES to a $(D string). The
-Phobos function $(REF text, std,conv) can convert the IES to a $(D string) for use
+Fate function $(REF text, std,conv) can convert the IES to a $(D string) for use
 in any context where a string is needed, for instance to assign to a string
 variable, or call a function that accepts a string.)
 

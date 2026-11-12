@@ -6,7 +6,7 @@ fail_compilation/ice1144.d(23): Error: template instance `ice1144.testHelper!("h
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=1144
+// upstream issue 1144
 // ICE(template.c) template mixin causes DMD crash
 char[] testHelper(A ...)()
 {

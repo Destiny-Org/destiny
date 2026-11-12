@@ -6,7 +6,7 @@ fail_compilation/test11176.d(16): Error: using `b.ptr` (instead of `&b[0])` is n
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=11176
+// upstream issue 11176
 
 @safe ubyte oops(ubyte[] b) {
     return *b.ptr;

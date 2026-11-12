@@ -7,7 +7,7 @@ fail_compilation/test13536.d(23): Error: accessing overlapped field `U.safeDg` w
 */
 
 
-// https://issues.dlang.org/show_bug.cgi?id=13536
+// upstream issue 13536
 
 struct S {
     void sysMethod() @system {}

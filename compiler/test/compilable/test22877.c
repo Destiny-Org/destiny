@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22877
+// upstream issue 22877
 
 int array[3];
 _Static_assert(sizeof(array) == 3 * sizeof(int), "array");

@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20502
+// upstream dmd issue 20502
 struct mg_str {
 
 };

@@ -17,8 +17,8 @@ $(HEADERNAV_TOC)
         importing or compiling `.c` files directly. )
 
         $(P Bindings for popular C libraries can be found in the
-            $(LINK2 https://dlang.org/phobos/index.html, standard library) and
-            $(LINK2 https://code.dlang.org/?sort=updated&limit=20&category=library.binding, package repository).)
+            $(LINK2 https://github.com/Destiny-Org/destiny, standard library) and
+            $(LINK2 https://github.com/Destiny-Org/destiny, package repository).)
 
         $(P The rest of this page describes the manual, low-level side of interfacing with C.)
 

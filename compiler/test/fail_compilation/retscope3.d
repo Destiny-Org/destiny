@@ -12,7 +12,7 @@ fail_compilation/retscope3.d(2017): Error: escaping a reference to local variabl
 
 #line 2000
 
-// https://issues.dlang.org/show_bug.cgi?id=17790
+// upstream issue 17790
 
 @safe:
 
@@ -90,7 +90,7 @@ void bar4003() @safe
     int[][] a = [makeSA()[]];
 }
 
-// https://github.com/dlang/dmd/issues/20901
+// upstream dmd issue 20901
 int* f20901() @safe
 {
     int i = 3;

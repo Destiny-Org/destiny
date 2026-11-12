@@ -5,7 +5,7 @@ fail_compilation/diag19022.d(16): Error: immutable field `b` initialized multipl
 fail_compilation/diag19022.d(15):        Previous initialization is here.
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=19022
+// upstream issue 19022
 
 struct Foo
 {

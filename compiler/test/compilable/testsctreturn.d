@@ -20,7 +20,7 @@ void test()
 
 /************************************************/
 
-// issues.dlang.org/show_bug.cgi?id=22541
+// upstream issue 22541
 
 struct S
 {

@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24131
+// upstream dmd issue 24131
 // EXTRA_SOURCES: imports/c24131.c
 
 import c24131;

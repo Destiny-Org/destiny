@@ -5,7 +5,7 @@ value: -5
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=21506
+// upstream issue 21506
 
 import core.stdc.stdio;
 import core.stdc.stdarg;

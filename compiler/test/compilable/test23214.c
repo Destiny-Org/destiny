@@ -1,8 +1,8 @@
-// https://issues.dlang.org/show_bug.cgi?id=23214
+// upstream issue 23214
 
 typedef unsigned __int64 uintptr_t;
 
-// https://issues.dlang.org/show_bug.cgi?id=24304
+// upstream issue 24304
 
 __uint16_t u16;
 __uint32_t u32;

@@ -6,7 +6,7 @@ fail_compilation/fix5212.d(14): Error: assigning scope variable `args_` to non-s
 */
 
 
-// https://issues.dlang.org/show_bug.cgi?id=5212
+// upstream issue 5212
 
 class Foo {
     int[] args;

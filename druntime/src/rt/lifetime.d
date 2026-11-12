@@ -45,7 +45,7 @@ private
 
 // Now-removed symbol, kept around for ABI
 // Some programs are dynamically linked, so best to err on the side of keeping symbols around for a while (especially extern(C) ones)
-// https://github.com/dlang/druntime/pull/3361
+// upstream druntime pull request 3361
 deprecated extern (C) void lifetime_init()
 {
 }
@@ -625,7 +625,7 @@ unittest
 
     /* Using inline try {} catch {} blocks fails to catch the UnicodeException
      * thrown.
-     * https://issues.dlang.org/show_bug.cgi?id=16799
+     * upstream issue 16799
      */
     static void assertThrown(T : Throwable = Exception, E)(lazy E expr, string msg)
     {
@@ -822,7 +822,7 @@ unittest
 
 unittest
 {
-    // https://issues.dlang.org/show_bug.cgi?id=13854
+    // upstream issue 13854
     auto arr = new ubyte[PAGESIZE]; // ensure page size
     auto info1 = GC.query(arr.ptr);
     assert(info1.base !is arr.ptr); // offset is required for page size or larger
@@ -865,7 +865,7 @@ unittest
 
 unittest
 {
-    // https://issues.dlang.org/show_bug.cgi?id=13878
+    // upstream issue 13878
     auto arr = new ubyte[1];
     auto info = GC.query(arr.ptr);
     assert(info.attr & BlkAttr.NO_SCAN); // should be NO_SCAN
@@ -1155,7 +1155,7 @@ unittest
         auto c = new C;
         assert((cast(size_t)(&c.x) & (algn - 1)) == 0);
     }
-    // compiler supports alignment up to 32768, but can get too slow, see https://github.com/dlang/dmd/issues/23629
+    // compiler supports alignment up to 32768, but can get too slow, see upstream dmd issue 23629
     static foreach (algn; 0..13)
         testAlign!(1 << algn)();
 }

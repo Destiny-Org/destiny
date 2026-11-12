@@ -70,20 +70,20 @@ fail_compilation/failcstuff1.c(700): Error: `auto` and `register` storage class 
 */
 
 /********************************/
-// https://issues.dlang.org/show_bug.cgi?id=21937
+// upstream issue 21937
 #line 50
 void test21962() __attribute__((noinline))
 {
 }
 
 /********************************/
-// https://issues.dlang.org/show_bug.cgi?id=21962
+// upstream issue 21962
 #line 100
 enum E21962 { };
 enum { };
 
 /********************************/
-// https://issues.dlang.org/show_bug.cgi?id=22028
+// upstream issue 22028
 #line 150
 struct S22028
 {
@@ -95,7 +95,7 @@ struct S22028
 int test22028 = sizeof(struct S22028 ident);
 
 /********************************/
-// https://issues.dlang.org/show_bug.cgi?id=22029
+// upstream issue 22029
 #line 200
 struct S22029
 {
@@ -108,7 +108,7 @@ struct S22029
     register int rfield;
 };
 
-// https://issues.dlang.org/show_bug.cgi?id=22030
+// upstream issue 22030
 #line 250
 int;
 int *;
@@ -126,23 +126,23 @@ struct S22030
 
 void test22030(struct S22030, struct S22030*, struct S22030[4]);
 
-// https://issues.dlang.org/show_bug.cgi?id=22032
+// upstream issue 22032
 #line 300
 struct S22032 { int field; }
 int test22032;
 
-// https://issues.dlang.org/show_bug.cgi?id=22035
+// upstream issue 22035
 #line 350
 void test22035()
 {
     case 1 2:
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=21932
+// upstream issue 21932
 #line 400
 enum ENUM;
 
-// https://issues.dlang.org/show_bug.cgi?id=22103
+// upstream issue 22103
 #line 450
 void test22103a(int array[4][static 4]);
 void test22103b(int array[4][restrict]);
@@ -159,7 +159,7 @@ void test22103e()
     int array4[4] const;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22102
+// upstream issue 22102
 #line 500
 void test22102()
 {
@@ -174,7 +174,7 @@ void test22102()
 
 int * pluto p;
 
-// https://issues.dlang.org/show_bug.cgi?id=22909
+// upstream issue 22909
 #line 600
 
 char c22909 = u8's';

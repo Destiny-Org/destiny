@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23935
+// upstream issue 23935
 
 typedef struct
         __declspec(align(16))

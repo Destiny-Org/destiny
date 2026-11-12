@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -O
-// https://issues.dlang.org/show_bug.cgi?id=15898
+// upstream issue 15898
 
 int addAssignSimple(int[] , const(int)[] )
 {

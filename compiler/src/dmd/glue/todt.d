@@ -2,12 +2,12 @@
  * Put initializers and objects created from CTFE into a `dt_t` data structure
  * so the backend puts them into the data segment.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/glue/todt.d, _todt.d)
- * Documentation:  https://dlang.org/phobos/dmd_glue_todt.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/glue/todt.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/todt.d, _todt.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/todt.d
+ * 
  */
 
 module dmd.glue.todt;
@@ -525,7 +525,7 @@ void Expression_toDt(Expression e, ref DtBuilder dtb)
         }
     }
 
-    /* https://issues.dlang.org/show_bug.cgi?id=12652
+    /* upstream issue 12652
        Non-constant hash initializers should have a special-case diagnostic
      */
     void visitAssocArrayLiteral(AssocArrayLiteralExp e)
@@ -1160,10 +1160,10 @@ private void toDtElem(Loc loc, TypeSArray tsa, ref DtBuilder dtb, Expression e, 
         if (!e)                             // if not already supplied
             e = tsa.defaultInit(loc, isCtype);    // use default initializer
 
-        if (!e.type.implicitConvTo(tnext))    // https://issues.dlang.org/show_bug.cgi?id=14996
+        if (!e.type.implicitConvTo(tnext))    // upstream issue 14996
         {
-            // https://issues.dlang.org/show_bug.cgi?id=1914
-            // https://issues.dlang.org/show_bug.cgi?id=3198
+            // upstream issue 1914
+            // upstream issue 3198
             if (auto se = e.isStringExp())
             {
                 string s;

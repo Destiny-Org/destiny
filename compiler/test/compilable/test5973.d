@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=5973
+// upstream issue 5973
 
 class A { int a = 1; }
 class B { int b = 2; }

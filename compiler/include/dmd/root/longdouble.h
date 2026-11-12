@@ -1,10 +1,10 @@
 
-/* Copyright (C) 1999-2026 by The Destiny Language Foundation, All Rights Reserved
+/* Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * written by Rainer Schuetze
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/dlang/dmd/blob/master/src/dmd/root/longdouble.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/root/longdouble.h
  */
 
 // 80 bit floating point value implementation for Microsoft compiler

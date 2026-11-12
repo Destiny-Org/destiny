@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23351
+// upstream issue 23351
 enum strings =
 [
 "a[(b).",

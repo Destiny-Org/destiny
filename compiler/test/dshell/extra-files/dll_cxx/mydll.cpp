@@ -50,7 +50,7 @@ S22323::~S22323()
     dtorCount++;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=19660
+// upstream issue 19660
 extern "C"
 {
     EXPORT int someValue19660 = 0xF1234;

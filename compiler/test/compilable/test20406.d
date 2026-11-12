@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20406
+// upstream issue 20406
 struct S
 {
 	@disable this();

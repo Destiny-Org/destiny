@@ -5,7 +5,7 @@ fail_compilation/fail8262.d(33):        perhaps use `Tuple8262!1()` to construct
 fail_compilation/fail8262.d(28): Error: template instance `fail8262.T8262!(Tuple8262!1)` error instantiating
 fail_compilation/fail8262.d(20): Error: cannot implicitly convert expression `S(0)` of type `S` to `int`
 ---
- * https://issues.dlang.org/show_bug.cgi?id=8262
+ * upstream issue 8262
  */
 
 template Seq(T...) { alias T Seq; }

@@ -2,7 +2,7 @@
 // EXTRA_SOURCES: imports/b26a.d
 // PERMUTE_ARGS:
 
-// https://issues.dlang.org/show_bug.cgi?id=382
+// upstream issue 382
 
 struct List(T) {
         interface A {}

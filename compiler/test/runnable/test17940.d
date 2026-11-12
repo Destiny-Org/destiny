@@ -1,6 +1,6 @@
 // PERMUTE_ARGS: -O
 
-// https://issues.dlang.org/show_bug.cgi?id=17940
+// upstream issue 17940
 
 struct Array
 {

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19782
+// upstream issue 19782
 class Inner
 {
     int a;

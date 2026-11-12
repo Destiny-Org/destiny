@@ -1,4 +1,4 @@
-// https://github.com/dlang/druntime/pull/1781
+// upstream druntime pull request 1781
 
 struct S
 {

@@ -8,7 +8,7 @@ fail_compilation/fail18372.d(103): Error: `__va_list_tag` is not defined, perhap
 
 #line 100
 
-// https://issues.dlang.org/show_bug.cgi?id=18372
+// upstream issue 18372
 
 void fun(const(char)* a, ...) { }
 

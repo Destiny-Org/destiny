@@ -1,5 +1,5 @@
 // EXTRA_FILES: imports/imp23177.c
-// https://github.com/dlang/dmd/issues/23177
+// upstream dmd issue 23177
 
 /*
 TEST_OUTPUT:

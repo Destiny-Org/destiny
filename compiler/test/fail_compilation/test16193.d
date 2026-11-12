@@ -11,7 +11,7 @@ fail_compilation/test16193.d(40):        `x` declared here
 //fail_compilation/test16193.d(34): To enforce `@safe`, the compiler allocates a closure unless `opApply()` uses `scope`
 //fail_compilation/test16193.d(41): To enforce `@safe`, the compiler allocates a closure unless `opApply()` uses `scope`
 
-// https://issues.dlang.org/show_bug.cgi?id=16193
+// upstream issue 16193
 
 struct S {
     int opApply(int delegate(int) dg) @nogc;

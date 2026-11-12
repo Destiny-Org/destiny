@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # -main doesn't work anymore when used for linking only (without source modules)
-# https://issues.dlang.org/show_bug.cgi?id=22863
+# upstream issue 22863
 
 set -e
 

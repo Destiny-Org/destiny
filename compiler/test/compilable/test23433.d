@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23433
+// upstream issue 23433
 module object;
 
 class Throwable { }

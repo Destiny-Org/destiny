@@ -10,7 +10,7 @@ void test3882()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12619
+// upstream issue 12619
 
 extern (C) @system nothrow pure void* memcpy(void* s1, const void* s2, size_t n);
 // -> weakly pure
@@ -22,7 +22,7 @@ void test12619() pure
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12760
+// upstream issue 12760
 
 struct S12760(T)
 {
@@ -41,11 +41,11 @@ struct K12760
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12909
+// upstream issue 12909
 
 int f12909(immutable(int[])[int] aa) pure nothrow
 {
-    //aa[0] = [];   // fix for https://issues.dlang.org/show_bug.cgi?id=13701
+    //aa[0] = [];   // fix for upstream issue 13701
     return 0;
 }
 
@@ -60,7 +60,7 @@ void test12909()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13899
+// upstream issue 13899
 
 const struct Foo13899
 {

@@ -36,7 +36,7 @@ struct ST(X,Y) {}
 void foo(alias t)() {}
 
 /**************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21074
+// upstream issue 21074
 
 alias Byte = ubyte;
 alias Byte2(A) = ubyte;
@@ -68,7 +68,7 @@ static assert(is(T8 == immutable(float*)*));
 */
 
 /**************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22356
+// upstream issue 22356
 
 mixin("void") func22356(int) { }
 static assert(is(typeof(&func22356) == void function(int)));
@@ -117,7 +117,7 @@ void test_statements_22356()
 }
 
 /**************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22969
+// upstream issue 22969
 
 enum e = 0;
 alias a = mixin("e");

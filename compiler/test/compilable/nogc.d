@@ -50,7 +50,7 @@ void foo_compiles() {}
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12630
+// upstream issue 12630
 
 void test12630() @nogc
 {
@@ -84,7 +84,7 @@ void test12630() @nogc
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12642
+// upstream issue 12642
 
 static if (is(__vector(ulong[2])))
 {
@@ -97,7 +97,7 @@ static if (is(__vector(ulong[2])))
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13550
+// upstream issue 13550
 
 auto foo13550() @nogc
 {
@@ -108,7 +108,7 @@ auto foo13550() @nogc
     return &bar;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=19285
+// upstream issue 19285
 
 void f(bool cond, string s) @nogc {
     auto inner() { return s; }
@@ -117,7 +117,7 @@ void f(bool cond, string s) @nogc {
     enum Unused3 = __traits(compiles , &inner);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=24072
+// upstream issue 24072
 
 version (D_SIMD) void f24072() @nogc
 {
@@ -126,7 +126,7 @@ version (D_SIMD) void f24072() @nogc
     int4 c = cast(int4)[1, 2];
 }
 
-// https://github.com/dlang/dmd/issues/22671
+// upstream dmd issue 22671
 
 bool odd22671(int n)
 {

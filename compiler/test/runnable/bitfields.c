@@ -180,7 +180,7 @@ void test5()
 
 /******************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22710
+// upstream issue 22710
 
 struct S6
 {
@@ -204,7 +204,7 @@ void test6()
 
 /******************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22710
+// upstream issue 22710
 
 struct S7
 {
@@ -254,7 +254,7 @@ _Static_assert(test7s2() == -2, "3");
 
 /******************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=24257
+// upstream issue 24257
 
 #include <assert.h>
 

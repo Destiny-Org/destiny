@@ -788,7 +788,7 @@ else version (CRuntime_WASI)
 
             if (fabsVal == T.infinity) return FP_INFINITE;
 
-            // Work around to deal with https://wiki.dlang.org/Cross-compiling_with_LDC#Limitations
+            // Work around to deal with https://github.com/Destiny-Org/destiny
             // real.min_normal ends up underflowing to zero
             static if (is(T == real))
                 return __ir_pure!(`

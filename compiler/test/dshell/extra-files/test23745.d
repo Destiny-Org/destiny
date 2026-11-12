@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23745
+// upstream dmd issue 23745
 // Nested functions whose inline verdicts depend on the order they are
 // scanned in: groups of near-threshold visitors calling shared helpers.
 // The varied identifier lengths give each symbol table its own layout.

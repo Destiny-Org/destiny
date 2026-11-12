@@ -11,7 +11,7 @@ fail_compilation/systemvariables_var_init.d(19):        `ptrVar` is inferred to 
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=24051
+// upstream issue 24051
 
 enum uint* ptrEnum = cast(uint*) 0xC00000;
 const uint* ptrConst = cast(uint*) 0xC00000;

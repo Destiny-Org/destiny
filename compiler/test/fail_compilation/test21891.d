@@ -10,7 +10,7 @@ fail_compilation/imports/imp21891b.c(3):        C unions with the same name from
 ---
 */
 
-// https://github.com/dlang/dmd/issues/21891
+// upstream dmd issue 21891
 // Genuinely different-sized unions must still be rejected.
 
 import imports.imp21891a;

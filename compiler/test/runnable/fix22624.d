@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22624
+// upstream issue 22624
 // EXTRA_FILES: imports/imp22624.c
 
 import core.stdc.stdio;

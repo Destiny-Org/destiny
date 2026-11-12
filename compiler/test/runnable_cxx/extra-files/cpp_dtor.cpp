@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22709
+// upstream dmd issue 22709
 // C++ side: verify virtual dtor dispatch calls C's dtor (not A's) when
 // destroying a C object through an A*.
 #include <assert.h>
@@ -33,7 +33,7 @@ void runCPPTests()
     // A's destructor must be chained from C's aggregate dtor
     assert(aDestroyed);
 
-    // https://github.com/dlang/dmd/issues/22942
+    // upstream dmd issue 22942
     obj = makeD();
 
     aDestroyed = 0;

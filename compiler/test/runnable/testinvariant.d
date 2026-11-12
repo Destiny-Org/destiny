@@ -26,7 +26,7 @@ int testinvariant()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6453
+// upstream issue 6453
 
 void test6453()
 {
@@ -107,7 +107,7 @@ void test6453()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13113
+// upstream issue 13113
 
 struct S13113
 {
@@ -140,7 +140,7 @@ void test13113()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13147
+// upstream issue 13147
 
 version (D_InlineAsm_X86)
     enum x86iasm = true;
@@ -177,7 +177,7 @@ void test13147()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=16384
+// upstream issue 16384
 
 struct S(T)
 {
@@ -229,7 +229,7 @@ void test16384()
 }
 
 /***************************************************/
-// Fix: https://github.com/dlang/dmd/issues/20924 (invariant not called on extern(C++) classes)
+// Fix: upstream dmd issue 20924 (invariant not called on extern(C++) classes)
 
 extern(C++) class C
 {

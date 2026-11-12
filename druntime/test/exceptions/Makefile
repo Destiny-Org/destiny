@@ -55,7 +55,7 @@ $(ROOT)/line_trace.done: $(ROOT)/line_trace$(DOTEXE)
 	# Use sed to canonicalize line_trace.done and compare against expected output in line_trace.exp
 	$(SED) "s|^.*/src/|src/|g; s/\[0x[0-9a-f]*\]/\[ADDR\]/g; s/scope //g; s/Nl//g" $@ | $(DIFF) line_trace.exp -
 
-# https://issues.dlang.org/show_bug.cgi?id=21656
+# upstream issue 21656
 $(ROOT)/line_trace_21656.done: $(ROOT)/line_trace$(DOTEXE)
 	@echo Testing line_trace_21656
 	@mkdir -p $(ROOT)/line_trace_21656

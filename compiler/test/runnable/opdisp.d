@@ -271,7 +271,7 @@ void test6()
 }
 
 /**********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7578
+// upstream issue 7578
 
 struct Foo7578
 {

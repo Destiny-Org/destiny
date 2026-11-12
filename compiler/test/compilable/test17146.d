@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -O -inline
 
-// https://issues.dlang.org/show_bug.cgi?id=17146
+// upstream issue 17146
 
 struct S { int[] a; int b; }
 

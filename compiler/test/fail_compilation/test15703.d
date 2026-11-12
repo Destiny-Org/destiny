@@ -15,7 +15,7 @@ fail_compilation/test15703.d(45):        Source element type is opaque
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=15703
+// upstream issue 15703
 
 void test() @safe
 {

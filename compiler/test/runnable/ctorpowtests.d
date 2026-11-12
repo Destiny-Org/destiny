@@ -13,7 +13,7 @@ int magicVariable()
 static assert(magicVariable()==3);
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11159
+// upstream issue 11159
 
 void test11159()
 {
@@ -27,8 +27,8 @@ void test11159()
     assert(e_10_pow_20 == pow(10uL, 20));
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=991 -- invalid.
-// https://issues.dlang.org/show_bug.cgi?id=3500 -- is this related to 2127?
+// upstream issue 991 -- invalid.
+// upstream issue 3500 -- is this related to 2127?
 
 // Tests for ^^
 // TODO: These tests should not require import std.math.
@@ -131,7 +131,7 @@ static assert( 9 ^^ -1.0 == 1.0 / 9);
 static assert( !is(typeof(2 ^^ -5)));
 static assert( !is(typeof((-2) ^^ -4)));
 
-// https://issues.dlang.org/show_bug.cgi?id=3535
+// upstream issue 3535
 struct StructWithCtor
 {
     this(int _n) {
@@ -266,7 +266,7 @@ int anotherPowTest()
 
 /************************************/
 
-// https://github.com/dlang/dmd/issues/19075
+// upstream dmd issue 19075
 // ^^= must compile for small integer types
 
 void test19075()

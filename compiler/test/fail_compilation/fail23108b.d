@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23108
+// upstream issue 23108
 /* TEST_OUTPUT:
 ---
 fail_compilation/fail23108b.d(10): Error: undefined identifier `_xopEquals` in module `object`

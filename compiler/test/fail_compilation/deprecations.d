@@ -13,7 +13,7 @@ fail_compilation/deprecations.d(19):        `S` is declared here
 fail_compilation/deprecations.d(68):        instantiated from here: `otherVar!()`
 ---
 
-https://issues.dlang.org/show_bug.cgi?id=20474
+upstream issue 20474
 */
 
 deprecated struct S {}

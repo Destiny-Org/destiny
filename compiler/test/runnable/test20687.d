@@ -1,5 +1,5 @@
 // PERMUTE_ARGS:
-// https://issues.dlang.org/show_bug.cgi?id=20687
+// upstream issue 20687
 
 struct S
 {

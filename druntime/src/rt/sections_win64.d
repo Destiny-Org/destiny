@@ -1,5 +1,5 @@
 /**
- * Written in the D programming language.
+ * Written in the Destiny programming language.
  * This module provides Win32-specific support for sections.
  *
  * Copyright: Copyright Digital Mars 2008 - 2012.

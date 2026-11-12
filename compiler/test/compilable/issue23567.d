@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23567
+// upstream issue 23567
 extern(C++) abstract class CCvar
 {
 public:

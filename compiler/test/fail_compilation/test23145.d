@@ -11,7 +11,7 @@ fail_compilation/test23145.d(129):        `test23145.inferred` is declared here
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=23145
+// upstream issue 23145
 
 #line 100
 

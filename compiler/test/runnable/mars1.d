@@ -35,7 +35,7 @@ void testIntegralPromotions()
 
 ///////////////////////
 
-// https://github.com/dlang/dmd/pull/11441
+// upstream dmd pull request 11441
 
 long sdiv1(long l)
 {
@@ -229,7 +229,7 @@ void testfastudiv()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=14936
+// upstream issue 14936
 
 long sldiv1 (long x) { return x / (1L << 1); }
 long sldiv2 (long x) { return x / (1L << 2); }
@@ -292,7 +292,7 @@ void testsldiv()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=14936
+// upstream issue 14936
 
 long slmod1 (long x) { return x % (1L << 1); }
 long slmod2 (long x) { return x % (1L << 2); }
@@ -426,7 +426,7 @@ void testdivdiv()
 
 void testdivcmp()
 {
-    // https://github.com/dlang/dmd/pull/7128
+    // upstream dmd pull request 7128
     static bool foo(uint a, uint b)
     {
         return cast(bool)(a / b); // convert / to >=
@@ -643,7 +643,7 @@ void test11565()
     assert(cond11565(true) == size_t.max);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23743
+// upstream issue 23743
 void test23743()
 {
     ubyte[] a = [1];
@@ -1244,7 +1244,7 @@ void test9449x()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=12057
+// upstream issue 12057
 
 bool prop12057(real x) { return false; }
 double f12057(real) { return double.init; }
@@ -1360,7 +1360,7 @@ void test3()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=14782
+// upstream issue 14782
 
 
 void test14782()
@@ -1414,7 +1414,7 @@ void test15272()
 }
 
 /*****************************************
- * https://issues.dlang.org/show_bug.cgi?id=15861
+ * upstream issue 15861
  */
 
 void test15861()
@@ -1428,7 +1428,7 @@ void test15861()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=15629 comment 3
+// upstream issue 15629 comment 3
 // -O
 
 void test15629()
@@ -1458,7 +1458,7 @@ void test4()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=13474
+// upstream issue 13474
 
 
 double sumKBN(double s = 0.0)
@@ -1493,7 +1493,7 @@ void test13474()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=16699
+// upstream issue 16699
 
 ulong[1] parseDateRange()
 {
@@ -1516,7 +1516,7 @@ void test16699()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=16102
+// upstream issue 16102
 
 struct S16102 { ~this() { } }
 
@@ -1620,7 +1620,7 @@ void testeqeqranges()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=16189
+// upstream issue 16189
 
 void test16189()
 {
@@ -1637,7 +1637,7 @@ void test16189()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=16997
+// upstream issue 16997
 
 void test16997()
 {
@@ -1685,7 +1685,7 @@ void test16997()
 
 ////////////////////////////////////////////////////////////////////////
 
-void test18315() // https://issues.dlang.org/show_bug.cgi?id=18315
+void test18315() // upstream issue 18315
 {
     int i = int.min;
     bool b = i > 0;
@@ -1696,7 +1696,7 @@ void test18315() // https://issues.dlang.org/show_bug.cgi?id=18315
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=18461
+// upstream issue 18461
 
 void test18461()
 {
@@ -1710,7 +1710,7 @@ void test18461()
 
 ////////////////////////////////////////////////////////////////////////
 
-void test18730() // https://issues.dlang.org/show_bug.cgi?id=18730
+void test18730() // upstream issue 18730
 {
     static if (size_t.sizeof == 8)
     {
@@ -1768,7 +1768,7 @@ void test18730() // https://issues.dlang.org/show_bug.cgi?id=18730
 
 ////////////////////////////////////////////////////////////////////////
 
-void test19497() // https://issues.dlang.org/show_bug.cgi?id=19497
+void test19497() // upstream issue 19497
 {
     {
         ubyte[1024] data;
@@ -1806,7 +1806,7 @@ void test19497() // https://issues.dlang.org/show_bug.cgi?id=19497
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=18794
+// upstream issue 18794
 
 bool method18794(size_t* p)
 {
@@ -1878,7 +1878,7 @@ void testfastpar()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=20363
+// upstream issue 20363
 
 ulong foo20363(double d)
 {
@@ -1916,7 +1916,7 @@ void testNegConst()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=16317
+// upstream issue 16317
 
 int add8ret3(ref int s)
 {
@@ -1938,7 +1938,7 @@ void test16317()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=20050
+// upstream issue 20050
 
 int test20050_g = 0;
 void test20050_impure_function_1() { ++test20050_g; }
@@ -1960,7 +1960,7 @@ void test20050()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://github.com/dlang/dmd/pull/11238
+// upstream dmd pull request 11238
 
 int testCpStatic1(int y)
 {
@@ -1978,7 +1978,7 @@ void testCpStatic()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=20991
+// upstream issue 20991
 
 int x7;
 
@@ -1997,7 +1997,7 @@ void test7()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://github.com/dlang/dmd/pull/11388
+// upstream dmd pull request 11388
 
 ushort byteswap(ushort x) pure
 {
@@ -2048,7 +2048,7 @@ void testrolror()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=20162
+// upstream issue 20162
 
 void test20162()
 {
@@ -2070,7 +2070,7 @@ void test20162()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=3713
+// upstream issue 3713
 
 int star1(int i)
 {
@@ -2128,7 +2128,7 @@ void testsbbrex()
 
 ////////////////////////////////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=19846
+// upstream issue 19846
 
 alias Void = byte[0];
 static immutable Void VOID; // = [];
@@ -2263,7 +2263,7 @@ void testMulAssPair()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=21038
+// upstream issue 21038
 
 const(wchar)* x21038 = "xz";
 const(dchar)* name21038 = "abcd";
@@ -2275,7 +2275,7 @@ void test21038()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=21325
+// upstream issue 21325
 
 real f21325(const real x) pure @safe nothrow @nogc
 {
@@ -2297,7 +2297,7 @@ void test21325() @safe
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=16274
+// upstream issue 16274
 
 extern(C) int pair(short a, ushort b, byte c, ubyte d);
 
@@ -2324,7 +2324,7 @@ void test16274()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=16268
+// upstream issue 16268
 
 void test16268()
 {
@@ -2342,7 +2342,7 @@ void test16268()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=11435
+// upstream issue 11435
 
 void test11435a()
 {
@@ -2402,7 +2402,7 @@ void test11435b()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=21513
+// upstream issue 21513
 
 struct Stuff
 {
@@ -2427,7 +2427,7 @@ void test21513()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=21526
+// upstream issue 21526
 
 double f21256(double a, double b) {
     double c = a + b;
@@ -2458,7 +2458,7 @@ void test21256()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=21816
+// upstream issue 21816
 
 bool test21816a(float t)
 {
@@ -2471,7 +2471,7 @@ void test21816()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://issues.dlang.org/show_bug.cgi?id=21835
+// upstream issue 21835
 
 struct Point21835
 {
@@ -2505,7 +2505,7 @@ void test21835()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://github.com/dlang/dmd/pull/16187#issuecomment-1946534649
+// upstream dmd pull request 16187
 
 void testDoWhileContinue()
 {
@@ -2518,7 +2518,7 @@ void testDoWhileContinue()
 }
 
 ////////////////////////////////////////////////////////////////////////
-// https://github.com/dlang/dmd/issues/20574
+// upstream dmd issue 20574
 
 int test20574x(int i, int y)
 {

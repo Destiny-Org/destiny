@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19192
+// upstream issue 19192
 interface Foo
 {
     Foo covariant();

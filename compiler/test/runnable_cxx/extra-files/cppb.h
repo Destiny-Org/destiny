@@ -32,7 +32,7 @@ public:
 class Cpp15589DerivedVirtual : public Cpp15589BaseVirtual
 {
 public:
-    Cpp15589DerivedVirtual(); // explicit C++ ctor needed, see https://issues.dlang.org/show_bug.cgi?id=18966
+    Cpp15589DerivedVirtual(); // explicit C++ ctor needed, see upstream issue 18966
     virtual ~Cpp15589DerivedVirtual();
 
     virtual void afterDtor() {}

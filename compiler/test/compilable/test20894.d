@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20894
+// upstream issue 20894
 
 mixin template MT()
 {

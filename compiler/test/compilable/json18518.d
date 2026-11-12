@@ -63,7 +63,7 @@ TEST_OUTPUT:
 ]
 ----
 
-https://github.com/dlang/dmd/issues/18518
+upstream dmd issue 18518
 */
 
 mixin template Mix(T)

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22351
+// upstream issue 22351
 // EXTRA_CPP_SOURCES: test22351.cpp
 // REQUIRED_ARGS: -de -extern-std=c++11
 // CXXFLAGS: -std=c++11

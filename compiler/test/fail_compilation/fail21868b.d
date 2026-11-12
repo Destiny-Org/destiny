@@ -6,7 +6,7 @@ fail_compilation/fail21868b.d(17):        perhaps change the `return scope` into
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=21868
+// upstream issue 21868
 
 struct S
 {

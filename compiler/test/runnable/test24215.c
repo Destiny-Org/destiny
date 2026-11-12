@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24215
+// upstream dmd issue 24215
 extern int foo(int x);
 extern typeof(foo) bar;
 extern __typeof(foo) baz;

@@ -9,7 +9,7 @@ fail_compilation/fix19059.d(18): Error: octal literals `010` are no longer suppo
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=19059
+// upstream issue 19059
 
 void foo()
 {

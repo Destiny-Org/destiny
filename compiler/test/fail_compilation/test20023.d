@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -preview=dip1000 -preview=dip1008 -Ifail_compilation/extra-files
-// https://issues.dlang.org/show_bug.cgi?id=20023
+// upstream issue 20023
 /*
 TEST_OUTPUT:
 ---

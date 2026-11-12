@@ -366,7 +366,7 @@ T* emplace(T, Args...)(void[] chunk, auto ref Args args)
     assert(u1.a == "hello");
 }
 
-@system unittest // https://issues.dlang.org/show_bug.cgi?id=15772
+@system unittest // upstream issue 15772
 {
     abstract class Foo {}
     class Bar: Foo {}
@@ -1284,7 +1284,7 @@ void copyEmplace(S, T)(ref S source, ref T target) @system
         }
         else static if (__traits(hasCopyConstructor, T))
         {
-            // https://issues.dlang.org/show_bug.cgi?id=22766
+            // upstream issue 22766
             import core.internal.lifetime : emplaceInitializer;
             emplaceInitializer(*(cast(Unqual!T*)&target));
             static if (__traits(isNested, T))
@@ -1391,7 +1391,7 @@ void copyEmplace(S, T)(ref S source, ref T target) @system
     static assert(!__traits(compiles, copyEmplace(ss, t)));
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22766
+// upstream issue 22766
 @system pure nothrow @nogc unittest
 {
     static struct S
@@ -1465,7 +1465,7 @@ version (CoreUnittest)
     testCopyEmplace!(immutable S[1], S[1])();
 
     // copying to an immutable static array works, but `T expected = source`
-    // wrongly ignores the postblit: https://issues.dlang.org/show_bug.cgi?id=8950
+    // wrongly ignores the postblit: upstream issue 8950
     immutable S[1] expectedImmutable = [S(52)];
     testCopyEmplace!(S[1], immutable S[1])(&expectedImmutable);
     testCopyEmplace!(immutable S[1], immutable S[1])(&expectedImmutable);
@@ -1489,7 +1489,7 @@ version (CoreUnittest)
     testCopyEmplace!(immutable S, immutable S)();
 
     // static arrays work, but `T expected = source` wrongly ignores copy ctors
-    // https://issues.dlang.org/show_bug.cgi?id=20365
+    // upstream issue 20365
     S[1] expectedMutable = [S(52)];
     immutable S[1] expectedImmutable = [immutable S(62)];
     testCopyEmplace!(S[1], S[1])(&expectedMutable);
@@ -1960,7 +1960,7 @@ pure nothrow @safe @nogc unittest
     assert(s2.a == 2);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=20869
+// upstream issue 20869
 // `move` should propagate the attributes of `opPostMove`
 @system unittest
 {
@@ -2344,7 +2344,7 @@ pure nothrow @nogc @system unittest
     assert(val == 1);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=18913
+// upstream issue 18913
 @safe unittest
 {
     static struct NoCopy
@@ -2369,7 +2369,7 @@ debug(PRINTF)
     import core.stdc.stdio : printf;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=25552
+// upstream issue 25552
 pure nothrow @system unittest
 {
     int i;
@@ -2393,7 +2393,7 @@ pure nothrow @system unittest
     assert(i == 2);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=25552
+// upstream issue 25552
 @safe unittest
 {
     int i;
@@ -2442,7 +2442,7 @@ pure nothrow @system unittest
     assert(i == 6);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=25552
+// upstream issue 25552
 @safe unittest
 {
     int i;

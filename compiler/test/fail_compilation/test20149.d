@@ -5,7 +5,7 @@ fail_compilation/test20149.d(28): Error: escaping reference to stack allocated v
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=20149#c10
+// upstream issue 20149#c10
 
 @safe:
 

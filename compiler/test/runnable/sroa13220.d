@@ -1,6 +1,6 @@
 /* REQUIRED_ARGS: -O -inline -boundscheck=off
  */
-// https://github.com/dlang/pull/13220
+// https://github.com/Destiny-Org/destiny
 
 version (D_SIMD)
 {

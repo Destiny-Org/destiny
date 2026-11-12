@@ -24,7 +24,7 @@ import core.stdc.stdio;
 template TypeTuple(T...){ alias T TypeTuple; }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=2625
+// upstream issue 2625
 
 struct Pair {
     immutable uint g1;
@@ -37,7 +37,7 @@ void test1() {
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5327
+// upstream issue 5327
 
 struct ID
 {
@@ -155,7 +155,7 @@ void test3()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3511
+// upstream issue 3511
 
 struct S4
 {
@@ -246,7 +246,7 @@ void test6()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4424
+// upstream issue 4424
 
 void test4424()
 {
@@ -258,7 +258,7 @@ void test4424()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6174
+// upstream issue 6174
 
 struct CtorTest6174(Data)
 {
@@ -506,7 +506,7 @@ void test6174c()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6216
+// upstream issue 6216
 
 void test6216a()
 {
@@ -674,7 +674,7 @@ void test6216e()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6286
+// upstream issue 6286
 
 void test6286()
 {
@@ -688,7 +688,7 @@ void test6286()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6336
+// upstream issue 6336
 
 void test6336()
 {
@@ -717,7 +717,7 @@ void test6336()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8783
+// upstream issue 8783
 
 struct Foo8783
 {
@@ -735,7 +735,7 @@ shared static this()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9077
+// upstream issue 9077
 
 struct S9077a
 {
@@ -751,7 +751,7 @@ struct S9077b
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9140
+// upstream issue 9140
 
 immutable(int)[] bar9140()
 out(result) {
@@ -761,7 +761,7 @@ out(result) {
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9154
+// upstream issue 9154
 
 struct S9154a
 {
@@ -786,7 +786,7 @@ void test9154()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9258
+// upstream issue 9258
 
 class A9258 {}
 class B9258 : A9258 // Error: class test.B9258 identity assignment operator overload is illegal
@@ -813,7 +813,7 @@ class E9258 : A9258
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9416
+// upstream issue 9416
 
 struct S9416
 {
@@ -834,7 +834,7 @@ void test9416()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9658
+// upstream issue 9658
 
 struct S9658
 {
@@ -846,7 +846,7 @@ struct S9658
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11187
+// upstream issue 11187
 
 void test11187()
 {
@@ -866,7 +866,7 @@ void test11187()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12131
+// upstream issue 12131
 
 struct X12131
 {
@@ -888,7 +888,7 @@ void test12131() pure
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12211
+// upstream issue 12211
 
 void test12211()
 {
@@ -912,7 +912,7 @@ void test12211()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4791 (dup of 12212)
+// upstream issue 4791 (dup of 12212)
 
 void test4791()
 {
@@ -941,7 +941,7 @@ void test4791()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12212
+// upstream issue 12212
 
 void test12212()
 {
@@ -1029,7 +1029,7 @@ void test12212()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12650
+// upstream issue 12650
 
 void test12650()
 {
@@ -1099,7 +1099,7 @@ void test12650()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13044
+// upstream issue 13044
 
 void test13044()
 {
@@ -1122,7 +1122,7 @@ void test13044()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12500
+// upstream issue 12500
 
 void test12500()
 {
@@ -1131,7 +1131,7 @@ void test12500()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14672
+// upstream issue 14672
 
 void test14672()
 {
@@ -1166,7 +1166,7 @@ void test14672()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15044
+// upstream issue 15044
 
 void destroy15044(T)(ref T obj)
 {

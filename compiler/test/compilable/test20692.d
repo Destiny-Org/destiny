@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20692
+// upstream issue 20692
 
 struct S() {
     void fun() {

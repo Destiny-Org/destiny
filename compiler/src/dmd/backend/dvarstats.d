@@ -2,12 +2,12 @@
  * Support for lexical scope of local variables
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
- * Copyright:   Copyright (C) 2015-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 2015-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     Rainer Schuetze
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/dvarstats.d, backend/dvarstats.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dvarstats.d, backend/dvarstats.d)
  */
 
 module dmd.backend.dvarstats;

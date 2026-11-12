@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22865
+// upstream issue 22865
 
 // Test that safety errors inside speculative scopes don't affect attribute inference
 

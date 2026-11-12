@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21637
+// upstream dmd issue 21637
 // ICE in tuple comparison with conditional expression
 
 struct Date {

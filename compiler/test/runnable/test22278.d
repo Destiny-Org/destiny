@@ -3,7 +3,7 @@ REQUIRED_ARGS: -release
 PERMUTE_ARGS:  -check=in=on -check=out=on
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=22278
+// upstream issue 22278
 
 bool resultIn;
 bool resultOut;

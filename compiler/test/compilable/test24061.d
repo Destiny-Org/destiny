@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=24061
+// upstream issue 24061
 
 class Exception2
 {

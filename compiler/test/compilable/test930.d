@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=930
+// upstream issue 930
 template ATemplate(T)
 {
    template ATemplate()

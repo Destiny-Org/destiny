@@ -4,7 +4,7 @@ fail_compilation/fix24058.c(108): Error: redefinition of `q` with different type
 ---
  */
 
-// https://github.com/dlang/dmd/issues/24058
+// upstream dmd issue 24058
 
 #line 100
 

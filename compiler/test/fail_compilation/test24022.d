@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/24022
+// upstream dmd issue 24022
 
 /*
 TEST_OUTPUT:
@@ -31,7 +31,7 @@ dchar[] g()
     return r;
 }
 
-// https://github.com/dlang/dmd/issues/24151
+// upstream dmd issue 24151
 dchar[] h()
 {
     dchar[] r;
@@ -41,7 +41,7 @@ dchar[] h()
     return r;
 }
 
-// https://github.com/dlang/dmd/issues/24152
+// upstream dmd issue 24152
 dchar[] i()
 {
     dchar[] r;

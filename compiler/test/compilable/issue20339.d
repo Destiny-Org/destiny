@@ -7,7 +7,7 @@ false
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=20339
+// upstream issue 20339
 
 struct S
 {

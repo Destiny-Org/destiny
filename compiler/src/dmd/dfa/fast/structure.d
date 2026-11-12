@@ -1,12 +1,12 @@
 /**
  * Structure and representation of the fast Data Flow Analysis engine.
  *
- * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   $(LINK2 https://cattermole.co.nz, Richard (Rikki) Andrew Cattermole)
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/dfa/fast/structure.d, dfa/fast/structure.d)
- * Documentation: https://dlang.org/phobos/dmd_dfa_fast_structure.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/dfa/fast/structure.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/structure.d, dfa/fast/structure.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/structure.d
+ * 
  */
 module dmd.dfa.fast.structure;
 import dmd.dfa.utils;
@@ -270,7 +270,7 @@ struct DFACommon
         if (vd.ident is Id.dollar)
         {
             // __dollar creates problems because it isn't a real variable
-            // https://issues.dlang.org/show_bug.cgi?id=3326
+            // upstream issue 3326
 
             ret.unmodellable = true;
         }

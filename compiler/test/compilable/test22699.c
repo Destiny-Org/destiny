@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22699
+// upstream issue 22699
 
 int foo(int x, int y)
 {

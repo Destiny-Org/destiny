@@ -1,6 +1,6 @@
 module unique_typeinfo_names;
 
-// https://issues.dlang.org/show_bug.cgi?id=22149
+// upstream issue 22149
 void structs()
 {
     static struct Foo(T) {}
@@ -29,7 +29,7 @@ void structs()
     assert(typeid(b).name == "unique_typeinfo_names.structs().Foo!(unique_typeinfo_names.structs().bar().S).Foo");
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22150
+// upstream issue 22150
 void classes()
 {
     static class Foo(T) {}

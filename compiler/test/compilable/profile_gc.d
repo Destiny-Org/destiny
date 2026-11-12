@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -profile=gc
 
-// https://issues.dlang.org/show_bug.cgi?id=23874
+// upstream issue 23874
 string myToString()
 {
     return "";
@@ -9,6 +9,6 @@ string myToString()
 enum x = myToString ~ "";
 immutable x2 = myToString ~ "";
 
-// https://github.com/dlang/dmd/issues/22842
+// upstream dmd issue 22842
 struct UpaTester{}
 UpaTester[] test(){return [UpaTester()];}

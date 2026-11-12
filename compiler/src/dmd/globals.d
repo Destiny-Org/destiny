@@ -1,12 +1,12 @@
 /**
  * Stores command line options and contains other miscellaneous declarations.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/globals.d, _globals.d)
- * Documentation:  https://dlang.org/phobos/dmd_globals.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/globals.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/globals.d, _globals.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/globals.d
+ * 
  */
 
 module dmd.globals;
@@ -194,28 +194,28 @@ extern (C++) struct Param
 
 
     // Options for `-preview=/-revert=`
-    FeatureState useDIP25 = FeatureState.enabled; // implement https://wiki.dlang.org/DIP25
-    FeatureState useDIP1000;     // implement https://dlang.org/spec/memory-safe-d.html#scope-return-params
+    FeatureState useDIP25 = FeatureState.enabled; // implement https://github.com/Destiny-Org/destiny
+    FeatureState useDIP1000;     // implement https://github.com/Destiny-Org/destiny/blob/main/spec/memory-safe-d.dd
     bool ehnogc;                 // use @nogc exception handling
-    bool useDIP1021;             // implement https://github.com/dlang/DIPs/blob/master/DIPs/accepted/DIP1021.md
+    bool useDIP1021;             // implement DIP1021
     FeatureState fieldwise;      // do struct equality testing field-wise rather than by memcmp()
     bool fixAliasThis;           // if the current scope has an alias this, check it before searching upper scopes
     FeatureState rvalueRefParam; // allow rvalues to be arguments to ref parameters
                                  // https://dconf.org/2019/talks/alexandrescu.html
                                  // https://gist.github.com/andralex/e5405a5d773f07f73196c05f8339435a
                                  // https://digitalmars.com/d/archives/digitalmars/D/Binding_rvalues_to_ref_parameters_redux_325087.html
-                                 // Implementation: https://github.com/dlang/dmd/pull/9817
+                                 // Implementation: upstream dmd pull request 9817
     FeatureState safer;          // safer by default (more @safe checks in unattributed code)
                                  // https://github.com/WalterBright/documents/blob/38f0a846726b571f8108f6e63e5e217b91421c86/safer.md
     FeatureState noSharedAccess; // read/write access to shared memory objects
     bool previewIn;              // `in` means `[ref] scope const`, accepts rvalues
     bool inclusiveInContracts;   // 'in' contracts of overridden methods must be a superset of parent contract
     bool shortenedMethods = true;       // allow => in normal function declarations
-    bool fixImmutableConv;       // error on unsound immutable conversion - https://github.com/dlang/dmd/pull/14070
+    bool fixImmutableConv;       // error on unsound immutable conversion - upstream dmd pull request 14070
     bool fix16997 = true;        // fix integral promotions for unary + - ~ operators
-                                 // https://issues.dlang.org/show_bug.cgi?id=16997
+                                 // upstream issue 16997
     FeatureState dtorFields;     // destruct fields of partially constructed objects
-                                 // https://issues.dlang.org/show_bug.cgi?id=14246
+                                 // upstream issue 14246
     FeatureState systemVariables; // limit access to variables marked @system from @safe code
     bool useFastDFA;                 // Use fast data flow analysis engine
 
@@ -300,7 +300,7 @@ extern (C++) struct Global
 {
     const(char)[] inifilename; /// filename of configuration file as given by `-conf=`, or default value
 
-    string copyright = "Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved";
+    string copyright = "Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors";
     string written = "written by Walter Bright";
 
     Array!(ImportPathInfo) path;       /// Array of path informations which form the import lookup path
@@ -408,7 +408,7 @@ extern (C++) struct Global
 
         time_t ct;
         const(char)* p;
-        // https://issues.dlang.org/show_bug.cgi?id=20444
+        // upstream issue 20444
         if (auto epoch = getenv("SOURCE_DATE_EPOCH"))
         {
             if (!ct.parseDigits(epoch[0 .. strlen(epoch)]))

@@ -8,7 +8,7 @@
     - getifmaddrs(3):  get multicast group membership
     - freeifmaddrs(3): deallocates the return value of `getifmaddrs`
 
-    Copyright:  Copyright © 2020, The D Language Foundation
+    Copyright:  Copyright © 2020, The D Language Foundation; Copyright (C) 2026 Destiny contributors
     License:    $(HTTP www.boost.org/LICENSE_1_0.txt, Boost License 1.0).
     Authors:    Daniel Graczer
 

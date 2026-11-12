@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=18821
+// upstream issue 18821
 
 align(1) struct epoll_event
 {

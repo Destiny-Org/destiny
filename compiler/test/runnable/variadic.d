@@ -674,7 +674,7 @@ void test61()
 template Tuple63(T...){
     alias T Tuple63;
 }
-// https://issues.dlang.org/show_bug.cgi?id=3336
+// upstream issue 3336
 static assert(!is(int[ Tuple63!(int, int) ]));
 
 void test63()
@@ -693,7 +693,7 @@ void test1411()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4444
+// upstream issue 4444
 
 void test4444()
 {
@@ -703,7 +703,7 @@ void test4444()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13864
+// upstream issue 13864
 
 struct Tuple13864(T...)
 {
@@ -723,7 +723,7 @@ void test13864()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4884
+// upstream issue 4884
 
 struct A4884(T...)
 {
@@ -738,7 +738,7 @@ void test4884()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4920
+// upstream issue 4920
 
 struct Test4920(parameters_...)
 {
@@ -753,7 +753,7 @@ void test4920()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4940
+// upstream issue 4940
 
 template Tuple4940(T...)
 {
@@ -789,7 +789,7 @@ void test4940add()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6530
+// upstream issue 6530
 
 struct S6530
 {
@@ -878,7 +878,7 @@ void testCopy()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6700
+// upstream issue 6700
 
 template bug6700(TList ...) {
     const int bug6700 = 2;
@@ -888,7 +888,7 @@ TypeTuple!(int, long) TT6700;
 static assert(bug6700!( (TT6700[1..$]) )==2);
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=6966
+// upstream issue 6966
 
 template X6966(T...)
 {
@@ -898,7 +898,7 @@ static assert(is(X6966!(int) == const(int)));
 static assert(is(X6966!(int, 0) == const(int)));
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7233
+// upstream issue 7233
 
 struct Foo7233 { int x, y; }
 Foo7233[] front7233(Foo7233[][] a)
@@ -922,7 +922,7 @@ void test7233()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7263
+// upstream issue 7263
 
 template TypeTuple7263(T...){ alias T TypeTuple7263; }
 
@@ -942,13 +942,13 @@ void test7263()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8244
+// upstream issue 8244
 
 TypeTuple!(int,int)[] x8244;
 static assert(is(typeof(x8244) == TypeTuple!(int, int)));
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9017
+// upstream issue 9017
 
 template X9017(Args...)
 {
@@ -976,13 +976,13 @@ void test9017()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10279
+// upstream issue 10279
 
 void foo10279(int[][] strs...) @trusted { }
 void bar10279() @safe { foo10279(); }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13508
+// upstream issue 13508
 
 struct S13508
 {
@@ -1003,7 +1003,7 @@ void test13508() @safe @nogc
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14395
+// upstream issue 14395
 
 int v2u14395(uint[1] ar...)
 {
@@ -1021,7 +1021,7 @@ void test14395()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10414
+// upstream issue 10414
 
 void foo10414(void delegate()[] ...) { }
 
@@ -1059,7 +1059,7 @@ void test14179()
 }
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10722
+// upstream issue 10722
 
 struct S10722
 {
@@ -1121,7 +1121,7 @@ void test15417()
 
 
 /***************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21425
+// upstream issue 21425
 
 import core.stdc.stdarg;
 import core.stdc.stdio;
@@ -1147,7 +1147,7 @@ void test21425()
 }
 
 /*********************************************/
-// https://issues.dlang.org/show_bug.cgi?id=23409
+// upstream issue 23409
 
 import core.stdc.string;
 

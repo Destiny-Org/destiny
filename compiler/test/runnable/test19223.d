@@ -10,7 +10,7 @@ static if (__traits(compiles, __vector(int[4])))
         return sum;
     }
 
-    // https://issues.dlang.org/show_bug.cgi?id=19223
+    // upstream issue 19223
     void test19223()
     {
         int4 v1 = int4.init;
@@ -18,7 +18,7 @@ static if (__traits(compiles, __vector(int[4])))
         assert(fn(int4.init.array) == 0);
     }
 
-    // https://issues.dlang.org/show_bug.cgi?id=19607
+    // upstream issue 19607
     void test19607()
     {
         int4 v1 = 1;

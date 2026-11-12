@@ -1,19 +1,19 @@
 // check bugs in the expression parser
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21931
+// upstream issue 21931
 
 typedef long int T21931a;
 typedef T21931a T21931b;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21933
+// upstream issue 21933
 
 struct S21933 { void *opaque; };
 int test21933(struct S21933 *);
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21934
+// upstream issue 21934
 
 typedef int T21934 asm("realtype");
 int init21934 asm("realsym") = 1;
@@ -33,7 +33,7 @@ void test21934()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21937
+// upstream issue 21937
 
 __attribute__(()) int test21937a();
 int test21937b() __attribute__(( , nothrow, hot, aligned(2), ));
@@ -74,7 +74,7 @@ enum E21937b
 typedef int T21937a __attribute__((unused));
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21945
+// upstream issue 21945
 
 typedef struct {
     long var;
@@ -87,7 +87,7 @@ typedef enum {
 E21945 test21945b;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21948
+// upstream issue 21948
 
 void test21948()
 {
@@ -97,12 +97,12 @@ void test21948()
     myint var1;
     myint var2 = 12;
     mystruct var3;
-    // Uncomment when bug fixed https://issues.dlang.org/show_bug.cgi?id=21979
+    // Uncomment when bug fixed upstream issue 21979
     //mystruct var4 = { 34 };
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21963
+// upstream issue 21963
 
 union U21963
 {
@@ -111,19 +111,19 @@ union U21963
 };
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21965
+// upstream issue 21965
 
 struct { int var; };
 typedef struct { int var; };
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21967
+// upstream issue 21967
 
 const int test21967a(void);
 const int *test21967b(void);
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21968
+// upstream issue 21968
 
 struct S21968
 {
@@ -131,17 +131,17 @@ struct S21968
 };
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21970
+// upstream issue 21970
 
 extern int test21970a;
 extern char *test21970b;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=24447
+// upstream issue 24447
 extern int x = 3;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21973
+// upstream issue 21973
 
 struct S21973
 {
@@ -153,18 +153,18 @@ struct S21973
 };
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21977
+// upstream issue 21977
 int test21977a;
 _Thread_local int test21977b;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21982
+// upstream issue 21982
 
 struct S21982 { int field; };
 struct S21982 test21982;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=21992
+// upstream issue 21992
 
 void test21992(int var)
 {
@@ -175,7 +175,7 @@ void test21992(int var)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22028
+// upstream issue 22028
 
 struct S22028
 {
@@ -188,7 +188,7 @@ struct S22028
 };
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22060
+// upstream issue 22060
 
 struct S22060;
 typedef struct S22060 T22060a;
@@ -201,7 +201,7 @@ struct S22060
 };
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22061
+// upstream issue 22061
 
 union S22061
 {
@@ -210,7 +210,7 @@ union S22061
 typedef union S22061 S22061;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22063
+// upstream issue 22063
 
 typedef struct S22063_t
 {
@@ -228,7 +228,7 @@ void test22063()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22066
+// upstream issue 22066
 
 void test22066()
 {
@@ -237,7 +237,7 @@ void test22066()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22067
+// upstream issue 22067
 
 void test22067()
 {
@@ -255,7 +255,7 @@ void test22067()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22073
+// upstream issue 22073
 
 struct S22073a { int field; };
 struct S22073b { const char *field; };
@@ -264,7 +264,7 @@ _Static_assert((struct S22073a){6789}.field == 6789, "ok");
 _Static_assert((struct S22073b){"zxcv"}.field[2] == 'c', "ok");
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22079
+// upstream issue 22079
 
 struct S22079
 {
@@ -275,7 +275,7 @@ _Static_assert(sizeof(struct S22079){1,2,3} == sizeof(int)*3, "ok");
 _Static_assert(sizeof(struct S22079){1,2,3}.a == sizeof(int), "ok");
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22080
+// upstream issue 22080
 
 int F22080(const char *);
 
@@ -285,11 +285,11 @@ int test22080()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22086
+// upstream issue 22086
 typedef union U22086 U22086;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22088
+// upstream issue 22088
 
 void test22088()
 {
@@ -325,7 +325,7 @@ void test22088()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22102
+// upstream issue 22102
 
 void fun22102(int var);
 typedef int int22102;
@@ -337,13 +337,13 @@ void test22102()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22103
+// upstream issue 22103
 
 void test22103a(char *const argv[restrict]);
 void test22103b(char *const argv[restrict 4]);
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22106
+// upstream issue 22106
 
 typedef struct S22106
 {
@@ -365,12 +365,12 @@ void testS22106()
 int S22106; // not a redeclaration of 'struct S22106'
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22160
+// upstream issue 22160
 
 typedef struct testcstuff2 testcstuff2;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22182
+// upstream issue 22182
 
 int test22182a(int x)
 {
@@ -385,7 +385,7 @@ int test22182b(S22182* b)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22196
+// upstream issue 22196
 
 __attribute__((static, unsigned, long, const, extern, register, typedef, short,
                inline, _Noreturn, volatile, signed, auto, restrict, _Complex,
@@ -396,7 +396,7 @@ _Atomic(_Bool) atomicbool;
 
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22245
+// upstream issue 22245
 
 struct S22245 { int i; };
 
@@ -407,7 +407,7 @@ int test22245()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22262
+// upstream issue 22262
 
 void test22262(unsigned char *buf)
 {
@@ -422,7 +422,7 @@ void test22262(unsigned char *buf)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22264
+// upstream issue 22264
 
 typedef int T22264;
 
@@ -435,7 +435,7 @@ unsigned long test22264(crc, buf, len)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22274
+// upstream issue 22274
 
 void test22274(compr, comprLen, uncompr, uncomprLen)
     unsigned *compr, *uncompr;
@@ -444,7 +444,7 @@ void test22274(compr, comprLen, uncompr, uncomprLen)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22375
+// upstream issue 22375
 
 typedef struct S22375S
 {
@@ -466,7 +466,7 @@ static const S22375 s22375[10] =
 };
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22399
+// upstream issue 22399
 
 struct S22399a
 {
@@ -482,7 +482,7 @@ const struct S22399a C22399[1] = { {12} };
 const struct S22399b C22399b = {C22399};
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22400
+// upstream issue 22400
 
 typedef struct S22400
 {
@@ -498,7 +498,7 @@ const S22400_t C22400[1] = { {12} };
 const struct S22400b C22400b = {C22400};
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22402
+// upstream issue 22402
 
 typedef struct {
     short c;
@@ -526,7 +526,7 @@ int test22402c(S22402a *a)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22403
+// upstream issue 22403
 
 extern unsigned test22403a(const char *p);
 
@@ -536,7 +536,7 @@ void test22403()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22404
+// upstream issue 22404
 
 typedef enum
 {
@@ -551,7 +551,7 @@ int test22404()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22405
+// upstream issue 22405
 
 struct S22405
 {
@@ -565,7 +565,7 @@ void test22405(struct S22405 *s)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22406
+// upstream issue 22406
 
 int test22406(int a)
 {
@@ -579,7 +579,7 @@ int test22406(int a)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22407
+// upstream issue 22407
 
 typedef int (*T22407) (int a);
 
@@ -588,7 +588,7 @@ int test22407(int a);
 T22407 table22407[1] = { test22407 };
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22409
+// upstream issue 22409
 
 struct S22409;
 
@@ -598,7 +598,7 @@ typedef struct S22409
 } S22409_t;
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22411
+// upstream issue 22411
 
 extern char * const var22411[10];
 
@@ -624,7 +624,7 @@ void test22411()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22413
+// upstream issue 22413
 
 int test22413(void)
 {
@@ -641,12 +641,12 @@ int test(char *dest)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22512
+// upstream issue 22512
 
 extern char *tzname[];
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22584
+// upstream issue 22584
 
 long test22584(long, long);
 
@@ -656,7 +656,7 @@ long test22584(long a, long b)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22602
+// upstream issue 22602
 
 void test22602()
 {
@@ -665,7 +665,7 @@ void test22602()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22401
+// upstream issue 22401
 
 struct S22401
 {
@@ -675,7 +675,7 @@ const int c22401[1] = {0};
 const struct S22401 d22401 = {c22401};
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22841
+// upstream issue 22841
 
 void test22841()
 {
@@ -684,7 +684,7 @@ void test22841()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22961
+// upstream issue 22961
 int main(argc, argv)
         int argc;
         char **argv;
@@ -692,7 +692,7 @@ int main(argc, argv)
         return 0;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23018
+// upstream issue 23018
 
 int xs[1];
 struct { int x; } s, *sp;
@@ -705,7 +705,7 @@ _Static_assert( sizeof (s).x == sizeof(int), "" );
 _Static_assert( sizeof (fn)() == sizeof(int), "" );
 _Static_assert( sizeof (i)++ == sizeof(int), "" );
 
-// https://issues.dlang.org/show_bug.cgi?id=23143
+// upstream issue 23143
 
 enum E1;
 
@@ -723,7 +723,7 @@ enum E2 {
 
 /************************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=23725
+// upstream issue 23725
 
 #define	__fldcw(addr)	asm volatile("fldcw %0" : : "m" (*(addr)))
 
@@ -739,7 +739,7 @@ void test23725()
 }
 
 /************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=24070
+// upstream issue 24070
 
 typedef struct Typ Typ;
 typedef struct Field Field;
@@ -755,7 +755,7 @@ static void parse() {
 }
 
 /************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=24071
+// upstream issue 24071
 
 typedef enum
 {
@@ -764,6 +764,6 @@ typedef enum
 } DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY;
 
 /************************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=24580
+// upstream issue 24580
 
 int ioctl(int __fd, unsigned __request, ...) __attribute__((overloadable)) __attribute__((enable_if(1, ""))) asm("ioctl");

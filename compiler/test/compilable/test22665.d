@@ -1,6 +1,6 @@
 // EXTRA_FILES: imports/imp22665.c
 
-// https://issues.dlang.org/show_bug.cgi?id=22665
+// upstream issue 22665
 
 import imports.imp22665;
 

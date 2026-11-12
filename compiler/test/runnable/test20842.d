@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20842
+// upstream dmd issue 20842
 // Expanding an empty tuple should preserve side effects
 
 struct Tuple(T...)

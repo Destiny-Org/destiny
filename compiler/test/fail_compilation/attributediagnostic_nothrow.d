@@ -14,7 +14,7 @@ fail_compilation/attributediagnostic_nothrow.d(39): Error: function `D main` may
 */
 
 // Issue 17374 - Improve inferred attribute error message
-// https://issues.dlang.org/show_bug.cgi?id=17374
+// upstream issue 17374
 
 auto layer2() nothrow { layer1(); }
 auto layer1() { layer0(); }

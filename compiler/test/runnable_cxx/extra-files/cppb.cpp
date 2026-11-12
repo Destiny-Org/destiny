@@ -240,13 +240,13 @@ void foo8(const char *p)
 }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=4059
+// upstream issue 4059
 
 struct elem9 { };
 void foobar9(elem9*, elem9*) { }
 
 /**************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5148
+// upstream issue 5148
 
 void foo10(const char*, const char*) { }
 void foo10(const int, const int) { }
@@ -462,7 +462,7 @@ namespace N13337 {
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14195
+// upstream issue 14195
 
 template <typename T>
 struct Delegate1 {};
@@ -481,13 +481,13 @@ void test14195a(Delegate1<void()> func) {}
 void test14195b(Delegate2<int(float, double), int(float, double)> func) {}
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14200
+// upstream issue 14200
 
 void test14200a(int a) {};
 void test14200b(float a, int b, double c) {};
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14956
+// upstream issue 14956
 
 namespace std {
     namespace N14956 {
@@ -586,10 +586,10 @@ void throwle()
 #endif
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15579
+// upstream issue 15579
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15579
+// upstream issue 15579
 
 class Base
 {
@@ -664,7 +664,7 @@ Interface *cppfooi(Interface *i)
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15610
+// upstream issue 15610
 
 class Base2
 {
@@ -692,7 +692,7 @@ void Derived2::f()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15455
+// upstream issue 15455
 
 struct X6
 {
@@ -720,7 +720,7 @@ void test15455b(X8 s)
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15372
+// upstream issue 15372
 
 template <typename T>
 int foo15372(int value)
@@ -734,7 +734,7 @@ void test15372b()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15576
+// upstream issue 15576
 
 namespace ns15576
 {
@@ -747,7 +747,7 @@ namespace ns15576
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15802
+// upstream issue 15802
 
 template <typename T>
 class Foo15802
@@ -766,7 +766,7 @@ void test15802b()
 
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=16536
+// upstream issue 16536
 // mangling mismatch on OSX
 
 #if defined(__APPLE__)
@@ -777,7 +777,7 @@ uint64_t pass16536(uint64_t a)
 #endif
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15589
+// upstream issue 15589
 // extern(C++) virtual destructors are not put in vtbl[]
 
 class A15589
@@ -863,7 +863,7 @@ Cpp15589Struct::~Cpp15589Struct()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18928
+// upstream issue 18928
 
 struct Small18928
 {
@@ -888,7 +888,7 @@ CC18928* newCC18928()
 }
 
 /****************************************/
-// https://issues.dlang.org/show_bug.cgi?id=18966
+// upstream issue 18966
 Base18966::Base18966() { x = 10; }
 Base18966::~Base18966() {}
 void Base18966::vf()

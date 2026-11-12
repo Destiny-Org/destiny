@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21357
+// upstream issue 21357
 // PERMUTE_ARGS:
 struct BatchState
 {

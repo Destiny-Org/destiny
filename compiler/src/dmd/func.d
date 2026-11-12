@@ -8,12 +8,12 @@
  * - `invariant`
  * - `unittest`
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/func.d, _func.d)
- * Documentation:  https://dlang.org/phobos/dmd_func.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/func.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/func.d, _func.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/func.d
+ * 
  */
 
 module dmd.func;
@@ -935,7 +935,7 @@ extern (C++) final class FuncLiteralDeclaration : FuncDeclaration
         this.tok = tok;
         this.fes = fes;
         // Always infer scope for function literals
-        // See https://issues.dlang.org/show_bug.cgi?id=20362
+        // See upstream issue 20362
         this.scopeInprocess = true;
         //printf("FuncLiteralDeclaration() id = '%s', type = '%s'\n", this.ident.toChars(), type.toChars());
     }

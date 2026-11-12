@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=24560
+// upstream issue 24560
 
 class C { }
 struct S

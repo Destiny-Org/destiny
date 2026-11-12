@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/22769
+// upstream dmd issue 22769
 
 int foo()() => 0;
 

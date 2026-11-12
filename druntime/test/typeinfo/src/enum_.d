@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21441
+// upstream issue 21441
 
 int dtorCount;
 int postblitCount;

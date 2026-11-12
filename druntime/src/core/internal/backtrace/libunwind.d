@@ -1,5 +1,5 @@
 /**
- * Basic D language bindings for LLVM libunwind
+ * Basic Destiny language bindings for LLVM libunwind
  *
  * There are two available libunwind: The "upstream" one, inherited
  * from HP, which is maintained as a GNU project,
@@ -20,7 +20,7 @@
  * names when needed (currently we need to eagerly get the functions names).
  *
  * Authors: Mathias 'Geod24' Lang
- * Copyright: D Language Foundation - 2020
+ * Copyright: D Language Foundation - 2020; Copyright (C) 2026 Destiny contributors
  * See_Also:
  *   - https://www.nongnu.org/libunwind/man/libunwind(3).html
  *   - https://clang.llvm.org/docs/Toolchain.html#unwind-library

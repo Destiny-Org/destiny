@@ -9,7 +9,7 @@ fail_compilation/test22408.d(101):        Consider adding `shared` here
 ---
 */
 
-// https://github.com/dlang/dmd/issues/22408
+// upstream dmd issue 22408
 
 #line 100
 

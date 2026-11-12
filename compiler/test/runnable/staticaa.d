@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=23103
+// upstream issue 23103
 // Issue 23103 - static initialization of associative arrays is not implemented
 
 nothrow @safe:
@@ -142,7 +142,7 @@ void testImmutable()
 
 /////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=24209
+// upstream issue 24209
 void testLocalStatic() @trusted
 {
     static int[int] aa0 = [1: 2];
@@ -154,7 +154,7 @@ void testLocalStatic() @trusted
 
 /////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=24311
+// upstream issue 24311
 enum E : int[int] { x = [123: 456] }
 
 void testEnumInit()
@@ -166,7 +166,7 @@ void testEnumInit()
 
 /////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=24370
+// upstream issue 24370
 immutable uint[3][string] test = [
     "oneTwoThree": [1,2,3],
     "fourFiveSix": [4,5,6],
@@ -182,7 +182,7 @@ void testStaticArray()
 
 /////////////////////////////////////////////
 
-// https://issues.dlang.org/show_bug.cgi?id=24602
+// upstream issue 24602
 
 class Set
 {
@@ -207,7 +207,7 @@ void testClassLiteral()
 
 /////////////////////////////////////////////
 
-// https://github.com/dlang/dmd/issues/21690
+// upstream dmd issue 21690
 void testMultiDim()
 {
     int[int][int] aa1 = [ 1: [2: 3] ]; // Error: invalid value `[2:3]` in initializer (see #17804)
@@ -219,7 +219,7 @@ void testMultiDim()
     assert(aa3 == aa4);
 }
 
-// from https://github.com/dlang/dmd/issues/20542
+// from upstream dmd issue 20542
 void testRegression21773()
 {
     static struct S
@@ -240,7 +240,7 @@ void testRegression21773()
     assert(a2 == a3);
 }
 
-// https://github.com/dlang/dmd/issues/23900
+// upstream dmd issue 23900
 void testIndexedNestedStaticArray()
 {
     const int[3][2] color = [
@@ -267,7 +267,7 @@ void testIndexedNestedStaticArray()
     assert(cube[3] == [[7, 8], [0, 0], [0, 0]]);
 }
 
-// https://github.com/dlang/dmd/issues/19209
+// upstream dmd issue 19209
 void test19209()
 {
     int[int][] a = [[1 : 2]]; // ok
@@ -283,7 +283,7 @@ void test19209()
     static assert(!__traits(compiles, { immutable int[7] z = [ 2 : 1, 4 : 2, 8 : 3 ]; })); // Error: mismatched array lengths, 7 and 9
 }
 
-// https://github.com/dlang/dmd/issues/18360
+// upstream dmd issue 18360
 void test18360()
 {
     alias string[string][string] sss;
@@ -296,7 +296,7 @@ void test18360()
 
 /////////////////////////////////////////////
 
-// https://github.com/dlang/dmd/issues/17804
+// upstream dmd issue 17804
 void testMultiDimInit()
 {
     static struct D

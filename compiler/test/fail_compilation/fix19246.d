@@ -8,7 +8,7 @@ fail_compilation/fix19246.d(18): Error: `0B` isn't a valid integer literal, use 
 ---
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=19246
+// upstream issue 19246
 
 void foo()
 {

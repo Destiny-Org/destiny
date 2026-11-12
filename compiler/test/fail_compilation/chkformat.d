@@ -259,7 +259,7 @@ void test410() { char* p; printf("%lld", p); }
 void test411() { char* p; printf("%ju", p); }
 void test412() { char* p; printf("%jd", p); }
 
-/* https://issues.dlang.org/show_bug.cgi?id=23247
+/* upstream issue 23247
 TEST_OUTPUT:
 ---
 fail_compilation/chkformat.d(501): Deprecation: argument `p` of type `char*` does not match format specification

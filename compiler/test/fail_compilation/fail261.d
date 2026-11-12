@@ -3,7 +3,7 @@ TEST_OUTPUT:
 ---
 fail_compilation/fail261.d(20): Error: invalid `foreach` aggregate `range` of type `MyRange`
 fail_compilation/fail261.d(20):        `foreach` works with input ranges (implementing `empty`, `front`, and `popFront`), aggregates implementing `opApply`, or the result of an aggregate's `.tupleof` property
-fail_compilation/fail261.d(20):        https://dlang.org/phobos/std_range_primitives.html#isInputRange
+fail_compilation/fail261.d(20):        https://github.com/Destiny-Org/fate/blob/main/std/range/primitives.d
 ---
 */
 

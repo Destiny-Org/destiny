@@ -23,7 +23,7 @@ void test1()
 }
 
 /***************************************************/
-// https://github.com/dlang/dmd/issues/20567
+// upstream dmd issue 20567
 
 struct S2
 {

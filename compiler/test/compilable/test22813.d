@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22813
+// upstream issue 22813
 struct Template(int i) { }
 uint test22813()
 {

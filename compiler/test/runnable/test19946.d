@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=19946
+// upstream issue 19946
 
 import core.stdc.stdio;
 

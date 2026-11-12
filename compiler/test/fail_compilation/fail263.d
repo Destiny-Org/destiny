@@ -7,7 +7,7 @@ fail_compilation/fail263.d(14):        `fail263.f(byte* p)` declared here
 ----
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=2766
+// upstream issue 2766
 // DMD hangs with 0%cpu
 const byte[] A = [ cast(byte)0 ];
 

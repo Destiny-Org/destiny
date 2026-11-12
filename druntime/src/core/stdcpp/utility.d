@@ -1,7 +1,7 @@
 /**
  * D header file for interaction with Microsoft C++ <utility>
  *
- * Copyright: Copyright (c) 2018 D Language Foundation
+ * Copyright: Copyright (c) 2018 D Language Foundation; Copyright (C) 2026 Destiny contributors
  * License: Distributed under the
  *      $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost Software License 1.0).
  *    (See accompanying file LICENSE)
@@ -17,7 +17,7 @@ extern(C++, (StdNamespace)):
 @nogc:
 
 /**
-* D language counterpart to C++ std::pair.
+* Destiny language counterpart to C++ std::pair.
 *
 * C++ reference: $(LINK2 https://en.cppreference.com/w/cpp/utility/pair)
 */

@@ -1,6 +1,6 @@
 import dshell;
 
-// https://github.com/dlang/dmd/issues/23745
+// upstream dmd issue 23745
 // Nested functions were inline-scanned in symbol-table bucket order, which
 // follows the Identifier addresses, so -inline codegen varied under ASLR.
 void main()

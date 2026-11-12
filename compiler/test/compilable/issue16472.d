@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16472
+// upstream issue 16472
 enum e() = 0;
 
 template t(alias v = e!()) {} //Error
@@ -37,6 +37,6 @@ H!float a;
 struct H1(F = float, alias e_ = G!double.I) {}
 H1!float b;
 
-// https://issues.dlang.org/show_bug.cgi?id=21795
+// upstream issue 21795
 // struct H2(F = float, alias e_ = G!double.i) {}
 // H2!float c;

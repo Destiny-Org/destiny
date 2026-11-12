@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=16980
+// upstream issue 16980
 interface A { void foo(); }
 interface B { void bar(); }
 interface AB : A, B {}

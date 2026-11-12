@@ -1,4 +1,4 @@
-//https://github.com/dlang/dmd/issues/21925
+//upstream dmd issue 21925
 
 #include <assert.h>
 int a;

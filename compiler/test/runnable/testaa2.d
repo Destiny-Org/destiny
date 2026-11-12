@@ -115,7 +115,7 @@ void test4523()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3825
+// upstream issue 3825
 
 import std.math;    // necessary for ^^=
 void test3825()
@@ -265,7 +265,7 @@ void test3825x()
 }
 
 /************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10106
+// upstream issue 10106
 
 struct GcPolicy10106 {}
 
@@ -307,7 +307,7 @@ void testinenum()
     assert("one" in aa);
 }
 
-// https://github.com/dlang/dmd/issues/21258
+// upstream dmd issue 21258
 void test21258()
 {
     alias AliasSeq(TList...) = TList;
@@ -317,7 +317,7 @@ void test21258()
         enum E { a = T.init, } // bug report uses bad syntax here, but this crashed, too
 }
 
-// https://github.com/dlang/dmd/issues/21207
+// upstream dmd issue 21207
 void test21207()
 {
 	struct S { int x; } // use a local type to not generate required TypeInfo elsewhere
@@ -335,7 +335,7 @@ void foo() @safe
     aa[key] = 123;
 }
 
-// https://github.com/dlang/dmd/issues/22560
+// upstream dmd issue 22560
 void test22560()
 {
     enum E { a }
@@ -388,7 +388,7 @@ void testEvaluationOrder()
 }
 
 /************************************************/
-// https://github.com/dlang/dmd/issues/24090
+// upstream dmd issue 24090
 
 struct S24090
 {

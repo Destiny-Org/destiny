@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22666
+// upstream issue 22666
 
 __import core.stdc.stdarg;
 __import imports.impcimport;

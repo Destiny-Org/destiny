@@ -105,7 +105,7 @@ else
 
         version (NoExceptions)
         {
-            // FIXME: apparent crash & needs more work, see https://github.com/dlang/druntime/pull/2874
+            // FIXME: apparent crash & needs more work, see upstream druntime pull request 2874
             fclose(fopen("dynamiccast_endbar", "w"));
         }
         else

@@ -9,7 +9,7 @@ fail_compilation/test15989.d(51): Error: cannot use non-constant CTFE pointer in
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=15989
+// upstream issue 15989
 
 import core.stdc.stdio;
 

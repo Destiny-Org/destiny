@@ -5,7 +5,7 @@ fail_compilation/test12385.d(29): Error: cannot modify `immutable` expression `u
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=12385
+// upstream issue 12385
 
 class BundledState
 {

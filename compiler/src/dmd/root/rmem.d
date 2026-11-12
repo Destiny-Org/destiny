@@ -1,12 +1,12 @@
 /**
  * Allocate memory using `malloc` or the GC depending on the configuration.
  *
- * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/root/rmem.d, root/_rmem.d)
- * Documentation:  https://dlang.org/phobos/dmd_root_rmem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/root/rmem.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/rmem.d, root/_rmem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/rmem.d
+ * 
  */
 
 module dmd.root.rmem;
@@ -254,7 +254,7 @@ extern (C) pure @nogc nothrow
      * So, we'll ignore it.
      *
      * See_Also:
-     *     $(LINK2 https://dlang.org/spec/function.html#pure-functions, D's rules for purity),
+     *     $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd, D's rules for purity),
      *     which allow for memory allocation under specific circumstances.
      */
     pragma(mangle, "malloc") void* pureMalloc(size_t size) @trusted;

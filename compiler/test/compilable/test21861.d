@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21861
+// upstream issue 21861
 
 int f() {
     @("S")

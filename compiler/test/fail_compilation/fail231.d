@@ -5,7 +5,7 @@ fail_compilation/fail231.d(15): Error: class `fail231.Derived` cannot implicitly
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=951
+// upstream issue 951
 // Missing line number: no constructor provided for a class derived from a class with no default constructor
 class Base
 {

@@ -1,14 +1,14 @@
 /**
  * Does semantic analysis for functions.
  *
- * Specification: $(LINK2 https://dlang.org/spec/function.html, Functions)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd, Functions)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/funcsem.d, _funcsem.d)
- * Documentation:  https://dlang.org/phobos/dmd_funcsem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/funcsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/funcsem.d, _funcsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/funcsem.d
+ * 
  */
 
 module dmd.funcsem;
@@ -239,7 +239,7 @@ bool hasNestedFrameRefs(FuncDeclaration _this)
      * This can happen because frequire and fensure are implemented as nested functions,
      * and they can be called directly by an overriding function and the overriding function's
      * context had better match, or
-     * https://issues.dlang.org/show_bug.cgi?id=7335 will bite.
+     * upstream issue 7335 will bite.
      */
     if (_this.fdrequire || _this.fdensure)
         return true;
@@ -482,7 +482,7 @@ void funcDeclarationSemantic(Scope* sc, FuncDeclaration funcdecl)
     funcdecl.storage_class |= sc.stc & ~STC.ref_;
     AggregateDeclaration ad = funcdecl.isThis();
     // Don't nest structs b/c of generated methods which should not access the outer scopes.
-    // https://issues.dlang.org/show_bug.cgi?id=16627
+    // upstream issue 16627
     if (ad && !funcdecl.isGenerated)
     {
         funcdecl.storage_class |= ad.storage_class & (STC.TYPECTOR | STC.synchronized_);
@@ -575,7 +575,7 @@ void funcDeclarationSemantic(Scope* sc, FuncDeclaration funcdecl)
         sc = sc.push();
         sc.stc |= funcdecl.storage_class & (STC.disable | STC.deprecated_); // forward to function type
 
-        // Parameters don't inherit UDAs from outside, https://github.com/dlang/dmd/issues/19788
+        // Parameters don't inherit UDAs from outside, upstream dmd issue 19788
         sc.userAttribDecl = null;
 
         if (sc.func)
@@ -664,7 +664,7 @@ void funcDeclarationSemantic(Scope* sc, FuncDeclaration funcdecl)
         // If 'this' has no pointers, remove 'scope' as it has no meaning
         // Note: this is already covered by semantic of `VarDeclaration` and `TypeFunction`,
         // but existing code relies on `hasPointers()` being called here to resolve forward references:
-        // https://github.com/dlang/dmd/pull/14232#issuecomment-1162906573
+        // upstream dmd pull request 14232
         if (sc.stc & STC.scope_ && ad && ad.isStructDeclaration() && !ad.type.hasPointers())
         {
             sc.stc &= ~STC.scope_;
@@ -1143,7 +1143,7 @@ private int classFuncSemantic(ClassDeclaration cd, FuncDeclaration funcdecl,
             if (vi >= cd.vtbl.length)
             {
                 /* the derived class cd doesn't have its vtbl[] allocated yet.
-                 * https://issues.dlang.org/show_bug.cgi?id=21008
+                 * upstream issue 21008
                  */
                 eSink.error(funcdecl.loc, "%s `%s` circular reference to class `%s`", funcdecl.kind, funcdecl.toPrettyChars, cd.toErrMsg());
                 funcdecl.errors = true;
@@ -1197,7 +1197,7 @@ private int classFuncSemantic(ClassDeclaration cd, FuncDeclaration funcdecl,
                 }
                 else
                 {
-                    // https://issues.dlang.org/show_bug.cgi?id=17349
+                    // upstream issue 17349
                     eSink.error(funcdecl.loc, "cannot implicitly override base class method `%s` with `%s`; add `override` attribute",
                           fdv.toPrettyChars(), funcdecl.toPrettyChars());
                 }
@@ -1214,7 +1214,7 @@ private int classFuncSemantic(ClassDeclaration cd, FuncDeclaration funcdecl,
                     eSink.error(funcdecl.loc, "%s `%s` multiple overrides of same function", funcdecl.kind, funcdecl.toPrettyChars);
                 }
                 /*
-                 * https://issues.dlang.org/show_bug.cgi?id=711
+                 * upstream issue 711
                  *
                  * If an overriding method is introduced through a mixin,
                  * we need to update the vtbl so that both methods are
@@ -1385,7 +1385,7 @@ Linterfaces:
                 if (fd.ident == funcdecl.ident)
                     hgs.fullQual = true;
 
-                // https://issues.dlang.org/show_bug.cgi?id=23745
+                // upstream issue 23745
                 // If the potentially overridden function contains errors,
                 // inform the user to fix that one first
                 if (fd.errors)
@@ -1838,7 +1838,7 @@ int findVtblIndex(FuncDeclaration fd, Dsymbol[] vtbl)
         assert(fdv && fdv.ident == fd.ident);
         if (fd.type.covariant(fdv.type, &stc, /*cppCovariant=*/true) == Covariant.no)
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=22351
+            /* upstream issue 22351
              * Under D rules, `type` and `fdv.type` are covariant, but under C++ rules, they are not.
              * For now, continue to allow D covariant rules to apply when `override` has been used,
              * but issue a deprecation warning that this behaviour will change in the future.
@@ -2090,8 +2090,8 @@ FuncDeclaration resolveFuncCall(Loc loc, Scope* sc, Dsymbol s,
         }
         /* This case used to happen when several ctors are mixed in an agregate.
            A (bad) error message is already generated in overloadApply().
-           see https://issues.dlang.org/show_bug.cgi?id=19729
-           and https://issues.dlang.org/show_bug.cgi?id=17259
+           see upstream issue 19729
+           and upstream issue 17259
         */
         if (!od)
             return null;
@@ -2467,7 +2467,7 @@ Expression addInvariant(AggregateDeclaration ad, VarDeclaration vthis)
 
     version (all)
     {
-        // Workaround for https://issues.dlang.org/show_bug.cgi?id=13394
+        // Workaround for upstream issue 13394
         // For the correct mangling,
         // run attribute inference on inv if needed.
         functionSemantic(inv);
@@ -2477,7 +2477,7 @@ Expression addInvariant(AggregateDeclaration ad, VarDeclaration vthis)
     //e = new CallExp(Loc.initial, e);
     //e = e.semantic(sc2);
 
-    /* https://issues.dlang.org/show_bug.cgi?id=13113
+    /* upstream issue 13113
      * Currently virtual invariant calls completely
      * bypass attribute enforcement.
      * Change the behavior of pre-invariant call by following it.
@@ -2789,7 +2789,7 @@ private bool canInferAttributes(FuncDeclaration fd, Scope* sc)
         return false;
     if (fd.isVirtualMethod() &&
         /*
-         * https://issues.dlang.org/show_bug.cgi?id=21719
+         * upstream issue 21719
          *
          * If we have an auto virtual function we can infer
          * the attributes.
@@ -2890,7 +2890,7 @@ Statement mergeFrequire(FuncDeclaration fd, Statement sf, Expressions* params)
     {
         /* The semantic pass on the contracts of the overridden functions must
          * be completed before code generation occurs.
-         * https://issues.dlang.org/show_bug.cgi?id=3602
+         * upstream issue 3602
          */
         if (fdv.frequires && fdv.semanticRun != PASS.semantic3done)
         {
@@ -2943,7 +2943,7 @@ Statement mergeFrequireInclusivePreview(FuncDeclaration fd, Statement sf, Expres
     {
         /* The semantic pass on the contracts of the overridden functions must
          * be completed before code generation occurs.
-         * https://issues.dlang.org/show_bug.cgi?id=3602
+         * upstream issue 3602
          */
         if (fdv.frequires && fdv.semanticRun != PASS.semantic3done)
         {
@@ -3190,8 +3190,8 @@ Statement mergeFensure(FuncDeclaration fd, Statement sf, Identifier oid, Express
     {
         /* The semantic pass on the contracts of the overridden functions must
          * be completed before code generation occurs.
-         * https://issues.dlang.org/show_bug.cgi?id=3602 and
-         * https://issues.dlang.org/show_bug.cgi?id=5230
+         * upstream issue 3602 and
+         * upstream issue 5230
          */
         if (needsFensure(fdv) && fdv.semanticRun != PASS.semantic3done)
         {
@@ -3216,8 +3216,8 @@ Statement mergeFensure(FuncDeclaration fd, Statement sf, Identifier oid, Express
             {
                 /* Making temporary reference variable is necessary
                  * in covariant return.
-                 * https://issues.dlang.org/show_bug.cgi?id=5204
-                 * https://issues.dlang.org/show_bug.cgi?id=10479
+                 * upstream issue 5204
+                 * upstream issue 10479
                  */
                 Expression* eresult = &(*params)[0];
                 auto ei = new ExpInitializer(Loc.initial, *eresult);
@@ -3552,7 +3552,7 @@ bool checkEscapingSiblings(FuncDeclaration f, FuncDeclaration outerFunc, void* p
         {
             // A parent of the sibling had its address taken.
             // Assume escaping of parent affects its children, so needs propagating.
-            // see https://issues.dlang.org/show_bug.cgi?id=19679
+            // see upstream issue 19679
             FuncDeclaration parentFunc = parent.isFuncDeclaration;
             if (parentFunc && parentFunc.tookAddressOf)
             {
@@ -3657,7 +3657,7 @@ bool needsClosure(FuncDeclaration fd)
                 if (checkEscapingSiblings(fx, fd))
                     fd.requiresClosure = true;
 
-                /* https://issues.dlang.org/show_bug.cgi?id=12406
+                /* upstream issue 12406
                  * Iterate all closureVars to mark all descendant
                  * nested functions that access to the closing context of this function.
                  */
@@ -4339,7 +4339,7 @@ extern (D) bool checkNestedReference(VarDeclaration vd, Scope* sc, Loc loc)
     }
 
     if (!sc.intypeof && !sc.traitsCompiles &&
-        // https://issues.dlang.org/show_bug.cgi?id=17605
+        // upstream issue 17605
         (fdv.skipCodegen || !fdthis.skipCodegen))
     {
         // Add fdthis to nestedrefs[] if not already there
@@ -4357,13 +4357,13 @@ extern (D) bool checkNestedReference(VarDeclaration vd, Scope* sc, Loc loc)
     //printf("fdthis is %s\n", fdthis.toChars());
     //printf("var %s in function %s is nested ref\n", toChars(), fdv.toChars());
     // __dollar creates problems because it isn't a real variable
-    // https://issues.dlang.org/show_bug.cgi?id=3326
+    // upstream issue 3326
     if (vd.ident == Id.dollar)
     {
         sc.eSink.error(loc, "cannot use `$` inside a function literal");
         return true;
     }
-    if (vd.ident == Id.withSym) // https://issues.dlang.org/show_bug.cgi?id=1759
+    if (vd.ident == Id.withSym) // upstream issue 1759
     {
         ExpInitializer ez = vd._init.isExpInitializer();
         assert(ez);

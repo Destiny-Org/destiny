@@ -2,7 +2,7 @@
 ---
 fail_compilation/test17380.d(12): Error: undefined identifier `ThisTypeDoesNotExistsAndCrahesTheCompiler`
 ---
- * https://issues.dlang.org/show_bug.cgi?id=17380
+ * upstream issue 17380
  */
 
 struct Int128

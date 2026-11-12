@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22365
+// upstream issue 22365
 
 class DrawableCache
 {

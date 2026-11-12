@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=17352
+// upstream issue 17352
 void bug(Args...)()
 {
 }

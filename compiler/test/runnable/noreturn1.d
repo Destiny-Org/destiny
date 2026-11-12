@@ -266,7 +266,7 @@ noreturn func()
     throw new Exception("B");
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23120
+// upstream issue 23120
 void test23120()
 {
     string a;

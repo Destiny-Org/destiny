@@ -1,12 +1,12 @@
 /**
  * Inline assembler for the GCC D compiler.
  *
- *              Copyright (C) 2018-2026 by The D Language Foundation, All Rights Reserved
+ *              Copyright (C) 2018-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     Iain Buclaw
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/iasmgcc.d, _iasmgcc.d)
- * Documentation:  https://dlang.org/phobos/dmd_iasmgcc.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/iasmgcc.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/iasmgcc.d, _iasmgcc.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.iasm.gcc;
@@ -689,11 +689,11 @@ unittest
         q{ asm { "" ::: "memory"; } },
         q{ asm { "" :::: label; } },
 
-        // https://github.com/dlang/dmd/issues/21299
+        // upstream dmd issue 21299
         q{ asm { (insn) : (output) (a) : (input) (1) : (clobber); } },
         q{ asm { (['t','e','s','t']) : (['=','r']) (a) : (['r']) (1) : (['m','e','m','o','r','y']); } },
 
-        // https://github.com/dlang/dmd/issues/21679
+        // upstream dmd issue 21679
         q{ asm { "" : "=r" (s.x); } },
     ];
 
@@ -702,7 +702,7 @@ unittest
         q{ asm { ""h;
         } },
 
-        // https://issues.dlang.org/show_bug.cgi?id=20592
+        // upstream issue 20592
         q{ asm { "nop" : [name] string (expr); } },
 
         // Expression expected, not ';'
@@ -725,10 +725,10 @@ unittest
         q{ asm { "" ::: : ; } },
         q{ asm { "" :::: ; } },
 
-        // https://issues.dlang.org/show_bug.cgi?id=20593
+        // upstream issue 20593
         q{ asm { "instruction" : : "operand" 123; } },
 
-        // https://github.com/dlang/dmd/issues/21298
+        // upstream dmd issue 21298
         q{ asm { 1; }   },
         q{ asm { int; } },
         q{ asm { : "=r" (i); } },
@@ -764,12 +764,12 @@ unittest
         q{ asm { "" : "" (a) : "" (b) : "" : c : "" (d; } },
         q{ asm { "" : "" (a) : "" (b) : "" : c : "" (d); } },
 
-        // https://github.com/dlang/dmd/issues/21679
+        // upstream dmd issue 21679
         q{ asm { "" : "=r" (s->x); } },
     ];
 
     immutable string[] passCAsmTests = [
-        // https://github.com/dlang/dmd/issues/21679
+        // upstream dmd issue 21679
         q{ asm { "" : "=r" (s->x); } },
         q{ asm { "" : "=r" (s.x); } }
     ];

@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22593
+// upstream issue 22593
 
 struct Foo(T){
     this(Rhs, this This)(scope Rhs rhs){

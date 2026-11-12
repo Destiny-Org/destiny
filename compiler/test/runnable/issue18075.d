@@ -8,7 +8,7 @@ $r:.*check\(&x\) \|\| 3 - 3.*$
 ---
 */
 
-// https://github.com/dlang/dmd/issues/18075
+// upstream dmd issue 18075
 
 bool check(int* p) { return *p == 1; }
 

@@ -1,5 +1,5 @@
 # This makefile is designed to be run by gnu make.
-# - Windows: you may download a prebuilt zipped .exe from https://github.com/dlang/dmd/releases/download/nightly/gnumake-4.4-win64.zip.
+# - Windows: install GNU make 4.x, for example with MSYS2 (`pacman -S make`) or Chocolatey (`choco install make`).
 #   You also need a Git for Windows installation, for bash and common GNU tools like cp,mkdir,mv,rm,touch,which.
 # - FreeBSD: the default make program on FreeBSD is not gnu make; to install gnu make:
 #     pkg install gmake
@@ -10,11 +10,11 @@
 #     make -j$(nproc)
 # - Build compiler (optimized) and druntime using an LDC host compiler:
 #     make -j$(nproc) HOST_DMD=ldmd2 ENABLE_RELEASE=1 [ENABLE_LTO=1]
-# - Build heavily (LTO+PGO) optimized compiler, incl. druntime and Phobos as side-effects:
+# - Build heavily (LTO+PGO) optimized compiler, incl. druntime and Fate as side-effects:
 #     make -j$(nproc) HOST_DMD=path/to/ldmd2 dmd-pgo
 # - Build and run druntime tests:
 #     make -j$(nproc) druntime-test
-# - Run compiler tests (involving a Phobos build):
+# - Run compiler tests (involving a Fate build):
 #     make -j$(nproc) dmd-test
 #
 # See compiler/src/build.d for variables affecting the compiler build.
@@ -137,7 +137,7 @@ install: $(BUILD_EXE)
 endif
 
 # Checks that all files have been committed and no temporary, untracked files exist.
-# See: https://github.com/dlang/dmd/pull/7483
+# See: upstream dmd pull request 7483
 check-clean-git:
 	@if [ -n "$$(git status --porcelain)" ] ; then \
 		echo "ERROR: Found the following residual temporary files."; \

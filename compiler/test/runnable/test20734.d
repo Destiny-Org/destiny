@@ -18,7 +18,7 @@ extern(C) int main() nothrow @nogc @safe
     (() @trusted { assert(numDtor == 2); })(); // stack-allocated array literal properly destructed
     assert23100([]);
 
-    // https://issues.dlang.org/show_bug.cgi?id=22306
+    // upstream issue 22306
     // scope array variable should be stack allocated
     scope int[] sa = [10, 20];
     assert(sa[0] == 10);
@@ -28,7 +28,7 @@ extern(C) int main() nothrow @nogc @safe
     return 0;
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23098
+// upstream issue 23098
 void f23098(scope inout(int)[] d) @safe {}
 
 void test23098() @safe
@@ -36,7 +36,7 @@ void test23098() @safe
     f23098([10, 20]);
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=23100
+// upstream issue 23100
 void assert23100(scope int[] d) @safe nothrow @nogc
 {
     assert(!d);

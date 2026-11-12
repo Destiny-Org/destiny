@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20189
+// upstream dmd issue 20189
 // Deeper recursive assertions fail to compile
 
 void main()

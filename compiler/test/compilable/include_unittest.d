@@ -1,5 +1,5 @@
 /+
-https://issues.dlang.org/show_bug.cgi?id=22730
+upstream issue 22730
 
 EXTRA_FILES: imports/include_unittest/compiled_lib.d import imports/include_unittest/skipped_unittest_lib.d import imports/include_unittest/compiled_unittest_lib.d
 

@@ -1,5 +1,5 @@
 /**
- * Written in the D programming language.
+ * Written in the Destiny programming language.
  * This module provides Solaris-specific support for sections.
  *
  * OpenBSD (as of 6.9) lacks dlinfo, RTLD_NOLOAD, and dlpt_tls_modid.

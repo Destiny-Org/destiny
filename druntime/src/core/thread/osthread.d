@@ -397,7 +397,7 @@ unittest
     t.join();
 }
 
-// https://issues.dlang.org/show_bug.cgi?id=22124
+// upstream issue 22124
 unittest
 {
     Thread thread = new Thread({});

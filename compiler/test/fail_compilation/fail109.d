@@ -12,7 +12,7 @@ enum Bool : bool
     Unknown
 }
 
-/* https://issues.dlang.org/show_bug.cgi?id=11088
+/* upstream issue 11088
 TEST_OUTPUT:
 ---
 fail_compilation/fail109.d(25): Error: enum member `fail109.E.B` initialization with `E.A+1` causes overflow for type `int`
@@ -31,7 +31,7 @@ enum E1 : short
     B
 }
 
-/* https://issues.dlang.org/show_bug.cgi?id=14950
+/* upstream issue 14950
 TEST_OUTPUT:
 ---
 fail_compilation\fail109.d(48): Error: cannot automatically assign value to enum member `fail109.B.end` because base type `C` is an enum; provide an explicit value
@@ -48,7 +48,7 @@ enum B
     end
 }
 
-/* https://issues.dlang.org/show_bug.cgi?id=11849
+/* upstream issue 11849
 TEST_OUTPUT:
 ---
 fail_compilation/fail109.d(70): Error: enum member `fail109.RegValueType1a.Unknown` is forward referenced looking for `.max`

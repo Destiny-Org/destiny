@@ -45,7 +45,7 @@ void test17034()
 
 /***************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=20441
+// upstream issue 20441
 
 const(char)* moo(const (char) *s)
 {

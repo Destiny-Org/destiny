@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=17145
+// upstream issue 17145
 
 auto tuple(T...)(T t) {
     struct Result {

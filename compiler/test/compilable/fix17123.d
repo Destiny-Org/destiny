@@ -1,7 +1,7 @@
 /*
 PERMUTE_ARGS:
 
-https://issues.dlang.org/show_bug.cgi?id=17123
+upstream issue 17123
  */
 
 void test()

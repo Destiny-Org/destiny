@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22854
+// upstream issue 22854
 void main()
 {
     uint loops = 0;

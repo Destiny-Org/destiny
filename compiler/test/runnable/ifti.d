@@ -72,7 +72,7 @@ class Tst(TST, int v = 2) {
 
 class Y : Tst!(float) {}
 
-// https://issues.dlang.org/show_bug.cgi?id=24731
+// upstream issue 24731
 void test24731()
 {
     static int solve(size_t N)(ref double[N+1][N])
@@ -85,7 +85,7 @@ void test24731()
     assert(solve!2(m) == 2);
 }
 
-// https://github.com/dlang/dmd/issues/20529
+// upstream dmd issue 20529
 int test20529(ubyte n)(int[n] a...) => n;
 static assert(test20529(1, 2, 3) == 3);
 

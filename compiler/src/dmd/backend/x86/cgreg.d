@@ -2,13 +2,13 @@
  * Register allocator
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
  * Copyright:   Copyright (C) 1985-1998 by Symantec
- *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved
+ *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/backend/x86/cgreg.d, backend/cgreg.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cgreg.d, backend/cgreg.d)
  */
 
 module dmd.backend.x86.cgreg;
@@ -426,7 +426,7 @@ static if (1) // causes assert failure in std.range(4488) from std.parallelism's
         printf("s = '%s', benefit = %d, Sweight = %d, retsym_cnt = x%x\n",s.Sident.ptr,benefit,s.Sweight, retsym_cnt);
 
     /* This can happen upon overflow of s.Sweight, but only in extreme cases such as
-     * issues.dlang.org/show_bug.cgi?id=17098
+     * upstream issue 17098
      * It essentially means "a whole lotta uses in nested loops", where
      * it should go into a register anyway. So just saturate it at int.max
      */

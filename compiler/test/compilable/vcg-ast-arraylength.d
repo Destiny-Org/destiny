@@ -13,7 +13,7 @@ void main()
 	// should convert to arr = arr[0 .. 0];
 	arr.length = 0;
 
-    // https://issues.dlang.org/show_bug.cgi?id=21678
+    // upstream issue 21678
     int[] f;
     int[] a;
 
@@ -24,7 +24,7 @@ void main()
     static assert(is(typeof(a.length = 0) == size_t));
     static assert(is(typeof(a.length = f.length = 0) == size_t));
 
-    // https://issues.dlang.org/show_bug.cgi?id=24790
+    // upstream issue 24790
     struct S { int[] payload; }
     S s;
     s.payload.length += 3;

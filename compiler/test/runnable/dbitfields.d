@@ -101,7 +101,7 @@ void test5()
 
 /******************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22710
+// upstream issue 22710
 
 struct S6
 {
@@ -125,7 +125,7 @@ void test6()
 
 /******************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=22710
+// upstream issue 22710
 
 struct S7
 {
@@ -174,7 +174,7 @@ static assert(test7s() == -1);
 static assert(test7s2() == -2);
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=24257
+// upstream issue 24257
 
 struct S24257
 {
@@ -207,7 +207,7 @@ void test24257()
 }
 
 /******************************************/
-// https://github.com/dlang/dmd/issues/24024
+// upstream dmd issue 24024
 
 struct S24024
 {

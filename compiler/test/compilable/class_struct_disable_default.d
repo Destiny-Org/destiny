@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/23392
+// upstream dmd issue 23392
 struct Parser { @disable this(); this(int) {} }
 class Client { Parser parser; this() { parser = Parser(0); } }
 void sink(out Client r) {}

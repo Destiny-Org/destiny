@@ -2,14 +2,14 @@
  * Intermediate representation for static data
  *
  * Compiler implementation of the
- * $(LINK2 https://www.dlang.org, D programming language).
+ * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      https://github.com/dlang/dmd/blob/master/src/dmd/backend/dt.d
- * Documentation:  https://dlang.org/phobos/dmd_backend_dt.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/src/dmd/backend/dt.d
+ * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/dmd/backend/dt.d
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dt.d
+ * 
  */
 
 module dmd.backend.dt;

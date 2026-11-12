@@ -2,7 +2,7 @@
  * adjustments to the source to account for various C compiler extensions
  * not supported by ImportC.
  *
- * Copyright: Copyright Destiny Language Foundation 2022
+ * Copyright: Copyright D Language Foundation 2022; Copyright (C) 2026 Destiny contributors
  * License:   $(HTTP www.boost.org/LICENSE_1_0.txt, Boost License 1.0).
  * Authors:   Walter Bright
  * Source: $(DRUNTIMESRC importc.h)

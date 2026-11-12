@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=20710
+// upstream issue 20710
 
 // with empty array literal
 immutable A a = A(B([]));

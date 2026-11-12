@@ -1,5 +1,5 @@
 /*************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22304
+// upstream issue 22304
 
 int * __attribute__((__always_inline__)) foo(void)
 {
@@ -7,13 +7,13 @@ int * __attribute__((__always_inline__)) foo(void)
 }
 
 /*************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22312
+// upstream issue 22312
 
 typedef int Integer;
 typedef int Integer;
 
 /*************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22333
+// upstream issue 22333
 
 enum E {
   oldval __attribute__((deprecated)) = 0,
@@ -27,7 +27,7 @@ fn (void)
 }
 
 /*************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22342
+// upstream issue 22342
 
 void func();
 void booc(int);
@@ -45,13 +45,13 @@ void test22342()
 }
 
 /*************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22398
+// upstream issue 22398
 
 const int a;
 int b = a;
 
 /*************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22415
+// upstream issue 22415
 
 int test22415(int a)
 {
@@ -68,14 +68,14 @@ int test22415(int a)
 }
 
 /*************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22422
+// upstream issue 22422
 
 int foo22422(void *p __attribute__((align_value(64))))
 {
 }
 
 /*************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22432
+// upstream issue 22432
 
 struct S {
     int x;
@@ -102,7 +102,7 @@ void test22432()
 
 
 /*************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22534
+// upstream issue 22534
 
 struct S22534 { int x; };
 
@@ -112,7 +112,7 @@ void test22534(struct S22534 *const p)
 }
 
 /*************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=22560
+// upstream issue 22560
 
 ;;;
 ; struct S22560 { int x; };;;;
@@ -191,12 +191,12 @@ _Static_assert(sizeof(testTypeofB) == sizeof(short), "17");
 
 /*************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=23752
+// upstream issue 23752
 void *c23752 = &*((void*)(0));
 
 /*************************************************/
 
-// https://issues.dlang.org/show_bug.cgi?id=23767
+// upstream issue 23767
 const int arr23767[4];
 void f23767(void)
 {

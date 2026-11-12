@@ -6,7 +6,7 @@ fail_compilation/fail17758.d(15):        `~` concatenates arrays, not pointers; 
 ---
 */
 
-// https://github.com/dlang/dmd/issues/17758
+// upstream dmd issue 17758
 // Concatenating two pointers (a common mistake with C strings) should
 // hint that `~` is for arrays, not just report a generic type mismatch.
 void test17758()

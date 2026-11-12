@@ -1,4 +1,4 @@
-/* https://issues.dlang.org/show_bug.cgi?id=23038
+/* upstream issue 23038
  */
 
 char a;

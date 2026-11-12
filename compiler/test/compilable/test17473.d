@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/17473
+// upstream dmd issue 17473
 // REQUIRED_ARGS: -profile=gc
 
 inout(char)[] foo(inout(char)[] s) pure @safe

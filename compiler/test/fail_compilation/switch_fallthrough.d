@@ -7,7 +7,7 @@ fail_compilation/switch_fallthrough.d(24): Error: switch case fallthrough - use 
 */
 
 // no switch fallthrough error with multi-valued case
-// https://issues.dlang.org/show_bug.cgi?id=22999
+// upstream issue 22999
 void test22999()
 {
     int i;
@@ -89,7 +89,7 @@ void test11653()
 
 /**
 Missing switch case fallthrough error when generating cases with static foreach #20242
-https://github.com/dlang/dmd/issues/20242
+upstream dmd issue 20242
 
 TEST_OUTPUT:
 ---
@@ -116,7 +116,7 @@ void test1(int i)
 }
 
 /**
-Part of https://github.com/dlang/dmd/issues/17906
+Part of upstream dmd issue 17906
 
 TEST_OUTPUT:
 ---

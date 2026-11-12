@@ -9,7 +9,7 @@ extern(C) int printf(const char*, ...);
 template Seq(T...) { alias T Seq; }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=3133
+// upstream issue 3133
 
 void test3133()
 {
@@ -18,7 +18,7 @@ void test3133()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=7504
+// upstream issue 7504
 
 void test7504() pure nothrow @safe
 {
@@ -62,7 +62,7 @@ C7504 create7504(T...)(T input)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8119
+// upstream issue 8119
 
 struct S8119;
 
@@ -79,7 +79,7 @@ void test8119()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=8645
+// upstream issue 8645
 
 template TypeTuple8645(TL...)
 {
@@ -94,7 +94,7 @@ void test8645()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10497
+// upstream issue 10497
 
 struct S10497;
 
@@ -105,7 +105,7 @@ void test10497(S10497** s)
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10793
+// upstream issue 10793
 
 struct RealFoo10793
 {
@@ -122,7 +122,7 @@ void test10793()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10834
+// upstream issue 10834
 
 void test10834()
 {
@@ -143,8 +143,8 @@ void test10834()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=10842
-// See https://github.com/dlang/dmd/pull/24061 for failed attempt to fix this function
+// upstream issue 10842
+// See upstream dmd pull request 24061 for failed attempt to fix this function
 
 template Test10842(F, T)
 {
@@ -174,7 +174,7 @@ void test10842()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=11722
+// upstream issue 11722
 
 class C11722
 {
@@ -188,7 +188,7 @@ void test11722()
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14218
+// upstream issue 14218
 
 void test14218()
 {
@@ -212,7 +212,7 @@ void test14218()
 }
 
 /***************************************************/
-// https://github.com/dlang/dmd/issues/23262
+// upstream dmd issue 23262
 
 extern (C++) interface iface23262
 {

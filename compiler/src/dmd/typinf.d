@@ -1,12 +1,12 @@
 /**
  * Generate `TypeInfo` objects, which are needed for run-time introspection of types.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/typinf.d, _typinf.d)
- * Documentation:  https://dlang.org/phobos/dmd_typinf.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/typinf.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/typinf.d, _typinf.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/typinf.d
+ * 
  */
 
 module dmd.typinf;
@@ -45,7 +45,7 @@ void genTypeInfo(Expression e, Loc loc, Type torig, Scope* sc)
 
     // Even when compiling without `useTypeInfo` (e.g. -betterC) we should
     // still be able to evaluate `TypeInfo` at compile-time, just not at runtime.
-    // https://issues.dlang.org/show_bug.cgi?id=18472
+    // upstream issue 18472
     if (!sc || !sc.ctfe)
     {
         import dmd.globals : global;

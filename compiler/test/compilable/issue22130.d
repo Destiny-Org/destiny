@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22130
+// upstream issue 22130
 
 int* f(const int* input) pure nothrow @safe
 {

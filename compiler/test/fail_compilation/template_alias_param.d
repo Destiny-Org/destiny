@@ -1,5 +1,5 @@
-// https://github.com/dlang/dmd/issues/20997 - valid alias arg with type specialization
-// https://github.com/dlang/dmd/issues/20998 - mismatched alias arg with type specialization
+// upstream dmd issue 20997 - valid alias arg with type specialization
+// upstream dmd issue 20998 - mismatched alias arg with type specialization
 
 /*
 TEST_OUTPUT:

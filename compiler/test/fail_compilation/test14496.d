@@ -9,7 +9,7 @@ fail_compilation/test14496.d(49): Error: `void` initializers for pointers is not
 fail_compilation/test14496.d(50): Error: `void` initializers for pointers is not allowed in a `@safe` function
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=14496
+// upstream issue 14496
 @safe void foo()
 {
     struct Foo {
@@ -47,5 +47,5 @@ struct Baz {
 @safe void sinister() {
     Bar bar;
     Baz baz;
-    Bar[2] bars; // https://issues.dlang.org/show_bug.cgi?id=23412
+    Bar[2] bars; // upstream issue 23412
 }

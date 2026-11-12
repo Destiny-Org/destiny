@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21435
+// upstream dmd issue 21435
 
 void check_align()
 {

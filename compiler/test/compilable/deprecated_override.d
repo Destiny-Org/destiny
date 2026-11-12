@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22668
+// upstream issue 22668
 // REQUIRED_ARGS: -verrors=simple
 // Overrides with same deprecated'ness are allowed
 

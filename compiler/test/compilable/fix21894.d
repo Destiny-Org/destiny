@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/21894
+// upstream dmd issue 21894
 
 inout(int[]) test1(inout(int[]) a, int b)
 {

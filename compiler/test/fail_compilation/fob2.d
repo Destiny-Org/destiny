@@ -109,7 +109,7 @@ fail_compilation/fob2.d(515): Error: variable `fob2.test52.p` has undefined stat
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=20747
+// upstream issue 20747
 
 #line 500
 

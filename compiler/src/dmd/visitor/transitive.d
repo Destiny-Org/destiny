@@ -1,6 +1,6 @@
 /**
- * Documentation:  https://dlang.org/phobos/dmd_transitivevisitor.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/src/dmd/transitivevisitor.d
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.visitor.transitive;

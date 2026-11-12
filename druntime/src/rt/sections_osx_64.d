@@ -1,5 +1,5 @@
 /**
- * Written in the D programming language.
+ * Written in the Destiny programming language.
  * This module provides OS X x86-64 specific support for sections.
  *
  * Copyright: Copyright Digital Mars 2016.

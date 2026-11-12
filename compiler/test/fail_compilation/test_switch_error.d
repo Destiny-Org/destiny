@@ -1,5 +1,5 @@
 /++
-https://issues.dlang.org/show_bug.cgi?id=22514
+upstream issue 22514
 TEST_OUTPUT:
 ---
 fail_compilation/test_switch_error.d(11): Error: undefined identifier `doesNotExist`

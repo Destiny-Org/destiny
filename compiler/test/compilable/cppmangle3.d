@@ -1,6 +1,6 @@
-// https://issues.dlang.org/show_bug.cgi?id=15512
-// https://issues.dlang.org/show_bug.cgi?id=19893
-// https://issues.dlang.org/show_bug.cgi?id=19920
+// upstream issue 15512
+// upstream issue 19893
+// upstream issue 19920
 module cppmangle3;
 
 version (CppRuntime_LLVM)      version = CppMangle_Itanium;

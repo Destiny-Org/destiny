@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=18572
+// upstream issue 18572
 
 alias Seq(T...) = T;
 void func(Seq!(int, int, int) args = Seq!(1, 2, 3)) {}

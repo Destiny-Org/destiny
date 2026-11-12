@@ -1,14 +1,14 @@
 /**
  * Does semantic analysis for pragmas.
  *
- * Specification: $(LINK2 https://dlang.org/spec/pragma.html, Pragmas)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/pragma.dd, Pragmas)
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/pragmasem.d, _pragmasem.d)
- * Documentation:  https://dlang.org/phobos/dmd_pragmasem.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/pragmasem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/pragmasem.d, _pragmasem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/pragmasem.d
+ * 
  */
 
 module dmd.pragmasem;
@@ -280,7 +280,7 @@ bool pragmaStmtSemantic(PragmaStatement ps, Scope* sc)
         }
     }
 
-    /* https://dlang.org/spec/statement.html#pragma-statement
+    /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
      */
     // Should be merged with PragmaDeclaration
 
@@ -493,7 +493,7 @@ private bool pragmaStartAddressSemantic(Loc loc, Scope* sc, Expressions* args)
     }
     else
     {
-        /* https://issues.dlang.org/show_bug.cgi?id=11980
+        /* upstream issue 11980
          * resolveProperties and ctfeInterpret call are not necessary.
          */
         Expression e = (*args)[0];

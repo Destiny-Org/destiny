@@ -1,4 +1,4 @@
-//Written in the D programming language
+//Written in the Destiny programming language
 
 /++
     D header file for FreeBSD's net/if_dl.h.

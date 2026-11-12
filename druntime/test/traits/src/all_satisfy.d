@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22210
+// upstream issue 22210
 
 import core.internal.traits : allSatisfy;
 

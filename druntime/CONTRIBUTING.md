@@ -8,7 +8,7 @@ Code style
 ----------
 
 Please follow the D style guide when writing code for
-DRuntime: http://dlang.org/dstyle.html
+DRuntime: https://github.com/Destiny-Org/destiny
 
 The D style guide doesn't cover everything so when in
 doubt, use the code style already used in the module you
@@ -120,6 +120,6 @@ Updating the change log
 If your pull request isn't a trivial bug fix, it
 should be accompanied by a changelog entry explaining
 the change in more details.
-Please see the [`/changelog`](https://github.com/dlang/druntime/tree/master/changelog)
+Please see the [`/changelog`](https://github.com/Destiny-Org/destiny/tree/main/druntime/changelog)
 directory for detailed instructions.
 DAutoTest will allow you and your reviewers to preview the rendered changelog entry.

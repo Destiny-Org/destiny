@@ -1,4 +1,4 @@
-// https://github.com/dlang/dmd/issues/20472
+// upstream dmd issue 20472
 typedef struct {
     char c;
 } stuff;

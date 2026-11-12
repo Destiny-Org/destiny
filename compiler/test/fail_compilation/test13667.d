@@ -14,7 +14,7 @@ fail_compilation/test13667.d(176): Error: template instance `test13667.Array5!in
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=13667
+// upstream issue 13667
 
 #line 100
 // 0, no error but also crashed before

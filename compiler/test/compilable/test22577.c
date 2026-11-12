@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=22577
+// upstream issue 22577
 
 typedef int(func)(void);
 

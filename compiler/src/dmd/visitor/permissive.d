@@ -1,8 +1,8 @@
 /**
  * A visitor that facilitates the traversal of subsets of the AST.
  *
- * Documentation:  https://dlang.org/phobos/dmd_permissivevisitor.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/src/dmd/permissivevisitor.d
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.visitor.permissive;

@@ -3,12 +3,12 @@
  *
  * generateCodeAndWrite() is the only function seen by the front end.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/glue/glue.d, _glue.d)
- * Documentation: $(LINK https://dlang.org/phobos/dmd_glue_package.html)
- * Coverage:    $(LINK https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/glue/package.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/glue.d, _glue.d)
+ * Documentation: $(LINK https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/package.d)
+ * 
  */
 
 module dmd.glue;
@@ -445,7 +445,7 @@ void FuncDeclaration_toObjFile(FuncDeclaration fd, bool multiobj)
     if (fd.type && fd.type.ty == Tfunction && (cast(TypeFunction)fd.type).next is null)
         return;
 
-    // If errors occurred compiling it, such as https://issues.dlang.org/show_bug.cgi?id=6118
+    // If errors occurred compiling it, such as upstream issue 6118
     if (fd.type && fd.type.ty == Tfunction && (cast(TypeFunction)fd.type).next.ty == Terror)
         return;
 
@@ -576,7 +576,7 @@ void FuncDeclaration_toObjFile(FuncDeclaration fd, bool multiobj)
 
     if (fd.inlinedNestedCallees)
     {
-        /* https://issues.dlang.org/show_bug.cgi?id=15333
+        /* upstream issue 15333
          * If fd contains inlined expressions that come from
          * nested function bodies, the enclosing of the functions must be
          * generated first, in order to calculate correct frame pointer offset.
@@ -1012,7 +1012,7 @@ void FuncDeclaration_toObjFile(FuncDeclaration fd, bool multiobj)
         } else
         {
              /*
-                https://issues.dlang.org/show_bug.cgi?id=22520
+                upstream issue 22520
 
                 Apple radar: https://openradar.appspot.com/FB9733712
 

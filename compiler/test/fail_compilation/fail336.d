@@ -6,7 +6,7 @@ fail_compilation/fail336.d(17):        Use `S( arguments )` instead of `{ initia
 ---
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=3476
+// upstream issue 3476
 // C-style initializer for structs must be disallowed for structs with a constructor
 struct S
 {

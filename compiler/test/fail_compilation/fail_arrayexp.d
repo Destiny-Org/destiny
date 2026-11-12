@@ -18,7 +18,7 @@ alias typeAlias = const(int)[];
 void getVoid();
 alias getTuple(T...) = T;
 
-void test19534() // https://issues.dlang.org/show_bug.cgi?id=19534
+void test19534() // upstream issue 19534
 {
     U agg;
 #line 24

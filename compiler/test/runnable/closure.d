@@ -689,7 +689,7 @@ void test22()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=1759
+// upstream issue 1759
 
 void test1759()
 {
@@ -724,7 +724,7 @@ void test1759()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=1841
+// upstream issue 1841
 
 int delegate() foo1841()
 {
@@ -768,7 +768,7 @@ void test1841()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=5911
+// upstream issue 5911
 
 void writeln5911(const(char)[] str) {}
 
@@ -791,7 +791,7 @@ void test5911()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=9685
+// upstream issue 9685
 
 auto get9685a(alias fun)()
 {
@@ -844,7 +844,7 @@ void test9685b()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12406
+// upstream issue 12406
 
 auto createDg12406()
 {
@@ -898,7 +898,7 @@ void test12406()
 }
 
 /************************************/
-// https://issues.dlang.org/show_bug.cgi?id=14730
+// upstream issue 14730
 
 void test14730()
 {
@@ -922,7 +922,7 @@ void test14730()
 
 // This is questionable case. Currently it works without any errors,
 // but not sure it's really intentional
-// It showed up again in https://issues.dlang.org/show_bug.cgi?id=23112
+// It showed up again in upstream issue 23112
 // where it's an @safe issue so it's a bug.
 static if (0)
 {
@@ -953,7 +953,7 @@ void test14730x()
 }
 
 /************************************/
-// https://github.com/dlang/dmd/issues/20917
+// upstream dmd issue 20917
 
 auto test20917a(int a) @nogc
 {

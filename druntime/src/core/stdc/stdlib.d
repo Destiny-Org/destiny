@@ -47,7 +47,7 @@ inout(void)* bsearch(const void* key, inout(void)* base, size_t nmemb, size_t si
 ///
 void    qsort(void* base, size_t nmemb, size_t size, _compare_fp_t compar);
 
-// https://issues.dlang.org/show_bug.cgi?id=17188
+// upstream issue 17188
 @system unittest
 {
     struct S

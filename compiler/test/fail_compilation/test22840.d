@@ -6,9 +6,9 @@ fail_compilation/test22840.d(25): Error: returning `sb.slice()` escapes a refere
 */
 
 // inout method with inferred @safe escapes local data
-// https://issues.dlang.org/show_bug.cgi?id=22840
+// upstream issue 22840
 
-// See also: https://issues.dlang.org/show_bug.cgi?id=20149
+// See also: upstream issue 20149
 
 struct S
 {

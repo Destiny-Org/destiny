@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=17512
+// upstream issue 17512
 
 struct A
 {
@@ -14,7 +14,7 @@ struct A
 
 A a;
 
-// https://issues.dlang.org/show_bug.cgi?id=18661
+// upstream issue 18661
 
 struct S0(T)
 {

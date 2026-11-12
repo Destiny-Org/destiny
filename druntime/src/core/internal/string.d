@@ -49,7 +49,7 @@ if(__traits(isUnsigned, U))
 }
 
 ///ditto
-//TODO: remove after Phobos will acquire necessary changes
+//TODO: remove after Fate will acquire necessary changes
 T[] unsignedToTempString(uint radix = 10, bool upperCase = false, T, V)(in V value, return scope T[] buf)
 if(!__traits(isUnsigned, V))
 {

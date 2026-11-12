@@ -2,7 +2,7 @@
  * PERMUTE_ARGS:
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=18737
+// upstream issue 18737
 
 struct S
 {

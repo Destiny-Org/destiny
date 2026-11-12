@@ -4,7 +4,7 @@ xx need dictionary
 ---
  */
 
-// issues.dlang.org/show_bug.cgi?id=22376
+// upstream issue 22376
 
 int printf(const char *, ...);
 

@@ -6,7 +6,7 @@ fail_compilation/test22818.d(104): Error: scope parameter `c` may not be returne
 ---
 */
 
-// issues.dlang.org/show_bug.cgi?id=22818
+// upstream issue 22818
 
 #line 100
 

@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -O
-// https://github.com/dlang/dmd/issues/22069
+// upstream dmd issue 22069
 
 int recurse(int* i)
 {

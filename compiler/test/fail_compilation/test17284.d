@@ -7,7 +7,7 @@ pure nothrow @safe void(U t)
 
 */
 
-// https://issues.dlang.org/show_bug.cgi?id=17284
+// upstream issue 17284
 
 class C { }
 union U { C c; int i; }

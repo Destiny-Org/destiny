@@ -7,7 +7,7 @@ Success
 extern(C) int printf(const char*, ...);
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12078
+// upstream issue 12078
 
 class B12078(T)
 {
@@ -32,7 +32,7 @@ void test12078()
 }
 
 /******************************************/
-// https://issues.dlang.org/show_bug.cgi?id=12143
+// upstream issue 12143
 
 class Node12143
 {
@@ -45,7 +45,7 @@ class Type12143 : Node12143 {}
 class Class12143 : Type12143 {}
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=13353
+// upstream issue 13353
 
 interface Base13353(T)
 {
@@ -63,7 +63,7 @@ class Concrete13353 : Derived13353
 }
 
 /***************************************************/
-// https://issues.dlang.org/show_bug.cgi?id=15733
+// upstream issue 15733
 
 class CStmt15733 : CNode15733 {}
 class CDecl15733 : CStmt15733 {}
@@ -77,7 +77,7 @@ template IMix(T){ mixin("static " ~ T.stringof ~ " x;"); }
 
 /***************************************************/
 
-// https://issues.dlang.org/show_bug.zip?id=20716
+// upstream issue 20716
 
 extern(C++):
 

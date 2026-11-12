@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=21680
+// upstream issue 21680
 
 struct Unique
 {

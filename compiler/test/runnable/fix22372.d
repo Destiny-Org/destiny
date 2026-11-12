@@ -1,7 +1,7 @@
 /* PERMUTE_ARGS: -O
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=22104
+// upstream issue 22104
 
 struct S { int a1, a2, a3; }
 

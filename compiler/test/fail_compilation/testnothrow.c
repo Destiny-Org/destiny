@@ -7,7 +7,7 @@ fail_compilation/testnothrow.c(109): Error: function `testnothrow.add` may throw
 ---
 */
 
-// https://issues.dlang.org/show_bug?id=21938
+// upstream issue 21938
 
 #line 100
 

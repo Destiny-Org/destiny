@@ -222,7 +222,7 @@ $(H3 $(LEGACY_LNAME2 PredefinedVersions, predefined-versions, Predefined Version
         $(THEAD Version Identifier, Description),
 
         $(TROW *Host Compiler*)
-        $(TROW $(ARGS $(D DigitalMars)) , $(ARGS DMD (Digital Mars D)))
+        $(TROW $(ARGS $(D DigitalMars)) , $(ARGS destiny (Digital Mars D)))
         $(TROW $(ARGS $(D GNU)) , $(ARGS GDC (GNU D Compiler)))
         $(TROW $(ARGS $(D LDC)) , $(ARGS LDC (LLVM D Compiler)))
         $(TROW $(ARGS $(D SDC)) , $(ARGS SDC (Snazzy D Compiler)))

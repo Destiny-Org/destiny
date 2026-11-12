@@ -7,11 +7,11 @@ fail_compilation/fail17927.d(21): Error: scope parameter `ptr` may not be return
 fail_compilation/fail17927.d(23): Error: scope parameter `ptr` may not be returned
 ---
 */
-// https://issues.dlang.org/show_bug.cgi?id=17927
+// upstream issue 17927
 
 struct String {
     const(char)* mem1() const scope @safe { return ptr; }
-    // https://issues.dlang.org/show_bug.cgi?id=22027
+    // upstream issue 22027
     inout(char)* mem2() inout scope @safe { return ptr; }
 
     char* ptr;

@@ -1,12 +1,12 @@
 /**
  * Semantic analysis for cast-expressions.
  *
- * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/dcast.d, _dcast.d)
- * Documentation:  https://dlang.org/phobos/dmd_dcast.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/dcast.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dcast.d, _dcast.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dcast.d
+ * 
  */
 
 module dmd.dcast;
@@ -782,14 +782,14 @@ MATCH implicitConvTo(Expression e, Type t)
             MATCH m = MATCH.exact;
             if (e.type.nextOf().mod != tn.mod)
             {
-                // https://issues.dlang.org/show_bug.cgi?id=16183
+                // upstream issue 16183
                 if (!tn.isConst() && !tn.isImmutable())
                     return MATCH.nomatch;
                 m = MATCH.constant;
 
                 // After converting e.g. ubyte[] to const(ubyte)[], don't change
                 // to MATCH.convert, return MATCH.constant
-                //  https://github.com/dlang/dmd/issues/20635
+                //  upstream dmd issue 20635
                 if (e.type.ty == t.ty && e.type.nextOf().ty == tn.ty)
                     return m;
             }
@@ -993,7 +993,7 @@ MATCH implicitConvTo(Expression e, Type t)
 
         /* See if fail only because of mod bits.
          *
-         * https://issues.dlang.org/show_bug.cgi?id=14155
+         * upstream issue 14155
          * All pure functions can access global immutable data.
          * So the returned pointer may refer an immutable global data,
          * and then the returned pointer that points non-mutable object
@@ -1353,7 +1353,7 @@ MATCH implicitConvTo(Expression e, Type t)
             for (size_t i = 0; i < e.arguments.length; ++i)
             {
                 Expression earg = (*e.arguments)[i];
-                if (!earg) // https://issues.dlang.org/show_bug.cgi?id=14853
+                if (!earg) // upstream issue 14853
                            // if it's on overlapped field
                     continue;
                 Type targ = earg.type.toBasetype();
@@ -1419,7 +1419,7 @@ MATCH implicitConvTo(Expression e, Type t)
                     }
                     else if (ExpInitializer ei = _init.isExpInitializer())
                     {
-                        // https://issues.dlang.org/show_bug.cgi?id=21319
+                        // upstream issue 21319
                         // This is to prevent re-analyzing the same expression
                         // over and over again.
                         if (ei.exp == e)
@@ -1844,7 +1844,7 @@ MATCH implicitConvTo(Type from, Type to)
         Type toret = to.nextOf();
         if (tret.ty == Tclass && toret.ty == Tclass)
         {
-            /* https://issues.dlang.org/show_bug.cgi?id=10219
+            /* upstream issue 10219
              * Check covariant interface return with offset tweaking.
              * interface I {}
              * class C : Object, I {}
@@ -2150,7 +2150,7 @@ Expression castTo(Expression e, Scope* sc, Type t, Type att = null)
             if (v && v.storage_class & STC.manifest)
             {
                 auto result = e.ctfeInterpret();
-                /* https://issues.dlang.org/show_bug.cgi?id=18236
+                /* upstream issue 18236
                  *
                  * The expression returned by ctfeInterpret points
                  * to the line where the manifest constant was declared
@@ -2360,7 +2360,7 @@ Expression castTo(Expression e, Scope* sc, Type t, Type att = null)
 
         // typeof(null) <-- non-null references or values
         if (tob.ty == Tnull && t1b.ty != Tnull)
-            return fail(); // https://issues.dlang.org/show_bug.cgi?id=14629
+            return fail(); // upstream issue 14629
         // typeof(null) --> non-null references or arithmetic values
         if (t1b.ty == Tnull && tob.ty != Tnull)
             return ok();
@@ -2912,7 +2912,7 @@ Expression castTo(Expression e, Scope* sc, Type t, Type att = null)
                 return visit(ae);
 
             ae = e.copy().isArrayLiteralExp();
-            ae.type = tbase; // https://issues.dlang.org/show_bug.cgi?id=12642
+            ae.type = tbase; // upstream issue 12642
             ae.elements = e.elements.copy();
             Type telement = tv.elementType();
             foreach (i; 0 .. edim)
@@ -3769,9 +3769,9 @@ Lagain:
 
     if (t1.isStaticOrDynamicArray() && (m = t1.implicitConvTo(t2)) != MATCH.nomatch)
     {
-        // https://issues.dlang.org/show_bug.cgi?id=7285
+        // upstream issue 7285
         // Tsarray op [x, y, ...] should to be Tsarray
-        // https://issues.dlang.org/show_bug.cgi?id=14737
+        // upstream issue 14737
         // Tsarray ~ [x, y, ...] should to be Tarray
         if (t1.ty == Tsarray && e2.op == EXP.arrayLiteral && op != EXP.concatenate)
             return convert(e2, t1);
@@ -3785,8 +3785,8 @@ Lagain:
 
     if (t2.isStaticOrDynamicArray() && t2.implicitConvTo(t1))
     {
-        // https://issues.dlang.org/show_bug.cgi?id=7285
-        // https://issues.dlang.org/show_bug.cgi?id=14737
+        // upstream issue 7285
+        // upstream issue 14737
         if (t2.ty == Tsarray && e1.op == EXP.arrayLiteral && op != EXP.concatenate)
             return convert(e1, t2);
         return convert(e2, t1);
@@ -4048,7 +4048,7 @@ LmergeClassTypes:
 
     if (t1.ty == Tvector && t2.ty == Tvector)
     {
-        // https://issues.dlang.org/show_bug.cgi?id=13841
+        // upstream issue 13841
         // all vector types should have no common types between
         // different vectors, even though their sizes are same.
         auto tv1 = t1.isTypeVector();
@@ -4186,7 +4186,7 @@ LmodCompare:
         }
         if (t1.nextOf().implicitConvTo(e2.type))
         {
-            // (cast(T)U)[] op T    (https://issues.dlang.org/show_bug.cgi?id=12780)
+            // (cast(T)U)[] op T    (upstream issue 12780)
             // e1 is left as U[], it will be handled in arrayOp() later.
             return Lret(e2.type.arrayOf());
         }
@@ -4194,7 +4194,7 @@ LmodCompare:
         {
             if (t1.nextOf().implicitConvTo(t2.nextOf()))
             {
-                // (cast(T)U)[] op T[]  (https://issues.dlang.org/show_bug.cgi?id=12780)
+                // (cast(T)U)[] op T[]  (upstream issue 12780)
                 t = t2.nextOf().arrayOf();
                 // if cast won't be handled in arrayOp() later
                 if (!isArrayOpImplicitCast(t1.isTypeDArray(), t2.isTypeDArray()))
@@ -4203,7 +4203,7 @@ LmodCompare:
             }
             if (t2.nextOf().implicitConvTo(t1.nextOf()))
             {
-                // T[] op (cast(T)U)[]  (https://issues.dlang.org/show_bug.cgi?id=12780)
+                // T[] op (cast(T)U)[]  (upstream issue 12780)
                 // e2 is left as U[], it will be handled in arrayOp() later.
                 t = t1.nextOf().arrayOf();
                 // if cast won't be handled in arrayOp() later
@@ -4230,7 +4230,7 @@ LmodCompare:
         }
         else if (t2.nextOf().implicitConvTo(e1.type))
         {
-            // T op (cast(T)U)[]    (https://issues.dlang.org/show_bug.cgi?id=12780)
+            // T op (cast(T)U)[]    (upstream issue 12780)
             // e2 is left as U[], it will be handled in arrayOp() later.
             t = e1.type.arrayOf();
         }
@@ -4395,7 +4395,7 @@ Expression integralPromotions(Expression e, Scope* sc)
  *    sc = context
  *    ue = NegExp, UAddExp, or ComExp which is revised per rules
  * References:
- *      https://issues.dlang.org/show_bug.cgi?id=16997
+ *      upstream issue 16997
  */
 
 void fix16997(Scope* sc, UnaExp ue)
@@ -4416,7 +4416,7 @@ void fix16997(Scope* sc, UnaExp ue)
         case Tchar:
         case Twchar:
         case Tdchar:
-            // https://github.com/dlang/dmd/issues/17834
+            // upstream dmd issue 17834
             auto eSink = global.errorSink;
             eSink.deprecation(ue.loc, "integral promotion not done for `%s` (operand type `%s`), remove '-revert=intpromote' switch or rewrite as `%scast(int)(%s)`",
                 ue.toErrMsg(), ue.e1.type.toErrMsg(), EXPtoString(ue.op).ptr, ue.e1.toErrMsg());

@@ -21,7 +21,7 @@ static foreach (z; 0 .. 1)
 ---
 */
 
-// https://github.com/dlang/dmd/issues/21458
+// upstream dmd issue 21458
 static foreach (x; 0..1)
 {
     static assert(true);

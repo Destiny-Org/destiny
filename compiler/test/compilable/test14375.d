@@ -1,4 +1,4 @@
-// https://issues.dlang.org/show_bug.cgi?id=14375
+// upstream issue 14375
 interface IKeysAPI(string greetings) {
     static assert(greetings == "Hello world", greetings);
 }

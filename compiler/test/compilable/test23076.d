@@ -1,7 +1,7 @@
 /* REQUIRED_ARGS: -O -inline
  */
 
-// https://issues.dlang.org/show_bug.cgi?id=23076
+// upstream issue 23076
 
 struct S
 {

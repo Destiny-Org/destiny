@@ -1,14 +1,14 @@
 /**
  * Inline assembler implementation for DMD.
- * https://dlang.org/spec/iasm.html
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd
  *
  * Copyright:   Copyright (c) 1992-1999 by Symantec
- *              Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved
+ *              Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     Mike Cote, John Micco and $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/dlang/dmd/blob/master/compiler/src/dmd/iasmdmd.d, _iasmdmd.d)
- * Documentation:  https://dlang.org/phobos/dmd_iasmdmd.html
- * Coverage:    https://codecov.io/gh/dlang/dmd/src/master/compiler/src/dmd/iasmdmd.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/iasmdmd.d, _iasmdmd.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * 
  */
 
 module dmd.iasm.dmdx86;
@@ -2344,7 +2344,7 @@ void asm_merge_symbol(ref OPND o1, Dsymbol s)
     {
         if (auto fd = asmstate.sc.func)
         {
-             /* https://issues.dlang.org/show_bug.cgi?id=6166
+             /* upstream issue 6166
               * We could leave it on unless fd.nrvo_var==v,
               * but fd.nrvo_var isn't set yet
               */
