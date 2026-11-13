@@ -1,8 +1,0 @@
-{
-	"name": "vibed-workload",
-	"description": "vibe.d compile workload for perfrunner",
-	"targetType": "executable",
-	"dependencies": {
-		"vibe-d": "0.10.3"
-	}
-}

@@ -1,6 +1,0 @@
-{
-	"name": "perfrunner",
-	"description": "DMD performance measurement",
-	"targetType": "executable",
-	"sourcePaths": ["source"]
-}
