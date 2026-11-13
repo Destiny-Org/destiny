@@ -9,7 +9,7 @@
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/aggregate.d, _aggregate.d)
  * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/aggregate.d
- * 
+ *
  */
 
 module dmd.aggregate;

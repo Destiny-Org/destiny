@@ -7,7 +7,7 @@
  * License:     Distributed under the Boost Software License, Version 1.0.
  *              https://www.boost.org/LICENSE_1_0.txt
  * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/dmd/backend/gother.d
- * 
+ *
  * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/gother.d
  */
 

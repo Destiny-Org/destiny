@@ -1,6 +1,6 @@
 /**
  * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
- * 
+ *
  */
 
 module dmd.visitor.transitive;

@@ -6,7 +6,7 @@
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/aav.d, root/_aav.d)
  * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/aav.d
- * 
+ *
  */
 
 module dmd.root.aav;

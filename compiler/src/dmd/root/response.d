@@ -9,7 +9,7 @@
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/response.d, root/_response.d)
  * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/response.d
- * 
+ *
  */
 
 module dmd.root.response;

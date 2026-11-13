@@ -7,7 +7,7 @@
  * Authors:   Walter Bright
  * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/int128.d, root/_int128.d)
  * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/int128.d
- * 
+ *
  */
 
 module dmd.common.int128;

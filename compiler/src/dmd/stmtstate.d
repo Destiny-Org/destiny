@@ -6,7 +6,7 @@
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/stmtstate.d, _stmtstate.d)
  * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/stmtstate.d
- * 
+ *
  */
 
 module dmd.stmtstate;

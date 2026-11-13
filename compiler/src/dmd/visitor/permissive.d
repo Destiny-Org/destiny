@@ -2,7 +2,7 @@
  * A visitor that facilitates the traversal of subsets of the AST.
  *
  * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
- * 
+ *
  */
 
 module dmd.visitor.permissive;

@@ -9,7 +9,7 @@
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/dmd/backend/dt.d
  * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dt.d
- * 
+ *
  */
 
 module dmd.backend.dt;

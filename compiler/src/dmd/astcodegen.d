@@ -2,7 +2,7 @@
  * Defines AST nodes for the code generation stage.
  *
  * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/astcodegen.d
- * 
+ *
  */
 module dmd.astcodegen;
 

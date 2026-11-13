@@ -11,7 +11,7 @@
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/dmd/backend/cgcs.d
- * 
+ *
  */
 
 module dmd.backend.cgcs;

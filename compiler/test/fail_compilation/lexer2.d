@@ -11,7 +11,7 @@ fail_compilation/lexer2.d(22): Error: semicolon expected following auto declarat
 
 
 
-// 
+//
 
 static s1 = x"123";
 static s2 = x"123G";
