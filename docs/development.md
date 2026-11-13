@@ -154,7 +154,10 @@ Verified in the VM with dmd 2.113.1:
   installed in the VM); 9 came from the renames and were fixed: import paths
   now end in `fate`, two ddoc autolink tests have real URLs again, and the
   generated-docs base macro is `FATE_PATH`. All 24 pass when rerun.
-- A second full run (compiler, druntime and Fate tests) is in progress.
+- Second full run: compiler test suite passes, druntime unittests pass, Fate
+  unittests pass except one flaky `std.process` test (spawns a child with
+  signal handling) that fails only when the debug and release test runs go
+  in parallel; it passes 3/3 run on its own.
 
 The test suite needs `gdb` installed (`sudo apt-get install gdb`).
 
