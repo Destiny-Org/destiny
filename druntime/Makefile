@@ -22,6 +22,13 @@ TOOLS_DIR=../../tools
 # libdparse for tests_extractor, from the sibling Destiny-Org/d-scanner checkout
 LIBDPARSE=../../d-scanner/libdparse
 HOST_DMD?=dmd
+# Destiny-Org repository base URL; DESTINY_REPO_TOKEN (read access) is used when set,
+# so CI can clone the private repositories
+ifneq ($(DESTINY_REPO_TOKEN),)
+GIT_HOME=https://x-access-token:$(DESTINY_REPO_TOKEN)@github.com/Destiny-Org
+else
+GIT_HOME=https://github.com/Destiny-Org
+endif
 
 include ../compiler/src/osmodel.mak
 
@@ -587,7 +594,14 @@ clean: $(addsuffix /.clean,$(ADDITIONAL_TESTS))
 # - extracts and runs @betterC unittests
 ################################################################################
 
-$(TESTS_EXTRACTOR): $(TOOLS_DIR)/tests_extractor.d | $(LIB)
+# clone Destiny-Org/tools and Destiny-Org/d-scanner next to destiny_engine when missing
+$(TOOLS_DIR)/tests_extractor.d:
+	git clone --depth=1 $(GIT_HOME)/tools $(TOOLS_DIR)
+
+$(LIBDPARSE)/src:
+	git clone --depth=1 $(GIT_HOME)/d-scanner $(LIBDPARSE)/..
+
+$(TESTS_EXTRACTOR): $(TOOLS_DIR)/tests_extractor.d | $(LIB) $(LIBDPARSE)/src
 	$(HOST_DMD) -i -I$(LIBDPARSE)/src $< -of$@
 
 test_extractor: $(TESTS_EXTRACTOR)

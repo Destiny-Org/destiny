@@ -35,6 +35,8 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
     env:
+      # read access to the private Destiny-Org repositories, for every clone in the build
+      DESTINY_REPO_TOKEN: ${{ secrets.DESTINY_REPO_TOKEN }}
       # for ci/run.sh:
       OS_NAME: linux
       MODEL: 64

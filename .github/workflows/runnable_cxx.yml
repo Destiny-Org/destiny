@@ -81,6 +81,9 @@ jobs:
           - { os: windows-2022, model: 32 }
 
     runs-on: ${{ matrix.os }}
+    env:
+      # read access to the private Destiny-Org repositories, for every clone in the build
+      DESTINY_REPO_TOKEN: ${{ secrets.DESTINY_REPO_TOKEN }}
     defaults:
       run:
         shell: bash

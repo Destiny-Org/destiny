@@ -1054,7 +1054,11 @@ void parseEnvironment()
     }
 
     env.setDefault("GIT", "git");
-    env.setDefault("GIT_HOME", "https://github.com/Destiny-Org");
+    // DESTINY_REPO_TOKEN (read access) lets CI clone the private Destiny-Org repositories
+    const repoToken = environment.get("DESTINY_REPO_TOKEN", "");
+    env.setDefault("GIT_HOME", repoToken.length
+        ? "https://x-access-token:" ~ repoToken ~ "@github.com/Destiny-Org"
+        : "https://github.com/Destiny-Org");
     env.setDefault("SYSCONFDIR", "/etc");
     env.setDefault("TMP", tempDir);
     env.setDefault("RES", srcDir.buildPath("dmd", "res"));
