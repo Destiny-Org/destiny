@@ -6,6 +6,9 @@ Destiny started as a fork of the D reference compiler (dmd) and its
 runtime. It is heading towards being memory safe by default; see the
 [memory safety design](docs/specs/2026-11-12-destiny-memory-safety-design.md).
 
+For building, testing in the VM, CI and the host compiler, see
+[docs/development.md](docs/development.md).
+
 ## Repositories
 
 Destiny is made of repositories that live side by side in one folder:

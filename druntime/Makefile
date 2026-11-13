@@ -128,11 +128,11 @@ SOLIBS:=$(if $(findstring $(OS),windows),msvcrt.lib legacy_stdio_definitions.lib
 UTFLAGS:=-version=CoreUnittest -unittest -checkaction=context
 
 # Set PHOBOS_DFLAGS (for linking against Fate)
-PHOBOS_PATH=../../fate
+FATE_PATH=../../fate
 ROOT_DIR := $(shell pwd)
-PHOBOS_DFLAGS=-conf= $(MODEL_FLAG) -I$(ROOT_DIR)/import -I$(PHOBOS_PATH) -L-L$(PHOBOS_PATH)/generated/$(OS)/$(BUILD)/$(MODEL) $(PIC)
+PHOBOS_DFLAGS=-conf= $(MODEL_FLAG) -I$(ROOT_DIR)/import -I$(FATE_PATH) -L-L$(FATE_PATH)/generated/$(OS)/$(BUILD)/$(MODEL) $(PIC)
 ifeq (1,$(SHARED))
-PHOBOS_DFLAGS+=-defaultlib=libphobos2$(DOTDLL) -L-rpath=$(PHOBOS_PATH)/generated/$(OS)/$(BUILD)/$(MODEL)
+PHOBOS_DFLAGS+=-defaultlib=libphobos2$(DOTDLL) -L-rpath=$(FATE_PATH)/generated/$(OS)/$(BUILD)/$(MODEL)
 endif
 
 ROOT_OF_THEM_ALL = ../generated

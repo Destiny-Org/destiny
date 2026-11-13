@@ -4418,7 +4418,7 @@ $(H3 $(LNAME2 null-dereferences, Null Dereferences))
           - On all systems when an expression causes a null pointer to be indexed,
             causing a memory access that is not prevented by the system.
             $(RED Warning:) $(TT dmd)
-            [has not implemented](upstream dmd issue 17776) this yet.
+            has not implemented (upstream dmd issue 17776) this yet.
 
 $(H3 $(LNAME2 safe-aliasing, Safe Aliasing))
 

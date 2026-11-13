@@ -562,9 +562,9 @@ string[string] getEnvironment()
         env["DSEP"] = `\\`;
         env["SEP"] = `\`;
         auto druntimePath = environment.get("DRUNTIME_PATH", testPath(`..\..\druntime`));
-        auto phobosPath = environment.get("PHOBOS_PATH", testPath(`..\..\..\fate`));
-        env["DFLAGS"] = `-I"%s\import" -I"%s"`.format(druntimePath, phobosPath);
-        env["LIB"] = phobosPath ~ ";" ~ environment.get("LIB");
+        auto fatePath = environment.get("FATE_PATH", testPath(`..\..\..\fate`));
+        env["DFLAGS"] = `-I"%s\import" -I"%s"`.format(druntimePath, fatePath);
+        env["LIB"] = fatePath ~ ";" ~ environment.get("LIB");
     }
     else
     {
@@ -573,7 +573,7 @@ string[string] getEnvironment()
         env["DSEP"] = "/";
         env["SEP"] = "/";
         auto druntimePath = environment.get("DRUNTIME_PATH", testPath(`../../druntime`));
-        auto phobosPath = environment.get("PHOBOS_PATH", testPath(`../../../fate`));
+        auto fatePath = environment.get("FATE_PATH", testPath(`../../../fate`));
 
         // default to PIC, use PIC=1/0 to en-/disable PIC.
         // Note that shared libraries and C files are always compiled with PIC.
@@ -582,11 +582,11 @@ string[string] getEnvironment()
             pic = false;
 
         env["PIC_FLAG"]  = pic ? "-fPIC" : "";
-        env["DFLAGS"] = "-I%s/import -I%s".format(druntimePath, phobosPath)
-            ~ " -L-L%s/%s".format(phobosPath, generatedSuffix);
+        env["DFLAGS"] = "-I%s/import -I%s".format(druntimePath, fatePath)
+            ~ " -L-L%s/%s".format(fatePath, generatedSuffix);
         bool isShared = environment.get("SHARED") != "0" && os.among("linux", "freebsd", "hurd") > 0;
         if (isShared)
-            env["DFLAGS"] = env["DFLAGS"] ~ " -defaultlib=libphobos2.so -L-rpath=%s/%s".format(phobosPath, generatedSuffix);
+            env["DFLAGS"] = env["DFLAGS"] ~ " -defaultlib=libphobos2.so -L-rpath=%s/%s".format(fatePath, generatedSuffix);
 
         if (pic)
             env["REQUIRED_ARGS"] = environment.get("REQUIRED_ARGS") ~ " " ~ env["PIC_FLAG"];

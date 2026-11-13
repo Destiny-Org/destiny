@@ -141,13 +141,13 @@ In the destiny compiler codebase, AST nodes are defined as classes within variou
 7. **Submit a Pull Request**: Once you're satisfied with the changes, create a PR.
 8. **Celebrate Your Contribution**: Take pride in being a part of this significant compiler development effort!
 
-An illustrative example of these steps is shown in [this pull request](upstream dmd pull request 15755).
+An illustrative example of these steps is shown in this pull request (upstream dmd pull request 15755).
 
 Please note that additional steps such as updating C++ headers may be required in certain cases. Be prepared for further requests during the PR review process.
 
 ### Addressing More Complex Scenarios
 
-Sometimes, more intricate solutions are required. For instance, if an overridden method in an AST node calls a semantic function, it can't be simply relocated. In these cases, using a visitor to collate all overrides, along with the original method, into the appropriate semantic file is the way forward. A notable instance of this approach is detailed in [this pull request](upstream dmd pull request 15782).
+Sometimes, more intricate solutions are required. For instance, if an overridden method in an AST node calls a semantic function, it can't be simply relocated. In these cases, using a visitor to collate all overrides, along with the original method, into the appropriate semantic file is the way forward. A notable instance of this approach is detailed in this pull request (upstream dmd pull request 15782).
 
 Other complex scenarios may arise, especially when dealing with AST nodes that interact with the backend. This guide is intended to jumpstart your contributions. As you delve deeper, you'll encounter and learn to navigate these complexities. Remember, Razvan Nitu (@RazvanN7) is available to assist at every stage, so don't hesitate to reach out for guidance.
 

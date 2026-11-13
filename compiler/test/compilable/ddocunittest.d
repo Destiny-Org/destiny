@@ -355,7 +355,7 @@ unittest { if (true) {fooNoDescription(); } /* comment */ }
 
 // ------------------------------------
 
-/// test for upstream issue 9757
+/// test for https://github.com/Destiny-Org/destiny/issues/9757
 void foo9757() {}
 /// ditto
 void bar9757() {}

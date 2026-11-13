@@ -22,11 +22,11 @@ string[] defaultImportPaths()
 
     enum rootDir = __FILE_FULL_PATH__.dirName.buildNormalizedPath("..", "..", "..");
     enum druntimeDir = rootDir.buildPath("druntime", "import");
-    enum phobosDir = rootDir.buildPath("..", "fate");
+    enum fateDir = rootDir.buildPath("..", "fate");
 
     return [
         environment.get("DRUNTIME_PATH", druntimeDir),
-        environment.get("PHOBOS_PATH", phobosDir)
+        environment.get("FATE_PATH", fateDir)
     ];
 }
 

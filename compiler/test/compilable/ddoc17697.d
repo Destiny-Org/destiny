@@ -13,7 +13,7 @@
  */
 
 /**
-Also piggyback a few tests for upstream dmd pull request 6989
+Also piggyback a few tests for https://github.com/Destiny-Org/destiny/pull/6989
 
 not_a_tag_because_it_does_not_start_with_uppercase:
 
