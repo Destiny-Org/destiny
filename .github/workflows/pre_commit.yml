@@ -3,12 +3,10 @@ name: pre_commit
 on:
   pull_request:
     branches:
-      - master
-      - stable
+      - main
   push:
     branches:
-      - master
-      - stable
+      - main
   workflow_dispatch:
   workflow_call:
 
@@ -45,9 +43,9 @@ jobs:
       run: pre-commit run --show-diff-on-failure --color=always --all-files
     - name: Check changelog entries
       run: |
-        check_prefix="$(find changelog -type f -name '*\.dd' -a ! -name 'dmd\.*' -a ! -name 'druntime\.*')"
+        check_prefix="$(find changelog -type f -name '*\.dd' -a ! -name 'destiny\.*' -a ! -name 'dmd\.*' -a ! -name 'druntime\.*')"
         if [ ! -z "${check_prefix}" ]; then
-          echo 'All changelog entries must begin with either `dmd.` or `druntime.`'
+          echo 'All changelog entries must begin with `destiny.`, `dmd.` or `druntime.`'
           echo 'Found:'
           echo "${check_prefix}"
           exit 1

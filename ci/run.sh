@@ -51,7 +51,7 @@ clone() {
         elif [ $i -lt 4 ]; then
             sleep $((1 << $i))
         else
-            echo "Failed to clone: ${url}"
+            echo "Failed to clone: ${url//${DESTINY_REPO_TOKEN:-<none>}/***}"
             exit 1
         fi
     done
@@ -154,20 +154,27 @@ test_phobos() {
 }
 
 
-# clone phobos repos if not already available
+# Destiny-Org repository URL; uses DESTINY_REPO_TOKEN (read access) when set, for private repos
+destiny_repo_url() {
+    if [ -n "${DESTINY_REPO_TOKEN:-}" ]; then
+        echo "https://x-access-token:${DESTINY_REPO_TOKEN}@github.com/Destiny-Org/$1.git"
+    else
+        echo "https://github.com/Destiny-Org/$1.git"
+    fi
+}
+
+# clone Fate next to the compiler if not already available, on the branch with
+# the same name, falling back to main
 setup_repos() {
-    local branch="$1"
-    for proj in phobos; do
-        if [ ! -d ../$proj ]; then
-            if [ $branch != master ] && [ $branch != stable ] &&
-                   ! git ls-remote --exit-code --heads https://github.com/Destiny-Org/destiny $branch > /dev/null; then
-                # use master as fallback for other repos to test feature branches
-                clone https://github.com/Destiny-Org/destiny ../$proj master
-            else
-                clone https://github.com/Destiny-Org/destiny ../$proj $branch
-            fi
+    local branch="$1" url
+    url="$(destiny_repo_url fate)"
+    if [ ! -d ../fate ]; then
+        if [ "$branch" != main ] && ! git ls-remote --exit-code --heads "$url" "$branch" > /dev/null; then
+            clone "$url" ../fate main
+        else
+            clone "$url" ../fate "$branch"
         fi
-    done
+    fi
 }
 
 testsuite() {

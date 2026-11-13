@@ -4,8 +4,8 @@ It is cleared after each release.
 How to add a new changelog entry to the pending changelog?
 ==========================================================
 
-Create a new file in the `changelog` folder. It should begin with either `dmd.`
-or `druntime.` and end with `.dd`. The contents of the entry should look
+Create a new file in the `changelog` folder. It should begin with `destiny.`,
+`dmd.` or `druntime.` and end with `.dd`. The contents of the entry should look
 similar to a git commit message. The first line represents the title of the
 change.  After an empty line follows the long description:
 

@@ -4,13 +4,12 @@ name: Bootstrap
 on:
   pull_request:
     branches:
-      - stable
+      - main
     paths-ignore:
       - 'spec/**'
   push:
     branches:
-      - master
-      - stable
+      - main
     paths-ignore:
       - 'spec/**'
 
@@ -58,16 +57,18 @@ jobs:
       run: ci/run.sh install_host_compiler
 
     - name: Set up repos
+      env:
+        DESTINY_REPO_TOKEN: ${{ secrets.DESTINY_REPO_TOKEN }}
       run: |
         set -uexo pipefail
         ref='${{ github.ref }}'
         if [[ "$ref" =~ ^refs/pull/ ]]; then
           # PR: clone the Fate head with the same name as this DMD PR's target branch
-          # e.g., Fate stable when targeting DMD stable
+          # e.g., Fate main when targeting destiny main
           REPO_BRANCH="$GITHUB_BASE_REF"
         elif [[ "$ref" =~ ^refs/(heads|tags)/(.*)$ ]]; then
-          # no PR: try to clone the Fate head with the same name as this DMD head, falling back to master
-          # e.g., Fate stable for a push to DMD stable, or Fate v2.105.2 for DMD tag v2.105.2
+          # no PR: try to clone the Fate head with the same name as this destiny head, falling back to main
+          # e.g., Fate main for a push to destiny main
           REPO_BRANCH="${BASH_REMATCH[2]}"
         else
           echo "Error: unexpected GitHub ref '$ref'" >&2

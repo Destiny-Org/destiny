@@ -29,14 +29,12 @@ name: C++ interop tests
 on:
   pull_request:
     branches:
-      - master
-      - stable
+      - main
     paths-ignore:
       - 'spec/**'
   push:
     branches:
-      - master
-      - stable
+      - main
       # Use this branch name in your fork to test changes
       - github-actions
     paths-ignore:
@@ -106,7 +104,7 @@ jobs:
     ########################################
     - name: Install D host compiler
       shell: bash
-      run: bash dmd/ci/host_compiler.sh dmd
+      run: curl -fsSL https://raw.githubusercontent.com/Destiny-Org/host-compilers/main/host_compiler.sh | bash -s -- dmd
     - name: 'Posix: Clear LD_LIBRARY_PATH environment variable' # don't use host druntime/Fate .so/.dylib etc.
       if: runner.os != 'Windows'
       run: echo "LD_LIBRARY_PATH=" >> $GITHUB_ENV
@@ -133,14 +131,15 @@ jobs:
     - name: Checkout DMD
       uses: actions/checkout@v7
       with:
-        path: dmd
+        path: destiny_engine
         persist-credentials: false
     - name: Checkout Fate
       uses: actions/checkout@v7
       with:
-        path: phobos
+        path: fate
         repository: Destiny-Org/fate
         ref: ${{ steps.base_branch.outputs.branch }}
+        token: ${{ secrets.DESTINY_REPO_TOKEN || github.token }}
         persist-credentials: false
 
 
@@ -165,7 +164,7 @@ jobs:
     - name: 'Windows: Set up MSVC environment' # puts cl.exe in PATH etc.
       if: runner.os == 'Windows'
       shell: pwsh
-      run: ./dmd/.github/scripts/setup_msvc.ps1 -Arch ${{ matrix.model == '64' && 'x64' || 'x86' }}
+      run: ./destiny_engine/.github/scripts/setup_msvc.ps1 -Arch ${{ matrix.model == '64' && 'x64' || 'x86' }}
 
     - name: 'Posix: Set up CC and CXX environment variables'
       if: runner.os != 'Windows'
@@ -197,27 +196,27 @@ jobs:
     - name: Build compiler & standard library
       run: |
         set -eux
-        make -C dmd    -j$N
-        make -C phobos -j$N
+        make -C destiny_engine -j$N
+        make -C fate -j$N
 
     ########################################
     #        Running the test suite        #
     ########################################
     - name: Run compiler C++ test suite
-      run: ./dmd/compiler/test/run.d --environment runnable_cxx dshell/dll_cxx.d
+      run: ./destiny_engine/compiler/test/run.d --environment runnable_cxx dshell/dll_cxx.d
 
     - name: Run druntime C++ tests
-      run: make -C dmd/druntime -j$N test/stdcpp/.run
+      run: make -C destiny_engine/druntime -j$N test/stdcpp/.run
 
     - name: 'Posix: Run C++ frontend unittests'
       if: runner.os != 'Windows' # not supported by build.d yet
       run: |
         set -eux
-        ./dmd/generated/build cxx-unittest
+        ./destiny_engine/generated/build cxx-unittest
 
     - name: 'Posix: Run C++ header layout test'
       if: runner.os == 'Linux'
       run: |
         set -eux
         python3 -m pip install libclang
-        ./dmd/generated/build cpp-layout-test
+        ./destiny_engine/generated/build cpp-layout-test
