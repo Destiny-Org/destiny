@@ -107,7 +107,7 @@ jobs:
     ########################################
     - name: Install D host compiler
       shell: bash
-      run: curl -fsSL https://raw.githubusercontent.com/Destiny-Org/host-compilers/main/host_compiler.sh | bash -s -- dmd
+      run: curl -fsSL https://raw.githubusercontent.com/Destiny-Org/host-compilers/main/host_compiler.sh | bash -s -- dmd-2.113.1
     - name: 'Posix: Clear LD_LIBRARY_PATH environment variable' # don't use host druntime/Fate .so/.dylib etc.
       if: runner.os != 'Windows'
       run: echo "LD_LIBRARY_PATH=" >> $GITHUB_ENV

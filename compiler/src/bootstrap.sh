@@ -9,7 +9,7 @@
 
 set -euo pipefail
 
-HOST_DMD_VER="${HOST_DMD_VER:-2.095.0}"
+HOST_DMD_VER="${HOST_DMD_VER:-2.113.1}"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 GENERATED="$( cd "$DIR/.." >/dev/null 2>&1 && pwd )/generated"

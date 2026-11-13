@@ -11,8 +11,8 @@ The compiler can be built using the integrated build system `build.d`.
 ./build.d
 ```
 
-Building requires a host D compiler (DMD/LDC/GDC) of version 2.079.1 or above
-and defaults to `dmd` as found on the path. This behaviour can be overriden
+Building requires a host D compiler. Destiny uses upstream dmd 2.113.1 (install it with
+`ci/host_compiler.sh dmd`); the build defaults to `dmd` as found on the path. This behaviour can be overriden
 by explicitly specifying a different host compiler using the `HOST_DMD` variable.
 
 ```console

@@ -39,9 +39,9 @@ source ~/host-compilers/dmd/activate
 
 ## Building
 
-Building needs an existing D compiler (dmd, ldc or gdc, version 2.079.1 or
-newer) to compile Destiny itself. It is called the *host compiler* and is
-passed as `HOST_DMD`.
+Building needs an existing D compiler to compile Destiny itself, the *host
+compiler*, passed as `HOST_DMD`. Destiny uses upstream dmd 2.113.1, mirrored in
+Destiny-Org/host-compilers (see "Host compiler" above).
 
 ```
 cd destiny_engine
