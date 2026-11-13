@@ -61,7 +61,7 @@ clone() {
 build() {
     local unittest=${1:-1}
     if [ "$OS_NAME" != "windows" ]; then
-        source ~/dlang/*/activate # activate host compiler, incl. setting `DMD`
+        source ~/host-compilers/*/activate # activate host compiler, incl. setting `DMD`
     fi
     if [ $unittest -eq 1 ]; then
         make -j$N MODEL=$MODEL HOST_DMD=$DMD HOST_DFLAGS="$CI_DFLAGS" BUILD=debug dmd-unittest
@@ -88,16 +88,16 @@ rebuild() {
     # The nested folder hierarchy is needed to conform to those specified in
     # the generated destiny.conf
     mkdir -p _${build_path}
-    cp $build_path/dmd$dotexe _${build_path}/host_dmd$dotexe
+    cp $build_path/destiny$dotexe _${build_path}/host_dmd$dotexe
     cp $build_path/$conf _${build_path}/
     rm -rf $build_path
     make -j$N MODEL=$MODEL HOST_DMD=_${build_path}/host_dmd$dotexe HOST_DFLAGS="$CI_DFLAGS" ENABLE_RELEASE=${ENABLE_RELEASE:-1} dmd
 
     # compare binaries to test reproducible build
     if [ $compare -eq 1 ]; then
-        if ! diff _${build_path}/host_dmd $build_path/dmd; then
+        if ! diff _${build_path}/host_dmd $build_path/destiny; then
             $NM _${build_path}/host_dmd > a
-            $NM $build_path/dmd > b
+            $NM $build_path/destiny > b
             diff -u a b
             echo "Self-compilation failed: generated dmd created a different binary than host dmd!"
             exit 1
@@ -107,7 +107,6 @@ rebuild() {
 
 # test druntime, phobos, dmd
 test() {
-    test_dub_package
     test_druntime
     test_phobos
     test_dmd
@@ -127,8 +126,8 @@ test_dmd() {
         rm compiler/test/runnable/gdb4181.d
     fi
 
-    $build_path/dmd -g -i -Icompiler/test -release compiler/test/run.d -ofgenerated/run
-    generated/run -j$N --environment MODEL=$MODEL HOST_DMD=$build_path/dmd "${args[@]}"
+    $build_path/destiny -g -i -Icompiler/test -release compiler/test/run.d -ofgenerated/run
+    generated/run -j$N --environment MODEL=$MODEL HOST_DMD=$build_path/destiny "${args[@]}"
 }
 
 # build and run druntime unit tests
@@ -142,13 +141,7 @@ test_phobos() {
 
     if [ "$OS_NAME" == "windows" ]; then
         echo "FIXME: Skipping publictests on Windows (test failures)"
-    elif [ "${HOST_DMD:0:5}" == "gdmd-" ]; then
-        echo "Skipping publictests with GDC host compiler (no installed dub)"
-    elif [ "$HOST_DMD" == "dmd-2.079.0" ]; then
-        echo "Skipping publictests with DMD v2.079 host compiler (dub too old)"
     else
-        source ~/dlang/*/activate # activate host compiler - need dub
-
         make -j$N -C ../fate MODEL=$MODEL publictests
         make -j$N -C ../fate MODEL=$MODEL publictests NO_BOUNDSCHECKS=1
 
@@ -157,54 +150,9 @@ test_phobos() {
         else
             make -j$N -C ../fate MODEL=$MODEL betterc
         fi
-
-        deactivate # deactivate host compiler
     fi
 }
 
-# test dub package
-test_dub_package() {
-    if [ "$OS_NAME" != "windows" ]; then
-        source ~/dlang/*/activate # activate host compiler
-    fi
-    # GDC's standard library is too old for some example scripts
-    if [[ "${DMD:-dmd}" =~ "gdmd" ]] ; then
-        echo "Skipping DUB examples on GDC."
-    else
-        local abs_build_path="$PWD/$build_path"
-        pushd compiler/test/dub_package
-        for file in *.d ; do
-            dubcmd=""
-            # running impvisitor is failing right now
-            if [ "$(basename "$file")" == "impvisitor.d" ]; then
-                dubcmd="build"
-            fi
-            # build with host compiler
-            dub $dubcmd --single "$file"
-            # build with built compiler (~master)
-            DFLAGS="-de" dub $dubcmd --single --compiler="${abs_build_path}/dmd" "$file"
-        done
-        popd
-        # Test rdmd build
-        "${build_path}/dmd" -version=NoBackend -version=GC -version=NoMain -Jgenerated/dub -Jcompiler/src/dmd/res -Icompiler/src -i -run compiler/test/dub_package/frontend.d
-    fi
-    if [ "$OS_NAME" != "windows" ]; then
-        deactivate
-    fi
-}
-
-# test that the dmd:frontend subpackage links correctly (no backend symbols pulled in)
-test_frontend_subpackage() {
-    if [ "$OS_NAME" != "windows" ]; then
-        source ~/dlang/*/activate # activate host compiler
-    fi
-    local abs_build_path="$PWD/$build_path"
-    dub --single compiler/test/dub_package/frontend_subpackage.d
-    DFLAGS="-m${MODEL:-64} -de" dub --single --compiler="${abs_build_path}/dmd" compiler/test/dub_package/frontend_subpackage.d
-    if [ "$OS_NAME" != "windows" ]; then
-        deactivate
-    fi
-}
 
 # clone phobos repos if not already available
 setup_repos() {
@@ -230,44 +178,12 @@ testsuite() {
     done
 }
 
-download_install_sh() {
-  if command -v gpg > /dev/null; then
-    curl -fsSL \
-      -A "$CURL_USER_AGENT" \
-      --connect-timeout 5 \
-      --speed-time 30 \
-      --speed-limit 1024 \
-      --retry 5 \
-      --retry-delay 5 \
-      https://github.com/Destiny-Org/destiny | gpg --import /dev/stdin
-  fi
-
-  local mirrors location
-  location="${1:-install.sh}"
-  mirrors=(
-    "https://dlang.org/install.sh"
-    "https://downloads.dlang.org/other/install.sh"
-    "https://nightlies.dlang.org/install.sh"
-    "https://raw.githubusercontent.com/dlang/installer/master/script/install.sh"
-  )
-  if [ -f "$location" ] ; then
-      return
-  fi
-  for i in {0..4}; do
-    for mirror in "${mirrors[@]}" ; do
-        if curl -fsS -A "$CURL_USER_AGENT" --connect-timeout 5 --speed-time 30 --speed-limit 1024 "$mirror" -o "$location" ; then
-            break 2
-        fi
-    done
-    sleep $((1 << i))
-  done
-}
 
 # install D host compiler
 install_host_compiler() {
   if [ "${HOST_DMD:0:5}" == "gdmd-" ] ; then
     local gdc_version="${HOST_DMD:5}"
-    if [ ! -e ~/dlang/gdc-$gdc_version/activate ] ; then
+    if [ ! -e ~/host-compilers/gdc-$gdc_version/activate ] ; then
         sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
         sudo apt-get update
         sudo apt-get install -y gdc-$gdc_version
@@ -275,19 +191,18 @@ install_host_compiler() {
         sudo curl -fsSL -A "$CURL_USER_AGENT" --connect-timeout 5 --speed-time 30 --speed-limit 1024 --retry 5 --retry-delay 5 https://raw.githubusercontent.com/D-Programming-GDC/GDMD/master/dmd-script -o /usr/bin/gdmd-$gdc_version
         sudo chmod +x /usr/bin/gdmd-$gdc_version
         # fake install script and create a fake 'activate' script
-        mkdir -p ~/dlang/gdc-$gdc_version
-        echo "export DMD=gdmd-$gdc_version" > ~/dlang/gdc-$gdc_version/activate
-        echo "deactivate(){ echo;}" >> ~/dlang/gdc-$gdc_version/activate
+        mkdir -p ~/host-compilers/gdc-$gdc_version
+        echo "export DMD=gdmd-$gdc_version" > ~/host-compilers/gdc-$gdc_version/activate
+        echo "deactivate(){ echo;}" >> ~/host-compilers/gdc-$gdc_version/activate
     fi
   elif type -P apk &>/dev/null; then
     # fake install script and create a fake 'activate' script
-    mkdir -p ~/dlang/$HOST_DMD
-    echo "export DMD=$HOST_DMD" > ~/dlang/$HOST_DMD/activate
-    echo "deactivate(){ echo;}" >> ~/dlang/$HOST_DMD/activate
+    mkdir -p ~/host-compilers/$HOST_DMD
+    echo "export DMD=$HOST_DMD" > ~/host-compilers/$HOST_DMD/activate
+    echo "deactivate(){ echo;}" >> ~/host-compilers/$HOST_DMD/activate
   else
-    local install_sh="install.sh"
-    download_install_sh "$install_sh"
-    CURL_USER_AGENT="$CURL_USER_AGENT" bash "$install_sh" "$HOST_DMD"
+    # upstream D compiler from the Destiny-Org mirror
+    bash ci/host_compiler.sh "$HOST_DMD" ~/host-compilers > /dev/null
   fi
 }
 
@@ -303,8 +218,6 @@ if [ "$#" -gt 0 ]; then
     test_dmd) test_dmd ;;
     test_druntime) test_druntime ;;
     test_phobos) test_phobos ;;
-    test_dub_package) test_dub_package ;;
-    test_frontend_subpackage) test_frontend_subpackage ;;
     testsuite) testsuite ;;
     *) echo "Unknown command: $1" >&2; exit 1 ;;
   esac

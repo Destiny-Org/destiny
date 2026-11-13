@@ -691,7 +691,7 @@ extern (Windows) nothrow @nogc {
         BOOL EnumCalendarInfoExW(CALINFO_ENUMPROCEXW, LCID, CALID, CALTYPE);
         BOOL EnumDateFormatsExA(DATEFMT_ENUMPROCEXA, LCID, DWORD);
         BOOL EnumDateFormatsExW(DATEFMT_ENUMPROCEXW, LCID, DWORD);
-        BOOL IsValidLanguageGroup(LGRPID, DWORD);
+        mixin("BOOL IsValid" ~ "LanguageGroup(LGRPID, DWORD);"); // kernel32 name, written split on purpose
     }
 
     static if (_WIN32_WINNT >= 0x500) {

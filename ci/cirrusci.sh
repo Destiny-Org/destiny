@@ -18,7 +18,7 @@ if [ "$OS_NAME" == "linux" ]; then
   if type -P apk &>/dev/null; then
     # Alpine
     apk add git make g++ ldc \
-      bash grep coreutils diffutils curl gdb linux-headers dub
+      bash grep coreutils diffutils curl gdb linux-headers
   else
     export DEBIAN_FRONTEND=noninteractive
     packages="git-core make g++ gdb gnupg curl libcurl4 tzdata zip unzip xz-utils llvm valgrind libc6-dbg"

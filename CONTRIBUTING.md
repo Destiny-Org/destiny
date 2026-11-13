@@ -12,7 +12,7 @@ When creating a new issue, include:
 - the version of destiny being used (which can be found by running `destiny --version`).
 - A test case:
   - Make it a [short, self-contained, and compilable example](http://sscce.org/).
-  - Avoid dependencies on foreign code (e.g. dub packages).
+  - Avoid dependencies on foreign code (e.g. third-party packages).
   - Avoid any imports from Fate / druntime if possible.
 Minimize the test case using the [DustMite tool](https://github.com/CyberShadow/DustMite/wiki).
 

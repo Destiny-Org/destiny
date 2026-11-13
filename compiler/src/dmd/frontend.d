@@ -290,7 +290,7 @@ string determineDefaultCompiler()
     import std.path : buildPath;
     import std.process : environment;
     import std.range : front, empty;
-    // adapted from DUB: https://github.com/Destiny-Org/destiny
+    // adapted from the DUB package manager (MIT licence)
 
     auto compilers = ["dmd", "gdc", "gdmd", "ldc2", "ldmd2"];
 

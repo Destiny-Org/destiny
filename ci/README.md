@@ -78,13 +78,6 @@ the main checks, so newer C++ standards (C++17, C++20, …) get covered.
 Builds the compiler with a range of older upstream D compilers as the host
 compiler, to check that destiny still builds with the oldest supported one.
 
-### Build with dub
-
-**Config**: [build_with_dub.yml](../.github/workflows/build_with_dub.yml)
-
-Checks that the compiler and the compiler-as-a-library package still build
-with dub (`dub run dmd:compiler`, `dub build dmd:frontend`).
-
 ### pre-commit
 
 **Config**: [.pre-commit-config.yaml](../.pre-commit-config.yaml), [pre_commit.yml](../.github/workflows/pre_commit.yml)

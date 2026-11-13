@@ -18,8 +18,10 @@
 
 QUIET:=
 
-DUB=dub
 TOOLS_DIR=../../tools
+# libdparse for tests_extractor, from the sibling Destiny-Org/d-scanner checkout
+LIBDPARSE=../../d-scanner/libdparse
+HOST_DMD?=dmd
 
 include ../compiler/src/osmodel.mak
 
@@ -586,8 +588,7 @@ clean: $(addsuffix /.clean,$(ADDITIONAL_TESTS))
 ################################################################################
 
 $(TESTS_EXTRACTOR): $(TOOLS_DIR)/tests_extractor.d | $(LIB)
-	$(DUB) build --force --single $<
-	mv $(TOOLS_DIR)/tests_extractor$(DOTEXE) $@
+	$(HOST_DMD) -i -I$(LIBDPARSE)/src $< -of$@
 
 test_extractor: $(TESTS_EXTRACTOR)
 

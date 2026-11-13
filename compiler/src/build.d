@@ -686,11 +686,6 @@ alias style = makeRule!((builder, rule)
         .description("Check for style errors using D-Scanner")
         .msg("(DSCANNER) dmd")
         .deps([dscanner])
-        // Disabled because we need to build a patched dscanner version
-        // .command([
-        //     "dub", "-q", "run", "-y", "dscanner", "--", "--styleCheck", "--config",
-        //     srcDir.buildPath(".dscanner.ini"), srcDir.buildPath("dmd"), "-I" ~ srcDir
-        // ])
         .command([
             dscanner.target, "--styleCheck", "--config", srcDir.buildPath(".dscanner.ini"),
             srcDir.buildPath("dmd"), "-I" ~ srcDir
@@ -1072,7 +1067,7 @@ void parseEnvironment()
 
     env.setDefault("INSTALL", environment.get("INSTALL_DIR", compilerDir.buildPath(installPref, "install")));
 
-    env.setDefault("DOCSRC", compilerDir.buildPath("dlang.org"));
+    env.setDefault("DOCSRC", compilerDir.buildPath("docs-src"));
     env.setDefault("DOCDIR", srcDir);
     env.setDefault("DOC_OUTPUT_DIR", env["DOCDIR"]);
 
@@ -1103,7 +1098,7 @@ void parseEnvironment()
         writefln("Using Bootstrap compiler: %s", hostDMDVer);
         auto hostDMDRoot = env["G"].buildPath("host_dmd-"~hostDMDVer);
         auto hostDMDBase = hostDMDVer~"."~(os == "freebsd" ? os~"-"~model : os);
-        auto hostDMDURL = "https://downloads.dlang.org/releases/2.x/"~hostDMDVer~"/dmd."~hostDMDBase;
+        auto hostDMDURL = env.getDefault("HOST_COMPILER_MIRROR", "https://github.com/Destiny-Org/host-compilers/releases/download")~"/dmd-"~hostDMDVer~"/dmd."~hostDMDBase; // see ci/host_compiler.sh
         env["HOST_DMD"] = hostDMDRoot.buildPath("dmd2", os, os == "osx" ? "bin" : "bin"~model, "dmd");
         env["HOST_DMD_PATH"] = env["HOST_DMD"];
         // TODO: use dmd.conf from the host too (in case there's a global or user-level dmd.conf)

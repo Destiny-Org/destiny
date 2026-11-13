@@ -4732,7 +4732,7 @@ void highlightText(Scope* sc, Dsymbols* a, Loc loc, ref OutBuffer buf, size_t of
                             lineStart = true;
                         ++p;
                     }
-                    if (!codeLanguage.length || codeLanguage == "dlang" || codeLanguage == "d" || codeLanguage == "destiny")
+                    if (!codeLanguage.length || codeLanguage == "d" || codeLanguage == "destiny")
                         highlightCode2(sc, a, codebuf, 0);
                     else
                         codebuf.remove(codebuf.length-1, 1);    // remove the trailing 0 byte
@@ -4754,7 +4754,7 @@ void highlightText(Scope* sc, Dsymbols* a, Loc loc, ref OutBuffer buf, size_t of
 
                     inCode = c0;
                     codeIndent = istart - iLineStart; // save indent count
-                    if (codeLanguage.length && codeLanguage != "dlang" && codeLanguage != "d" && codeLanguage != "destiny")
+                    if (codeLanguage.length && codeLanguage != "d" && codeLanguage != "destiny")
                     {
                         // backslash-escape
                         for (size_t j; j < codeLanguage.length - 1; ++j)

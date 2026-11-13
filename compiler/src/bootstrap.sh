@@ -50,8 +50,10 @@ else
     # dmd.2.095.0.osx.zip or dmd.2.095.0.linux.tar.xz
     HOST_DMD_BASENAME=dmd.${HOST_DMD_VER}.${OS}
 fi
-# https://downloads.dlang.org/releases/2.x/2.095.0/dmd.2.095.0.linux.tar.xz
-HOST_DMD_URL=https://downloads.dlang.org/releases/2.x/${HOST_DMD_VER}/${HOST_DMD_BASENAME}
+# The host compiler comes from the Destiny-Org mirror (see ci/host_compiler.sh), e.g.
+# https://github.com/Destiny-Org/host-compilers/releases/download/dmd-2.095.0/dmd.2.095.0.linux.tar.xz
+HOST_COMPILER_MIRROR="${HOST_COMPILER_MIRROR:-https://github.com/Destiny-Org/host-compilers/releases/download}"
+HOST_DMD_URL=${HOST_COMPILER_MIRROR}/dmd-${HOST_DMD_VER}/${HOST_DMD_BASENAME}
 HOST_RDMD="${HOST_DMD_ROOT}/dmd2/${OS}/${MODEL_PATH}/rdmd"
 HOST_DMD="${HOST_DMD_ROOT}/dmd2/${OS}/${MODEL_PATH}/dmd" # required by build.d
 
@@ -59,18 +61,12 @@ HOST_DMD="${HOST_DMD_ROOT}/dmd2/${OS}/${MODEL_PATH}/dmd" # required by build.d
 if [ ! -e "${HOST_RDMD}" ] ; then
     mkdir -p "${HOST_DMD_ROOT}"
 
-    # prefer xz if available
-    if command -v xz &> /dev/null ; then
-        echo "[bootstrap] Downloading compiler ${HOST_DMD_URL}.tar.xz"
-        curl "${CURL_FLAGS[@]}" "${HOST_DMD_URL}.tar.xz" | tar -C "${HOST_DMD_ROOT}" -Jxf - || rm -rf "${HOST_DMD_ROOT}"
-    else
-        echo "[bootstrap] Downloading compiler ${HOST_DMD_URL}.zip"
-        TMPFILE="$(mktemp deleteme.XXXXXXXX.zip)"
-        ( curl "${CURL_FLAGS[@]}" "${HOST_DMD_URL}.zip" -o "${TMPFILE}"
-          unzip -qd "${HOST_DMD_ROOT}" "${TMPFILE}"
-          ) ||  rm -rf "${HOST_DMD_ROOT}"
-        rm -f "${TMPFILE}"
+    if ! command -v xz &> /dev/null ; then
+        echo "[bootstrap] xz is required to unpack the host compiler"
+        exit 1
     fi
+    echo "[bootstrap] Downloading compiler ${HOST_DMD_URL}.tar.xz"
+    curl "${CURL_FLAGS[@]}" "${HOST_DMD_URL}.tar.xz" | tar -C "${HOST_DMD_ROOT}" -Jxf - || rm -rf "${HOST_DMD_ROOT}"
 
     # check for bootstrapping success
     if [ -e "${HOST_RDMD}" ] ; then

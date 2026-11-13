@@ -21,8 +21,10 @@ Removed from the repository:
 $(UL
 $(LI CI configurations for services Destiny does not use: Azure
 Pipelines, CircleCI and Codecov.)
-$(LI The dlang nightly, release and performance workflows.)
+$(LI The upstream nightly, release and performance workflows.)
 $(LI `CODEOWNERS`, which listed upstream maintainers.)
 $(LI The deprecated `posix.mak` files and the `src/` compatibility
 directory. Use the top-level `Makefile`.)
+$(LI DUB support: the `dub.sdl` packages, the dub CI job and the dub package
+tests. Build with `make`.)
 )

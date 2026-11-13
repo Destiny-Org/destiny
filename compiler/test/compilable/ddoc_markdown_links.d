@@ -22,14 +22,14 @@ A reference link to [the **D** homepage][d site].
 
 Not a reference link because it [links to nothing][nonexistent].
 
-A simple link to [dub].
+A simple link to [fate].
 
-A slightly less simple link to [dub][].
+A slightly less simple link to [fate][].
 
 An image: ![D-Man](https://github.com/Destiny-Org/destiny)
 Another image: ![D-Man again][dman-error]
 
-[dub]: <https://github.com/Destiny-Org/destiny>
+[fate]: <https://github.com/Destiny-Org/fate>
 [dman-error]: https://github.com/Destiny-Org/destiny
 
 $(P

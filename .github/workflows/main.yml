@@ -150,9 +150,8 @@ jobs:
         run: ci/run.sh install_host_compiler
       - name: 'Windows: Install host compiler'
         if: runner.os == 'Windows'
-        uses: dlang-community/setup-dlang@v2
-        with:
-          compiler: ${{ matrix.host_dmd }}
+        shell: bash
+        run: bash ci/host_compiler.sh "${{ matrix.host_dmd }}"
 
       - name: Set up repos
         run: |
@@ -184,9 +183,6 @@ jobs:
         run: ./.github/scripts/setup_msvc.ps1 -Arch ${{ env.MODEL == '64' && 'x64' || 'x86' }}
       - name: Test dmd
         run: ci/run.sh test_dmd
-      - name: Test frontend subpackage
-        if: '!matrix.coverage && (success() || failure()) && (matrix.host_dmd == ''dmd'' || matrix.host_dmd == ''dmd-latest'')'
-        run: ci/run.sh test_frontend_subpackage
       - name: Test druntime
         if: '!matrix.coverage && (success() || failure())'
         run: ci/run.sh test_druntime
@@ -255,5 +251,5 @@ jobs:
 
       - name: Test AArch64 cross-compile and run via QEMU
         run: |
-          source ~/dlang/*/activate
+          source ~/host-compilers/*/activate
           compiler/test/run.d arm

@@ -23,6 +23,6 @@ Nor in HTML:
 
 Nor before things that aren't punctuation:
 
-C:\dlang\dmd
+C:\destiny\dsc
 +/
 module ddoc_markdown_escapes;

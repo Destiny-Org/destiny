@@ -8,19 +8,33 @@ runtime. It is heading towards being memory safe by default; see the
 
 ## Repositories
 
-Destiny is made of two repositories that live side by side in one folder:
+Destiny is made of repositories that live side by side in one folder:
 
 | Repository | Folder | Contents |
 |---|---|---|
 | [Destiny-Org/destiny](https://github.com/Destiny-Org/destiny) | `destiny_engine/` | compiler, druntime, language spec, tests |
 | [Destiny-Org/fate](https://github.com/Destiny-Org/fate) | `fate/` | Fate, the standard library (forked from Phobos) |
+| [Destiny-Org/tools](https://github.com/Destiny-Org/tools) | `tools/` | build and test helpers (whitespace check, test extractor, rdmd, DustMite) |
+| [Destiny-Org/d-scanner](https://github.com/Destiny-Org/d-scanner) | `d-scanner/` | style checker used by `make style`, and libdparse for the test extractor |
+| [Destiny-Org/host-compilers](https://github.com/Destiny-Org/host-compilers) | — | mirrored upstream D compilers used to build destiny (releases only) |
 
 The build expects exactly this layout: Fate must sit next to the
-compiler folder, as `../fate`.
+compiler folder, as `../fate`. `tools` and `d-scanner` are cloned
+automatically when a target needs them.
 
 ```
 git clone https://github.com/Destiny-Org/destiny.git destiny_engine
 git clone https://github.com/Destiny-Org/fate.git fate
+```
+
+### Host compiler
+
+Building destiny needs an upstream D compiler. To install one of the
+versions mirrored in Destiny-Org/host-compilers:
+
+```
+ci/host_compiler.sh dmd
+source ~/host-compilers/dmd/activate
 ```
 
 ## Building
