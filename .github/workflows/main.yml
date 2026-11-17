@@ -60,7 +60,7 @@ jobs:
       # for ci/run.sh:
       OS_NAME: ${{ matrix.vm_os || (startsWith(matrix.os, 'ubuntu') && 'linux' || (startsWith(matrix.os, 'macos') && 'osx' || (startsWith(matrix.os, 'windows') && 'windows' || ''))) }}
       MODEL: ${{ matrix.model || '64' }}
-      HOST_DMD: ${{ matrix.host_dmd }}
+      HOST_DC: ${{ matrix.host_dmd }}
       # N is set dynamically below
       FULL_BUILD: true
       # for coverage:
@@ -71,7 +71,7 @@ jobs:
       run:
         # cpa.sh comes with cross-platform-actions and delegates to the VM.
         # Use it by default for all `run` steps below, i.e., run them in the VM (with a bash shell).
-        shell: ${{ matrix.vm_os && 'cpa.sh {0} --sync-files runner-to-vm --environment-variables OS_NAME MODEL HOST_DMD CI_DFLAGS N FULL_BUILD DMD_TEST_COVERAGE DESTINY_REPO_TOKEN' || 'bash' }}
+        shell: ${{ matrix.vm_os && 'cpa.sh {0} --sync-files runner-to-vm --environment-variables OS_NAME MODEL HOST_DC CI_DFLAGS N FULL_BUILD DMD_TEST_COVERAGE DESTINY_REPO_TOKEN' || 'bash' }}
     steps:
       - name: Start VM
         if: matrix.vm_os
@@ -99,7 +99,7 @@ jobs:
 
       - name: 'Posix: Install prerequisites'
         if: runner.os != 'Windows'
-        run: ${{ runner.os == 'macOS' && 'ci/cirrusci.sh' || 'sudo --preserve-env=OS_NAME,MODEL,HOST_DMD,FULL_BUILD,N ci/cirrusci.sh' }}
+        run: ${{ runner.os == 'macOS' && 'ci/cirrusci.sh' || 'sudo --preserve-env=OS_NAME,MODEL,HOST_DC,FULL_BUILD,N ci/cirrusci.sh' }}
 
       - name: 'macOS: Switch Xcode version if required'
         if: runner.os == 'macOS' && matrix.xcode
@@ -136,15 +136,15 @@ jobs:
           ci/run.sh setup_repos "$REPO_BRANCH"
       - name: Build
         run: ${{ matrix.disable_debug_for_dmd_unittests && 'ENABLE_DEBUG=0' || '' }} ci/run.sh build
-      - name: Rebuild dmd (with enabled coverage)
+      - name: Rebuild destiny (with enabled coverage)
         if: matrix.coverage
         run: ENABLE_RELEASE=0 ENABLE_DEBUG=1 ENABLE_COVERAGE=1 ci/run.sh rebuild
       - name: 'Windows: Set up MSVC environment' # some tests need cl.exe etc. in PATH
         if: runner.os == 'Windows'
         shell: pwsh
         run: ./.github/scripts/setup_msvc.ps1 -Arch ${{ env.MODEL == '64' && 'x64' || 'x86' }}
-      - name: Test dmd
-        run: ci/run.sh test_dmd
+      - name: Test destiny
+        run: ci/run.sh test_destiny
       - name: Test druntime
         if: '!matrix.coverage && (success() || failure())'
         run: ci/run.sh test_druntime
@@ -152,21 +152,21 @@ jobs:
         if: runner.os == 'Windows' && env.MODEL == '32' && !matrix.coverage && (success() || failure())
         run: |
           set -uexo pipefail
-          if [[ "$HOST_DMD" =~ ^ldc ]]; then
+          if [[ "$HOST_DC" =~ ^ldc ]]; then
             echo "$(dirname "$DC")/../lib32" >> $GITHUB_PATH
           else # DMD
             echo "$(dirname "$DC")/../bin" >> $GITHUB_PATH
           fi
-      - name: Test phobos
+      - name: Test Fate
         if: '!matrix.coverage && (success() || failure())'
-        run: ci/run.sh test_phobos
+        run: ci/run.sh test_fate
       - name: Test self-compile
         if: '!matrix.coverage && (success() || failure())' # already re-built with enabled coverage
         run: ENABLE_RELEASE=0 ci/run.sh rebuild
 
   arm-qemu:
     needs: call-precommit
-    name: 'Ubuntu 24.04 x64, DMD (AArch64 cross-compile via QEMU)'
+    name: 'Ubuntu 24.04 x64, destiny (AArch64 cross-compile via QEMU)'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
@@ -174,7 +174,7 @@ jobs:
       DESTINY_REPO_TOKEN: ${{ secrets.DESTINY_REPO_TOKEN }}
       OS_NAME: linux
       MODEL: 64
-      HOST_DMD: dmd-2.113.1
+      HOST_DC: dmd-2.113.1
       FULL_BUILD: true
     defaults:
       run:
@@ -188,7 +188,7 @@ jobs:
         run: echo "N=$(nproc)" >> $GITHUB_ENV
 
       - name: Install prerequisites
-        run: sudo --preserve-env=OS_NAME,MODEL,HOST_DMD,FULL_BUILD,N ci/cirrusci.sh
+        run: sudo --preserve-env=OS_NAME,MODEL,HOST_DC,FULL_BUILD,N ci/cirrusci.sh
 
       - name: Install host compiler
         run: ci/run.sh install_host_compiler
@@ -209,7 +209,7 @@ jobs:
           fi
           ci/run.sh setup_repos "$REPO_BRANCH"
 
-      - name: Build DMD
+      - name: Build destiny
         run: ci/run.sh build
 
       - name: Install AArch64 cross-compile tools

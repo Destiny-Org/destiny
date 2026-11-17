@@ -4,7 +4,7 @@ $(SPEC_S Legacy Code,
 
 $(HEADERNAV_TOC)
 
-    $(P To maintain compatibility with older D code, many legacy features remain supported.
+    $(P To maintain compatibility with older Destiny code, many legacy features remain supported.
 $(COMMENT
     If the $(TT -wo) compiler command line switch is used, the compiler will give warning messages
     for each use of a legacy feature.
@@ -58,7 +58,7 @@ $(H3 Corrective Action)
         ---
 
     $(RATIONALE The `body` keyword was only used for this single purpose.
-        Since D grammar aims to be context free, this common word was reserved,
+        Since Destiny grammar aims to be context free, this common word was reserved,
         which led to frequent trouble for people interfacing with other languages
         (e.g. javascript) or auto-generating code.
     )

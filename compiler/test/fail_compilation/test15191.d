@@ -1,5 +1,5 @@
 /* TEST_OUTPUT:
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 ---
 fail_compilation/test15191.d(34): Error: returning `&identity(x)` escapes a reference to local variable `x`
 fail_compilation/test15191.d(40): Error: returning `&identityPtr(x)` escapes a reference to local variable `x`

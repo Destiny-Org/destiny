@@ -1,6 +1,6 @@
 Ddoc
 
-$(SPEC_S D X86 and X86_64 Inline Assembler,
+$(SPEC_S Destiny X86 and X86_64 Inline Assembler,
 
 $(HEADERNAV_TOC)
 
@@ -9,15 +9,15 @@ $(HEADERNAV_TOC)
       $(HTMLTAG3V img, src="$(ROOT_DIR)images/SomeAssemblySmall.png" border="0" align="right" alt="Some Assembly Required" width="284" height="186")
     )
 
-    $(P D, being a systems programming language, provides an inline
+    $(P Destiny, being a systems programming language, provides an inline
         assembler.
-        The inline assembler is standardized for D implementations across
+        The inline assembler is standardized for Destiny implementations across
         the same CPU family, for example, the Intel Pentium inline assembler
-        for a Win32 D compiler will be syntax compatible with the inline
+        for a Win32 Destiny compiler will be syntax compatible with the inline
         assembler for Linux running on an Intel Pentium.
     )
 
-    $(P Implementations of D on different architectures, however, are
+    $(P Implementations of Destiny on different architectures, however, are
         free to innovate upon the memory model, function call/return conventions,
         argument passing conventions, etc.
     )
@@ -1338,7 +1338,7 @@ getsec
 
 $(H2 $(LNAME2 gcc, GCC syntax))
 
-$(P The $(LINK2 https://gdcproject.org/, GNU D Compiler) uses an alternative, GCC-based syntax for inline assembler:)
+$(P The $(LINK2 https://gdcproject.org/, GNU Destiny Compiler) uses an alternative, GCC-based syntax for inline assembler:)
 
 $(GRAMMAR
 $(GNAME GccAsmStatement):

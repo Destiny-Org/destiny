@@ -74,7 +74,7 @@ $(UL
         $(LI It is easy to make the error handling source code look good.)
 )
 
-$(H2 $(LNAME2 the_d_error_handling_solution, The D Error Handling Solution))
+$(H2 $(LNAME2 the_d_error_handling_solution, The Destiny Error Handling Solution))
 
 Let's first make some observations and assumptions about errors:
 
@@ -109,7 +109,7 @@ $(P How does this meet our criteria?)
 
 $(DL
         $(DT It is standardized - consistent usage makes it more useful.)
-        $(DD This is the D way, and is used consistently in the D
+        $(DD This is the Destiny way, and is used consistently in the Destiny
             runtime library and examples.)
 
         $(DT The result is reasonable result even if the programmer fails
@@ -147,7 +147,7 @@ How does this meet our assumptions about errors?
 $(DL
         $(DT Errors are not part of the normal flow of a program. Errors
         are exceptional, unusual, and unexpected.)
-        $(DD D exception handling fits right in with that.)
+        $(DD Destiny exception handling fits right in with that.)
 
         $(DT Because errors are unusual, execution of error handling code
         is not performance critical.)

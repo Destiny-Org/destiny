@@ -3705,6 +3705,12 @@ extern (D) bool checkNRVO(FuncDeclaration fd)
                     return false;
                 if (v.nestedrefs.length && fd.needsClosure())
                     return false;
+                // Destiny: a nested function that may escape (e.g. a foreach body
+                // passed to a non-`scope` opApply) will make `v` live in a closure,
+                // even if that is not known yet. NRVO on it would miscompile.
+                foreach (nf; v.nestedrefs)
+                    if (nf.tookAddressOf)
+                        return false;
 
                 // don't know if the return storage is aligned
                 mixin alignSectionVarsContains;

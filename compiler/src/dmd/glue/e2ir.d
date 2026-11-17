@@ -850,6 +850,17 @@ elem* toElem(Expression e, ref IRState irs)
             assert(irs.sclosure || salignSection);
             e = el_var(v.inClosure ? irs.sclosure : salignSection);
             e = el_bin(OPadd, TYnptr, e, el_long(TYsize_t, v.offset));
+            if (v.inClosure && v.nrvo)
+            {
+                // Destiny: the closure slot holds a pointer to the caller's
+                // return slot (see buildClosure)
+                // load the hidden pointer; for a variable, L1 dereferences it
+                // (exactly as for nested access to an NRVO variable)
+                e = el_una(OPind, TYnptr, e);
+                if (se.op == EXP.symbolOffset)
+                    e = el_bin(OPadd, e.Ety, e, el_long(TYsize_t, offset));
+                goto L1;
+            }
             if (se.op == EXP.variable)
             {
                 e = el_una(OPind, totym(se.type), e);

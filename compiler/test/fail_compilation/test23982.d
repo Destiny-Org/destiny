@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test23982.d(35): Error: assigning scope variable `a` to non-scope parameter `a` calling `foo2` is not allowed in a `@safe` function

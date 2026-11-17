@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
  * TEST_OUTPUT:
 ---
 fail_compilation/fail17842.d(14): Error: assigning scope variable `p` to non-scope `*q` is not allowed in a `@safe` function

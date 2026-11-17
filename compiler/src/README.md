@@ -1,6 +1,6 @@
 # destiny's source code
 
-This directory contains the source code of the dmd compiler.
+This directory contains the source code of the destiny compiler.
 Refer to [this file](dmd/README.md) for an overview of the actual source files.
 
 ## Building the compiler
@@ -13,10 +13,10 @@ The compiler can be built using the integrated build system `build.d`.
 
 Building requires a host D compiler. Destiny uses upstream dmd 2.113.1 (install it with
 `ci/host_compiler.sh dmd`); the build defaults to `dmd` as found on the path. This behaviour can be overriden
-by explicitly specifying a different host compiler using the `HOST_DMD` variable.
+by explicitly specifying a different host compiler using the `HOST_DC` variable.
 
 ```console
-./build.d HOST_DMD=<compiler path>
+./build.d HOST_DC=<compiler path>
 ```
 
 Note that building with LDC & GDC requires the `ldmd2`/`gdmd` wrappers to
@@ -27,7 +27,7 @@ or see the list of major targets below.
 
 ### Prerequisites
 
-To bootstrap `dmd` on posix you need to have a `C++` compiler installed,
+To bootstrap `destiny` on posix you need to have a `C++` compiler installed,
 such as gcc, when using the default `$CC` setting.
 
 ### Bootstrapping
@@ -36,7 +36,7 @@ Use `bootstrap.sh` to bootstrap the compiler if there is no D compiler
 installed. The script will download an official release and use it
 as a host compiler when forwarding targets to `build.d`.
 
-Refer to the `HOST_DMD_VER` variable in `bootstrap.sh` for the currently
+Refer to the `HOST_DC_VER` variable in `bootstrap.sh` for the currently
 used release version.
 
 ## Major targets

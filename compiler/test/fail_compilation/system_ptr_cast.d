@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000 -de
+REQUIRED_ARGS: -de
 TEST_OUTPUT:
 ---
 fail_compilation/system_ptr_cast.d(20): Deprecation: cast from `S*` to `int*` will become `@system` in a future release

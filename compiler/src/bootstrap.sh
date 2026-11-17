@@ -9,7 +9,7 @@
 
 set -euo pipefail
 
-HOST_DMD_VER="${HOST_DMD_VER:-2.113.1}"
+HOST_DC_VER="${HOST_DC_VER:-2.113.1}"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 GENERATED="$( cd "$DIR/.." >/dev/null 2>&1 && pwd )/generated"
@@ -42,31 +42,31 @@ else
     exit 1
 fi
 
-HOST_DMD_ROOT="${GENERATED}/host_dmd-${HOST_DMD_VER}"
+HOST_DC_ROOT="${GENERATED}/host_dmd-${HOST_DC_VER}"
 if [ "$OS" == "freebsd" ] ; then
     # dmd.2.095.0.freebsd-64.tar.xz
-    HOST_DMD_BASENAME=dmd.${HOST_DMD_VER}.${OS}-${MODEL}
+    HOST_DC_BASENAME=dmd.${HOST_DC_VER}.${OS}-${MODEL}
 else
     # dmd.2.095.0.osx.zip or dmd.2.095.0.linux.tar.xz
-    HOST_DMD_BASENAME=dmd.${HOST_DMD_VER}.${OS}
+    HOST_DC_BASENAME=dmd.${HOST_DC_VER}.${OS}
 fi
 # The host compiler comes from the Destiny-Org mirror (see ci/host_compiler.sh), e.g.
 # https://github.com/Destiny-Org/host-compilers/releases/download/dmd-2.095.0/dmd.2.095.0.linux.tar.xz
 HOST_COMPILER_MIRROR="${HOST_COMPILER_MIRROR:-https://github.com/Destiny-Org/host-compilers/releases/download}"
-HOST_DMD_URL=${HOST_COMPILER_MIRROR}/dmd-${HOST_DMD_VER}/${HOST_DMD_BASENAME}
-HOST_RDMD="${HOST_DMD_ROOT}/dmd2/${OS}/${MODEL_PATH}/rdmd"
-HOST_DMD="${HOST_DMD_ROOT}/dmd2/${OS}/${MODEL_PATH}/dmd" # required by build.d
+HOST_DC_URL=${HOST_COMPILER_MIRROR}/dmd-${HOST_DC_VER}/${HOST_DC_BASENAME}
+HOST_RDMD="${HOST_DC_ROOT}/dmd2/${OS}/${MODEL_PATH}/rdmd"
+HOST_DC="${HOST_DC_ROOT}/dmd2/${OS}/${MODEL_PATH}/dmd" # required by build.d
 
 # Download bootstrap compiler if it does not exist yet
 if [ ! -e "${HOST_RDMD}" ] ; then
-    mkdir -p "${HOST_DMD_ROOT}"
+    mkdir -p "${HOST_DC_ROOT}"
 
     if ! command -v xz &> /dev/null ; then
         echo "[bootstrap] xz is required to unpack the host compiler"
         exit 1
     fi
-    echo "[bootstrap] Downloading compiler ${HOST_DMD_URL}.tar.xz"
-    curl "${CURL_FLAGS[@]}" "${HOST_DMD_URL}.tar.xz" | tar -C "${HOST_DMD_ROOT}" -Jxf - || rm -rf "${HOST_DMD_ROOT}"
+    echo "[bootstrap] Downloading compiler ${HOST_DC_URL}.tar.xz"
+    curl "${CURL_FLAGS[@]}" "${HOST_DC_URL}.tar.xz" | tar -C "${HOST_DC_ROOT}" -Jxf - || rm -rf "${HOST_DC_ROOT}"
 
     # check for bootstrapping success
     if [ -e "${HOST_RDMD}" ] ; then
@@ -78,4 +78,4 @@ if [ ! -e "${HOST_RDMD}" ] ; then
 fi
 
 # Call build.d with all arguments forwarded
-"$HOST_RDMD" "$DIR/build.d" "$@" HOST_DMD="$HOST_DMD"
+"$HOST_RDMD" "$DIR/build.d" "$@" HOST_DC="$HOST_DC"

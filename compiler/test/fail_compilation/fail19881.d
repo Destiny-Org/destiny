@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
  * TEST_OUTPUT:
 ---
 fail_compilation/fail19881.d(13): Error: assigning address of local variable `local` to return scope `input` is not allowed in a `@safe` function

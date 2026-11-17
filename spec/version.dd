@@ -223,9 +223,9 @@ $(H3 $(LEGACY_LNAME2 PredefinedVersions, predefined-versions, Predefined Version
 
         $(TROW *Host Compiler*)
         $(TROW $(ARGS $(D DigitalMars)) , $(ARGS destiny (Digital Mars D)))
-        $(TROW $(ARGS $(D GNU)) , $(ARGS GDC (GNU D Compiler)))
-        $(TROW $(ARGS $(D LDC)) , $(ARGS LDC (LLVM D Compiler)))
-        $(TROW $(ARGS $(D SDC)) , $(ARGS SDC (Snazzy D Compiler)))
+        $(TROW $(ARGS $(D GNU)) , $(ARGS GDC (GNU Destiny Compiler)))
+        $(TROW $(ARGS $(D LDC)) , $(ARGS LDC (LLVM Destiny Compiler)))
+        $(TROW $(ARGS $(D SDC)) , $(ARGS SDC (Snazzy Destiny Compiler)))
 
         $(TROW *Target Operating System*)
         $(TROW $(ARGS $(D Windows)) , $(ARGS Microsoft Windows systems Win32 and Win64))
@@ -336,7 +336,7 @@ $(H3 $(LEGACY_LNAME2 PredefinedVersions, predefined-versions, Predefined Version
         $(TROW $(ARGS $(D ELFv2)) , $(ARGS Elf version 2))
 
         $(TROW *Miscellaneous*)
-        $(TROW $(ARGS $(D D_BetterC)) , $(ARGS $(DDLINK spec/betterc, D as Better C, D as Better C) code
+        $(TROW $(ARGS $(D D_BetterC)) , $(ARGS $(DDLINK spec/betterc, Destiny as Better C, Destiny as Better C) code
                 (command line switch $(DDSUBLINK dmd, switch-betterC, $(TT -betterC))) is being generated))
         $(TROW $(ARGS $(D D_Exceptions)) , $(ARGS Exception handling is supported.  Evaluates to `false` when compiling with
                 command line switch $(DDSUBLINK dmd, switch-betterC, $(TT -betterC))))
@@ -362,7 +362,7 @@ $(H3 $(LEGACY_LNAME2 PredefinedVersions, predefined-versions, Predefined Version
         $(TROW $(ARGS $(D D_SIMD)) , $(ARGS $(DDLINK spec/simd, simd, Vector extensions) (via $(D __simd)) are supported))
         $(TROW $(ARGS $(D D_AVX)) , $(ARGS AVX Vector instructions are supported))
         $(TROW $(ARGS $(D D_AVX2)) , $(ARGS AVX2 Vector instructions are supported))
-        $(TROW $(ARGS $(D D_Version2)) , $(ARGS This is a D version 2 compiler))
+        $(TROW $(ARGS $(D D_Version2)) , $(ARGS This is a Destiny version 2 compiler))
         $(TROW $(ARGS $(D D_NoBoundsChecks)) , $(ARGS Array bounds checks are disabled
                 (command line switch $(DDSUBLINK dmd, switch-boundscheck, $(TT -boundscheck=off)))))
         $(TROW $(ARGS $(D D_ObjectiveC)) , $(ARGS The target supports interfacing with Objective-C))
@@ -398,7 +398,7 @@ $(H3 $(LEGACY_LNAME2 PredefinedVersions, predefined-versions, Predefined Version
         )
 
         $(P To allow for future growth of the language,
-        the version identifier namespace beginning with "D$(UNDERSCORE)"
+        the version identifier namespace beginning with "Destiny$(UNDERSCORE)"
         is reserved for identifiers indicating Destiny language specification
         or new feature conformance. Further, all identifiers derived from
         the ones listed above by appending any character(s) are reserved. This
@@ -444,7 +444,7 @@ $(GNAME DebugCondition):
         test harnesses, pretty-printing code, etc.
         The debug statement conditionally compiles in its
         statement body.
-        It is D's way of what in C is done
+        It is Destiny's way of what in C is done
         with $(CODE #ifdef DEBUG) / $(CODE #endif) pairs.
         )
 

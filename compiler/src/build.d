@@ -102,7 +102,7 @@ Examples
 Important variables:
 --------------------
 
-HOST_DMD:             Host D compiler to use for bootstrapping
+HOST_DC:             Host D compiler to use for bootstrapping
 AUTO_BOOTSTRAP:       Enable auto-boostrapping by downloading a stable DMD binary
 MODEL:                Target architecture to build for (32,64) - defaults to the host architecture
 
@@ -163,7 +163,7 @@ Command-line parameters
     // "just works"
     version(Posix) // UPDATE: only when ANSII color codes are supported, that is. Don't do this on Windows.
     if (!flags["DFLAGS"].canFind("-color=off") &&
-        [env["HOST_DMD_RUN"], "-color=on", "-h"].tryRun().status == 0)
+        [env["HOST_DC_RUN"], "-color=on", "-h"].tryRun().status == 0)
         flags["DFLAGS"] ~= "-color=on";
     // default target
     if (!args.length)
@@ -264,7 +264,7 @@ alias lexer = makeRuleWithArgs!((MethodInitializer!BuildRule builder, BuildRule 
         common(suffix, extraFlags)
     ])
     .msg("(DC) LEXER" ~ suffix)
-    .command([env["HOST_DMD_RUN"],
+    .command([env["HOST_DC_RUN"],
         "-c",
         "-of" ~ rule.target,
         "-vtls",
@@ -331,7 +331,7 @@ alias common = makeRuleWithArgs!((MethodInitializer!BuildRule builder, BuildRule
     .sources(sources.common)
     .msg("(DC) COMMON" ~ suffix)
     .command([
-        env["HOST_DMD_RUN"],
+        env["HOST_DC_RUN"],
         "-c",
         "-of" ~ rule.target,
         ]
@@ -362,7 +362,7 @@ alias backend = makeRuleWithArgs!((MethodInitializer!BuildRule builder, BuildRul
     ])
     .msg("(DC) BACKEND" ~ suffix)
     .command([
-        env["HOST_DMD_RUN"],
+        env["HOST_DC_RUN"],
         "-c",
         "-of" ~ rule.target,
         ]
@@ -469,7 +469,7 @@ alias dmdExe = makeRuleWithArgs!((MethodInitializer!BuildRule builder, BuildRule
         .msg("(DC) DMD" ~ targetSuffix)
         .deps([sysconfDirFile, lexer, backend, common])
         .command([
-            env["HOST_DMD_RUN"],
+            env["HOST_DC_RUN"],
             "-of" ~ rule.target,
             "-vtls",
             "-J" ~ env["RES"],
@@ -487,9 +487,9 @@ alias dmdDefault = makeRule!((builder, rule) => builder
 );
 
 alias dmdPGO = makeRule!((builder, rule) => builder
-    .name("dmd-pgo")
+    .name("destiny-pgo")
     .commandFunction(() {
-        abortBuild("The dmd-pgo target has moved to the Makefile. Run something like this in the repo root directory: make -j8 HOST_DMD=ldmd2 dmd-pgo");
+        abortBuild("The destiny-pgo target has moved to the Makefile. Run something like this in the repo root directory: make -j8 HOST_DC=ldmd2 destiny-pgo");
     })
 );
 
@@ -498,7 +498,7 @@ alias testRunner = methodInit!(BuildRule, (rundBuilder, rundRule) => rundBuilder
     .msg("(DC) RUN.D")
     .sources([ testDir.buildPath( "run.d") ])
     .target(env["GENERATED"].buildPath("run".exeName))
-    .command([ env["HOST_DMD_RUN"], "-of=" ~ rundRule.target, "-i", "-I" ~ testDir] ~ rundRule.sources));
+    .command([ env["HOST_DC_RUN"], "-of=" ~ rundRule.target, "-i", "-I" ~ testDir] ~ rundRule.sources));
 
 /// Run's the test suite (unittests & `run.d`)
 alias runTests = makeRule!((testBuilder, testRule)
@@ -519,7 +519,7 @@ alias runTests = makeRule!((testBuilder, testRule)
 
 /// BuildRule to run the DMD unittest executable.
 alias runDmdUnittest = makeRule!((builder, rule) {
-    auto dmdUnittestExe = dmdExe("-unittest", ["-version=NoMain", "-unittest", env["HOST_DMD_KIND"] == "gdc" ? "-fmain" : "-main"], ["-unittest"]);
+    auto dmdUnittestExe = dmdExe("-unittest", ["-version=NoMain", "-unittest", env["HOST_DC_KIND"] == "gdc" ? "-fmain" : "-main"], ["-unittest"]);
     builder
         .name("unittest")
         .description("Run the dmd unittests")
@@ -550,7 +550,7 @@ alias runCxxUnittest = makeRule!((runCxxBuilder, runCxxRule) {
         .deps([sysconfDirFile, lexer(null, null), cxxFrontend])
         .sources(sources.dmd.driver ~ sources.dmd.frontend ~ sources.root ~ sources.common ~ env["D"].buildPath("cxxfrontend.d"))
         .target(env["G"].buildPath("cxx-unittest").exeName)
-        .command([ env["HOST_DMD_RUN"], "-of=" ~ exeRule.target, "-vtls", "-J" ~ env["RES"],
+        .command([ env["HOST_DC_RUN"], "-of=" ~ exeRule.target, "-vtls", "-J" ~ env["RES"],
                     "-L-lstdc++", "-version=NoMain", "-version=NoBackend"
             ].chain(
                 flags["DFLAGS"], exeRule.sources,
@@ -588,7 +588,7 @@ alias runCppLayoutTest = makeRule!((builder, rule) {
                 abortBuild("gen_cpp_layout_test.py failed:\n" ~ result.output);
 
             const compileResult = tryRun(
-                [env["HOST_DMD_RUN"], "-c", "-o-", "-m64", "-unittest",
+                [env["HOST_DC_RUN"], "-c", "-o-", "-m64", "-unittest",
                  "-version=IN_LLVM", // skip MARS-only fields
                  "-I" ~ env["D"] ~ "/..",
                  "-J" ~ env["RES"],
@@ -630,7 +630,7 @@ alias checkwhitespace = makeRule!((builder, rule) => builder
     .deps([toolsRepo])
     .sources(allRepoSources)
     .commandFunction(delegate() {
-        const cmdPrefix = [env["HOST_DMD_RUN"], "-run", env["TOOLS_DIR"].buildPath("checkwhitespace.d")];
+        const cmdPrefix = [env["HOST_DC_RUN"], "-run", env["TOOLS_DIR"].buildPath("checkwhitespace.d")];
         auto chunkLength = allRepoSources.length;
         version (Win32)
             chunkLength = 80; // avoid command-line limit on win32
@@ -700,7 +700,7 @@ alias man = makeRule!((builder, rule) {
             compilerDir.buildPath("docs", "gen_man.d"),
             env["D"].buildPath("cli.d")])
         .command([
-            env["HOST_DMD_RUN"],
+            env["HOST_DC_RUN"],
             "-I" ~ srcDir,
             "-of" ~ genManRule.target]
             ~ flags["DFLAGS"]
@@ -829,7 +829,7 @@ alias toolchainInfo = makeRule!((builder, rule) => builder
         show("MAKE", [env["MAKE"], "--version"]);
         version (Posix)
             show("SHELL", [env.getDefault("SHELL", nativeShell), "--version"]);  // cmd.exe --version hangs
-        show("HOST_DMD", [env["HOST_DMD_RUN"], "--version"]);
+        show("HOST_DC", [env["HOST_DC_RUN"], "--version"]);
         version (Posix)
             show("HOST_CXX", [env["CXX"], "--version"]);
         show("ld", ["ld", "-v"]);
@@ -1085,45 +1085,45 @@ void parseEnvironment()
     mkdirRecurse(g);
     env.setDefault("TOOLS_DIR", dmdRepo.dirName.buildPath("tools"));
 
-    auto hostDmdDef = env.getDefault("HOST_DMD", null);
-    if (hostDmdDef.length == 0)
+    auto hostDcDef = env.getDefault("HOST_DC", null);
+    if (hostDcDef.length == 0)
     {
-        const hostDmd = env.getDefault("HOST_DC", null);
-        env["HOST_DMD"] = hostDmd.length ? hostDmd : "dmd";
+        const hostDc = env.getDefault("HOST_DC", null);
+        env["HOST_DC"] = hostDc.length ? hostDc : "dmd";
     }
     else
-        // HOST_DMD may be defined in the environment
-        env["HOST_DMD"] = hostDmdDef;
+        // HOST_DC may be defined in the environment
+        env["HOST_DC"] = hostDcDef;
 
     // Auto-bootstrapping of a specific host compiler
     if (env.getNumberedBool("AUTO_BOOTSTRAP"))
     {
-        auto hostDMDVer = env.getDefault("HOST_DMD_VER", "2.113.1");
-        writefln("Using Bootstrap compiler: %s", hostDMDVer);
-        auto hostDMDRoot = env["G"].buildPath("host_dmd-"~hostDMDVer);
-        auto hostDMDBase = hostDMDVer~"."~(os == "freebsd" ? os~"-"~model : os);
-        auto hostDMDURL = env.getDefault("HOST_COMPILER_MIRROR", "https://github.com/Destiny-Org/host-compilers/releases/download")~"/dmd-"~hostDMDVer~"/dmd."~hostDMDBase; // see ci/host_compiler.sh
-        env["HOST_DMD"] = hostDMDRoot.buildPath("dmd2", os, os == "osx" ? "bin" : "bin"~model, "dmd");
-        env["HOST_DMD_PATH"] = env["HOST_DMD"];
+        auto hostDCVer = env.getDefault("HOST_DC_VER", "2.113.1");
+        writefln("Using Bootstrap compiler: %s", hostDCVer);
+        auto hostDCRoot = env["G"].buildPath("host_dmd-"~hostDCVer);
+        auto hostDCBase = hostDCVer~"."~(os == "freebsd" ? os~"-"~model : os);
+        auto hostDCURL = env.getDefault("HOST_COMPILER_MIRROR", "https://github.com/Destiny-Org/host-compilers/releases/download")~"/dmd-"~hostDCVer~"/dmd."~hostDCBase; // see ci/host_compiler.sh
+        env["HOST_DC"] = hostDCRoot.buildPath("dmd2", os, os == "osx" ? "bin" : "bin"~model, "dmd");
+        env["HOST_DC_PATH"] = env["HOST_DC"];
         // TODO: use dmd.conf from the host too (in case there's a global or user-level dmd.conf)
-        env["HOST_DMD_RUN"] = env["HOST_DMD"];
-        if (!env["HOST_DMD"].exists)
+        env["HOST_DC_RUN"] = env["HOST_DC"];
+        if (!env["HOST_DC"].exists)
         {
-            writefln("Downloading DMD %s", hostDMDVer);
+            writefln("Downloading DMD %s", hostDCVer);
             auto curlFlags = "-fsSL --retry 5 --retry-max-time 120 --connect-timeout 5 --speed-time 30 --speed-limit 1024";
-            hostDMDRoot.mkdirRecurse;
-            ("curl " ~ curlFlags ~ " " ~ hostDMDURL~".tar.xz | tar -C "~hostDMDRoot~" -Jxf - || rm -rf "~hostDMDRoot).spawnShell.wait;
+            hostDCRoot.mkdirRecurse;
+            ("curl " ~ curlFlags ~ " " ~ hostDCURL~".tar.xz | tar -C "~hostDCRoot~" -Jxf - || rm -rf "~hostDCRoot).spawnShell.wait;
         }
     }
     else
     {
-        env["HOST_DMD_PATH"] = getHostDMDPath(env["HOST_DMD"]).strip.absolutePath;
-        env["HOST_DMD_RUN"] = env["HOST_DMD_PATH"];
+        env["HOST_DC_PATH"] = getHostDMDPath(env["HOST_DC"]).strip.absolutePath;
+        env["HOST_DC_RUN"] = env["HOST_DC_PATH"];
     }
 
-    if (!env["HOST_DMD_PATH"].exists)
+    if (!env["HOST_DC_PATH"].exists)
     {
-        abortBuild("No DMD compiler is installed. Try AUTO_BOOTSTRAP=1 or manually set the D host compiler with HOST_DMD");
+        abortBuild("No DMD compiler is installed. Try AUTO_BOOTSTRAP=1 or manually set the D host compiler with HOST_DC");
     }
 }
 
@@ -1135,21 +1135,21 @@ void processEnvironment()
     const os = env["OS"];
 
     // Detect the host compiler kind and version
-    const hostDmdInfo = [env["HOST_DMD_RUN"], `-Xi=compilerInfo`, `-Xf=-`].execute();
+    const hostDcInfo = [env["HOST_DC_RUN"], `-Xi=compilerInfo`, `-Xf=-`].execute();
 
-    if (hostDmdInfo.status) // Failed, JSON output currently not supported for GDC
+    if (hostDcInfo.status) // Failed, JSON output currently not supported for GDC
     {
-        env["HOST_DMD_KIND"] = "gdc";
-        env["HOST_DMD_VERSION"] = "v2.076";
+        env["HOST_DC_KIND"] = "gdc";
+        env["HOST_DC_VERSION"] = "v2.076";
     }
     else
     {
         /// Reads the content of a single field without parsing the entire JSON
-        alias get = field => hostDmdInfo.output
+        alias get = field => hostDcInfo.output
             .findSplitAfter(field ~ `" : "`)[1]
             .findSplitBefore(`"`)[0];
 
-        const ver = env["HOST_DMD_VERSION"] = get(`version`)[1 .. "vX.XXX.X".length];
+        const ver = env["HOST_DC_VERSION"] = get(`version`)[1 .. "vX.XXX.X".length];
 
         // Vendor was introduced in 2.080
         if (ver < "2.080.1")
@@ -1162,11 +1162,11 @@ void processEnvironment()
             else
                 enforce(name == "dmd", "Unknown compiler: " ~ name);
 
-            env["HOST_DMD_KIND"] = name;
+            env["HOST_DC_KIND"] = name;
         }
         else
         {
-            env["HOST_DMD_KIND"] = [
+            env["HOST_DC_KIND"] = [
                 "Digital Mars D": "dmd",
                 "LDC": "ldc",
                 "GNU D": "gdc"
@@ -1207,7 +1207,7 @@ void processEnvironment()
     }
     if (env.getNumberedBool("ENABLE_LTO"))
     {
-        switch (env["HOST_DMD_KIND"])
+        switch (env["HOST_DC_KIND"])
         {
             case "dmd":
                 stderr.writeln(`DMD does not support LTO! Ignoring ENABLE_LTO flag...`);
@@ -1219,7 +1219,7 @@ void processEnvironment()
                 dflags ~= "-flto";
                 break;
             default:
-                assert(false, "Unknown host compiler kind: " ~ env["HOST_DMD_KIND"]);
+                assert(false, "Unknown host compiler kind: " ~ env["HOST_DC_KIND"]);
         }
     }
     if (env.getNumberedBool("ENABLE_UNITTEST"))
@@ -1232,7 +1232,7 @@ void processEnvironment()
     }
 
     // Enable CTFE coverage for recent host compilers
-    const cov = env["HOST_DMD_VERSION"] >= "2.094.0" ? "-cov=ctfe" : "-cov";
+    const cov = env["HOST_DC_VERSION"] >= "2.094.0" ? "-cov=ctfe" : "-cov";
     env["COVERAGE_FLAG"] = cov;
 
     if (env.getNumberedBool("ENABLE_COVERAGE"))
@@ -1303,9 +1303,9 @@ void processEnvironmentCxx()
     // Enable a temporary workaround in globals.h and rmem.h concerning
     // wrong name mangling using DMD.
     // Remove when the minimally required D version becomes 2.082 or later
-    if (env["HOST_DMD_KIND"] == "dmd")
+    if (env["HOST_DC_KIND"] == "dmd")
     {
-        const output = run([ env["HOST_DMD_RUN"], "--version" ]);
+        const output = run([ env["HOST_DC_RUN"], "--version" ]);
 
         if (output.canFind("v2.079", "v2.080", "v2.081"))
             cxxFlags ~= "-DDMD_VERSION=2080";
@@ -1564,18 +1564,18 @@ string detectModel()
 Gets the absolute path of the host's dmd executable
 
 Params:
-    hostDmd = the command used to launch the host's dmd executable
+    hostDc = the command used to launch the host's dmd executable
 Returns: a string that is the absolute path of the host's dmd executable
 */
-string getHostDMDPath(const string hostDmd)
+string getHostDMDPath(const string hostDc)
 {
     version(Posix)
-        return ["which", hostDmd].execute.output;
+        return ["which", hostDc].execute.output;
     else version(Windows)
     {
-        if (hostDmd.canFind("/", "\\"))
-            return hostDmd;
-        return ["where", hostDmd].execute.output
+        if (hostDc.canFind("/", "\\"))
+            return hostDc;
+        return ["where", hostDc].execute.output
             .lineSplitter.filter!(file => file != srcDir.buildPath("dmd.exe")).front;
     }
     else

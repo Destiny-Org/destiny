@@ -1,5 +1,5 @@
 /* TEST_OUTPUT:
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 ---
 fail_compilation/test22145.d(115): Error: assigning scope variable `x` to global variable `global` is not allowed in a `@safe` function
 ---

@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
    TEST_OUTPUT:
 ---
 fail_compilation/test14238.d(22): Error: scope parameter `fn` may not be returned

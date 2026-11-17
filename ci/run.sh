@@ -13,9 +13,9 @@ if [ -z ${OS_NAME+x} ] ; then echo "Variable 'OS_NAME' needs to be set."; exit 1
 if [ -z ${FULL_BUILD+x} ] ; then echo "Variable 'FULL_BUILD' needs to be set."; exit 1; fi
 # MODEL: 32|64
 if [ -z ${MODEL+x} ] ; then echo "Variable 'MODEL' needs to be set."; exit 1; fi
-# HOST_DMD: dmd[-<version>]|ldc[-<version>]|gdmd-<version>
-if [ ! -z ${HOST_DC+x} ] ; then HOST_DMD=${HOST_DC}; fi
-if [ -z ${HOST_DMD+x} ] ; then echo "Variable 'HOST_DMD' needs to be set."; exit 1; fi
+# HOST_DC: dmd[-<version>]|ldc[-<version>]|gdmd-<version>
+if [ ! -z ${HOST_DC+x} ] ; then HOST_DC=${HOST_DC}; fi
+if [ -z ${HOST_DC+x} ] ; then echo "Variable 'HOST_DC' needs to be set."; exit 1; fi
 # CI_DFLAGS: Optional flags to pass to the build
 if [ -z ${CI_DFLAGS+x} ] ; then CI_DFLAGS=""; fi
 
@@ -64,9 +64,9 @@ build() {
         source ~/host-compilers/*/activate # activate host compiler, incl. setting `DMD`
     fi
     if [ $unittest -eq 1 ]; then
-        make -j$N MODEL=$MODEL HOST_DMD=$DMD HOST_DFLAGS="$CI_DFLAGS" BUILD=debug dmd-unittest
+        make -j$N MODEL=$MODEL HOST_DC=$DMD HOST_DFLAGS="$CI_DFLAGS" BUILD=debug destiny-unittest
     fi
-    make -j$N MODEL=$MODEL HOST_DMD=$DMD HOST_DFLAGS="$CI_DFLAGS" ENABLE_RELEASE=${ENABLE_RELEASE:-1}
+    make -j$N MODEL=$MODEL HOST_DC=$DMD HOST_DFLAGS="$CI_DFLAGS" ENABLE_RELEASE=${ENABLE_RELEASE:-1}
     make -j$N -C ../fate MODEL=$MODEL
     if [ "$OS_NAME" != "windows" ]; then
         deactivate # deactivate host compiler
@@ -91,7 +91,7 @@ rebuild() {
     cp $build_path/destiny$dotexe _${build_path}/host_dmd$dotexe
     cp $build_path/$conf _${build_path}/
     rm -rf $build_path
-    make -j$N MODEL=$MODEL HOST_DMD=_${build_path}/host_dmd$dotexe HOST_DFLAGS="$CI_DFLAGS" ENABLE_RELEASE=${ENABLE_RELEASE:-1} dmd
+    make -j$N MODEL=$MODEL HOST_DC=_${build_path}/host_dmd$dotexe HOST_DFLAGS="$CI_DFLAGS" ENABLE_RELEASE=${ENABLE_RELEASE:-1} dmd
 
     # compare binaries to test reproducible build
     if [ $compare -eq 1 ]; then
@@ -108,12 +108,12 @@ rebuild() {
 # test druntime, phobos, dmd
 test() {
     test_druntime
-    test_phobos
-    test_dmd
+    test_fate
+    test_destiny
 }
 
 # test dmd
-test_dmd() {
+test_destiny() {
     # default to testing fewer compiler argument permutations to reduce CI load
     if [ "$FULL_BUILD" == "true" ] && [ "$OS_NAME" == "linux" ]; then
         local args=() # use all default ARGS
@@ -127,7 +127,7 @@ test_dmd() {
     fi
 
     $build_path/destiny -g -i -Icompiler/test -release compiler/test/run.d -ofgenerated/run
-    generated/run -j$N --environment MODEL=$MODEL HOST_DMD=$build_path/destiny "${args[@]}"
+    generated/run -j$N --environment MODEL=$MODEL HOST_DC=$build_path/destiny "${args[@]}"
 }
 
 # build and run druntime unit tests
@@ -136,7 +136,7 @@ test_druntime() {
 }
 
 # build and run Fate unit tests
-test_phobos() {
+test_fate() {
     make -j$N -C ../fate MODEL=$MODEL unittest
 
     if [ "$OS_NAME" == "windows" ]; then
@@ -179,7 +179,7 @@ setup_repos() {
 
 testsuite() {
     date
-    for step in build test rebuild "rebuild 1" test_dmd; do
+    for step in build test rebuild "rebuild 1" test_destiny; do
         $step
         date
     done
@@ -188,8 +188,8 @@ testsuite() {
 
 # install D host compiler
 install_host_compiler() {
-  if [ "${HOST_DMD:0:5}" == "gdmd-" ] ; then
-    local gdc_version="${HOST_DMD:5}"
+  if [ "${HOST_DC:0:5}" == "gdmd-" ] ; then
+    local gdc_version="${HOST_DC:5}"
     if [ ! -e ~/host-compilers/gdc-$gdc_version/activate ] ; then
         sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
         sudo apt-get update
@@ -204,12 +204,12 @@ install_host_compiler() {
     fi
   elif type -P apk &>/dev/null; then
     # fake install script and create a fake 'activate' script
-    mkdir -p ~/host-compilers/$HOST_DMD
-    echo "export DMD=$HOST_DMD" > ~/host-compilers/$HOST_DMD/activate
-    echo "deactivate(){ echo;}" >> ~/host-compilers/$HOST_DMD/activate
+    mkdir -p ~/host-compilers/$HOST_DC
+    echo "export DMD=$HOST_DC" > ~/host-compilers/$HOST_DC/activate
+    echo "deactivate(){ echo;}" >> ~/host-compilers/$HOST_DC/activate
   else
     # upstream D compiler from the Destiny-Org mirror
-    bash ci/host_compiler.sh "$HOST_DMD" ~/host-compilers > /dev/null
+    bash ci/host_compiler.sh "$HOST_DC" ~/host-compilers > /dev/null
   fi
 }
 
@@ -222,9 +222,9 @@ if [ "$#" -gt 0 ]; then
     build) build "${2:-}" ;; # ci/run.sh build [0]  (use `0` to skip running compiler unittests)
     rebuild) rebuild "${2:-}" ;; # ci/run.sh rebuild [1] (use `1` to compare binaries to test reproducible build)
     test) test ;;
-    test_dmd) test_dmd ;;
+    test_destiny) test_destiny ;;
     test_druntime) test_druntime ;;
-    test_phobos) test_phobos ;;
+    test_fate) test_fate ;;
     testsuite) testsuite ;;
     *) echo "Unknown command: $1" >&2; exit 1 ;;
   esac

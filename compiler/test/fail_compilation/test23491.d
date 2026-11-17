@@ -1,5 +1,5 @@
 /**
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test23491.d(16): Error: reference to local variable `buffer` assigned to non-scope anonymous parameter is not allowed in a `@safe` function

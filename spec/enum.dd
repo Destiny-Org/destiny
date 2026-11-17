@@ -327,7 +327,7 @@ enum { A, B, C }  // anonymous enum
 enum { A, B = 5 + 7, C, D = 8 + C, E }
 ------
 
-        $(P Sets $(CODE A = 0), $(CODE B = 12), $(CODE C = 13), $(CODE D = 21), and $(CODE E = 22), all of type `int`.)
+        $(P Sets $(CODE A = 0), $(CODE B = 12), $(CODE C = 13), $(CODE Destiny = 21), and $(CODE E = 22), all of type `int`.)
 
 ---
 enum : long { A = 3, B }

@@ -39,8 +39,7 @@ fail_compilation/fastdfa.d(1301):        For variable `v`
 fail_compilation/fastdfa.d(1301):        Initialize to float.nan or 0 explicitly to disable this error
 fail_compilation/fastdfa.d(1312): Error: Expression reads from an uninitialized variable, it must be written to at least once before reading
 fail_compilation/fastdfa.d(1311):        For variable `v`
-fail_compilation/fastdfa.d(1320): Error: Stack variable exceeds its lifetime by being returned
-fail_compilation/fastdfa.d(1318):        Pointer stored in variable `b` has potentially escaped
+fail_compilation/fastdfa.d(1319): Error: returning scope variable `b` is not allowed in a `@safe` function
 fail_compilation/fastdfa.d(1339): Error: Stack variable stores a lifetime that exceeds its own
 fail_compilation/fastdfa.d(1331):        For variable `ptr`
 fail_compilation/fastdfa.d(1334):        A pointer to the cell of the variable `buf` has potentially escaped
@@ -48,9 +47,7 @@ fail_compilation/fastdfa.d(1350): Error: Expression reads from an uninitialized 
 fail_compilation/fastdfa.d(1349):        For variable `foo`
 fail_compilation/fastdfa.d(1361): Error: Dereference on null variable `foo`
 fail_compilation/fastdfa.d(1368): Error: Dereference on null object
-fail_compilation/fastdfa.d(1376): Error: Stack variable stores a lifetime that exceeds its own
-fail_compilation/fastdfa.d(1373):        For variable `global`
-fail_compilation/fastdfa.d(1374):        A pointer to the cell of the variable `var` has potentially escaped
+fail_compilation/fastdfa.d(1375): Error: assigning address of variable `var` to `global` with longer lifetime is not allowed in a `@safe` function
 fail_compilation/fastdfa.d(1406): Error: Cannot mutate the owner of an active borrow
 fail_compilation/fastdfa.d(1404):        For variable `p`
 fail_compilation/fastdfa.d(1405):        Borrowed here

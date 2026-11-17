@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
    TEST_OUTPUT:
 ---
 fail_compilation/test18282.d(26): Error: returning scope variable `aa` is not allowed in a `@safe` function

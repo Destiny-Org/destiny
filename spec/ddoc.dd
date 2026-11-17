@@ -20,7 +20,7 @@ Some existing approaches to this are:
 )
 
 $(UL
-$(LI $(LINK2 https://www.doxygen.nl/, Doxygen) which already has some support for D)
+$(LI $(LINK2 https://www.doxygen.nl/, Doxygen) which already has some support for D, which Destiny is based on)
 $(LI Java's $(LINK2 https://docs.oracle.com/javase/7/docs/technotes/guides/javadoc/index.html, Javadoc),
  probably the most well-known)
 $(LI C$(HASH)'s $(LINK2 https://msdn.microsoft.com/en-us/library/b2s063f7.aspx, embedded XML))
@@ -28,7 +28,7 @@ $(LI Other $(LINK2 https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html, docum
 )
 
 $(P
-D's goals for embedded documentation are:
+Destiny's goals for embedded documentation are:
 )
 
 $(OL
@@ -41,8 +41,8 @@ $(OL
     knows from parsing the code.)
     $(LI It doesn't rely on embedded HTML, as such will impede
     extraction and formatting for other purposes.)
-    $(LI It's based on existing D comment forms, so it
-    is completely independent of parsers only interested in D code.)
+    $(LI It's based on existing Destiny comment forms, so it
+    is completely independent of parsers only interested in Destiny code.)
     $(LI It should look and feel different from code, so it won't
     be visually confused with code.)
     $(LI It should be possible for the user to use Doxygen or other
@@ -445,7 +445,7 @@ $(P
 $(H3 $(LNAME2 embedded_code, Embedded Code))
 
 $(P
-    D code can be embedded using lines beginning with at least three hyphens `-`,
+    Destiny code can be embedded using lines beginning with at least three hyphens `-`,
     backticks $(DDOC_BACKQUOTED $(BACKTICK)) or tildes `~` (ignoring whitespace) to
     delineate the code section:
 )
@@ -473,7 +473,7 @@ $(P
 )
 
 $(P
-    D code gets automatic syntax highlighting. To include code in another
+    Destiny code gets automatic syntax highlighting. To include code in another
     language without syntax highlighting, add a language string at the end of
     the top delimiter line:
 )
@@ -592,7 +592,7 @@ optionally be preceded by some link text, also enclosed in square brackets.
 )
 
 $(P
-The reference label must match a reference defined elsewhere. This may be a D
+The reference label must match a reference defined elsewhere. This may be a Destiny
 symbol in scope of the source code being documented, like `[Object]` in the
 example above, or it may be an explicit reference that is defined in the same
 documentation comment, like `[ref]` in the example above. In the example both
@@ -604,15 +604,15 @@ read `reference link` and the second will read `ref`.
 $(P
 Reference definitions start with a label in square brackets, followed by a
 colon, a URL and an optional title wrapped in single or double quotes, or in
-parentheses. If a reference label would match both a D symbol and a reference
+parentheses. If a reference label would match both a Destiny symbol and a reference
 definition then the reference definition is used.
 )
 
 $(P
-The generated links to D symbols are relative if they have the same root package
+The generated links to Destiny symbols are relative if they have the same root package
 as the module being documented. If not, their URLs are preceded by a
 `$(DOLLAR)(DDOC_ROOT_pkg)` macro, where `pkg` is the root package of the symbol
-being linked to. Links to D symbols are generated with a `$(DOLLAR)(DOC_EXTENSION)`
+being linked to. Links to Destiny symbols are generated with a `$(DOLLAR)(DOC_EXTENSION)`
 macro after the module name. Then the generated URL for `[Object]` in the above
 example is as if it had been written:
 )
@@ -848,7 +848,7 @@ names that are in scope at the associated declaration are emphasized in
 the output.
 This emphasis can take the form of italics, boldface, a hyperlink, etc.
 How it is emphasized depends on what it is $(MDASH) a function parameter, type,
-D keyword, etc.
+Destiny keyword, etc.
 To prevent unintended emphasis of an identifier, it can be preceded by
 an underscore ($(UNDERSCORE)). The underscore will be stripped from the output.
 )
@@ -1076,7 +1076,7 @@ $(P
 )
 
 $(P
-    Macro names beginning with "D$(UNDERSCORE)" and "DDOC$(UNDERSCORE)" are reserved.
+    Macro names beginning with "Destiny$(UNDERSCORE)" and "DDOC$(UNDERSCORE)" are reserved.
 )
 
 $(H3 $(LNAME2 predefined_macros, Predefined Macros))
@@ -1130,8 +1130,8 @@ $(P
     $(TROW $(ARGS $(D NOGC)), $(ARGS behavior flag badge for $(D @nogc) functions))
     $(TROW $(ARGS $(D NOTHROW)), $(ARGS behavior flag badge for $(D nothrow) functions))
     $(TROW $(ARGS $(D PURE)), $(ARGS behavior flag badge for $(D pure) functions))
-    $(TROW $(ARGS $(D D_CODE)), $(ARGS argument is D code))
-    $(TROW $(ARGS $(D D_INLINECODE)), $(ARGS argument is inline D code))
+    $(TROW $(ARGS $(D D_CODE)), $(ARGS argument is Destiny code))
+    $(TROW $(ARGS $(D D_INLINECODE)), $(ARGS argument is inline Destiny code))
     $(TROW $(ARGS $(D LF)), $(ARGS Insert a line feed (newline)))
     $(TROW $(ARGS $(D LPAREN)), $(ARGS Insert a left parenthesis))
     $(TROW $(ARGS $(D RPAREN)), $(ARGS Insert a right parenthesis))
@@ -1180,14 +1180,14 @@ ESCAPES = /&/AddressOf!/
 ------------------------------------
 
 $(P
-    Highlighting of D code is performed by the following macros:
+    Highlighting of Destiny code is performed by the following macros:
 )
 
-    $(LONGTABLE_2COLS 0.7, D Code Formatting Macros,
+    $(LONGTABLE_2COLS 0.7, Destiny Code Formatting Macros,
     $(THEAD Name, Description),
     $(TROW $(ARGS $(D D_COMMENT)), $(ARGS Highlighting of comments))
     $(TROW $(ARGS $(D D_STRING)), $(ARGS Highlighting of string literals))
-    $(TROW $(ARGS $(D D_KEYWORD)), $(ARGS Highlighting of D keywords))
+    $(TROW $(ARGS $(D D_KEYWORD)), $(ARGS Highlighting of Destiny keywords))
     $(TROW $(ARGS $(D D_PSYMBOL)), $(ARGS Highlighting of current declaration name))
     $(TROW $(ARGS $(D D_PARAM)), $(ARGS Highlighting of current function declaration parameters))
     )
@@ -1242,7 +1242,7 @@ $(P
         particular declaration section. Argument $(DOLLAR)1 expands to the qualified declaration name.))
     $(TROW $(ARGS $(D DDOC_PSYMBOL)), $(ARGS Highlighting of declaration name to which a particular section is referring.))
     $(TROW $(ARGS $(D DDOC_PSUPER_SYMBOL)), $(ARGS Highlighting of the base type of a class.))
-    $(TROW $(ARGS $(D DDOC_KEYWORD)), $(ARGS Highlighting of D keywords.))
+    $(TROW $(ARGS $(D DDOC_KEYWORD)), $(ARGS Highlighting of Destiny keywords.))
     $(TROW $(ARGS $(D DDOC_PARAM)), $(ARGS Highlighting of function parameters.))
     $(TROW $(ARGS $(D DDOC_BACKQUOTED)), $(ARGS Inserts inline code.))
     $(TROW $(ARGS $(D DDOC_FLAGS)), $(ARGS Container for the behavior flag badges emitted under a declaration.))
@@ -1351,22 +1351,22 @@ $(P
     from embedded comments. It can also, however, be used for
     processing other general documentation.
     The reason for doing this would be to take advantage of the
-    macro capability of Ddoc and the D code syntax highlighting
+    macro capability of Ddoc and the Destiny code syntax highlighting
     capability.
 )
 
 $(P
     If the .d source file starts with the string "Ddoc" then it
-    is treated as general purpose documentation, not as a D
+    is treated as general purpose documentation, not as a Destiny
     code source file. From immediately after the "Ddoc" string
     to the end of the file or any "Macros:" section forms
     the document. No automatic highlighting is done to that text,
-    other than highlighting of D code embedded between lines
+    other than highlighting of Destiny code embedded between lines
     delineated with --- lines. Only macro processing is done.
 )
 
 $(P
-    Much of the D documentation itself is generated this way,
+    Much of the Destiny documentation itself is generated this way,
     including this page.
     Such documentation is marked at the bottom as being
     generated by Ddoc.
@@ -1382,14 +1382,14 @@ $(P
     cross-site scripting).
 )
 
-$(H2 $(LNAME2 links_to_d_documentation_generators, Links to D documentation generators))
+$(H2 $(LNAME2 links_to_d_documentation_generators, Links to Destiny documentation generators))
 
 $(P
-    A list of current D documentation generators which use Ddoc
+    A list of current Destiny documentation generators which use Ddoc
     can be found on our $(LINK2 https://github.com/Destiny-Org/destiny, wiki page).
 )
 
-$(SPEC_SUBNAV_PREV_NEXT iasm, D x86 Inline Assembler, interfaceToC, Interfacing to C)
+$(SPEC_SUBNAV_PREV_NEXT iasm, Destiny x86 Inline Assembler, interfaceToC, Interfacing to C)
 )
 
 Macros:

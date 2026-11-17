@@ -1,4 +1,4 @@
-// REQUIRED_ARGS: -preview=dip1000
+// REQUIRED_ARGS:
 
 // upstream issue 22916
 // Issue 22916 - [dip1000] copy of ref return still treated as scope variable (edit)

@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test22709.d(15): Error: assigning address of variable `local` to `arr` with longer lifetime is not allowed in a `@safe` function

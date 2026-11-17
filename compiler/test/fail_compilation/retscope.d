@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(22): Error: scope parameter `p` may not be returned

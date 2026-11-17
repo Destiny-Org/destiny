@@ -1,4 +1,4 @@
-// REQUIRED_ARGS: -preview=dip1000
+// REQUIRED_ARGS:
 
 // Reduced from `std.systime`.
 // Tuple expansion can trip up scope checking with errors like:

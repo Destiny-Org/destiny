@@ -593,7 +593,7 @@ destructors. Violation of this rule will result in a runtime exception.)
     $(IMPLEMENTATION_DEFINED
     $(OL
     $(LI An implementation may provide a means of overriding the cycle detection abort.
-    A typical method uses the D Runtime switch
+    A typical method uses the Destiny Runtime switch
     `--DRT-oncycle=...` where the following behaviors are supported:
     $(OL
     $(LI `abort` The default behavior. The normal behavior as described

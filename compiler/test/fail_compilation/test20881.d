@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test20881.d(20): Error: returning scope variable `this` is not allowed in a `@safe` function

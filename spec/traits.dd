@@ -399,7 +399,7 @@ $(H3 $(GNAME toType))
         The contents of the string must correspond to the $(DDSUBLINK spec/abi, name_mangling, mangled contents of a type)
         that has been seen by the implementation.)
 
-        $(P Only D mangling is supported. Other manglings, such as C++ mangling, are not.)
+        $(P Only Destiny mangling is supported. Other manglings, such as C++ mangling, are not.)
 
         $(P The value returned is a type.)
 
@@ -995,7 +995,7 @@ $(SECTION3 $(GNAME getFunctionVariadicStyle),
     $(TABLE2 getFunctionVariadicStyle,
         $(THEAD result, kind, access, example)
         $(TROW $(D "none"), not a variadic function, $(NBSP), $(D void foo();))
-        $(TROW $(D "argptr"), D style variadic function, $(D _argptr) and $(D _arguments), $(D void bar(...)))
+        $(TROW $(D "argptr"), Destiny style variadic function, $(D _argptr) and $(D _arguments), $(D void bar(...)))
         $(TROW $(D "stdarg"), C style variadic function, $(MREF core,stdc,stdarg),
             $(D extern (C) void abc(int, ...)))
         $(TROW $(D "typesafe"), typesafe variadic function, array on stack, $(D void def(int[] ...)))
@@ -1565,7 +1565,7 @@ $(H3 $(GNAME getLinkage))
         )
 
         $(UL
-        $(LI $(D "D"))
+        $(LI $(D "Destiny"))
         $(LI $(D "C"))
         $(LI $(D "C++"))
         $(LI $(D "Windows"))

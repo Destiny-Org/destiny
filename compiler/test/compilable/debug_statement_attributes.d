@@ -1,4 +1,4 @@
-// ARG_SETS: -debug; -o-; -debug -preview=dip1000
+// ARG_SETS: -debug; -o-; -debug
 // upstream issue 16492
 
 void mayCallGC();

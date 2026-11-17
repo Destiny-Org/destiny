@@ -1,17 +1,22 @@
 /*
 TEST_OUTPUT:
 ---
-fail_compilation/fail_scope.d(43): Error: returning `cast(char[])string` escapes a reference to local variable `string`
-fail_compilation/fail_scope.d(61): Error: returning `s.bar()` escapes a reference to local variable `s`
-fail_compilation/fail_scope.d(72): Error: `fail_scope.foo8` called with argument types `(int)` matches multiple overloads exactly:
-fail_compilation/fail_scope.d(66):     `fail_scope.foo8(ref int x)`
+fail_compilation/fail_scope.d(33): Error: scope parameter `da` may not be returned
+fail_compilation/fail_scope.d(35): Error: scope parameter `o` may not be returned
+fail_compilation/fail_scope.d(36): Error: scope parameter `dg` may not be returned
+fail_compilation/fail_scope.d(43): Error: scope parameter `p` may not be returned
+fail_compilation/fail_scope.d(48): Error: returning `cast(char[])string` escapes a reference to local variable `string`
+fail_compilation/fail_scope.d(66): Error: returning `s.bar()` escapes a reference to local variable `s`
+fail_compilation/fail_scope.d(77): Error: `fail_scope.foo8` called with argument types `(int)` matches multiple overloads exactly:
+fail_compilation/fail_scope.d(71):     `fail_scope.foo8(ref int x)`
 and:
-fail_compilation/fail_scope.d(67):     `fail_scope.foo8(return ref int x)`
-fail_compilation/fail_scope.d(80): Error: returning `& string` escapes a reference to local variable `string`
-fail_compilation/fail_scope.d(90): Error: returning `cast(int[])a` escapes a reference to local variable `a`
-fail_compilation/fail_scope.d(98): Error: returning `cast(int[])a` escapes a reference to local variable `a`
-fail_compilation/fail_scope.d(106): Error: escaping reference to outer local variable `x`
-fail_compilation/fail_scope.d(135): Error: returning `foo16226(i)` escapes a reference to local variable `i`
+fail_compilation/fail_scope.d(72):     `fail_scope.foo8(return ref int x)`
+fail_compilation/fail_scope.d(85): Error: returning `& string` escapes a reference to local variable `string`
+fail_compilation/fail_scope.d(95): Error: returning `cast(int[])a` escapes a reference to local variable `a`
+fail_compilation/fail_scope.d(103): Error: returning `cast(int[])a` escapes a reference to local variable `a`
+fail_compilation/fail_scope.d(111): Error: escaping reference to outer local variable `x`
+fail_compilation/fail_scope.d(130): Error: escaping a reference to local variable `s` by returning `s.bar()` is not allowed in a `@safe` function
+fail_compilation/fail_scope.d(140): Error: returning `foo16226(i)` escapes a reference to local variable `i`
 ---
 //fail_compilation/fail_scope.d(35): Error: scope variable `da` may not be returned
 //fail_compilation/fail_scope.d(37): Error: scope variable `o` may not be returned

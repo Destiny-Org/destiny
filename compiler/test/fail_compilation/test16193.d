@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test16193.d(39): Error: function `test16193.abc` is `@nogc` yet allocates closure for `abc()` with the GC

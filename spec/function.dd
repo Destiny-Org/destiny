@@ -190,7 +190,7 @@ int foo();
     )
 
     $(P A function prototype can have `extern(D)` linkage.
-    This is useful for $(DDSUBLINK dmd, interface-files, D interface files).
+    This is useful for $(DDSUBLINK dmd, interface-files, Destiny interface files).
     )
 
 
@@ -1890,7 +1890,7 @@ int* pluto(ref int i) @safe
 
 int* mars(return ref int i) @safe
 {
-    return &i;  // OK with -preview=dip1000
+    return &i;  // OK: `return ref` ties the result's lifetime to `i`
 }
 ---
 )
@@ -1903,7 +1903,7 @@ the first parameter for lifetime checking.
 ---
 void f(ref scope int* p, return ref int i) @safe
 {
-    p = &i; // OK with -preview=dip1000
+    p = &i; // OK: `return ref` ties `p`'s lifetime to `i`
 }
 
 void main() @safe
@@ -1929,7 +1929,7 @@ struct S
 
     void f(return ref int i) scope @safe
     {
-        p = &i; // OK with -preview=dip1000
+        p = &i; // OK: `return ref` ties `this`'s lifetime to `i`
     }
 }
 
@@ -2045,7 +2045,7 @@ $(H3 $(LNAME2 scope-parameters, Scope Parameters))
     `scope` escape analysis is only done for `@safe` functions. For other functions `scope`
     semantics must be manually enforced.)
 
-    $(NOTE `@safe` escape analysis is only done with the $(D -preview=dip1000) switch.)
+    $(NOTE escape analysis is only done in `@safe` code.)
 
 ---
 @safe:
@@ -3292,7 +3292,7 @@ struct Foo
 ------
 )
 
-        $(P Nested functions always have the D function linkage type.
+        $(P Nested functions always have the `extern(D)` function linkage type.
         )
 
 $(H3 $(LNAME2 nested-qualifiers, Nested Functions with Method Attributes))
@@ -3487,7 +3487,7 @@ void main()
 
         $(P The stack variables referenced by a nested function are
         still valid even after the function exits (NOTE this is different
-        from D 1.0).
+        from Destiny 1.0).
         This combining of the environment and the function is called
         a $(I dynamic closure).
         )
@@ -3742,11 +3742,11 @@ $(GNAME CmainParameters):
         that holds the arguments passed to the program by the OS. The third parameter is a POSIX
         extension called $(D environ) and holds information about the current environment variables.)
 
-        $(NOTE The exemption for storage classes / $(D enum)'s defined for a D $(D main) function
+        $(NOTE The exemption for storage classes / $(D enum)'s defined for a Destiny $(D main) function
         also applies to C $(D main) functions.)
 
         $(P This function takes the place of the C main function and is executed immediately without
-        any setup or teardown associated with a D $(D main) function. Programs reliant on module
+        any setup or teardown associated with a Destiny $(D main) function. Programs reliant on module
         constructors, module destructors, or unittests need to manually perform (de)initialization
         using the appropriate $(DDSUBLINK phobos/core_runtime, Runtime, runtime functions).)
 
@@ -4208,7 +4208,7 @@ $(H3 $(LNAME2 system-functions, System Functions))
           with trusted or safe functions.
 
         $(BEST_PRACTICE When in doubt, mark `extern (C)` and `extern (C++)` functions as
-        `@system` when their implementations are not in D, as the D compiler will be
+        `@system` when their implementations are not in Destiny, as the Destiny compiler will be
         unable to check them. Most of them are `@safe`, but will need to be manually
         checked.)
 
@@ -4274,7 +4274,7 @@ $(H3 $(LNAME2 safe-interfaces, Safe Interfaces))
                 $(NOTE The implementation of `malloc` is most likely @system code.)
             )
             $(LI
-                A D version of `memcpy` can have a safe interface:
+                A Destiny version of `memcpy` can have a safe interface:
                 $(SPEC_RUNNABLE_EXAMPLE_COMPILE
                 ---
                 @safe void memcpy(E)(E[] src, E[] dst)

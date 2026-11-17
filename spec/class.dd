@@ -6,15 +6,15 @@ $(HEADERNAV_TOC)
 
 $(H2 $(LNAME2 overview, Overview))
 
-        $(P The object-oriented features of D all come from classes. The class
+        $(P The object-oriented features of Destiny all come from classes. The class
         hierarchy
         has as its root the class Object. Object defines a minimum level of functionality
         that each derived class has, and a default implementation for that functionality.
         )
 
         $(P Classes are programmer defined types. Support for classes are what
-        make D an object oriented language, giving it encapsulation, inheritance,
-        and polymorphism. D classes support the single inheritance paradigm, extended
+        make Destiny an object oriented language, giving it encapsulation, inheritance,
+        and polymorphism. Destiny classes support the single inheritance paradigm, extended
         by adding support for interfaces. Class objects are instantiated by reference
         only.
         )
@@ -112,7 +112,7 @@ $(H3 $(LNAME2 super_class, Inheritance))
         $(P
         All classes inherit from a super class. If one is not specified,
         a class inherits from $(REF1 Object, object). `Object` forms the root
-        of the D class inheritance hierarchy.
+        of the Destiny class inheritance hierarchy.
         )
 
 ---
@@ -163,7 +163,7 @@ void foo(B b)
 )
 
         $(IMPLEMENTATION_DEFINED
-        The D compiler is free to rearrange the order of fields in a class to
+        The Destiny compiler is free to rearrange the order of fields in a class to
         optimally pack them.
         Consider the fields much like the local
         variables in a function -
@@ -950,7 +950,7 @@ class Foo
         an initializer is
         static or dynamic.
 
-        $(P D makes this simple. All member initializations must be determinable by
+        $(P Destiny makes this simple. All member initializations must be determinable by
         the compiler at
         compile time, hence there is no order-of-evaluation dependency for
         member

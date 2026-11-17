@@ -10,7 +10,7 @@ $(P This covers Windows programming with 32 bit MSCOFF,
 
 $(H2 All Console Programs)
 
-    $(P A D console program is specified by having a function with D linkage at module level called `main`.
+    $(P A Destiny console program is specified by having a function with D linkage at module level called `main`.
     When the compiler sees this, it triggers the mixin template `core.internal.entrypoint._d_cmain`
     to be added. The `_d_cmain` template looks like:
     )
@@ -42,18 +42,18 @@ $(H2 All Console Programs)
     $(P The `main` function in it, because it is marked as `extern(C)`, is the entry point of a
     C console program. The executable starts up as a C executable, with the C runtime library
     initialization and then the C main() function is called.)
-    $(P The C runtime library runs any D functions tagged with `pragma(crt_constructor)` as
+    $(P The C runtime library runs any Destiny functions tagged with `pragma(crt_constructor)` as
     part of its initialization, and before it calls C `main()`. The order in which these
     are run is not specified.)
-    $(P The C `main` function then calls the D runtime library function `_d_run_main`, passing it
-    `argc` and `argv`, and the address of `_Dmain`. The compiler renames the D `main` function in
+    $(P The C `main` function then calls the Destiny runtime library function `_d_run_main`, passing it
+    `argc` and `argv`, and the address of `_Dmain`. The compiler renames the Destiny `main` function in
     the source code to `_Dmain`.)
-    $(P `_d_run_main` then initializes the D runtime library, converts `argc` and `argv` to `args`,
-    and calls the D `main` function.)
-    $(P When the D `main` function returns, control is back in `_d_run_main` which shuts down the
-    D runtime library, and then returns to the C `main`, which then returns to the C library
+    $(P `_d_run_main` then initializes the Destiny runtime library, converts `argc` and `argv` to `args`,
+    and calls the Destiny `main` function.)
+    $(P When the Destiny `main` function returns, control is back in `_d_run_main` which shuts down the
+    Destiny runtime library, and then returns to the C `main`, which then returns to the C library
     which shuts down the C runtime library, then exits the program.)
-    $(P The C runtime library runs any D functions tagged with `pragma(crt_destructor)` as
+    $(P The C runtime library runs any Destiny functions tagged with `pragma(crt_destructor)` as
     part of its shutdown, in the reverse order that the `pragma(crt_constructor)`s were run.
     )
 

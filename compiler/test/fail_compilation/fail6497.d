@@ -1,10 +1,7 @@
 /*
 TEST_OUTPUT:
 ---
-fail_compilation/fail6497.d(14): Error: taking the address of stack-allocated local variable `n` is not allowed in a `@safe` function
-fail_compilation/fail6497.d(14): Error: taking the address of stack-allocated local variable `n` is not allowed in a `@safe` function
-fail_compilation/fail6497.d(20): Error: taking the address of local variable `i` is not allowed in a `@safe` function
-fail_compilation/fail6497.d(28): Error: taking the address of local variable `i` is not allowed in a `@safe` function
+fail_compilation/fail6497.d(25): Error: assigning address of variable `result` to `ptr` with longer lifetime is not allowed in a `@safe` function
 ---
 */
 

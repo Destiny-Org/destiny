@@ -257,8 +257,12 @@ int threadlocalvar;
 @safe
 void takeaddr()
 {
-    static assert(!__traits(compiles, (int x) @safe { auto y = &x; } ));
-    static assert(!__traits(compiles, () @safe { int x; auto y = &x; } ));
+    // Destiny: scope checking is always on, so taking the address of a local
+    // is fine as long as it does not escape; escaping it is the error.
+    static assert( __traits(compiles, (int x) @safe { auto y = &x; } ));
+    static assert( __traits(compiles, () @safe { int x; auto y = &x; } ));
+    static assert(!__traits(compiles, (int x) @safe { return &x; } ));
+    static assert(!__traits(compiles, () @safe { int x; return &x; } ));
     static assert( __traits(compiles, () @safe { static int x; auto y = &x; } ));
     static assert( __traits(compiles, () @safe { auto y = &threadlocalvar; } ));
 }

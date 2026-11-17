@@ -4,9 +4,9 @@ $(SPEC_S Introduction,
 
 $(HEADERNAV_TOC)
 
-$(P D is a general-purpose systems programming language with a C-like syntax that compiles to native code.
+$(P Destiny is a general-purpose systems programming language with a C-like syntax that compiles to native code.
 It is statically typed and supports both automatic $(LPAREN)garbage collected$(RPAREN) and manual memory management.
-D programs are structured as modules that can be compiled separately and linked with external libraries
+Destiny programs are structured as modules that can be compiled separately and linked with external libraries
 to create native libraries or executables.)
 
 $(P This document is the reference manual for the Destiny Programming Language. For more information and

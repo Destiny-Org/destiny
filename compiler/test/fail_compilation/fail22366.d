@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/fail22366.d(22): Error: copying scope variable `s` into allocated memory is not allowed in a `@safe` function

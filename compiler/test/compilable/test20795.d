@@ -1,6 +1,6 @@
 // upstream issue 20795
 
-// REQUIRED_ARGS: -preview=dip1000
+// REQUIRED_ARGS:
 
 struct Foo
 {

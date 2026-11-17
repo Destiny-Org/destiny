@@ -309,7 +309,7 @@ $(GNAME CommaExpression):
     $(P The left operand of the $(D ,) is evaluated, then the right operand
         is evaluated.
         In C, the result of a comma expression is the result of the right operand.
-        In D, using the result of a comma expression isn't allowed.
+        In Destiny, using the result of a comma expression isn't allowed.
         Consequently a comma expression is only useful when each operand has
         a side effect.
     )
@@ -2279,7 +2279,7 @@ $(H3 $(LEGACY_LNAME2 StringLiteral, string_literals, String Literals))
     $(P Concatenation of string literals requires the use of
         $(RELATIVE_LINK2 cat_expressions, the `~` operator), and is resolved at compile time.
         C style implicit concatenation without an intervening operator is
-        error prone and not supported in D.)
+        error prone and not supported in Destiny.)
 
 
 $(H3 $(LNAME2 hex_string_literals, Hex String Literals))
@@ -2381,9 +2381,7 @@ $(H4 $(LNAME2 array-literal-heap, GC Allocation))
     * It initializes or assigns to a static array.
     * It is an argument to a $(DDSUBLINK spec/function, scope-parameters, `scope`
       function parameter).
-    * It initializes a $(DDSUBLINK spec/attribute, scope, `scope`) slice (`-preview=dip1000`
-      $(LINK2 $(ROOT_DIR)changelog/2.102.0.html#dmd.scope-array-on-stack,
-      is required for this)).
+    * It initializes a $(DDSUBLINK spec/attribute, scope, `scope`) slice.
     * It is used on one side of an $(GLINK EqualExpression) or $(GLINK RelExpression).
     * It is immediately $(RELATIVE_LINK2 index_operations, indexed) and used as an rvalue.
     * It is used as a `foreach` aggregate where the element variable is not `ref`.
@@ -2400,7 +2398,7 @@ $(H4 $(LNAME2 array-literal-heap, GC Allocation))
     {
         int[3] sa = [1, 2, 3];
         f([1, 2], [3, 4]);
-        //scope int[] a = [5, 6]; // requires `-preview=dip1000`
+        //scope int[] a = [5, 6];
         //g([1, 2]); // error, array literal heap allocated
         assert([1, 2] < [3, 2]);
         assert([1, 2][1] == 2);
@@ -2919,7 +2917,7 @@ $(GNAME AssertArguments):
         $(LI Aborting the program)
         $(LI Calling the assert failure function in the corresponding C
         runtime library)
-        $(LI Throwing the $(D AssertError) exception in the D runtime library)
+        $(LI Throwing the $(D AssertError) exception in the Destiny runtime library)
     )
     )
 
@@ -3978,7 +3976,7 @@ file full path: '/example/test.d'
                 symbol for the current function. This seems to be a common
                 thing for programmers to attempt when trying to get the symbol
                 for the current function in order to do introspection on it,
-                since D does not currently have a direct way to get that
+                since Destiny does not currently have a direct way to get that
                 symbol. However, using $(D mixin(__FUNCTION__)) means that the
                 symbol for the function will be looked up by name, which means
                 that it's subject to the various rules that go with symbol
@@ -3986,7 +3984,7 @@ file full path: '/example/test.d'
                 would that if a function is overloaded, the result will be the
                 first overload whether that's the current function or not.)
 
-             $(P Given that D doesn't currently have a way to directly get the
+             $(P Given that Destiny doesn't currently have a way to directly get the
                  symbol for the current function, the best way to do it is to
                  get the parent symbol of a symbol within the function, since
                  that avoids any issues surrounding symbol lookup rules. An

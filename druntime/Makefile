@@ -21,7 +21,7 @@ QUIET:=
 TOOLS_DIR=../../tools
 # libdparse for tests_extractor, from the sibling Destiny-Org/d-scanner checkout
 LIBDPARSE=../../d-scanner/libdparse
-HOST_DMD?=dmd
+HOST_DC?=dmd
 # Destiny-Org repository base URL; DESTINY_REPO_TOKEN (read access) is used when set,
 # so CI can clone the private repositories
 ifneq ($(DESTINY_REPO_TOKEN),)
@@ -113,7 +113,7 @@ ifeq (osx,$(OS))
 endif
 
 # Set DFLAGS
-UDFLAGS:=-conf= -Isrc -Iimport -w -de -preview=dip1000 -preview=nosharedaccess -preview=fieldwise $(MODEL_FLAG) $(PIC) $(OPTIONAL_COVERAGE) -preview=dtorfields
+UDFLAGS:=-conf= -Isrc -Iimport -w -de -preview=nosharedaccess -preview=fieldwise $(MODEL_FLAG) $(PIC) $(OPTIONAL_COVERAGE) -preview=dtorfields
 ifeq ($(BUILD),debug)
 	UDFLAGS += -g -debug
 	DFLAGS:=$(UDFLAGS)
@@ -391,7 +391,7 @@ $(IMPDIR)/%.h : src/%.h
 ######################## Build DMD if non-existent ##############################
 
 ../generated/$(OS)/$(BUILD)/$(MODEL)/destiny$(DOTEXE):
-	$(MAKE) -C .. dmd BUILD=$(BUILD) OS=$(OS) MODEL=$(MODEL) DMD=""
+	$(MAKE) -C .. destiny BUILD=$(BUILD) OS=$(OS) MODEL=$(MODEL) DMD=""
 
 # alias using the absolute path (the Fate Makefile specifies an absolute path)
 $(abspath ../generated/$(OS)/$(BUILD)/$(MODEL)/destiny$(DOTEXE)): ../generated/$(OS)/$(BUILD)/$(MODEL)/destiny$(DOTEXE)
@@ -602,7 +602,7 @@ $(LIBDPARSE)/src:
 	git clone --depth=1 $(GIT_HOME)/d-scanner $(LIBDPARSE)/..
 
 $(TESTS_EXTRACTOR): $(TOOLS_DIR)/tests_extractor.d | $(LIB) $(LIBDPARSE)/src
-	$(HOST_DMD) -i -I$(LIBDPARSE)/src $< -of$@
+	$(HOST_DC) -i -I$(LIBDPARSE)/src $< -of$@
 
 test_extractor: $(TESTS_EXTRACTOR)
 

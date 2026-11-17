@@ -1071,9 +1071,6 @@ dmd -cov -unittest myprog.d
     static immutable reverts = [
         Feature("dip25", "useDIP25", "revert DIP25 changes",
         "DIP25", true, true),
-        Feature("dip1000", "useDIP1000",
-                "revert DIP1000 changes (Scoped Pointers)",
-                "DIP1000"),
         Feature("intpromote", "fix16997", "revert integral promotions for unary + - ~ operators"),
         Feature("dtorfields", "dtorFields", "don't destruct fields of partially constructed objects"),
     ];
@@ -1085,8 +1082,8 @@ dmd -cov -unittest myprog.d
             "implement Sealed References DIP",
             "DIP25", true, true),
         Feature("dip1000", "useDIP1000",
-            "implement Scoped Pointers DIP",
-            "DIP1000"),
+            "implement Scoped Pointers DIP (always enabled in Destiny)",
+            "DIP1000", true, true),
         Feature("dip1008", "ehnogc",
             "implement @nogc Throwable DIP",
             "DIP1008"),

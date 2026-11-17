@@ -2481,7 +2481,7 @@ $(H3 $(LNAME2 catching_cpp_class_objects, Catching C++ Class Objects))
 
         $(P
         On many platforms, catching C++ class objects is supported.
-        Catching C++ objects and D objects cannot both be done
+        Catching C++ objects and Destiny objects cannot both be done
         in the same $(I TryStatement).
         Upon exit from the $(I Catch), any destructors for the C++
         object will be run and the storage used for it reclaimed.
@@ -2503,7 +2503,7 @@ $(GNAME AsmInstructionList):
 
 $(P An asm statement enables the direct use of assembly language instructions.
 This makes it easy to obtain direct access to special CPU features without
-resorting to an external assembler. The D compiler will take care of the
+resorting to an external assembler. The Destiny compiler will take care of the
 function calling conventions, stack setup, etc.)
 
         $(P The format of the instructions is, of course, highly dependent
@@ -2519,7 +2519,7 @@ function calling conventions, stack setup, etc.)
         end of line.)
         )
 
-        These rules exist to ensure that D source code can be tokenized
+        These rules exist to ensure that Destiny source code can be tokenized
         independently of syntactic or semantic analysis.
 
         $(P For example, for the Intel Pentium:)
@@ -2544,7 +2544,7 @@ int gethardware()
 }
 --------------
 
-$(P For some D implementations, such as a translator from D to C, an inline
+$(P For some Destiny implementations, such as a translator from Destiny to C, an inline
 assembler makes no sense, and need not be implemented. The version statement can
 be used to account for this:)
 

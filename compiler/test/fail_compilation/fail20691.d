@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/fail20691.d(106): Error: taking address of `scope` variable `sa` with pointers is not allowed in a `@safe` function

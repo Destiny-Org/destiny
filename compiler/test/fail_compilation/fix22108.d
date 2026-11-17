@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/fix22108.d(12): Error: returning scope variable `p` is not allowed in a `@safe` function

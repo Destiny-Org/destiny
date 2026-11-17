@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test16589.d(26): Error: escaping a reference to parameter `this` by returning `&this.data` is not allowed in a `@safe` function

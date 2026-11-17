@@ -6,7 +6,7 @@ $(HEADERNAV_TOC)
 
 $(H2 $(LNAME2 declarations, Template Declarations))
 
-    $(P Templates are D's approach to generic programming.
+    $(P Templates are Destiny's approach to generic programming.
         Templates can be defined with a $(I TemplateDeclaration):
     )
 
@@ -588,7 +588,7 @@ $(GNAME TemplateAliasParameterDefault):
 
     $(P Alias parameters enable templates to be parameterized with
         symbol names or values computed at compile-time.
-        Almost any kind of D symbol can be used, including type names,
+        Almost any kind of Destiny symbol can be used, including type names,
         global names, local names, module names, template names, and
         template instances.
     )

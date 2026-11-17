@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -unittest
-// PERMUTE_ARGS: -preview=dip1000
+// PERMUTE_ARGS:
 // Issue 21285 - Delegate covariance broken between 2.092 and 2.094 (git master).
 unittest
 {

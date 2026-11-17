@@ -1,4 +1,4 @@
-// PERMUTE_ARGS: -preview=dip1000
+// PERMUTE_ARGS:
 
 // Mangling should be the same with or without inference of `return scope`
 

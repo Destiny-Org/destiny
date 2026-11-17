@@ -1,4 +1,4 @@
-// PERMUTE_ARGS: -preview=dip1000
+// PERMUTE_ARGS:
 // upstream issue 20823
 
 void boo(T)(  scope   void delegate(T[] data) fun) {}

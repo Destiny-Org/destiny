@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test23145.d(117): Error: `scope` allocation of `c` with a non-`scope` constructor is not allowed in a `@safe` function

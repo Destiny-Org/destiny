@@ -1,4 +1,4 @@
-// REQUIRED_ARGS: -preview=dip1000 -preview=dip1008 -Ifail_compilation/extra-files
+// REQUIRED_ARGS: -preview=dip1008 -Ifail_compilation/extra-files
 // upstream issue 20023
 /*
 TEST_OUTPUT:

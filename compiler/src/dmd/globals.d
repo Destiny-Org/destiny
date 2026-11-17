@@ -195,7 +195,7 @@ extern (C++) struct Param
 
     // Options for `-preview=/-revert=`
     FeatureState useDIP25 = FeatureState.enabled; // implement https://github.com/Destiny-Org/destiny
-    FeatureState useDIP1000;     // implement https://github.com/Destiny-Org/destiny/blob/main/spec/memory-safe-d.dd
+    FeatureState useDIP1000 = FeatureState.enabled; // always on in Destiny; implement https://github.com/Destiny-Org/destiny/blob/main/spec/memory-safe-d.dd
     bool ehnogc;                 // use @nogc exception handling
     bool useDIP1021;             // implement DIP1021
     FeatureState fieldwise;      // do struct equality testing field-wise rather than by memcmp()

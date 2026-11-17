@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -de -preview=dip1000
+REQUIRED_ARGS: -de
 TEST_OUTPUT:
 ---
 fail_compilation/bool_cast.d(17): Deprecation: cast from `ubyte[]` to `bool[]` will become `@system` in a future release

@@ -129,7 +129,7 @@ $(GNAME NamespaceList):
     $(GLINK2 expression, ConditionalExpression) $(D ,) $(GSELF NamespaceList)
 )
 
-        $(P D provides an easy way to call C functions and operating
+        $(P Destiny provides an easy way to call C functions and operating
         system API functions, as compatibility with both is essential.
         The $(I LinkageType) is case sensitive, and is meant to be
         extensible by the implementation ($(I they are not keywords)).
@@ -164,7 +164,7 @@ extern (C):
         methods and `static` nested functions, adding `extern(C)` will
         change the calling convention, but not the mangling.
 
-        $(P D conventions are:)
+        $(P Destiny conventions are:)
 
 ---------------
 extern (D):
@@ -822,7 +822,7 @@ static local variable) persists after the function returns.)
 $(P
         Static does not have the additional C meaning of being local
         to a file. Use the $(RELATIVE_LINK2 VisibilityAttribute, `private`)
-        attribute in D to achieve that.
+        attribute in Destiny to achieve that.
         For example:
 )
 
@@ -894,8 +894,7 @@ $(P
             $(LI Putting a `scope` variable in an array literal)
         )
 
-        $(NOTE escape analysis is only done in `@safe` code. The $(D -preview=dip1000) switch
-        must also be enabled.)
+        $(NOTE escape analysis is only done in `@safe` code.)
 $(P
         The `scope` attribute is part of the variable declaration, not the type, and it only applies to the first level of indirection.
         For example, it is impossible to declare a variable as a dynamic array of scope pointers, because `scope` only applies to the `.ptr`
@@ -1099,7 +1098,7 @@ $(H2 $(LNAME2 mustuse-attribute, `@mustuse` Attribute))
 
     $(P
         The `@mustuse` attribute is a compiler-recognized $(RELATIVE_LINK2 uda,
-        UDA) defined in the D runtime module $(DPLLINK phobos/core_attribute.html,
+        UDA) defined in the Destiny runtime module $(DPLLINK phobos/core_attribute.html,
         `core.attribute`).
     )
 

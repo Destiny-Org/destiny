@@ -1,5 +1,5 @@
 /**
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test24680.d(19): Error: escaping a reference to local variable `buf` by returning `c.peek(buf[])` is not allowed in a `@safe` function

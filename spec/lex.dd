@@ -278,7 +278,7 @@ $(GNAME IdentifierChar):
 
 $(P Identifiers start with a letter, $(D _), or universal alpha, and are
 followed by any number of letters, $(D _), digits, or universal alphas.
-Universal alphas are as defined in ISO/IEC 9899:1999(E) Appendix D of the C99 Standard.
+Universal alphas are as defined in ISO/IEC 9899:1999(E) Appendix Destiny of the C99 Standard.
 Identifiers can be arbitrarily long, and are case sensitive.)
 
 $(IMPLEMENTATION_DEFINED Identifiers starting with $(D __) (two underscores) are reserved.)
@@ -482,7 +482,7 @@ $(GNAME TokenStringToken):
 )
 
         $(P Token strings open with the characters $(D q)$(CODE_LCURL) and close with
-        the token $(CODE_RCURL). In between must be valid D tokens.
+        the token $(CODE_RCURL). In between must be valid Destiny tokens.
         The $(CODE_LCURL) and $(CODE_RCURL) tokens nest.
         The string is formed of all the characters between the opening
         and closing of the token string, including comments.
@@ -806,7 +806,7 @@ $(GNAME HexLetter):
 
         $(LI C-style octal integer notation (e.g. `0167`) was deemed too easy to mix up with decimal notation;
         it is only fully supported in string literals.
-        D still supports octal integer literals interpreted at compile time through the $(REF octal, std,conv)
+        Destiny still supports octal integer literals interpreted at compile time through the $(REF octal, std,conv)
         template, as in $(D octal!167).)
 
         $(LI Hexadecimal integers are a sequence of hexadecimal digits preceded

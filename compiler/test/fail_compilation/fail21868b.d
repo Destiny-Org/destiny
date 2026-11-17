@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/fail21868b.d(19): Error: escaping a reference to parameter `s` by returning `&s.x` is not allowed in a `@safe` function

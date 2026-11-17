@@ -1172,7 +1172,7 @@ private bool checkReturnEscapeImpl(ref Scope sc, Expression e, bool refs, bool g
                  *        return s;     // s is inferred as 'scope' but incorrectly tested in foo()
                  *    return null; }
                  */
-                !(!refs && p.parent == sc.func && pfunc.fes)
+                !(!refs && pfunc.fes && isNestedForeachBodyOf(pfunc, sc.func))
                )
             {
                 /*
@@ -1410,6 +1410,26 @@ bool inferScope(VarDeclaration va, RootObject reason)
  *
  * Returns: whether the inference on `v` was successful or `v` already was `return`
  */
+/****************************************
+ * Destiny: is `fbody` a foreach body nested in `func` through a chain of
+ * foreach bodies only? A `return` inside such a body is checked again from
+ * every enclosing function; those checks must be skipped (the body itself
+ * was already checked), not just the one for the immediate parent.
+ */
+private bool isNestedForeachBodyOf(FuncDeclaration fbody, FuncDeclaration func)
+{
+    for (Dsymbol p = fbody; p; )
+    {
+        auto f = p.isFuncDeclaration();
+        if (!f || !f.fes)
+            return false;
+        p = f.toParent2();
+        if (p == func)
+            return true;
+    }
+    return false;
+}
+
 private bool inferReturn(FuncDeclaration fd, VarDeclaration v, bool returnScope)
 {
     if (v.isReturn())

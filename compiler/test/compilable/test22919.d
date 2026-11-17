@@ -1,4 +1,4 @@
-// REQUIRED_ARGS: -checkaction=context -preview=dip1000
+// REQUIRED_ARGS: -checkaction=context
 
 // Issue 22919 - [dip1000] -checkaction=context gives "assigned to `__assertOp2` with longer lifetime" (
 // upstream issue 22919

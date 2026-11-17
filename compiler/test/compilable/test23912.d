@@ -1,5 +1,5 @@
 // upstream issue 23912
-// REQUIRED_ARGS: -preview=dip1000
+// REQUIRED_ARGS:
 
 struct Test
 {

@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test22227.d(12): Error: returning scope variable `foo` is not allowed in a `@safe` function

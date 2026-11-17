@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
  * TEST_OUTPUT:
 ---
 fail_compilation/test24015.d(19): Error: assigning scope variable `v` to non-scope parameter `...` calling `jer` is not allowed in a `@safe` function

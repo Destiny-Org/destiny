@@ -1,4 +1,4 @@
-// REQUIRED_ARGS: -preview=dip1000
+// REQUIRED_ARGS:
 
 // Test that scope inference works even with non POD array assignment
 // This is tricky because it gets lowered to something like:

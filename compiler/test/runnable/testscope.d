@@ -1,5 +1,5 @@
 // PERMUTE_ARGS:
-// REQUIRED_ARGS: -d -preview=dip1000
+// REQUIRED_ARGS: -d
 
 extern(C) int printf(const char*, ...);
 

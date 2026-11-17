@@ -1,5 +1,5 @@
 /+
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/fail24208.d(19): Error: assigning reference to local variable `n` to non-scope parameter `p` calling `escape` is not allowed in a `@safe` function

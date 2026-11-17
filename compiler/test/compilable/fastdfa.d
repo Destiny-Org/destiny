@@ -1263,10 +1263,13 @@ void branchMayNull(S2 cond)
         int val = *ptr;
 }
 
-void unsafeThrowOfStack1()
+// Destiny: with scope checking always on, passing a `scope` string to the
+// non-`scope` Exception constructor is an error in @safe code (Exception keeps
+// the message). This test is about the fast DFA engine, so keep it @system.
+void unsafeThrowOfStack1() @system
 {
     scope string myText = "hi";
-    throw new Exception(myText); // ok, constructor for Exception is not annotated
+    throw new Exception(myText); // fast DFA: ok, constructor for Exception is not annotated
 }
 
 void checkCtfeOnly() @__ctfe

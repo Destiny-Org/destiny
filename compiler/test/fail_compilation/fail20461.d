@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/fail20461.d(106): Error: assigning reference to local variable `buffer` to non-scope parameter calling `assert()` is not allowed in a `@safe` function

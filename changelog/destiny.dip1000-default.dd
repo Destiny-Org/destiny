@@ -1,0 +1,43 @@
+Scope checking (DIP1000) is always enabled
+
+`@safe` code is now checked for escaping references to stack memory without
+any compiler switch. For example, these are errors:
+
+---
+int* escapeParam(scope int* p) @safe { return p; }   // scope parameter returned
+int* escapeLocal() @safe { int x; return &x; }        // address of a local returned
+int* global;
+void store(scope int* p) @safe { global = p; }        // scope value stored in a global
+---
+
+Taking the address of a local is allowed in `@safe` code as long as the
+pointer does not outlive it:
+
+---
+void ok() @safe
+{
+    int x;
+    int* p = &x;    // fine: p is inferred `scope`
+    *p = 1;
+}
+---
+
+$(UL
+$(LI `-preview=dip1000` and `-dip1000` are still accepted but no longer have
+any effect; remove them.)
+$(LI `-revert=dip1000` has been removed. Scope checking cannot be turned off.)
+$(LI An array literal passed to a `scope` parameter is placed on the stack
+instead of the GC heap. When `scope` was only inferred, this is no longer done
+for literals of elements with pointers, or outside function bodies (static and
+enum initialisers, default arguments); those cases miscompiled.)
+$(LI An `opApply` whose delegate parameter is not `scope` makes the `foreach`
+body a GC-allocated closure in code that returns from inside the loop. Mark
+the delegate parameter `scope`, which is also required in `@nogc` code:
+`int opApply(scope int delegate(ref T) dg)`.)
+)
+
+Fixed along the way: returning a struct from inside such a `foreach` could
+return an unconstructed value or crash (the result was written into the
+closure instead of the caller's return slot), and returning from a nested
+`foreach` over `opApply` was wrongly rejected with "scope parameter may not
+be returned".

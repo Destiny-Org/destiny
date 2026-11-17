@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
  * TEST_OUTPUT:
 ---
 fail_compilation/test22818.d(102): Deprecation: typesafe variadic parameters with a `class` type (`C c...`) are deprecated

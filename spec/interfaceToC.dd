@@ -4,7 +4,7 @@ $(SPEC_S Interfacing to C,
 
 $(HEADERNAV_TOC)
 
-        $(P D is designed to fit comfortably with a C compiler for the target
+        $(P Destiny is designed to fit comfortably with a C compiler for the target
         system. It is able to call C functions directly without requiring
         wrapper functions.
         )
@@ -24,7 +24,7 @@ $(HEADERNAV_TOC)
 
 $(H2 $(LNAME2 calling_c_functions, Calling C Functions))
 
-        $(P C functions can be called directly from D. There is no need for
+        $(P C functions can be called directly from Destiny. There is no need for
         wrapper functions, argument swizzling, and the C functions do not
         need to be put into a separate DLL.
         )
@@ -37,7 +37,7 @@ $(H2 $(LNAME2 calling_c_functions, Calling C Functions))
 extern (C) int strcmp(const char* string1, const char* string2);
 ------
 
-        and then it can be called within D code in the obvious way:
+        and then it can be called within Destiny code in the obvious way:
 
 ------
 import std.string;
@@ -50,7 +50,7 @@ int myDfunction(char[] s)
         $(P There are several things going on here:)
 
         $(UL
-        $(LI D understands how C function names are "mangled" and the
+        $(LI Destiny understands how C function names are "mangled" and the
         correct C function call/return sequence.)
 
         $(LI C functions cannot be overloaded with another C function
@@ -62,20 +62,20 @@ int myDfunction(char[] s)
         $(D __declspec)),
         or other such C
         $(LINK2 http://www.digitalmars.com/ctg/ctgLanguageImplementation.html#extended, extended type modifiers)
-        in D. These are handled by
+        in Destiny. These are handled by
         $(LINK2 attribute.html#linkage, linkage attributes),
         such as $(D extern (C)).)
 
-        $(LI There is no volatile type modifier in D. To declare a C function that uses
+        $(LI There is no volatile type modifier in Destiny. To declare a C function that uses
         volatile, just drop the keyword from the declaration.)
 
-        $(LI Strings are not 0 terminated in D. See "Data Type Compatibility"
-        for more information about this. However, string literals in D are
+        $(LI Strings are not 0 terminated in Destiny. See "Data Type Compatibility"
+        for more information about this. However, string literals in Destiny are
         0 terminated.)
 
         )
 
-        $(P C code can correspondingly call D functions, if the D functions
+        $(P C code can correspondingly call Destiny functions, if the Destiny functions
         use an attribute that is compatible with the C compiler, most likely
         the extern (C):)
 
@@ -95,16 +95,16 @@ $(H2 $(LNAME2 storage_allocation, Storage Allocation))
         $(P C code explicitly manages memory with calls to
         $(LINK2 http://www.digitalmars.com/rtl/stdlib.html#malloc, malloc()) and
         $(LINK2 http://www.digitalmars.com/rtl/stdlib.html#free, free()).
-        D allocates memory using the D garbage collector,
+        Destiny allocates memory using the Destiny garbage collector,
         so no explicit frees are necessary.
         )
 
-        $(P D can still explicitly allocate memory using core.stdc.stdlib.malloc()
+        $(P Destiny can still explicitly allocate memory using core.stdc.stdlib.malloc()
         and core.stdc.stdlib.free(), these are useful for connecting to C
         functions that expect malloc'd buffers, etc.
         )
 
-        $(P If pointers to D garbage collector allocated memory are passed to
+        $(P If pointers to Destiny garbage collector allocated memory are passed to
         C functions, it's critical to ensure that the memory will not be
         collected by the garbage collector before the C function is done with
         it. This is accomplished by:
@@ -138,18 +138,18 @@ $(H2 $(LNAME2 storage_allocation, Storage Allocation))
         )
 
         $(P The garbage collector does not scan the stacks of threads not
-        created by the D Thread interface. Nor does it scan the data
+        created by the Destiny Thread interface. Nor does it scan the data
         segments of other DLLs, etc.
         )
 
 $(H2 $(LNAME2 data_type_compat, Data Type Compatibility))
 
-        $(TABLE2 D And C Type Equivalence,
+        $(TABLE2 Destiny And C Type Equivalence,
     $(ELABORATE_HEADER)
         $(TROW2 void, void)
         $(TROW2 byte, signed char)
         $(TROW2 ubyte, unsigned char)
-        $(TROW2 char, char, (chars are unsigned in D))
+        $(TROW2 char, char, (chars are unsigned in Destiny))
         $(TROW2 wchar, wchar_t, (when $(D sizeof(wchar_t)) is 2))
         $(TROW2 dchar, wchar_t, (when $(D sizeof(wchar_t)) is 4))
         $(TROW2 short, short)
@@ -190,15 +190,15 @@ $(H2 $(LNAME2 data_type_compat, Data Type Compatibility))
         does not pin down the sizes of the types, so some care is needed.
         )
 
-$(H2 $(LNAME2 passing_d_array, Passing D Array Arguments to C Functions))
+$(H2 $(LNAME2 passing_d_array, Passing Destiny Array Arguments to C Functions))
 
         $(P In C, arrays are passed to functions as pointers even if the function
-        prototype says its an array. In D, static arrays are passed by value,
+        prototype says its an array. In Destiny, static arrays are passed by value,
         not by reference. Thus, the function prototype must be adjusted to match
         what C expects.)
 
-        $(TABLE2 D And C Function Prototype Equivalence,
-        $(THEAD D type, C type)
+        $(TABLE2 Destiny And C Function Prototype Equivalence,
+        $(THEAD Destiny type, C type)
         $(TROW $(I T)$(B *) , $(I T)$(B []))
         $(TROW $(B ref) $(I T)$(B [)$(I dim)$(B ]) , $(I T)$(B [)$(I dim)$(B ])))
 
@@ -215,7 +215,7 @@ extern (C)
 
 $(H2 $(LNAME2 calling_printf, Calling `printf()`))
 
-        $(P `printf` can be directly called from D code:)
+        $(P `printf` can be directly called from Destiny code:)
 ---
 import core.stdc.stdio;
 
@@ -231,10 +231,10 @@ int main()
 int apples;
 printf("there are %d apples\n", apples);
 ---
-        $(P Correctly matching the format specifier to the D type is necessary.
-        The D compiler recognizes the printf formats and diagnoses mismatches
+        $(P Correctly matching the format specifier to the Destiny type is necessary.
+        The Destiny compiler recognizes the printf formats and diagnoses mismatches
         with the supplied arguments. The specification for the formats
-        used by D is the C99 specification 7.19.6.1.
+        used by Destiny is the C99 specification 7.19.6.1.
         )
 
         $(P A generous interpretation of what is a match between the argument
@@ -290,23 +290,23 @@ printf(format, value);
 
 $(H3 Modern Formatted Writing)
 
-        $(P An improved D function for formatted output is
+        $(P An improved Destiny function for formatted output is
         $(CODE std.stdio.writef()).
         )
 
 $(H2 $(LNAME2 structs_and_unions, Structs and Unions))
 
-        $(P D structs and unions are analogous to C's.
+        $(P Destiny structs and unions are analogous to C's.
         )
 
         $(P C code often adjusts the alignment and packing of struct members
         with a command line switch or with various implementation specific
-        $(HASH)pragmas. D supports explicit alignment attributes that correspond
+        $(HASH)pragmas. Destiny supports explicit alignment attributes that correspond
         to the C compiler's rules. Check what alignment the C code is using,
-        and explicitly set it for the D struct declaration.
+        and explicitly set it for the Destiny struct declaration.
         )
 
-        $(P D does not support bit fields. If needed, they can be emulated
+        $(P Destiny does not support bit fields. If needed, they can be emulated
         with shift and mask operations,
         or use the $(LINK2 $(ROOT_DIR)phobos/std_bitmanip.html#bitfields, std.bitmanip.bitfields)
         library type.
@@ -315,7 +315,7 @@ $(H2 $(LNAME2 structs_and_unions, Structs and Unions))
         do the right shift and masks.
         )
 
-    $(P D does not support declaring variables of anonymous struct types. In such a case, define a named struct in D and make it private:)
+    $(P Destiny does not support declaring variables of anonymous struct types. In such a case, define a named struct in Destiny and make it private:)
 
 $(CCODE
 union Info  // C code
@@ -339,11 +339,11 @@ union Info  // D code
 
 $(H2 $(LNAME2 callbacks, Callbacks))
 
-    $(P D can easily call C callbacks (function pointers), and C can call
-    callbacks provided by D code if the callback is an $(D extern(C)) function,
+    $(P Destiny can easily call C callbacks (function pointers), and C can call
+    callbacks provided by Destiny code if the callback is an $(D extern(C)) function,
     or some other linkage that both sides have agreed to (e.g. $(D extern(Windows))).)
 
-    $(P Here's an example of C code providing a callback to D code:)
+    $(P Here's an example of C code providing a callback to Destiny code:)
 
 $(CCODE
 void someFunc(void *arg) { printf("Called someFunc!\n"); }  // C code
@@ -364,7 +364,7 @@ void main()
 }
 ---
 
-    $(P And an example of D code providing a callback to C code:)
+    $(P And an example of Destiny code providing a callback to C code:)
 
 $(CCODE
 extern "C" void printer(int (*callback)(int, int))  // C code
@@ -387,27 +387,27 @@ void main()
 
 $(H2 $(LEGACY_LNAME2 Using C Libraries, using-c-libraries, Using Existing C Libraries))
 
-        $(P Since D can call C code directly, it can also call any C library
-        functions, giving D access to the smorgasbord of existing C libraries.
-        To do so, however, one needs to write a D interface (.di) file, which
-        is a translation of the C .h header file for the C library into D.
+        $(P Since Destiny can call C code directly, it can also call any C library
+        functions, giving Destiny access to the smorgasbord of existing C libraries.
+        To do so, however, one needs to write a Destiny interface (.di) file, which
+        is a translation of the C .h header file for the C library into Destiny.
         )
 
         $(P For popular C libraries, the first place to look for the corresponding
-        D interface file is the $(LINK2 https://github.com/D-Programming-Deimos/, Deimos Project).
+        Destiny interface file is the $(LINK2 https://github.com/D-Programming-Deimos/, Deimos Project).
         If it isn't there already, please write and contribute one
         to the Deimos Project.
         )
 
 $(H2 $(LEGACY_LNAME2 C Globals, c-globals, Accessing C Globals))
 
-        $(P C globals can be accessed directly from D. C globals have the C naming
+        $(P C globals can be accessed directly from Destiny. C globals have the C naming
         convention, and so must be in an $(D extern (C)) block.
         Use the $(D extern) storage class to indicate that the global is allocated
-        in the C code, not the D code.
+        in the C code, not the Destiny code.
         C globals default to being in global, not thread local, storage.
         To reference global storage
-        from D, use the $(D __gshared) storage class.
+        from Destiny, use the $(D __gshared) storage class.
         )
 
 ---

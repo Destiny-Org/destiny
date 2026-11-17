@@ -750,9 +750,10 @@ uint setClosureVarOffset(FuncDeclaration fd)
             memalignsize = memsize;
             xalign.setDefault();
         }
-        else if (v.storage_class & (STC.out_ | STC.ref_))
+        else if ((v.storage_class & (STC.out_ | STC.ref_)) || v.nrvo)
         {
-            // reference parameters are just pointers
+            // reference parameters are just pointers; so is an NRVO result
+            // variable (`__result`), which lives in the caller's return slot
             memsize = target.ptrsize;
             memalignsize = memsize;
             xalign.setDefault();
@@ -979,6 +980,18 @@ void buildClosure(FuncDeclaration fd, ref IRState irs)
             else
                 ex = el_bin(OPeq, tym, ex, ev);
 
+            e = el_combine(e, ex);
+        }
+
+        // Destiny: an NRVO result variable in the closure refers to the
+        // caller's return slot, so the closure holds the hidden pointer.
+        foreach (v; fd.closureVars)
+        {
+            if (!v.nrvo || !irs.shidden)
+                continue;
+            ex = el_bin(OPadd, TYnptr, el_var(sclosure), el_long(TYsize_t, v.offset));
+            ex = el_una(OPind, TYnptr, ex);
+            ex = el_bin(OPeq, TYnptr, ex, el_var(irs.shidden));
             e = el_combine(e, ex);
         }
 

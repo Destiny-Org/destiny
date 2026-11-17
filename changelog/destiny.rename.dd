@@ -16,6 +16,16 @@ expected in the sibling folder `../fate`, and is cloned from
 named `std.*`.)
 )
 
+Build names:
+
+$(UL
+$(LI Make targets: `make destiny`, `destiny-test`, `destiny-unittest` and
+`destiny-pgo` replace `dmd`, `dmd-test`, `dmd-unittest` and `dmd-pgo`.)
+$(LI The host compiler variable is `HOST_DC` (was `HOST_DMD`), with
+`HOST_DC_VER` and so on. It names whatever D compiler builds destiny: upstream
+dmd today, an earlier destiny release once Destiny builds itself.)
+)
+
 Removed from the repository:
 
 $(UL

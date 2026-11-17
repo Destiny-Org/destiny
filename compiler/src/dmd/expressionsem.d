@@ -4297,6 +4297,23 @@ private bool checkDefCtor(Loc loc, Type t)
  * Returns:
  *      true    errors happened
  */
+/// Destiny: element types that are references themselves (class, pointer,
+/// slice, AA, delegate). Array literals of these are not stack-allocated based
+/// on inferred `scope`: that broke `[new C].dup` -> immutable and AA literals
+/// with string keys in default arguments.
+private bool isReferenceElement(Type t)
+{
+    if (!t)
+        return true;    // element type not known yet: be conservative
+    switch (t.toBasetype().ty)
+    {
+        case Tclass, Tpointer, Tarray, Taarray, Tdelegate:
+            return true;
+        default:
+            return false;
+    }
+}
+
 private bool functionParameters(Loc loc, Scope* sc,
     TypeFunction tf, Expression ethis, Type tthis, ArgumentList argumentList, FuncDeclaration fd,
     out Type prettype, out Expression peprefix)
@@ -4743,8 +4760,16 @@ private bool functionParameters(Loc loc, Scope* sc,
                     a = ce.e1;
 
                 ArrayLiteralExp ale;
+                // Destiny: with inferred `scope` (always on now), only stack-allocate
+                // in function bodies that reach code generation, and not for
+                // elements with pointers. Static/enum initialisers, default
+                // arguments and `[new C].dup` (unique -> immutable) miscompiled.
+                const stackOk = explicitScope ||
+                    // (not `__traits(compiles)`: it must see what normal compilation does)
+                    (sc.func && !sc.ctfe);
                 if (p.type.toBasetype().ty == Tarray &&
-                    (ale = a.isArrayLiteralExp()) !is null && ale.length)
+                    (ale = a.isArrayLiteralExp()) !is null && ale.length &&
+                    stackOk && (explicitScope || !isReferenceElement(ale.type ? ale.type.nextOf() : null)))
                 {
                     // allocate the array literal as temporary static array on the stack
                     ale.type = ale.type.nextOf().sarrayOf(ale.length);

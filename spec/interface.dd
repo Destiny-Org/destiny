@@ -253,13 +253,13 @@ $(SECTION2 $(LEGACY_LNAME2 COM-Interfaces, com-interfaces, COM Interfaces),
 
     $(P A variant on interfaces is the COM interface. A COM interface is
     designed to map directly onto a Windows COM object. Any COM object
-    can be represented by a COM interface, and any D object with
+    can be represented by a COM interface, and any Destiny object with
     a COM interface can be used by external COM clients.
     )
 
     $(P A COM interface is defined as one that derives from the interface
     $(D core.sys.win)$(SHY)$(D dows.com.IUnknown). A COM interface differs from
-    a regular D interface in that:
+    a regular Destiny interface in that:
     )
 
     $(UL
@@ -274,7 +274,7 @@ $(SECTION2 $(LEGACY_LNAME2 COM-Interfaces, com-interfaces, COM Interfaces),
     is $(D extern(System)).
 
     $(NOTE To implement or override any base-class methods of
-    D interfaces or classes (ones which do not inherit from $(D IUnknown)),
+    Destiny interfaces or classes (ones which do not inherit from $(D IUnknown)),
     explicitly mark them as having the $(D extern(D)) linkage.)
 
     ---
@@ -348,7 +348,7 @@ class Ifoo
 
     $(P Any interface that derives from a C++ interface is also
     a C++ interface.
-    A C++ interface differs from a D interface in that:
+    A C++ interface differs from a Destiny interface in that:
     )
 
     $(UL
@@ -356,7 +356,7 @@ class Ifoo
     $(LI References cannot be upcast to the enclosing class object, nor
     can they be downcast to a derived interface.)
     $(LI The C++ calling convention is the default convention
-    for its member functions, rather than the D calling convention.)
+    for its member functions, rather than the Destiny calling convention.)
     $(LI The first member of the $(D vtbl[]) is not the pointer
     to the $(D Interface), but the first virtual function pointer.)
     )

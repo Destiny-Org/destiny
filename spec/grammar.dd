@@ -91,7 +91,7 @@ $(SPEC_SUBNAV_PREV_NEXT istring, Interpolation Expression Sequence, module, Modu
 
 Macros:
         CHAPTER=4
-        TITLE=D Grammar
+        TITLE=Destiny Grammar
         IDENTIFIER=$(GLINK Identifier)
         EXPRESSION=$(GLINK Expression)
         ASSIGNEXPRESSION=$(GLINK AssignExpression)

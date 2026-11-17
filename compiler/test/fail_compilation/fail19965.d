@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/fail19965.d(36): Error: assigning address of variable `f` to `a` with longer lifetime is not allowed in a `@safe` function

@@ -1,5 +1,5 @@
 // PERMUTE_ARGS:
-// REQUIRED_ARGS: -d -preview=dip1000 -o- -X -Xf-
+// REQUIRED_ARGS: -d -o- -X -Xf-
 // EXTRA_FILES: imports/jsonimport1.d imports/jsonimport2.d imports/jsonimport3.d imports/jsonimport4.d
 // TRANSFORM_OUTPUT: sanitize_json
 // TEST_OUTPUT_FILE: extra-files/json.json

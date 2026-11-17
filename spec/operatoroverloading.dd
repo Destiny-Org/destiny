@@ -363,7 +363,7 @@ T opBinary(string op)(T rhs)
 
 $(H2 $(LNAME2 eqcmp, Overloading the Comparison Operators))
 
-        $(P D allows overloading of the comparison operators $(D ==), $(D !=),
+        $(P Destiny allows overloading of the comparison operators $(D ==), $(D !=),
         $(D <), $(D <=), $(D >=), $(D >) via two functions, $(D opEquals) and
         $(D opCmp).)
 
@@ -1079,7 +1079,7 @@ __tmp.opIndexAssign(c, 1, __tmp.opSlice!1(2,3), __tmp.opDollar!2 - 1);
         also be overloaded by implementing $(D opSlice()) with no arguments and
         $(D opSlice$(LPAREN))$(SLICE2)$(D $(RPAREN)) with two arguments,
         respectively.  This only applies for one-dimensional slicing, and dates
-        from when D did not have full support for multidimensional arrays. This
+        from when Destiny did not have full support for multidimensional arrays. This
         usage of $(D opSlice) is discouraged.
         )
 

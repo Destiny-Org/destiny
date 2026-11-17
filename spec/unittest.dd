@@ -10,7 +10,7 @@ $(GNAME UnitTest):
 )
     $(P Unit tests are a builtin framework of test cases
     applied to a module to determine if it is working properly.
-    A D program can be run with unit tests enabled or disabled.
+    A Destiny program can be run with unit tests enabled or disabled.
     )
 
     $(P Unit tests are a special function defined like:)

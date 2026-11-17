@@ -43,12 +43,12 @@ source ~/host-compilers/dmd/activate
 ## Building
 
 Building needs an existing D compiler to compile Destiny itself, the *host
-compiler*, passed as `HOST_DMD`. Destiny uses upstream dmd 2.113.1, mirrored in
+compiler*, passed as `HOST_DC`. Destiny uses upstream dmd 2.113.1, mirrored in
 Destiny-Org/host-compilers (see "Host compiler" above).
 
 ```
 cd destiny_engine
-make -j$(nproc) HOST_DMD=dmd    # compiler + druntime
+make -j$(nproc) HOST_DC=dmd    # compiler + druntime
 make -j$(nproc) fate            # standard library (in ../fate)
 ```
 
@@ -56,8 +56,8 @@ The compiler ends up at `generated/<os>/release/<model>/destiny`, for
 example `generated/linux/release/64/destiny`, with its configuration file
 `destiny.conf` next to it.
 
-`make destiny` and `make dmd` build the same thing. More targets and build
-variables are described in [compiler/src/README.md](compiler/src/README.md).
+Main targets: `make destiny` (compiler), `make druntime`, `make fate`,
+`make destiny-test` (compiler tests). More targets and build variables are described in [compiler/src/README.md](compiler/src/README.md).
 
 ## Testing
 
@@ -91,7 +91,7 @@ Some names still come from D, on purpose:
   `compiler/src/dmd/`.
 - The standard library modules are `std.*`, and the compiled library is
   still `libphobos2`.
-- `HOST_DMD` and `version (DigitalMars)` refer to the upstream D
+- `HOST_DC` and `version (DigitalMars)` refer to the upstream D
   toolchain.
 
 ## License

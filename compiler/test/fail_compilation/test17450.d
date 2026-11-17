@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test17450.d(17): Error: escaping a reference to parameter `s` by returning `&s.bar` is not allowed in a `@safe` function

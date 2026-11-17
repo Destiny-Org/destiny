@@ -9,13 +9,13 @@
 # - Build compiler (unoptimized) and druntime:
 #     make -j$(nproc)
 # - Build compiler (optimized) and druntime using an LDC host compiler:
-#     make -j$(nproc) HOST_DMD=ldmd2 ENABLE_RELEASE=1 [ENABLE_LTO=1]
+#     make -j$(nproc) HOST_DC=ldmd2 ENABLE_RELEASE=1 [ENABLE_LTO=1]
 # - Build heavily (LTO+PGO) optimized compiler, incl. druntime and Fate as side-effects:
-#     make -j$(nproc) HOST_DMD=path/to/ldmd2 dmd-pgo
+#     make -j$(nproc) HOST_DC=path/to/ldmd2 destiny-pgo
 # - Build and run druntime tests:
 #     make -j$(nproc) druntime-test
 # - Run compiler tests (involving a Fate build):
-#     make -j$(nproc) dmd-test
+#     make -j$(nproc) destiny-test
 #
 # See compiler/src/build.d for variables affecting the compiler build.
 # Use HOST_DFLAGS (not DFLAGS) for extra flags (for the host compiler) to be used for the compiler build.
@@ -28,24 +28,24 @@ ECTAGS_FILES = compiler/dmd/*.[chd] compiler/dmd/backend/*.[chd] compiler/dmd/ro
 
 EXE:=$(if $(findstring windows,$(OS)),.exe,)
 
-ifeq (,$(HOST_DMD))
+ifeq (,$(HOST_DC))
     ifneq (,$(HOST_DC))
-        $(warning The HOST_DC variable is deprecated, please use HOST_DMD instead.)
-        HOST_DMD:=$(HOST_DC)
+        $(warning The HOST_DC variable is deprecated, please use HOST_DC instead.)
+        HOST_DC:=$(HOST_DC)
     else ifneq (,$(DMD))
-        HOST_DMD:=$(DMD)
+        HOST_DC:=$(DMD)
     else ifneq (,$(shell which dmd 2>/dev/null))
-        HOST_DMD:=dmd$(EXE)
+        HOST_DC:=dmd$(EXE)
     else ifneq (,$(shell which ldmd2 2>/dev/null))
-        HOST_DMD:=ldmd2$(EXE)
+        HOST_DC:=ldmd2$(EXE)
     else ifneq (,$(shell which gdmd 2>/dev/null))
-        HOST_DMD:=gdmd$(EXE)
+        HOST_DC:=gdmd$(EXE)
     else
-        $(error Couldn't find a D host compiler. Please set variable HOST_DMD to the path to a dmd/ldmd2/gdmd executable)
+        $(error Couldn't find a D host compiler. Please set variable HOST_DC to the path to a dmd/ldmd2/gdmd executable)
     endif
-    $(info Using D host compiler: $(HOST_DMD))
+    $(info Using D host compiler: $(HOST_DC))
 endif
-export HOST_DMD
+export HOST_DC
 
 GENERATED:=generated
 BUILD_EXE:=$(GENERATED)/build$(EXE)
@@ -59,18 +59,18 @@ else
 endif
 
 .PHONY: all clean test html install \
-        destiny dmd dmd-unittest dmd-test druntime druntime-test \
-        phobos fate dmd-pgo \
+        destiny destiny-unittest destiny-test druntime druntime-test \
+        phobos fate destiny-pgo \
         auto-tester-build auto-tester-test buildkite-test \
         toolchain-info check-clean-git style
 
-all: dmd druntime
+all: destiny druntime
 
 $(BUILD_EXE): compiler/src/build.d
-	$(HOST_DMD) -of$@ -g $<
+	$(HOST_DC) -of$@ -g $<
 
 $(RUN_EXE): compiler/test/run.d
-	$(HOST_DMD) -of$@ -g -i -Icompiler/test -release $<
+	$(HOST_DC) -of$@ -g -i -Icompiler/test -release $<
 
 auto-tester-build:
 	echo "Auto-Tester has been disabled"
@@ -89,24 +89,23 @@ clean:
 	$(RM) tags
 	$(QUIET)$(MAKE) -C druntime clean
 
-dmd: $(BUILD_EXE)
-	$(BUILD_CMD) $@
+# the build tool's internal name for the compiler target is still `dmd`
+destiny: $(BUILD_EXE)
+	$(BUILD_CMD) dmd
 
-destiny: dmd
-
-dmd-unittest: $(BUILD_EXE)
+destiny-unittest: $(BUILD_EXE)
 	$(BUILD_CMD) unittest
 
-dmd-test: dmd-unittest dmd druntime phobos $(RUN_EXE)
+destiny-test: destiny-unittest destiny druntime phobos $(RUN_EXE)
 	$(RUN_EXE) --environment
 
-druntime: dmd
+druntime: destiny
 	$(QUIET)$(MAKE) -C druntime
 
-druntime-test: dmd
+druntime-test: destiny
 	$(QUIET)$(MAKE) -C druntime unittest
 
-test: dmd-test druntime-test
+test: destiny-test druntime-test
 
 ../fate:
 	git clone --depth=1 https://github.com/Destiny-Org/fate $@
@@ -150,21 +149,21 @@ style: $(BUILD_EXE)
 	$(BUILD_CMD) $@
 
 # PGO+LTO'd compiler
-ifeq (,$(findstring ldmd2,$(notdir $(HOST_DMD))))
+ifeq (,$(findstring ldmd2,$(notdir $(HOST_DC))))
 
-dmd-pgo:
-	@echo "Error: dmd-pgo currently requires an ldmd2 host compiler, not $(notdir $(HOST_DMD)). Please set HOST_DMD appropriately, or activate an LDC compiler."
+destiny-pgo:
+	@echo "Error: destiny-pgo currently requires an ldmd2 host compiler, not $(notdir $(HOST_DC)). Please set HOST_DC appropriately, or activate an LDC compiler."
 	@exit 1
 
 else # ldmd2
 
-LDC_PROFDATA:=$(dir $(shell which $(if $(findstring $(OS),windows),$(shell cygpath --unix $(HOST_DMD)),$(HOST_DMD))))ldc-profdata$(EXE)
+LDC_PROFDATA:=$(dir $(shell which $(if $(findstring $(OS),windows),$(shell cygpath --unix $(HOST_DC)),$(HOST_DC))))ldc-profdata$(EXE)
 ifeq (,$(wildcard $(LDC_PROFDATA)))
     # if the ldc-profdata tool isn't found in the same dir as ldmd2, fall back to PATH
     LDC_PROFDATA:=ldc-profdata
 endif
 
-dmd-pgo: $(BUILD_EXE) $(RUN_EXE) ../fate
+destiny-pgo: $(BUILD_EXE) $(RUN_EXE) ../fate
 	@echo "PGO step 1/4: Building instrumented compiler"
 	$(BUILD_EXE) ENABLE_RELEASE=1 DFLAGS='-fprofile-generate=$(abspath $(GENERATED))/%p.profraw $(HOST_DFLAGS)' dmd --force
 	@echo "PGO step 2/4: Gathering profiles by compiling druntime & phobos and running 'compilable' test suite"

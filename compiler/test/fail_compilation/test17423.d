@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test17423.d(28): Error: assigning reference to local `this` to non-scope parameter `dlg` calling `opApply` is not allowed in a `@safe` function

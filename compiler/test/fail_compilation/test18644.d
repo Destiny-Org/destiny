@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test18644.d(15): Error: escaping a `scope` value returned from nested function `foo` into allocated memory is not allowed in a `@safe` function

@@ -130,7 +130,7 @@ struct EnvData
     string obj;                  /// `OBJ`: object file extension (`.o` or `.obj`)
     string exe;                  /// `EXE`: executable file extension (none or `.exe`)
     string os;                   /// `OS`: host operating system (`linux`, `windows`, ...)
-    string compiler;             /// `HOST_DMD`: host D compiler
+    string compiler;             /// `HOST_DC`: host D compiler
     string ccompiler;            /// `CC`: host C compiler
     string cxxcompiler;          /// `CXX`: host C++ compiler
     string model;                /// `MODEL`: target model (`32` or `64`)

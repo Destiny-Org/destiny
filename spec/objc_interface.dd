@@ -5,7 +5,7 @@ $(SPEC_S Interfacing to Objective-C,
 $(HEADERNAV_TOC)
 
     $(P
-        D supports interfacing with Objective-C. It supports protocols, classes,
+        Destiny supports interfacing with Objective-C. It supports protocols, classes,
         subclasses, instance variables, instance methods and class methods.
         Platform support might vary between different compilers.
     )
@@ -30,7 +30,7 @@ $(HEADERNAV_TOC)
     ---
 
     $(P
-        All Objective-C classes that should be accessible from within D need to
+        All Objective-C classes that should be accessible from within Destiny need to
         be declared with the $(LINK2 #objc-linkage, Objective-C linkage). If the
         class is declared as `extern` (in addition to `extern (Objective-C)`) it
         is expected to be defined externally.
@@ -136,12 +136,12 @@ $(HEADERNAV_TOC)
     ---
 
     $(P
-        Objective-C protocols are represented as interfaces in D and are
+        Objective-C protocols are represented as interfaces in Destiny and are
         declared using the `interface` keyword.
     )
 
     $(P
-        All Objective-C protocols that should be accessible from within D need
+        All Objective-C protocols that should be accessible from within Destiny need
         to be declared with the [Objective-C linkage](#objc-linkage).
     )
 
@@ -214,7 +214,7 @@ $(HEADERNAV_TOC)
     )
 
     $(P
-        In D, optional methods are represented using the
+        In Destiny, optional methods are represented using the
         [`@optional`](#optional-attribute) attribute.
     )
 
@@ -255,7 +255,7 @@ $(HEADERNAV_TOC)
 
     $(P
         Declaring an instance variable looks exactly the same as for a regular
-        D class.
+        Destiny class.
     )
 
     $(P
@@ -270,7 +270,7 @@ $(HEADERNAV_TOC)
 
     $(P
         Calling an Objective-C instance method uses the same syntax as calling
-        regular D methods:
+        regular Destiny methods:
     )
 
     ---
@@ -292,12 +292,12 @@ $(HEADERNAV_TOC)
     )
 
     $(P
-        Selectors in Objective-C can contain the colon character, which is not valid in D
-        identifiers. D supports method overloading while Objective-C
+        Selectors in Objective-C can contain the colon character, which is not valid in Destiny
+        identifiers. Destiny supports method overloading while Objective-C
         achieves something similar by using different selectors. For these two
-        reasons it is better to be able to specify the selectors manually in D,
+        reasons it is better to be able to specify the selectors manually in Destiny,
         instead of trying to infer it. This allows to have a more natural names
-        for the methods in D. Example:
+        for the methods in Destiny. Example:
     )
 
     ---
@@ -431,7 +431,7 @@ $(HEADERNAV_TOC)
     $(P
         The preferred way to do memory management in Objective-C is to use
         Automatic Reference Counting, $(LINK2 https://developer.apple.com/library/mac/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html, ARC).
-        This is not supported in D, therefore manual memory management is
+        This is not supported in Destiny, therefore manual memory management is
         required to be used instead. This is achieved by calling $(LINK2 https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Protocols/NSObject_Protocol/index.html#//apple_ref/occ/intfm/NSObject/release, `release`)
         on an Objective-C instance, like in the old days of Objective-C.
     )
@@ -513,7 +513,7 @@ $(HEADERNAV_TOC)
         method allocates an instance of the class. The $(LINK2 https://developer.apple.com/documentation/foundation/nsstring/1412128-initwithutf8string?language=objc, `initWithUTF8String:`)
         method will be used to convert a C string in UTF-8 to an Objective-C
         string, `NSString`. The $(LINK2 https://developer.apple.com/documentation/objectivec/1418956-nsobject/1571957-release?language=objc, `release`)
-        method is used to release an deallocate the string. Since D doesn't
+        method is used to release an deallocate the string. Since Destiny doesn't
         support $(LINK2 https://developer.apple.com/library/mac/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html, ARC)
         it's needed to manually release Objective-C instances.
     )

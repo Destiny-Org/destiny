@@ -170,7 +170,7 @@ char[] test22671(int n) @nogc
    return buf;
 }
 
-struct OpApply { int opApply(int delegate(int) dg); }
+struct OpApply { int opApply(scope int delegate(int) dg); } // Destiny: scope, so the body needs no closure
 
 int[] opApplyReturn(int n)
 {

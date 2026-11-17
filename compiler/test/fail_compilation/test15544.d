@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test15544.d(20): Error: assigning reference to local `this` to non-scope `_del` is not allowed in a `@safe` function

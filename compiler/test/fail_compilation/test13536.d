@@ -1,8 +1,9 @@
 /*
 TEST_OUTPUT:
 ---
-fail_compilation/test13536.d(22): Error: accessing overlapped field `U.sysDg` with pointers is not allowed in a `@safe` function
-fail_compilation/test13536.d(23): Error: accessing overlapped field `U.safeDg` with pointers is not allowed in a `@safe` function
+fail_compilation/test13536.d(23): Error: accessing overlapped field `U.sysDg` with pointers is not allowed in a `@safe` function
+fail_compilation/test13536.d(23): Error: assigning address of variable `s` to `u` with longer lifetime is not allowed in a `@safe` function
+fail_compilation/test13536.d(24): Error: accessing overlapped field `U.safeDg` with pointers is not allowed in a `@safe` function
 ---
 */
 

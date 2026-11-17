@@ -6,13 +6,13 @@ $(HEADERNAV_TOC)
 
         $(HTMLTAG3V img, src="$(ROOT_DIR)images/MemoryLeak.png" border="0" align="right" alt="Memory Leak" width="300" height="347")
 
-        $(P D is a systems programming language with support for optional automatic
+        $(P Destiny is a systems programming language with support for optional automatic
         memory mangagement. Usually it is not necessary
         to free memory explicitly. Just allocate as needed, and the automatic memory manager's $(I collector) will
         periodically return all unused memory to the pool of available memory.
         )
 
-        $(P D also provides the mechanisms to write code where automatic memory mangagement
+        $(P Destiny also provides the mechanisms to write code where automatic memory mangagement
         is $(B not involved). More information is provided below.
         )
 
@@ -110,7 +110,7 @@ $(HEADERNAV_TOC)
 
         $(P These constraints are addressed by techniques outlined
         in $(LINK2 https://github.com/Destiny-Org/destiny, Memory Management), including the mechanisms provided by
-        D to control allocations outside the collector heap.
+        Destiny to control allocations outside the collector heap.
         )
 
         $(P There is currently work in progress to make the runtime library free of automatic heap allocations,
@@ -179,7 +179,7 @@ $(H2 $(LNAME2 gc_foreign_obj, Interfacing Automatic Memory Management Allocated 
 
 $(H2 $(LNAME2 pointers_and_gc, Pointers and the Automatic Memory Management Collector))
 
-        $(P Pointers in D can be broadly divided into two categories: Those that
+        $(P Pointers in Destiny can be broadly divided into two categories: Those that
         point to collector memory, and those that do not. Examples
         of the latter are pointers created by calls to C's malloc(), pointers
         received from C library routines, pointers to static data,
@@ -330,7 +330,7 @@ char[] q = p[3..6];
         )
         )
 
-        $(P One can avoid using pointers anyway for most tasks. D provides
+        $(P One can avoid using pointers anyway for most tasks. Destiny provides
         features
         rendering most explicit pointer uses obsolete, such as reference
         objects,
@@ -356,14 +356,14 @@ $(H2 $(LNAME2 working_with_the_gc, Working with the Collector))
 
 $(H2 $(LNAME2 obj_pinning_and_gc, Object Pinning and a Moving Collector))
 
-        $(P Although D does not currently use a moving collector, by following
+        $(P Although Destiny does not currently use a moving collector, by following
         the rules listed above one can be implemented. No special action is required
         to pin objects. A moving collector will only move objects for which there
         are no ambiguous references, and for which it can update those references.
         All other objects will be automatically pinned.
         )
 
-$(H2 D $(LNAME2 op_involving_gc, Operations That Involve the Collector))
+$(H2 Destiny $(LNAME2 op_involving_gc, Operations That Involve the Collector))
 
         $(P Some sections of code may need to avoid using the collector.
         The following constructs may allocate memory using the collector:
@@ -489,7 +489,7 @@ $(H2 $(LNAME2 precise_dataseg, Precise Scanning of the DATA and TLS segment))
         are excluded from scanning, too, as they can only point to preallocated memory.
     )
 
-    $(P Precise scanning can be enabled with the D runtime option "scanDataSeg". Possible option
+    $(P Precise scanning can be enabled with the Destiny runtime option "scanDataSeg". Possible option
         values are "conservative" (default) and "precise". As with the collector options, it can be
         specified on the command line, in the environment or embedded into the executable, e.g.)
         ---------
@@ -544,7 +544,7 @@ $(H2 $(LNAME2 gc_registry, Adding your own Collector))
     $(P Collector implementations are added to a registry that allows to supply
         more implementations by just linking them into
         the binary. To do so add a function that is executed before the
-        D runtime initialization using `pragma(crt_constructor)`:)
+        Destiny runtime initialization using `pragma(crt_constructor)`:)
         ---
         import core.gc.gcinterface, core.gc.registry;
         extern (C) pragma(crt_constructor) void registerMyGC()

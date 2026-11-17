@@ -13,9 +13,9 @@ $(HEADERNAV_TOC)
 $(H2 $(LNAME2 general_idea, The General Idea))
 
     $(P Being 100% compatible with C++ means more or less adding
-    a fully functional C++ compiler front end to D.
+    a fully functional C++ compiler front end to Destiny.
     Anecdotal evidence suggests that writing such is a minimum
-    of a 10 man-year project, essentially making a D compiler
+    of a 10 man-year project, essentially making a Destiny compiler
     with such capability unimplementable.
     Other languages looking to hook up to C++ face the same
     problem, and the solutions have been:
@@ -31,7 +31,7 @@ $(H2 $(LNAME2 general_idea, The General Idea))
     $(LI Give up.)
     )
 
-    $(P D takes a pragmatic approach that assumes a couple
+    $(P Destiny takes a pragmatic approach that assumes a couple
     modest accommodations can solve a significant chunk of
     the problem:
     )
@@ -44,16 +44,16 @@ $(H2 $(LNAME2 general_idea, The General Idea))
 
 $(H2 $(LNAME2 platform-compiler-support, Platform-Compiler Support))
 
-    * On Windows, prefer linking D code to MSVC compiled binaries.
+    * On Windows, prefer linking Destiny code to MSVC compiled binaries.
     * On Linux, linking to both GCC and Clang compiled binaries is supported.
     * On MacOS, prefer linking to Clang compiled binaries.
 
 $(H2 $(LNAME2 global-functions, Global Functions))
 
     $(P C++ global functions, including those in namespaces, can be declared
-    and called in D, or defined in D and called in C++.)
+    and called in Destiny, or defined in Destiny and called in C++.)
 
-$(H3 $(LNAME2 calling_cpp_global_from_d, Calling C++ Global Functions from D))
+$(H3 $(LNAME2 calling_cpp_global_from_d, Calling C++ Global Functions from Destiny))
 
     $(P Given a C++ function in a C++ source file:)
 
@@ -72,7 +72,7 @@ int foo(int i, int j, int k)
 }
 )
 
-    $(P In the corresponding D code, $(CODE foo)
+    $(P In the corresponding Destiny code, $(CODE foo)
     is declared as having C++ linkage and function calling conventions:
     )
 
@@ -80,7 +80,7 @@ int foo(int i, int j, int k)
 extern (C++) int foo(int i, int j, int k);
 ------
 
-    $(P and then it can be called within the D code:)
+    $(P and then it can be called within the Destiny code:)
 
 ------
 extern (C++) int foo(int i, int j, int k);
@@ -92,7 +92,7 @@ void main()
 ------
 
     $(P Compiling the two files, the first with a C++ compiler,
-    the second with a D compiler, linking them together,
+    the second with a Destiny compiler, linking them together,
     and then running it yields:)
 
 $(CONSOLE
@@ -106,26 +106,26 @@ k = 3
     $(P There are several things going on here:)
 
     $(UL
-    $(LI D understands how C++ function names are "mangled" and the
+    $(LI Destiny understands how C++ function names are "mangled" and the
     correct C++ function call/return sequence.)
 
     $(LI Because modules are not part of C++, each function with C++ linkage
     in the global namespace must be globally unique within the program.)
 
     $(LI There are no $(D __cdecl), $(D __far), $(D __stdcall), $(D __declspec), or other
-    such nonstandard C++ extensions in D.)
+    such nonstandard C++ extensions in Destiny.)
 
-    $(LI There are no volatile type modifiers in D.)
+    $(LI There are no volatile type modifiers in Destiny.)
 
-    $(LI Strings are not 0 terminated in D. See "Data Type Compatibility"
-    for more information about this. However, string literals in D are
+    $(LI Strings are not 0 terminated in Destiny. See "Data Type Compatibility"
+    for more information about this. However, string literals in Destiny are
     0 terminated.)
 
     )
 
-$(H3 $(LNAME2 calling_global_d_functions_from_cpp, Calling Global D Functions From C++))
+$(H3 $(LNAME2 calling_global_d_functions_from_cpp, Calling Global Destiny Functions From C++))
 
-    $(P To make a D function accessible from C++, give it
+    $(P To make a Destiny function accessible from C++, give it
     C++ linkage:)
 
 ---
@@ -171,7 +171,7 @@ k = 8
 $(H2 $(LNAME2 cpp-namespaces, C++ Namespaces))
 
         $(P C++ symbols that reside in namespaces can be
-        accessed from D. A $(LINK2 attribute.html#namespace, namespace)
+        accessed from Destiny. A $(LINK2 attribute.html#namespace, namespace)
         can be added to the `extern (C++)`
         $(LINK2 attribute.html#linkage, LinkageAttribute):
     )
@@ -185,7 +185,7 @@ void main()
 ------
 
     $(P C++ can open the same namespace in the same file and multiple files.
-      In D, this can be done as follows:)
+      In Destiny, this can be done as follows:)
 
 ---
 module ns;
@@ -235,7 +235,7 @@ static assert(foo() == 1 && bar() == 2);
 
 $(P Note that the `extern (C++, `ns`)` linkage attribute affects only the ABI (name mangling and calling convention) of
   these declarations. Importing them follows the usual
-  $(LINK2 spec/module.html, D module import semantics).)
+  $(LINK2 spec/module.html, Destiny module import semantics).)
 
 $(P Alternatively, the non-string form can be used to introduce a scope. Note that the
     enclosing module already provides a scope for the symbols declared in the namespace.
@@ -275,10 +275,10 @@ static assert(foo() == 1 && bar() == 2);
 
 $(H2 $(LNAME2 classes, Classes))
 
-    $(P C++ classes can be declared in D by using the $(CODE extern (C++))
+    $(P C++ classes can be declared in Destiny by using the $(CODE extern (C++))
     attribute on $(CODE class), $(CODE struct) and $(CODE interface)
     declarations. $(CODE extern (C++)) interfaces have the same restrictions as
-    D interfaces, which means that Multiple Inheritance is supported to the
+    Destiny interfaces, which means that Multiple Inheritance is supported to the
     extent that only one base class can have member fields.)
 
     $(P $(CODE extern (C++)) structs do not support virtual functions but can
@@ -288,24 +288,24 @@ $(H2 $(LNAME2 classes, Classes))
     classes and interfaces are not rooted in $(CODE Object) and cannot be used
     with $(CODE typeid).)
 
-    $(P D structs and classes have different semantics whereas C++ structs and
-    classes are basically the same. The use of a D struct or class depends on
+    $(P Destiny structs and classes have different semantics whereas C++ structs and
+    classes are basically the same. The use of a Destiny struct or class depends on
     the C++ implementation and not on the used C++ keyword.)
 
     $(UL
     $(LI If the C++ implementation has one or more $(CODE virtual) member
     functions (including inherited member functions), it should be declared as
-    an $(CODE extern(C++) class) in D.)
+    an $(CODE extern(C++) class) in Destiny.)
 
     $(LI If the C++ implementation does not have any $(CODE virtual) member
     functions (including inherited member functions), it should be declared as
-    an $(CODE extern(C++) struct) in D.)
+    an $(CODE extern(C++) struct) in Destiny.)
     )
 
-    $(P When mapping a D $(CODE class) onto a C++ $(CODE struct),
+    $(P When mapping a Destiny $(CODE class) onto a C++ $(CODE struct),
     use $(CODE extern(C++, struct)) to avoid linking problems with C++ compilers
     (notably MSVC) that distinguish between C++'s $(CODE class) and $(CODE struct)
-    when mangling. Conversely, use $(CODE extern(C++, class)) to map a D
+    when mangling. Conversely, use $(CODE extern(C++, class)) to map a Destiny
     $(CODE struct) onto a C++ $(CODE class).)
 
     $(P $(CODE extern(C++, class)) and $(CODE extern(C++, struct)) can be combined
@@ -317,7 +317,7 @@ class Bar
 }
 ---
 
-$(H3 $(LNAME2 using_cpp_classes_from_d, Using C++ Classes From D))
+$(H3 $(LNAME2 using_cpp_classes_from_d, Using C++ Classes From Destiny))
 
     $(P The following example shows binding of a pure virtual function, its
     implementation in a derived class, a non-virtual member function, and a
@@ -367,7 +367,7 @@ void deleteInstance(Derived *&d)
 }
 )
 
-    $(P We can use it in D code like:)
+    $(P We can use it in Destiny code like:)
 
 ---
 extern(C++)
@@ -425,13 +425,13 @@ c = 3
 )
 
 $(P Note how in the above example, the constructor is not bindable and is
-instead disabled on the D side; an alternative would be to reimplement the
-constructor in D. See the $(DDSUBLINK spec/cpp_interface, lifetime-management,
+instead disabled on the Destiny side; an alternative would be to reimplement the
+constructor in Destiny. See the $(DDSUBLINK spec/cpp_interface, lifetime-management,
 section below on lifetime management) for more information.)
 
-$(H3 $(LNAME2 using_d_classes_from_cpp, Using D Classes From C++))
+$(H3 $(LNAME2 using_d_classes_from_cpp, Using Destiny Classes From C++))
 
-    $(P Given D code like:)
+    $(P Given Destiny code like:)
 
 ---
 extern (C++) int callE(E);
@@ -487,7 +487,7 @@ k = 13
 
 $(H2 $(LNAME2 structs, Structs))
 
-    $(P C++ allows a struct to inherit from a base struct. This is done in D using
+    $(P C++ allows a struct to inherit from a base struct. This is done in Destiny using
     `alias this`:)
 
 ---
@@ -502,11 +502,11 @@ struct Derived
 }
 ---
 
-    $(P In both C++ and D, if a struct has zero fields, the struct still has a
+    $(P In both C++ and Destiny, if a struct has zero fields, the struct still has a
     size of 1 byte. But, in C++ if the struct with zero fields is used as a base
     struct, its size is zero (called the
     $(LINK2 https://en.cppreference.com/w/cpp/language/ebo, Empty Base Optimization)).
-    There are two methods for emulating this behavior in D.
+    There are two methods for emulating this behavior in Destiny.
     The first forwards references to a function returning a faked reference to the base:)
 
 ---
@@ -559,7 +559,7 @@ $(H2 $(LNAME2 cpp-templates, C++ Templates))
     $(P C++ function and type templates can be bound by using the
     $(CODE extern (C++)) attribute on a function or type template declaration.)
 
-    $(P Note that all instantiations used in D code must be provided by linking
+    $(P Note that all instantiations used in Destiny code must be provided by linking
     to C++ object code or shared libraries containing the instantiations.)
 
     $(P For example:)
@@ -677,32 +677,32 @@ C
 
 $(H2 $(LNAME2 function-overloading, Function Overloading))
 
-    $(P C++ and D follow different rules for function overloading.
-    D source code, even when calling $(CODE extern (C++)) functions,
-    will still follow D overloading rules.
+    $(P C++ and Destiny follow different rules for function overloading.
+    Destiny source code, even when calling $(CODE extern (C++)) functions,
+    will still follow Destiny overloading rules.
     )
 
 $(H2 $(LNAME2 memory-allocation, Memory Allocation))
 
     $(P C++ code explicitly manages memory with calls to
     $(CODE ::operator new()) and $(CODE ::operator delete()).
-    D's $(CODE new) operator allocates memory using the D garbage collector,
-    so no explicit delete is necessary. D's $(CODE new) operator is not
+    Destiny's $(CODE new) operator allocates memory using the Destiny garbage collector,
+    so no explicit delete is necessary. Destiny's $(CODE new) operator is not
     compatible with C++'s $(CODE ::operator new) and $(CODE::operator delete).
-    Attempting to allocate memory with D's $(CODE new) and deallocate with
+    Attempting to allocate memory with Destiny's $(CODE new) and deallocate with
     C++ $(CODE ::operator delete) will result in miserable failure.
     )
 
-    $(P D can explicitly manage memory using a variety of library tools, such as
+    $(P Destiny can explicitly manage memory using a variety of library tools, such as
     with $(MREF std, experimental, allocator). Additionally,
     $(CODE core.stdc.stdlib.malloc) and $(CODE core.stdc.stdlib.free) can be
     used directly for connecting to C++ functions that expect $(CODE malloc)'d
     buffers.
     )
 
-    $(P If pointers to memory allocated on the D garbage collector heap are
+    $(P If pointers to memory allocated on the Destiny garbage collector heap are
     passed to C++ functions, it's critical to ensure that the referenced memory
-    will not be collected by the D garbage collector before the C++ function is
+    will not be collected by the Destiny garbage collector before the C++ function is
     done with it. This is accomplished by:
     )
 
@@ -730,15 +730,15 @@ $(H2 $(LNAME2 memory-allocation, Memory Allocation))
     )
 
     $(P The garbage collector does not scan the stacks of threads not
-    registered with the D runtime, nor does it scan the data segments of
-    shared libraries that aren't registered with the D runtime.
+    registered with the Destiny runtime, nor does it scan the data segments of
+    shared libraries that aren't registered with the Destiny runtime.
     )
 
 $(H2 $(LNAME2 data-type-compatibility, Data Type Compatibility))
 
-    $(TABLE2 D And C++ Type Equivalence,
+    $(TABLE2 Destiny And C++ Type Equivalence,
 
-    $(THEAD D type, C++ type)
+    $(THEAD Destiny type, C++ type)
 
     $(TROW
     $(ARGS $(B void)),
@@ -757,7 +757,7 @@ $(H2 $(LNAME2 data-type-compatibility, Data Type Compatibility))
 
     $(TROW
     $(ARGS $(B char)),
-    $(ARGS $(B char) (chars are unsigned in D))
+    $(ARGS $(B char) (chars are unsigned in Destiny))
     )
 
     $(TROW
@@ -887,7 +887,7 @@ $(H2 $(LNAME2 data-type-compatibility, Data Type Compatibility))
     )
     )
 
-    $(P These equivalents hold when the D and C++ compilers used are companions
+    $(P These equivalents hold when the Destiny and C++ compilers used are companions
     on the host platform.)
 
 $(H3 $(LNAME2 dynamic-arrays, Dynamic Arrays))
@@ -907,7 +907,7 @@ extern "C" _d_dynamicArray< const char > slice;
     $(P `_d_dynamicArray` is generated as follows:)
 
 ```
-/// Represents a D [] array
+/// Represents a Destiny [] array
 template<typename T>
 struct _d_dynamicArray final
 {
@@ -934,24 +934,24 @@ struct _d_dynamicArray final
 
 $(H2 $(LNAME2 packing-and-alignment, Packing and Alignment))
 
-    $(P D structs and unions are analogous to C's.
+    $(P Destiny structs and unions are analogous to C's.
     )
 
     $(P C code often adjusts the alignment and packing of struct members
     with a command line switch or with various implementation specific
-    $(HASH)pragmas. D supports explicit alignment attributes that correspond
+    $(HASH)pragmas. Destiny supports explicit alignment attributes that correspond
     to the C compiler's rules. Check what alignment the C code is using,
-    and explicitly set it for the D struct declaration.
+    and explicitly set it for the Destiny struct declaration.
     )
 
-    $(P D supports bitfields in the standard library: see
+    $(P Destiny supports bitfields in the standard library: see
     $(REF bitfields, std, bitmanip).
     )
 
 $(H2 $(LNAME2 lifetime-management, Lifetime Management))
 
     $(P C++ constructors, copy constructors, move constructors and destructors
-    cannot be called directly in D code, and D constructors, postblit operators
+    cannot be called directly in Destiny code, and Destiny constructors, postblit operators
     and destructors cannot be directly exported to C++ code. Interoperation of
     types with these special operators is possible by either 1$(RPAREN)
     disabling the operator in the client language and only using it in the host
@@ -959,16 +959,16 @@ $(H2 $(LNAME2 lifetime-management, Lifetime Management))
     client language. With the latter approach, care needs to be taken to ensure
     observable semantics remain the same with both implementations, which can be
     difficult, or in some edge cases impossible, due to differences in how the
-    operators work in the two languages. For example, in D all objects are
+    operators work in the two languages. For example, in Destiny all objects are
     movable and there is no move constructor.)
 
 $(H2 $(LNAME2 operator-overloading, Operator Overloading))
-    $(P D's operator overloading is primarily involved with overloading its unary
+    $(P Destiny's operator overloading is primarily involved with overloading its unary
     and binary operators including the increment, index, slice, cast, function call,
     comparison operator etc. Overloads of these operators that exist in C++ can be
-    directly called from D provided the D operator and its C++ counterpart semantically agree.
+    directly called from Destiny provided the Destiny operator and its C++ counterpart semantically agree.
     Below is a simple use case involving the assignment, index, and function call operator
-    overloads interoperating between D and C++.
+    overloads interoperating between Destiny and C++.
     )
 
     $(P In a foo.cpp file: )
@@ -1077,7 +1077,7 @@ the buffer numbers of index 2 is 90
 
 $(H2 $(LNAME2 rtti, Runtime Type Identification))
 
-    $(P D runtime type identification
+    $(P Destiny runtime type identification
     uses completely different techniques than C++.
     The two are incompatible.)
 
@@ -1085,19 +1085,19 @@ $(H2 $(LNAME2 exception-handling, Exception Handling))
 
     $(P Exception interoperability is a work in progress.)
 
-    $(P At present, C++ exceptions cannot be caught in or thrown from D, and D
+    $(P At present, C++ exceptions cannot be caught in or thrown from Destiny, and Destiny
     exceptions cannot be caught in or thrown from C++. Additionally, objects
     in C++ stack frames are not guaranteed to be destroyed when unwinding the
-    stack due to a D exception, and vice versa.)
+    stack due to a Destiny exception, and vice versa.)
 
-    $(P The plan is to support all of the above except throwing D exceptions
+    $(P The plan is to support all of the above except throwing Destiny exceptions
     directly in C++ code (but they will be throwable indirectly by calling into
-    a D function with C++ linkage).)
+    a Destiny function with C++ linkage).)
 
-$(SECTION2 $(LNAME2 comparing-d-immutable-and-const-with-cpp-const, Comparing D Immutable and Const with C++ Const),
+$(SECTION2 $(LNAME2 comparing-d-immutable-and-const-with-cpp-const, Comparing Destiny Immutable and Const with C++ Const),
 
 $(TABLE_SPECIAL $(ARGS Const, Immutable Comparison),
-    $(THEAD Feature, D, C++98)
+    $(THEAD Feature, Destiny, C++98)
     $(TROW $(D const) keyword, Yes, Yes)
     $(TROW $(D immutable) keyword, Yes, No)
     $(TROW const notation,

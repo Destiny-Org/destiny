@@ -131,7 +131,7 @@ jobs:
     #####################################
     #    Checking out DMD and Fate    #
     #####################################
-    - name: Checkout DMD
+    - name: Checkout destiny
       uses: actions/checkout@v7
       with:
         path: destiny_engine

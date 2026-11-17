@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
  * This case winds up calling buildScopeRef() with stc having only STC.return_ set.
  */
 

@@ -83,7 +83,7 @@ $(UL
 $(H3 $(LNAME2 crtctor, $(D pragma crt_constructor)))
 
     $(P Annotates a function so it is run after the C runtime library is initialized
-        and before the D runtime library is initialized.
+        and before the Destiny runtime library is initialized.
     )
 
     $(P The function must:)
@@ -158,7 +158,7 @@ $(H3 $(LNAME2 crtdtor, $(D pragma crt_destructor)))
     $(P `pragma(crt_destructor)` works the same as `pragma(crt_constructor)` except:)
 
     $(OL
-        $(LI Annotates a function so it is run after the D runtime library is terminated
+        $(LI Annotates a function so it is run after the Destiny runtime library is terminated
              and before the C runtime library is terminated.
              Calling C's `exit()` function also causes the annotated functions to run.)
         $(LI The order in which the annotated functions are run is the reverse of those functions
@@ -279,7 +279,7 @@ $(H3 $(LNAME2 mangle, $(D pragma mangle)))
         For aggregates there may be one or two $(ASSIGNEXPRESSION)s, one of which must evaluate at compile time to a string literal and
         one which must evaluate to a symbol. If that symbol is a $(I TemplateInstance), the aggregate is treated as a template
         that has the signature and arguments of the $(I TemplateInstance). The identifier of the symbol is used when no string is supplied.
-        Both arguments may be used used when an aggregate's name is a D keyword.
+        Both arguments may be used used when an aggregate's name is a Destiny keyword.
     )
 
     $(P It only applies to function and variable symbols. Other symbols are ignored.)
@@ -296,7 +296,7 @@ $(H3 $(LNAME2 mangle, $(D pragma mangle)))
 
     $(RATIONALE
         $(UL
-        $(LI Enables linking to symbol names that D cannot represent.)
+        $(LI Enables linking to symbol names that Destiny cannot represent.)
         $(LI Enables linking to a symbol which is a D keyword, since an $(GLINK_LEX Identifier)
         cannot be a keyword.)
         )

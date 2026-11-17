@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -checkaction=context -preview=dip1000
+REQUIRED_ARGS: -checkaction=context
 PERMUTE_ARGS: -O -g -inline
 */
 

@@ -8,7 +8,7 @@ $(HEADERNAV_TOC)
 
         $(P $(I Memory Safety) for a program is defined as it being
         impossible for the program to corrupt memory.
-        Therefore, the safe subset of D consists only of programming
+        Therefore, the safe subset of Destiny consists only of programming
         language features that are guaranteed to never result in memory
         corruption. See $(LINK2 $(ROOT_DIR)safed.html, this article) for a
         rationale.
@@ -87,8 +87,9 @@ $(H2 $(LNAME2 usage, Usage))
 
          $(P `return` or `scope` is ignored when applied to a type that is not a low-level pointer.)
 
-         $(P $(B Note:) Checks for `scope` parameters are currently enabled
-         only for `@safe` code compiled with the `-dip1000` command-line flag.)
+         $(P Checks for `scope` parameters are always enabled for `@safe` code.
+         There is no flag to turn them off: `-preview=dip1000` is accepted but has
+         no effect, and `-revert=dip1000` is not supported.)
 
 
 $(H2 $(LNAME2 limitations, Limitations))

@@ -1,5 +1,5 @@
 // upstream issue 20868
-// REQUIRED_ARGS: -preview=dip1000
+// REQUIRED_ARGS:
 
 void scoped (scope void delegate() dg)
 {

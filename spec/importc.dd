@@ -4,16 +4,16 @@ $(SPEC_S ImportC,
 
 $(HEADERNAV_TOC)
 
-    $(P ImportC is a C compiler embedded into the D implementation.
+    $(P ImportC is a C compiler embedded into the Destiny implementation.
     It enables direct importation of C files, without
-    needing to manually prepare a D file corresponding to the declarations
+    needing to manually prepare a Destiny file corresponding to the declarations
     in the C file. It directly compiles C files into modules that can be
-    linked in with D code to form an executable. It can be used
+    linked in with Destiny code to form an executable. It can be used
     as a C compiler to compile and link 100% C programs.
     )
 
     $(NOTE ImportC and $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/betterc.dd, BetterC) are very different.
-    ImportC is an actual C compiler. BetterC is a subset of D that relies only on the
+    ImportC is an actual C compiler. BetterC is a subset of Destiny that relies only on the
     existence of the C Standard library. BetterC code can be linked with ImportC code, too.)
 
 $(H2 $(LNAME2 examples, Quick Examples))
@@ -43,7 +43,7 @@ int square(int i)
     return i * i;
 })
 
-    $(P D program in file $(TT demo.d):)
+    $(P Destiny program in file $(TT demo.d):)
 
     ---
     import std.stdio;
@@ -72,11 +72,11 @@ $(H2 $(LNAME2 dialect, ImportC Dialect))
     )
 
     $(IMPLEMENTATION_DEFINED Adjustment to the ImportC dialect is made to match the
-    behavior of the C compiler that the D compiler is matched to,
+    behavior of the C compiler that the Destiny compiler is matched to,
     i.e. the $(ACC).
     )
 
-    $(P Further adjustment is made to take advantage of some of the D
+    $(P Further adjustment is made to take advantage of some of the Destiny
     implementation's capabilities.)
 
     $(NOTE This is not a C reference manual nor programming tutorial.
@@ -108,7 +108,7 @@ dmd hello.c)
     $(BEST_PRACTICE explicitly use a `.i`, `.h`, or `.c` extension when
     specifying C files on the command line.)
 
-    $(H3 $(LNAME2 importing, Importing C Files from D Code))
+    $(H3 $(LNAME2 importing, Importing C Files from Destiny Code))
 
     $(P Use the D $(GLINK2 module, ImportDeclaration):)
 
@@ -116,7 +116,7 @@ dmd hello.c)
     import hello;
     ---
 
-    $(P which will, if `hello` is not a D file, and has an extension `.i`,
+    $(P which will, if `hello` is not a Destiny file, and has an extension `.i`,
     `.h`, or `.c`, compile `hello` with ImportC.
     )
 
@@ -133,7 +133,7 @@ dmd hello.c)
     int sqrt(int x) { return x * x; }
     ---
 
-    $(P D file in project/hello.d)
+    $(P Destiny file in project/hello.d)
     ---
     import net.hi; // C file you need in your D source
 
@@ -255,8 +255,8 @@ dmpp file.c)
     $(H3 $(LNAME2 defines, Preprocessor Macros))
 
     $(P ImportC collects all the $(TT #define) macros from the preprocessor run when it is run automatically.
-    Some can be made available to D code by interpreting them as declarations.
-    The variety of macros that can be interpreted as D declarations may be expanded,
+    Some can be made available to Destiny code by interpreting them as declarations.
+    The variety of macros that can be interpreted as Destiny declarations may be expanded,
     but will never encompass all the metaprogramming uses of C macros.
     )
 
@@ -268,7 +268,7 @@ $(CCODE
 #define COLOR 0x123456
 #define HELLO "hello")
 
-    $(P are interpreted as D manifest constant declarations of the form:)
+    $(P are interpreted as Destiny manifest constant declarations of the form:)
 
     ---
     enum COLOR = 0x123456;
@@ -468,13 +468,13 @@ $(H2 $(LNAME2 _builtins, $(TT src/__importc_builtins.di)))
     $(P The first thing the compiler does when preprocessing is complete is to import
     $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/druntime/src/__importc_builtins.di, $(TT src/__importc_builtins.di)).
     It provides support for various builtins provided by other C compilers.
-    $(TT __importc_builtins.di) is a D file.)
+    $(TT __importc_builtins.di) is a Destiny file.)
 
 $(H2 $(LNAME2 _builtins_msvc, $(TT src/__builtins_msvc.d)))
 
     $(P Support for MSVC's compiler intrinsics is provided via the
     $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/druntime/src/__builtins_msvc.d, $(TT __builtins_msvc)) module,
-    which is implemented in D.)
+    which is implemented in Destiny.)
 
     $(P Unlike $(TT __importc_builtins.di), $(TT __builtins_msvc) is not imported by default,
     instead the $(TT __builtins_msvc) module is imported by the
@@ -587,21 +587,21 @@ $(H2 $(LNAME2 limitations, Limitations))
 
 $(H2 $(LNAME2 impedance-mismatch, Impedance Mismatch))
 
-    $(P While every effort is made to match up C and D so it "just works", the languages have some
+    $(P While every effort is made to match up C and Destiny so it "just works", the languages have some
     fundamental differences that appear now and then.
     )
 
     $(H3 $(LNAME2 keyword-mismatch, Keyword Mismatch))
 
-    $(P D and C use mostly the same keywords, C has keywords that D doesn't have, and vice versa. This
+    $(P Destiny and C use mostly the same keywords, C has keywords that Destiny doesn't have, and vice versa. This
     does not affect compilation of C code, but it can cause difficulty when accessing C variables and types
-    from D. For example, the D `version` keyword is not uncommonly used as a struct member in C:)
+    from Destiny. For example, the Destiny `version` keyword is not uncommonly used as a struct member in C:)
 
     $(P C code in file $(TT defs.c):)
 $(CCODE
 struct S { int version; };)
 
-    $(P Accessing it from D:)
+    $(P Accessing it from Destiny:)
     ---
     import defs;
     int tech(S* s) {
@@ -650,7 +650,7 @@ $(H2 $(LNAME2 extensions, Extensions))
     $(P The `asm` keyword may be used to embed assembler instructions, its
     syntax is implementation defined. The Digital Mars D compiler only supports
     the dialect of inline assembly as described in the documentation of the
-    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd, D x86 Inline Assembler).)
+    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd, Destiny x86 Inline Assembler).)
 
     $(P `asm(mangleName)` in a function or variable declaration may be used to specify the
     mangle name for a symbol. Its use is analogous to
@@ -716,7 +716,7 @@ void g(int s)
     $(H3 $(LNAME2 ctfe, Compile Time Function Execution))
 
     $(P Evaluating constant expressions includes executing functions in the
-    same manner as D's $(DDSUBLINK spec/function, interpretation, CTFE) can.
+    same manner as Destiny's $(DDSUBLINK spec/function, interpretation, CTFE) can.
     A $(I constant-expression) invokes compile-time evaluation.)
 
     $(P Examples:)
@@ -734,7 +734,7 @@ int b = a; // sets b to 7
     $(H3 $(LNAME2 inlining, Function Inlining))
 
     $(P Functions for which the function body is present can
-    be inlined by ImportC as well as by the D code that calls them.)
+    be inlined by ImportC as well as by the Destiny code that calls them.)
 
     $(H3 $(LNAME2 enumbasetype, Enum Base Types))
 
@@ -758,9 +758,9 @@ _Static_assert(sizeof(A) == 1, "A should be size 1");
 )
 
 
-    $(H3 $(LNAME2 d-character-types, D Character Types))
+    $(H3 $(LNAME2 d-character-types, Destiny Character Types))
 
-    $(P D's character types are available in ImportC via the
+    $(P Destiny's character types are available in ImportC via the
     `__importc_char`, `__importc_wchar`, and `__importc_dchar` aliases.)
 
     $(H3 $(LNAME2 register, Register Storage Class))
@@ -793,11 +793,11 @@ $(GNAME CImportDeclaration):
     $(D __import) $(GLINK2 module, ImportList) $(D ;)
 )
 
-    $(P Imports enable ImportC code to directly access D declarations and functions
+    $(P Imports enable ImportC code to directly access Destiny declarations and functions
     without the necessity of creating a $(TT .h) file representing those declarations.
-    The tedium and brittleness of keeping the $(TT .h) file up-to-date with the D
+    The tedium and brittleness of keeping the $(TT .h) file up-to-date with the Destiny
     declarations is eliminated.
-    D functions are available to be inlined.
+    Destiny functions are available to be inlined.
     )
 
     $(P Imports also enable ImportC code to directly import other C files without
@@ -805,7 +805,7 @@ $(GNAME CImportDeclaration):
     Imported C functions become available to be inlined.
     )
 
-    $(P The $(I ImportList) works the same as it does for D.)
+    $(P The $(I ImportList) works the same as it does for Destiny.)
 
     $(P The ordering of $(I CImportDeclaration)s has no significance.)
 
@@ -828,13 +828,13 @@ $(GNAME CImportDeclaration):
     importing module, and preprocessing symbols in the importing file are not
     available to the imported module.)
 
-    $(P A D module can be imported, in the same manner as that
+    $(P A Destiny module can be imported, in the same manner as that
     of a $(GLINK2 module, ImportDeclaration).)
 
     $(P Imports can be circular.)
 
 $(CCODE
-__import core.stdc.stdarg; // get D declaration of va_list
+__import core.stdc.stdarg; // get Destiny declaration of va_list
 __import mycode;           // import mycode.c
 
 int foo()
@@ -863,14 +863,14 @@ enum E { A = 3; }
 
     $(P A signed integer constant with no suffix that is larger than a `long long` type,
     but will fit into an `unsigned long long` type, is accepted and typed as `unsigned long long`.
-    This matches D behavior, and that of some C compilers.)
+    This matches Destiny behavior, and that of some C compilers.)
 
     $(H3 $(LNAME2 dotArrow, Dot and Arrow Operators))
 
     $(P The `.` operator is used to designate a member of a struct or union value.
         The `->` operator is used to designate a member of a struct or union value pointed to
         by a pointer. The extension is that `.` and `->` can be used interchangeably on
-        values and pointers. This matches D's behavior for `.`.)
+        values and pointers. This matches Destiny's behavior for `.`.)
 
 $(H2 $(LNAME2 gnu-clang-extensions, Gnu and Clang Extensions))
 
@@ -901,7 +901,7 @@ $(H2 $(LNAME2 gnu-clang-extensions, Gnu and Clang Extensions))
 
     $(P `__attribute__((noreturn))` marks a function as never returning.
     `gcc` set this as an attribute of the function, it is
-    not part of the function's type. In D, a function that never returns
+    not part of the function's type. In Destiny, a function that never returns
     has the return type $(GLINK2 type, noreturn). The difference can be
     seen with the code:)
 
@@ -909,12 +909,12 @@ $(CCODE
 attribute((noreturn)) int foo();
 size_t x = sizeof(foo());)
 
-    $(P This code is accepted by `gcc`, but makes no sense for D. Hence,
-    although it works in ImportC, it is not representable as D code,
+    $(P This code is accepted by `gcc`, but makes no sense for Destiny. Hence,
+    although it works in ImportC, it is not representable as Destiny code,
     meaning one must use judgement in creating a `.di` file to interface
     with C `noreturn` functions.)
 
-    $(P Furthermore, the D compiler takes advantage of `noreturn` functions
+    $(P Furthermore, the Destiny compiler takes advantage of `noreturn` functions
     by issuing compile time errors for unreachable code. Such unreachable
     code, however, is valid C11, and the ImportC compiler will accept it.)
 
@@ -983,17 +983,17 @@ $(H2 $(LNAME2 msvc-intrinsics, MSVC Intrinsics))
     $(P Many of MSVC's compiler intrinsics are supported by ImportC: too many to list.
     See $(RELATIVE_LINK2 _builtins_msvc, $(TT src/__builtins_msvc.d)) for more information.)
 
-$(H2 $(LNAME2 d-side, ImportC from D's Point of View))
+$(H2 $(LNAME2 d-side, ImportC from Destiny's Point of View))
 
-    $(P There is no one-to-one mapping of C constructs to D constructs, although
-    it is very close. What follows is a description of how the D side views
+    $(P There is no one-to-one mapping of C constructs to Destiny constructs, although
+    it is very close. What follows is a description of how the Destiny side views
     the C declarations that are imported.)
 
     $(H3 $(LNAME2 module-name, Module Name))
 
     $(P The module name assigned to the ImportC file is the filename stripped
     of its path and extension. This is just like the default module name assigned
-    to a D module that does not have a module declaration.)
+    to a Destiny module that does not have a module declaration.)
 
     $(H3 $(LNAME2 extern-C, `extern (C)`))
 
@@ -1005,7 +1005,7 @@ $(H2 $(LNAME2 d-side, ImportC from D's Point of View))
 
     $(CCODE enum E { A, B = 2 };)
 
-    $(P appears to D code as:)
+    $(P appears to Destiny code as:)
 
     ---
     enum E : int { A, B = 2 }
@@ -1031,15 +1031,15 @@ struct S { int a, b; };
 S = 3;
 struct S *ps;)
 
-    $(P D does not make this distinction. Given a tag symbol that is the only declaration of an
-    identifier, that's what the D compiler recognizes. Given a tag symbol and a non-tag symbol
-    that share an identifier, the D compiler recognizes the non-tag symbol. This is normally
+    $(P Destiny does not make this distinction. Given a tag symbol that is the only declaration of an
+    identifier, that's what the Destiny compiler recognizes. Given a tag symbol and a non-tag symbol
+    that share an identifier, the Destiny compiler recognizes the non-tag symbol. This is normally
     not a problem due to the common C practice of applying `typedef`, as in:)
 
 $(CCODE
 typedef struct S { int a, b; } S;)
 
-    $(P The D compiler recognizes the `typedef` applied to `S`, and the code compiles as expected. But when `typedef` is absent, as in:)
+    $(P The Destiny compiler recognizes the `typedef` applied to `S`, and the code compiles as expected. But when `typedef` is absent, as in:)
 
 $(CCODE
 int S;
@@ -1052,7 +1052,7 @@ int S;
 struct S { int a, b; };
 typedef struct S S_t;    // add this typedef)
 
-    $(P Then the D compiler can access the struct tag symbol via `S_t`.)
+    $(P Then the Destiny compiler can access the struct tag symbol via `S_t`.)
 
 
 $(H2 $(LNAME2 wrapping, Wrapping C Code))
@@ -1068,7 +1068,7 @@ struct S { int a, b; };)
 
     $(P The problems are that `__restrict` is not a type qualifier recognized by ImportC
     (or C11),
-    and the struct `S` is hidden from D by the declaration `int S;`.
+    and the struct `S` is hidden from Destiny by the declaration `int S;`.
     To wrap $(TT file.c) with a fix, create the file $(TT file_ic.c) with the contents:)
 
 $(CCODE
@@ -1078,33 +1078,33 @@ typedef struct S S_t;)
 
     $(P Then, `import file_ic;` instead of `import file;`, and use `S_t` when `struct S` is desired.)
 
-$(H2 $(LNAME2 ctod, Converting C Code to D Code))
+$(H2 $(LNAME2 ctod, Converting C Code to Destiny Code))
 
     $(P Sometimes its desirable to go further than importing C code, to actually do a C source to
-    D source conversion. Reasons include:)
+    Destiny source conversion. Reasons include:)
 
     $(UL
-    $(LI Migrating a C project to a D project.)
-    $(LI Equivalent D code can compile much faster, due to not needing a preprocessor, etc.)
-    $(LI Tweaking the D code to add attributes for memory safety, purity, etc.)
-    $(LI Eliminating the need for C-isms in the D part of the project.)
+    $(LI Migrating a C project to a Destiny project.)
+    $(LI Equivalent Destiny code can compile much faster, due to not needing a preprocessor, etc.)
+    $(LI Tweaking the Destiny code to add attributes for memory safety, purity, etc.)
+    $(LI Eliminating the need for C-isms in the Destiny part of the project.)
     )
 
-    $(P This can be done with the D compiler by using the $(TT -Hf) switch:)
+    $(P This can be done with the Destiny compiler by using the $(TT -Hf) switch:)
 
 $(CONSOLE
 dmd -c mycode.c -Hf=mycode.di)
 
-    $(P which will convert the C source code in $(TT mycode.c) to D source code in $(TT mycode.di).
+    $(P which will convert the C source code in $(TT mycode.c) to Destiny source code in $(TT mycode.di).
     If the $(TT -inline) switch is also used, it will emit the C function bodies as well, instead
     of just the function prototypes.)
 
 $(H3 Impedance Mismatch)
 
-    $(P A precise mapping of C semantics, with all its oddities, to D source code is not
+    $(P A precise mapping of C semantics, with all its oddities, to Destiny source code is not
     always practical. ImportC uses C semantics in its semantic analysis to get much closer
-    to exact C semantics than is expressible in D source code. Hence, the translation to
-    D source code will be less than perfect. For example:)
+    to exact C semantics than is expressible in Destiny source code. Hence, the translation to
+    Destiny source code will be less than perfect. For example:)
 
 $(CCODE
 int S;
@@ -1115,8 +1115,8 @@ int foo(struct S s)
 })
 
     $(P will work fine in ImportC, because the `int S` and the `struct S` are in different
-    symbol tables. But in the generated D code, both symbols would be in the same symbol table, and will collide.
-    Such D source code translated from C will need to be adjusted by the user.)
+    symbol tables. But in the generated Destiny code, both symbols would be in the same symbol table, and will collide.
+    Such Destiny source code translated from C will need to be adjusted by the user.)
 
     $(P Nevertheless, reports from the field are that this conversion capability is a huge
     timesaver for users who need to deal with existing C code.)
@@ -1148,10 +1148,10 @@ $(H2 $(LNAME2 other-solutions, Other Solutions))
 
     $(P From the Article:)
 
-    $(BLOCKQUOTE dpp is a compiler wrapper that will parse a D source
+    $(BLOCKQUOTE dpp is a compiler wrapper that will parse a Destiny source
     file with the `.dpp` extension and expand in place any `#include` directives
-    it encounters, translating all of the C or C++ symbols to D, and then
-    pass the result to a D compiler (destiny by default).)
+    it encounters, translating all of the C or C++ symbols to Destiny, and then
+    pass the result to a Destiny compiler (destiny by default).)
 
     $(P Like DStep, dpp relies on libclang.)
 
@@ -1164,38 +1164,38 @@ $(H2 $(LNAME2 other-solutions, Other Solutions))
 
     $(P From the Article:)
 
-    $(BLOCKQUOTE DStep is a tool for automatically generating D
+    $(BLOCKQUOTE DStep is a tool for automatically generating Destiny
     bindings for C and Objective-C libraries. This is implemented by
-    processing C or Objective-C header files and outputting D modules.
+    processing C or Objective-C header files and outputting Destiny modules.
     DStep uses the Clang compiler as a library (libclang) to process the header files.)
 
 
     $(H3 $(LNAME2 htod, htod by Walter Bright))
 
     $(P $(LINK2 https://github.com/Destiny-Org/destiny, htod) converts a C $(TT .h) file
-    to a D source file, suitable for importing into D code.
+    to a Destiny source file, suitable for importing into Destiny code.
     $(B htod) is built from the front end of the Digital Mars C and C++ compiler.
     It works just like a C or C++ compiler except that its output is source
-    code for a D module rather than object code.)
+    code for a Destiny module rather than object code.)
 
 
 $(H2 $(LNAME2 internals, How ImportC Works))
 
-    $(P ImportC's implementation is based on the idea that D's semantics are very similar
+    $(P ImportC's implementation is based on the idea that Destiny's semantics are very similar
     to C's. ImportC gets its own parser, which converts the C syntax into the same AST
-    (Abstract Syntax Tree) that D uses. The lexer for ImportC is the same as for D, but with
+    (Abstract Syntax Tree) that Destiny uses. The lexer for ImportC is the same as for Destiny, but with
     some modifications here and there, such as the keywords and integer literals being different.
-    Where the semantics of C differ from D, there are adjustments in the semantic analysis
-    code in the D compiler.)
+    Where the semantics of C differ from Destiny, there are adjustments in the semantic analysis
+    code in the Destiny compiler.)
 
-    $(P This co-opting of the D semantic implementation allows ImportC to be able to do things
+    $(P This co-opting of the Destiny semantic implementation allows ImportC to be able to do things
     like handle forward references, CTFE (Compile Time Function Execution), and inlining of C functions
-    into D code. Being able to handle forward references means it is not necessary to even
-    write a `.h` file to be able to import C declarations into D. Being able to perform CTFE is
+    into Destiny code. Being able to handle forward references means it is not necessary to even
+    write a `.h` file to be able to import C declarations into Destiny. Being able to perform CTFE is
     very handy for testing that ImportC is working without needing to generate an executable.
-    But, in general, the strong temptation to add D features to ImportC has been resisted.)
+    But, in general, the strong temptation to add Destiny features to ImportC has been resisted.)
 
-    $(P The optimizer and code generator are, of course, the same as D uses.)
+    $(P The optimizer and code generator are, of course, the same as Destiny uses.)
 
 $(SPEC_SUBNAV_PREV_NEXT betterc, Better C, ob, Live Functions)
 )

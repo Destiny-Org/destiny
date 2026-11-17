@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=dip1000
+/* REQUIRED_ARGS:
  * TEST_OUTPUT:
 ---
 fail_compilation/test22840.d(25): Error: returning `sb.slice()` escapes a reference to local variable `sb`

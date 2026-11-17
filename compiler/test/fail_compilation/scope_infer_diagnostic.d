@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/scope_infer_diagnostic.d(34): Error: `@safe` function `scope_infer_diagnostic.outer` cannot call `@system` function `scope_infer_diagnostic.inner!(void delegate(const(char)[]) pure nothrow @nogc @safe)`

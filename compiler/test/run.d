@@ -21,7 +21,7 @@ const scriptDir = __FILE_FULL_PATH__.dirName.buildNormalizedPath;
 immutable testDirs = ["runnable", "runnable_cxx", "dshell", "compilable", "fail_compilation"];
 shared bool verbose; // output verbose logging
 shared bool force; // always run all tests (ignores timestamp checking)
-shared string hostDMD; // path to host DMD binary (used for building the tools)
+shared string hostDC; // path to host DMD binary (used for building the tools)
 shared string unitTestRunnerCommand;
 
 // These long-running runnable tests will be put in front, in this order, to
@@ -128,7 +128,7 @@ Options:
     }
 
     // allow overwrites from the environment
-    hostDMD = environment.get("HOST_DMD", "dmd");
+    hostDC = environment.get("HOST_DC", "dmd");
     unitTestRunnerCommand = resultsDir.buildPath("unit_test_runner").exeName;
 
     // bootstrap all needed environment variables
@@ -246,7 +246,7 @@ void prepareOutputDirectory(const string[string] env)
             // Detect windows paths and translate them to POSIX compatible relative paths
             static immutable PATHS = [
                 "DMD",
-                "HOST_DMD",
+                "HOST_DC",
                 "LIB",
                 "RESULTS_DIR",
             ];
@@ -313,7 +313,7 @@ void ensureToolsExists(const string[string] env, const TestTool[] tools ...)
         else
         {
             buildCommand = [
-                hostDMD,
+                hostDC,
                 "-m"~env["MODEL"],
                 "-of"~targetBin,
                 sourceFile
@@ -450,7 +450,7 @@ Target[] predefinedTargets(string[] targets)
 
             case "arm":
                 newTargets ~= Target("",
-                    [hostDMD, "-i", "-I" ~ scriptDir, "-run", testPath(buildPath("dshell", "arm_cross.d"))]);
+                    [hostDC, "-i", "-I" ~ scriptDir, "-run", testPath(buildPath("dshell", "arm_cross.d"))]);
                 break;
 
             case "all":

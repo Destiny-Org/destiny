@@ -34,7 +34,7 @@ jobs:
       # for ci/run.sh:
       OS_NAME: linux
       MODEL: 64
-      HOST_DMD: dmd-${{ matrix.version }}
+      HOST_DC: dmd-${{ matrix.version }}
       # N is set dynamically below
       FULL_BUILD: true
     defaults:
@@ -72,8 +72,8 @@ jobs:
         fi
         ci/run.sh setup_repos "$REPO_BRANCH"
 
-    - name: Build dmd
+    - name: Build destiny
       run: ENABLE_RELEASE=0 ENABLE_DEBUG=0 ci/run.sh build 0
 
-    - name: Rebuild dmd
+    - name: Rebuild destiny
       run: ENABLE_RELEASE=0 ENABLE_DEBUG=0 ci/run.sh rebuild

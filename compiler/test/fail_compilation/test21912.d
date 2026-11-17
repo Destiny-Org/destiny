@@ -1,5 +1,5 @@
 /*
-PERMUTE_ARGS: -preview=dip1000
+PERMUTE_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test21912.d(28): Error: function `test21912.escapeParam` is `@nogc` yet allocates closure for `escapeParam()` with the GC

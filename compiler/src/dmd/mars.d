@@ -1612,6 +1612,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
         }
         else if (arg == "-dip1000")
         {
+            eSink.deprecation(Loc.initial, "`-dip1000` no longer has any effect: scope checking is always enabled");
             params.useDIP25 = FeatureState.enabled;
             params.useDIP1000 = FeatureState.enabled;
         }

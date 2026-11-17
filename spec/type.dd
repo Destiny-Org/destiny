@@ -6,7 +6,7 @@ $(HEADERNAV_TOC)
 
 $(H2 $(LNAME2 grammar, Grammar))
 
-    $(P D is statically typed. Every expression has a type. Types constrain the values
+    $(P Destiny is statically typed. Every expression has a type. Types constrain the values
     an expression can hold, and determine the semantics of operations on those values.
     )
 
@@ -700,7 +700,7 @@ $(H3 $(LNAME2 floating-point-conversions, Floating Point Type Conversions))
 
 $(H3 $(LNAME2 vrp, Value Range Propagation))
 
-    $(P Besides type-based implicit conversions, D allows certain integer
+    $(P Besides type-based implicit conversions, Destiny allows certain integer
         expressions to implicitly convert to a narrower type after
         integer promotion. This works by analysing the minimum and
         maximum possible range of values for each expression.

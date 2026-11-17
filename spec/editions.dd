@@ -4,7 +4,7 @@ $(SPEC_S Editions,
 
 $(HEADERNAV_TOC)
 
-$(P Editions provide a way to evolve D by obsoleting
+$(P Editions provide a way to evolve Destiny by obsoleting
 features while maintaining compatibility with code that uses those
 features. Editions are a module level feature, i.e. various sections
 of a module cannot be set to different editions.
@@ -15,8 +15,8 @@ or with the $(TT -edition) command line switch.
 )
 
 $(P
-Editions are meant to be backwards and forwards compatible; it makes it possible for a D
-module targeting one edition to import a D module targeting any other edition.
+Editions are meant to be backwards and forwards compatible; it makes it possible for a Destiny
+module targeting one edition to import a Destiny module targeting any other edition.
 A template must obey the rules of the edition targeted by the module in which it
 is defined, not the module in which it is instantiated. Compatibility is at the
 source code level; no promises of ABI compatibility are made. All code, old and

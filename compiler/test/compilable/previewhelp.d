@@ -6,7 +6,7 @@ TEST_OUTPUT:
 Upcoming language changes listed by -preview=name:
   =all              Enables all available upcoming language changes
   =dip25            implement Sealed References DIP [DEPRECATED] (DIP25)
-  =dip1000          implement Scoped Pointers DIP (DIP1000)
+  =dip1000          implement Scoped Pointers DIP (always enabled in Destiny) [DEPRECATED] (DIP1000)
   =dip1008          implement @nogc Throwable DIP (DIP1008)
   =dip1021          implement Mutable Function Arguments DIP (DIP1021)
   =bitfields        add C-like bitfields (upstream website pull request 3190)

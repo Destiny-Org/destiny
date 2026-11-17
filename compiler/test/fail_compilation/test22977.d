@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/test22977.d(16): Error: escaping local variable through nested function `scfunc` is not allowed in a `@safe` function

@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -betterC -preview=dip1000
+REQUIRED_ARGS: -betterC
 */
 
 __gshared int numDtor;

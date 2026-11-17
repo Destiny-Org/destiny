@@ -22,7 +22,7 @@ $(HEADERNAV_TOC)
         )
         )
 
-$(HTMLTAG3V img, src="$(ROOT_DIR)images/d4.gif" style="max-width:100%" alt="Contracts make D bug resistant" border="0")
+$(HTMLTAG3V img, src="$(ROOT_DIR)images/d4.gif" style="max-width:100%" alt="Contracts make Destiny bug resistant" border="0")
 
 $(H2 $(LNAME2 assert_contracts, Assert Contract))
 

@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=dip1000 -de
+REQUIRED_ARGS: -de
 TEST_OUTPUT:
 ---
 fail_compilation/cast_qual.d(17): Deprecation: using the result of a cast from `const(int)` to `int` as an lvalue will become `@system` in a future release

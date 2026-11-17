@@ -4,10 +4,10 @@ $(SPEC_S Better C,
 
 $(HEADERNAV_TOC)
 
-$(P BetterC is a subset of D that doesn't depend on the D runtime library, only the C runtime library.
+$(P BetterC is a subset of Destiny that doesn't depend on the Destiny runtime library, only the C runtime library.
 )
 
-$(P $(RED Warning:) While the D runtime library and standard library are not linked in,
+$(P $(RED Warning:) While the Destiny runtime library and standard library are not linked in,
 it is still possible to import several packages (``core.*`` and ``std.*``) and use some templates, types and function declarations without bodies.
 However, these libraries were not written for BetterC, so you will need to determine which symbols may be used.
 Expect cryptic compiler or linker errors.
@@ -15,22 +15,22 @@ Expect cryptic compiler or linker errors.
 
 $(H2 $(LNAME2 linking, Linking))
 
-    $(P It is straightforward to link C functions and libraries into D programs.
-    But linking D functions and libraries into C programs is not straightforward.
+    $(P It is straightforward to link C functions and libraries into Destiny programs.
+    But linking Destiny functions and libraries into C programs is not straightforward.
     )
 
-    $(P D programs generally require:)
+    $(P Destiny programs generally require:)
 
     $(OL
-    $(LI The D runtime library to be linked in, because many features of
+    $(LI The Destiny runtime library to be linked in, because many features of
     the core language require runtime library support.)
-    $(LI The `main()` function to be written in D, to ensure that the required
+    $(LI The `main()` function to be written in Destiny, to ensure that the required
     runtime library support is properly initialized.)
     )
 
-    $(P To link D functions and libraries into C programs, it's necessary to only
+    $(P To link Destiny functions and libraries into C programs, it's necessary to only
     require the C runtime library to be linked in. This is accomplished by defining
-    a subset of D that fits this requirement, called $(B BetterC).
+    a subset of Destiny that fits this requirement, called $(B BetterC).
     )
 
 $(H2 $(LNAME2 better-c, Better C))
@@ -65,7 +65,7 @@ Hello betterC
     is not practical or possible.
     )
 
-    $(P $(B BetterC) makes embedding D libraries in existing larger projects easier by:
+    $(P $(B BetterC) makes embedding Destiny libraries in existing larger projects easier by:
     )
 
     $(OL
@@ -74,11 +74,11 @@ Hello betterC
     calls to the library, for situations when an initialization step is not
     performed or would be difficult to insert before the library is used.)
     $(LI Mixing memory management strategies (GC + manual memory management) can
-    be tricky, hence removing D's GC from the equation may be worthwhile sometimes.)
+    be tricky, hence removing Destiny's GC from the equation may be worthwhile sometimes.)
     )
 
     $(NOTE BetterC and $(DDLINK spec/importc, ImportC, ImportC) are very different.
-    ImportC is an actual C compiler. BetterC is a subset of D that relies only on the
+    ImportC is an actual C compiler. BetterC is a subset of Destiny that relies only on the
     existence of the C Standard library.)
 
 
@@ -132,7 +132,7 @@ However, in `-betterC`, `assert` expressions don't use Druntime's assert and are
 
 $(H2 $(LNAME2 consequences, Unavailable Features))
 
-    $(P D features not available with $(B BetterC):)
+    $(P Destiny features not available with $(B BetterC):)
 
 $(OL
     $(LI Garbage Collection)
