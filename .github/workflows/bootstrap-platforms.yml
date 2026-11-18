@@ -15,7 +15,7 @@ on:
 jobs:
   cross:
     name: Cross-compile on Linux
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     env:
       OS_NAME: linux

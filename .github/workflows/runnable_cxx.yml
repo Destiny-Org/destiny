@@ -61,22 +61,19 @@ jobs:
           # NOTE: cannot test MODEL=32 with clang on Linux, due to a single failure as of April 2025:
           #       runnable_cxx/cppa.d:261: cppa.check13956: Assertion `arg6 == 6' failed.
           - { os: ubuntu-24.04, compiler: clang-18, model: 64 }
-          - { os: ubuntu-22.04, compiler: clang-15, model: 64 }
+          - { os: ubuntu-24.04, compiler: clang-15, model: 64 }
           - { os: ubuntu-24.04, compiler: clang-14, model: 64 }
-          - { os: ubuntu-22.04, compiler: clang-11, model: 64 }
           # Linux, g++:
           - { os: ubuntu-24.04, compiler: g++-13, model: 64 }
           - { os: ubuntu-24.04, compiler: g++-13, model: 32 }
-          - { os: ubuntu-22.04, compiler: g++-12, model: 64 }
-          - { os: ubuntu-22.04, compiler: g++-12, model: 32 }
-          - { os: ubuntu-22.04, compiler: g++-9,  model: 64 }
-          - { os: ubuntu-22.04, compiler: g++-9,  model: 32 }
+          - { os: ubuntu-24.04, compiler: g++-12, model: 64 }
+          - { os: ubuntu-24.04, compiler: g++-12, model: 32 }
+          - { os: ubuntu-24.04, compiler: g++-9,  model: 64 }
+          - { os: ubuntu-24.04, compiler: g++-9,  model: 32 }
           # macOS, Apple clang from Xcode:
           # Disabled due to issues with x87: upstream dmd issue 21987
           # Windows, cl.exe from Visual Studio:
           # NOTE: as of April 2025, image windows-2025 only has VS 2022, so no point in testing that image too
-          - { os: windows-2022, model: 64 }
-          - { os: windows-2022, model: 32 }
 
     runs-on: ${{ matrix.os }}
     env:

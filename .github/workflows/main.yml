@@ -26,11 +26,11 @@ jobs:
           # Every job builds with a released Destiny compiler (Destiny-Org/host-compilers).
           # destiny64 is packaged for Linux x86_64 only, so only Linux jobs run;
           # macOS, Windows and FreeBSD return once Destiny is packaged for them.
-          - job_name: Ubuntu 22.04 x64
-            os: ubuntu-22.04
+          - job_name: Ubuntu 24.04 x64
+            os: ubuntu-24.04
             host_dc: destiny-2.115.0-master
-          - job_name: Ubuntu 22.04 x86
-            os: ubuntu-22.04
+          - job_name: Ubuntu 24.04 x86
+            os: ubuntu-24.04
             model: 32
             host_dc: destiny-2.115.0-master
     name: ${{ matrix.job_name }}

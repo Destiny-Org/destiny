@@ -26,7 +26,7 @@ jobs:
         version: [ 2.115.0-master ]
 
     name: Build Destiny (host compiler destiny-${{ matrix.version }})
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
       # read access to the private Destiny-Org repositories, for every clone in the build

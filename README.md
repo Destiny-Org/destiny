@@ -50,6 +50,18 @@ tar xJf destiny64-*-linux.tar.xz
 export PATH="$PWD/destiny64/bin:$PATH"
 ```
 
+## Supported platforms
+
+| Platform | Status |
+|---|---|
+| Linux x86_64 (glibc 2.39 or newer, e.g. Ubuntu 24.04+, Debian 13+, Fedora 40+) | ✅ supported |
+| FreeBSD x86_64 | 🚧 coming soon |
+| macOS (Intel) | 🚧 coming soon |
+| Windows x86_64 | 🚧 coming soon |
+
+DES (the package manager) and serve-destiny (editor support) follow the
+same platforms.
+
 ## Hello world
 
 ```d

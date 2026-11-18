@@ -4592,9 +4592,20 @@ else
     pure float   truncf(float x);
 
     ///
-    double  fmod(double x, double y);
+    // glibc 2.38 added new versions of fmod/fmodf; bind to the original ones
+    // (in every glibc) so programs also run on older systems
+    version (CRuntime_Glibc) version (X86_64) version = FmodGlibcCompat;
+    version (FmodGlibcCompat)
+    {
+        pragma(mangle, "fmod@GLIBC_2.2.5") double  fmod(double x, double y);
+        pragma(mangle, "fmodf@GLIBC_2.2.5") float   fmodf(float x, float y);
+    }
+    else
+    {
+        double  fmod(double x, double y);
+        float   fmodf(float x, float y);
+    }
     ///
-    float   fmodf(float x, float y);
 
     ///
     double  remainder(double x, double y);
