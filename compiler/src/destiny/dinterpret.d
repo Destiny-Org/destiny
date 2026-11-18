@@ -6,54 +6,54 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dinterpret.d, _dinterpret.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dinterpret.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dinterpret.d, _dinterpret.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dinterpret.d
  *
  */
 
-module dmd.dinterpret;
+module destiny.dinterpret;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.builtin;
-import dmd.constfold;
-import dmd.ctfeexpr;
-import dmd.dcast;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.initsem;
-import dmd.location;
-import dmd.mtype;
-import dmd.root.rmem;
-import dmd.root.array;
-import dmd.root.ctfloat;
-import dmd.root.region;
-import dmd.rootobject;
-import dmd.root.utf;
-import dmd.statement;
-import dmd.semantic2 : findFunc;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.utils : arrayCastBigEndian;
-import dmd.visitor;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.builtin;
+import destiny.constfold;
+import destiny.ctfeexpr;
+import destiny.dcast;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.initsem;
+import destiny.location;
+import destiny.mtype;
+import destiny.root.rmem;
+import destiny.root.array;
+import destiny.root.ctfloat;
+import destiny.root.region;
+import destiny.rootobject;
+import destiny.root.utf;
+import destiny.statement;
+import destiny.semantic2 : findFunc;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.utils : arrayCastBigEndian;
+import destiny.visitor;
 
 /*************************************
  * Entry point for CTFE.
@@ -101,7 +101,7 @@ public Expression ctfeInterpret(Expression e)
 
     auto rgnpos = ctfeGlobals.region.savePos();
 
-    import dmd.timetrace;
+    import destiny.timetrace;
     timeTraceBeginEvent(TimeTraceEventType.ctfe);
     scope (exit) timeTraceEndEvent(TimeTraceEventType.ctfe, e);
 
@@ -447,7 +447,7 @@ private Expression interpretFunction(UnionExp* pue, FuncDeclaration fd, InterSta
     }
 
     scope dlg = () {
-        import dmd.common.outbuffer;
+        import destiny.common.outbuffer;
         auto strbuf = OutBuffer(20);
         strbuf.writestring(fd.toPrettyChars());
         strbuf.write("(");
@@ -463,7 +463,7 @@ private Expression interpretFunction(UnionExp* pue, FuncDeclaration fd, InterSta
         strbuf.write(")");
         return strbuf.extractSlice();
     };
-    import dmd.timetrace;
+    import destiny.timetrace;
     timeTraceBeginEvent(TimeTraceEventType.ctfeCall);
     scope (exit) timeTraceEndEvent(TimeTraceEventType.ctfeCall, fd, dlg);
 
@@ -1453,7 +1453,7 @@ Expression interpretStatement(UnionExp* pue, Statement s, InterState* istate)
             foreach (ca; *s.catches)
             {
                 Type catype = ca.type;
-                import dmd.typesem : isBaseOf;
+                import destiny.typesem : isBaseOf;
                 if (!catype.equals(extype) && !catype.isBaseOf(extype, null))
                     continue;
 
@@ -2153,7 +2153,7 @@ public:
                     return CTFEExp.cantexp;
                 assert(e.type);
 
-                // There's a terrible hack in `dmd.dsymbolsem` that special case
+                // There's a terrible hack in `destiny.dsymbolsem` that special case
                 // a struct with all zeros to an `ExpInitializer(BlitExp(IntegerExp(0)))`
                 // There's matching code for it in e2ir (toElem's visitAssignExp),
                 // so we need the same hack here.
@@ -5749,7 +5749,7 @@ public:
                         return;
 
                     // Dtors of Non-extern(D) classes use implicit chaining (like structs)
-                    import dmd.aggregate : ClassKind;
+                    import destiny.aggregate : ClassKind;
                     if (cd.classKind != ClassKind.d)
                         break;
                 }
@@ -6264,7 +6264,7 @@ public:
             {
                 if (auto t = isType(ex.isTypeidExp().obj))
                 {
-                    import dmd.typesem : toDsymbol;
+                    import destiny.typesem : toDsymbol;
                     auto sym = t.toDsymbol(null);
                     if (auto ident = (sym ? sym.ident : null))
                     {
@@ -6511,7 +6511,7 @@ Expressions* copyArrayOnWrite(Expressions* exps, Expressions* original)
 private
 bool stopPointersEscaping(Loc loc, Expression e)
 {
-    import dmd.typesem : hasPointers;
+    import destiny.typesem : hasPointers;
     if (!e.type.hasPointers())
         return true;
     if (isPointer(e.type))

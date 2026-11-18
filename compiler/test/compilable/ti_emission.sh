@@ -8,9 +8,9 @@ fi
 obj_decl="${OUTPUT_BASE}_decl${OBJ}"
 obj_refs="${OUTPUT_BASE}_refs${OBJ}"
 obj_refs_ctfe="${OUTPUT_BASE}_refs_ctfe${OBJ}"
-$DMD -c -m${MODEL} -of${obj_decl}      ${EXTRA_FILES}/${TEST_NAME}_declarations.d
-$DMD -c -m${MODEL} -of${obj_refs}      ${EXTRA_FILES}/${TEST_NAME}_references.d -I${EXTRA_FILES}
-$DMD -c -m${MODEL} -of${obj_refs_ctfe} ${EXTRA_FILES}/${TEST_NAME}_references.d -I${EXTRA_FILES} -version=Reference_for_CTFE_only
+$DESTINY -c -m${MODEL} -of${obj_decl}      ${EXTRA_FILES}/${TEST_NAME}_declarations.d
+$DESTINY -c -m${MODEL} -of${obj_refs}      ${EXTRA_FILES}/${TEST_NAME}_references.d -I${EXTRA_FILES}
+$DESTINY -c -m${MODEL} -of${obj_refs_ctfe} ${EXTRA_FILES}/${TEST_NAME}_references.d -I${EXTRA_FILES} -version=Reference_for_CTFE_only
 
 # TypeInfo_Class only emitted once along with the class/interface declaration:
 nm --defined-only ${obj_decl} | grep -F _D24ti_emission_declarations1C7__ClassZ

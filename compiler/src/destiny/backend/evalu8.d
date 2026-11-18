@@ -8,10 +8,10 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/evalu8.d, backend/evalu8.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/evalu8.d, backend/evalu8.d)
  */
 
-module dmd.backend.evalu8;
+module destiny.backend.evalu8;
 
 import core.stdc.math;
 import core.stdc.stdio;
@@ -23,22 +23,22 @@ static import core.bitop;
 //#define isnan _isnan
 //#endif
 
-import dmd.backend.bcomplex;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.oper;
-import dmd.backend.global : error;
-import dmd.backend.el;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.bcomplex;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.oper;
+import destiny.backend.global : error;
+import destiny.backend.el;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.common.int128;
+import destiny.common.int128;
 
 
 nothrow:
 @safe:
 
-import dmd.backend.fp : testFE, clearFE, statusFE, have_float_except;
+import destiny.backend.fp : testFE, clearFE, statusFE, have_float_except;
 
 /**********************
  * Return boolean result of constant elem.
@@ -524,7 +524,7 @@ static if (0)
 
             case TYcent:
             case TYucent:
-                e.Vcent = dmd.common.int128.add(e1.Vcent, e2.Vcent);
+                e.Vcent = destiny.common.int128.add(e1.Vcent, e2.Vcent);
                 break;
 
             default:
@@ -721,7 +721,7 @@ static if (0)
 
             case TYcent:
             case TYucent:
-                e.Vcent = dmd.common.int128.sub(e1.Vcent, e2.Vcent);
+                e.Vcent = destiny.common.int128.sub(e1.Vcent, e2.Vcent);
                 break;
 
             default:
@@ -738,7 +738,7 @@ static if (0)
         break;
     case OPmul:
         if (tym == TYcent || tym == TYucent)
-            e.Vcent = dmd.common.int128.mul(e1.Vcent, e2.Vcent);
+            e.Vcent = destiny.common.int128.mul(e1.Vcent, e2.Vcent);
         else if (tyintegral(tym) || typtr(tym))
             e.Vllong = l1 * l2;
         else
@@ -912,12 +912,12 @@ static if (0)
         if (uns)
         {
             if (tym == TYucent)
-                e.Vcent = dmd.common.int128.udiv(e1.Vcent, e2.Vcent);
+                e.Vcent = destiny.common.int128.udiv(e1.Vcent, e2.Vcent);
             else
                 e.Vullong = (cast(targ_ullong) l1) / (cast(targ_ullong) l2);
         }
         else if (tym == TYcent)
-            e.Vcent = dmd.common.int128.div(e1.Vcent, e2.Vcent);
+            e.Vcent = destiny.common.int128.div(e1.Vcent, e2.Vcent);
         else
         {   switch (tym)
             {
@@ -1102,12 +1102,12 @@ static if (0)
         if (uns)
         {
             if (tym == TYucent)
-                dmd.common.int128.udivmod(e1.Vcent, e2.Vcent, e.Vcent);
+                destiny.common.int128.udivmod(e1.Vcent, e2.Vcent, e.Vcent);
             else
                 e.Vullong = (cast(targ_ullong) l1) % (cast(targ_ullong) l2);
         }
         else if (tym == TYcent)
-            dmd.common.int128.divmod(e1.Vcent, e2.Vcent, e.Vcent);
+            destiny.common.int128.divmod(e1.Vcent, e2.Vcent, e.Vcent);
         else
         {
             // BUG: what do we do for imaginary, complex?
@@ -1206,19 +1206,19 @@ static if (0)
     }
     case OPand:
         if (tym == TYcent || tym == TYucent)
-            e.Vcent = dmd.common.int128.and(e1.Vcent, e2.Vcent);
+            e.Vcent = destiny.common.int128.and(e1.Vcent, e2.Vcent);
         else
             e.Vllong = l1 & l2;
         break;
     case OPor:
         if (tym == TYcent || tym == TYucent)
-            e.Vcent = dmd.common.int128.or(e1.Vcent, e2.Vcent);
+            e.Vcent = destiny.common.int128.or(e1.Vcent, e2.Vcent);
         else
             e.Vllong = l1 | l2;
         break;
     case OPxor:
         if (tym == TYcent || tym == TYucent)
-            e.Vcent = dmd.common.int128.xor(e1.Vcent, e2.Vcent);
+            e.Vcent = destiny.common.int128.xor(e1.Vcent, e2.Vcent);
         else
             e.Vllong = l1 ^ l2;
         break;
@@ -1227,7 +1227,7 @@ static if (0)
         break;
     case OPcom:
         if (tym == TYcent || tym == TYucent)
-            e.Vcent = dmd.common.int128.com(e1.Vcent);
+            e.Vcent = destiny.common.int128.com(e1.Vcent);
         else
             e.Vllong = ~l1;
         break;
@@ -1242,7 +1242,7 @@ static if (0)
         break;
     case OPshl:
         if (tym == TYcent || tym == TYucent)
-            e.Vcent = dmd.common.int128.shl(e1.Vcent, i2);
+            e.Vcent = destiny.common.int128.shl(e1.Vcent, i2);
         else if (cast(targ_ullong) i2 < targ_ullong.sizeof * 8)
             e.Vllong = l1 << i2;
         else
@@ -1251,7 +1251,7 @@ static if (0)
     case OPshr:
         if (tym == TYcent || tym == TYucent)
         {
-            e.Vcent = dmd.common.int128.shr(e1.Vcent, i2);
+            e.Vcent = destiny.common.int128.shr(e1.Vcent, i2);
             break;
         }
         if (cast(targ_ullong) i2 > targ_ullong.sizeof * 8)
@@ -1269,7 +1269,7 @@ static if (0)
     case OPashr:
         if (tym == TYcent || tym == TYucent)
         {
-            e.Vcent = dmd.common.int128.sar(e1.Vcent, i2);
+            e.Vcent = destiny.common.int128.sar(e1.Vcent, i2);
             break;
         }
         if (cast(targ_ullong) i2 > targ_ullong.sizeof * 8)
@@ -1398,7 +1398,7 @@ static if (0)
 
             case TYcent:
             case TYucent:
-                e.Vcent = dmd.common.int128.neg(e1.Vcent);
+                e.Vcent = destiny.common.int128.neg(e1.Vcent);
                 break;
 
             default:
@@ -1437,7 +1437,7 @@ else
                 break;
             case TYcent:
             case TYucent:
-                e.Vcent = cast(long)e1.Vcent.hi < 0 ? dmd.common.int128.neg(e1.Vcent) : e1.Vcent;
+                e.Vcent = cast(long)e1.Vcent.hi < 0 ? destiny.common.int128.neg(e1.Vcent) : e1.Vcent;
                 break;
             default:
                 e.Vllong = l1 < 0 ? -l1 : l1;
@@ -1467,7 +1467,7 @@ else
         if (uns)
         {
             if (tym == TYucent)
-                b = dmd.common.int128.ule(e1.Vcent, e2.Vcent);
+                b = destiny.common.int128.ule(e1.Vcent, e2.Vcent);
             else
                 b = cast(int)((cast(targ_ullong) l1) <= (cast(targ_ullong) l2));
         }
@@ -1476,7 +1476,7 @@ else
             if (tyfloating(tym))
                 b = cast(int)(!unordered(d1, d2) && d1 <= d2);
             else if (tym == TYcent)
-                b = dmd.common.int128.le(e1.Vcent, e2.Vcent);
+                b = destiny.common.int128.le(e1.Vcent, e2.Vcent);
             else
                 b = cast(int)(l1 <= l2);
         }
@@ -1499,7 +1499,7 @@ else
         if (uns)
         {
             if (tym == TYucent)
-                b = dmd.common.int128.ult(e1.Vcent, e2.Vcent);
+                b = destiny.common.int128.ult(e1.Vcent, e2.Vcent);
             else
                 b = cast(int)((cast(targ_ullong) l1) < (cast(targ_ullong) l2));
         }
@@ -1508,7 +1508,7 @@ else
             if (tyfloating(tym))
                 b = cast(int)(!unordered(d1, d2) && d1 < d2);
             else if (tym == TYcent)
-                b = dmd.common.int128.lt(e1.Vcent, e2.Vcent);
+                b = destiny.common.int128.lt(e1.Vcent, e2.Vcent);
             else
                 b = cast(int)(l1 < l2);
         }
@@ -1812,7 +1812,7 @@ else
                 e.Vullong = cast(targ_ullong)((l1 << n) | ((l1 & 0xFFFFFFFFFFFFFFFFL) >> (64 - n)));
                 break;
             case 16:
-                e.Vcent = dmd.common.int128.rol(e1.Vcent, n);
+                e.Vcent = destiny.common.int128.rol(e1.Vcent, n);
                 break;
             default:
                 assert(0);
@@ -1980,9 +1980,9 @@ version (CRuntime_Microsoft)
             return isnan(cast(real)x);
         }
     import core.stdc.math : fabsl;
-    import dmd.root.longdouble : fabsl; // needed if longdouble is longdouble_soft
+    import destiny.root.longdouble : fabsl; // needed if longdouble is longdouble_soft
 }
 else
 {
-    import dmd.backend.fp : _modulo;
+    import destiny.backend.fp : _modulo;
 }

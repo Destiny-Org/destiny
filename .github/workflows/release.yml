@@ -1,0 +1,64 @@
+# Builds the downloadable compiler package (ci/package.sh):
+#   destiny64-<version>-linux.tar.xz
+# On a pushed tag `v*` it is attached to that tag's GitHub release;
+# a manual run only keeps it as a workflow artifact.
+
+name: Release
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write   # attach the package to the release
+
+jobs:
+  package:
+    name: Package destiny64 (linux)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    env:
+      DESTINY_REPO_TOKEN: ${{ secrets.DESTINY_REPO_TOKEN }}
+      OS_NAME: linux
+      MODEL: 64
+      HOST_DC: dmd-2.113.1
+      ENABLE_RELEASE: 1
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set environment variable N (parallelism)
+      run: echo "N=$(nproc)" >> $GITHUB_ENV
+
+    - name: Install host compiler
+      run: ci/run.sh install_host_compiler
+
+    - name: Set up repos
+      run: |
+        set -uexo pipefail
+        # Fate with the same branch/tag name as this ref, falling back to main
+        ci/run.sh setup_repos "${GITHUB_REF_NAME}"
+
+    - name: Build compiler, druntime and Fate (release)
+      run: ci/run.sh build 0
+
+    - name: Package
+      id: package
+      run: echo "archive=$(ci/package.sh dist)" >> $GITHUB_OUTPUT
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: destiny64-linux
+        path: ${{ steps.package.outputs.archive }}
+
+    - name: Attach to the release
+      if: startsWith(github.ref, 'refs/tags/')
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1 || gh release create "$GITHUB_REF_NAME" --title "Destiny $GITHUB_REF_NAME" --notes "Destiny compiler $GITHUB_REF_NAME"
+        gh release upload "$GITHUB_REF_NAME" "${{ steps.package.outputs.archive }}" --clobber

@@ -460,7 +460,7 @@ private:
  * Params:
  *  path = The new path name.
  * Note:
- *  This is a dmd specific setting.
+ *  This is a destiny specific setting.
  */
 extern (C) void dmd_coverSourcePath(string path) @trusted; // safe interface: coverage setting
 
@@ -470,7 +470,7 @@ extern (C) void dmd_coverSourcePath(string path) @trusted; // safe interface: co
  * Params:
  *  path = The new path name.
  * Note:
- *  This is a dmd specific setting.
+ *  This is a destiny specific setting.
  */
 extern (C) void dmd_coverDestPath(string path) @trusted; // safe interface: coverage setting
 
@@ -480,7 +480,7 @@ extern (C) void dmd_coverDestPath(string path) @trusted; // safe interface: cove
  * Params:
  *  flag = enable/disable coverage merge mode
  * Note:
- *  This is a dmd specific setting.
+ *  This is a destiny specific setting.
  */
 extern (C) void dmd_coverSetMerge(bool flag) @trusted; // safe interface: coverage setting
 
@@ -491,7 +491,7 @@ extern (C) void dmd_coverSetMerge(bool flag) @trusted; // safe interface: covera
  * Params:
  *  name = file name
  * Note:
- *  This is a dmd specific setting.
+ *  This is a destiny specific setting.
  */
 extern (C) void trace_setlogfilename(string name);
 
@@ -502,7 +502,7 @@ extern (C) void trace_setlogfilename(string name);
  * Params:
  *  name = file name
  * Note:
- *  This is a dmd specific setting.
+ *  This is a destiny specific setting.
  */
 extern (C) void trace_setdeffilename(string name);
 
@@ -513,7 +513,7 @@ extern (C) void trace_setdeffilename(string name);
  * Params:
  *  name = file name
  * Note:
- *  This is a dmd specific setting.
+ *  This is a destiny specific setting.
  */
 extern (C) void profilegc_setlogfilename(string name);
 

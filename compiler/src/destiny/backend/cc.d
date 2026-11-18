@@ -8,20 +8,20 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cc.d, backend/_cc.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cc.d, backend/_cc.d)
  */
 
-module dmd.backend.cc;
+module destiny.backend.cc;
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cc.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cc.d
 
-import dmd.backend.barray;
-import dmd.backend.cdef;        // host and target compiler definition
-import dmd.backend.x86.code_x86;
-import dmd.backend.dt : dt_t;
-import dmd.backend.el;
-import dmd.backend.symbol;
-import dmd.backend.type;
+import destiny.backend.barray;
+import destiny.backend.cdef;        // host and target compiler definition
+import destiny.backend.x86.code_x86;
+import destiny.backend.dt : dt_t;
+import destiny.backend.el;
+import destiny.backend.symbol;
+import destiny.backend.type;
 
 @nogc:
 nothrow:
@@ -74,7 +74,7 @@ nothrow:
     void print(const(char)* func) const { Srcpos_print(this, func); }
 }
 
-import dmd.backend.dout : Srcpos_print;
+import destiny.backend.dout : Srcpos_print;
 
 /**********************************
  * Current 'state' of the compiler.
@@ -530,7 +530,7 @@ enum
     SFLspill        = 0x80000,     // only in register part of the time
 }
 
-public import dmd.backend.symbol : Symbol_Salignsize, Symbol_Sisdead, Symbol_isAffected;
+public import destiny.backend.symbol : Symbol_Salignsize, Symbol_Sisdead, Symbol_isAffected;
 
 
 // Class, struct or union
@@ -679,7 +679,7 @@ struct EEcontext
     code* EEcode;               // generated code
 }
 
-public import dmd.backend.ee : eecontext;
+public import destiny.backend.ee : eecontext;
 
 // Different goals for el_optimize()
 enum Goal : uint

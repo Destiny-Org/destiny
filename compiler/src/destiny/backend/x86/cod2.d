@@ -14,41 +14,41 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cod2.d, backend/cod2.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cod2.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/cod2.d, backend/cod2.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/cod2.d
  *
  */
 
-module dmd.backend.x86.cod2;
+module destiny.backend.x86.cod2;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.codebuilder;
-import dmd.backend.mem;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE, mask;
-import dmd.backend.debugprint : fl_str, oper_str, tym_str;
-import dmd.backend.util2 : ispow2;
-import dmd.backend.oper;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
-import dmd.backend.arm.cod2;
-import dmd.backend.x86.xmm;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.codebuilder;
+import destiny.backend.mem;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE, mask;
+import destiny.backend.debugprint : fl_str, oper_str, tym_str;
+import destiny.backend.util2 : ispow2;
+import destiny.backend.oper;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
+import destiny.backend.arm.cod2;
+import destiny.backend.x86.xmm;
 
 
 nothrow:
 @safe:
 
-import dmd.backend.cg : segfl, stackfl;
+import destiny.backend.cg : segfl, stackfl;
 
-import dmd.backend.divcoeff : choose_multiplier, udiv_coefficients;
+import destiny.backend.divcoeff : choose_multiplier, udiv_coefficients;
 
 /*******************************
  * Swap two registers.
@@ -186,7 +186,7 @@ void cdorth(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     //printf("cdorth(e = %p, pretregs = %s)\n",e,regm_str(pretregs));
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdorth(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdorth(cg, cdb, e, pretregs);
 
     elem* e1 = e.E1;
     elem* e2 = e.E2;
@@ -909,7 +909,7 @@ void cdorth(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cdmul(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdmul(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdmul(cg, cdb, e, pretregs);
 
     //printf("cdmul()\n");
     elem* e1 = e.E1;
@@ -1298,7 +1298,7 @@ void cdmul(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cddiv(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cddiv(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cddiv(cg, cdb, e, pretregs);
 
     //printf("cddiv()\n");
     elem* e1 = e.E1;
@@ -2012,7 +2012,7 @@ void cddiv(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cdnot(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdnot(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdnot(cg, cdb, e, pretregs);
 
     //printf("cdnot()\n");
     reg_t reg;
@@ -2194,7 +2194,7 @@ void cdcom(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     //printf("cdcom() pretregs: %s\n", regm_str(pretregs));
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdcom(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdcom(cg, cdb, e, pretregs);
 
     if (pretregs == 0)
     {
@@ -2243,7 +2243,7 @@ void cdcom(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cdbswap(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdbswap(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdbswap(cg, cdb, e, pretregs);
 
     if (pretregs == 0)
     {
@@ -2299,7 +2299,7 @@ void cdbswap(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cdcond(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdcond(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdcond(cg, cdb, e, pretregs);
 
     /* vars to save state of 8087 */
     NDP[global87.stack.length] _8087old;
@@ -2598,7 +2598,7 @@ void cdcomma(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cdloglog(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdloglog(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdloglog(cg, cdb, e, pretregs);
 
     /* We can trip the assert with the following:
      *    if ( (b<=a) ? (c<b || a<=c) : c>=a )
@@ -2740,7 +2740,7 @@ void cdloglog(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cdshift(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdshift(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdshift(cg, cdb, e, pretregs);
 
     //printf("cdshift()\n");
     reg_t resreg;
@@ -3230,7 +3230,7 @@ void cdshift(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cdind(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdind(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdind(cg, cdb, e, pretregs);
 
     regm_t retregs;
     reg_t reg;
@@ -3729,7 +3729,7 @@ void cdstrcmp(ref CGstate cg, ref CodeBuilder cdb, elem* e, ref regm_t pretregs)
 void cdmemcmp(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdmemcmp(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdmemcmp(cg, cdb, e, pretregs);
 
     char need_DS;
     int segreg;
@@ -3962,7 +3962,7 @@ void cdstrcpy(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cdmemcpy(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdmemcpy(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdmemcpy(cg, cdb, e, pretregs);
 
     char need_DS;
     int segreg;
@@ -4124,7 +4124,7 @@ void cdmemcpy(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cdmemset(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdmemset(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdmemset(cg, cdb, e, pretregs);
 
     regm_t retregs1;
     regm_t retregs3;
@@ -4430,7 +4430,7 @@ private void cdmemsetn(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pr
 void cdstreq(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdstreq(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdstreq(cg, cdb, e, pretregs);
 
     char need_DS = false;
     elem* e1 = e.E1;
@@ -4629,7 +4629,7 @@ void cdstreq(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cdrelconst(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdrelconst(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdrelconst(cg, cdb, e, pretregs);
 
     //printf("cdrelconst(e = %p, pretregs = %s)\n", e, regm_str(pretregs));
 
@@ -4735,7 +4735,7 @@ void cdrelconst(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void getoffset(ref CGstate cg, ref CodeBuilder cdb,elem* e,reg_t reg)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.getoffset(cg, cdb, e, reg);
+        return destiny.backend.arm.cod2.getoffset(cg, cdb, e, reg);
 
     //printf("getoffset(e = %p, reg = %s)\n", e, regm_str(mask(reg)));
     code cs;
@@ -4980,7 +4980,7 @@ void getoffset(ref CGstate cg, ref CodeBuilder cdb,elem* e,reg_t reg)
 void cdneg(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdneg(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdneg(cg, cdb, e, pretregs);
 
     //printf("cdneg()\n");
     //elem_print(e);
@@ -5069,7 +5069,7 @@ void cdabs(ref CGstate cg, ref CodeBuilder cdb,elem* e, ref regm_t pretregs)
 {
     //printf("cdabs(e = %p, pretregs = %s)\n", e, regm_str(pretregs));
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdabs(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdabs(cg, cdb, e, pretregs);
 
     if (pretregs == 0)
     {
@@ -5193,7 +5193,7 @@ void cdpost(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
     {
-        import dmd.backend.arm.cod2 : cdpost;
+        import destiny.backend.arm.cod2 : cdpost;
         return cdpost(cg, cdb, e, pretregs);
     }
 
@@ -5779,7 +5779,7 @@ void cdvoid(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 void cdhalt(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod2.cdhalt(cg, cdb, e, pretregs);
+        return destiny.backend.arm.cod2.cdhalt(cg, cdb, e, pretregs);
 
     assert(pretregs == 0);
     cdb.gen1(config.target_cpu >= TARGET_80286 ? UD2 : INT3);

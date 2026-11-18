@@ -10,33 +10,33 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/dmd/backend/cgcs.d
+ * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/destiny/backend/cgcs.d
  *
  */
 
-module dmd.backend.cgcs;
+module destiny.backend.cgcs;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 
-import dmd.backend.backconfig : debugw, debugx;
-import dmd.backend.blockopt : BlockOpt;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.el;
-import dmd.backend.blockopt : block_compbcount, blockopt, bo;
-import dmd.backend.cgelem : elemisone;
-import dmd.backend.debugprint : oper_str;
-import dmd.backend.evalu8 : iftrue;
-import dmd.backend.go;
-import dmd.backend.symbol : symbol_print;
-import dmd.backend.oper;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.backconfig : debugw, debugx;
+import destiny.backend.blockopt : BlockOpt;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.el;
+import destiny.backend.blockopt : block_compbcount, blockopt, bo;
+import destiny.backend.cgelem : elemisone;
+import destiny.backend.debugprint : oper_str;
+import destiny.backend.evalu8 : iftrue;
+import destiny.backend.go;
+import destiny.backend.symbol : symbol_print;
+import destiny.backend.oper;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.barray;
-import dmd.backend.dvec;
+import destiny.backend.barray;
+import destiny.backend.dvec;
 
 
 nothrow:

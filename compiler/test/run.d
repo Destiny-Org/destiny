@@ -1,6 +1,6 @@
 #!/usr/bin/env rdmd
 /**
-DMD testsuite runner
+Destiny test-suite runner
 
 Usage:
   ./run.d <test-file>...
@@ -220,9 +220,9 @@ Options:
 /// Verify that the compiler has been built.
 void verifyCompilerExists(const string[string] env)
 {
-    if (!env["DMD"].exists)
+    if (!env["DESTINY"].exists)
     {
-        stderr.writefln("%s doesn't exist, try building dmd with:\nmake -fposix.mak -j8 -C%s", env["DMD"], scriptDir.dirName.relativePath);
+        stderr.writefln("%s doesn't exist, try building destiny with:\nmake -j8 -C%s destiny", env["DESTINY"], scriptDir.dirName.dirName.relativePath);
         quitSilently(1);
     }
 }
@@ -245,7 +245,7 @@ void prepareOutputDirectory(const string[string] env)
         {
             // Detect windows paths and translate them to POSIX compatible relative paths
             static immutable PATHS = [
-                "DMD",
+                "DESTINY",
                 "HOST_DC",
                 "LIB",
                 "RESULTS_DIR",
@@ -286,7 +286,7 @@ void ensureToolsExists(const string[string] env, const TestTool[] tools ...)
         auto lastModifiedBin = targetBin.timeLastModified.ifThrown(SysTime.init);
         if (lastModifiedBin >= sourceFile.timeLastModified)
         {
-            auto lastModifiedDmd = env["DMD"].timeLastModified.ifThrown(SysTime.init);
+            auto lastModifiedDmd = env["DESTINY"].timeLastModified.ifThrown(SysTime.init);
             if (!tool.linksWithTests || lastModifiedBin >= lastModifiedDmd)
             {
                 log("%s is already up-to-date", tool);
@@ -299,9 +299,9 @@ void ensureToolsExists(const string[string] env, const TestTool[] tools ...)
         if (tool.linksWithTests)
         {
             // This will compile the dshell library thus needs the actual
-            // DMD compiler under test
+            // Destiny compiler under test
             buildCommand = [
-                env["DMD"],
+                env["DESTINY"],
                 "-conf=",
                 "-m"~env["MODEL"],
                 "-of" ~ targetBin,
@@ -486,7 +486,7 @@ Target[] filterTargets(Target[] targets, const string[string] env)
         quitSilently(1);
 
     Target[] targetsThatNeedUpdating;
-    const dmdLastModified = env["DMD"].timeLastModified.ifThrown(SysTime.init);
+    const dmdLastModified = env["DESTINY"].timeLastModified.ifThrown(SysTime.init);
     foreach (t; targets)
     {
         immutable testName = t.normalizedTestName;
@@ -550,7 +550,7 @@ string[string] getEnvironment()
     env["DMD_MODEL"] = dmdModel;
     env["BUILD"] = build;
     env["EXE"] = exeExtension;
-    env["DMD"] = dmdPath;
+    env["DESTINY"] = dmdPath;
     env.setDefault("DMD_TEST_COVERAGE", "0");
 
     const generatedSuffix = "generated/%s/%s/%s".format(os, build, model);
@@ -586,7 +586,7 @@ string[string] getEnvironment()
             ~ " -L-L%s/%s".format(fatePath, generatedSuffix);
         bool isShared = environment.get("SHARED") != "0" && os.among("linux", "freebsd", "hurd") > 0;
         if (isShared)
-            env["DFLAGS"] = env["DFLAGS"] ~ " -defaultlib=libphobos2.so -L-rpath=%s/%s".format(fatePath, generatedSuffix);
+            env["DFLAGS"] = env["DFLAGS"] ~ " -defaultlib=libfate.so -L-rpath=%s/%s".format(fatePath, generatedSuffix);
 
         if (pic)
             env["REQUIRED_ARGS"] = environment.get("REQUIRED_ARGS") ~ " " ~ env["PIC_FLAG"];

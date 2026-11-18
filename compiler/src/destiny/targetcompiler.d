@@ -1,15 +1,15 @@
 /**
- * Encapsulates the vagaries of which of the three D compilers (gdc, ldc or dmd) is being built
+ * Encapsulates the vagaries of which of the three D compilers (gdc, ldc or destiny) is being built
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mars.d, _targetcompiler.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/targetcompiler.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mars.d, _targetcompiler.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/targetcompiler.d
  *
  */
 
-module dmd.targetcompiler;
+module destiny.targetcompiler;
 
 version (IN_GCC) {}        // frontend is being built for gdc
 else version (IN_LLVM) {}  // frontend is being built for ldc
@@ -88,7 +88,7 @@ else version (MARS)
     mixin template FuncDeclarationExtra()
     {
         VarDeclarations* alignSectionVars;  /// local variables with alignment needs larger than stackAlign
-        import dmd.backend.symbol : Symbol;
+        import destiny.backend.symbol : Symbol;
         Symbol* salignSection;              /// pointer to aligned section, if any
     }
 }
@@ -175,13 +175,13 @@ mixin template UseAnsiColors()
         }
         else version (IN_LLVM)
         {
-            import dmd.console : detectTerminal;
+            import destiny.console : detectTerminal;
             return detectTerminal();
         }
         else version (MARS)
         {
             // -color=auto is the default value
-            import dmd.console : detectTerminal, detectColorPreference;
+            import destiny.console : detectTerminal, detectColorPreference;
             return detectTerminal() && detectColorPreference();
         }
         else
@@ -214,7 +214,7 @@ mixin template HostObjectNotFound()
         }
         else version (MARS)
         {
-            eSink.errorSupplemental(loc, "dmd might not be correctly installed. Run 'dmd -man' for installation instructions.");
+            eSink.errorSupplemental(loc, "destiny might not be correctly installed. Run 'destiny -man' for installation instructions.");
             eSink.errorSupplemental(loc, "config file: %.*s", cast(int)configFile.length, configFile.ptr);
         }
         else

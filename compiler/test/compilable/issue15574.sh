@@ -55,8 +55,8 @@ else
 fi
 ar rcs ${C_LIB} ${C_FILE}${OBJ}
 
-${DMD} -m${MODEL} -lib -of${D_LIB} ${D_FILE}
+${DESTINY} -m${MODEL} -lib -of${D_LIB} ${D_FILE}
 
-${DMD} -m${MODEL} -of${APP} ${APP_FILE} -I${TEST_DIR} ${D_LIB} -L-L${TEST_DIR} -L-lcsquare
+${DESTINY} -m${MODEL} -of${APP} ${APP_FILE} -I${TEST_DIR} ${D_LIB} -L-L${TEST_DIR} -L-lcsquare
 
 ${APP}

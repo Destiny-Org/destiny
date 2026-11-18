@@ -8,31 +8,31 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/nteh.d, backend/nteh.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/nteh.d, backend/nteh.d)
  *
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/nteh.d
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/nteh.d
  */
 
-module dmd.backend.x86.nteh;
+module destiny.backend.x86.nteh;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.codebuilder : CodeBuilder;
-import dmd.backend.dt;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE, symbol_keep;
-import dmd.backend.dout : outdata;
-import dmd.backend.symbol : symbol_add, symbol_generate, symbol_name, globsym;
-import dmd.backend.oper;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.codebuilder : CodeBuilder;
+import destiny.backend.dt;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE, symbol_keep;
+import destiny.backend.dout : outdata;
+import destiny.backend.symbol : symbol_add, symbol_generate, symbol_name, globsym;
+import destiny.backend.oper;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
 //static if (1) // NTEXCEPTIONS
 //{
@@ -41,7 +41,7 @@ import dmd.backend.type;
 nothrow:
 @safe:
 
-import dmd.backend.eh : except_fillInEHTable;
+import destiny.backend.eh : except_fillInEHTable;
 
 private __gshared
 {

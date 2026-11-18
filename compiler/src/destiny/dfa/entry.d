@@ -17,22 +17,22 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   $(LINK2 https://cattermole.co.nz, Richard (Rikki) Andrew Cattermole)
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/entry.d, dfa/entry.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/entry.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/entry.d, dfa/entry.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/entry.d
  *
  */
-module dmd.dfa.entry;
-import dmd.common.outbuffer;
-import dmd.func;
-import dmd.astenums;
-import dmd.globals;
-import dmd.mangle;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.attribsem;
-import dmd.expression;
-import dmd.id;
-import dmd.timetrace;
+module destiny.dfa.entry;
+import destiny.common.outbuffer;
+import destiny.func;
+import destiny.astenums;
+import destiny.globals;
+import destiny.mangle;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.attribsem;
+import destiny.expression;
+import destiny.id;
+import destiny.timetrace;
 import core.stdc.stdio;
 import core.stdc.string;
 
@@ -77,12 +77,12 @@ private:
  */
 void fastDFA(FuncDeclaration fd, Scope* sc)
 {
-    import dmd.dfa.fast.structure;
-    import dmd.dfa.fast.expression;
-    import dmd.dfa.fast.statement;
-    import dmd.dfa.fast.analysis;
-    import dmd.dfa.fast.report;
-    import dmd.dfa.utils;
+    import destiny.dfa.fast.structure;
+    import destiny.dfa.fast.expression;
+    import destiny.dfa.fast.statement;
+    import destiny.dfa.fast.analysis;
+    import destiny.dfa.fast.report;
+    import destiny.dfa.utils;
 
     if (fd.skipCodegen)
     {
@@ -283,7 +283,7 @@ void fastDFA(FuncDeclaration fd, Scope* sc)
 
     version (none)
     {
-        import dmd.hdrgen;
+        import destiny.hdrgen;
 
         OutBuffer buf;
         HdrGenState hgs;
@@ -327,8 +327,8 @@ void fastDFA(FuncDeclaration fd, Scope* sc)
 
 bool checkEscapes(FuncDeclaration fd, Scope* sc)
 {
-    import dmd.dfa.utils;
-    import dmd.printast;
+    import destiny.dfa.utils;
+    import destiny.printast;
 
     if (fd.getModule.ident.toString != "__fastdfa_escape_test")
         return false;

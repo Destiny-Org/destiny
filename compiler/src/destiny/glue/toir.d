@@ -4,73 +4,73 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/toir.d, _toir.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/toir.d, _toir.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.glue.toir;
+module destiny.glue.toir;
 
 import core.checkedint;
 import core.stdc.stdio;
 import core.stdc.string;
 import core.stdc.stdlib;
 
-import dmd.root.array;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
+import destiny.root.array;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
 
-import dmd.glue;
-import dmd.glue.e2ir;
-import dmd.glue.tocvdebug;
-import dmd.glue.tocsym;
-import dmd.glue.toctype;
+import destiny.glue;
+import destiny.glue.e2ir;
+import destiny.glue.tocvdebug;
+import destiny.glue.tocsym;
+import destiny.glue.toctype;
 
-import dmd.backend.cdef;
-import dmd.backend.cc;
-import dmd.backend.dt;
-import dmd.backend.el;
-import dmd.backend.blockopt : block_appendexp;
-import dmd.backend.symbol;
-import dmd.backend.oper;
-import dmd.backend.rtlsym;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.cdef;
+import destiny.backend.cc;
+import destiny.backend.dt;
+import destiny.backend.el;
+import destiny.backend.blockopt : block_appendexp;
+import destiny.backend.symbol;
+import destiny.backend.oper;
+import destiny.backend.rtlsym;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dmdparams;
-import dmd.dmodule;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem : followInstantiationContext, toParentP;
-import dmd.expressionsem : toInteger;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals : Param;
-import dmd.hdrgen : toErrMsg;
-import dmd.identifier;
-import dmd.id;
-import dmd.location;
-import dmd.mtype;
-import dmd.semantic3 : checkClosure;
-import dmd.typesem;
-import dmd.target;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dmdparams;
+import destiny.dmodule;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem : followInstantiationContext, toParentP;
+import destiny.expressionsem : toInteger;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals : Param;
+import destiny.hdrgen : toErrMsg;
+import destiny.identifier;
+import destiny.id;
+import destiny.location;
+import destiny.mtype;
+import destiny.semantic3 : checkClosure;
+import destiny.typesem;
+import destiny.target;
 
-package(dmd.glue):
+package(destiny.glue):
 
 private:
 
 /****************************************
  * Our label symbol
  */
-package(dmd.glue)
+package(destiny.glue)
 struct Label
 {
     block* lblock;      // The block to which the label is defined.
@@ -79,7 +79,7 @@ struct Label
 /***********************************************************
  * Collect state variables needed by the intermediate representation (IR)
  */
-package(dmd.glue)
+package(destiny.glue)
 struct IRState
 {
     Module m;                       // module
@@ -129,7 +129,7 @@ struct IRState
     {
         if (m.filetype == FileType.c)
             return false;
-        return dmd.funcsem.arrayBoundsCheck(getFunc());
+        return destiny.funcsem.arrayBoundsCheck(getFunc());
     }
 
     /**********************
@@ -138,7 +138,7 @@ struct IRState
      */
     bool nullDerefCheck()
     {
-        return countNullDerefCheckDisable == 0 && dmd.funcsem.nullDerefCheck(getFunc());
+        return countNullDerefCheckDisable == 0 && destiny.funcsem.nullDerefCheck(getFunc());
     }
 
     /****************************
@@ -163,7 +163,7 @@ struct IRState
  * References:
  * https://github.com/Destiny-Org/destiny/blob/main/README.md
  */
-package(dmd.glue)
+package(destiny.glue)
 extern (D) elem* incUsageElem(ref IRState irs, Loc loc)
 {
     uint linnum = loc.linnum;
@@ -206,7 +206,7 @@ extern (D) elem* incUsageElem(ref IRState irs, Loc loc)
  * 'origSc' is the original scope we inlined from.
  * This routine is critical for implementing nested functions.
  */
-package(dmd.glue)
+package(destiny.glue)
 elem* getEthis(Loc loc, ref IRState irs, Dsymbol fd, Dsymbol fdp = null, Dsymbol origSc = null)
 {
     elem* ethis;
@@ -423,7 +423,7 @@ elem* getEthis(Loc loc, ref IRState irs, Dsymbol fd, Dsymbol fdp = null, Dsymbol
  * Returns:
  *      *(ethis + offset);
  */
-package(dmd.glue)
+package(destiny.glue)
 elem* fixEthis2(elem* ethis, FuncDeclaration fd, bool ctxt2 = false)
 {
     if (fd && fd.hasDualContext)
@@ -441,7 +441,7 @@ elem* fixEthis2(elem* ethis, FuncDeclaration fd, bool ctxt2 = false)
  * Returns:
  *      *(ey + (ethis2 ? ad.vthis2 : ad.vthis).offset) = this;
  */
-package(dmd.glue)
+package(destiny.glue)
 elem* setEthis(Loc loc, ref IRState irs, elem* ey, AggregateDeclaration ad, bool setthis2 = false)
 {
     elem* ethis;
@@ -484,8 +484,8 @@ elem* setEthis(Loc loc, ref IRState irs, elem* ey, AggregateDeclaration ad, bool
     return ey;
 }
 
-package(dmd.glue) enum NotIntrinsic = -1;
-package(dmd.glue) enum OPtoPrec = OPMAX + 1; // front end only
+package(destiny.glue) enum NotIntrinsic = -1;
+package(destiny.glue) enum OPtoPrec = OPMAX + 1; // front end only
 
 /*******************************************
  * Convert intrinsic function to operator.
@@ -494,7 +494,7 @@ package(dmd.glue) enum OPtoPrec = OPMAX + 1; // front end only
  *      NotIntrinsic if not an intrinsic function,
  *      OPtoPrec if frontend-only intrinsic
  */
-package(dmd.glue)
+package(destiny.glue)
 int intrinsic_op(FuncDeclaration fd)
 {
     int op = NotIntrinsic;
@@ -640,7 +640,7 @@ Lva_start:
  * Returns:
  *      expression that initializes 'length'
  */
-package(dmd.glue)
+package(destiny.glue)
 elem* resolveLengthVar(VarDeclaration lengthVar, elem **pe, Type t1)
 {
     //printf("resolveLengthVar()\n");
@@ -687,7 +687,7 @@ elem* resolveLengthVar(VarDeclaration lengthVar, elem **pe, Type t1)
  *      sthis = the symbol of the current 'this' derived from fd.vthis
  *      fd = the nested function
  */
-package(dmd.glue)
+package(destiny.glue)
 type* getParentClosureType(Symbol* sthis, FuncDeclaration fd)
 {
     if (sthis)
@@ -723,7 +723,7 @@ type* getParentClosureType(Symbol* sthis, FuncDeclaration fd)
  * Returns:
  *      overall alignment of the closure
  */
-package(dmd.glue)
+package(destiny.glue)
 uint setClosureVarOffset(FuncDeclaration fd)
 {
     // Nothing to do
@@ -801,7 +801,7 @@ uint setClosureVarOffset(FuncDeclaration fd)
  * getEthis() and NewExp::toElem need to use sclosure, if set, rather
  * than the current frame pointer.
  */
-package(dmd.glue)
+package(destiny.glue)
 void buildClosure(FuncDeclaration fd, ref IRState irs)
 {
     //printf("buildClosure(fd = %s)\n", fd.toChars());
@@ -1028,7 +1028,7 @@ void buildClosure(FuncDeclaration fd, ref IRState irs)
  *      upstream dmd pull request 9143 was an incomplete attempt to solve this problem
  *      that was merged. It should probably be removed.
  */
-package(dmd.glue)
+package(destiny.glue)
 void buildAlignSection(FuncDeclaration fd, ref IRState irs)
 {
     enum log = false;
@@ -1133,7 +1133,7 @@ void buildAlignSection(FuncDeclaration fd, ref IRState irs)
  * Params:
  *      fd = function
  */
-package(dmd.glue)
+package(destiny.glue)
 void buildCapture(FuncDeclaration fd)
 {
     if (!driverParams.symdebug)
@@ -1184,7 +1184,7 @@ void buildCapture(FuncDeclaration fd)
  * Returns:
  *   RET.stack if return value from function is on the stack, RET.regs otherwise
  */
-package(dmd.glue)
+package(destiny.glue)
 RET retStyle(TypeFunction tf, bool needsThis)
 {
     //printf("TypeFunction.retStyle() %s\n", toChars());

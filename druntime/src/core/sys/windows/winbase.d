@@ -20,7 +20,7 @@ LockSegment(w), MakeProcInstance(p, i), UnlockResource(h), UnlockSegment(w)
 FreeModule(m), FreeProcInstance(p), GetFreeSpace(w), DefineHandleTable(w)
 SetSwapAreaSize(w), LimitEmsPages(n), Yield()
 
-// These are not required for DMD.
+// These are not required for Destiny.
 
 //FIXME:
 // #ifndef UNDER_CE

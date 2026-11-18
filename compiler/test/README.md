@@ -217,12 +217,12 @@ will be ignored.
 
 The following is a list of all available settings:
 
-    ARG_SETS:            sets off extra arguments to invoke $(DMD) with (seperated by ';').
+    ARG_SETS:            sets off extra arguments to invoke $(DESTINY) with (seperated by ';').
                          default: (none)
 
     COMPILE_SEPARATELY:  if present, forces each .d file to compile separately and linked
                          together in an extra setup. May specify additional parameters which
-                         are passed to $(DMD) when linking the generated object files.
+                         are passed to $(DESTINY) when linking the generated object files.
                          default: (none, aka compile/link all in one step)
 
     COMPILED_IMPORTS:    list of modules files that are imported by the main source file that
@@ -297,7 +297,7 @@ The following is a list of all available settings:
                         expected TEST_OUTPUT as defined below.
                         default: (none)
 
-    PERMUTE_ARGS:        the set of arguments to permute in multiple $(DMD) invocations.
+    PERMUTE_ARGS:        the set of arguments to permute in multiple $(DESTINY) invocations.
                          An empty set means only one permutation with no arguments.
                          default: the make variable ARGS (see below)
 
@@ -307,9 +307,9 @@ The following is a list of all available settings:
                                of the compile/link/run steps is added as the last parameter.
                          default: (none)
 
-    REQUIRED_ARGS:       arguments to add to the $(DMD) command line
+    REQUIRED_ARGS:       arguments to add to the $(DESTINY) command line
                          default: (none)
-                         note: the make variable REQUIRED_ARGS is also added to the $(DMD)
+                         note: the make variable REQUIRED_ARGS is also added to the $(DESTINY)
                                command line (see below)
                          note: if you provide a platform string, it becomes a white list.
                                add a second without the platform list so that it runs on all targets.
@@ -375,7 +375,7 @@ Environment variables
     ARGS:          set to execute all combinations of
     AUTO_UPDATE:   set to 1 to auto-update mismatching test output
     CC:            C++ compiler to use, ex: cl, g++
-    DMD:           compiler to use, ex: ../src/dmd (required)
+    DMD:           compiler to use, ex: ../src/destiny (required)
     MODEL:         32 or 64 (required)
     OS:            windows, linux, freebsd, osx, netbsd, dragonflybsd
     REQUIRED_ARGS: arguments always passed to the compiler

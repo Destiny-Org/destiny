@@ -8,33 +8,33 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/dmd/backend/symbol.d
+ * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/destiny/backend/symbol.d
  */
 
-module dmd.backend.symbol;
+module destiny.backend.symbol;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.barray;
-import dmd.backend.backconfig : debugy;
-import dmd.backend.blockopt : blocklist_free, bo;
-import dmd.backend.cdef;
-import dmd.backend.cc;
-import dmd.backend.code;
-import dmd.backend.cgcv;
-import dmd.backend.dt;
-import dmd.backend.dvec;
-import dmd.backend.el;
-import dmd.backend.global : err_nomem, symbol_keep;
-import dmd.backend.debugprint : class_str, fl_str;
-import dmd.backend.mem;
-import dmd.backend.oper;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.barray;
+import destiny.backend.backconfig : debugy;
+import destiny.backend.blockopt : blocklist_free, bo;
+import destiny.backend.cdef;
+import destiny.backend.cc;
+import destiny.backend.code;
+import destiny.backend.cgcv;
+import destiny.backend.dt;
+import destiny.backend.dvec;
+import destiny.backend.el;
+import destiny.backend.global : err_nomem, symbol_keep;
+import destiny.backend.debugprint : class_str, fl_str;
+import destiny.backend.mem;
+import destiny.backend.oper;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.x86.code_x86;
+import destiny.backend.x86.code_x86;
 
 
 nothrow:

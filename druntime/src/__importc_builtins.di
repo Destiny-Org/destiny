@@ -36,7 +36,7 @@ alias __builtin_va_end = imported!"core.stdc.stdarg".va_end;
 
 alias __builtin_va_copy = imported!"core.stdc.stdarg".va_copy;
 
-/* dmd's ImportC rewrites __builtin_va_arg into an instantiation of va_arg
+/* destiny's ImportC rewrites __builtin_va_arg into an instantiation of va_arg
  */
 alias va_arg = imported!"core.stdc.stdarg".va_arg;
 

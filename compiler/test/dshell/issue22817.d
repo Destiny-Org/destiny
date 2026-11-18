@@ -5,7 +5,7 @@ int main()
     auto stderr_file = shellExpand("$OUTPUT_BASE/issue22817.err");
     auto stderr = File(stderr_file, "w");
 
-    string cmd = "$DMD -m$MODEL -c $EXTRA_FILES/issue22817.d";
+    string cmd = "$DESTINY -m$MODEL -c $EXTRA_FILES/issue22817.d";
     string expected = shellExpand("^Error: cannot find input file `$EXTRA_FILES" ~ SEP ~ "issue22817.d`");
 
     version (Windows)

@@ -7,12 +7,12 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/file.d, common/_file.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/file.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/common/file.d, common/_file.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/common/file.d
  *
  */
 
-module dmd.common.file;
+module destiny.common.file;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
@@ -24,9 +24,9 @@ import core.stdc.stdio : fprintf, remove, rename, stderr;
 import core.stdc.stdlib;
 import core.stdc.string : strerror, strlen, memcpy;
 
-import dmd.common.smallbuffer;
-import dmd.root.filename;
-import dmd.root.rmem;
+import destiny.common.smallbuffer;
+import destiny.root.filename;
+import destiny.root.rmem;
 
 version (Windows)
 {

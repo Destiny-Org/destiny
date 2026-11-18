@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/typinf.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/typinf.h
  */
 
 #pragma once
@@ -18,7 +18,7 @@ class TypeAArray;
 class TypeInfoDeclaration;
 struct Scope;
 
-namespace dmd
+namespace destiny
 {
     void genTypeInfo(Expression *e, Loc loc, Type *torig, Scope *sc);
     bool builtinTypeInfo(Type *t);

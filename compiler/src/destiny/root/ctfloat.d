@@ -4,12 +4,12 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/ctfloat.d, root/_ctfloat.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/ctfloat.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/ctfloat.d, root/_ctfloat.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/ctfloat.d
  *
  */
 
-module dmd.root.ctfloat;
+module destiny.root.ctfloat; @safe:
 
 static import core.math, core.stdc.math;
 import core.stdc.errno;
@@ -20,15 +20,15 @@ import core.stdc.string;
 nothrow:
 
 // Type used by the front-end for compile-time reals
-public import dmd.root.longdouble : real_t = longdouble;
-import dmd.root.port;
+public import destiny.root.longdouble : real_t = longdouble;
+import destiny.root.port;
 
 private
 {
     version(CRuntime_Microsoft)
     {
-        import dmd.root.longdouble : longdouble_soft, ld_sprint;
-        import dmd.root.strtold : strtold = strtold_ms;
+        import destiny.root.longdouble : longdouble_soft, ld_sprint;
+        import destiny.root.strtold : strtold = strtold_ms;
     }
 }
 
@@ -67,13 +67,13 @@ extern (C++) struct CTFloat
 
     static if (!is(real_t == real))
     {
-        static import dmd.root.longdouble;
-        alias sin = dmd.root.longdouble.sinl;
-        alias cos = dmd.root.longdouble.cosl;
-        alias tan = dmd.root.longdouble.tanl;
-        alias sqrt = dmd.root.longdouble.sqrtl;
-        alias fabs = dmd.root.longdouble.fabsl;
-        alias ldexp = dmd.root.longdouble.ldexpl;
+        static import destiny.root.longdouble;
+        alias sin = destiny.root.longdouble.sinl;
+        alias cos = destiny.root.longdouble.cosl;
+        alias tan = destiny.root.longdouble.tanl;
+        alias sqrt = destiny.root.longdouble.sqrtl;
+        alias fabs = destiny.root.longdouble.fabsl;
+        alias ldexp = destiny.root.longdouble.ldexpl;
     }
     else
     {
@@ -91,10 +91,10 @@ extern (C++) struct CTFloat
         static real_t floor(real_t x) { return real_t(cast(double)core.stdc.math.floor(cast(double)x)); }
         static real_t ceil(real_t x) { return real_t(cast(double)core.stdc.math.ceil(cast(double)x)); }
         static real_t trunc(real_t x) { return real_t(cast(double)core.stdc.math.trunc(cast(double)x)); }
-        static import dmd.root.longdouble;
-        alias log = dmd.root.longdouble.logl;
-        alias log2 = dmd.root.longdouble.log2l;
-        alias log10 = dmd.root.longdouble.log10l;
+        static import destiny.root.longdouble;
+        alias log = destiny.root.longdouble.logl;
+        alias log2 = destiny.root.longdouble.log2l;
+        alias log10 = destiny.root.longdouble.log10l;
         static real_t pow(real_t x, real_t y) { return real_t(cast(double)core.stdc.math.powl(cast(double)x, cast(double)y)); }
         static real_t exp(real_t x) { return real_t(cast(double)core.stdc.math.expl(cast(double)x)); }
         static real_t expm1(real_t x) { return real_t(cast(double)core.stdc.math.expm1l(cast(double)x)); }
@@ -161,7 +161,7 @@ extern (C++) struct CTFloat
     pure @trusted
     static size_t hash(real_t a)
     {
-        import dmd.root.hash : calcHash;
+        import destiny.root.hash : calcHash;
 
         if (isNaN(a))
             a = real_t.nan;

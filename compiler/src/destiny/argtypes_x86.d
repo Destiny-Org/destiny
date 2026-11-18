@@ -4,25 +4,25 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/argtypes_x86.d, _argtypes_x86.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/argtypes_x86.d, _argtypes_x86.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.argtypes_x86;
+module destiny.argtypes_x86;
 
 import core.stdc.stdio;
 import core.checkedint;
 
-import dmd.astenums;
-import dmd.declaration;
-import dmd.dsymbolsem : isPOD;
-import dmd.expressionsem : toInteger;
-import dmd.location;
-import dmd.mtype;
-import dmd.typesem;
-import dmd.target;
-import dmd.visitor;
+import destiny.astenums;
+import destiny.declaration;
+import destiny.dsymbolsem : isPOD;
+import destiny.expressionsem : toInteger;
+import destiny.location;
+import destiny.mtype;
+import destiny.typesem;
+import destiny.target;
+import destiny.visitor;
 
 /****************************************************
  * This breaks a type down into 'simpler' types that can be passed to a function

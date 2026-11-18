@@ -9,7 +9,7 @@ void main()
     const(ubyte)[] first;
     foreach (i; 0 .. 10)
     {
-        run("$DMD -m$MODEL -c -inline -of$OUTPUT_BASE/test23745$OBJ"
+        run("$DESTINY -m$MODEL -c -inline -of$OUTPUT_BASE/test23745$OBJ"
             ~ " $EXTRA_FILES/test23745.d");
         const bytes = cast(const(ubyte)[]) std.file.read(obj);
         if (i == 0)

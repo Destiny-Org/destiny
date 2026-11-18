@@ -21,6 +21,6 @@ src="$bin_base.d"
 echo 'void main() {}' > "${src}"
 
 # Only compile, don't link, since the Microsoft linker doesn't implicitly support long paths
-$DMD -m"${MODEL}" "${DFLAGS}" -c -of"${bin}" "${src}"
+$DESTINY -m"${MODEL}" "${DFLAGS}" -c -of"${bin}" "${src}"
 
 rm_retry -r "${OUTPUT_BASE}"

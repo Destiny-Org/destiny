@@ -7,7 +7,7 @@
 exePath="${OUTPUT_BASE}${EXE}"
 outputPath="${OUTPUT_BASE}.out"
 
-$DMD -m${MODEL} "-of$exePath" ${EXTRA_FILES}/test24590.d
+$DESTINY -m${MODEL} "-of$exePath" ${EXTRA_FILES}/test24590.d
 
 ec=0
 "$exePath" &> "$outputPath" || ec=$?

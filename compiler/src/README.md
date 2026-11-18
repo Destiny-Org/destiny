@@ -12,7 +12,7 @@ The compiler can be built using the integrated build system `build.d`.
 ```
 
 Building requires a host D compiler. Destiny uses upstream dmd 2.113.1 (install it with
-`ci/host_compiler.sh dmd`); the build defaults to `dmd` as found on the path. This behaviour can be overriden
+`ci/host_compiler.sh destiny`); the build defaults to `destiny` as found on the path. This behaviour can be overriden
 by explicitly specifying a different host compiler using the `HOST_DC` variable.
 
 ```console
@@ -58,7 +58,7 @@ Note: This is currently not supported on windows.
 ### cpp-layout-test
 
 Verifies that the manually maintained C++ headers in
-[`compiler/include/dmd/`](../include/dmd/) stay in sync with the D
+[`compiler/include/destiny/`](../include/destiny/) stay in sync with the D
 `extern(C++)` declarations in the compiler source. Checks enum constant
 values, field offsets and sizes, class instance sizes, vtable indices,
 and C++ mangled names.

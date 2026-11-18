@@ -6,32 +6,32 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dscope.d, _dscope.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dscope.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dscope.d, _dscope.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dscope.d
  *
  */
 
-module dmd.dscope;
+module destiny.dscope;
 
 import core.stdc.stdio;
 import core.stdc.string;
-import dmd.aggregate;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.ctorflow;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dmodule;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.func;
-import dmd.globals : FeatureState, Param;
-import dmd.identifier;
-import dmd.location : Loc;
-import dmd.root.rmem;
-import dmd.statement;
+import destiny.aggregate;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.ctorflow;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dmodule;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.func;
+import destiny.globals : FeatureState, Param;
+import destiny.identifier;
+import destiny.location : Loc;
+import destiny.root.rmem;
+import destiny.statement;
 
 //version=LOGSEARCH;
 
@@ -92,11 +92,11 @@ private extern (D) struct NonFlagBitFields
 }
 /// State of -preview switches
 ///
-/// By making them part of a Scope, we reduce reliance on dmd.globals,
+/// By making them part of a Scope, we reduce reliance on destiny.globals,
 /// and can enable/disable them per module / edition.
 private struct Previews
 {
-    // Run `dmd -preview=h` for the meaning of these switches
+    // Run `destiny -preview=h` for the meaning of these switches
     private extern (D) static struct BitFields
     {
         bool bitfields;
@@ -115,7 +115,7 @@ private struct Previews
         FeatureState systemVariables;
     }
 
-    import dmd.common.bitfields : generateBitFields;
+    import destiny.common.bitfields : generateBitFields;
     mixin(generateBitFields!(BitFields, ushort));
 
     void setFromParams(ref Param params) @nogc nothrow pure @safe
@@ -194,7 +194,7 @@ extern (C++) struct Scope
 
     DeprecatedDeclaration depdecl;  /// customized deprecation message
 
-    import dmd.common.bitfields : generateBitFields;
+    import destiny.common.bitfields : generateBitFields;
     mixin(generateBitFields!(FlagBitFields, uint));
     private ushort bitFields2;
     mixin(generateBitFields!(NonFlagBitFields, ushort, "bitFields2"));
@@ -498,7 +498,7 @@ extern (C++) struct Scope
         return false;
     }
     /**
-     * dmd relies on mutation of state during semantic analysis, however
+     * destiny relies on mutation of state during semantic analysis, however
      * sometimes semantic is being performed in a speculative context that should
      * not have any visible effect on the rest of the compilation: for example when compiling
      * a typeof() or __traits(compiles).

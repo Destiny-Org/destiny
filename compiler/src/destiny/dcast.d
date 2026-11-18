@@ -4,49 +4,49 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dcast.d, _dcast.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dcast.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dcast.d, _dcast.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dcast.d
  *
  */
 
-module dmd.dcast;
+module destiny.dcast;
 
 import core.stdc.stdio;
 import core.stdc.string;
-import dmd.aggregate;
-import dmd.arrayop;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dinterpret;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.location;
-import dmd.impcnvtab;
-import dmd.importc;
-import dmd.init;
-import dmd.intrange;
-import dmd.mtype;
-import dmd.opover;
-import dmd.optimize;
-import dmd.root.ctfloat;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.root.utf;
-import dmd.safe : setUnsafe;
-import dmd.tokens;
-import dmd.typesem;
+import destiny.aggregate;
+import destiny.arrayop;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dinterpret;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.location;
+import destiny.impcnvtab;
+import destiny.importc;
+import destiny.init;
+import destiny.intrange;
+import destiny.mtype;
+import destiny.opover;
+import destiny.optimize;
+import destiny.root.ctfloat;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.root.utf;
+import destiny.safe : setUnsafe;
+import destiny.tokens;
+import destiny.typesem;
 
 enum LOG = false;
 
@@ -1926,7 +1926,7 @@ MATCH implicitConvTo(Type from, Type to)
 
     MATCH visitEnum(TypeEnum from)
     {
-        import dmd.enumsem : getMemtype;
+        import destiny.enumsem : getMemtype;
 
         MATCH m;
         //printf("TypeEnum::implicitConvTo() %s to %s\n", from.toChars(), to.toChars());
@@ -2483,7 +2483,7 @@ Expression castTo(Expression e, Scope* sc, Type t, Type att = null)
             const szx = cast(ubyte) tb.nextOf().size();
             if (szx != se.sz && (e.length % szx) == 0)
             {
-                import dmd.utils: arrayCastBigEndian;
+                import destiny.utils: arrayCastBigEndian;
                 const data = e.peekData();
                 se.setData(arrayCastBigEndian(data, szx).ptr, data.length / szx, szx);
                 se.type = t;
@@ -4642,7 +4642,7 @@ IntRange getIntRange(Expression e)
 /**
  * A helper function to "cast" from expressions of type noreturn to
  * any other type - noreturn is implicitly convertible to any other type.
- * However, the dmd backend does not like a naive cast from a noreturn expression
+ * However, the destiny backend does not like a naive cast from a noreturn expression
  * (particularly an `assert(0)`) so this function generates:
  *
  * `(value, assert(0))` instead of `cast(to)(assert(0))`.

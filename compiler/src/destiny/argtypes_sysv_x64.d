@@ -4,22 +4,22 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     Martin Kinkelin
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/argtypes_sysv_x64.d, _argtypes_sysv_x64.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/argtypes_sysv_x64.d, _argtypes_sysv_x64.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.argtypes_sysv_x64;
+module destiny.argtypes_sysv_x64;
 
 import core.stdc.stdio;
-import dmd.astenums;
-import dmd.declaration;
-import dmd.dsymbolsem : isPOD;
-import dmd.mtype;
-import dmd.typesem;
-import dmd.expressionsem : toInteger;
-import dmd.target;
-import dmd.visitor;
+import destiny.astenums;
+import destiny.declaration;
+import destiny.dsymbolsem : isPOD;
+import destiny.mtype;
+import destiny.typesem;
+import destiny.expressionsem : toInteger;
+import destiny.target;
+import destiny.visitor;
 
 /****************************************************
  * This breaks a type down into 'simpler' types that can be passed to a function
@@ -68,7 +68,7 @@ TypeTuple toArgTypes_sysv_x64(Type t)
             assert(c == Class.sseUp);
 
         assert(size % 8 == 0);
-        import dmd.typesem : sarrayOf;
+        import destiny.typesem : sarrayOf;
         return new TypeTuple(new TypeVector(Type.tfloat64.sarrayOf(N)));
     }
 

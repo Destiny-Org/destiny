@@ -4,48 +4,48 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/escape.d, _escape.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/escape.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/escape.d, _escape.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/escape.d
  *
  */
 
-module dmd.escape;
+module destiny.escape;
 
 import core.stdc.stdio : printf;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.root.rmem;
+import destiny.root.rmem;
 
-import dmd.aggregate;
-import dmd.astenums;
-import dmd.declaration;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.errors : previewSupplementalFunc, previewErrorFunc;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals : FeatureState, global;
-import dmd.hdrgen : toErrMsg;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.printast;
-import dmd.rootobject;
-import dmd.safe;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
-import dmd.arraytypes;
+import destiny.aggregate;
+import destiny.astenums;
+import destiny.declaration;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.errors : previewSupplementalFunc, previewErrorFunc;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals : FeatureState, global;
+import destiny.hdrgen : toErrMsg;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.printast;
+import destiny.rootobject;
+import destiny.safe;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
+import destiny.arraytypes;
 
 private:
 
 /// Groups global state for escape checking together
-package(dmd) struct EscapeState
+package(destiny) struct EscapeState
 {
     // Maps `sequenceNumber` of a `VarDeclaration` to an object that contains the
     // reason it inferred or didn't infer `scope` for supplemental error messages
@@ -950,7 +950,7 @@ bool checkThrowEscape(ref Scope sc, Expression e, bool gag)
 public
 bool checkNewEscape(ref Scope sc, Expression e, bool gag)
 {
-    import dmd.globals: FeatureState;
+    import destiny.globals: FeatureState;
 
     //printf("[%s] checkNewEscape, e = %s\n", e.loc.toChars(), e.toChars());
     enum log = false;

@@ -11,31 +11,31 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   $(LINK2 https://cattermole.co.nz, Richard (Rikki) Andrew Cattermole)
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/expression.d, dfa/fast/expression.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/expression.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/fast/expression.d, dfa/fast/expression.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/fast/expression.d
  *
  */
-module dmd.dfa.fast.expression;
-import dmd.dfa.fast.analysis;
-import dmd.dfa.fast.report;
-import dmd.dfa.fast.statement;
-import dmd.dfa.fast.structure;
-import dmd.dfa.utils;
-import dmd.common.outbuffer;
-import dmd.location;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.typesem;
-import dmd.astenums;
-import dmd.tokens;
-import dmd.func;
-import dmd.declaration;
-import dmd.mtype;
-import dmd.dtemplate;
-import dmd.arraytypes;
-import dmd.rootobject;
-import dmd.id;
-import dmd.dsymbol;
+module destiny.dfa.fast.expression;
+import destiny.dfa.fast.analysis;
+import destiny.dfa.fast.report;
+import destiny.dfa.fast.statement;
+import destiny.dfa.fast.structure;
+import destiny.dfa.utils;
+import destiny.common.outbuffer;
+import destiny.location;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.typesem;
+import destiny.astenums;
+import destiny.tokens;
+import destiny.func;
+import destiny.declaration;
+import destiny.mtype;
+import destiny.dtemplate;
+import destiny.arraytypes;
+import destiny.rootobject;
+import destiny.id;
+import destiny.dsymbol;
 import core.stdc.stdio;
 
 /***********************************************************

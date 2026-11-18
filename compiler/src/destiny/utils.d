@@ -1,23 +1,23 @@
 /**
- * This module defines some utility functions for DMD.
+ * This module defines some utility functions for Destiny.
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/utils.d, _utils.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/utils.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/utils.d, _utils.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/utils.d
  *
  */
 
-module dmd.utils;
+module destiny.utils;
 
 import core.stdc.string;
-import dmd.errorsink;
-import dmd.location;
-import dmd.root.file;
-import dmd.root.filename;
-import dmd.common.outbuffer;
-import dmd.root.string;
+import destiny.errorsink;
+import destiny.location;
+import destiny.root.file;
+import destiny.root.filename;
+import destiny.common.outbuffer;
+import destiny.root.string;
 
 nothrow:
 
@@ -60,7 +60,7 @@ bool readFile(Loc loc, const(char)[] filename, ref OutBuffer buf)
 {
     if (File.read(filename, buf))
     {
-        import dmd.globals;
+        import destiny.globals;
         auto eSink = global.errorSink;
         eSink.error(loc, "error reading file `%.*s`", cast(int)filename.length, filename.ptr);
         return true;
@@ -85,7 +85,7 @@ extern (D) bool writeFile(Loc loc, const(char)[] filename, const void[] data)
         return false;
     if (!File.update(filename, data))
     {
-        import dmd.globals;
+        import destiny.globals;
         auto eSink = global.errorSink;
         eSink.error(loc, "error writing file '%.*s'", cast(int) filename.length, filename.ptr);
         return false;
@@ -111,7 +111,7 @@ bool ensurePathToNameExists(Loc loc, const(char)[] name)
     {
         if (!FileName.ensurePathExists(pt))
         {
-            import dmd.globals;
+            import destiny.globals;
             auto eSink = global.errorSink;
             eSink.error(loc, "cannot create directory %*.s", cast(int) pt.length, pt.ptr);
             FileName.free(pt.ptr);

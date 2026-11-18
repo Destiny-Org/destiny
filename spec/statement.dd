@@ -903,7 +903,7 @@ $(H3 $(LEGACY_LNAME2 foreach_with_ranges, foreach-with-ranges, Foreach over Stru
 
     $(P If the $(GLINK ForeachAggregate) is a struct or class object, but
         $(RELATIVE_LINK2 foreach_over_struct_and_classes, `opApply`) does not exist,
-        then $(D foreach) iteration will use $(LINK2 $(ROOT_DIR)phobos/std_range.html, range)
+        then $(D foreach) iteration will use $(LINK2 $(ROOT_DIR)fate/std_range.html, range)
         primitives. These primitives produce a series of elements.
     )
     $(P The following properties and methods must

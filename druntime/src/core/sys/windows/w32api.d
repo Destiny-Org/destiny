@@ -53,7 +53,7 @@ enum IE10  = 0x0A00;
  *  application will support.
  *
  *  Previously the minimum Windows 9x and Windows NT versions could be specified.  However, since
- *  Windows 9x is no longer supported, either by Microsoft or by DMD, this distinction has been
+ *  Windows 9x is no longer supported, either by Microsoft or by Destiny, this distinction has been
  *  removed in order to simplify the bindings.
  */
 version (Windows11) {
@@ -73,7 +73,7 @@ version (Windows11) {
 } else version (WindowsXP) {
     enum uint _WIN32_WINNT = _WIN32_WINNT_WINXP;
 } else version (Windows2000) {
-    // Current DMD doesn't support any version of Windows older than XP,
+    // Current Destiny doesn't support any version of Windows older than XP,
     // but third-party compilers could use this
     enum uint _WIN32_WINNT = _WIN32_WINNT_WIN2K;
 } else {

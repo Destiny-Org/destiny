@@ -5,59 +5,59 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/todt.d, _todt.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/todt.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/todt.d, _todt.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/todt.d
  *
  */
 
-module dmd.glue.todt;
+module destiny.glue.todt;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.root.array;
-import dmd.root.complex;
-import dmd.root.rmem;
+import destiny.root.array;
+import destiny.root.complex;
+import destiny.root.rmem;
 
-import dmd.glue;
-import dmd.glue.tocsym;
-import dmd.glue.toobj;
+import destiny.glue;
+import destiny.glue.tocsym;
+import destiny.glue.toobj;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.backend.type;
-import dmd.ctfeexpr;
-import dmd.declaration;
-import dmd.dcast : implicitConvTo;
-import dmd.dclass;
-import dmd.denum;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.id;
-import dmd.expressionsem : toBool, toInteger;
-import dmd.func;
-import dmd.globals;
-import dmd.hdrgen : toErrMsg;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.optimize;
-import dmd.semantic3 : search_toString;
-import dmd.target;
-import dmd.templatesem;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.backend.type;
+import destiny.ctfeexpr;
+import destiny.declaration;
+import destiny.dcast : implicitConvTo;
+import destiny.dclass;
+import destiny.denum;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.id;
+import destiny.expressionsem : toBool, toInteger;
+import destiny.func;
+import destiny.globals;
+import destiny.hdrgen : toErrMsg;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.optimize;
+import destiny.semantic3 : search_toString;
+import destiny.target;
+import destiny.templatesem;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
 
-import dmd.backend.cc;
-import dmd.backend.dt;
-import dmd.backend.symbol;
+import destiny.backend.cc;
+import destiny.backend.dt;
+import destiny.backend.symbol;
 
-package(dmd.glue):
+package(destiny.glue):
 
 /* A dt_t is a simple structure representing data to be added
  * to the data segment of the output object file. As such,
@@ -453,8 +453,8 @@ void Expression_toDt(Expression e, ref DtBuilder dtb)
                 }
                 else if (e.sz == 1)
                 {
-                    import dmd.glue.e2ir : toStringSymbol;
-                    import dmd.glue : totym;
+                    import destiny.glue.e2ir : toStringSymbol;
+                    import destiny.glue : totym;
                     Symbol* s = toStringSymbol(p, n, e.sz);
                     dtb.xoff(s, 0);
                 }
@@ -1476,7 +1476,7 @@ private extern (C++) class TypeInfoDtVisitor : Visitor
 
         if (sd.semanticRun < PASS.semantic3done)
         {
-            import dmd.semantic3 : semanticTypeInfoMembers;
+            import destiny.semantic3 : semanticTypeInfoMembers;
             semanticTypeInfoMembers(sd);
         }
 

@@ -238,7 +238,7 @@ int foo(int x) // foo() is never inlined
     $(IMPLEMENTATION_DEFINED
     $(OL
     $(LI The default inline behavior is typically selectable with a compiler switch
-    such as $(DDSUBLINK dmd, switch-inline, $(TT -inline).))
+    such as $(DDSUBLINK destiny, switch-inline, $(TT -inline).))
     $(LI Whether a particular function can be inlined or not is implementation defined.)
     $(LI What happens for `pragma(inline, true)` if the function cannot be inlined.
     An error message is typical.)

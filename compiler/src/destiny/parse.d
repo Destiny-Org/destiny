@@ -6,35 +6,35 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/parse.d, _parse.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/parse.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/parse.d, _parse.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/parse.d
  *
  */
 
-module dmd.parse;
+module destiny.parse;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.astenums;
-import dmd.errorsink;
-import dmd.id;
-import dmd.identifier;
-import dmd.lexer;
-import dmd.location;
-import dmd.root.filename;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.rootobject;
-import dmd.root.string;
-import dmd.tokens;
-import dmd.expression;
+import destiny.astenums;
+import destiny.errorsink;
+import destiny.id;
+import destiny.identifier;
+import destiny.lexer;
+import destiny.location;
+import destiny.root.filename;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.rootobject;
+import destiny.root.string;
+import destiny.tokens;
+import destiny.expression;
 
-alias CompileEnv = dmd.lexer.CompileEnv;
+alias CompileEnv = destiny.lexer.CompileEnv;
 
 /***********************************************************
  */
-class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
+class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
 {
     AST.ModuleDeclaration* md;
 

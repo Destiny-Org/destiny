@@ -8,32 +8,32 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cgreg.d, backend/cgreg.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/cgreg.d, backend/cgreg.d)
  */
 
-module dmd.backend.x86.cgreg;
+module destiny.backend.x86.cgreg;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.backconfig : debugr;
-import dmd.backend.blockopt : bo;
-import dmd.backend.cdef;
-import dmd.backend.cc;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE, mask;
-import dmd.backend.symbol : symbol_print, SYMIDX;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.codebuilder;
-import dmd.backend.oper;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.backconfig : debugr;
+import destiny.backend.blockopt : bo;
+import destiny.backend.cdef;
+import destiny.backend.cc;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE, mask;
+import destiny.backend.symbol : symbol_print, SYMIDX;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.codebuilder;
+import destiny.backend.oper;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.barray;
-import dmd.backend.dvec;
+import destiny.backend.barray;
+import destiny.backend.dvec;
 
 
 nothrow:

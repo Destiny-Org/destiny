@@ -1,4 +1,4 @@
-import core.runtime;
+@system: import core.runtime; // Destiny: sets a @system handler and calls C stdio
 
 UnitTestResult customModuleUnitTester()
 {

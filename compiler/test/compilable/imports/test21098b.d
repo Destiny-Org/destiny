@@ -1,4 +1,4 @@
-import imports.test21098_phobos : Appender, Nullable;
+import imports.test21098_fate : Appender, Nullable;
 
 struct Type {
     Nullable!(Type[]) templateArgs;

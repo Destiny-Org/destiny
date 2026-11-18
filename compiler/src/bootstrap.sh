@@ -44,10 +44,10 @@ fi
 
 HOST_DC_ROOT="${GENERATED}/host_dmd-${HOST_DC_VER}"
 if [ "$OS" == "freebsd" ] ; then
-    # dmd.2.095.0.freebsd-64.tar.xz
+    # destiny.2.095.0.freebsd-64.tar.xz
     HOST_DC_BASENAME=dmd.${HOST_DC_VER}.${OS}-${MODEL}
 else
-    # dmd.2.095.0.osx.zip or dmd.2.095.0.linux.tar.xz
+    # destiny.2.095.0.osx.zip or destiny.2.095.0.linux.tar.xz
     HOST_DC_BASENAME=dmd.${HOST_DC_VER}.${OS}
 fi
 # The host compiler comes from the Destiny-Org mirror (see ci/host_compiler.sh), e.g.

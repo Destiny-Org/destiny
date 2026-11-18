@@ -4,12 +4,12 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mtype.d, _mtype.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mtype.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mtype.d, _mtype.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mtype.d
  *
  */
 
-module dmd.mtype;
+module destiny.mtype;
 
 import core.checkedint;
 import core.stdc.stdarg;
@@ -17,27 +17,27 @@ import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.attrib;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.ast_node;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dtemplate;
-import dmd.expression;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.rootobject;
-import dmd.root.stringtable;
-import dmd.tokens;
-import dmd.visitor;
+import destiny.attrib;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.ast_node;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dtemplate;
+import destiny.expression;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.rootobject;
+import destiny.root.stringtable;
+import destiny.tokens;
+import destiny.visitor;
 
 enum LOGDOTEXP = 0;         // log ::dotExp()
 
@@ -408,7 +408,7 @@ extern (C++) abstract class Type : ASTNode
          *
          * NOTE: The cache stores the naked type at the "identity" position.
          * For example, a "shared const T" type will have its naked "T" type
-         * in the field "scto". See also: dmd.typesem.nakedOf(Type).
+         * in the field "scto". See also: destiny.typesem.nakedOf(Type).
          */
         Type cto;       // MODFlags.const_
         Type ito;       // MODFlags.immutable_
@@ -631,7 +631,7 @@ extern (C++) abstract class Type : ASTNode
      */
     final override const(char)* toChars() const
     {
-        return dmd.hdrgen.toChars(this);
+        return destiny.hdrgen.toChars(this);
     }
 
     /// ditto
@@ -1372,7 +1372,7 @@ extern (C++) final class TypeFunction : TypeNext
         bool isCtfeOnly;       /// is @__ctfe
     }
 
-    import dmd.common.bitfields : generateBitFields;
+    import destiny.common.bitfields : generateBitFields;
     mixin(generateBitFields!(BitFields, ushort));
 
     LINK linkage;               // calling convention
@@ -2313,7 +2313,7 @@ extern (C++) struct ParameterList
  */
 extern (C++) final class Parameter : ASTNode
 {
-    import dmd.attrib : UserAttributeDeclaration;
+    import destiny.attrib : UserAttributeDeclaration;
 
     Loc loc;
     STC storageClass;
@@ -2670,7 +2670,7 @@ void attributesApply(const TypeFunction tf, scope void delegate(string) dg, TRUS
     if (tf.isProperty)
         dg("@property");
 
-    /* The following is more or less like dmd.hdrgen.stcToBuffer(), in the future
+    /* The following is more or less like destiny.hdrgen.stcToBuffer(), in the future
      * it should be merged. The idea is consistent ordering
      */
     STC stc;

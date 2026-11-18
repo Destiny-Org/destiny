@@ -4,12 +4,12 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/file.d, root/_file.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/file.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/file.d, root/_file.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/file.d
  *
  */
 
-module dmd.root.file;
+module destiny.root.file;
 
 import core.stdc.errno;
 import core.stdc.stdio;
@@ -19,13 +19,13 @@ import core.sys.posix.unistd;
 import core.sys.windows.winbase;
 import core.sys.windows.winnt;
 
-import dmd.root.filename;
-import dmd.root.rmem;
-import dmd.root.string;
+import destiny.root.filename;
+import destiny.root.rmem;
+import destiny.root.string;
 
-import dmd.common.file;
-import dmd.common.outbuffer;
-import dmd.common.smallbuffer;
+import destiny.common.file;
+import destiny.common.outbuffer;
+import destiny.common.smallbuffer;
 
 nothrow:
 
@@ -157,7 +157,7 @@ nothrow:
     /// Write a file, returning `true` on success.
     static bool write(const(char)* name, const void[] data)
     {
-        import dmd.common.file : writeFile;
+        import destiny.common.file : writeFile;
         return writeFile(name, data);
     }
 

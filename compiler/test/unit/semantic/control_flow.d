@@ -1,13 +1,13 @@
-// Tests regarding src/dmd/blockexit.d
+// Tests regarding src/destiny/blockexit.d
 //
 // See ../../README.md for information about DMD unit tests.
 
 module semantic.control_flow; @system:
 
-import dmd.blockexit : BE;
-import dmd.func : FuncDeclaration;
-import dmd.statement : Statement;
-import dmd.visitor : Visitor;
+import destiny.blockexit : BE;
+import destiny.func : FuncDeclaration;
+import destiny.statement : Statement;
+import destiny.visitor : Visitor;
 
 import support;
 
@@ -800,7 +800,7 @@ alias Handler = void delegate(FuncDeclaration);
  +/
 void executeTest(const string code, Handler handler)
 {
-    import dmd.visitor : SemanticTimeTransitiveVisitor;
+    import destiny.visitor : SemanticTimeTransitiveVisitor;
 
     /// Visitor that searches the AST for a `FuncDeclaration` named `test`
     extern (C++) static final class TestVisitor : SemanticTimeTransitiveVisitor
@@ -897,8 +897,8 @@ string beToString(const int be)
  +/
 void testBlockExit(FuncDeclaration fd, Statement stmt, const BE expected)
 {
-    import dmd.globals : global;
-    import dmd.blockexit : blockExit;
+    import destiny.globals : global;
+    import destiny.blockexit : blockExit;
 
     assert(fd);
     assert(stmt);
@@ -916,13 +916,13 @@ void testBlockExit(FuncDeclaration fd, Statement stmt, const BE expected)
 /// Initialize the frontend before each test
 @beforeEach void initializeFrontend()
 {
-    import dmd.frontend : initDMD;
+    import destiny.frontend : initDMD;
     initDMD();
 }
 
 /// Deinitialize the frontend after each test
 @afterEach void deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }

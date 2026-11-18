@@ -4,21 +4,21 @@ module parser.diagnostic_reporter; @system:
 
 import core.stdc.stdarg;
 
-import dmd.frontend : parseModule;
-import dmd.globals : global, DiagnosticReporting;
-import dmd.location;
+import destiny.frontend : parseModule;
+import destiny.globals : global, DiagnosticReporting;
+import destiny.location;
 
 import support : afterEach, beforeEach, NoopDiagnosticReporter;
 
 @beforeEach initializeFrontend()
 {
-    import dmd.frontend : initDMD;
+    import destiny.frontend : initDMD;
     initDMD();
 }
 
 @afterEach deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }
 

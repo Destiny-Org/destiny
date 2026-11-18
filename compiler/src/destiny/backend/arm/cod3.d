@@ -13,48 +13,48 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/arm/cod3.d, backend/cod3.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/arm/cod3.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/arm/cod3.d, backend/cod3.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/arm/cod3.d
  *
  */
 
-module dmd.backend.arm.cod3;
+module destiny.backend.arm.cod3;
 
 import core.bitop;
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.backconfig : debugc;
-import dmd.backend.barray;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.cgcse;
-import dmd.backend.code;
-import dmd.backend.arm.cod1 : loadFromEA, storeToEA, getlvalue;
-import dmd.backend.arm.disasmarm : encodeHFD;
-import dmd.backend.x86.cgcod : disassemble;
-import dmd.backend.x86.code_x86;
-import dmd.backend.x86.cod3;
-import dmd.backend.codebuilder;
-import dmd.backend.dvec;
-import dmd.backend.melf;
-import dmd.backend.mem;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE, mask;
-import dmd.backend.cg : localgot;
-import dmd.backend.debugprint : fl_str, tym_str;
-import dmd.backend.dwarfdbginf : dwarf_CFA_offset, dwarf_CFA_set_loc;
-import dmd.backend.evalu8 : boolres;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
-import dmd.backend.x86.xmm;
+import destiny.backend.backconfig : debugc;
+import destiny.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.cgcse;
+import destiny.backend.code;
+import destiny.backend.arm.cod1 : loadFromEA, storeToEA, getlvalue;
+import destiny.backend.arm.disasmarm : encodeHFD;
+import destiny.backend.x86.cgcod : disassemble;
+import destiny.backend.x86.code_x86;
+import destiny.backend.x86.cod3;
+import destiny.backend.codebuilder;
+import destiny.backend.dvec;
+import destiny.backend.melf;
+import destiny.backend.mem;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE, mask;
+import destiny.backend.cg : localgot;
+import destiny.backend.debugprint : fl_str, tym_str;
+import destiny.backend.dwarfdbginf : dwarf_CFA_offset, dwarf_CFA_set_loc;
+import destiny.backend.evalu8 : boolres;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
+import destiny.backend.x86.xmm;
 
-import dmd.backend.arm.instr;
+import destiny.backend.arm.instr;
 
 nothrow:
 @safe:

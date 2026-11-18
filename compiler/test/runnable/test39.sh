@@ -2,18 +2,18 @@
 
 
 
-$DMD -m${MODEL} -I${TEST_DIR} -od${RESULTS_TEST_DIR} -c ${EXTRA_FILES}/test39.d
+$DESTINY -m${MODEL} -I${TEST_DIR} -od${RESULTS_TEST_DIR} -c ${EXTRA_FILES}/test39.d
 
-$DMD -m${MODEL} -I${TEST_DIR} -od${RESULTS_TEST_DIR} -c ${TEST_DIR}/imports/test39a.d
+$DESTINY -m${MODEL} -I${TEST_DIR} -od${RESULTS_TEST_DIR} -c ${TEST_DIR}/imports/test39a.d
 libname=${OUTPUT_BASE}a${LIBEXT}
 
 if [ ${OS} == "windows" ]; then
-    $DMD -m${MODEL} -lib -of${libname} ${OUTPUT_BASE}a${OBJ}
+    $DESTINY -m${MODEL} -lib -of${libname} ${OUTPUT_BASE}a${OBJ}
 else
     ar -r ${libname} ${OUTPUT_BASE}a${OBJ}
 fi
 
-$DMD -m${MODEL} -of${OUTPUT_BASE}${EXE} ${OUTPUT_BASE}${OBJ} ${libname}
+$DESTINY -m${MODEL} -of${OUTPUT_BASE}${EXE} ${OUTPUT_BASE}${OBJ} ${libname}
 
 ${OUTPUT_BASE}${EXE}
 

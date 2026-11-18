@@ -24,31 +24,31 @@
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/deps.d, makedeps.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/deps.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/deps.d, makedeps.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/deps.d
  *
  */
-module dmd.deps;
+module destiny.deps;
 
 import core.stdc.stdio : printf;
 import core.stdc.string : strcmp;
-import dmd.common.outbuffer;
-import dmd.dimport : Import;
-import dmd.dmodule : Module;
-import dmd.globals : Param, Output;
-import dmd.hdrgen : visibilityToBuffer;
-import dmd.id : Id;
-import dmd.location : Loc;
-import dmd.root.filename;
-import dmd.root.string : toDString;
-import dmd.utils : escapePath;
+import destiny.common.outbuffer;
+import destiny.dimport : Import;
+import destiny.dmodule : Module;
+import destiny.globals : Param, Output;
+import destiny.hdrgen : visibilityToBuffer;
+import destiny.id : Id;
+import destiny.location : Loc;
+import destiny.root.filename;
+import destiny.root.string : toDString;
+import destiny.utils : escapePath;
 
 /**
  * Output the makefile dependencies for the -makedeps switch
  *
  * Params:
  *   buf = outbuffer to write into
- *   params = dmd params
+ *   params = destiny params
  *   link = an executable is being generated
  *   lib = a library is being generated
  *   libExt = file extension of libraries for current target

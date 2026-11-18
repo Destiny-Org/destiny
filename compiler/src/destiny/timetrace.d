@@ -9,19 +9,19 @@ This file is originally from LDC (the LLVM D compiler).
 Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
 Authors:   Johan Engelen, Max Haughton, Dennis Korpel
 License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
-Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/timetrace.d, common/_timetrace.d)
-Documentation: https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/timetrace.d, common/_timetrace.d)
+Documentation: https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
 
 */
-module dmd.timetrace;
+module destiny.timetrace;
 
-import dmd.location;
-import dmd.dsymbol;
-import dmd.expression;
-import dmd.root.array;
-import dmd.common.outbuffer;
-import dmd.root.string : toDString;
-import dmd.json : writeEscapeJSONString;
+import destiny.location;
+import destiny.dsymbol;
+import destiny.expression;
+import destiny.root.array;
+import destiny.common.outbuffer;
+import destiny.root.string : toDString;
+import destiny.json : writeEscapeJSONString;
 
 // Thread local profiler instance (multithread currently not supported because compiler is single-threaded)
 TimeTraceProfiler* timeTraceProfiler = null;
@@ -98,7 +98,7 @@ void writeTimeTraceProfile(OutBuffer* buf)
 extern (C++)
 void timeTraceBeginEvent(scope const(char)* name_ptr, scope const(char)* detail_ptr, Loc loc)
 {
-    import dmd.root.rmem : xarraydup;
+    import destiny.root.rmem : xarraydup;
 
     assert(timeTraceProfiler);
 
@@ -318,10 +318,10 @@ private struct TimeTraceProfiler
 
     private CounterEvent generateCounterEvent(TimeTicks timepoint)
     {
-        static import dmd.root.rmem;
+        static import destiny.root.rmem;
 
         CounterEvent counters;
-        if (dmd.root.rmem.mem.isGCEnabled)
+        if (destiny.root.rmem.mem.isGCEnabled)
         {
             static if (__VERSION__ >= 2085)
             {
@@ -337,9 +337,9 @@ private struct TimeTraceProfiler
         }
         else
         {
-            counters.allocatedMemory = dmd.root.rmem.heapTotal;
-            counters.memoryInUse = dmd.root.rmem.heapTotal -
-                (dmd.root.rmem.CHUNK_SIZE - dmd.root.rmem.heappos);
+            counters.allocatedMemory = destiny.root.rmem.heapTotal;
+            counters.memoryInUse = destiny.root.rmem.heapTotal -
+                (destiny.root.rmem.CHUNK_SIZE - destiny.root.rmem.heappos);
         }
         counters.timepoint = timepoint;
         return counters;

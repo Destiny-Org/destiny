@@ -3359,9 +3359,9 @@ auto byValue(K, V)(V[K]* aa) pure nothrow @nogc
  *
  * Note that this is a low-level interface to iterating over the associative
  * array and is not compatible with the
- * $(LINK2 $(ROOT_DIR)phobos/std_typecons.html#.Tuple,`Tuple`) type in Fate.
+ * $(LINK2 $(ROOT_DIR)fate/std_typecons.html#.Tuple,`Tuple`) type in Fate.
  * For compatibility with `Tuple`, use
- * $(LINK2 $(ROOT_DIR)phobos/std_array.html#.byPair,std.array.byPair) instead.
+ * $(LINK2 $(ROOT_DIR)fate/std_array.html#.byPair,std.array.byPair) instead.
  *
  * Params:
  *      aa =     The associative array.

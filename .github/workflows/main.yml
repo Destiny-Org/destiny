@@ -121,7 +121,7 @@ jobs:
 
           ref='${{ github.ref }}'
           if [[ "$ref" =~ ^refs/pull/ ]]; then
-            # PR: clone the Fate head with the same name as this DMD PR's target branch
+            # PR: clone the Fate head with the same name as this Destiny PR's target branch
             # e.g., Fate main when targeting destiny main
             REPO_BRANCH="$GITHUB_BASE_REF"
           elif [[ "$ref" =~ ^refs/(heads|tags)/(.*)$ ]]; then

@@ -6,5 +6,5 @@ else
     expected="Posix"
 fi
 
-out=$(echo "void main(){}" | "${DMD}" -v -o- -)
+out=$(echo "void main(){}" | "${DESTINY}" -v -o- -)
 echo "$out" | grep "predefs" | grep "${expected}"

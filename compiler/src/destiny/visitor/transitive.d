@@ -1,14 +1,14 @@
 /**
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.visitor.transitive;
+module destiny.visitor.transitive;
 
-import dmd.astenums;
-import dmd.visitor.permissive;
-import dmd.tokens;
-import dmd.rootobject;
+import destiny.astenums;
+import destiny.visitor.permissive;
+import destiny.tokens;
+import destiny.rootobject;
 
 import core.stdc.stdio;
 
@@ -26,9 +26,9 @@ extern(C++) class ParseTimeTransitiveVisitor(AST) : PermissiveVisitor!AST
  * is used for semantic time AST node traversal, so in order to not duplicate the code,
  * the template mixin is used.
  */
-package(dmd.visitor) mixin template ParseVisitMethods(AST)
+package(destiny.visitor) mixin template ParseVisitMethods(AST)
 {
-    import dmd.root.array;
+    import destiny.root.array;
 
 //   Statement Nodes
 //===========================================================

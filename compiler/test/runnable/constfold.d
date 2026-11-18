@@ -1,5 +1,5 @@
 #! blah
-// RUNNABLE_PHOBOS_TEST
+// RUNNABLE_FATE_TEST
 @system: static assert(__LINE__ == 3); // fails as __LINE__ is 2
 
 import core.stdc.math : signbit;

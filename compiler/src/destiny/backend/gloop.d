@@ -8,35 +8,35 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/gloop.d, backend/gloop.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/gloop.d, backend/gloop.d)
  *
  */
 
-module dmd.backend.gloop;
+module destiny.backend.gloop;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.backconfig : debugc;
-import dmd.backend.blockopt : BlockOpt, bo, block_calloc, blockopt, compdfo;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.evalu8 : el_toreald;
-import dmd.backend.oper;
-import dmd.backend.global : size;
-import dmd.backend.cgelem : doptelem, elemisone;
-import dmd.backend.debugprint : WReqn, WRfunc, tym_str;
-import dmd.backend.evalu8 : evalu8, iftrue;
-import dmd.backend.go;
-import dmd.backend.el;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.backconfig : debugc;
+import destiny.backend.blockopt : BlockOpt, bo, block_calloc, blockopt, compdfo;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.evalu8 : el_toreald;
+import destiny.backend.oper;
+import destiny.backend.global : size;
+import destiny.backend.cgelem : doptelem, elemisone;
+import destiny.backend.debugprint : WReqn, WRfunc, tym_str;
+import destiny.backend.evalu8 : evalu8, iftrue;
+import destiny.backend.go;
+import destiny.backend.el;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.barray;
-import dmd.backend.dvec;
-import dmd.backend.mem;
+import destiny.backend.barray;
+import destiny.backend.dvec;
+import destiny.backend.mem;
 
 nothrow:
 @safe:
@@ -45,7 +45,7 @@ nothrow:
 char symbol_isintab(const Symbol* s) { return sytab[s.Sclass] & SCSS; }
 
 
-import dmd.backend.gother : findloopparameters;
+import destiny.backend.gother : findloopparameters;
 
 alias Loops = Rarray!Loop;
 

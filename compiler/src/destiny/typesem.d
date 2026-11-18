@@ -4,68 +4,68 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/typesem.d, _typesem.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/typesem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/typesem.d, _typesem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/typesem.d
  *
  */
 
-module dmd.typesem;
+module destiny.typesem;
 
 import core.checkedint;
 import core.stdc.string;
 import core.stdc.stdio;
 
-import dmd.access;
-import dmd.aggregate;
-import dmd.arrayop;
-import dmd.arraytypes;
-import dmd.astcodegen;
-import dmd.astenums;
-import dmd.dcast;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.templatesem : computeOneMember;
-import dmd.dtemplate;
-import dmd.enumsem;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.imphint;
-import dmd.importc;
-import dmd.init;
-import dmd.initsem;
-import dmd.location;
-import dmd.mtype;
-import dmd.mangle;
-import dmd.nogc;
-import dmd.objc;
-import dmd.opover;
-import dmd.optimize;
-import dmd.parse;
-import dmd.root.complex;
-import dmd.root.ctfloat;
-import dmd.root.rmem;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.root.string;
-import dmd.safe;
-import dmd.semantic3;
-import dmd.sideeffect;
-import dmd.target;
-import dmd.tokens;
+import destiny.access;
+import destiny.aggregate;
+import destiny.arrayop;
+import destiny.arraytypes;
+import destiny.astcodegen;
+import destiny.astenums;
+import destiny.dcast;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.templatesem : computeOneMember;
+import destiny.dtemplate;
+import destiny.enumsem;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.imphint;
+import destiny.importc;
+import destiny.init;
+import destiny.initsem;
+import destiny.location;
+import destiny.mtype;
+import destiny.mangle;
+import destiny.nogc;
+import destiny.objc;
+import destiny.opover;
+import destiny.optimize;
+import destiny.parse;
+import destiny.root.complex;
+import destiny.root.ctfloat;
+import destiny.root.rmem;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.root.string;
+import destiny.safe;
+import destiny.semantic3;
+import destiny.sideeffect;
+import destiny.target;
+import destiny.tokens;
 
 bool hasDeprecatedAliasThis(Type _this)
 {
@@ -1164,7 +1164,7 @@ uint alignsize(Type _this)
 {
     static uint structAlignsize(TypeStruct _this)
     {
-        import dmd.dsymbolsem : size;
+        import destiny.dsymbolsem : size;
         _this.sym.size(Loc.initial); // give error for forward references
         return _this.sym.alignsize;
     }
@@ -1209,7 +1209,7 @@ bool hasVoidInitPointers(Type _this)
     }
     else if (auto ts = _this.isTypeStruct())
     {
-        import dmd.dsymbolsem : size;
+        import destiny.dsymbolsem : size;
         ts.sym.size(Loc.initial); // give error for forward references
         ts.sym.determineTypeProperties();
         return ts.sym.hasVoidInitPointers;
@@ -1257,7 +1257,7 @@ void Type_init()
 
     static Type merge(Type t)
     {
-        import dmd.mangle.basic : tyToDecoBuffer;
+        import destiny.mangle.basic : tyToDecoBuffer;
 
         OutBuffer buf;
         buf.reserve(3);
@@ -1353,7 +1353,7 @@ structalign_t alignment(Type _this)
     }
     else if (auto ts = _this.isTypeStruct())
     {
-        import dmd.dsymbolsem : size;
+        import destiny.dsymbolsem : size;
         if (ts.sym.alignment.isUnknown())
             ts.sym.size(ts.sym.loc);
         return ts.sym.alignment;
@@ -1374,7 +1374,7 @@ bool hasInvariant(Type _this)
     }
     else if (auto ts = _this.isTypeStruct())
     {
-        import dmd.dsymbolsem : size;
+        import destiny.dsymbolsem : size;
         ts.sym.size(Loc.initial); // give error for forward references
         ts.sym.determineTypeProperties();
         return ts.sym.hasInvariant() || ts.sym.hasFieldWithInvariant;
@@ -1395,7 +1395,7 @@ bool hasUnsafeBitpatterns(Type _this)
 {
     static bool tstructImpl(TypeStruct _this)
     {
-        import dmd.dsymbolsem : size;
+        import destiny.dsymbolsem : size;
         _this.sym.size(Loc.initial); // give error for forward references
         _this.sym.determineTypeProperties();
         return _this.sym.hasUnsafeBitpatterns;
@@ -1586,7 +1586,7 @@ private void resolveHelper(TypeQualified mt, Loc loc, Scope* sc, Dsymbol s, Dsym
             break;
         }
 
-        Type t = dmd.dsymbolsem.getType(s); // type symbol, type alias, or type tuple?
+        Type t = destiny.dsymbolsem.getType(s); // type symbol, type alias, or type tuple?
         const errorsave = global.errors;
         SearchOptFlags flags = t is null ? SearchOpt.localsOnly : SearchOpt.ignorePrivateImports;
 
@@ -1706,7 +1706,7 @@ private void resolveHelper(TypeQualified mt, Loc loc, Scope* sc, Dsymbol s, Dsym
     Type t;
     while (1)
     {
-        t = dmd.dsymbolsem.getType(s);
+        t = destiny.dsymbolsem.getType(s);
         if (t)
             break;
         ps = s;
@@ -2395,7 +2395,7 @@ private extern(D) bool isCopyConstructorCallable (StructDeclaration argStruct,
     Expression e = new DotIdExp(arg.loc, ve, Id.ctor);
     e = new CallExp(arg.loc, e, arg);
     //printf("e = %s\n", e.toChars());
-    if (dmd.expressionsem.trySemantic(e, sc))
+    if (destiny.expressionsem.trySemantic(e, sc))
         return true;
 
     if (!pMessage)
@@ -2557,7 +2557,7 @@ private extern(D) MATCH argumentMatchParameter (FuncDeclaration fd, TypeFunction
         }
         else
         {
-            import dmd.dcast : cimplicitConvTo;
+            import destiny.dcast : cimplicitConvTo;
             m = (sc && sc.inCfile) ? arg.cimplicitConvTo(tprm) : arg.implicitConvTo(tprm);
         }
     }
@@ -2796,7 +2796,7 @@ private extern(D) MATCH matchTypeSafeVarArgs(TypeFunction tf, Parameter p,
 /// Compute cached type properties for `TypeStruct`
 void determineTypeProperties(StructDeclaration sd)
 {
-    import dmd.dsymbolsem : hasPointers;
+    import destiny.dsymbolsem : hasPointers;
     if (sd.computedTypeProperties)
         return;
     foreach (vd; sd.fields)
@@ -3048,7 +3048,7 @@ uinteger_t size(Type t, Loc loc)
         case Treturn:       return visitTypeQualified(cast(TypeQualified)t);
         case Tstruct:
         {
-            import dmd.dsymbolsem: size;
+            import destiny.dsymbolsem: size;
             return t.isTypeStruct().sym.size(loc);
         }
         case Tenum:         return t.isTypeEnum().sym.getMemtype(loc).size(loc);
@@ -4406,7 +4406,7 @@ Type typeSemantic(Type type, Loc loc, Scope* sc)
         Type t;
         Dsymbol s;
         mtype.resolve(loc, sc, e, t, s);
-        if (s && (t = dmd.dsymbolsem.getType(s)) !is null)
+        if (s && (t = destiny.dsymbolsem.getType(s)) !is null)
             t = t.addMod(mtype.mod);
         if (!t)
         {
@@ -4439,7 +4439,7 @@ Type typeSemantic(Type type, Loc loc, Scope* sc)
         Type t;
         Dsymbol s;
         mtype.resolve(loc, sc, e, t, s);
-        if (s && (t = dmd.dsymbolsem.getType(s)) !is null)
+        if (s && (t = destiny.dsymbolsem.getType(s)) !is null)
             t = t.addMod(mtype.mod);
         if (!t)
         {
@@ -4953,7 +4953,7 @@ Expression defaultInitLiteral(Type t, Loc loc, const bool isCfile = false)
             printf("TypeStruct::defaultInitLiteral() '%s'\n", toChars());
         }
         {
-            import dmd.dsymbolsem: size;
+            import destiny.dsymbolsem: size;
             ts.sym.size(loc);
         }
         if (ts.sym.sizeok != Sizeok.done)
@@ -6070,7 +6070,7 @@ void resolve(Type mt, Loc loc, Scope* sc, out Expression pe, out Type pt, out Ds
             return;
         }
 
-        import dmd.traits : semanticTraits;
+        import destiny.traits : semanticTraits;
 
         if (Expression e = semanticTraits(mt.exp, sc))
         {
@@ -6217,7 +6217,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
                     auto ad = v.isMember();
                     objc.checkOffsetof(e, ad);
                     {
-                        import dmd.dsymbolsem: size;
+                        import destiny.dsymbolsem: size;
                         ad.size(e.loc);
                     }
                     if (ad.sizeok != Sizeok.done)
@@ -6830,7 +6830,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
                             die = new DotIdExp(e.loc, die, cast(Identifier)id);
                         /* Ambiguous syntax, only way to disambiguate it to try it
                          */
-                        die = dmd.expressionsem.trySemantic(die, sc);
+                        die = destiny.expressionsem.trySemantic(die, sc);
                         if (die && die.isDotVarExp())   // shrink wrap around DotVarExp()
                         {
                             return die;
@@ -6880,7 +6880,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
             }
         }
 
-        if (auto t = dmd.dsymbolsem.getType(s))
+        if (auto t = destiny.dsymbolsem.getType(s))
         {
             return (new TypeExp(e.loc, t)).expressionSemantic(sc);
         }
@@ -7073,7 +7073,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
             e = e.expressionSemantic(sc); // do this before turning on noAccessCheck
 
             {
-                import dmd.dsymbolsem: size;
+                import destiny.dsymbolsem: size;
                 mt.sym.size(e.loc); // do semantic of type
             }
 
@@ -7303,7 +7303,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
             }
         }
 
-        if (auto t = dmd.dsymbolsem.getType(s))
+        if (auto t = destiny.dsymbolsem.getType(s))
         {
             return (new TypeExp(e.loc, t)).expressionSemantic(sc);
         }
@@ -7395,7 +7395,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
                 && d.isFuncDeclaration().objc.selector)
             {
                 auto classRef = new ObjcClassReferenceExp(e.loc, mt.sym);
-                classRef.type = dmd.dsymbolsem.getType((objc.getRuntimeMetaclass(mt.sym)));
+                classRef.type = destiny.dsymbolsem.getType((objc.getRuntimeMetaclass(mt.sym)));
                 return new DotVarExp(e.loc, classRef, d).expressionSemantic(sc);
             }
             else if (d.needThis() && sc.intypeof != 1)
@@ -7476,7 +7476,7 @@ Expression dotExp(Type mt, Scope* sc, Expression e, Identifier ident, DotExpFlag
             Dsymbol d2 = d;
             if (auto fd = d.isFuncDeclaration())
             {
-                import dmd.access : mostVisibleOverload;
+                import destiny.access : mostVisibleOverload;
                 d2 = mostVisibleOverload(fd, sc._module);
             }
 
@@ -8034,7 +8034,7 @@ Type getComplexLibraryType(Loc loc, Scope* sc, TY ty)
         return *pt;
     }
     s = s.toAlias();
-    if (auto t = dmd.dsymbolsem.getType(s))
+    if (auto t = destiny.dsymbolsem.getType(s))
     {
         if (auto ts = t.toBasetype().isTypeStruct())
         {
@@ -8398,7 +8398,7 @@ STC parameterStorageClass(TypeFunction tf, Type tthis, Parameter p, VarDeclarati
         // Check escaping through `this`
         if (tthis && tthis.isMutable())
         {
-            import dmd.dsymbolsem : hasPointers;
+            import destiny.dsymbolsem : hasPointers;
             foreach (VarDeclaration v; isAggregate(tthis).fields)
             {
                 if (v.hasPointers())
@@ -8409,7 +8409,7 @@ STC parameterStorageClass(TypeFunction tf, Type tthis, Parameter p, VarDeclarati
         // Check escaping through nested context
         if (outerVars && tf.isMutable())
         {
-            import dmd.dsymbolsem : hasPointers;
+            import destiny.dsymbolsem : hasPointers;
             foreach (VarDeclaration v; *outerVars)
             {
                 if (v.hasPointers())
@@ -9271,7 +9271,7 @@ MATCH implicitConvToWithoutAliasThis(TypeStruct from, Type to)
     /* Check all the fields. If they can all be converted,
      * allow the conversion.
      */
-    import dmd.dsymbolsem : size;
+    import destiny.dsymbolsem : size;
     if (from.sym.size(Loc.initial) == SIZE_INVALID)
         return MATCH.nomatch;
     MATCH m = MATCH.constant;

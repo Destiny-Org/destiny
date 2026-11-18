@@ -6,36 +6,36 @@
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     Distributed under the Boost Software License, Version 1.0.
  *              https://www.boost.org/LICENSE_1_0.txt
- * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/dmd/backend/gother.d
+ * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/destiny/backend/gother.d
  *
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/gother.d
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/gother.d
  */
 
-module dmd.backend.gother;
+module destiny.backend.gother;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.time;
 
-import dmd.backend.backconfig : debugc;
-import dmd.backend.blockopt : BlockOpt, bo;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.oper;
-import dmd.backend.global : size;
-import dmd.backend.blockopt : block_clearvisit, block_visit, blockopt;
-import dmd.backend.debugprint : WReqn;
-import dmd.backend.dout : out_regcand;
-import dmd.backend.evalu8 : iftrue;
-import dmd.backend.gloop : dom;
-import dmd.backend.go;
-import dmd.backend.el;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.backconfig : debugc;
+import destiny.backend.blockopt : BlockOpt, bo;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.oper;
+import destiny.backend.global : size;
+import destiny.backend.blockopt : block_clearvisit, block_visit, blockopt;
+import destiny.backend.debugprint : WReqn;
+import destiny.backend.dout : out_regcand;
+import destiny.backend.evalu8 : iftrue;
+import destiny.backend.gloop : dom;
+import destiny.backend.go;
+import destiny.backend.el;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.barray;
-import dmd.backend.dvec;
+import destiny.backend.barray;
+import destiny.backend.dvec;
 
 nothrow:
 @safe:

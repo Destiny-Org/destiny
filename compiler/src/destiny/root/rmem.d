@@ -4,12 +4,12 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/rmem.d, root/_rmem.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/rmem.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/rmem.d, root/_rmem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/rmem.d
  *
  */
 
-module dmd.root.rmem;
+module destiny.root.rmem;
 
 import core.exception : onOutOfMemoryError;
 import core.stdc.stdio;
@@ -248,7 +248,7 @@ extern (C) pure @nogc nothrow
      *
      * UNIX 98 requires that errno be set to ENOMEM upon failure.
      * https://linux.die.net/man/3/malloc
-     * However, this is irrelevant for DMD's purposes, and best practice
+     * However, this is irrelevant for Destiny's purposes, and best practice
      * protocol for using errno is to treat it as an `out` parameter, and not
      * something with state that can be relied on across function calls.
      * So, we'll ignore it.

@@ -6,43 +6,43 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/objc.d, _objc.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/objc.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/objc.d, _objc.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/objc.d
  *
  */
 
-module dmd.objc;
+module destiny.objc;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.attribsem : foreachUda;
-import dmd.cond;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-//import dmd.errors;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.globals : global;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mangle;
-import dmd.mtype;
-import dmd.root.array;
-import dmd.common.outbuffer;
-import dmd.root.stringtable;
-import dmd.target;
-import dmd.tokens;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.attribsem : foreachUda;
+import destiny.cond;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+//import destiny.errors;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.globals : global;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mangle;
+import destiny.mtype;
+import destiny.root.array;
+import destiny.common.outbuffer;
+import destiny.root.stringtable;
+import destiny.target;
+import destiny.tokens;
 
 struct ObjcSelector
 {

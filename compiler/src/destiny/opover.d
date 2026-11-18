@@ -6,42 +6,42 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/opover.d, _opover.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/opover.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/opover.d, _opover.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/opover.d
  *
  */
 
-module dmd.opover;
+module destiny.opover;
 
 import core.stdc.stdio;
-import dmd.aggregate;
-import dmd.aliasthis;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals : global;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.optimize;
-import dmd.root.string : fTuple;
-import dmd.statement;
-import dmd.templatesem;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.aliasthis;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals : global;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.optimize;
+import destiny.root.string : fTuple;
+import destiny.statement;
+import destiny.templatesem;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
 
 /***********************************
  * Determine if operands of binary op can be reversed
@@ -740,7 +740,7 @@ Expression opOverloadEqual(EqualExp e, Scope* sc, Type[2] aliasThisStop)
             /* The explicit cast is necessary for interfaces
              * upstream issue 4088
              */
-            Type to = dmd.dsymbolsem.getType(ClassDeclaration.object);
+            Type to = destiny.dsymbolsem.getType(ClassDeclaration.object);
             if (cd1.isInterfaceDeclaration())
                 e1x = new CastExp(e.loc, e.e1, t1.isMutable() ? to : to.constOf());
             if (cd2.isInterfaceDeclaration())
@@ -794,7 +794,7 @@ Expression opOverloadEqual(EqualExp e, Scope* sc, Type[2] aliasThisStop)
         if (sd != t2.isTypeStruct().sym)
             return null;
 
-        import dmd.clone : needOpEquals;
+        import destiny.clone : needOpEquals;
         if (!sc.previews.fieldwise && !needOpEquals(sd))
         {
             // Use bitwise equality.

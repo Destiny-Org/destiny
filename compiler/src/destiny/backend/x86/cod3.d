@@ -13,45 +13,45 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cod3.d, backend/cod3.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cod3.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/cod3.d, backend/cod3.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/cod3.d
  *
  */
 
-module dmd.backend.x86.cod3;
+module destiny.backend.x86.cod3;
 
 import core.bitop;
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.backconfig : debugc, debugr;
-import dmd.backend.barray;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.cgcse;
-import dmd.backend.code;
-import dmd.backend.arm.cod3;
-import dmd.backend.arm.instr;
-import dmd.backend.x86.code_x86;
-import dmd.backend.codebuilder;
-import dmd.backend.dvec;
-import dmd.backend.melf;
-import dmd.backend.mem;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE, _align, mask;
-import dmd.backend.cg : localgot;
-import dmd.backend.debugprint : fl_str, oper_str, tym_str;
-import dmd.backend.dwarfdbginf : dwarf_CFA_offset, dwarf_CFA_set_loc, dwarf_emit_eh_frame;
-import dmd.backend.evalu8 : boolres, iftrue;
-import dmd.backend.util2 : err_exit;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
-import dmd.backend.x86.xmm;
+import destiny.backend.backconfig : debugc, debugr;
+import destiny.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.cgcse;
+import destiny.backend.code;
+import destiny.backend.arm.cod3;
+import destiny.backend.arm.instr;
+import destiny.backend.x86.code_x86;
+import destiny.backend.codebuilder;
+import destiny.backend.dvec;
+import destiny.backend.melf;
+import destiny.backend.mem;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE, _align, mask;
+import destiny.backend.cg : localgot;
+import destiny.backend.debugprint : fl_str, oper_str, tym_str;
+import destiny.backend.dwarfdbginf : dwarf_CFA_offset, dwarf_CFA_set_loc, dwarf_emit_eh_frame;
+import destiny.backend.evalu8 : boolres, iftrue;
+import destiny.backend.util2 : err_exit;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
+import destiny.backend.x86.xmm;
 
 nothrow:
 @safe:
@@ -709,7 +709,7 @@ regm_t regmask(tym_t tym, tym_t tyf)
 {
     bool AArch64 = cgstate.AArch64;
     if (AArch64)
-        return dmd.backend.arm.cod3.regmask(tym, tyf);
+        return destiny.backend.arm.cod3.regmask(tym, tyf);
 
     switch (tybasic(tym))
     {
@@ -1083,7 +1083,7 @@ void outblkexitcode(ref CGstate cg, ref CodeBuilder cdb, block* bl, ref int anys
             {
                 assert(!(bl.Bflags & BFL.epilog));
                 if (AArch64)
-                    dmd.backend.arm.cod3.genBranch(cdb,COND.al,FL.block,nextb);
+                    destiny.backend.arm.cod3.genBranch(cdb,COND.al,FL.block,nextb);
                 else
                     genjmp(cdb,JMP,FL.block,nextb);
             }
@@ -2077,7 +2077,7 @@ void doswitch(ref CGstate cg, ref CodeBuilder cdb, block* b)
 
         // Put into casevals[0..ncases] so we can sort then slice
 
-        import dmd.common.smallbuffer : SmallBuffer;
+        import destiny.common.smallbuffer : SmallBuffer;
         CaseVal[10] tmp = void;
         auto sb = SmallBuffer!(CaseVal)(ncases, tmp[]);
         CaseVal[] casevals = sb[];
@@ -3001,7 +3001,7 @@ bool cse_simple(code* c, elem* e)
 void gen_storecse(ref CodeBuilder cdb, tym_t tym, reg_t reg, size_t slot)
 {
     if (cgstate.AArch64)
-        return dmd.backend.arm.cod3.gen_storecse(cdb,tym,reg,slot);
+        return destiny.backend.arm.cod3.gen_storecse(cdb,tym,reg,slot);
 
     //printf("gen_storecse()\n");
     // MOV slot[BP],reg
@@ -3040,7 +3040,7 @@ void gen_testcse(ref CodeBuilder cdb, tym_t tym, uint sz, size_t slot)
 void gen_loadcse(ref CodeBuilder cdb, tym_t tym, reg_t reg, size_t slot)
 {
     if (cgstate.AArch64)
-        return dmd.backend.arm.cod3.gen_loadcse(cdb,tym,reg,slot);
+        return destiny.backend.arm.cod3.gen_loadcse(cdb,tym,reg,slot);
 
     //printf("gen_loadcse()\n");
     // MOV reg,slot[BP]
@@ -3227,7 +3227,7 @@ void genpop(ref CodeBuilder cdb, reg_t reg)
 void genmovreg(ref CodeBuilder cdb, reg_t to, reg_t from, tym_t tym = TYMAX)
 {
     if (cgstate.AArch64)
-        return dmd.backend.arm.cod3.genmovreg(cdb, cast(reg_t)to, cast(reg_t)from, tym);
+        return destiny.backend.arm.cod3.genmovreg(cdb, cast(reg_t)to, cast(reg_t)from, tym);
 
     // register kind. ex: GPR,XMM,SEG
     static uint _K(uint reg)
@@ -3357,7 +3357,7 @@ void genshift(ref CodeBuilder cdb)
 void movregconst(ref CGstate cg,ref CodeBuilder cdb,reg_t reg,targ_size_t value,regm_t flags)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod3.movregconst(cdb, reg, value, flags);
+        return destiny.backend.arm.cod3.movregconst(cdb, reg, value, flags);
 
     reg_t r;
     regm_t mreg;
@@ -4097,7 +4097,7 @@ void prolog_setupalloca(ref CGstate cg, ref CodeBuilder cdb)
 void prolog_saveregs(ref CGstate cg, ref CodeBuilder cdb, regm_t topush, int cfa_offset)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod3.prolog_saveregs(cg, cdb, topush, cfa_offset);
+        return destiny.backend.arm.cod3.prolog_saveregs(cg, cdb, topush, cfa_offset);
 
     //printf("prolog_saveregs() topush: %s pushoffuse: %d\n", regm_str(topush), cg.pushoffuse);
     if (cg.pushoffuse)
@@ -4291,7 +4291,7 @@ private void epilog_restoreregs(ref CGstate cg, ref CodeBuilder cdb, regm_t topo
 void prolog_genvarargs(ref CGstate cg, ref CodeBuilder cdb, Symbol* sv)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod3.prolog_genvarargs(cg, cdb, sv);
+        return destiny.backend.arm.cod3.prolog_genvarargs(cg, cdb, sv);
 
     /* Generate code to move any arguments passed in registers into
      * the stack variable __va_argsave,
@@ -4397,7 +4397,7 @@ void prolog_genvarargs(ref CGstate cg, ref CodeBuilder cdb, Symbol* sv)
 elem* prolog_genva_start(Symbol* sv, Symbol* parmn)
 {
     if (cgstate.AArch64)
-        return dmd.backend.arm.cod3.prolog_genva_start(sv, parmn);
+        return destiny.backend.arm.cod3.prolog_genva_start(sv, parmn);
 
     enum Vregnum = 6;
 
@@ -4564,7 +4564,7 @@ void prolog_loadparams(ref CGstate cg, ref CodeBuilder cdb, tym_t tyf, bool push
 
         tym_t tyb = tybasic(t.Tty);
 
-        // This logic is same as FuncParamRegs_alloc function at src/dmd/backend/cod1.d
+        // This logic is same as FuncParamRegs_alloc function at src/destiny/backend/cod1.d
         //
         // Find suitable SROA based on the element type
         // (Don't put volatile parameters in registers on Windows)
@@ -4887,7 +4887,7 @@ void prolog_loadparams(ref CGstate cg, ref CodeBuilder cdb, tym_t tyf, bool push
 void epilog(ref CGstate cg, block* b)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod3.epilog(cg, b);
+        return destiny.backend.arm.cod3.epilog(cg, b);
 
     code* cpopds;
     reg_t reg;
@@ -5173,7 +5173,7 @@ void gen_spill_reg(ref CodeBuilder cdb, Symbol* s, bool toreg)
     CGstate* cg = &cgstate;
     if (cg.AArch64)
     {
-        import dmd.backend.arm.cod3 : gen_spill_reg;
+        import destiny.backend.arm.cod3 : gen_spill_reg;
         return gen_spill_reg(cdb, s, toreg);
     }
 
@@ -5242,7 +5242,7 @@ void cod3_thunk(Symbol* sthunk,Symbol* sfunc,uint p,tym_t thisty,
 {
     if (cgstate.AArch64)
     {
-        import dmd.backend.arm.cod3 : cod3_thunk;
+        import destiny.backend.arm.cod3 : cod3_thunk;
         return cod3_thunk(sthunk, sfunc, p, thisty, d, i, d2);
     }
 
@@ -5456,7 +5456,7 @@ int branch(block* bl,int flag)
 {
     if (cgstate.AArch64)
     {
-        import dmd.backend.arm.cod3 : branch;
+        import destiny.backend.arm.cod3 : branch;
         return branch(bl, flag);
     }
 
@@ -5710,7 +5710,7 @@ void assignaddrc(ref CGstate cg, code* c)
 {
     if (cg.AArch64)
     {
-        import dmd.backend.arm.cod3 : assignaddrc;
+        import destiny.backend.arm.cod3 : assignaddrc;
         return assignaddrc(cg,c);
     }
 
@@ -6845,7 +6845,7 @@ void jmpaddr(code* c)
 {
     if (cgstate.AArch64)
     {
-        import dmd.backend.arm.cod3 : jmpaddr;
+        import destiny.backend.arm.cod3 : jmpaddr;
         return jmpaddr(c);
     }
 
@@ -6944,7 +6944,7 @@ uint calccodsize(code* c)
 {
     if (cgstate.AArch64)
     {
-        import dmd.backend.arm.cod3 : calccodsize;
+        import destiny.backend.arm.cod3 : calccodsize;
         return calccodsize(c);
     }
 
@@ -7361,7 +7361,7 @@ nothrow:
 uint codout(int seg, code* c, Barray!ubyte* disasmBuf, ref targ_size_t framehandleroffset)
 {
     if (cgstate.AArch64)
-        return dmd.backend.arm.cod3.codout(seg, c, disasmBuf, framehandleroffset);
+        return destiny.backend.arm.cod3.codout(seg, c, disasmBuf, framehandleroffset);
 
     ubyte rm,mod;
     ubyte ins;

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Implements CI steps for multiple CI services.
-# This file is invoked from the DMD and Fate CI YAMLs.
+# This file is invoked from the Destiny and Fate CI YAMLs.
 
 set -uexo pipefail
 
@@ -9,7 +9,7 @@ set -uexo pipefail
 if [ -z ${N+x} ] ; then echo "Variable 'N' needs to be set."; exit 1; fi
 # OS_NAME: linux|osx|freebsd|windows
 if [ -z ${OS_NAME+x} ] ; then echo "Variable 'OS_NAME' needs to be set."; exit 1; fi
-# FULL_BUILD: true|false (true on Linux: use full permutations for DMD tests)
+# FULL_BUILD: true|false (true on Linux: use full permutations for Destiny tests)
 if [ -z ${FULL_BUILD+x} ] ; then echo "Variable 'FULL_BUILD' needs to be set."; exit 1; fi
 # MODEL: 32|64
 if [ -z ${MODEL+x} ] ; then echo "Variable 'MODEL' needs to be set."; exit 1; fi
@@ -57,7 +57,7 @@ clone() {
     done
 }
 
-# build dmd (incl. building and running the unittests), druntime, phobos
+# build destiny (incl. building and running the unittests), druntime, fate
 build() {
     local unittest=${1:-1}
     if [ "$OS_NAME" != "windows" ]; then
@@ -73,7 +73,7 @@ build() {
     fi
 }
 
-# self-compile dmd
+# self-compile destiny
 rebuild() {
     local compare=${1:-0}
 
@@ -91,7 +91,7 @@ rebuild() {
     cp $build_path/destiny$dotexe _${build_path}/host_dmd$dotexe
     cp $build_path/$conf _${build_path}/
     rm -rf $build_path
-    make -j$N MODEL=$MODEL HOST_DC=_${build_path}/host_dmd$dotexe HOST_DFLAGS="$CI_DFLAGS" ENABLE_RELEASE=${ENABLE_RELEASE:-1} dmd
+    make -j$N MODEL=$MODEL HOST_DC=_${build_path}/host_dmd$dotexe HOST_DFLAGS="$CI_DFLAGS" ENABLE_RELEASE=${ENABLE_RELEASE:-1} destiny
 
     # compare binaries to test reproducible build
     if [ $compare -eq 1 ]; then
@@ -105,14 +105,14 @@ rebuild() {
     fi
 }
 
-# test druntime, phobos, dmd
+# test druntime, fate, destiny
 test() {
     test_druntime
     test_fate
     test_destiny
 }
 
-# test dmd
+# test destiny
 test_destiny() {
     # default to testing fewer compiler argument permutations to reduce CI load
     if [ "$FULL_BUILD" == "true" ] && [ "$OS_NAME" == "linux" ]; then

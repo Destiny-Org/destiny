@@ -34,7 +34,7 @@ pragma(inline, true) Float4 twoTimes(const ref Float4 a)
 pragma(inline, false) Float4 fourTimes(const Float4 a)
 {
     auto x = identity(a);
-    auto y = x.doubleInPlace(); // This crashed in dmd.backend.cgxmm.xmmload.
+    auto y = x.doubleInPlace(); // This crashed in destiny.backend.cgxmm.xmmload.
     auto z = twoTimes(y);
     return z;
 }

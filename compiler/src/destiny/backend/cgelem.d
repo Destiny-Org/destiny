@@ -11,43 +11,43 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cgelem.d, backend/cgelem.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cgelem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cgelem.d, backend/cgelem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cgelem.d
  *
  *              Add coverage tests to https://github.com/Destiny-Org/destiny/blob/main/test/runnable/testcgelem.d
  */
 
-module dmd.backend.cgelem;
+module destiny.backend.cgelem;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.cc;
-import dmd.backend.code;
-import dmd.backend.cdef;
-import dmd.backend.x86.code_x86;
-import dmd.backend.oper;
-import dmd.backend.global : REGSIZE, error;
-import dmd.backend.debugprint : oper_str;
-import dmd.backend.el : exp2_copytotemp;
-import dmd.backend.evalu8 : boolres, iffalse, iftrue;
-import dmd.backend.symbol : symbol_calloc, sytab, globsym;
-import dmd.backend.util2 : ispow2;
-import dmd.backend.go;
-import dmd.backend.el;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.cc;
+import destiny.backend.code;
+import destiny.backend.cdef;
+import destiny.backend.x86.code_x86;
+import destiny.backend.oper;
+import destiny.backend.global : REGSIZE, error;
+import destiny.backend.debugprint : oper_str;
+import destiny.backend.el : exp2_copytotemp;
+import destiny.backend.evalu8 : boolres, iffalse, iftrue;
+import destiny.backend.symbol : symbol_calloc, sytab, globsym;
+import destiny.backend.util2 : ispow2;
+import destiny.backend.go;
+import destiny.backend.el;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.dvec;
+import destiny.backend.dvec;
 
 
 nothrow:
 @safe:
 
-import dmd.backend.evalu8 : evalu8;
+import destiny.backend.evalu8 : evalu8;
 
 /* Masks so we can easily check size */
 enum CHARMASK  = 0xFF;
@@ -2939,7 +2939,7 @@ private bool optim_loglog(ref elem* pe)
         return false;
     uint ty = e.Ety;
 
-    import dmd.common.smallbuffer : SmallBuffer;
+    import destiny.common.smallbuffer : SmallBuffer;
     elem*[100] tmp = void;
     auto sb = SmallBuffer!(elem*)(n, tmp[]);
     elem*[] array = sb[];

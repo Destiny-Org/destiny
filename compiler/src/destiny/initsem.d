@@ -4,47 +4,47 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/initsem.d, _initsem.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/initsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/initsem.d, _initsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/initsem.d
  *
  */
 
-module dmd.initsem;
+module destiny.initsem;
 
 import core.stdc.stdio;
 import core.checkedint;
 
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.dcast;
-import dmd.declaration;
-import dmd.dinterpret;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.importc;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.opover;
-import dmd.optimize;
-import dmd.safe : setUnsafe;
-import dmd.semantic2;
-import dmd.statement;
-import dmd.target;
-import dmd.tokens;
-import dmd.typesem;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.dcast;
+import destiny.declaration;
+import destiny.dinterpret;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.importc;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.opover;
+import destiny.optimize;
+import destiny.safe : setUnsafe;
+import destiny.semantic2;
+import destiny.statement;
+import destiny.target;
+import destiny.tokens;
+import destiny.typesem;
 
 /********************************
  * If possible, convert array initializer to associative array initializer.
@@ -1216,7 +1216,7 @@ Initializer initializerSemantic(Initializer init, Scope* sc, ref Type tx, NeedIn
             auto rexp = ci.initializerList[0].initializer.initializerToExpression(sc, null, eSink);
             auto imexp = ci.initializerList[1].initializer.initializerToExpression(sc, null, eSink);
 
-            import dmd.root.ctfloat;
+            import destiny.root.ctfloat;
             auto newExpr = new AddExp(ci.loc, rexp,
             new MulExp(ci.loc, imexp, new RealExp(ci.loc, CTFloat.one, Type.timaginary64)));
 

@@ -15,7 +15,7 @@ do
 
 	rm_retry ${output_file}{,.2}
 
-	$DMD -m${MODEL} -v -o- ${src_file} > ${output_file}
+	$DESTINY -m${MODEL} -v -o- ${src_file} > ${output_file}
 	grep "^entry     ${kind}" ${output_file} > ${output_file}.2
 	if [ `wc -c ${output_file}.2 | while read a b; do echo $a; done` -eq 0 ]; then
 		echo "Error: not found expected entry point '${kind}' in ${src_file}"

@@ -6,24 +6,24 @@
  *              Copyright (C) 2018-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/iasm.d, _iasm.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/iasm/package.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/iasm.d, _iasm.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/iasm/package.d
  *
  */
 
-module dmd.iasm;
+module destiny.iasm;
 
 import core.stdc.stdio;
 
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.expression;
-import dmd.func;
-import dmd.mtype;
-import dmd.target;
-import dmd.tokens;
-import dmd.statement;
-import dmd.statementsem;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.expression;
+import destiny.func;
+import destiny.mtype;
+import destiny.target;
+import destiny.tokens;
+import destiny.statement;
+import destiny.statementsem;
 
 version (NoBackend)
 {
@@ -38,14 +38,14 @@ else version (IN_LLVM)
 }
 else
 {
-    import dmd.iasm.dmdx86;
-    import dmd.iasm.dmdaarch64;
+    import destiny.iasm.dmdx86;
+    import destiny.iasm.dmdaarch64;
     version = MARS;
 }
 
 version (Asm_GCC)
 {
-    import dmd.iasm.gcc;
+    import destiny.iasm.gcc;
 }
 
 /************************ AsmStatement ***************************************/
@@ -113,7 +113,7 @@ void asmSemantic(CAsmDeclaration ad, Scope* sc)
     }
     else
     {
-        import dmd.errors : error;
+        import destiny.errors : error;
         error(ad.code.loc, "Gnu Asm not supported - compile this file with gcc or clang");
     }
 }

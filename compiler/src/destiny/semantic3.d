@@ -6,83 +6,83 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/semantic3.d, _semantic3.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/semantic3.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/semantic3.d, _semantic3.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/semantic3.d
  *
  */
 
-module dmd.semantic3;
+module destiny.semantic3;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.aggregate;
-import dmd.aliasthis;
-import dmd.arraytypes;
-import dmd.astcodegen;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.blockexit;
-import dmd.clone;
-import dmd.ctorflow;
-import dmd.dcast;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dimport;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.dversion;
-import dmd.errorsink;
-import dmd.escape;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.initsem;
-import dmd.hdrgen;
-import dmd.location;
-import dmd.mtype;
-import dmd.nogc;
-import dmd.nspace;
-import dmd.ob;
-import dmd.objc;
-import dmd.opover;
-import dmd.optimize;
-import dmd.parse;
-import dmd.root.filename;
-import dmd.root.array;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.rootobject;
-import dmd.root.utf;
-import dmd.sideeffect;
-import dmd.statementsem;
-import dmd.staticassert;
-import dmd.tokens;
-import dmd.semantic2;
-import dmd.statement;
-import dmd.target;
-import dmd.targetcompiler;
-import dmd.templateparamsem;
-import dmd.templatesem;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.aliasthis;
+import destiny.arraytypes;
+import destiny.astcodegen;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.blockexit;
+import destiny.clone;
+import destiny.ctorflow;
+import destiny.dcast;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dimport;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.dversion;
+import destiny.errorsink;
+import destiny.escape;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.initsem;
+import destiny.hdrgen;
+import destiny.location;
+import destiny.mtype;
+import destiny.nogc;
+import destiny.nspace;
+import destiny.ob;
+import destiny.objc;
+import destiny.opover;
+import destiny.optimize;
+import destiny.parse;
+import destiny.root.filename;
+import destiny.root.array;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.rootobject;
+import destiny.root.utf;
+import destiny.sideeffect;
+import destiny.statementsem;
+import destiny.staticassert;
+import destiny.tokens;
+import destiny.semantic2;
+import destiny.statement;
+import destiny.target;
+import destiny.targetcompiler;
+import destiny.templateparamsem;
+import destiny.templatesem;
+import destiny.typesem;
+import destiny.visitor;
 
 version (IN_GCC) { /* Not using Fast DFA */ }
 else version = FastDFA;
 
 version (FastDFA)
-    import dmd.dfa.entry;
+    import destiny.dfa.entry;
 
 enum LOG = false;
 
@@ -239,8 +239,8 @@ private extern(C++) final class Semantic3Visitor : Visitor
     override void visit(FuncDeclaration funcdecl)
     {
         //printf("FuncDeclaration::semantic3(%s '%s', sc = %p)\n", funcdecl.kind(), funcdecl.toChars(), sc);
-        import dmd.timetrace;
-        import dmd.root.string : toDString;
+        import destiny.timetrace;
+        import destiny.root.string : toDString;
         timeTraceBeginEvent(TimeTraceEventType.sema3);
         scope (exit) timeTraceEndEvent(TimeTraceEventType.sema3, funcdecl);
 
@@ -406,13 +406,13 @@ private extern(C++) final class Semantic3Visitor : Visitor
             // @@@DEPRECATED_2.116@@@
             // Deprecated in 2.096, can be made an error in 2.116.
             // The deprecation period is longer than usual as dual-context
-            // functions may be widely used by dmd-compiled projects.
+            // functions may be widely used by destiny-compiled projects.
             // It also gives more time for the implementation of dual-context
             // functions to be reworked as a frontend-only feature.
             if (funcdecl.hasDualContext)
             {
                 eSink.deprecation(funcdecl.loc, "%s `%s` function requires a dual-context, which is deprecated", funcdecl.kind, funcdecl.toPrettyChars);
-                import dmd.errors : Classification;
+                import destiny.errors : Classification;
                 if (auto ti = sc2.parent ? sc2.parent.isInstantiated() : null)
                     ti.printInstantiationTrace(Classification.deprecation);
             }
@@ -1399,7 +1399,7 @@ private extern(C++) final class Semantic3Visitor : Visitor
                     origType = type;
 
                 // Permit types that are handled by toCppMangle. This list should be kept in sync with
-                // each visit method in dmd.cppmangle and dmd.cppmanglewin.
+                // each visit method in destiny.cppmangle and destiny.cppmanglewin.
                 switch (type.ty)
                 {
                     case Tnull:

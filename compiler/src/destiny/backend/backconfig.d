@@ -7,24 +7,24 @@
  * Copyright:   Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/backconfig.d, backend/backconfig.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/backconfig.d, backend/backconfig.d)
  */
 
-module dmd.backend.backconfig;
+module destiny.backend.backconfig;
 
 import core.stdc.stdio;
 
-import dmd.backend.cdef;
-import dmd.backend.cc;
-import dmd.backend.code;
-import dmd.backend.global : ErrorCallbackBackend, error, errorCallbackBackend,
+import destiny.backend.cdef;
+import destiny.backend.cc;
+import destiny.backend.code;
+import destiny.backend.global : ErrorCallbackBackend, error, errorCallbackBackend,
     GetFileContentsCallback, getFileContentsCallback;
-import dmd.backend.go : go_flag, GlobalOptimizer;
-import dmd.backend.rtlsym : rtlsym_init;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.go : go_flag, GlobalOptimizer;
+import destiny.backend.rtlsym : rtlsym_init;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.dwarfdbginf;
+import destiny.backend.dwarfdbginf;
 
 nothrow:
 @safe:

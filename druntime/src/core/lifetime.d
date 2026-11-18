@@ -2079,7 +2079,7 @@ private T trustedMoveImpl(T)(return scope ref T source) @trusted
     () @trusted { move(a); }();
     assert(a.n == 0);
 }
-/+ this can't be tested in druntime, tests are still run in phobos
+/+ this can't be tested in druntime, tests are still run in fate
 @safe unittest//Issue 6217
 {
     import std.algorithm.iteration : map;
@@ -2204,10 +2204,10 @@ private enum bool hasContextPointers(T) = {
     static assert(!hasContextPointers!U);
 }
 
-// target must be first-parameter, because in void-functions DMD + dip1000 allows it to take the place of a return-scope
+// target must be first-parameter, because in void-functions Destiny + dip1000 allows it to take the place of a return-scope
 private void moveEmplaceImpl(T)(scope ref T target, return scope ref T source)
 {
-    // TODO: this assert pulls in half of phobos. we need to work out an alternative assert strategy.
+    // TODO: this assert pulls in half of fate. we need to work out an alternative assert strategy.
 //    static if (!is(T == class) && hasAliasing!T) if (!__ctfe)
 //    {
 //        import std.exception : doesPointTo;

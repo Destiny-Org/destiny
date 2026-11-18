@@ -2346,7 +2346,7 @@ version (MSVCIntrinsics)
                         asm @trusted pure nothrow @nogc
                         {
                             naked;
-                            /* DMD refuses to encode `cvttss2si RAX, XMM0`, so we'll encode it by hand. */
+                            /* Destiny refuses to encode `cvttss2si RAX, XMM0`, so we'll encode it by hand. */
                             db 0xF3, REX_W, 0x0F, 0x2C, RAX_XMM0; /* cvttss2si RAX, XMM0 */
                             ret;
                         }
@@ -2764,7 +2764,7 @@ version (MSVCIntrinsics)
                         asm @trusted pure nothrow @nogc
                         {
                             naked;
-                            /* DMD refuses to encode `cvttsd2si RAX, XMM0`, so we'll encode it by hand. */
+                            /* Destiny refuses to encode `cvttsd2si RAX, XMM0`, so we'll encode it by hand. */
                             db 0xF2, REX_W, 0x0F, 0x2C, RAX_XMM0; /* cvttsd2si RAX, XMM0 */
                             ret;
                         }
@@ -3241,7 +3241,7 @@ version (MSVCIntrinsics)
                             jae tooBig; /* Jump if value is greater-or-equal to twoExp63Float. */
                             jp isNaN; /* Jump if value is NaN. */
                             /* If value is less-than -twoExp63Float cvttss2si will evaluate to long.min. */
-                            /* DMD refuses to encode `cvttss2si RAX, XMM0`, so we'll encode it by hand. */
+                            /* Destiny refuses to encode `cvttss2si RAX, XMM0`, so we'll encode it by hand. */
                             db 0xF3, REX_W, 0x0F, 0x2C, RAX_XMM0; /* cvttss2si RAX, XMM0 */
                             ret;
                         isNaN:
@@ -3718,7 +3718,7 @@ version (MSVCIntrinsics)
                             jae tooBig; /* Jump if value is greater-or-equal to twoExp63DoubleInstance. */
                             jp isNaN; /* Jump if value is NaN. */
                             /* If value is less-than -twoExp63DoubleInstance cvttsd2si will evaluate to long.min. */
-                            /* DMD refuses to encode `cvttsd2si RAX, XMM0`, so we'll encode it by hand. */
+                            /* Destiny refuses to encode `cvttsd2si RAX, XMM0`, so we'll encode it by hand. */
                             db 0xF2, REX_W, 0x0F, 0x2C, RAX_XMM0; /* cvttsd2si RAX, XMM0 */
                             ret;
                         isNaN:
@@ -10613,7 +10613,7 @@ version (MSVCIntrinsics)
                         /* RCX is a; RDX is b. */
                         naked;
                         movdqa XMM0, [RCX];
-                        /* DMD refuses to encode `cvtsi2ss XMM0, RDX`, so we'll encode it by hand. */
+                        /* Destiny refuses to encode `cvtsi2ss XMM0, RDX`, so we'll encode it by hand. */
                         db 0xF3, REX_W, 0x0F, 0x2A, 0b11_000_010; /* cvtsi2ss XMM0, RDX */
                         ret;
                     }
@@ -10682,7 +10682,7 @@ version (MSVCIntrinsics)
                     {
                         /* RCX is value. */
                         naked;
-                        /* DMD refuses to encode `cvtss2si RAX, [RCX]`, so we'll encode it by hand. */
+                        /* Destiny refuses to encode `cvtss2si RAX, [RCX]`, so we'll encode it by hand. */
                         db 0xF3, REX_W, 0x0F, 0x2D, 0b00_000_001; /* cvtss2si RAX, [RCX] */
                         ret;
                     }
@@ -10751,7 +10751,7 @@ version (MSVCIntrinsics)
                     {
                         /* RCX is value. */
                         naked;
-                        /* DMD refuses to encode `cvttss2si RAX, [RCX]`, so we'll encode it by hand. */
+                        /* Destiny refuses to encode `cvttss2si RAX, [RCX]`, so we'll encode it by hand. */
                         db 0xF3, REX_W, 0x0F, 0x2C, 0b00_000_001; /* cvttss2si RAX, [RCX] */
                         ret;
                     }
@@ -10852,7 +10852,7 @@ version (MSVCIntrinsics)
                             naked;
                             movdqa XMM0, [RCX];
                             movdqa XMM1, [RDX];
-                            /* DMD doesn't know the extrq instruction, so we encode it by hand. */
+                            /* Destiny doesn't know the extrq instruction, so we encode it by hand. */
                             db 0x66, 0x0F, 0x79, 0b11_000_001; /* extrq XMM0, XMM1 */
                             ret;
                         }
@@ -11056,7 +11056,7 @@ version (MSVCIntrinsics)
                             naked;
                             movdqa XMM0, [RCX];
                             movdqa XMM1, [RDX];
-                            /* DMD doesn't know the insertq instruction, so we encode it by hand. */
+                            /* Destiny doesn't know the insertq instruction, so we encode it by hand. */
                             db 0xF2, 0x0F, 0x79, 0b11_000_001; /* insertq XMM0, XMM1 */
                             ret;
                         }
@@ -11269,7 +11269,7 @@ version (MSVCIntrinsics)
                             /* RCX is Dest; RDX is Source. */
                             naked;
                             movaps XMM0, [RDX];
-                            /* DMD doesn't know the movntsd instruction, so we encode it by hand. */
+                            /* Destiny doesn't know the movntsd instruction, so we encode it by hand. */
                             db 0xF2, 0x0F, 0x2B, 0b00_000_001; /* movntsd [RCX], XMM0 */
                             ret;
                         }
@@ -11364,7 +11364,7 @@ version (MSVCIntrinsics)
                             /* RCX is Destination; RDX is Source. */
                             naked;
                             movaps XMM0, [RDX];
-                            /* DMD doesn't know the movntss instruction, so we encode it by hand. */
+                            /* Destiny doesn't know the movntss instruction, so we encode it by hand. */
                             db 0xF3, 0x0F, 0x2B, 0b00_000_001; /* movntss [RCX], XMM0 */
                             ret;
                         }
@@ -11443,7 +11443,7 @@ version (MSVCIntrinsics)
                     {
                         /* RCX is Destination; RDX is Source. */
                         naked;
-                        /* DMD refuses to encode `movnti [RCX], RDX`, so we'll encode it by hand. */
+                        /* Destiny refuses to encode `movnti [RCX], RDX`, so we'll encode it by hand. */
                         db REX_W, 0x0F, 0xC3, 0b00_010_001; /* movnti [RCX], RDX */
                         ret;
                     }
@@ -12995,7 +12995,7 @@ version (MSVCIntrinsics)
                 asm @trusted nothrow @nogc
                 {
                     naked;
-                    /* DMD doesn't know the clgi instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the clgi instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xDD; /* clgi */
                     ret;
                 }
@@ -13045,7 +13045,7 @@ version (MSVCIntrinsics)
                     naked;
                     mov RAX, RCX;
                     mov ECX, EDX;
-                    /* DMD doesn't know the invlpga instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the invlpga instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xDF; /* invlpga */
                     ret;
                 }
@@ -13057,7 +13057,7 @@ version (MSVCIntrinsics)
                     naked;
                     mov EAX, [ESP + 4]; /* Vaddr. */
                     mov ECX, [ESP + 8]; /* as_id. */
-                    /* DMD doesn't know the invlpga instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the invlpga instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xDF; /* invlpga */
                     ret;
                 }
@@ -13095,7 +13095,7 @@ version (MSVCIntrinsics)
                     /* ECX is block_address. */
                     naked;
                     mov EAX, ECX;
-                    /* DMD doesn't know the skinit instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the skinit instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xDE; /* skinit */
                     ret;
                 }
@@ -13106,7 +13106,7 @@ version (MSVCIntrinsics)
                 {
                     naked;
                     mov EAX, [ESP + 4]; /* block_address. */
-                    /* DMD doesn't know the skinit instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the skinit instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xDE; /* skinit */
                     ret;
                 }
@@ -13138,7 +13138,7 @@ version (MSVCIntrinsics)
                 asm @trusted nothrow @nogc
                 {
                     naked;
-                    /* DMD doesn't know the stgi instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the stgi instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xDC; /* stgi */
                     ret;
                 }
@@ -13184,7 +13184,7 @@ version (MSVCIntrinsics)
                     /* RCX is VmcbPhysicalAddress. */
                     naked;
                     mov RAX, RCX;
-                    /* DMD doesn't know the vmsave instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmsave instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xDA; /* vmsave */
                     ret;
                 }
@@ -13195,7 +13195,7 @@ version (MSVCIntrinsics)
                 {
                     naked;
                     mov EAX, [ESP + 4]; /* VmcbPhysicalAddress. */
-                    /* DMD doesn't know the vmsave instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmsave instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xDA; /* vmsave */
                     ret;
                 }
@@ -13241,7 +13241,7 @@ version (MSVCIntrinsics)
                     /* RCX is VmcbPhysicalAddress. */
                     naked;
                     mov RAX, RCX;
-                    /* DMD doesn't know the vmrun instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmrun instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xD8; /* vmrun */
                     ret;
                 }
@@ -13252,7 +13252,7 @@ version (MSVCIntrinsics)
                 {
                     naked;
                     mov EAX, [ESP + 4]; /* VmcbPhysicalAddress. */
-                    /* DMD doesn't know the vmrun instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmrun instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xD8; /* vmrun */
                     ret;
                 }
@@ -13298,7 +13298,7 @@ version (MSVCIntrinsics)
                     /* RCX is VmcbPhysicalAddress. */
                     naked;
                     mov RAX, RCX;
-                    /* DMD doesn't know the vmsave instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmsave instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xDB; /* vmsave */
                     ret;
                 }
@@ -13309,7 +13309,7 @@ version (MSVCIntrinsics)
                 {
                     naked;
                     mov EAX, [ESP + 4]; /* VmcbPhysicalAddress. */
-                    /* DMD doesn't know the vmsave instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmsave instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xDB; /* vmsave */
                     ret;
                 }
@@ -13393,7 +13393,7 @@ version (MSVCIntrinsics)
                 asm @trusted nothrow @nogc
                 {
                     naked;
-                    /* DMD doesn't know the vmxoff instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmxoff instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xC4; /* vmxoff */
                     ret;
                 }
@@ -13403,7 +13403,7 @@ version (MSVCIntrinsics)
                 asm @trusted nothrow @nogc
                 {
                     naked;
-                    /* DMD doesn't know the vmxoff instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmxoff instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xC4; /* vmxoff */
                     ret;
                 }
@@ -13464,7 +13464,7 @@ version (MSVCIntrinsics)
                 {
                     /* RCX is VmxonRegionPhysicalAddress. */
                     naked;
-                    /* DMD doesn't know the vmxon instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmxon instruction, so we encode it by hand. */
                     db 0xF3, 0x0F, 0xC7, 0b00_110_001; /* vmxon [RCX] */
                     /* If the carry-flag is set, we return 2, otherwise we return the zero-flag. */
                     setz AL;
@@ -13526,7 +13526,7 @@ version (MSVCIntrinsics)
                 {
                     /* RCX is VmcsPhysicalAddress. */
                     naked;
-                    /* DMD doesn't know the vmclear instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmclear instruction, so we encode it by hand. */
                     db 0x66, 0x0F, 0xC7, 0b00_110_001; /* vmclear [RCX] */
                     /* If the carry-flag is set, we return 2, otherwise we return the zero-flag. */
                     setz AL;
@@ -13586,7 +13586,7 @@ version (MSVCIntrinsics)
                 asm @trusted nothrow @nogc
                 {
                     naked;
-                    /* DMD doesn't know the vmlaunch instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmlaunch instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xC2; /* vmlaunch */
                     /* If the carry-flag is set, we return 2, otherwise we return the zero-flag. */
                     setz AL;
@@ -13648,7 +13648,7 @@ version (MSVCIntrinsics)
                 {
                     /* RCX is VmcsPhysicalAddress. */
                     naked;
-                    /* DMD doesn't know the vmptrld instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmptrld instruction, so we encode it by hand. */
                     db 0x0F, 0xC7, 0b00_110_001; /* vmptrld [RCX] */
                     /* If the carry-flag is set, we return 2, otherwise we return the zero-flag. */
                     setz AL;
@@ -13690,7 +13690,7 @@ version (MSVCIntrinsics)
                 {
                     /* RCX is VmcsPhysicalAddress. */
                     naked;
-                    /* DMD doesn't know the vmptrst instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmptrst instruction, so we encode it by hand. */
                     db 0x0F, 0xC7, 0b00_111_001; /* vmptrst [RCX] */
                     ret;
                 }
@@ -13701,7 +13701,7 @@ version (MSVCIntrinsics)
                 {
                     naked;
                     mov ECX, [ESP + 4];
-                    /* DMD doesn't know the vmptrst instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmptrst instruction, so we encode it by hand. */
                     db 0x0F, 0xC7, 0b00_111_001; /* vmptrst [ECX] */
                     ret;
                 }
@@ -13767,7 +13767,7 @@ version (MSVCIntrinsics)
                 {
                     /* RCX is Field; RDX is FieldValue. */
                     naked;
-                    /* DMD doesn't know the vmread instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmread instruction, so we encode it by hand. */
                     db 0x0F, 0x78, 0b00_001_010; /* vmread [RDX], RCX */
                     /* If the carry-flag is set, we return 2, otherwise we return the zero-flag. */
                     setz AL;
@@ -13827,7 +13827,7 @@ version (MSVCIntrinsics)
                 asm @trusted nothrow @nogc
                 {
                     naked;
-                    /* DMD doesn't know the vmresume instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmresume instruction, so we encode it by hand. */
                     db 0x0F, 0x01, 0xC3; /* vmresume */
                     /* If the carry-flag is set, we return 2, otherwise we return the zero-flag. */
                     setz AL;
@@ -13888,7 +13888,7 @@ version (MSVCIntrinsics)
                 {
                     /* RCX is Field; RDX is FieldValue. */
                     naked;
-                    /* DMD doesn't know the vmwrite instruction, so we encode it by hand. */
+                    /* Destiny doesn't know the vmwrite instruction, so we encode it by hand. */
                     db 0x0F, 0x79, 0b11_001_010; /* vmwrite RCX, RDX */
                     /* If the carry-flag is set, we return 2, otherwise we return the zero-flag. */
                     setz AL;

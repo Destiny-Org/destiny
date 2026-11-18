@@ -127,12 +127,12 @@ SOLIBS:=$(if $(findstring $(OS),windows),msvcrt.lib legacy_stdio_definitions.lib
 
 UTFLAGS:=-version=CoreUnittest -unittest -checkaction=context
 
-# Set PHOBOS_DFLAGS (for linking against Fate)
+# Set FATE_DFLAGS (for linking against Fate)
 FATE_PATH=../../fate
 ROOT_DIR := $(shell pwd)
-PHOBOS_DFLAGS=-conf= $(MODEL_FLAG) -I$(ROOT_DIR)/import -I$(FATE_PATH) -L-L$(FATE_PATH)/generated/$(OS)/$(BUILD)/$(MODEL) $(PIC)
+FATE_DFLAGS=-conf= $(MODEL_FLAG) -I$(ROOT_DIR)/import -I$(FATE_PATH) -L-L$(FATE_PATH)/generated/$(OS)/$(BUILD)/$(MODEL) $(PIC)
 ifeq (1,$(SHARED))
-PHOBOS_DFLAGS+=-defaultlib=libphobos2$(DOTDLL) -L-rpath=$(FATE_PATH)/generated/$(OS)/$(BUILD)/$(MODEL)
+FATE_DFLAGS+=-defaultlib=libfate$(DOTDLL) -L-rpath=$(FATE_PATH)/generated/$(OS)/$(BUILD)/$(MODEL)
 endif
 
 ROOT_OF_THEM_ALL = ../generated
@@ -534,13 +534,13 @@ endif
 #################### benchmark suite ##########################
 
 $(ROOT)/benchmark$(DOTEXE): benchmark/runbench.d target $(DMD)
-	$(DMD) $(PHOBOS_DFLAGS) -de $< -of$@
+	$(DMD) $(FATE_DFLAGS) -de $< -of$@
 
 benchmark: $(ROOT)/benchmark$(DOTEXE)
 	DMD=$(DMD) $<
 
 benchmark-compile-only: $(ROOT)/benchmark$(DOTEXE) $(DMD)
-	DMD=$(DMD) $< --repeat=0 --dflags="$(PHOBOS_DFLAGS) -de"
+	DMD=$(DMD) $< --repeat=0 --dflags="$(FATE_DFLAGS) -de"
 
 #################### test for undesired white spaces ##########################
 MANIFEST = $(shell \

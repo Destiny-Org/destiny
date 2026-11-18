@@ -1,4 +1,4 @@
-module dmd.common.blake3;
+module destiny.common.blake3; @safe:
 // based on https://github.com/oconnor663/blake3_reference_impl_c/blob/main/reference_impl.c
 
 @safe:
@@ -316,7 +316,7 @@ unittest {
     }
 
     const oneByte = testVector!1;
-    //todo use hex literals once DMD bootstrap version gets big enough
+    //todo use hex literals once Destiny bootstrap version gets big enough
     static const expectedOneByte = [0x2d,0x3a,0xde,0xdf,0xf1,0x1b,0x61,0xf1,
                                     0x4c,0x88,0x6e,0x35,0xaf,0xa0,0x36,0x73,
                                     0x6d,0xcd,0x87,0xa7,0x4d,0x27,0xb5,0xc1,

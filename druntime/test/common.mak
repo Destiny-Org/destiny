@@ -14,7 +14,7 @@ SHARED:=
 IS_MUSL:=
 
 # Variables that can be specified by users, with the same meaning as used by GNU make
-# $(CC)      $(CXX)      $(DMD)       # the compiler
+# $(CC)      $(CXX)      $(Destiny)       # the compiler
 # $(CFLAGS)  $(CXXFLAGS) $(DFLAGS)    # flags for the compiler
 # $(LDFLAGS) ditto       $(LDFLAGS.d) # flags for the compiler when it invokes the linker
 # $(LDLIBS)  ditto       $(LDLIBS.d)  # library names given to the compiler when invoking the linker
@@ -46,7 +46,7 @@ OBJDIR = $(ROOT)
 
 druntime_for_linking := $(if $(LINK_SHARED),$(DRUNTIMESO:.dll=.lib),$(DRUNTIME))
 DRUNTIME_DEP := $(if $(LINK_SHARED),$(DRUNTIMESO),$(DRUNTIME))
-# GNU make says that compiler variables like $(DMD) can contain arguments, technically.
+# GNU make says that compiler variables like $(Destiny) can contain arguments, technically.
 DMD_DEP := $(firstword $(DMD))
 d_platform_libs := $(if $(filter-out windows,$(OS)),-L-lpthread -L-lm $(LINKDL))
 

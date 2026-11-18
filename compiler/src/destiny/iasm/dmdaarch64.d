@@ -1,57 +1,57 @@
 /**
- * Inline assembler implementation for DMD.
+ * Inline assembler implementation for Destiny.
  * https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd
  *
  * Copyright:   Copyright (C) 2025-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     Walter Bright
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/iasmaarch64.d, _iasmaarch64.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/iasmaarch64.d, _iasmaarch64.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.iasm.dmdaarch64;
+module destiny.iasm.dmdaarch64;
 
 import core.stdc.stdio;
 import core.stdc.stdarg;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.astenums;
-import dmd.astcodegen;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dinterpret;
-import dmd.dmdparams;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.errors;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.funcsem : checkNestedReference;
-import dmd.globals;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.parse;
-import dmd.statement;
-import dmd.target;
-import dmd.tokens;
-import dmd.typesem : pointerTo, size, isIntegral;
+import destiny.astenums;
+import destiny.astcodegen;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dinterpret;
+import destiny.dmdparams;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.errors;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.funcsem : checkNestedReference;
+import destiny.globals;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.parse;
+import destiny.statement;
+import destiny.target;
+import destiny.tokens;
+import destiny.typesem : pointerTo, size, isIntegral;
 
-import dmd.root.ctfloat;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.rootobject;
+import destiny.root.ctfloat;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.rootobject;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.codebuilder : CodeBuilder;
-import dmd.backend.iasm;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.codebuilder : CodeBuilder;
+import destiny.backend.iasm;
 
 /************************
  * Perform semantic analysis on InlineAsmStatement.

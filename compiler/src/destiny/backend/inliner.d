@@ -19,32 +19,32 @@
  *              Some parts based on an inliner from the Digital Mars C compiler.
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/inliner.d, backend/inliner.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/inliner.d, backend/inliner.d)
  */
 
 // C++ specific routines
 
-module dmd.backend.inliner;
+module destiny.backend.inliner;
 
 import core.stdc.stdio;
 import core.stdc.ctype;
 import core.stdc.string;
 import core.stdc.stdlib;
 
-import dmd.backend.backconfig : debugc;
-import dmd.backend.blockopt : bo;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE;
-import dmd.backend.debugprint : tym_str;
-import dmd.backend.ee : eecontext_convs;
-import dmd.backend.oper;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.backconfig : debugc;
+import destiny.backend.blockopt : bo;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE;
+import destiny.backend.debugprint : tym_str;
+import destiny.backend.ee : eecontext_convs;
+import destiny.backend.oper;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.barray;
+import destiny.backend.barray;
 
 nothrow:
 @safe:
@@ -161,7 +161,7 @@ void scanForInlines(Symbol* sfunc)
     //symbol_debug(sfunc);
     func_t* f = sfunc.Sfunc;
     assert(f && tyfunc(sfunc.Stype.Tty));
-    // BUG: flag not set right in dmd
+    // BUG: flag not set right in destiny
     if (1 || f.Fflags & Fdoinline)  // if any inline functions called
     {
         f.Fflags |= Finlinenest;

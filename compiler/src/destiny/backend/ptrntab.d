@@ -3,27 +3,27 @@
  * Copyright:   Copyright (C) 1985-1998 by Symantec
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/ptrntab.d, backend/ptrntab.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/ptrntab.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/ptrntab.d, backend/ptrntab.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/ptrntab.d
  *
  */
 
-module dmd.backend.ptrntab;
+module destiny.backend.ptrntab;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.x86.code_x86;
-import dmd.backend.iasm;
-import dmd.backend.oper;
-import dmd.backend.code;
-import dmd.backend.util2 : binary;
-import dmd.backend.x86.xmm;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.x86.code_x86;
+import destiny.backend.iasm;
+import destiny.backend.oper;
+import destiny.backend.code;
+import destiny.backend.util2 : binary;
+import destiny.backend.x86.xmm;
 
-import dmd.backend.cdef;
-import dmd.backend.ty;
+import destiny.backend.cdef;
+import destiny.backend.ty;
 
 nothrow:
 @safe:

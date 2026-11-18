@@ -8,34 +8,34 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cg87.d, backend/cg87.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cg87.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/cg87.d, backend/cg87.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/cg87.d
  *
  */
 
-module dmd.backend.x86.cg87;
+module destiny.backend.x86.cg87;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.barray;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.codebuilder;
-import dmd.backend.mem;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE, mask;
-import dmd.backend.cgelem : elemisone;
-import dmd.backend.debugprint : tym_str;
-import dmd.backend.dout : out_readonly_sym;
-import dmd.backend.evalu8 : boolres, evalu8;
-import dmd.backend.oper;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.evalu8 : el_toreald;
+import destiny.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.codebuilder;
+import destiny.backend.mem;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE, mask;
+import destiny.backend.cgelem : elemisone;
+import destiny.backend.debugprint : tym_str;
+import destiny.backend.dout : out_readonly_sym;
+import destiny.backend.evalu8 : boolres, evalu8;
+import destiny.backend.oper;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.evalu8 : el_toreald;
 
 
 nothrow:
@@ -666,7 +666,7 @@ ubyte loadconst(elem* e, int im)
         version (CRuntime_Microsoft)
         {
             // only for longdouble_soft
-            import dmd.root.longdouble;
+            import destiny.root.longdouble;
             immutable targ_real[7] ldval =
             [ld_zero,ld_one,ld_pi,ld_log2t,ld_log2e,ld_log2,ld_ln2];
         }
@@ -1507,7 +1507,7 @@ void orth87(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref regm_t pretregs)
     int e2oper = e2.Eoper;
 
     /* Move double-sized operand into the second position if there's a chance
-     * it will allow combining a load with an operation (DMD Bugzilla 2905)
+     * it will allow combining a load with an operation (Destiny Bugzilla 2905)
      */
     if ( ((tybasic(e1.Ety) == TYdouble)
           && ((e1.Eoper == OPvar) || (e1.Eoper == OPconst))

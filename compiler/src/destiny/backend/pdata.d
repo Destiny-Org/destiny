@@ -7,27 +7,27 @@
  * Copyright:   Copyright (C) 2012-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/pdata.d, backend/pdata.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/pdata.d, backend/pdata.d)
  */
 
-module dmd.backend.pdata;
+module destiny.backend.pdata;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86 : BP;
-import dmd.backend.dt;
-import dmd.backend.global : symbol_keep;
-import dmd.backend.dout : outdata;
-import dmd.backend.mscoffobj;
-import dmd.backend.obj;
-import dmd.backend.symbol;
-import dmd.backend.ty : TYint;
-import dmd.backend.type;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86 : BP;
+import destiny.backend.dt;
+import destiny.backend.global : symbol_keep;
+import destiny.backend.dout : outdata;
+import destiny.backend.mscoffobj;
+import destiny.backend.obj;
+import destiny.backend.symbol;
+import destiny.backend.ty : TYint;
+import destiny.backend.type;
 
 
 nothrow:

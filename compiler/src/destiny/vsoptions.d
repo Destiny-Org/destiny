@@ -4,12 +4,12 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/vsoptions.d, _vsoptions.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/vsoptions.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/vsoptions.d, _vsoptions.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/vsoptions.d
  *
  */
 
-module dmd.vsoptions;
+module destiny.vsoptions;
 
 version (Windows):
 import core.stdc.stdlib;
@@ -19,11 +19,11 @@ import core.sys.windows.winbase;
 import core.sys.windows.windef;
 import core.sys.windows.winreg;
 
-import dmd.root.env;
-import dmd.root.filename;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.root.string : toDString;
+import destiny.root.env;
+import destiny.root.filename;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.root.string : toDString;
 
 // VS2015 (14.0) is the oldest version that ships the Universal CRT (UCRT)
 private immutable supportedPre2017Versions = ["14.0"];
@@ -97,7 +97,7 @@ extern(C++) struct VSOptions
             return "libcmt"; // UCRT-based static C runtime (VS2015+)
 
         // Fall back on the UCRT-based libraries bundled in the MinGW folder shipped with
-        // DMD (ucrtbase.lib + vcruntime140.lib), but only when they are actually available
+        // Destiny (ucrtbase.lib + vcruntime140.lib), but only when they are actually available
         // on the LIB search path.
         if (getMingwLibPath())
             return "ucrtbase";
@@ -188,7 +188,7 @@ extern(C++) struct VSOptions
             return cmdbuf.extractChars();
         }
 
-        // try lld-link.exe alongside dmd.exe
+        // try lld-link.exe alongside destiny.exe
         char[MAX_PATH + 1] dmdpath = void;
         const len = GetModuleFileNameA(null, dmdpath.ptr, dmdpath.length);
         if (len <= MAX_PATH)
@@ -198,7 +198,7 @@ extern(C++) struct VSOptions
                 return lldpath.ptr;
         }
 
-        // search PATH to avoid createProcess preferring "link.exe" from the dmd folder
+        // search PATH to avoid createProcess preferring "link.exe" from the destiny folder
         if (auto p = FileName.searchPath(getenv("PATH"w), "link.exe"[], false))
             return p.ptr;
         return "link.exe";
@@ -556,7 +556,7 @@ public:
 
     /**
      * Get the path to the UCRT-based libraries bundled in the MinGW folder shipped with
-     * DMD (e.g. ucrtbase.lib, vcruntime140.lib, kernel32.lib), if present on the `LIB`
+     * Destiny (e.g. ucrtbase.lib, vcruntime140.lib, kernel32.lib), if present on the `LIB`
      * search path. Used as the fallback runtime when no Visual C installation is detected.
      * Returns:
      *   folder containing the MinGW libraries, or null
@@ -677,7 +677,7 @@ extern(D):
     //  one with the largest version that also contains the test file
     static const(char)* findLatestVersionDir(const(char)* baseDir, string testfile)
     {
-        import dmd.common.smallbuffer : SmallBuffer, toWStringz;
+        import destiny.common.smallbuffer : SmallBuffer, toWStringz;
 
         const(char)* pattern = FileName.combine(baseDir, "*");
         wchar[1024] support = void;

@@ -1,21 +1,21 @@
 /**
- * Contains high-level interfaces for interacting with DMD as a library.
+ * Contains high-level interfaces for interacting with Destiny as a library.
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/frontend.d, _id.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/frontend.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/frontend.d, _id.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/frontend.d
  *
  */
-module dmd.frontend;
+module destiny.frontend;
 
-import dmd.astcodegen : ASTCodegen;
-import dmd.astenums : CHECKENABLE;
-import dmd.dmodule : Module;
-import dmd.errors : DiagnosticHandler, diagnosticHandler, FatalErrorHandler, fatalErrorHandler, Classification;
-import dmd.globals : DiagnosticReporting;
-import dmd.location;
+import destiny.astcodegen : ASTCodegen;
+import destiny.astenums : CHECKENABLE;
+import destiny.dmodule : Module;
+import destiny.errors : DiagnosticHandler, diagnosticHandler, FatalErrorHandler, fatalErrorHandler, Classification;
+import destiny.globals : DiagnosticReporting;
+import destiny.location;
 
 import std.typecons : Tuple;
 import core.stdc.stdarg;
@@ -105,21 +105,21 @@ void initDMD(
     ContractChecks contractChecks = ContractChecks()
 )
 {
-    import dmd.root.ctfloat : CTFloat;
+    import destiny.root.ctfloat : CTFloat;
 
     version (CRuntime_Microsoft)
-        import dmd.root.longdouble : initFPU;
+        import destiny.root.longdouble : initFPU;
 
-    import dmd.cond : VersionCondition;
-    import dmd.dmodule : Module;
-    import dmd.escape : EscapeState;
-    import dmd.expression : Expression;
-    import dmd.globals : global;
-    import dmd.id : Id;
-    import dmd.mtype : Type;
-    import dmd.objc : Objc;
-    import dmd.target : target, defaultTargetOS, addDefaultVersionIdentifiers;
-    import dmd.typesem : Type_init;
+    import destiny.cond : VersionCondition;
+    import destiny.dmodule : Module;
+    import destiny.escape : EscapeState;
+    import destiny.expression : Expression;
+    import destiny.globals : global;
+    import destiny.id : Id;
+    import destiny.mtype : Type;
+    import destiny.objc : Objc;
+    import destiny.target : target, defaultTargetOS, addDefaultVersionIdentifiers;
+    import destiny.typesem : Type_init;
 
     .diagnosticHandler = diagnosticHandler;
     .fatalErrorHandler = fatalErrorHandler;
@@ -167,17 +167,17 @@ application.
 */
 void deinitializeDMD()
 {
-    import dmd.dmodule : Module;
-    import dmd.dsymbol : Dsymbol;
-    import dmd.escape : EscapeState;
-    import dmd.expression : Expression;
-    import dmd.func : FuncDeclaration;
-    import dmd.globals : global;
-    import dmd.id : Id;
-    import dmd.mtype : Type;
-    import dmd.objc : Objc;
-    import dmd.target : target;
-    import dmd.dfa.fast.structure : DFAAllocator;
+    import destiny.dmodule : Module;
+    import destiny.dsymbol : Dsymbol;
+    import destiny.escape : EscapeState;
+    import destiny.expression : Expression;
+    import destiny.func : FuncDeclaration;
+    import destiny.globals : global;
+    import destiny.id : Id;
+    import destiny.mtype : Type;
+    import destiny.objc : Objc;
+    import destiny.target : target;
+    import destiny.dfa.fast.structure : DFAAllocator;
 
     diagnosticHandler = null;
     fatalErrorHandler = null;
@@ -203,7 +203,7 @@ Params:
 */
 void addImport(const(char)[] path)
 {
-    import dmd.globals : global, ImportPathInfo;
+    import destiny.globals : global, ImportPathInfo;
     import std.string : toStringz;
 
     global.path.push(ImportPathInfo(path.toStringz));
@@ -218,8 +218,8 @@ void addStringImport(const(char)[] path)
 {
     import std.string : toStringz;
 
-    import dmd.globals : global;
-    import dmd.arraytypes : Strings;
+    import destiny.globals : global;
+    import destiny.arraytypes : Strings;
 
     global.filePath.push(path.toStringz);
 }
@@ -234,7 +234,7 @@ Returns: full path to the found `destiny.conf`, `null` otherwise.
 */
 string findDMDConfig(const(char)[] dmdFilePath)
 {
-    import dmd.dinifile : findConfFile;
+    import destiny.dinifile : findConfFile;
 
     version (Windows)
         enum configFile = "sc.ini";
@@ -380,13 +380,13 @@ Tuple!(Module, "module_", Diagnostics, "diagnostics") parseModule(AST = ASTCodeg
     const(char)[] fileName,
     const(char)[] code = null)
 {
-    import dmd.root.file : File, Buffer;
+    import destiny.root.file : File, Buffer;
 
-    import dmd.globals : global;
-    import dmd.location;
-    import dmd.parse : Parser;
-    import dmd.identifier : Identifier;
-    import dmd.tokens : TOK;
+    import destiny.globals : global;
+    import destiny.location;
+    import destiny.parse : Parser;
+    import destiny.identifier : Identifier;
+    import destiny.tokens : TOK;
 
     import std.path : baseName, stripExtension;
 
@@ -397,7 +397,7 @@ Tuple!(Module, "module_", Diagnostics, "diagnostics") parseModule(AST = ASTCodeg
         m.read(Loc.initial);
     else
     {
-        import dmd.root.filename : FileName;
+        import destiny.root.filename : FileName;
 
         auto fb = cast(ubyte[]) code.dup ~ '\0';
         global.fileManager.add(FileName(fileName), fb);
@@ -420,9 +420,9 @@ Run full semantic analysis on a module.
 */
 void fullSemantic(Module m)
 {
-    import dmd.dsymbolsem : dsymbolSemantic, importAll, runDeferredSemantic, runDeferredSemantic2, runDeferredSemantic3;
-    import dmd.semantic2 : semantic2;
-    import dmd.semantic3 : semantic3;
+    import destiny.dsymbolsem : dsymbolSemantic, importAll, runDeferredSemantic, runDeferredSemantic2, runDeferredSemantic3;
+    import destiny.semantic2 : semantic2;
+    import destiny.semantic3 : semantic3;
 
     m.importedFrom = m;
     m.importAll(null);
@@ -445,8 +445,8 @@ Returns:
 */
 string prettyPrint(Module m)
 {
-    import dmd.common.outbuffer: OutBuffer;
-    import dmd.hdrgen : HdrGenState, moduleToBuffer2;
+    import destiny.common.outbuffer: OutBuffer;
+    import destiny.hdrgen : HdrGenState, moduleToBuffer2;
 
     auto buf = OutBuffer();
     buf.doindent = 1;
@@ -463,7 +463,7 @@ string prettyPrint(Module m)
 /// Interface for diagnostic reporting.
 abstract class DiagnosticReporter
 {
-    import dmd.console : Color;
+    import destiny.console : Color;
 
 nothrow:
     DiagnosticHandler prevHandler;

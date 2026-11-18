@@ -4,10 +4,10 @@
 
 module semantic.covariance; @system:
 
-import dmd.astenums : STC, StorageClass;
-import dmd.func : FuncDeclaration;
-import dmd.mtype : Covariant, Type;
-import dmd.typesem : covariant;
+import destiny.astenums : STC, StorageClass;
+import destiny.func : FuncDeclaration;
+import destiny.mtype : Covariant, Type;
+import destiny.typesem : covariant;
 
 import support;
 
@@ -808,8 +808,8 @@ struct Config
  +/
 Config extractFunctions(const string code, const size_t line)
 {
-    import dmd.func : FuncDeclaration;
-    import dmd.visitor : SemanticTimeTransitiveVisitor;
+    import destiny.func : FuncDeclaration;
+    import destiny.visitor : SemanticTimeTransitiveVisitor;
 
     auto result = compiles(code);
     enforce(!!result, line, "Semantic analysis failed with errors");
@@ -853,7 +853,7 @@ Config extractFunctions(const string code, const size_t line)
  +/
 void testCovariant(Type base, Type target, in Result expected, const size_t line = __LINE__)
 {
-    import dmd.globals : global;
+    import destiny.globals : global;
     assert(base);
     assert(target);
 
@@ -941,13 +941,13 @@ void enforce(const bool check, const size_t line, lazy const string msg)  pure @
 /// Initialize the frontend before each test
 @beforeEach void initializeFrontend()
 {
-    import dmd.frontend : initDMD;
+    import destiny.frontend : initDMD;
     initDMD();
 }
 
 /// Deinitialize the frontend after each test
 @afterEach void deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }

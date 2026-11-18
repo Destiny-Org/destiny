@@ -8,40 +8,40 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dout.d, backend/dout.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dout.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/dout.d, backend/dout.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/dout.d
  *
  */
 
-module dmd.backend.dout;
+module destiny.backend.dout;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.backend.backconfig : debugb, debugy;
-import dmd.backend.barray;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.cgcv;
-import dmd.backend.code;
-import dmd.backend.debugprint;
-import dmd.backend.x86.code_x86;
-import dmd.backend.dt;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE, _align, size, symboldata;
-import dmd.backend.blockopt : block_compbcount, block_pred, blocklist_free, BlockOpt, blockopt, bo;
-import dmd.backend.cgelem : doptelem;
-import dmd.backend.debugprint : WRfunc;
-import dmd.backend.ee : eecontext_convs;
-import dmd.backend.go;
-import dmd.backend.symbol : symbol_generate, symbol_print, globsym;
-import dmd.backend.x86.cod3 : cod3_thunk;
-import dmd.backend.inliner;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.backconfig : debugb, debugy;
+import destiny.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.cgcv;
+import destiny.backend.code;
+import destiny.backend.debugprint;
+import destiny.backend.x86.code_x86;
+import destiny.backend.dt;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE, _align, size, symboldata;
+import destiny.backend.blockopt : block_compbcount, block_pred, blocklist_free, BlockOpt, blockopt, bo;
+import destiny.backend.cgelem : doptelem;
+import destiny.backend.debugprint : WRfunc;
+import destiny.backend.ee : eecontext_convs;
+import destiny.backend.go;
+import destiny.backend.symbol : symbol_generate, symbol_print, globsym;
+import destiny.backend.x86.cod3 : cod3_thunk;
+import destiny.backend.inliner;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
 nothrow:
 @safe:
@@ -163,7 +163,7 @@ void outdata(Symbol* s)
                         if (config.objfmt == OBJ_MACH && config.target_cpu == TARGET_AArch64)
                         {
                             // Special handling
-                            import dmd.backend.machobj : MachObj_thread_vars;
+                            import destiny.backend.machobj : MachObj_thread_vars;
                             targ_size_t offseti;
                             int segi = MachObj_thread_vars(*s, offseti, true);
                             dt_writeToObj(objmod, dt, segi, offseti); // need to align first?
@@ -292,7 +292,7 @@ void outdata(Symbol* s)
             if (config.objfmt == OBJ_MACH && config.target_cpu == TARGET_AArch64)
             {
                 // Special handling
-                import dmd.backend.machobj : MachObj_thread_vars;
+                import destiny.backend.machobj : MachObj_thread_vars;
                 targ_size_t offseti;
                 int segi = MachObj_thread_vars(*s, offseti, false);
                 dt_writeToObj(objmod, dtstart, segi, offseti);

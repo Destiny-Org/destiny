@@ -7,24 +7,24 @@ module compilable.searching; @system:
 
 import support : afterEach, beforeEach, compiles;
 
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dclass : ClassDeclaration;
-import dmd.declaration : VarDeclaration;
-import dmd.dtemplate : TemplateDeclaration;
-import dmd.globals : global;
-import dmd.identifier : Identifier;
-import dmd.location;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dclass : ClassDeclaration;
+import destiny.declaration : VarDeclaration;
+import destiny.dtemplate : TemplateDeclaration;
+import destiny.globals : global;
+import destiny.identifier : Identifier;
+import destiny.location;
 
 @beforeEach initializeFrontend()
 {
-    import dmd.frontend : initDMD;
+    import destiny.frontend : initDMD;
     initDMD();
 }
 
 @afterEach deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }
 

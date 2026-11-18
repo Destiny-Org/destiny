@@ -1145,7 +1145,7 @@ $(MULTICOLS 4,
     $(LINK2 expression.html#IsExpression, $(D __parameters))
     $(LINK2 expression.html#RvalueExpression, $(D __rvalue))
     $(LINK2 traits.html, $(D __traits))
-    $(LINK2 $(ROOT_DIR)phobos/core_simd.html#.Vector, $(D __vector))
+    $(LINK2 $(ROOT_DIR)fate/core_simd.html#.Vector, $(D __vector))
 )
 )
 

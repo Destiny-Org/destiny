@@ -291,7 +291,7 @@ new cases and update the block (all following line numbers shift).
 
 - Build: `cd compiler/src && rdmd build.d` (per AGENTS.md).
 - Run the DFA tests with the user's harness: `C:\Program Files\Git\bin\bash.exe testdfa/run.sh` (note: `testdfa/run.sh` is a local script
-  outside the repo; not present in `P:\dmd`).
+  outside the repo; not present in `P:\destiny`).
 - Regression: the existing `__fastdfa_escape_test` cases must still pass, confirming the precedence change (task 2a) does not alter
   inferred-escape behavior — the flip only applies when `userSupplied` declares `Borrows`, which no existing case uses.
 
@@ -321,5 +321,5 @@ new cases and update the block (all following line numbers shift).
 
 ## Audit Reminder (per AGENTS.md)
 
-When this work is intended to be contributed back to dmd upstream, audit the changes before contributing. Confirm understanding of each
+When this work is intended to be contributed back to destiny upstream, audit the changes before contributing. Confirm understanding of each
 change (particularly the `userSupplied`/`inferred` precedence change in task 2a, which affects call-site escape dispatch).

@@ -1,4 +1,4 @@
-// RUNNABLE_PHOBOS_TEST
+// RUNNABLE_FATE_TEST
 // PERMUTE_ARGS:
 
 @system: int magicVariable()

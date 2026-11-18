@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/enum.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/enum.h
  */
 
 #pragma once
@@ -17,7 +17,7 @@ class Identifier;
 class Type;
 class Expression;
 
-namespace dmd
+namespace destiny
 {
     // in enumsem.d
     Expression *getDefaultValue(EnumDeclaration *ed, Loc loc);

@@ -4,7 +4,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/root/dcompat.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/root/dcompat.h
  */
 
 #pragma once
@@ -41,7 +41,7 @@ struct DString : public DArray<const char>
 typedef unsigned d_size_t;
 #elif MARS && DMD_VERSION >= 2079 && DMD_VERSION <= 2081 && \
         __APPLE__ && __SIZEOF_SIZE_T__ == 8
-// DMD versions between 2.079 and 2.081 mapped D ulong to uint64_t on OS X.
+// Destiny versions between 2.079 and 2.081 mapped D ulong to uint64_t on OS X.
 typedef uint64_t d_size_t;
 #elif defined(__OpenBSD__) && !defined(__LP64__)
 // size_t is 'unsigned long', which makes it mangle differently than D's 'uint'

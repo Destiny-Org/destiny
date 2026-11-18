@@ -1294,7 +1294,7 @@ void __delete(T)(ref T x) @system
             s.__xdtor();
     }
 
-    // See also: https://github.com/Destiny-Org/destiny/blob/v2.078.0/src/dmd/e2ir.d#L3886
+    // See also: https://github.com/Destiny-Org/destiny/blob/v2.078.0/src/destiny/e2ir.d#L3886
     static if (is(T == interface))
     {
         .object.destroy(x);

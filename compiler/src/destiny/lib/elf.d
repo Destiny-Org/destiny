@@ -4,12 +4,12 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/lib/elf.d, _libelf.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/lib/elf.d, _libelf.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.lib.elf;
+module destiny.lib.elf;
 
 import core.stdc.time;
 import core.stdc.string;
@@ -30,24 +30,24 @@ else version (Windows)
 else
     static assert(0, "unsupported operating system");
 
-import dmd.errors : fatal;
-import dmd.lib;
-import dmd.location;
-import dmd.utils;
+import destiny.errors : fatal;
+import destiny.lib;
+import destiny.location;
+import destiny.utils;
 
-import dmd.root.array;
-import dmd.root.file;
-import dmd.root.filename;
-import dmd.common.outbuffer;
-import dmd.root.port;
-import dmd.root.rmem;
-import dmd.root.string;
-import dmd.root.stringtable;
+import destiny.root.array;
+import destiny.root.file;
+import destiny.root.filename;
+import destiny.common.outbuffer;
+import destiny.root.port;
+import destiny.root.rmem;
+import destiny.root.string;
+import destiny.root.stringtable;
 
-import dmd.lib.scanelf;
+import destiny.lib.scanelf;
 
 // Entry point (only public symbol in this module).
-package(dmd.lib) extern (C++) Library LibElf_factory()
+package(destiny.lib) extern (C++) Library LibElf_factory()
 {
     return new LibElf();
 }

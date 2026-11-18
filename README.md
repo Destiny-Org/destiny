@@ -2,7 +2,7 @@
 
 **destiny** is the reference compiler for the Destiny programming language.
 
-Destiny started as a fork of the D reference compiler (dmd) and its
+Destiny started as a fork of the D reference compiler (destiny) and its
 runtime. It is heading towards being memory safe by default; see the
 [memory safety design](docs/specs/2026-11-12-destiny-memory-safety-design.md).
 
@@ -36,7 +36,7 @@ Building destiny needs an upstream D compiler. To install one of the
 versions mirrored in Destiny-Org/host-compilers:
 
 ```
-ci/host_compiler.sh dmd
+ci/host_compiler.sh destiny
 source ~/host-compilers/dmd/activate
 ```
 
@@ -48,7 +48,7 @@ Destiny-Org/host-compilers (see "Host compiler" above).
 
 ```
 cd destiny_engine
-make -j$(nproc) HOST_DC=dmd    # compiler + druntime
+make -j$(nproc) HOST_DC=destiny    # compiler + druntime
 make -j$(nproc) fate            # standard library (in ../fate)
 ```
 
@@ -82,17 +82,27 @@ tests.
 | [docs](docs) | Destiny design specs and guides |
 | [spec](spec) | the language specification |
 
-## Names inherited from D
+## Names
+
+The compiler, its sources and the standard library use Destiny names:
+
+| What | Name |
+|---|---|
+| compiler program | `destiny` (`destiny.exe` on Windows), config `destiny.conf` |
+| compiler sources | `compiler/src/destiny/`, modules `destiny.*`, C++ headers in `compiler/include/destiny/` (`namespace destiny`) |
+| standard library | Fate: library `libfate.a` / `libfate.so`, modules `std.*`, v3 preview `fate.sys` |
+| downloads | `destiny64-<version>-<os>.tar.xz` |
+| test-suite variable | `$DESTINY` (the compiler under test) |
 
 Some names still come from D, on purpose:
 
-- Source files keep the `.d` extension.
-- The compiler's own modules are named `dmd.*` and live in
-  `compiler/src/dmd/`.
-- The standard library modules are `std.*`, and the compiled library is
-  still `libphobos2`.
-- `HOST_DC` and `version (DigitalMars)` refer to the upstream D
-  toolchain.
+- Source files keep the `.d` extension, and Fate's modules keep `std.*` and
+  `etc.*`, so D code still imports the same modules.
+- `HOST_DC`, `dmd-2.113.1` and `version (DigitalMars)` refer to the upstream
+  D toolchain that builds Destiny.
+- Citations such as "upstream dmd issue 1234" point at the original projects.
+- Internal build identifiers (`dmdDefault`, `-version=DMDLIB`) and the
+  `-Xi=compilerInfo` interface value `dmd`, which tools rely on.
 
 ## License
 

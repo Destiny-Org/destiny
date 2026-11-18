@@ -4,27 +4,27 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/errors.d, _errors.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/errors.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/errors.d, _errors.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/errors.d
  *
  */
 
-module dmd.errors;
+module destiny.errors;
 
 public import core.stdc.stdarg;
-public import dmd.root.string: fTuple;
+public import destiny.root.string: fTuple;
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
-import dmd.errorsink;
-import dmd.globals;
-import dmd.location;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.root.string;
-import dmd.console;
-import dmd.console : Color;
-import dmd.root.filename;
+import destiny.errorsink;
+import destiny.globals;
+import destiny.location;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.root.string;
+import destiny.console;
+import destiny.console : Color;
+import destiny.root.filename;
 
 nothrow:
 
@@ -33,7 +33,7 @@ nothrow:
  *
  * Owns the gating logic (gag handling, error limit, warning/deprecation modes)
  * and delegates the actual output to the virtual $(D emit) method, which
- * subclasses such as $(D dmd.sarif.ErrorSinkSarif) override to change format.
+ * subclasses such as $(D destiny.sarif.ErrorSinkSarif) override to change format.
  */
 extern (C++) class ErrorSinkCompiler : ErrorSink
 {
@@ -217,7 +217,7 @@ extern (C++) class ErrorSinkCompiler : ErrorSink
     /**
      * Format and write a single diagnostic that has already passed the gating
      * checks. Default implementation prints coloured text to stderr (or stdout
-     * for plain messages); $(D dmd.sarif.ErrorSinkSarif) overrides this to
+     * for plain messages); $(D destiny.sarif.ErrorSinkSarif) overrides this to
      * write SARIF JSON instead.
      *
      * Params:
@@ -673,7 +673,7 @@ private void printDiagnostic(const(char)* format, va_list ap, ref DiagnosticCont
 // and a caret pointing to the error into `buf`
 private void printErrorLineContext(ref OutBuffer buf, const(char)[] text, size_t offset) @safe
 {
-    import dmd.root.utf : utf_countColumnsUntil;
+    import destiny.root.utf : utf_countColumnsUntil;
 
     if (offset >= text.length)
         return; // Out of bounds (missing source content in SourceLoc)
@@ -837,8 +837,8 @@ enum HIGHLIGHT : ubyte
 
 private void colorHighlightCode(ref OutBuffer buf)
 {
-    import dmd.lexer;
-    import dmd.tokens;
+    import destiny.lexer;
+    import destiny.tokens;
 
     __gshared int nested;
     if (nested)

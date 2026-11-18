@@ -10,41 +10,41 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cod1.d, backend/cod1.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cod1.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/cod1.d, backend/cod1.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/cod1.d
  *
  */
 
-module dmd.backend.x86.cod1;
+module destiny.backend.x86.cod1;
 
 import core.bitop;
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.backconfig : debugr, debugw;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.codebuilder;
-import dmd.backend.mem;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE, _align, mask, size;
-import dmd.backend.cg : tls_get_addr_sym;
-import dmd.backend.debugprint : fl_str, oper_str, tym_str;
-import dmd.backend.evalu8 : boolres;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
-import dmd.backend.x86.xmm;
-import dmd.backend.arm.cod1;
-import dmd.backend.arm.instr : INSTR;
+import destiny.backend.backconfig : debugr, debugw;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.codebuilder;
+import destiny.backend.mem;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE, _align, mask, size;
+import destiny.backend.cg : tls_get_addr_sym;
+import destiny.backend.debugprint : fl_str, oper_str, tym_str;
+import destiny.backend.evalu8 : boolres;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
+import destiny.backend.x86.xmm;
+import destiny.backend.arm.cod1;
+import destiny.backend.arm.instr : INSTR;
 
-import dmd.backend.cg : segfl, stackfl;
+import destiny.backend.cg : segfl, stackfl;
 
 nothrow:
 @safe:
@@ -365,7 +365,7 @@ uint gensaverestore(ref CGstate cg,regm_t regm,ref CodeBuilder cdbsave,ref CodeB
                 CodeBuilder cdb;
                 cdb.ctor();
                 uint idx;
-                import dmd.backend.arm.cod3 : REGSAVE_save, REGSAVE_restore;
+                import destiny.backend.arm.cod3 : REGSAVE_save, REGSAVE_restore;
                 REGSAVE_save(cg.regsave,cdbsave,i,idx);
                 cg.reflocal = true;        // registers saved into local stackframe
                 REGSAVE_restore(cg.regsave,cdb,i,idx);
@@ -495,7 +495,7 @@ void logexp(ref CGstate cg, ref CodeBuilder cdb, elem* e, int jcond, FL fltarg, 
 {
     if (cg.AArch64)
     {
-        import dmd.backend.arm.cod1 : logexp;
+        import destiny.backend.arm.cod1 : logexp;
         return logexp(cg, cdb, e, jcond, fltarg, targ);
     }
 
@@ -657,7 +657,7 @@ void loadea(ref CGstate cg, ref CodeBuilder cdb,elem* e,ref code cs,uint op,reg_
             regm_t keepmsk,regm_t desmsk, RM rmx = RM.rw)
 {
     if (cg.AArch64)
-        return dmd.backend.arm.cod1.loadea(cg,cdb,e,cs,op,reg,offset,keepmsk,desmsk,rmx);
+        return destiny.backend.arm.cod1.loadea(cg,cdb,e,cs,op,reg,offset,keepmsk,desmsk,rmx);
 
     code* c, cd;
 
@@ -1765,7 +1765,7 @@ void tstresult(ref CGstate cg, ref CodeBuilder cdb, regm_t regm, tym_t tym, bool
 {
     if (cg.AArch64)
     {
-        import dmd.backend.arm.cod1 : tstresult;
+        import destiny.backend.arm.cod1 : tstresult;
         return tstresult(cg, cdb, regm, tym, saveflag);
     }
 
@@ -1920,7 +1920,7 @@ void fixresult(ref CGstate cg, ref CodeBuilder cdb, elem* e, regm_t retregs, ref
 {
     if (cg.AArch64)
     {
-        import dmd.backend.arm.cod1 : fixresult;
+        import destiny.backend.arm.cod1 : fixresult;
         return fixresult(cg, cdb, e, retregs, outretregs);
     }
 
@@ -2958,7 +2958,7 @@ void callclib(ref CGstate cg, ref CodeBuilder cdb, elem* e, uint clib, ref regm_
 /*************************************************
  * Helper function for converting OPparam's into array of Parameters.
  */
-package(dmd.backend) struct Parameter
+package(destiny.backend) struct Parameter
 {
     elem* e;
     reg_t reg, reg2;
@@ -3381,7 +3381,7 @@ void cdfunc(ref CGstate cg, ref CodeBuilder cdb, elem* e, ref regm_t pretregs)
     //printf("cdfunc()\n"); elem_print(e);
     if (cg.AArch64)
     {
-        import dmd.backend.arm.cod1 : cdfunc;
+        import destiny.backend.arm.cod1 : cdfunc;
         return cdfunc(cg, cdb, e, pretregs);
     }
     assert(e);
@@ -5249,7 +5249,7 @@ void loaddata(ref CGstate cg, ref CodeBuilder cdb, elem* e, ref regm_t outretreg
 {
     if (cg.AArch64)
     {
-        import dmd.backend.arm.cod1 : loaddata;
+        import destiny.backend.arm.cod1 : loaddata;
         return loaddata(cg, cdb, e, outretregs);
     }
 

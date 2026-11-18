@@ -1,7 +1,7 @@
 /**
  * Entry point for exception handling support routines.
  *
- * There are three style of exception handling being supported by DMD:
+ * There are three style of exception handling being supported by Destiny:
  * DWARF, Win32, and Win64. The Win64 code also supports POSIX.
  * Support for those scheme is in `rt.dwarfeh`, `rt.deh_win32`, and
  * `rt.deh_win64_posix`, respectively, and publicly imported here.

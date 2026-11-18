@@ -6,17 +6,17 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/mem.d, backend/mem.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/mem.d, backend/mem.d)
  *
  */
 
 
-module dmd.backend.mem;
+module destiny.backend.mem;
 
 import core.stdc.stdlib : malloc, calloc, realloc, free;
 import core.stdc.string : strdup;
 
-import dmd.backend.global : err_nomem;
+import destiny.backend.global : err_nomem;
 
 nothrow:
 @nogc:

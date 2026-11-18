@@ -6,11 +6,11 @@ version(Windows)
     // other platforms pass the runtime library on the linker command line
     version(CRuntime_Microsoft)
         version(Win64)
-            pragma(lib, "phobos64");
+            pragma(lib, "fate64");
         else
-            pragma(lib, "phobos32mscoff");
+            pragma(lib, "fate32mscoff");
     else
-        pragma(lib, "phobos");
+        pragma(lib, "fate");
 }
 
 extern(C++) int test6716(int magic)

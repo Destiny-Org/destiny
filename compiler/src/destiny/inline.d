@@ -7,49 +7,49 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/inline.d, _inline.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/inline.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/inline.d, _inline.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/inline.d
  *
  */
 
-module dmd.inline;
+module destiny.inline;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.declaration;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.cond : Include;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.expression;
-import dmd.expressionsem : canElideCopy, semanticTypeInfo;
-import dmd.errorsink;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.initsem;
-import dmd.location;
-import dmd.mtype;
-import dmd.opover;
-import dmd.printast;
-import dmd.statement;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
-import dmd.visitor.postorder;
-import dmd.inlinecost;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.declaration;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.cond : Include;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.expression;
+import destiny.expressionsem : canElideCopy, semanticTypeInfo;
+import destiny.errorsink;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.initsem;
+import destiny.location;
+import destiny.mtype;
+import destiny.opover;
+import destiny.printast;
+import destiny.statement;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
+import destiny.visitor.postorder;
+import destiny.inlinecost;
 
 /***********************************************************
  * Scan for always-inline functions in Module m to be inlined,
@@ -1981,7 +1981,7 @@ public:
         fd.inlineScanned = true;
         fd.semanticRun = pass;
 
-        import dmd.timetrace;
+        import destiny.timetrace;
         timeTraceBeginEvent(TimeTraceEventType.inlineFunction);
         scope (exit) timeTraceEndEvent(TimeTraceEventType.inlineFunction, fd);
 
@@ -2419,7 +2419,7 @@ private void expandInline(CallExp ecall, FuncDeclaration fd, FuncDeclaration par
         auto e = doInlineAs!Expression(fd.fbody, ids);
         fd.inlineNest--;
 
-        import dmd.expressionsem : toLvalue;
+        import destiny.expressionsem : toLvalue;
         // upstream issue 11322
         if (tf.isRef)
             e = e.toLvalue(null, "`ref` return");

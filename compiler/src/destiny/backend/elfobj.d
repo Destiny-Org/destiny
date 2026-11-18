@@ -10,10 +10,10 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/elfobj.d, backend/elfobj.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/elfobj.d, backend/elfobj.d)
  */
 
-module dmd.backend.elfobj;
+module destiny.backend.elfobj;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
@@ -23,31 +23,31 @@ import core.stdc.string;
 alias _compare_fp_t = extern(C) nothrow int function(const void*, const void*);
 private extern(C) void qsort(scope void* base, size_t nmemb, size_t size, _compare_fp_t compar) nothrow @nogc;
 
-import dmd.backend.barray;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.dout : symbol_iscomdat2;
-import dmd.backend.mem;
-import dmd.backend.aarray;
-import dmd.backend.el;
-import dmd.backend.global : _align, err_nomem, symboldata, util_free, util_malloc;
-import dmd.backend.dout : alignOffset;
-import dmd.backend.symbol : symbol_name, symbol_print, symbol_reset;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
-import dmd.backend.arm.instr;
+import destiny.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.dout : symbol_iscomdat2;
+import destiny.backend.mem;
+import destiny.backend.aarray;
+import destiny.backend.el;
+import destiny.backend.global : _align, err_nomem, symboldata, util_free, util_malloc;
+import destiny.backend.dout : alignOffset;
+import destiny.backend.symbol : symbol_name, symbol_print, symbol_reset;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
+import destiny.backend.arm.instr;
 
-import dmd.common.outbuffer;
+import destiny.common.outbuffer;
 
 nothrow:
 
-import dmd.backend.dwarf;
-import dmd.backend.melf;
+import destiny.backend.dwarf;
+import destiny.backend.melf;
 
 enum MATCH_SECTION = 1;
 
@@ -258,7 +258,7 @@ IDXSYM      MAP_SEG2SYMIDX(int seg) { return SegData[seg].SDsymidx; }
 Elf32_Shdr* MAP_SEG2SEC(int seg)    { return &elfobj.SecHdrTab[MAP_SEG2SECIDX(seg)]; }
 int         MAP_SEG2TYP(int seg)    { return MAP_SEG2SEC(seg).sh_flags & SHF_EXECINSTR ? CODE : DATA; }
 
-import dmd.backend.code: SegData;
+import destiny.backend.code: SegData;
 
 /*******************************
  * Output a string into a string table
@@ -2542,7 +2542,7 @@ void ElfObj_addrel(int seg, targ_size_t offset, uint type,
             relidx = SHN_RELDATA;
         else
         {
-            import dmd.common.smallbuffer : SmallBuffer;
+            import destiny.common.smallbuffer : SmallBuffer;
             // Get the section name, and make a copy because
             // elf_newsection() may reallocate the string buffer.
             char* section_name = cast(char*)GET_SECTION_NAME(secidx);

@@ -4,38 +4,38 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/toctype.d, _toctype.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/toctype.d, _toctype.d)
  * Documentation:  https://github.com/Destiny-Org/destiny
  *
  */
 
-module dmd.glue.toctype;
+module destiny.glue.toctype;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 
-import dmd.backend.cc : Classsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.cc : Classsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.root.rmem;
+import destiny.root.rmem;
 
-import dmd.glue;
-import dmd.glue.tocvdebug;
+import destiny.glue;
+import destiny.glue.tocvdebug;
 
-import dmd.astenums;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dmdparams;
-import dmd.dstruct;
-import dmd.dsymbolsem : isPOD;
-import dmd.expressionsem : toInteger;
-import dmd.id;
-import dmd.mtype;
-import dmd.typesem;
+import destiny.astenums;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dmdparams;
+import destiny.dstruct;
+import destiny.dsymbolsem : isPOD;
+import destiny.expressionsem : toInteger;
+import destiny.id;
+import destiny.mtype;
+import destiny.typesem;
 
-package(dmd.glue):
+package(destiny.glue):
 
 private:
 
@@ -46,7 +46,7 @@ private:
  * Returns:
  *  corresponding tym_t bits
  */
-package(dmd.glue)
+package(destiny.glue)
 tym_t modToTym(MOD mod) pure @safe
 {
     switch (mod)
@@ -84,7 +84,7 @@ tym_t modToTym(MOD mod) pure @safe
  * Returns:
  *      back end equivalent `type`
  */
-package(dmd.glue)
+package(destiny.glue)
 type* Type_toCtype(Type t)
 {
     if (t.ctype)
@@ -127,7 +127,7 @@ type* Type_toCtype(Type t)
     static type* visitFunction(TypeFunction t)
     {
         const nparams = t.parameterList.length;
-        import dmd.common.smallbuffer : SmallBuffer;
+        import destiny.common.smallbuffer : SmallBuffer;
         type*[10] tmp = void;
         auto sb = SmallBuffer!(type*)(nparams, tmp[]);
         type*[] types = sb[];
@@ -195,7 +195,7 @@ type* Type_toCtype(Type t)
             /* Add in fields of the struct
              * (after setting ctype to avoid infinite recursion)
              */
-            import dmd.globals;
+            import destiny.globals;
             if (driverParams.symdebug && !global.errors)
             {
                 foreach (v; sym.fields)

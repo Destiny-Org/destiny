@@ -4,36 +4,36 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dmsc.d, _dmsc.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dmsc.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dmsc.d, _dmsc.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dmsc.d
  *
  */
 
-module dmd.dmsc;
+module destiny.dmsc;
 
 import core.stdc.stdio;
 import core.stdc.string;
 import core.stdc.stddef;
 
-import dmd.globals;
-import dmd.dclass;
-import dmd.dmdparams;
-import dmd.dmodule;
-import dmd.errors : errorBackend;
-import dmd.mtype;
-import dmd.target;
+import destiny.globals;
+import destiny.dclass;
+import destiny.dmdparams;
+import destiny.dmodule;
+import destiny.errors : errorBackend;
+import destiny.mtype;
+import destiny.target;
 
-import dmd.root.filename;
+import destiny.root.filename;
 
-import dmd.backend.backconfig;
-import dmd.backend.go;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.global : ErrorCallbackBackend, GetFileContentsCallback;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.backconfig;
+import destiny.backend.go;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.global : ErrorCallbackBackend, GetFileContentsCallback;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.file_manager : FileManager;
+import destiny.file_manager : FileManager;
 
 /// Callback for the backend to fetch cached source-file contents from the
 /// front-end FileManager (Module.src), so hashing source files for debug info

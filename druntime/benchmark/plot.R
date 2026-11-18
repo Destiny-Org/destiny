@@ -1,8 +1,8 @@
-# compile master dmd&druntime&phobos
+# compile master dmd&druntime&Fate
 # ./runbench -v > baseline.txt
-# compile feature branch dmd&druntime&phobos
+# compile feature branch dmd&druntime&Fate
 # ./runbench -v > feature.txt
-# optionally compile variation of feature branch dmd&druntime&phobos
+# optionally compile variation of feature branch dmd&druntime&Fate
 # ./runbench -v > feature_variation.txt
 # Rscript --vanilla plot.R baseline.txt feature.txt feature_variation.txt
 library(dplyr)

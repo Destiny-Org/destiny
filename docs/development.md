@@ -51,7 +51,7 @@ and `compiler/src/build.d` (`HOST_DC_VER`).
 
 ```bash
 cd destiny_engine
-make -j$(nproc) HOST_DC=dmd     # compiler + druntime
+make -j$(nproc) HOST_DC=destiny     # compiler + druntime
 make -j$(nproc) fate             # Fate, in ../fate
 ```
 
@@ -61,7 +61,7 @@ Results:
 |---|---|
 | compiler | `destiny_engine/generated/linux/release/64/destiny` (+ `destiny.conf`) |
 | druntime | `destiny_engine/generated/linux/release/64/libdruntime.a` |
-| Fate | `fate/generated/linux/release/64/libphobos2.a`, `libphobos2.so.0.115.0` |
+| Fate | `fate/generated/linux/release/64/libfate.a`, `libfate.so.0.115.0` |
 
 ## Testing
 
@@ -70,8 +70,8 @@ library change; build first (see [Building](#building)).
 
 | Suite | Command (from `destiny_engine/`) | Time on 2 CPUs |
 |---|---|---|
-| Compiler | `make -j2 HOST_DC=dmd destiny-test` | ~2–3 h |
-| druntime | `make -k -j2 HOST_DC=dmd druntime-test` | ~20 min |
+| Compiler | `make -j2 HOST_DC=destiny destiny-test` | ~2–3 h |
+| druntime | `make -k -j2 HOST_DC=destiny druntime-test` | ~20 min |
 | Fate | `make -k -C ../fate -j2 unittest` | ~1 h |
 
 **Use `-k` for druntime and Fate.** Without it, `make` stops at the first
@@ -98,8 +98,8 @@ Run single tests with the test runner (built by `make ... destiny-test`, or by
 
 ```bash
 cd compiler/test
-../../generated/run -j2 HOST_DC=dmd runnable/nrvo.d fail_compilation/fail_scope.d
-../../generated/run -j2 HOST_DC=dmd fail_compilation    # a whole folder
+../../generated/run -j2 HOST_DC=destiny runnable/nrvo.d fail_compilation/fail_scope.d
+../../generated/run -j2 HOST_DC=destiny fail_compilation    # a whole folder
 ```
 
 The test's header comment sets its options, for example:
@@ -119,7 +119,7 @@ When a compiler change correctly changes error messages, regenerate the
 expected output and then **review the diff** before keeping it:
 
 ```bash
-AUTO_UPDATE=1 ../../generated/run -j1 HOST_DC=dmd fail_compilation/foo.d
+AUTO_UPDATE=1 ../../generated/run -j1 HOST_DC=destiny fail_compilation/foo.d
 git diff fail_compilation/foo.d
 ```
 
@@ -159,10 +159,10 @@ leave those processes behind, after which it fails every time; kill them
 The compiler embeds some files (for example the ddoc theme) at build time, and
 the build does not always notice when they change. If a change seems to have no
 effect, `touch` the source that imports it (for the ddoc theme:
-`compiler/src/dmd/doc.d`) and rebuild.
+`compiler/src/destiny/doc.d`) and rebuild.
 
 After a compiler change, rebuild druntime and Fate too (`make -j2
-HOST_DC=dmd && make -C ../fate -j2`): a change can break building them even
+HOST_DC=destiny && make -C ../fate -j2`): a change can break building them even
 when single compiler tests pass.
 
 ### Building and testing in the Multipass VM
@@ -188,7 +188,7 @@ Things to know about the snap-packaged Multipass:
   ```bash
   multipass exec destiny-lang -- bash -c 'cd ~/destiny-src/destiny_engine &&
     source ~/host-compilers/dmd-2.113.1/activate &&
-    setsid nohup bash -c "make -j2 HOST_DC=dmd destiny-test > ~/test-destiny.log 2>&1" &' | cat
+    setsid nohup bash -c "make -j2 HOST_DC=destiny destiny-test > ~/test-destiny.log 2>&1" &' | cat
   multipass exec destiny-lang -- tail -50 ~/test-destiny.log | cat
   ```
 
@@ -235,7 +235,7 @@ it is not. GitHub masks it in logs.
 
 destiny's CI runs pre-commit (`.pre-commit-config.yaml`): no trailing
 whitespace, files end with one newline, valid workflow files, and changelog
-entries in `changelog/` named `destiny.*`, `dmd.*` or `druntime.*`.
+entries in `changelog/` named `destiny.*`, `destiny.*` or `druntime.*`.
 
 ## Status (2026-11-17)
 
@@ -247,7 +247,7 @@ compiler:
   failing group does not hide the rest);
 - druntime unittests pass;
 - Fate unittests pass for every module (debug and release), with `-k`;
-- `make destiny-test HOST_DC=dmd` (renamed targets and variable) works.
+- `make destiny-test HOST_DC=destiny` (renamed targets and variable) works.
 
 Every `@trusted` added for sub-project 2 is listed, with its reason, in
 [trusted-review.md](trusted-review.md).
@@ -262,3 +262,21 @@ Known: the `std.process` signal test needs SIGINT to have its default action
 in the child. It now resets it itself, so it also passes when the tests are
 started from a background job of a non-interactive shell (which ignores
 SIGINT).
+
+## Releasing
+
+Downloads are named after the 64-bit compiler, `destiny64-<version>-<os>.tar.xz`
+(for example `destiny64-2.115.0-linux.tar.xz`). Inside is a `destiny64/`
+folder with `bin/destiny` (the compiler and its `destiny.conf`),
+`import/druntime`, `import/fate` and `lib/`. The config uses paths relative to
+the compiler, so the folder works wherever it is unpacked:
+
+```
+tar xJf destiny64-2.115.0-linux.tar.xz
+./destiny64/bin/destiny app.d
+```
+
+Build a package locally with `ci/package.sh [OUT_DIR]` after a release build of
+the compiler, druntime and Fate. Pushing a tag `v*` runs
+`.github/workflows/release.yml`, which builds the package and attaches it to
+that tag's GitHub release (a manual run keeps it as a workflow artifact).

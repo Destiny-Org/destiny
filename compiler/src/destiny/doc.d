@@ -6,52 +6,52 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/doc.d, _doc.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/doc.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/doc.d, _doc.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/doc.d
  *
  */
 
-module dmd.doc;
+module destiny.doc;
 
 import core.stdc.ctype;
 import core.stdc.stdlib;
 import core.stdc.stdio;
 import core.stdc.string;
 import core.stdc.time;
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.cond;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dimport;
-import dmd.dmacro;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.templatesem : computeOneMember;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.func;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.lexer;
-import dmd.location;
-import dmd.mtype;
-import dmd.root.array;
-import dmd.common.outbuffer;
-import dmd.root.port;
-import dmd.root.rmem;
-import dmd.root.string;
-import dmd.root.utf;
-import dmd.tokens;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.cond;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dimport;
+import destiny.dmacro;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.templatesem : computeOneMember;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.func;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.lexer;
+import destiny.location;
+import destiny.mtype;
+import destiny.root.array;
+import destiny.common.outbuffer;
+import destiny.root.port;
+import destiny.root.rmem;
+import destiny.root.string;
+import destiny.root.utf;
+import destiny.tokens;
+import destiny.visitor;
 
 
 /****************************************************
@@ -1928,11 +1928,11 @@ void toDocBuffer(Dsymbol s, ref OutBuffer buf, Scope* sc)
             {
                 prettyPrintDsymbol(s, ad.parent);
             }
-            else if (Type type = dmd.dsymbolsem.getType(ad)) // type alias
+            else if (Type type = destiny.dsymbolsem.getType(ad)) // type alias
             {
                 if (type.ty == Tclass || type.ty == Tstruct || type.ty == Tenum)
                 {
-                    import dmd.typesem : toDsymbol;
+                    import destiny.typesem : toDsymbol;
                     if (Dsymbol s = type.toDsymbol(null)) // elaborate type
                         prettyPrintDsymbol(s, ad.parent);
                     else
@@ -2280,7 +2280,7 @@ int getMarkdownIndent(ref OutBuffer buf, size_t from, size_t to) @safe
  */
 size_t skippastident(ref OutBuffer buf, size_t i) @safe
 {
-    import dmd.common.charactertables;
+    import destiny.common.charactertables;
 
     const slice = buf[];
     while (i < slice.length)
@@ -2313,7 +2313,7 @@ size_t skippastident(ref OutBuffer buf, size_t i) @safe
  */
 size_t skipPastIdentWithDots(ref OutBuffer buf, size_t i) @safe
 {
-    import dmd.common.charactertables;
+    import destiny.common.charactertables;
 
     const slice = buf[];
     bool lastCharWasDot;
@@ -5399,7 +5399,7 @@ bool isCVariadicArg(const(char)[] p) @nogc nothrow pure @safe
 @trusted
 bool isIdStart(const(char)* p) @nogc nothrow pure
 {
-    import dmd.common.charactertables;
+    import destiny.common.charactertables;
 
     dchar c = *p;
     if (isalpha(c) || c == '_')
@@ -5421,7 +5421,7 @@ bool isIdStart(const(char)* p) @nogc nothrow pure
 @trusted
 bool isIdTail(const(char)* p) @nogc nothrow pure
 {
-    import dmd.common.charactertables;
+    import destiny.common.charactertables;
 
     dchar c = *p;
     if (isalnum(c) || c == '_')

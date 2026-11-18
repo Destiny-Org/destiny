@@ -11,28 +11,28 @@
  * Copyright:   Copyright (C) 2016-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/gsroa.d, backend/gsroa.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/gsroa.d, backend/gsroa.d)
  */
 
-module dmd.backend.gsroa;
+module destiny.backend.gsroa;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 import core.stdc.time;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.x86.code_x86 : isXMMreg;
-import dmd.backend.oper;
-import dmd.backend.global : REGSIZE, err_nomem;
-import dmd.backend.debugprint : tym_str;
-import dmd.backend.el;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.x86.code_x86 : isXMMreg;
+import destiny.backend.oper;
+import destiny.backend.global : REGSIZE, err_nomem;
+import destiny.backend.debugprint : tym_str;
+import destiny.backend.el;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.dvec;
+import destiny.backend.dvec;
 
 
 nothrow:
@@ -344,7 +344,7 @@ if (enable) // disable while we test the inliner
         enum tmp_length = 6;
     SymInfo[tmp_length] tmp = void;
 
-    import dmd.common.smallbuffer : SmallBuffer;
+    import destiny.common.smallbuffer : SmallBuffer;
     auto sb = SmallBuffer!(SymInfo)(3 * sia_length, tmp[]);
     SymInfo* sip = sb.ptr;
     memset(sip, 0, 3 * sia_length * SymInfo.sizeof);

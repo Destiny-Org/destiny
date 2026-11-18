@@ -6,23 +6,23 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/obj.d, backend/obj.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/obj.d, backend/obj.d)
  */
 
-module dmd.backend.obj;
+module destiny.backend.obj;
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/obj.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/obj.d
 
 /* Interface to object file format
  */
 
-import dmd.backend.cdef;
-import dmd.backend.cc;
-import dmd.backend.code;
-import dmd.backend.el;
-import dmd.backend.symbol;
+import destiny.backend.cdef;
+import destiny.backend.cc;
+import destiny.backend.code;
+import destiny.backend.el;
+import destiny.backend.symbol;
 
-import dmd.common.outbuffer;
+import destiny.common.outbuffer;
 
 nothrow:
 
@@ -37,9 +37,9 @@ else
 
 /******************************************************************/
 
-import dmd.backend.mscoffobj;
-import dmd.backend.elfobj;
-import dmd.backend.machobj;
+import destiny.backend.mscoffobj;
+import destiny.backend.elfobj;
+import destiny.backend.machobj;
 
 /******************************************************************/
 

@@ -277,7 +277,7 @@ struct _Complex(T)
     T im = 0;
 
     // Construction
-/+ upstream issue 23788 dmd codegen problem with constructors and _Complex!float
+/+ upstream issue 23788 destiny codegen problem with constructors and _Complex!float
     this(_Complex!float  c) { re = c.re; im = c.im; }
     this(_Complex!double c) { re = c.re; im = c.im; }
     this(_Complex!c_long_double   c) { re = c.re; im = c.im; }

@@ -44,7 +44,7 @@ bool __equals(T1, T2, size_t N, size_t M)(scope ref T1[N] lhs, scope ref T2[M] r
 
 /******************************
  * Helper function for __equals().
- * Outlined to enable __equals() to be inlined, as dmd cannot inline loops.
+ * Outlined to enable __equals() to be inlined, as destiny cannot inline loops.
  */
 private
 bool isEqual(T1, T2)(scope T1[] lhs, scope T2[] rhs, size_t length)

@@ -4,21 +4,21 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/printast.d, _printast.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/printast.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/printast.d, _printast.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/printast.d
  *
  */
 
-module dmd.printast;
+module destiny.printast;
 
 import core.stdc.stdio;
 
-import dmd.expression;
-import dmd.expressionsem : toInteger;
-import dmd.ctfeexpr;
-import dmd.tokens;
-import dmd.visitor;
-import dmd.hdrgen;
+import destiny.expression;
+import destiny.expressionsem : toInteger;
+import destiny.ctfeexpr;
+import destiny.tokens;
+import destiny.visitor;
+import destiny.hdrgen;
 
 /********************
  * Print AST data structure in a nice format.
@@ -68,8 +68,8 @@ extern (C++) final class PrintASTVisitor : Visitor
     {
         printIndent(indent);
 
-        import dmd.hdrgen : floatToBuffer;
-        import dmd.common.outbuffer : OutBuffer;
+        import destiny.hdrgen : floatToBuffer;
+        import destiny.common.outbuffer : OutBuffer;
         OutBuffer buf;
         floatToBuffer(e.type, e.value, buf, false);
         printf("Real %s %s\n", buf.peekChars(), e.type ? e.type.toChars() : "");

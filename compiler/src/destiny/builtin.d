@@ -6,26 +6,26 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/builtin.d, _builtin.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/builtin.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/builtin.d, _builtin.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/builtin.d
  *
  */
 
-module dmd.builtin;
+module destiny.builtin;
 
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem : toInteger, toReal;
-import dmd.typesem : isFloating, toBasetype;
-import dmd.func;
-import dmd.location;
-import dmd.mangle;
-import dmd.mtype;
-import dmd.root.ctfloat;
-import dmd.tokens;
-import dmd.id;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem : toInteger, toReal;
+import destiny.typesem : isFloating, toBasetype;
+import destiny.func;
+import destiny.location;
+import destiny.mangle;
+import destiny.mtype;
+import destiny.root.ctfloat;
+import destiny.tokens;
+import destiny.id;
 static import core.bitop;
 
 /**********************************
@@ -177,9 +177,9 @@ Expression eval_unimp(Loc loc, FuncDeclaration fd, Expression[] arguments)
 Expression eval_ctfeWrite(Loc loc, FuncDeclaration fd, Expression[] arguments)
 {
     import core.stdc.stdio: fprintf, stderr;
-    import dmd.expression: CTFEExp;
-    import dmd.ctfeexpr: resolveSlice;
-    import dmd.expressionsem : toStringExp;
+    import destiny.expression: CTFEExp;
+    import destiny.ctfeexpr: resolveSlice;
+    import destiny.expressionsem : toStringExp;
 
     Expression e = arguments[0];
     const se = resolveSlice(e).toStringExp();
@@ -379,7 +379,7 @@ Expression eval_bsf(Loc loc, FuncDeclaration fd, Expression[] arguments)
     auto n = arg0.toInteger();
     if (n == 0)
     {
-        import dmd.globals : global;
+        import destiny.globals : global;
         auto eSink = global.errorSink;
         eSink.error(loc, "`bsf(0)` is undefined");
     }
@@ -393,7 +393,7 @@ Expression eval_bsr(Loc loc, FuncDeclaration fd, Expression[] arguments)
     auto n = arg0.toInteger();
     if (n == 0)
     {
-        import dmd.globals : global;
+        import destiny.globals : global;
         auto eSink = global.errorSink;
         eSink.error(loc, "`bsr(0)` is undefined");
     }

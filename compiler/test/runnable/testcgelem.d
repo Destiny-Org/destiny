@@ -6,7 +6,7 @@ PERMUTE_ARGS: -O -inline -release
 /***
  * Do coverage testing of cgelem.d
  * Check coverage here:
- * compiler/src/dmd/backend/cgelem.d
+ * compiler/src/destiny/backend/cgelem.d
  */
 
 @system: import core.stdc.stdio;

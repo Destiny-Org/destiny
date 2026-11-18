@@ -5,20 +5,20 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/code_x86.d, backend/code_x86.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/code_x86.d, backend/code_x86.d)
  * Documentation:  https://github.com/Destiny-Org/destiny
  *
  */
 
-module dmd.backend.x86.code_x86;
+module destiny.backend.x86.code_x86;
 
-import dmd.backend.cdef;
-import dmd.backend.cc : config, FL;
-import dmd.backend.code;
-import dmd.backend.codebuilder : CodeBuilder;
-import dmd.backend.el : elem;
-import dmd.backend.ty : I64;
-import dmd.backend.barray;
+import destiny.backend.cdef;
+import destiny.backend.cc : config, FL;
+import destiny.backend.code;
+import destiny.backend.codebuilder : CodeBuilder;
+import destiny.backend.el : elem;
+import destiny.backend.ty : I64;
+import destiny.backend.barray;
 
 nothrow:
 @safe:

@@ -4,15 +4,15 @@ module lexer.diagnostic_reporter; @system:
 
 import core.stdc.stdarg;
 
-import dmd.globals : global, DiagnosticReporting;
-import dmd.location;
-import dmd.errors;
+import destiny.globals : global, DiagnosticReporting;
+import destiny.location;
+import destiny.errors;
 
 import support : afterEach, NoopDiagnosticReporter;
 
 @afterEach deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }
 
@@ -38,8 +38,8 @@ unittest
 
 private void lexUntilEndOfFile(string code)
 {
-    import dmd.lexer : Lexer;
-    import dmd.tokens : TOK;
+    import destiny.lexer : Lexer;
+    import destiny.tokens : TOK;
 
     if (!global.errorSink)
 	global.errorSink = new ErrorSinkCompiler;

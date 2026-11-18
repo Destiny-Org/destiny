@@ -10,17 +10,17 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   $(LINK2 https://cattermole.co.nz, Richard (Rikki) Andrew Cattermole)
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/report.d, dfa/fast/report.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/report.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/fast/report.d, dfa/fast/report.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/fast/report.d
  *
  */
-module dmd.dfa.fast.report;
-import dmd.dfa.fast.structure;
-import dmd.location;
-import dmd.func;
-import dmd.errorsink;
-import dmd.declaration;
-import dmd.astenums;
+module destiny.dfa.fast.report;
+import destiny.dfa.fast.structure;
+import destiny.location;
+import destiny.func;
+import destiny.errorsink;
+import destiny.declaration;
+import destiny.astenums;
 import core.stdc.stdio;
 
 ///

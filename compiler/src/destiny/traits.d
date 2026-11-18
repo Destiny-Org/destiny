@@ -6,52 +6,52 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/traits.d, _traits.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/traits.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/traits.d, _traits.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/traits.d
  *
  */
 
-module dmd.traits;
+module destiny.traits;
 
 import core.stdc.stdio;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.attribsem;
-import dmd.canthrow;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mangle : decoToType;
-import dmd.mtype;
-import dmd.nogc;
-import dmd.optimize;
-import dmd.root.array;
-import dmd.root.speller;
-import dmd.root.stringtable;
-import dmd.target;
-import dmd.templatesem : TemplateInstance_semanticTiargs, TemplateInstanceBox;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.rootobject;
-import dmd.root.string;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.attribsem;
+import destiny.canthrow;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mangle : decoToType;
+import destiny.mtype;
+import destiny.nogc;
+import destiny.optimize;
+import destiny.root.array;
+import destiny.root.speller;
+import destiny.root.stringtable;
+import destiny.target;
+import destiny.templatesem : TemplateInstance_semanticTiargs, TemplateInstanceBox;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.rootobject;
+import destiny.root.string;
 
 enum LOGSEMANTIC = false;
 
@@ -1158,8 +1158,8 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
             ex = ex.expressionSemantic(scx);
             if (ex)
             {
-                import dmd.access : symbolIsVisible;
-                import dmd.safe : setUnsafe;
+                import destiny.access : symbolIsVisible;
+                import destiny.safe : setUnsafe;
                 auto msym = getDsymbolWithoutExpCtx(ex);
                 // upstream dmd issue 19721
                 if (msym && !symbolIsVisible(sc, msym))
@@ -2314,7 +2314,7 @@ private bool isSame(RootObject o1, RootObject o2, Scope* sc)
 
     if (l1 && l2)
     {
-        import dmd.lambdacomp : isSameFuncLiteral;
+        import destiny.lambdacomp : isSameFuncLiteral;
         if (isSameFuncLiteral(l1, l2, sc))
             return true;
     }

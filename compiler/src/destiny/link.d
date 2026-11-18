@@ -4,12 +4,12 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/link.d, _link.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/link.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/link.d, _link.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/link.d
  *
  */
 
-module dmd.link;
+module destiny.link;
 
 import core.stdc.ctype;
 import core.stdc.stdio;
@@ -17,23 +17,23 @@ import core.stdc.stdlib;
 import core.stdc.string;
 import core.stdc.stdarg;
 
-import dmd.astenums;
-import dmd.compiler : includeImports;
-import dmd.dmdparams;
-import dmd.errors : ErrorSinkCompiler;
-import dmd.errorsink;
-import dmd.globals;
-import dmd.location;
-import dmd.root.array;
-import dmd.root.env;
-import dmd.root.file;
-import dmd.root.filename;
-import dmd.common.outbuffer;
-import dmd.common.smallbuffer;
-import dmd.root.rmem;
-import dmd.root.string;
-import dmd.utils;
-import dmd.target;
+import destiny.astenums;
+import destiny.compiler : includeImports;
+import destiny.dmdparams;
+import destiny.errors : ErrorSinkCompiler;
+import destiny.errorsink;
+import destiny.globals;
+import destiny.location;
+import destiny.root.array;
+import destiny.root.env;
+import destiny.root.file;
+import destiny.root.filename;
+import destiny.common.outbuffer;
+import destiny.common.smallbuffer;
+import destiny.root.rmem;
+import destiny.root.string;
+import destiny.utils;
+import destiny.target;
 
 version (Posix)
 {
@@ -55,7 +55,7 @@ else version (Windows)
     import core.sys.windows.psapi;
     import core.sys.windows.winbase;
     import core.sys.windows.windef;
-    import dmd.vsoptions;
+    import destiny.vsoptions;
 
     /* https://www.digitalmars.com/rtl/process.html#_spawn
      * https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/spawnvp-wspawnvp?view=msvc-170
@@ -69,7 +69,7 @@ else version (Windows)
         enum _P_WAIT = 0;
     }
 
-    // until the new windows bindings are available when building dmd.
+    // until the new windows bindings are available when building destiny.
     static if(!is(STARTUPINFOA))
     {
         alias STARTUPINFOA = STARTUPINFO;
@@ -200,7 +200,7 @@ enum STATUS_FAILED = -1;
  */
 public int runLINK(bool verbose, ErrorSink eSink)
 {
-    const phobosLibname = finalDefaultlibname();
+    const fateLibname = finalDefaultlibname();
 
     void setExeFile()
     {
@@ -220,8 +220,8 @@ public int runLINK(bool verbose, ErrorSink eSink)
 
     version (Windows)
     {
-        if (phobosLibname)
-            global.params.libfiles.push(phobosLibname.xarraydup.ptr);
+        if (fateLibname)
+            global.params.libfiles.push(fateLibname.xarraydup.ptr);
 
         if (target.objectFormat() == Target.ObjectFormat.coff)
         {
@@ -612,7 +612,7 @@ public int runLINK(bool verbose, ErrorSink eSink)
         /* D runtime libraries must go after user specified libraries
          * passed with -l.
          */
-        const libname = phobosLibname;
+        const libname = fateLibname;
         if (libname.length)
         {
             const bufsize = 2 + libname.length + 1;
@@ -652,9 +652,9 @@ public int runLINK(bool verbose, ErrorSink eSink)
         argv.push("-lm");
         version (linux)
         {
-            // Changes in ld for Ubuntu 11.10 require this to appear after phobos2
+            // Changes in ld for Ubuntu 11.10 require this to appear after fate
             argv.push("-lrt");
-            // Link against libdl for phobos usage of dlopen
+            // Link against libdl for fate usage of dlopen
             argv.push("-ldl");
         }
         else version (OpenBSD)
@@ -760,7 +760,7 @@ version (Windows)
         cmd = toWinPath(cmd);
         version (CRuntime_Microsoft)
         {
-            // Open scope so dmd doesn't complain about alloca + exception handling
+            // Open scope so destiny doesn't complain about alloca + exception handling
             {
                 // Use process spawning through the WinAPI to avoid issues with executearg0 and spawnlp
                 OutBuffer cmdbuf;
@@ -850,7 +850,7 @@ version (Windows)
 
 /**************************************
  * Attempt to find command to execute by first looking in the directory
- * where DMD was run from.
+ * where Destiny was run from.
  * Returns:
  *      -1      did not find command there
  *      !=-1    exit status from command
@@ -1497,7 +1497,7 @@ void parseLinkerOutput(const(char)[] linkerOutput, ErrorSink eSink, bool betterC
     bool missingCSymbols = false;
     bool missingDsymbols = false;
     bool missingDruntimeSymbols = false;
-    bool missingPhobosSymbols = false;
+    bool missingFateSymbols = false;
     bool missingMain = false;
 
     void missingSymbol(const(char)[] name, const(char)[] referencedFrom)
@@ -1514,7 +1514,7 @@ void parseLinkerOutput(const(char)[] linkerOutput, ErrorSink eSink, bool betterC
         else if (sym.startsWith("core."))
             missingDruntimeSymbols = true;
         else if (sym.startsWith("std."))
-            missingPhobosSymbols = true;
+            missingFateSymbols = true;
         else if (sym != name && !alreadyDemangled)
             missingDsymbols = true;
         else
@@ -1590,9 +1590,9 @@ void parseLinkerOutput(const(char)[] linkerOutput, ErrorSink eSink, bool betterC
 
     if (missingMain)
         eSink.errorSupplemental(Loc.initial, "perhaps define a `void main() {}` function or use the `-main` switch");
-    else if (missingDruntimeSymbols || missingPhobosSymbols)
+    else if (missingDruntimeSymbols || missingFateSymbols)
     {
-        const(char)* missingLib = missingDruntimeSymbols ? "druntime" : "phobos";
+        const(char)* missingLib = missingDruntimeSymbols ? "druntime" : "fate";
         if (betterC)
             eSink.errorSupplemental(Loc.initial, "the `-betterC` flag prevents linking with %s", missingLib);
         else

@@ -4,15 +4,15 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/id.d, _id.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/id.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/id.d, _id.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/id.d
  *
  */
 
-module dmd.id;
+module destiny.id;
 
-import dmd.identifier;
-import dmd.tokens;
+import destiny.identifier;
+import destiny.tokens;
 
 /**
  * Represents a list of predefined symbols the compiler knows about.
@@ -548,16 +548,16 @@ immutable Msgtable[] msgtable =
 
 
 /*
- * Tuple of DMD source code identifier and symbol in the D executable.
+ * Tuple of Destiny source code identifier and symbol in the D executable.
  *
- * The first element of the tuple is the identifier to use in the DMD source
+ * The first element of the tuple is the identifier to use in the Destiny source
  * code and the second element, if present, is the name to use in the D
  * executable. If second element, `name`, is not present the identifier,
  * `ident`, will be used instead
  */
 struct Msgtable
 {
-    // The identifier to use in the DMD source.
+    // The identifier to use in the Destiny source.
     string ident;
 
     // The name to use in the D executable

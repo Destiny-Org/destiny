@@ -6,29 +6,29 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dclass.d, _dclass.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dclass.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dclass.d, _dclass.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dclass.d
  *
  */
 
-module dmd.dclass;
+module destiny.dclass;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.declaration;
-import dmd.dsymbol;
-import dmd.func;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.objc;
-import dmd.root.rmem;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.declaration;
+import destiny.dsymbol;
+import destiny.func;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.objc;
+import destiny.root.rmem;
+import destiny.visitor;
 
 /***********************************************************
  */
@@ -141,7 +141,7 @@ extern (C++) class ClassDeclaration : AggregateDeclaration
         Baseok baseok;
     }
 
-    import dmd.common.bitfields : generateBitFields;
+    import destiny.common.bitfields : generateBitFields;
     mixin(generateBitFields!(ClassBitFields, uint));
 
     /// if this is a C++ class, this is the slot reserved for the virtual destructor
@@ -226,8 +226,8 @@ extern (C++) class ClassDeclaration : AggregateDeclaration
 
     extern (D) final void classError(const(char)* fmt, const(char)* arg)
     {
-        import dmd.globals : global;
-        import dmd.errorsink;
+        import destiny.globals : global;
+        import destiny.errorsink;
         auto eSink = global.errorSink;
         eSink.error(loc, fmt, kind, toPrettyChars, arg);
     }

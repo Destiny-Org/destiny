@@ -3,11 +3,11 @@
 module triple; @system:
 
 import support : afterEach, defaultImportPaths;
-import dmd.target;
-import dmd.dmdparams;
+import destiny.target;
+import destiny.dmdparams;
 @afterEach deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }
 

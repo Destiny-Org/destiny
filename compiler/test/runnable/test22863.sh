@@ -7,6 +7,6 @@ set -e
 
 FOO=${OUTPUT_BASE}/foo${OBJ}
 
-$DMD -m"${MODEL}" -c ${TEST_DIR}/testmain.d -of=$FOO
-$DMD -m"${MODEL}" -main $FOO -of=${OUTPUT_BASE}/result
+$DESTINY -m"${MODEL}" -c ${TEST_DIR}/testmain.d -of=$FOO
+$DESTINY -m"${MODEL}" -main $FOO -of=${OUTPUT_BASE}/result
 rm_retry -r ${OUTPUT_BASE}

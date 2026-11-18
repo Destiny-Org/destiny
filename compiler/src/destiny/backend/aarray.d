@@ -8,10 +8,10 @@
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright), Dave Fladebo
  * License:     Distributed under the Boost Software License, Version 1.0.
  *              https://www.boost.org/LICENSE_1_0.txt
- * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/dmd/backend/aarray.d
+ * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/destiny/backend/aarray.d
  */
 
-module dmd.backend.aarray;
+module destiny.backend.aarray;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
@@ -19,8 +19,8 @@ import core.stdc.string;
 
 alias hash_t = size_t;
 
-import dmd.root.hash;
-import dmd.backend.global : err_nomem;
+import destiny.root.hash;
+import destiny.backend.global : err_nomem;
 
 nothrow:
 @safe:

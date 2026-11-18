@@ -109,7 +109,7 @@ int main()
 
 
         string exe = OUTPUT_BASE ~ slash ~ filename;
-        run("$DMD -m$MODEL -of" ~ exe ~ "$EXE -conf= -fPIE -g " ~ requirements["EXTRA_ARGS"]
+        run("$DESTINY -m$MODEL -of" ~ exe ~ "$EXE -conf= -fPIE -g " ~ requirements["EXTRA_ARGS"]
             ~ " -I" ~ extra_dwarf_dir ~ " " ~ path);
 
         // Write objdump result to a file

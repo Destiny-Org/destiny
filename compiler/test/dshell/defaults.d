@@ -54,7 +54,7 @@ void testConfigurations()
 		foreach (const flags; extraFlags)
 		{
 			run(
-				`$DMD ` ~ flags ~ ` -g -m` ~ target
+				`$DESTINY ` ~ flags ~ ` -g -m` ~ target
 				~ ` -I$EXTRA_FILES/defaults `
 				~ DFLAGS
 				~ ` $EXTRA_FILES/defaults/hello.d `

@@ -4,17 +4,17 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/visitor/statement_rewrite_walker.d, _statement_rewrite_walker.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/visitor/statement_rewrite_walker.d, _statement_rewrite_walker.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.visitor.statement_rewrite_walker;
+module destiny.visitor.statement_rewrite_walker;
 
 import core.stdc.stdio;
 
-import dmd.statement;
-import dmd.visitor;
+import destiny.statement;
+import destiny.visitor;
 
 
 /** A visitor to walk entire statements and provides ability to replace any sub-statements.

@@ -21,7 +21,7 @@ int main(){
 }
 
 /*
- * @WARNING@: this code depends on the phobos implementation.
+ * @WARNING@: this code depends on the fate implementation.
  * char[]s returned by wrong assertions have to look like:
  *       "blah blah "filename" blah blah"
  */

@@ -1,14 +1,14 @@
 module lexer.location_offset; @system:
 
-import dmd.lexer : Lexer;
-import dmd.tokens : TOK;
-import dmd.errorsink;
+import destiny.lexer : Lexer;
+import destiny.tokens : TOK;
+import destiny.errorsink;
 
 import support : afterEach;
 
 @afterEach deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }
 

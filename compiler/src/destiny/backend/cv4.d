@@ -9,14 +9,14 @@
  * Compiler implementation of the
  * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
  *
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cv4.d, backend/_cv4.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cv4.d, backend/_cv4.d)
  */
 
-module dmd.backend.cv4;
+module destiny.backend.cv4;
 
 @safe:
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cv4.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cv4.d
 
 // Symbol Indices
 enum

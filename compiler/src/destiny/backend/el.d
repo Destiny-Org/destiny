@@ -8,48 +8,48 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/el.d, backend/el.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/el.d, backend/el.d)
  */
 
-module dmd.backend.el;
+module destiny.backend.el;
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/el.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/el.d
 
 import core.stdc.stdarg;
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.cdef;
-import dmd.backend.cc;
-import dmd.backend.oper;
-import dmd.backend.type;
+import destiny.backend.cdef;
+import destiny.backend.cc;
+import destiny.backend.oper;
+import destiny.backend.type;
 
-public import dmd.backend.elpicpie : el_var, el_ptr;
+public import destiny.backend.elpicpie : el_var, el_ptr;
 
-import dmd.backend.cgcv;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.dt;
-import dmd.backend.dvec;
-import dmd.backend.el;
-import dmd.backend.evalu8 : el_toreald;
-import dmd.backend.global : symboldata;
-import dmd.backend.debugprint : oper_str, tym_str;
-import dmd.backend.dout : out_readonly_sym;
-import dmd.backend.evalu8 : evalu8;
-import dmd.backend.util2 : binary;
-import dmd.backend.x86.cg87 : loadconst;
-import dmd.backend.go;
-import dmd.backend.mem;
-import dmd.backend.obj;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
+import destiny.backend.cgcv;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.dt;
+import destiny.backend.dvec;
+import destiny.backend.el;
+import destiny.backend.evalu8 : el_toreald;
+import destiny.backend.global : symboldata;
+import destiny.backend.debugprint : oper_str, tym_str;
+import destiny.backend.dout : out_readonly_sym;
+import destiny.backend.evalu8 : evalu8;
+import destiny.backend.util2 : binary;
+import destiny.backend.x86.cg87 : loadconst;
+import destiny.backend.go;
+import destiny.backend.mem;
+import destiny.backend.obj;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
 
 version (CRuntime_Microsoft)
 {
-    import dmd.root.longdouble;
+    import destiny.root.longdouble;
 }
 
 

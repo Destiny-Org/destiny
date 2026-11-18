@@ -17,27 +17,27 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/attrib.d, _attrib.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/attrib.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/attrib.d, _attrib.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/attrib.d
  *
  */
 
-module dmd.attrib;
+module destiny.attrib;
 
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.cond;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.expression;
-import dmd.hdrgen : visibilityToBuffer;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.common.outbuffer;
-import dmd.visitor;
-import dmd.init; // TODO: maybe remove this?
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.cond;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.expression;
+import destiny.hdrgen : visibilityToBuffer;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.common.outbuffer;
+import destiny.visitor;
+import destiny.init; // TODO: maybe remove this?
 
 /***********************************************************
  * Abstract attribute applied to Dsymbol's used as a common
@@ -843,10 +843,10 @@ int foreachUdaNoSemantic(Dsymbol sym, scope int delegate(Expression) dg)
  */
 bool isEnumAttribute(Expression e, Identifier id)
 {
-    import dmd.attrib : isCoreUda;
-    import dmd.id : Id;
+    import destiny.attrib : isCoreUda;
+    import destiny.id : Id;
 
-    // Logic based on dmd.objc.Supported.declaredAsOptionalCount
+    // Logic based on destiny.objc.Supported.declaredAsOptionalCount
     auto typeExp = e.isTypeExp;
     if (!typeExp)
         return false;

@@ -202,7 +202,7 @@ template collectConstants(string modulename)
     }();
 }
 
-// Some helper functions, so this druntime test does not depend on phobos.
+// Some helper functions, so this druntime test does not depend on fate.
 const(char)* toStringz(string s)
 {
     return (s ~ "\0").ptr;

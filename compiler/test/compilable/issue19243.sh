@@ -18,7 +18,7 @@ APP_D=$TEST_DIR/app.d
 
 mkdir -p $TEST_DIR
 
-cat << EOF | $DMD -m$MODEL -fPIC -shared -of$ORIG_SO -
+cat << EOF | $DESTINY -m$MODEL -fPIC -shared -of$ORIG_SO -
 import core.stdc.stdio;
 
 extern(C) int func() @system
@@ -28,7 +28,7 @@ extern(C) int func() @system
 }
 EOF
 
-cat << EOF | $DMD -m$MODEL -fPIC -shared -of$OVERRIDE_SO -
+cat << EOF | $DESTINY -m$MODEL -fPIC -shared -of$OVERRIDE_SO -
 import core.stdc.stdio;
 
 extern(C) int func() @system
@@ -38,7 +38,7 @@ extern(C) int func() @system
 }
 EOF
 
-cat << EOF | LD_LIBRARY_PATH=$TEST_DIR $DMD -m$MODEL -L-L$TEST_DIR -L$OVERRIDE_SO -run -
+cat << EOF | LD_LIBRARY_PATH=$TEST_DIR $DESTINY -m$MODEL -L-L$TEST_DIR -L$OVERRIDE_SO -run -
 extern(C) int func();
 
 pragma(lib, "orig");

@@ -1,7 +1,7 @@
 /**
  * Utility subroutines
  *
- * Only used for DMD
+ * Only used for Destiny
  *
  * Compiler implementation of the
  * $(LINK2 https://github.com/Destiny-Org/destiny, Destiny programming language).
@@ -10,18 +10,18 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/util2.d, backend/util2.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/util2.d, backend/util2.d)
  */
 
-module dmd.backend.util2;
+module destiny.backend.util2;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.mem;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.mem;
 
 
 nothrow: @nogc:

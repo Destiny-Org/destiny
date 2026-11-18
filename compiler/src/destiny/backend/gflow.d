@@ -5,32 +5,32 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/gflow.d, backend/gflow.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/gflow.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/gflow.d, backend/gflow.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/gflow.d
  *
  */
 
-module dmd.backend.gflow;
+module destiny.backend.gflow;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.cc;
-import dmd.backend.blockopt : BlockOpt, bo;
-import dmd.backend.cdef;
-import dmd.backend.oper;
-import dmd.backend.global : err_nomem;
-import dmd.backend.blockopt : blockopt;
-import dmd.backend.evalu8 : iftrue;
-import dmd.backend.go;
-import dmd.backend.el;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.cc;
+import destiny.backend.blockopt : BlockOpt, bo;
+import destiny.backend.cdef;
+import destiny.backend.oper;
+import destiny.backend.global : err_nomem;
+import destiny.backend.blockopt : blockopt;
+import destiny.backend.evalu8 : iftrue;
+import destiny.backend.go;
+import destiny.backend.el;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.barray;
-import dmd.backend.dvec;
+import destiny.backend.barray;
+import destiny.backend.dvec;
 
 nothrow:
 @safe:

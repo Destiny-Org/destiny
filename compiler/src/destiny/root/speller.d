@@ -1,17 +1,17 @@
 /**
  * Spell checker
  *
- * Does not have any dependencies on the rest of DMD.
+ * Does not have any dependencies on the rest of Destiny.
  *
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/speller.d, root/_speller.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/speller.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/speller.d, root/_speller.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/speller.d
  *
  */
 
-module dmd.root.speller;
+module destiny.root.speller;
 
 /**************************************************
  * Looks for correct spelling.
@@ -42,7 +42,7 @@ private:
 
 import core.stdc.stdlib;
 import core.stdc.string;
-import dmd.common.smallbuffer : SmallBuffer;
+import destiny.common.smallbuffer : SmallBuffer;
 
 enum isSearchFunction(alias fun) = is(searchFunctionType!fun);
 alias searchFunctionType(alias fun) = typeof(() {int x; return fun("", x);}());

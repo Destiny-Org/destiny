@@ -4,27 +4,27 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/sarif.d, sarif.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/sarif.d, sarif.d)
  *
  *
  * Description:
- * - This module generates SARIF reports for DMD errors, warnings, and messages.
+ * - This module generates SARIF reports for Destiny errors, warnings, and messages.
  * - It supports JSON serialization of SARIF tools, results, and invocations.
  * - The generated reports are compatible with SARIF 2.1.0 schema.
  */
 
-module dmd.sarif;
+module destiny.sarif;
 
 import core.stdc.stdarg;
 import core.stdc.stdio;
 import core.stdc.string : strchr;
 
-import dmd.errors;
-import dmd.errorsink;
-import dmd.globals;
-import dmd.json : writeEscapeJSONString;
-import dmd.location;
-import dmd.common.outbuffer;
+import destiny.errors;
+import destiny.errorsink;
+import destiny.globals;
+import destiny.json : writeEscapeJSONString;
+import destiny.location;
+import destiny.common.outbuffer;
 
 /**
  * Maps an `ErrorKind` value to its SARIF severity-level string.

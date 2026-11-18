@@ -5,38 +5,38 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dtoh.d, _dtoh.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dtoh.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dtoh.d, _dtoh.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dtoh.d
  *
  */
-module dmd.dtoh;
+module destiny.dtoh;
 
 import core.stdc.stdio;
 import core.stdc.stdarg;
 import core.stdc.string;
 import core.stdc.ctype;
 
-import dmd.astcodegen;
-import dmd.astenums;
-import dmd.arraytypes;
-import dmd.dsymbolsem;
-import dmd.templatesem : computeOneMember;
-import dmd.expressionsem : toInteger;
-import dmd.funcsem : isVirtual;
-import dmd.errors : fatal;
-import dmd.errorsink;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.root.filename;
-import dmd.visitor;
-import dmd.tokens;
-import dmd.typesem;
+import destiny.astcodegen;
+import destiny.astenums;
+import destiny.arraytypes;
+import destiny.dsymbolsem;
+import destiny.templatesem : computeOneMember;
+import destiny.expressionsem : toInteger;
+import destiny.funcsem : isVirtual;
+import destiny.errors : fatal;
+import destiny.errorsink;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.root.filename;
+import destiny.visitor;
+import destiny.tokens;
+import destiny.typesem;
 
-import dmd.common.outbuffer;
-import dmd.utils;
+import destiny.common.outbuffer;
+import destiny.utils;
 
 //debug = Debug_DtoH;
 
@@ -668,7 +668,7 @@ public:
             foreach (entry; i.mod.symtab.tab.asRange)
             {
                 // Skip anonymous / invisible members
-                import dmd.access : symbolIsVisible;
+                import destiny.access : symbolIsVisible;
                 if (!entry.key.isAnonymous() && symbolIsVisible(i, entry.value))
                     entries.push(entry.value);
             }
@@ -1517,7 +1517,7 @@ public:
     /// `alignment` specifies a custom alignment
     private void pushAlignToBuffer(structalign_t alignment)
     {
-        // DMD ensures alignment is a power of two
+        // Destiny ensures alignment is a power of two
         //assert(alignment > 0 && ((alignment & (alignment - 1)) == 0),
         //       "Invalid alignment size");
 
@@ -1940,7 +1940,7 @@ public:
         {
             buf.writestring("::");
 
-            import dmd.rootobject;
+            import destiny.rootobject;
             // Is this even possible?
             if (arg.dyncast != DYNCAST.identifier)
             {
@@ -2408,7 +2408,7 @@ public:
         }
         else
         {
-            import dmd.root.string : toDString;
+            import destiny.root.string : toDString;
             assert(tf.next, fd.loc.toChars().toDString());
 
             tf.next == AST.Type.tsize_t ? originalType.next.accept(this) : tf.next.accept(this);
@@ -2768,7 +2768,7 @@ public:
     {
         debug (Debug_DtoH) mixin(traceVisit!e);
 
-        import dmd.root.ctfloat : CTFloat;
+        import destiny.root.ctfloat : CTFloat;
 
         // Special case NaN and Infinity because floatToBuffer
         // uses D literals (`nan` and `infinity`)
@@ -2951,7 +2951,7 @@ public:
      */
     private bool shouldEmit(AST.Dsymbol sym)
     {
-        import dmd.aggregate : ClassKind;
+        import destiny.aggregate : ClassKind;
         debug (Debug_DtoH)
         {
             printf("[shouldEmitAndMarkVisited enter] %s\n", sym.toPrettyChars());
@@ -3026,7 +3026,7 @@ public:
             }
             else if (auto ad = sym.isAggregateDeclaration())
             {
-                import dmd.aggregate : ClassKind;
+                import destiny.aggregate : ClassKind;
                 res = ad.classKind == ClassKind.cpp;
             }
         }

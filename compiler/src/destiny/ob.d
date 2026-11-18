@@ -4,50 +4,50 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/ob.d, _ob.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/escape.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/ob.d, _ob.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/escape.d
  *
  * References:  DIP1021 Argument Ownership and Function Calls
  */
 
-module dmd.ob;
+module destiny.ob;
 
 import core.stdc.stdio : printf;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.root.array;
-import dmd.rootobject;
-import dmd.root.rmem;
+import destiny.root.array;
+import destiny.rootobject;
+import destiny.root.rmem;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.declaration;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.dsymbolsem : toAlias;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.escape;
-import dmd.expression;
-import dmd.func;
-import dmd.globals : global;
-import dmd.hdrgen;
-import dmd.identifier;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.printast;
-import dmd.statement;
-import dmd.stmtstate;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
-import dmd.visitor.foreachvar;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.declaration;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.dsymbolsem : toAlias;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.escape;
+import destiny.expression;
+import destiny.func;
+import destiny.globals : global;
+import destiny.hdrgen;
+import destiny.identifier;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.printast;
+import destiny.statement;
+import destiny.stmtstate;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
+import destiny.visitor.foreachvar;
 
-import dmd.root.bitarray;
-import dmd.common.outbuffer;
+import destiny.root.bitarray;
+import destiny.common.outbuffer;
 
 /**********************************
  * Perform ownership/borrowing checks for funcdecl.
@@ -83,7 +83,7 @@ private:
 
 alias ObNodes = Array!(ObNode*);
 
-alias StmtState = dmd.stmtstate.StmtState!ObNode;
+alias StmtState = destiny.stmtstate.StmtState!ObNode;
 
 /*******************************************
  * Collect the state information.
@@ -2607,7 +2607,7 @@ void checkObErrors(ref ObState obstate)
                 //printf("%s: ", obstate.vars[i].toChars()); pvs.print(obstate.vars[]);
                 if (pvs.state == PtrState.Owner)
                 {
-                    import dmd.typesem : hasPointers;
+                    import destiny.typesem : hasPointers;
                     auto v = obstate.vars[i];
                     if (v.type.hasPointers())
                         eSink.error(v.loc, "%s `%s` is not disposed of before return", v.kind, v.toPrettyChars);

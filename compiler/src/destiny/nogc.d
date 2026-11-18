@@ -6,46 +6,46 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/nogc.d, _nogc.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/nogc.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/nogc.d, _nogc.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/nogc.d
  *
  */
 
-module dmd.nogc;
+module destiny.nogc;
 
 import core.stdc.stdio;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.common.outbuffer;
-import dmd.declaration;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dsymbol : PASS, Dsymbol;
-import dmd.dtemplate : isDsymbol;
-import dmd.errorsink;
-import dmd.escape;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem : isRootTraitsCompilesScope;
-import dmd.globals;
-import dmd.hdrgen : toErrMsg;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.rootobject : RootObject, DYNCAST;
-import dmd.root.string: fTuple;
-import dmd.semantic2;
-import dmd.semantic3;
-import dmd.tokens;
-import dmd.typesem : unqualify, toBasetype;
-import dmd.visitor;
-import dmd.visitor.postorder;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.common.outbuffer;
+import destiny.declaration;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dsymbol : PASS, Dsymbol;
+import destiny.dtemplate : isDsymbol;
+import destiny.errorsink;
+import destiny.escape;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem : isRootTraitsCompilesScope;
+import destiny.globals;
+import destiny.hdrgen : toErrMsg;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.rootobject : RootObject, DYNCAST;
+import destiny.root.string: fTuple;
+import destiny.semantic2;
+import destiny.semantic3;
+import destiny.tokens;
+import destiny.typesem : unqualify, toBasetype;
+import destiny.visitor;
+import destiny.visitor.postorder;
 
 /**************************************
  * Look for GC-allocations
@@ -135,7 +135,7 @@ public:
 
     override void visit(CallExp e)
     {
-        import dmd.id : Id;
+        import destiny.id : Id;
         import core.stdc.stdio : printf;
         if (!e.f)
             return;
@@ -327,8 +327,8 @@ extern (D) void printGCUsage(FuncDeclaration fd, Loc loc, const(char)* warn)
  */
 private FuncDeclaration stripHookTraceImpl(FuncDeclaration fd)
 {
-    import dmd.id : Id;
-    import dmd.dsymbol : Dsymbol;
+    import destiny.id : Id;
+    import destiny.dsymbol : Dsymbol;
 
     if (fd.ident != Id._d_HookTraceImpl)
         return fd;

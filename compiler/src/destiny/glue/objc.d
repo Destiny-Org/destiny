@@ -4,51 +4,51 @@
  * Copyright:   Copyright (C) 2015-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/objc_glue.d, _objc_glue.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/objc_glue.d, _objc_glue.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.glue.objc;
+module destiny.glue.objc;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.glue;
+import destiny.glue;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dmodule;
-import dmd.dsymbol;
-import dmd.expression;
-import dmd.func;
-import dmd.identifier;
-import dmd.mtype;
-import dmd.objc;
-import dmd.target;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dmodule;
+import destiny.dsymbol;
+import destiny.expression;
+import destiny.func;
+import destiny.identifier;
+import destiny.mtype;
+import destiny.objc;
+import destiny.target;
 
-import dmd.dsymbolsem: size, addObjcSymbols;
-import dmd.typesem : nextOf;
+import destiny.dsymbolsem: size, addObjcSymbols;
+import destiny.typesem : nextOf;
 
-import dmd.root.stringtable;
-import dmd.root.array;
+import destiny.root.stringtable;
+import destiny.root.array;
 
-import dmd.backend.dt;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.el;
-import dmd.backend.dout : outdata;
-import dmd.backend.util2 : binary;
-import dmd.backend.oper;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
-import dmd.backend.mach;
-import dmd.backend.obj;
+import destiny.backend.dt;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.el;
+import destiny.backend.dout : outdata;
+import destiny.backend.util2 : binary;
+import destiny.backend.oper;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
+import destiny.backend.mach;
+import destiny.backend.obj;
 
 private:
 
@@ -60,7 +60,7 @@ public void ObjcGlue_initialize()
         _objc = new Unsupported;
 }
 
-package(dmd.glue):
+package(destiny.glue):
 
 Objcglue objc()
 {
@@ -220,7 +220,7 @@ extern(C++) final class Supported : Objcglue
     override ElemResult setupMethodCall(FuncDeclaration fd, TypeFunction tf,
         bool directcall, elem* ec, elem* ehidden, elem* ethis)
     {
-        import dmd.glue.e2ir : addressElem;
+        import destiny.glue.e2ir : addressElem;
 
         if (directcall) // super call
         {
@@ -530,7 +530,7 @@ static:
     }
 
     /**
-     * Convenience wrapper around `dmd.backend.global.symbol_name`.
+     * Convenience wrapper around `destiny.backend.global.symbol_name`.
      *
      * Allows to pass the name of the symbol as a D string.
      */
@@ -606,7 +606,7 @@ static:
     {
         if (hasHiddenArgument)
             return setMsgSendSymbol!("_objc_msgSend_stret")(TYhfunc);
-        // not sure if DMD can handle this
+        // not sure if Destiny can handle this
         else if (returnType.ty == Tcomplex80)
             return setMsgSendSymbol!("_objc_msgSend_fp2ret");
         else if (returnType.ty == Tfloat80)

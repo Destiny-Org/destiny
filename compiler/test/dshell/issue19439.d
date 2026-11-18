@@ -12,8 +12,8 @@ int main()
 {
     // class C (with the CTFE field) and derived class B live in separate modules, so their
     // codegen lands in separate archive members.
-    run("$DMD -m$MODEL -lib -of$OUTPUT_BASE/issue19439$LIBEXT $IMPORT_FILES/issue19439b.d $IMPORT_FILES/issue19439c.d");
-    run("$DMD -m$MODEL -I$IMPORT_FILES -of$OUTPUT_BASE/issue19439$EXE $EXTRA_FILES/issue19439.d $OUTPUT_BASE/issue19439$LIBEXT");
+    run("$DESTINY -m$MODEL -lib -of$OUTPUT_BASE/issue19439$LIBEXT $IMPORT_FILES/issue19439b.d $IMPORT_FILES/issue19439c.d");
+    run("$DESTINY -m$MODEL -I$IMPORT_FILES -of$OUTPUT_BASE/issue19439$EXE $EXTRA_FILES/issue19439.d $OUTPUT_BASE/issue19439$LIBEXT");
     run("$OUTPUT_BASE/issue19439$EXE");
 
     return 0;

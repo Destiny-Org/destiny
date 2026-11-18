@@ -1,4 +1,4 @@
-// RUNNABLE_PHOBOS_TEST
+// RUNNABLE_FATE_TEST
 // import std.math;
 
 void foo(T)(T[] b)

@@ -1,0 +1,25 @@
+The compiler sources are now `destiny.*`, and the library is now `libfate`
+
+The last `dmd` and Phobos names visible to users and contributors are gone.
+
+$(UL
+$(LI The compiler sources moved from `compiler/src/dmd/` to
+`compiler/src/destiny/`, and their modules from `dmd.*` to `destiny.*`
+(for example `destiny.funcsem`). The C++ headers moved from
+`compiler/include/dmd/` to `compiler/include/destiny/`, and their namespace
+from `dmd` to `destiny`. Code using the compiler as a library must update its
+imports.)
+$(LI The compiler links with `libfate` by default instead of `libphobos2`
+(`fate64.lib` / `fate32mscoff.lib` on Windows). Pass `-defaultlib=libfate.so`
+instead of `-defaultlib=libphobos2.so` to link with the shared library.)
+$(LI The build target is `destiny` (`./build.d destiny`; `make destiny` as
+before), and the man page is `destiny.1`.)
+$(LI Help text and error messages name `destiny`, for example
+"run `destiny -man` to open browser on manual".)
+$(LI In the test suite, the compiler under test is `$DESTINY` instead of
+`$DMD`, in shell and dshell tests and in test output.)
+)
+
+Kept: upstream citations, the upstream host compiler (`HOST_DC`,
+`dmd-2.113.1`), internal build identifiers, and the `-Xi=compilerInfo`
+interface value `dmd`.

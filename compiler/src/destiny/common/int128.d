@@ -5,12 +5,12 @@
  * Copyright: Copyright (C) 2022-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * License:   $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
  * Authors:   Walter Bright
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/int128.d, root/_int128.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/int128.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/common/int128.d, root/_int128.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/common/int128.d
  *
  */
 
-module dmd.common.int128;
+module destiny.common.int128; @safe:
 
 nothrow:
 @safe:

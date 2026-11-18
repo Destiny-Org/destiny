@@ -16,8 +16,8 @@ int main()
     // One invocation, two source files, separate object files (-c): issue20439a defines the
     // types (and emits the .init image + its local `internal`), issue20439 bakes __gshared
     // instances of them (and must define its own `internal`, not reference the other's).
-    run("$DMD -m$MODEL -od$OUTPUT_BASE -I$IMPORT_FILES -c $IMPORT_FILES/issue20439a.d $EXTRA_FILES/issue20439.d");
-    run("$DMD -m$MODEL -of$OUTPUT_BASE/issue20439$EXE $OUTPUT_BASE/issue20439a$OBJ $OUTPUT_BASE/issue20439$OBJ");
+    run("$DESTINY -m$MODEL -od$OUTPUT_BASE -I$IMPORT_FILES -c $IMPORT_FILES/issue20439a.d $EXTRA_FILES/issue20439.d");
+    run("$DESTINY -m$MODEL -of$OUTPUT_BASE/issue20439$EXE $OUTPUT_BASE/issue20439a$OBJ $OUTPUT_BASE/issue20439$OBJ");
     run("$OUTPUT_BASE/issue20439$EXE");
 
     return 0;

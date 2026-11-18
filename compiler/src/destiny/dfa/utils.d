@@ -4,20 +4,20 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   $(LINK2 https://cattermole.co.nz, Richard (Rikki) Andrew Cattermole)
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/utils.d, dfa/utils.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/utils.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/utils.d, dfa/utils.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/utils.d
  *
  */
-module dmd.dfa.utils;
-import dmd.tokens;
-import dmd.astenums;
-import dmd.mtype;
-import dmd.visitor;
-import dmd.identifier;
-import dmd.expression;
-import dmd.typesem : isFloating, toBasetype, nextOf;
-import dmd.func;
-import dmd.attrib;
+module destiny.dfa.utils;
+import destiny.tokens;
+import destiny.astenums;
+import destiny.mtype;
+import destiny.visitor;
+import destiny.identifier;
+import destiny.expression;
+import destiny.typesem : isFloating, toBasetype, nextOf;
+import destiny.func;
+import destiny.attrib;
 import core.stdc.stdio;
 
 /***********************************************************
@@ -381,7 +381,7 @@ enum EqualityArgType
 /// See_Also: EqualityArgType
 EqualityArgType equalityArgTypes(Type lhs, Type rhs)
 {
-    // This logic originally came from dmd's glue layer.
+    // This logic originally came from destiny's glue layer.
     // It was copied over and modified so that the DFA is accruate to runtime actions.
 
     // struct

@@ -86,7 +86,7 @@ void main()
 {
     import std.algorithm, std.array, std.conv, std.datetime, std.range, std.stdio, std.uni;
     import std.process : environment;
-    import dmd.cli;
+    import destiny.cli;
 
     auto now = Clock.currTime;
     auto diffable = environment.get("DIFFABLE", "0");

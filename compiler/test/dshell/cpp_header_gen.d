@@ -16,7 +16,7 @@ int main()
     Vars.set("HEADER_EXE",  "$OUTPUT_BASE/test$EXE");
 
     // This particular test passes a null pointer from c++ and gets "dereferenced" in D, and will trigger null dereference check to error.
-    run("$DMD -m$MODEL -c -lib -of=$LIB -check=nullderef=off -HC=verbose -HCf=$OUTPUT_BASE/library.h $SOURCE_DIR/library.d");
+    run("$DESTINY -m$MODEL -c -lib -of=$LIB -check=nullderef=off -HC=verbose -HCf=$OUTPUT_BASE/library.h $SOURCE_DIR/library.d");
 
     // Dump header if any of the following step fails
     scope (failure)
@@ -32,10 +32,10 @@ int main()
     }
 
     version (Windows)
-        run([CXX, "/c", "/Fo" ~ Vars.CPP_OBJ, "/I" ~ OUTPUT_BASE, "/I" ~ EXTRA_FILES ~"/../../../src/dmd/root", Vars.SOURCE_DIR ~ "/app.cpp"]);
+        run([CXX, "/c", "/Fo" ~ Vars.CPP_OBJ, "/I" ~ OUTPUT_BASE, "/I" ~ EXTRA_FILES ~"/../../../src/destiny/root", Vars.SOURCE_DIR ~ "/app.cpp"]);
     else
-        run("$CXX -m$MODEL -c -o $CPP_OBJ -I$OUTPUT_BASE -I$EXTRA_FILES/../../../src/dmd/root $SOURCE_DIR/app.cpp");
-    run("$DMD -m$MODEL -conf= -of=$HEADER_EXE $LIB $CPP_OBJ");
+        run("$CXX -m$MODEL -c -o $CPP_OBJ -I$OUTPUT_BASE -I$EXTRA_FILES/../../../src/destiny/root $SOURCE_DIR/app.cpp");
+    run("$DESTINY -m$MODEL -conf= -of=$HEADER_EXE $LIB $CPP_OBJ");
     run("$HEADER_EXE");
 
     return 0;

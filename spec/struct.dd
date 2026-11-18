@@ -230,7 +230,7 @@ $(H2 $(LNAME2 struct_layout, Struct Layout))
     $(LI g++ and clang++ differ in how empty structs are handled. Both return `1` from `sizeof`,
     however, clang++ does not push them onto the parameter stack while g++ does. This is a
     binary incompatibility between g++ and clang++.
-    dmd follows clang++ behavior for OSX and FreeBSD, and g++ behavior for Linux and other
+    destiny follows clang++ behavior for OSX and FreeBSD, and g++ behavior for Linux and other
     Posix platforms.
     )
     $(LI clang and gcc both return `0` from `sizeof` for empty structs. Using `extern "C++"`

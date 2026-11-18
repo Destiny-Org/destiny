@@ -45,7 +45,7 @@ struct Vars
 private alias requiredEnvVars = AliasSeq!(
     "MODEL", "RESULTS_DIR",
     "EXE", "OBJ",
-    "DMD", "DFLAGS",
+    "DESTINY", "DFLAGS",
     "OS", "SEP", "DSEP",
     "BUILD"
 );

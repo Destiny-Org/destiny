@@ -1,7 +1,7 @@
 /**********************************************************
  * ARM64 disassembler.
- * For unit tests: dmd disasmarm.d -unittest -main -debug -fPIC
- * For standalone disasmarm: dmd disasmarm.d -version=StandAlone -fPIC
+ * For unit tests: destiny disasmarm.d -unittest -main -debug -fPIC
+ * For standalone disasmarm: destiny disasmarm.d -version=StandAlone -fPIC
  *
  * Copyright:   Copyright (C) 1982-1998 by Symantec
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
@@ -11,7 +11,7 @@
  *              A64 instruction set https://www.scs.stanford.edu/~zyedidia/arm64/
  */
 
-module dmd.backend.arm.disasmarm;
+module destiny.backend.arm.disasmarm;
 
 nothrow @nogc:
 

@@ -36,7 +36,7 @@ finishes them; it does not invent new ones from scratch.
 | Mutable function arguments | `-preview=dip1021` | `useDIP1021`; implies dip1000 (`mars.d`) | Works, narrow scope |
 | Extra checks in unannotated code | `-preview=safer` | `FuncDeclaration.saferD`, `safe.d:339` | Works; does not make functions `@safe` |
 | `@live` ownership/borrowing | `@live` attribute | `ob.d`, `spec/ob.dd` | Per-function opt-in, limited |
-| Fast DFA engine + borrow checker | `-preview=fastdfa` | `compiler/src/dmd/dfa/`, plan in `plans/fastdfa_borrowchecker/` | Experimental, in progress |
+| Fast DFA engine + borrow checker | `-preview=fastdfa` | `compiler/src/destiny/dfa/`, plan in `plans/fastdfa_borrowchecker/` | Experimental, in progress |
 
 ## Sub-project 1: Scope and escape checking by default
 

@@ -5,23 +5,23 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/lib/package.d, _lib.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/lib/package.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/lib/package.d, _lib.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/lib/package.d
  *
  */
 
-module dmd.lib;
+module destiny.lib;
 
 import core.stdc.stdio;
 
-import dmd.common.outbuffer;
-import dmd.errorsink;
-import dmd.location;
-import dmd.target : Target;
+import destiny.common.outbuffer;
+import destiny.errorsink;
+import destiny.location;
+import destiny.target : Target;
 
-import dmd.lib.elf;
-import dmd.lib.mach;
-import dmd.lib.mscoff;
+import destiny.lib.elf;
+import destiny.lib.mach;
+import destiny.lib.mscoff;
 
 private enum LOG = false;
 

@@ -4,40 +4,40 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/ctfeexpr.d, _ctfeexpr.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/ctfeexpr.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/ctfeexpr.d, _ctfeexpr.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/ctfeexpr.d
  *
  */
 
-module dmd.ctfeexpr;
+module destiny.ctfeexpr;
 
 import core.stdc.stdio;
 import core.stdc.string;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.constfold;
-import dmd.compiler;
-import dmd.dcast : implicitConvTo;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dinterpret;
-import dmd.dstruct;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.globals : dinteger_t, sinteger_t, uinteger_t, global;
-import dmd.hdrgen : toErrMsg;
-import dmd.location;
-import dmd.mtype;
-import dmd.root.bitarray;
-import dmd.root.ctfloat;
-import dmd.root.port;
-import dmd.root.rmem;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.timetrace;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.constfold;
+import destiny.compiler;
+import destiny.dcast : implicitConvTo;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dinterpret;
+import destiny.dstruct;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.globals : dinteger_t, sinteger_t, uinteger_t, global;
+import destiny.hdrgen : toErrMsg;
+import destiny.location;
+import destiny.mtype;
+import destiny.root.bitarray;
+import destiny.root.ctfloat;
+import destiny.root.port;
+import destiny.root.rmem;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.timetrace;
 
 /****************************************************************/
 /* A type meant as a union of all the Expression types,

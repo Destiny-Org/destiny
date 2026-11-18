@@ -72,7 +72,7 @@ $(GNAME VersionCondition):
         )
 
         $(P The $(I version identifier) can be set on the command line
-        by the $(DDSUBLINK dmd, switch-version, $(D -version) switch)
+        by the $(DDSUBLINK destiny, switch-version, $(D -version) switch)
         or in the module itself with a
         $(GLINK VersionSpecification), or they can be predefined
         by the compiler.
@@ -109,7 +109,7 @@ else
 ------
 
         $(P $(D version (unittest)) is satisfied if and only if the code is
-        compiled with unit tests enabled (the $(DDSUBLINK dmd, switch-unittest, $(TT -unittest)) option on $(TT dmd)).
+        compiled with unit tests enabled (the $(DDSUBLINK destiny, switch-unittest, $(TT -unittest)) option on $(TT destiny)).
         )
 
 
@@ -337,43 +337,43 @@ $(H3 $(LEGACY_LNAME2 PredefinedVersions, predefined-versions, Predefined Version
 
         $(TROW *Miscellaneous*)
         $(TROW $(ARGS $(D D_BetterC)) , $(ARGS $(DDLINK spec/betterc, Destiny as Better C, Destiny as Better C) code
-                (command line switch $(DDSUBLINK dmd, switch-betterC, $(TT -betterC))) is being generated))
+                (command line switch $(DDSUBLINK destiny, switch-betterC, $(TT -betterC))) is being generated))
         $(TROW $(ARGS $(D D_Exceptions)) , $(ARGS Exception handling is supported.  Evaluates to `false` when compiling with
-                command line switch $(DDSUBLINK dmd, switch-betterC, $(TT -betterC))))
+                command line switch $(DDSUBLINK destiny, switch-betterC, $(TT -betterC))))
         $(TROW $(ARGS $(D D_ModuleInfo)) , $(ARGS $(DDSUBLINK abi, ModuleInfo, $(TT ModuleInfo)) is supported.  Evaluates to `false` when compiling with
-                command line switch $(DDSUBLINK dmd, switch-betterC, $(TT -betterC))))
+                command line switch $(DDSUBLINK destiny, switch-betterC, $(TT -betterC))))
         $(TROW $(ARGS $(D D_TypeInfo)) , $(ARGS Runtime type information (a.k.a `TypeInfo`) is supported.  Evaluates to `false` when compiling with
-                command line switch $(DDSUBLINK dmd, switch-betterC, $(TT -betterC))))
+                command line switch $(DDSUBLINK destiny, switch-betterC, $(TT -betterC))))
         $(TROW $(ARGS $(D D_Coverage)) , $(ARGS $(DDLINK articles/code_coverage, Code coverage analysis, Code coverage analysis) instrumentation
-                (command line switch $(DDSUBLINK dmd, switch-cov, $(TT -cov))) is being generated))
+                (command line switch $(DDSUBLINK destiny, switch-cov, $(TT -cov))) is being generated))
         $(TROW $(ARGS $(D D_Ddoc)) , $(ARGS $(DDLINK spec/ddoc, Embedded Documentation, Ddoc) documentation
-                (command line switch $(DDSUBLINK dmd, switch-D, $(TT -D))) is being generated))
+                (command line switch $(DDSUBLINK destiny, switch-D, $(TT -D))) is being generated))
         $(TROW $(ARGS $(D D_InlineAsm_X86)) , $(ARGS $(DDLINK spec/iasm, Inline Assembler, Inline assembler) for X86 is implemented))
         $(TROW $(ARGS $(D D_InlineAsm_X86_64)) , $(ARGS $(DDLINK spec/iasm, Inline Assembler, Inline assembler) for X86-64 is implemented))
         $(TROW $(ARGS $(D D_LP64)) , $(ARGS $(B Pointers) are 64 bits
-                (command line switch $(DDSUBLINK dmd, switch-m64, $(TT -m64))). (Do not confuse this with C's LP64 model)))
+                (command line switch $(DDSUBLINK destiny, switch-m64, $(TT -m64))). (Do not confuse this with C's LP64 model)))
         $(TROW $(ARGS $(D D_X32)) , $(ARGS Pointers are 32 bits, but words are still 64 bits (x32 ABI) (This can be defined in parallel to $(D X86_64))))
         $(TROW $(ARGS $(D D_HardFloat)) , $(ARGS The target hardware has a floating-point unit))
         $(TROW $(ARGS $(D D_SoftFloat)) , $(ARGS The target hardware does not have a floating-point unit))
         $(TROW $(ARGS $(D D_PIC)) , $(ARGS Position Independent Code
-                (command line switch $(DDSUBLINK dmd-linux, switch-fPIC, $(TT -fPIC))) is being generated))
+                (command line switch $(DDSUBLINK destiny-linux, switch-fPIC, $(TT -fPIC))) is being generated))
         $(TROW $(ARGS $(D D_PIE)) , $(ARGS Position Independent Executable
-                (command line switch $(DDSUBLINK dmd-linux, switch-fPIE, $(TT -fPIE))) is being generated))
+                (command line switch $(DDSUBLINK destiny-linux, switch-fPIE, $(TT -fPIE))) is being generated))
         $(TROW $(ARGS $(D D_SIMD)) , $(ARGS $(DDLINK spec/simd, simd, Vector extensions) (via $(D __simd)) are supported))
         $(TROW $(ARGS $(D D_AVX)) , $(ARGS AVX Vector instructions are supported))
         $(TROW $(ARGS $(D D_AVX2)) , $(ARGS AVX2 Vector instructions are supported))
         $(TROW $(ARGS $(D D_Version2)) , $(ARGS This is a Destiny version 2 compiler))
         $(TROW $(ARGS $(D D_NoBoundsChecks)) , $(ARGS Array bounds checks are disabled
-                (command line switch $(DDSUBLINK dmd, switch-boundscheck, $(TT -boundscheck=off)))))
+                (command line switch $(DDSUBLINK destiny, switch-boundscheck, $(TT -boundscheck=off)))))
         $(TROW $(ARGS $(D D_ObjectiveC)) , $(ARGS The target supports interfacing with Objective-C))
         $(TROW $(ARGS $(D D_ProfileGC)) , $(ARGS GC allocations being profiled
-                (command line switch $(DDSUBLINK dmd, switch-profile, $(TT -profile=gc)))))
+                (command line switch $(DDSUBLINK destiny, switch-profile, $(TT -profile=gc)))))
         $(TROW $(ARGS $(D D_Optimized)) , $(ARGS Compiling with enabled optimizations
-                (command line switch $(DDSUBLINK dmd, switch-O, $(TT -O)))))
+                (command line switch $(DDSUBLINK destiny, switch-O, $(TT -O)))))
         $(TROW $(ARGS $(D Core)) , $(ARGS Defined when building the standard runtime))
         $(TROW $(ARGS $(D Std)) , $(ARGS Defined when building the standard library))
         $(TROW $(ARGS $(D unittest)) , $(ARGS $(DDLINK spec/unittest, Unit Tests, Unit tests) are enabled
-                (command line switch $(DDSUBLINK dmd, switch-unittest, $(TT -unittest)))))
+                (command line switch $(DDSUBLINK destiny, switch-unittest, $(TT -unittest)))))
         $(TROW $(ARGS $(D assert)) , $(ARGS Checks are being emitted for $(GLINK2 expression, AssertExpression)s))
         $(TROW $(ARGS $(D D_PreConditions)) , $(ARGS Checks are being emitted for $(DDSUBLINK spec/function, contracts, in contracts)))
         $(TROW $(ARGS $(D D_PostConditions)) , $(ARGS Checks are being emitted for $(DDSUBLINK spec/function, contracts, out contracts)))
@@ -449,7 +449,7 @@ $(GNAME DebugCondition):
         )
 
         $(P The $(GRAMMAR_INLINE `debug`) condition is satisfied when the
-        $(DDSUBLINK dmd, switch-debug, $(D -debug) switch) is
+        $(DDSUBLINK destiny, switch-debug, $(D -debug) switch) is
         passed to the compiler.
         )
 

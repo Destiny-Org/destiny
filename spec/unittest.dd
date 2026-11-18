@@ -102,7 +102,7 @@ $(H2 $(LNAME2 attributes_unittest, Attributed Unittests))
     )
     $(LI The presentation of unit test results to the user.)
     $(LI The method used to enable or disable the unit tests. Use of a compiler
-    switch such as $(DDSUBLINK dmd, switch-unittest, $(B -unittest)) to enable
+    switch such as $(DDSUBLINK destiny, switch-unittest, $(B -unittest)) to enable
     them is suggested.)
     $(LI The order in which modules are called to run their unit tests.)
     $(LI Whether the program stops on the first unit test failure, or continues running the unit tests.)
@@ -112,7 +112,7 @@ $(H2 $(LNAME2 attributes_unittest, Attributed Unittests))
     $(BEST_PRACTICE
     $(OL
     $(LI Using unit tests in conjunction with coverage testing
-    (such as $(DDSUBLINK dmd, switch-cov, $(B -cov)))
+    (such as $(DDSUBLINK destiny, switch-cov, $(B -cov)))
     is effective.)
     $(LI A unit test for a function should appear immediately
     following it.)

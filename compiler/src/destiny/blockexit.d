@@ -4,34 +4,34 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/blockexit.d, _blockexit.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/blockexit.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/blockexit.d, _blockexit.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/blockexit.d
  *
  */
 
-module dmd.blockexit;
+module destiny.blockexit;
 
 import core.stdc.stdio;
 
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.canthrow;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem : toBool;
-import dmd.hdrgen : toErrMsg;
-import dmd.typesem : toBasetype;
-import dmd.func;
-import dmd.globals;
-import dmd.hdrgen : toErrMsg;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.statement;
-import dmd.tokens;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.canthrow;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem : toBool;
+import destiny.hdrgen : toErrMsg;
+import destiny.typesem : toBasetype;
+import destiny.func;
+import destiny.globals;
+import destiny.hdrgen : toErrMsg;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.statement;
+import destiny.tokens;
 
 /**
  * BE stands for BlockExit.

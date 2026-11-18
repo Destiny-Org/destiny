@@ -6,65 +6,65 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/statementsem.d, _statementsem.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/statementsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/statementsem.d, _statementsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/statementsem.d
  *
  */
 
-module dmd.statementsem;
+module destiny.statementsem;
 
 import core.stdc.stdio;
 
-import dmd.aggregate;
-import dmd.arrayop;
-import dmd.arraytypes;
-import dmd.astcodegen;
-import dmd.astenums;
-import dmd.blockexit;
-import dmd.clone;
-import dmd.cond;
-import dmd.ctorflow;
-import dmd.dcast;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dimport;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.errorsink;
-import dmd.escape;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.importc;
-import dmd.init;
-import dmd.intrange;
-import dmd.location;
-import dmd.mtype;
-import dmd.mustuse;
-import dmd.nogc;
-import dmd.optimize;
-import dmd.opover;
-import dmd.parse;
-import dmd.common.outbuffer;
-import dmd.root.string;
-import dmd.safe : isSafe, isSaferD, setUnsafe;
-import dmd.semantic2;
-import dmd.sideeffect;
-import dmd.statement;
-import dmd.target;
-import dmd.targetcompiler;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arrayop;
+import destiny.arraytypes;
+import destiny.astcodegen;
+import destiny.astenums;
+import destiny.blockexit;
+import destiny.clone;
+import destiny.cond;
+import destiny.ctorflow;
+import destiny.dcast;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dimport;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.errorsink;
+import destiny.escape;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.importc;
+import destiny.init;
+import destiny.intrange;
+import destiny.location;
+import destiny.mtype;
+import destiny.mustuse;
+import destiny.nogc;
+import destiny.optimize;
+import destiny.opover;
+import destiny.parse;
+import destiny.common.outbuffer;
+import destiny.root.string;
+import destiny.safe : isSafe, isSaferD, setUnsafe;
+import destiny.semantic2;
+import destiny.sideeffect;
+import destiny.statement;
+import destiny.target;
+import destiny.targetcompiler;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
 
 /**
  * This struct is needed for the Expression of a CaseStatement to be the key
@@ -106,7 +106,7 @@ version (DMDLIB)
 
 /*****************************************
  * Returns:
- *     `true` iff ready to call `dmd.statementsem.makeTupleForeach`.
+ *     `true` iff ready to call `destiny.statementsem.makeTupleForeach`.
  */
 bool ready(StaticForeach _this)
 {
@@ -190,7 +190,7 @@ private Expression checkAssignmentAsCondition(Expression e, Scope* sc)
  */
 Statement statementSemantic(Statement s, Scope* sc)
 {
-    import dmd.compiler;
+    import destiny.compiler;
 
     version (CallbackAPI)
         Compiler.onStatementSemanticStart(s, sc);
@@ -203,7 +203,7 @@ Statement statementSemantic(Statement s, Scope* sc)
     return result;
 }
 
-package (dmd)
+package(destiny)
 Statement statementSemanticVisit(Statement s, Scope* sc)
 {
     auto eSink = global.errorSink;
@@ -1909,7 +1909,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
     {
         /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
          */
-        import dmd.pragmasem : pragmaStmtSemantic;
+        import destiny.pragmasem : pragmaStmtSemantic;
         if (!pragmaStmtSemantic(ps, sc))
             return setError();
 
@@ -3818,7 +3818,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
             result = s;
         else
         {
-            import dmd.iasm;
+            import destiny.iasm;
             result = asmSemantic(s, sc);
         }
     }
@@ -4677,7 +4677,7 @@ public auto makeTupleForeach(Scope* sc, bool isStatic, bool isDecl, ForeachState
          * Returns:
          *     `true` iff the declaration was successful.
          */
-        import dmd.attrib: UnpackDeclaration;
+        import destiny.attrib: UnpackDeclaration;
         bool declareVariable(STC storageClass, Type type, Identifier ident, UnpackDeclaration unpack, Expression e, Type t)
         {
             if (storageClass & (STC.out_ | STC.lazy_) ||
@@ -4839,7 +4839,7 @@ public auto makeTupleForeach(Scope* sc, bool isStatic, bool isDecl, ForeachState
                 assert(e && !t);
                 auto ident = Identifier.generateId("__value");
                 declareVariable(STC.none, e.type, ident, null, e, null);
-                import dmd.cond: StaticForeach;
+                import destiny.cond: StaticForeach;
                 auto field = Identifier.idPool(StaticForeach.tupleFieldName.ptr,StaticForeach.tupleFieldName.length);
                 Expression access = new DotIdExp(loc, e, field);
                 access = expressionSemantic(access, sc);
@@ -4873,7 +4873,7 @@ public auto makeTupleForeach(Scope* sc, bool isStatic, bool isDecl, ForeachState
         }
         else if (isDecl)
         {
-            import dmd.attrib: ForwardingAttribDeclaration;
+            import destiny.attrib: ForwardingAttribDeclaration;
             d = new ForwardingAttribDeclaration(decls);
         }
         else

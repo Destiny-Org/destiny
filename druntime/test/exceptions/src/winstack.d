@@ -24,7 +24,7 @@ void main()
     version(Win32)
     {
         // Cannot catch exceptions on Win64 because
-        // dmd implements its own exception handling
+        // destiny implements its own exception handling
 
         try
         {

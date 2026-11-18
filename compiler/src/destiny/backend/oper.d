@@ -6,12 +6,12 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/oper.d, backend/oper.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/oper.d, backend/oper.d)
  */
 
-module dmd.backend.oper;
+module destiny.backend.oper;
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/oper.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/oper.d
 
 @nogc:
 nothrow:
@@ -351,7 +351,7 @@ OPER opeqtoop(OPER opx)   { return opx - OPaddass + OPadd; }
 /* Convert op to op=    */
 OPER optoopeq(OPER opx)   { return opx - OPadd + OPaddass; }
 
-public import dmd.backend.cgelem : swaprel;
+public import destiny.backend.cgelem : swaprel;
 
 /***************************
  * Determine properties of an elem.

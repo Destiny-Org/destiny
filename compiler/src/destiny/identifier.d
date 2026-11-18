@@ -4,24 +4,24 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/identifier.d, _identifier.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/identifier.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/identifier.d, _identifier.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/identifier.d
  *
  */
 
-module dmd.identifier;
+module destiny.identifier;
 
 import core.stdc.ctype;
 import core.stdc.stdio;
 import core.stdc.string;
-import dmd.id;
-import dmd.location;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.root.string;
-import dmd.root.stringtable;
-import dmd.root.utf;
-import dmd.tokens;
+import destiny.id;
+import destiny.location;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.root.string;
+import destiny.root.stringtable;
+import destiny.root.utf;
+import destiny.tokens;
 
 
 /***********************************************************
@@ -343,7 +343,7 @@ nothrow:
      */
     extern (D) static bool isValidIdentifier(const(char)[] str) @trusted
     {
-        import dmd.common.charactertables;
+        import destiny.common.charactertables;
 
         if (str.length == 0 ||
             (str[0] >= '0' && str[0] <= '9')) // beware of isdigit() on signed chars

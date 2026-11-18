@@ -8,27 +8,27 @@
  *              Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/type.d, backend/_type.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/type.d, backend/_type.d)
  */
 
-module dmd.backend.type;
+module destiny.backend.type;
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/type.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/type.d
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.cdef;
-import dmd.backend.cc;
-import dmd.backend.code;
-import dmd.backend.el;
-import dmd.backend.global;
-import dmd.backend.debugprint;
-import dmd.backend.symbol;
-import dmd.backend.mem;
-import dmd.backend.oper;
-import dmd.backend.ty;
+import destiny.backend.cdef;
+import destiny.backend.cc;
+import destiny.backend.code;
+import destiny.backend.el;
+import destiny.backend.global;
+import destiny.backend.debugprint;
+import destiny.backend.symbol;
+import destiny.backend.mem;
+import destiny.backend.oper;
+import destiny.backend.ty;
 
 nothrow:
 @safe:

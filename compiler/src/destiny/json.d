@@ -1,45 +1,45 @@
 /**
- * Code for generating .json descriptions of the module when passing the `-X` flag to dmd.
+ * Code for generating .json descriptions of the module when passing the `-X` flag to destiny.
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/json.d, _json.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/json.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/json.d, _json.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/json.d
  *
  */
 
-module dmd.json;
+module destiny.json;
 
 import core.stdc.stdio;
 import core.stdc.string;
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.cond;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dimport;
-import dmd.dmodule;
-import dmd.dsymbol;
-import dmd.dsymbolsem : include;
-import dmd.templatesem : computeOneMember;
-import dmd.dtemplate;
-import dmd.expression;
-import dmd.func;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.root.string;
-import dmd.target;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.cond;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dimport;
+import destiny.dmodule;
+import destiny.dsymbol;
+import destiny.dsymbolsem : include;
+import destiny.templatesem : computeOneMember;
+import destiny.dtemplate;
+import destiny.expression;
+import destiny.func;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.root.string;
+import destiny.target;
+import destiny.visitor;
 
 version(Windows)
 {
@@ -811,7 +811,7 @@ public:
     */
     private void generateCompilerInfo()
     {
-        import dmd.target : target;
+        import destiny.target : target;
         objectStart();
         requiredProperty("vendor", global.compileEnv.vendor);
         requiredProperty("version", global.versionString());

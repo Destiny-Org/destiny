@@ -83,7 +83,7 @@ private int __switchSearch(T)(/*in*/ const scope T[][] cases, /*in*/ const scope
         }
         else
         {
-            // Generates better code than "expr ? 1 : -1" on dmd and gdc, same with ldc
+            // Generates better code than "expr ? 1 : -1" on destiny and gdc, same with ldc
             r = ((condition.length > cases[mid].length) << 1) - 1;
         }
 

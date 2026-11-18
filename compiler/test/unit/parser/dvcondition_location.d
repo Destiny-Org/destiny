@@ -1,21 +1,21 @@
 module parser.dvcondition_location; @system:
 
-import dmd.frontend : parseModule;
+import destiny.frontend : parseModule;
 import support : afterEach, beforeEach;
-import dmd.cond : VersionCondition, DebugCondition;
-import dmd.location;
-import dmd.visitor : SemanticTimeTransitiveVisitor;
+import destiny.cond : VersionCondition, DebugCondition;
+import destiny.location;
+import destiny.visitor : SemanticTimeTransitiveVisitor;
 
 @beforeEach initializeFrontend()
 {
-    import dmd.frontend : initDMD;
+    import destiny.frontend : initDMD;
 
     initDMD();
 }
 
 @afterEach deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }
 

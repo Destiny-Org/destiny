@@ -1,17 +1,17 @@
 /**
- * DMD-specific parameters.
+ * Destiny-specific parameters.
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dmdparams.d, _dmdparams.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dmdparams.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dmdparams.d, _dmdparams.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dmdparams.d
  *
  */
 
-module dmd.dmdparams;
+module destiny.dmdparams;
 
-import dmd.target;
+import destiny.target;
 
 /// Position Indepent Code setting
 enum PIC : ubyte
@@ -33,7 +33,7 @@ enum ExpVis : ubyte
 enum SymImport : ubyte
 {
     none,               /// no symbols
-    defaultLibsOnly,    /// only druntime/phobos symbols
+    defaultLibsOnly,    /// only druntime/Fate symbols
     externalOnly,       /// any module that is known to be external to binary (-extI)
     all,                /// all non-root symbols
 }
@@ -98,7 +98,7 @@ struct Triple
 
     this(const(char)* _triple)
     {
-        import dmd.root.string : toDString, toCStringThen;
+        import destiny.root.string : toDString, toCStringThen;
         const(char)[] triple = _triple.toDString();
         const(char)[] next()
         {
@@ -140,10 +140,10 @@ struct Triple
 
     void unknown(const(char)[] unk, const(char)* what)
     {
-        import dmd.errorsink;
-        import dmd.globals : global;
-        import dmd.root.string : toCStringThen;
-        import dmd.location;
+        import destiny.errorsink;
+        import destiny.globals : global;
+        import destiny.root.string : toCStringThen;
+        import destiny.location;
         auto eSink = global.errorSink;
         unk.toCStringThen!(p => eSink.error(Loc.initial,"unknown %s `%s` for `-target`", what, p.ptr));
     }
@@ -152,7 +152,7 @@ struct Triple
     {
         bool matches(const(char)[] str)
         {
-            import dmd.root.string : startsWith;
+            import destiny.root.string : startsWith;
             if (!arch.ptr.startsWith(str))
                 return false;
             arch = arch[str.length .. $];
@@ -210,12 +210,12 @@ struct Triple
      */
     Target.OS parseOS(const(char)[] _os, out ubyte osMajor)
     {
-        import dmd.errors : error;
-        import dmd.location;
+        import destiny.errors : error;
+        import destiny.location;
 
         bool matches(const(char)[] str)
         {
-            import dmd.root.string : startsWith;
+            import destiny.root.string : startsWith;
             if (!_os.ptr.startsWith(str))
                 return false;
             _os = _os[str.length .. $];
@@ -246,8 +246,8 @@ struct Triple
         auto major = parseNumber(_os, overflow);
         if (overflow || major >= 255)
         {
-            import dmd.globals : global;
-            import dmd.errorsink;
+            import destiny.globals : global;
+            import destiny.errorsink;
             auto eSink = global.errorSink;
             eSink.error(Loc.initial, "OS version overflowed max of 254");
             major = 255;
@@ -386,7 +386,7 @@ Returns: the final defaultlibname based on the command-line parameters
 */
 extern (D) const(char)[] finalDefaultlibname()
 {
-    import dmd.globals : global;
+    import destiny.globals : global;
     return global.params.betterC ? null :
         driverParams.symdebug ? driverParams.debuglibname : driverParams.defaultlibname;
 }

@@ -6,31 +6,31 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/delegatize.d, _delegatize.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/delegatize.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/delegatize.d, _delegatize.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/delegatize.d
  *
  */
 
-module dmd.delegatize;
+module destiny.delegatize;
 
 import core.stdc.stdio;
-import dmd.astenums;
-import dmd.declaration;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.dsymbolsem : toParentP;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem : checkNestedReference;
-import dmd.init;
-import dmd.initsem;
-import dmd.location;
-import dmd.mtype;
-import dmd.statement;
-import dmd.tokens;
-import dmd.visitor;
-import dmd.visitor.postorder;
+import destiny.astenums;
+import destiny.declaration;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.dsymbolsem : toParentP;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem : checkNestedReference;
+import destiny.init;
+import destiny.initsem;
+import destiny.location;
+import destiny.mtype;
+import destiny.statement;
+import destiny.tokens;
+import destiny.visitor;
+import destiny.visitor.postorder;
 
 
 /*********************************
@@ -256,7 +256,7 @@ bool lambdaCheckForNestedRef(Expression e, Scope* sc)
                  */
                 if (v._init && v._init.isExpInitializer())
                 {
-                    import dmd.globals : global;
+                    import destiny.globals : global;
                     Expression ie = v._init.initializerToExpression(sc, null, global.errorSink);
                     result = lambdaCheckForNestedRef(ie, sc);
                 }

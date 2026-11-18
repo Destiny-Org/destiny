@@ -6,41 +6,41 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/expression.d, _expression.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/expression.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/expression.d, _expression.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/expression.d
  *
  */
 
-module dmd.expression;
+module destiny.expression;
 
 import core.stdc.stdarg;
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.ast_node;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dtemplate;
-import dmd.func;
-import dmd.globals : dinteger_t, global;
-import dmd.hdrgen : toChars;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.root.complex;
-import dmd.root.ctfloat;
-import dmd.root.rmem;
-import dmd.rootobject;
-import dmd.root.string;
-import dmd.root.utf;
-import dmd.tokens;
-import dmd.visitor;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.ast_node;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dtemplate;
+import destiny.func;
+import destiny.globals : dinteger_t, global;
+import destiny.hdrgen : toChars;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.root.complex;
+import destiny.root.ctfloat;
+import destiny.root.rmem;
+import destiny.rootobject;
+import destiny.root.string;
+import destiny.root.utf;
+import destiny.tokens;
+import destiny.visitor;
 
 enum LOGSEMANTIC = false;
 
@@ -131,7 +131,7 @@ extern (C++) abstract class Expression : ASTNode
     bool rvalue;    // true if this is considered to be an rvalue, even if it is an lvalue
     bool gcPassDone; // `checkGC` has been run on this expression
     }
-    import dmd.common.bitfields;
+    import destiny.common.bitfields;
     mixin(generateBitFields!(BitFields, ubyte));
 
     extern (D) this(Loc loc, EXP op) scope @safe
@@ -651,7 +651,7 @@ extern (C++) final class ErrorExp : Expression
         if (errorexp is null)
             errorexp = new ErrorExp();
 
-        import dmd.globals : global;
+        import destiny.globals : global;
         if (global.errors == 0 && global.gaggedErrors == 0)
         {
             /* Unfortunately, errors can still leak out of gagged errors,
@@ -1441,7 +1441,7 @@ extern (C++) final class StructLiteralExp : Expression
         bool isOriginal = false; /// used when moving instances to indicate `this is this.origin`
         OwnedBy ownedByCtfe = OwnedBy.code;
     }
-    import dmd.common.bitfields;
+    import destiny.common.bitfields;
     mixin(generateBitFields!(BitFields, ubyte));
     StageFlags stageflags;
 
@@ -2724,7 +2724,7 @@ extern (C++) final class SliceExp : UnaExp
         bool upperIsInBounds;       // true if upr <= e1.length
         bool lowerIsLessThanUpper;  // true if lwr <= upr
     }
-    import dmd.common.bitfields : generateBitFields;
+    import destiny.common.bitfields : generateBitFields;
     mixin(generateBitFields!(BitFields, ubyte));
 
     /************************************************************/
@@ -3976,7 +3976,7 @@ extern (C++) final class GenericExp : Expression
  */
 bool isArrayConstruction(const Identifier id)
 {
-    import dmd.id : Id;
+    import destiny.id : Id;
 
     return id == Id._d_arrayctor || id == Id._d_arraysetctor;
 }

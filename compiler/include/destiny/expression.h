@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/expression.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/expression.h
  */
 
 #pragma once
@@ -47,7 +47,7 @@ typedef union tree_node Symbol;
 struct Symbol;          // back end symbol
 #endif
 
-namespace dmd
+namespace destiny
 {
     // in expressionsem.d
     Expression *expressionSemantic(Expression *e, Scope *sc);

@@ -5,81 +5,81 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dsymbolsem.d, _dsymbolsem.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dsymbolsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dsymbolsem.d, _dsymbolsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dsymbolsem.d
  *
  */
 
-module dmd.dsymbolsem;
+module destiny.dsymbolsem;
 
 import core.stdc.stdio;
 import core.stdc.string;
 import core.stdc.stdlib;
 
-import dmd.aggregate;
-import dmd.aliasthis;
-import dmd.arraytypes;
-import dmd.astcodegen;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.attribsem;
-import dmd.clone;
-import dmd.cond;
-import dmd.timetrace;
-import dmd.dcast;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.deps;
-import dmd.dimport;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dtemplate;
-import dmd.dversion;
-import dmd.enumsem;
-import dmd.errors : Classification, fatal;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.id;
-import dmd.identifier;
-import dmd.importc;
-import dmd.init;
-import dmd.initsem;
-import dmd.hdrgen;
-import dmd.lexer;
-import dmd.location;
-import dmd.mtype;
-import dmd.mustuse;
-import dmd.nspace;
-import dmd.objc;
-import dmd.optimize;
-import dmd.parse;
-import dmd.root.array;
-import dmd.root.string;
-import dmd.root.rmem;
-import dmd.root.speller;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.safe;
-import dmd.semantic2;
-import dmd.semantic3;
-import dmd.sideeffect;
-import dmd.staticassert;
-import dmd.tokens;
-import dmd.statement;
-import dmd.statementsem : ready;
-import dmd.target;
-import dmd.targetcompiler;
-import dmd.templatesem;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.aliasthis;
+import destiny.arraytypes;
+import destiny.astcodegen;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.attribsem;
+import destiny.clone;
+import destiny.cond;
+import destiny.timetrace;
+import destiny.dcast;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.deps;
+import destiny.dimport;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dtemplate;
+import destiny.dversion;
+import destiny.enumsem;
+import destiny.errors : Classification, fatal;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.id;
+import destiny.identifier;
+import destiny.importc;
+import destiny.init;
+import destiny.initsem;
+import destiny.hdrgen;
+import destiny.lexer;
+import destiny.location;
+import destiny.mtype;
+import destiny.mustuse;
+import destiny.nspace;
+import destiny.objc;
+import destiny.optimize;
+import destiny.parse;
+import destiny.root.array;
+import destiny.root.string;
+import destiny.root.rmem;
+import destiny.root.speller;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.safe;
+import destiny.semantic2;
+import destiny.semantic3;
+import destiny.sideeffect;
+import destiny.staticassert;
+import destiny.tokens;
+import destiny.statement;
+import destiny.statementsem : ready;
+import destiny.target;
+import destiny.targetcompiler;
+import destiny.templatesem;
+import destiny.typesem;
+import destiny.visitor;
 
 enum LOG = false;
 
@@ -162,7 +162,7 @@ private void fixupInvariantIdent(InvariantDeclaration invd, size_t offset)
  */
 const(char)* search_correct_C(Identifier ident)
 {
-    import dmd.astenums : Twchar;
+    import destiny.astenums : Twchar;
     TOK tok;
     if (ident == Id.NULL)
         tok = TOK.null_;
@@ -242,7 +242,7 @@ Dsymbol insert(Scope* _this, Dsymbol s)
  */
 FuncDeclaration findGetMembers(ScopeDsymbol dsym)
 {
-    import dmd.opover : search_function;
+    import destiny.opover : search_function;
     Dsymbol s = search_function(dsym, Id.getmembers);
     FuncDeclaration fdx = s ? s.isFuncDeclaration() : null;
     version (none)
@@ -341,7 +341,7 @@ void makeNested(AggregateDeclaration _this)
     }
     if (_this.enclosing)
     {
-        import dmd.typesem : alignment;
+        import destiny.typesem : alignment;
         //printf("makeNested %s, enclosing = %s\n", toChars(), enclosing.toChars());
         assert(t);
         if (t.ty == Tstruct)
@@ -372,7 +372,7 @@ void makeNested(AggregateDeclaration _this)
  */
 void makeNested2(AggregateDeclaration _this)
 {
-    import dmd.typesem : alignment;
+    import destiny.typesem : alignment;
 
     if (_this.vthis2)
         return;
@@ -844,7 +844,7 @@ void runDeferredSemantic3()
 
 bool isOverlappedWith(VarDeclaration _this, VarDeclaration v)
 {
-    import dmd.typesem : size;
+    import destiny.typesem : size;
     const vsz = v.type.size();
     const tsz = _this.type.size();
     assert(vsz != SIZE_INVALID && tsz != SIZE_INVALID);
@@ -994,7 +994,7 @@ private Type aggregateDeclGetType(AggregateDeclaration _this)
 {
     /* Apply storage classes to forward references. (Issue 22254)
      * Note: Avoid interfaces for now. Implementing qualifiers on interface
-     * definitions exposed some issues in their TypeInfo generation in DMD.
+     * definitions exposed some issues in their TypeInfo generation in Destiny.
      * Related PR: upstream dmd pull request 13312
      */
     if (_this.semanticRun == PASS.initial && !_this.isInterfaceDeclaration())
@@ -1032,7 +1032,7 @@ private uinteger_t aggregateDeclSize(AggregateDeclaration _this, Loc loc)
 
 private uinteger_t declSize(Declaration _this, Loc loc)
 {
-    import dmd.typesem: size;
+    import destiny.typesem: size;
     assert(_this.type);
     const sz = _this.type.size();
     if (sz == SIZE_INVALID)
@@ -1909,7 +1909,7 @@ bool isRvalueConstructor(StructDeclaration sd, CtorDeclaration ctor)
 Expression resolveAliasThis(Scope* sc, Expression e, bool gag = false, bool findOnly = false)
 {
     //printf("resolveAliasThis() %s\n", toChars(e));
-    import dmd.typesem : dotExp;
+    import destiny.typesem : dotExp;
     for (AggregateDeclaration ad = isAggregate(e.type); ad;)
     {
         if (ad.aliasthis)
@@ -1962,7 +1962,7 @@ Expression resolveAliasThis(Scope* sc, Expression e, bool gag = false, bool find
                 e = null;
         }
 
-        import dmd.dclass : ClassDeclaration;
+        import destiny.dclass : ClassDeclaration;
         auto cd = ad.isClassDeclaration();
         if ((!e || !ad.aliasthis) && cd && cd.baseClass && cd.baseClass != ClassDeclaration.object)
         {
@@ -2080,7 +2080,7 @@ private void checkImportDeprecation(Module m, Loc loc, Scope* sc)
 
 private extern(C++) final class DsymbolSemanticVisitor : Visitor
 {
-    import dmd.typesem: size;
+    import destiny.typesem: size;
 
     alias visit = Visitor.visit;
 
@@ -2689,7 +2689,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         /* If scope's alignment is the default, use the type's alignment,
          * otherwise the scope overrrides.
          */
-        import dmd.typesem : alignment;
+        import destiny.typesem : alignment;
         if (dsym.alignment.isDefault())
             dsym.alignment = dsym.type.alignment(); // use type's alignment
 
@@ -2955,7 +2955,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         if (dsym.storage_class & STC.constscoperef)
             dsym.storage_class |= STC.scope_;
 
-        import dmd.typesem : hasPointers;
+        import destiny.typesem : hasPointers;
 
         if (dsym.storage_class & STC.scope_)
         {
@@ -3326,7 +3326,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                                  */
                                 if (ne.member && !(ne.member.storage_class & STC.scope_))
                                 {
-                                    import dmd.escape : setUnsafeDIP1000;
+                                    import destiny.escape : setUnsafeDIP1000;
                                     const inSafeFunc = sc.func && sc.func.isSafeBypassingInference();   // isSafeBypassingInference may call setUnsafe().
                                     if (setUnsafeDIP1000(*sc, false, dsym.loc, "`scope` allocation of `%s` with a non-`scope` constructor", dsym))
                                         eSink.errorSupplemental(ne.member.loc, "is the location of the constructor");
@@ -3575,7 +3575,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         version (NoBackend) {}
         else
         {
-            import dmd.iasm : asmSemantic;
+            import destiny.iasm : asmSemantic;
             asmSemantic(dsym, sc);
         }
         dsym.semanticRun = PASS.semanticdone;
@@ -3761,7 +3761,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
             Dsymbol sym = imp.mod.search(imp.loc, imp.names[i], SearchOpt.ignorePrivateImports);
             if (sym)
             {
-                import dmd.access : symbolIsVisible;
+                import destiny.access : symbolIsVisible;
                 if (!symbolIsVisible(sc, sym) && !sym.errors)
                 {
                     eSink.error(imp.loc, "%s `%s` member `%s` is not visible from module `%s`", imp.mod.kind, imp.mod.toPrettyChars,
@@ -3860,7 +3860,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
 
     override void visit(PragmaDeclaration pd)
     {
-        import dmd.pragmasem : pragmaDeclSemantic;
+        import destiny.pragmasem : pragmaDeclSemantic;
         pragmaDeclSemantic(pd, sc);
     }
 
@@ -4218,7 +4218,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                 else if (ea)
                 {
                     Expression tme = isExpression(tmo);
-                    if (!tme || !dmd.expressionsem.equals(ea, tme))
+                    if (!tme || !destiny.expressionsem.equals(ea, tme))
                         goto Lcontinue;
                 }
                 else if (sa)
@@ -4773,7 +4773,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
         visitStaticCDtorDeclaration(scd, false);
 
         foreachUda(scd, sc, (Expression e) {
-            import dmd.attrib : isEnumAttribute;
+            import destiny.attrib : isEnumAttribute;
             if (!isEnumAttribute(e, Id.udaStandalone))
                 return 0;
 
@@ -6133,7 +6133,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
             // @@@DEPRECATED_2.110@@@ https://github.com/Destiny-Org/destiny
             // Deprecated in 2.100
             // Make an error in 2.110
-            // Don't forget to remove code at https://github.com/Destiny-Org/destiny/blob/b2f8274ba76358607fc3297a1e9f361480f9bcf9/src/dmd/dsymbolsem.d#L1032-L1036
+            // Don't forget to remove code at https://github.com/Destiny-Org/destiny/blob/b2f8274ba76358607fc3297a1e9f361480f9bcf9/src/destiny/dsymbolsem.d#L1032-L1036
             if (cldec.storage_class & STC.scope_)
                 eSink.deprecation(cldec.loc, "`scope` as a type constraint is deprecated.  Use `scope` at the usage site.");
         }
@@ -6442,7 +6442,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
             // @@@DEPRECATED_2.120@@@ https://github.com/Destiny-Org/destiny
             // Deprecated in 2.087
             // Made an error in 2.100, but removal depends on `scope class` being removed too
-            // Don't forget to remove code at https://github.com/Destiny-Org/destiny/blob/b2f8274ba76358607fc3297a1e9f361480f9bcf9/src/dmd/dsymbolsem.d#L1032-L1036
+            // Don't forget to remove code at https://github.com/Destiny-Org/destiny/blob/b2f8274ba76358607fc3297a1e9f361480f9bcf9/src/destiny/dsymbolsem.d#L1032-L1036
             if (idec.storage_class & STC.scope_)
                 eSink.error(idec.loc, "`scope` as a type constraint is obsolete.  Use `scope` at the usage site.");
         }
@@ -7252,7 +7252,7 @@ private void aliasAssignSemantic(AliasAssign ds, Scope* sc)
     // Try AliasSeq optimization
     if (auto ti = ds.type.isTypeInstance())
     {
-        import dmd.templatesem : findTempDecl;
+        import destiny.templatesem : findTempDecl;
         if (!findTempDecl(ti.tempinst, sc, null))
             return errorRet();
         if (auto tempinst = isAliasSeq(sc, ti))
@@ -7799,7 +7799,7 @@ Dsymbol search_correct(Dsymbol d, Identifier ident)
     if (auto s = d.search(Loc.initial, ident, SearchOpt.ignoreErrors))
         return s;
 
-    import dmd.root.speller : speller;
+    import destiny.root.speller : speller;
     return speller!symbol_search_fp(ident.toString());
 }
 
@@ -7883,7 +7883,7 @@ private extern(C++) class SearchVisitor : Visitor
             /* Don't find private members if ss is a module
              */
             Dsymbol s2 = ss.search(loc, ident, sflags | (ss.isModule() ? SearchOpt.ignorePrivateImports : SearchOpt.all));
-            import dmd.access : symbolIsVisible;
+            import destiny.access : symbolIsVisible;
             if (!s2 || !(flags & SearchOpt.ignoreVisibility) && !symbolIsVisible(sds, s2))
                 continue;
             if (!s)
@@ -8230,7 +8230,7 @@ private extern(C++) class SearchVisitor : Visitor
         //printf("%s.Import.search(ident = '%s', flags = x%x)\n", imp.toChars(), ident.toChars(), flags);
         if (!imp.pkg)
         {
-            // Load may fail (eg; for dmd as a library users who continue for sema)
+            // Load may fail (eg; for destiny as a library users who continue for sema)
             if (imp.load(null))
             {
                 if (imp.mod)
@@ -8409,7 +8409,7 @@ private extern(C++) class SearchVisitor : Visitor
                 continue;
             }
 
-            import dmd.access : symbolIsVisible;
+            import destiny.access : symbolIsVisible;
 
             s = b.sym.search(loc, ident, flags);
             if (!s)
@@ -8837,7 +8837,7 @@ bool setFieldOffset(Dsymbol d, AggregateDeclaration ad, FieldState* fieldState, 
 
 private extern(C++) class SetFieldOffsetVisitor : Visitor
 {
-    import dmd.typesem: size;
+    import destiny.typesem: size;
 
     alias visit = Visitor.visit;
 
@@ -9482,7 +9482,7 @@ private void lowerUnpack(UnpackDeclaration upd, Scope* sc)
         return fail();
     }
 
-    import dmd.expressionsem;
+    import destiny.expressionsem;
     bool needctfe = (upd.storage_class & (STC.manifest | STC.static_)) != 0;
     if (needctfe)
     {
@@ -9495,7 +9495,7 @@ private void lowerUnpack(UnpackDeclaration upd, Scope* sc)
     if (needctfe)
     {
         sc = sc.endCTFE();
-        import dmd.dinterpret;
+        import destiny.dinterpret;
         upd._init = upd._init.ctfeInterpret();
     }
 
@@ -9513,7 +9513,7 @@ private void lowerUnpack(UnpackDeclaration upd, Scope* sc)
     }
     else
     {
-        import dmd.dsymbolsem : resolveAliasThis;
+        import destiny.dsymbolsem : resolveAliasThis;
         upd._init = resolveAliasThis(sc, upd._init);
         if (upd._init.type.isTypeTuple() && upd._init.isTupleExp())
         {
@@ -9540,9 +9540,9 @@ private void lowerUnpack(UnpackDeclaration upd, Scope* sc)
     if (tup.isAliasThisTuple())
     {
         assert(upd.decl.length != 0);
-        import dmd.sideeffect: copyToTemp;
+        import destiny.sideeffect: copyToTemp;
         auto v = copyToTemp(upd.storage_class, "__tup", tup);
-        import dmd.dsymbolsem : dsymbolSemantic;
+        import destiny.dsymbolsem : dsymbolSemantic;
         v.dsymbolSemantic(sc);
         auto ve = new VarExp(upd.loc, v);
         ve.type = tup.type;
@@ -9582,7 +9582,7 @@ private void lowerUnpack(UnpackDeclaration upd, Scope* sc)
         }
         if (upd._scope)
         {
-            import dmd.dsymbolsem : addMember;
+            import destiny.dsymbolsem : addMember;
             d.addMember(upd._scope, upd.scopesym);
         }
     }
@@ -9590,7 +9590,7 @@ private void lowerUnpack(UnpackDeclaration upd, Scope* sc)
     {
         foreach (d; *upd.decl)
         {
-            import dmd.dsymbolsem : setScope;
+            import destiny.dsymbolsem : setScope;
             d.setScope(upd._scope);
         }
     }
@@ -9630,7 +9630,7 @@ extern(C++) class ConditionIncludeVisitor : Visitor
             return;
         }
         assert(cdc.condition);
-        symbols = dmd.expressionsem.include(cdc.condition, cdc._scope ? cdc._scope : sc) ? cdc.decl : cdc.elsedecl;
+        symbols = destiny.expressionsem.include(cdc.condition, cdc._scope ? cdc._scope : sc) ? cdc.decl : cdc.elsedecl;
     }
 
     override void visit(StaticIfDeclaration sif)
@@ -9705,7 +9705,7 @@ extern(C++) class ConditionIncludeVisitor : Visitor
         }
 
         // expand static foreach
-        import dmd.statementsem: makeTupleForeach;
+        import destiny.statementsem: makeTupleForeach;
         Dsymbols* d = makeTupleForeach(sfd._scope, true, true, sfd.sfe.aggrfe, sfd.decl, sfd.sfe.needExpansion).decl;
         if (d) // process generated declarations
         {
@@ -9783,7 +9783,7 @@ void checkGNUABITag(Dsymbol sym, LINK linkage)
  * Check if the provided expression references `core.attribute.gnuAbiTag`
  *
  * This should be called after semantic has been run on the expression.
- * Semantic on UDA happens in semantic2 (see `dmd.semantic2`).
+ * Semantic on UDA happens in semantic2 (see `destiny.semantic2`).
  *
  * Params:
  *   e = Expression to check (usually from `UserAttributeDeclaration.atts`)
@@ -9814,7 +9814,7 @@ bool isGNUABITag(Expression e)
  */
 private Expression callScopeDtor(VarDeclaration vd, Scope* sc)
 {
-    import dmd.typesem: size;
+    import destiny.typesem: size;
 
     //printf("VarDeclaration::callScopeDtor() %s\n", toChars());
 
@@ -10090,7 +10090,7 @@ private extern(C++) class OneMemberVisitor : Visitor
         //printf("ConditionalDeclaration::oneMember(), inc = %d\n", condition.inc);
         if (cd.condition.inc != Include.notComputed)
         {
-            Dsymbols* d = dmd.expressionsem.include(cd.condition, null) ? cd.decl : cd.elsedecl;
+            Dsymbols* d = destiny.expressionsem.include(cd.condition, null) ? cd.decl : cd.elsedecl;
             result = oneMembers(d, *ps, ident);
         }
         else
@@ -10151,7 +10151,7 @@ bool hasStaticCtorOrDtor(Dsymbol d)
 
 private extern(C++) class HasStaticCtorOrDtor : Visitor
 {
-    import dmd.mtype : Type;
+    import destiny.mtype : Type;
 
     alias visit = Visitor.visit;
     bool result;
@@ -10198,7 +10198,7 @@ private extern(C++) class HasStaticCtorOrDtor : Visitor
 
 bool isFuncHidden(ClassDeclaration cd, FuncDeclaration fd)
 {
-    import dmd.funcsem : overloadApply;
+    import destiny.funcsem : overloadApply;
     //printf("ClassDeclaration.isFuncHidden(class = %s, fd = %s)\n", toChars(), fd.toPrettyChars());
     Dsymbol s = cd.search(Loc.initial, fd.ident, SearchOpt.ignoreAmbiguous | SearchOpt.ignoreErrors);
     if (!s)
@@ -10358,7 +10358,7 @@ void finalizeSize(AggregateDeclaration ad)
  */
 bool _isZeroInit(Expression exp)
 {
-    import dmd.typesem: size;
+    import destiny.typesem: size;
 
     switch (exp.op)
     {
@@ -10432,7 +10432,7 @@ bool _isZeroInit(Expression exp)
         case EXP.float64:
         case EXP.complex80:
         {
-            import dmd.root.ctfloat : CTFloat;
+            import destiny.root.ctfloat : CTFloat;
             return (exp.toReal()      is CTFloat.zero) &&
                    (exp.toImaginary() is CTFloat.zero);
         }
@@ -10516,7 +10516,7 @@ private bool checkOverlappedFields(AggregateDeclaration ad)
             else if (v2._init && i < j)
             {
                 eSink.error(v2.loc, "union field `%s` with default initialization `%s` must be before field `%s`",
-                    v2.toErrMsg(), dmd.hdrgen.toChars(v2._init), vd.toErrMsg());
+                    v2.toErrMsg(), destiny.hdrgen.toChars(v2._init), vd.toErrMsg());
                 errors = true;
             }
         }
@@ -10526,7 +10526,7 @@ private bool checkOverlappedFields(AggregateDeclaration ad)
 
 private extern(C++) class FinalizeSizeVisitor : Visitor
 {
-    import dmd.typesem: size;
+    import destiny.typesem: size;
 
     alias visit = Visitor.visit;
 
@@ -10829,7 +10829,7 @@ bool hasPointers(Dsymbol d)
 
 private extern(C++) class HasPointersVisitor : Visitor
 {
-    import dmd.mtype : Type;
+    import destiny.mtype : Type;
 
     alias visit = Visitor.visit;
     bool result;
@@ -10841,7 +10841,7 @@ private extern(C++) class HasPointersVisitor : Visitor
 
     override void visit(VarDeclaration vd)
     {
-        import dmd.typesem : hasPointers;
+        import destiny.typesem : hasPointers;
         result = (!vd.isDataseg() && vd.type.hasPointers());
     }
 
@@ -10883,8 +10883,8 @@ int _foreach(Scope* sc, Dsymbols* members, scope ForeachDg dg, size_t* pn = null
     int result = 0;
     foreach (size_t i; 0 .. members.length)
     {
-        import dmd.attrib : AttribDeclaration;
-        import dmd.dtemplate : TemplateMixin;
+        import destiny.attrib : AttribDeclaration;
+        import destiny.dtemplate : TemplateMixin;
 
         Dsymbol s = (*members)[i];
         if (AttribDeclaration a = s.isAttribDeclaration())

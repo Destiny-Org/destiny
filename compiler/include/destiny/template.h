@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/template.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/template.h
  */
 
 #pragma once
@@ -29,7 +29,7 @@ class Expression;
 class FuncDeclaration;
 class Parameter;
 
-namespace dmd
+namespace destiny
 {
     bool isDiscardable(TemplateInstance*);
     bool needsCodegen(TemplateInstance*);
@@ -284,7 +284,7 @@ public:
     void accept(Visitor *v) override { v->visit(this); }
 };
 
-namespace dmd
+namespace destiny
 {
     // in templateparamsem.d
     bool tpsemantic(TemplateParameter *tp, Scope *sc, TemplateParameters *parameters);

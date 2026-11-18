@@ -4,48 +4,48 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dsymbol.d, _dsymbol.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dsymbol.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dsymbol.d, _dsymbol.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dsymbol.d
  *
  */
 
-module dmd.dsymbol;
+module destiny.dsymbol;
 
 import core.stdc.stdarg;
 import core.stdc.stdio;
 import core.stdc.string;
 import core.stdc.stdlib;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.attrib;
-import dmd.astenums;
-import dmd.ast_node;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dimport;
-import dmd.dmodule;
-import dmd.dversion;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dtemplate;
-import dmd.expression;
-import dmd.func;
-import dmd.hdrgen : toErrMsg;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.nspace;
-import dmd.root.aav;
-import dmd.root.rmem;
-import dmd.rootobject;
-import dmd.root.string;
-import dmd.statement;
-import dmd.staticassert;
-import dmd.tokens;
-import dmd.visitor;
-import dmd.common.outbuffer;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.attrib;
+import destiny.astenums;
+import destiny.ast_node;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dimport;
+import destiny.dmodule;
+import destiny.dversion;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dtemplate;
+import destiny.expression;
+import destiny.func;
+import destiny.hdrgen : toErrMsg;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.nspace;
+import destiny.root.aav;
+import destiny.root.rmem;
+import destiny.rootobject;
+import destiny.root.string;
+import destiny.statement;
+import destiny.staticassert;
+import destiny.tokens;
+import destiny.visitor;
+import destiny.common.outbuffer;
 /***************************************
  * Calls dg(Dsymbol sym) for each Dsymbol.
  * If dg returns !=0, stops and returns that value else returns 0.
@@ -55,7 +55,7 @@ import dmd.common.outbuffer;
  * Returns:
  *    last value returned by dg()
  *
- * See_Also: $(REF each, dmd, root, array)
+ * See_Also: $(REF each, destiny, root, array)
  */
 int foreachDsymbol(Dsymbols* symbols, scope int delegate(Dsymbol) dg)
 {
@@ -81,7 +81,7 @@ int foreachDsymbol(Dsymbols* symbols, scope int delegate(Dsymbol) dg)
  *    symbols = Dsymbols
  *    dg = delegate to call for each Dsymbol
  *
- * See_Also: $(REF each, dmd, root, array)
+ * See_Also: $(REF each, destiny, root, array)
  */
 void foreachDsymbol(Dsymbols* symbols, scope void delegate(Dsymbol) dg)
 {
@@ -131,7 +131,7 @@ extern (C++) private class AddCommentVisitor: Visitor
         if (strcmp(*p, comment) != 0)
         {
             // Concatenate the two
-            import dmd.lexer;
+            import destiny.lexer;
             *p = Lexer.combineComments((*p).toDString(), comment.toDString(), true);
         }
     }
@@ -382,7 +382,7 @@ extern (C++) class Dsymbol : ASTNode
         bool deferred2; // In Module.deferred2
         bool deferred3; // In Module.deferred3
     }
-    import dmd.common.bitfields;
+    import destiny.common.bitfields;
     mixin(generateBitFields!(BitFields, ubyte));
     DSYM dsym;
 
@@ -416,7 +416,7 @@ extern (C++) class Dsymbol : ASTNode
 
     final override const(char)* toChars() const
     {
-        import dmd.hdrgen : toChars;
+        import destiny.hdrgen : toChars;
         return toChars(this);
     }
 
@@ -699,7 +699,7 @@ extern (C++) class Dsymbol : ASTNode
 
                 if (!keepOneMember)
                 {
-                    import dmd.dsymbolsem : oneMembers;
+                    import destiny.dsymbolsem : oneMembers;
                     Dsymbol sym;
                     if (auto ti = p.parent.isTemplateInstance())
                         if (auto ident = p.getIdent())
@@ -1107,7 +1107,7 @@ extern (C++) class ScopeDsymbol : Dsymbol
 
 private:
 
-    import dmd.root.bitarray;
+    import destiny.root.bitarray;
     BitArray accessiblePackages, privateAccessiblePackages;// whitelists of accessible (imported) packages
 
 public:
@@ -1219,7 +1219,7 @@ public:
 
     static void multiplyDefined(Loc loc, Dsymbol s1, Dsymbol s2)
     {
-        import dmd.globals : global;
+        import destiny.globals : global;
         auto eSink = global.errorSink;
         version (none)
         {
@@ -1387,7 +1387,7 @@ extern (C++) final class OverloadSet : Dsymbol
 /***********************************************************
  * Forwarding ScopeDsymbol.  Used by ForwardingAttribDeclaration and
  * ForwardingScopeDeclaration to forward symbol insertions to another
- * scope.  See `dmd.attrib.ForwardingAttribDeclaration` for more
+ * scope.  See `destiny.attrib.ForwardingAttribDeclaration` for more
  * details.
  */
 extern (C++) final class ForwardingScopeDsymbol : ScopeDsymbol

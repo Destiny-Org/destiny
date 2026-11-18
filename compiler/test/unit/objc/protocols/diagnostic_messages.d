@@ -5,19 +5,19 @@ module objc.protocols.diagnostic_messages; @system:
 
 version (D_ObjectiveC):
 
-import dmd.location;
+import destiny.location;
 
 import support : afterEach, beforeEach, compiles, stripDelimited, Diagnostic;
 
 @beforeEach initializeFrontend()
 {
-    import dmd.frontend : initDMD;
+    import destiny.frontend : initDMD;
     initDMD();
 }
 
 @afterEach deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }
 

@@ -9,7 +9,7 @@ int main()
         return DISABLED;
     }
 
-    auto cmd = shellExpand("$DMD"
+    auto cmd = shellExpand("$DESTINY"
         ~ " -m$MODEL -of$OUTPUT_BASE/main$EXE -conf= -fPIC -g -v"
         ~ " -I$EXTRA_FILES/test6952/ -defaultlib="
         ~ " -Xcc=-nostartfiles -Xcc=-nostdlib -Xcc=-nodefaultlibs $EXTRA_FILES/test6952/main.d");

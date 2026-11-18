@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/attrib.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/attrib.h
  */
 
 #pragma once
@@ -17,7 +17,7 @@ class Expression;
 class Condition;
 class StaticForeach;
 
-namespace dmd
+namespace destiny
 {
     Expressions *getAttributes(UserAttributeDeclaration *a);
 }

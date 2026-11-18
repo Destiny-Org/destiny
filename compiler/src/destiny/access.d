@@ -6,27 +6,27 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/access.d, _access.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/access.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/access.d, _access.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/access.d
  *
  */
 
-module dmd.access;
+module destiny.access;
 
-import dmd.aggregate;
-import dmd.astenums;
-import dmd.dclass;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem : toAlias;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.funcsem : overloadApply;
-import dmd.hdrgen : toErrMsg;
-import dmd.location;
-import dmd.tokens;
+import destiny.aggregate;
+import destiny.astenums;
+import destiny.dclass;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem : toAlias;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.funcsem : overloadApply;
+import destiny.hdrgen : toErrMsg;
+import destiny.location;
+import destiny.tokens;
 
 private enum LOG = false;
 
@@ -51,7 +51,7 @@ bool checkAccess(AggregateDeclaration ad, Loc loc, Scope* sc, Dsymbol smember)
 
     if (!symbolIsVisible(sc, smember))
     {
-        import dmd.globals : global;
+        import destiny.globals : global;
         auto eSink = global.errorSink;
         eSink.error(loc, "%s `%s` %s `%s` is not accessible", ad.kind(), ad.toPrettyChars(), smember.kind(), smember.toErrMsg());
         //printf("smember = %s %s, vis = %d, semanticRun = %d\n",
@@ -374,7 +374,7 @@ public Dsymbol mostVisibleOverload(Dsymbol s, Module mod = null)
                     break;
                 }
             }
-            // handled by dmd.func.overloadApply for unknown reason
+            // handled by destiny.func.overloadApply for unknown reason
             assert(next !is ad); // should not alias itself
             assert(next !is fstart); // should not alias the overload list itself
         }

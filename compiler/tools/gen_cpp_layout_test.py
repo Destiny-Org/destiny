@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generates compiler/src/generated/cpp_layout_asserts.d from compiler/include/dmd/*.h.
+Generates compiler/src/generated/cpp_layout_asserts.d from compiler/include/destiny/*.h.
 
 Test whether the sizes, offsets, vtable layouts, and enum offsets match between:
 compiler/include/*.h and compiler/src/*.d
@@ -26,7 +26,7 @@ _SKIP_HEADERS = frozenset({
     "root/dsystem.h",
 })
 
-# Free functions in namespace dmd that are not wrapped in dmd.cxxfrontend on Linux
+# Free functions in namespace destiny that are not wrapped in dmd.cxxfrontend on Linux
 # (e.g. Windows/MSVC-only functions).
 _SKIP_FREE_FUNCS = frozenset({
     "toCppMangleMSVC",
@@ -443,11 +443,11 @@ def gen(include_dir: Path, out_path: Path) -> None:
             lines.append("}")
         lines.extend(mangled_lines)
 
-    # Collected across all namespace dmd {} blocks (may span multiple headers).
+    # Collected across all namespace destiny {} blocks (may span multiple headers).
     dmd_free_funcs: list[cx.Cursor] = []
 
     def collect_dmd_namespace(ns_cursor: cx.Cursor) -> None:
-        """Collect free functions in namespace dmd {} for later emission."""
+        """Collect free functions in namespace destiny {} for later emission."""
         for child in ns_cursor.get_children():
             if child.kind == CK.FUNCTION_DECL and in_dir(child):
                 dmd_free_funcs.append(child)
@@ -478,21 +478,21 @@ def gen(include_dir: Path, out_path: Path) -> None:
 
     walk(tu.cursor)
 
-    # Emit mangled name checks for free functions in namespace dmd.
+    # Emit mangled name checks for free functions in namespace destiny.
     # All such functions are re-exported via dmd.cxxfrontend as extern(C++, "dmd").
     if dmd_free_funcs:
         name_count = Counter(f.spelling for f in dmd_free_funcs)
         lines.append("")
-        lines.append("// free functions in namespace dmd (via dmd.cxxfrontend)")
+        lines.append("// free functions in namespace destiny (via dmd.cxxfrontend)")
         for func in dmd_free_funcs:
             fname = func.spelling
             mangled = func.mangled_name
             floc = func.location
             func_cpp_loc = f"{os.path.relpath(floc.file.name, include_str)}:{floc.line}"
             if fname in _SKIP_FREE_FUNCS:
-                lines.append(f"// skip dmd::{fname}: not in dmd.cxxfrontend on this platform")
+                lines.append(f"// skip destiny::{fname}: not in dmd.cxxfrontend on this platform")
             elif uses_dstring(func):
-                lines.append(f"// skip dmd::{fname}: uses DString")
+                lines.append(f"// skip destiny::{fname}: uses DString")
             elif name_count[fname] > 1:
                 msg = (f'"\\n\\nNo overload of `dmd.cxxfrontend.{fname}` has C++ mangling:\\n'
                        f'  expected: {mangled} at {func_cpp_loc}\\n" ~ genericMsg')

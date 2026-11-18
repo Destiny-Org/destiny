@@ -4,87 +4,87 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/e2ir.d, _e2ir.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/e2ir.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/e2ir.d, _e2ir.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/e2ir.d
  *
  */
 
-module dmd.glue.e2ir;
+module destiny.glue.e2ir;
 
 import core.stdc.stdio;
 import core.stdc.stddef;
 import core.stdc.string;
 import core.stdc.time;
 
-import dmd.root.array;
-import dmd.root.ctfloat;
-import dmd.root.rmem;
-import dmd.rootobject;
-import dmd.root.stringtable;
+import destiny.root.array;
+import destiny.root.ctfloat;
+import destiny.root.rmem;
+import destiny.rootobject;
+import destiny.root.stringtable;
 
-import dmd.glue;
-import dmd.glue.objc;
-import dmd.glue.s2ir;
-import dmd.glue.tocsym;
-import dmd.glue.toctype;
-import dmd.glue.toir;
-import dmd.glue.toobj;
+import destiny.glue;
+import destiny.glue.objc;
+import destiny.glue.s2ir;
+import destiny.glue.tocsym;
+import destiny.glue.toctype;
+import destiny.glue.toir;
+import destiny.glue.toobj;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.canthrow;
-import dmd.ctfeexpr;
-import dmd.dcast : implicitConvTo;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dmdparams;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem : include, _isZeroInit, toAlias, isPOD;
-import dmd.dtemplate;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.funcsem : isVirtual;
-import dmd.func;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.printast;
-import dmd.sideeffect;
-import dmd.statement;
-import dmd.target;
-import dmd.templatesem;
-import dmd.tokens;
-import dmd.typinf;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.canthrow;
+import destiny.ctfeexpr;
+import destiny.dcast : implicitConvTo;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dmdparams;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem : include, _isZeroInit, toAlias, isPOD;
+import destiny.dtemplate;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.funcsem : isVirtual;
+import destiny.func;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.printast;
+import destiny.sideeffect;
+import destiny.statement;
+import destiny.target;
+import destiny.templatesem;
+import destiny.tokens;
+import destiny.typinf;
+import destiny.typesem;
+import destiny.visitor;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.cgcv;
-import dmd.backend.code;
-import dmd.backend.cv4;
-import dmd.backend.dt;
-import dmd.backend.el;
-import dmd.backend.dout : out_readonly_comdat, out_string_literal;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
-import dmd.backend.util2 : mem_malloc2;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.cgcv;
+import destiny.backend.code;
+import destiny.backend.cv4;
+import destiny.backend.dt;
+import destiny.backend.el;
+import destiny.backend.dout : out_readonly_comdat, out_string_literal;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
+import destiny.backend.util2 : mem_malloc2;
 
-import dmd.backend.x86.code_x86;
+import destiny.backend.x86.code_x86;
 
-package(dmd.glue):
+package(destiny.glue):
 
 alias Elems = Array!(elem *);
 
@@ -95,7 +95,7 @@ alias Elems = Array!(elem *);
  * Returns:
  *      true if actually implicitly passed by reference
  */
-package(dmd.glue)
+package(destiny.glue)
 bool ISX64REF(Declaration var)
 {
     if (var.isReference())
@@ -163,7 +163,7 @@ bool ISX64REF(ref IRState irs, Expression exp)
  * Returns:
  *      generated elem
  */
-package(dmd.glue)
+package(destiny.glue)
 elem* elAssign(elem* e1, elem* e2, Type t, type* tx)
 {
     //printf("e1:\n"); elem_print(e1);
@@ -212,7 +212,7 @@ elem* elAssign(elem* e1, elem* e2, Type t, type* tx)
  * Returns:
  *      Symbol
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toStringSymbol(const(char)* str, size_t len, size_t sz)
 {
     //printf("toStringSymbol() %s\n", str);
@@ -246,14 +246,14 @@ Symbol* toStringSymbol(const(char)* str, size_t len, size_t sz)
      * But the checksum algorithm is unknown. Just invent our own.
      */
 
-    import dmd.common.outbuffer : OutBuffer;
+    import destiny.common.outbuffer : OutBuffer;
     OutBuffer buf;
     buf.writestring("__");
 
     void printHash()
     {
         // Replace long string with hash of that string
-        import dmd.common.blake3;
+        import destiny.common.blake3;
         //only use the first 16 bytes to match the length of md5
         const hash = blake3((cast(ubyte*)str)[0 .. len * sz]);
         foreach (u; hash[0 .. 16])
@@ -271,7 +271,7 @@ Symbol* toStringSymbol(const(char)* str, size_t len, size_t sz)
         printHash();
     else
     {
-        import dmd.mangle;
+        import destiny.mangle;
         scope StringExp se = new StringExp(Loc.initial, str[0 .. len], len, cast(ubyte)sz, 'c');
         mangleToBuffer(se, buf);   // recycle how strings are mangled for templates
 
@@ -304,7 +304,7 @@ Symbol* toStringSymbol(const(char)* str, size_t len, size_t sz)
  *      e = elem to modify in place
  *      loc = to get file/line from
  */
-package(dmd.glue)
+package(destiny.glue)
 void toTraceGC(ref IRState irs, elem* e, Loc loc)
 {
     static immutable RTLSYM[2][5] map =
@@ -348,7 +348,7 @@ void toTraceGC(ref IRState irs, elem* e, Loc loc)
  * Returns:
  *      generated elem tree
  */
-package(dmd.glue)
+package(destiny.glue)
 elem* toElemDtor(Expression e, ref IRState irs, elem* ehidden = null)
 {
     //printf("Expression.toElemDtor() %s\n", e.toChars());
@@ -403,7 +403,7 @@ elem* toElemDtor(Expression e, ref IRState irs, elem* ehidden = null)
  * Returns:
  *      the equivalent of &e
  */
-package(dmd.glue)
+package(destiny.glue)
 elem* addressElem(elem* e, Type t, bool alwaysCopy = false)
 {
     //printf("addressElem()\n");
@@ -475,7 +475,7 @@ elem* addressElem(elem* e, Type t, bool alwaysCopy = false)
 /********************************
  * Reset stringTab[] between object files being emitted, because the symbols are local.
  */
-package(dmd.glue)
+package(destiny.glue)
 void clearStringTab()
 {
     //printf("clearStringTab()\n");
@@ -496,10 +496,10 @@ private __gshared StringTable!(Symbol*) *stringTab;
  * Returns:
  *      true if symbol should be imported from a DLL
  */
-package(dmd.glue)
+package(destiny.glue)
 bool isDllImported(Dsymbol symbl)
 {
-    // Windows is the only platform which dmd supports, that uses the DllImport/DllExport scheme.
+    // Windows is the only platform which destiny supports, that uses the DllImport/DllExport scheme.
     if (!(target.os & Target.OS.Windows))
         return false;
 
@@ -532,7 +532,7 @@ bool isDllImported(Dsymbol symbl)
 
         case SymImport.defaultLibsOnly:
         case SymImport.all:
-            // If to access anything in druntime/phobos you need DllImport, verify against this.
+            // If to access anything in druntime/Fate you need DllImport, verify against this.
             break;
     }
 
@@ -566,7 +566,7 @@ bool isDllImported(Dsymbol symbl)
         }
         else if (driverParams.symImport == SymImport.defaultLibsOnly)
         {
-            // Filter out all modules that are not in druntime/phobos if we are only doing default libs only
+            // Filter out all modules that are not in druntime/Fate if we are only doing default libs only
 
             const id = m.md.packages.length ? m.md.packages[0] : null;
             if (id && id != Id.core && id != Id.std)
@@ -3724,12 +3724,12 @@ elem* toElem(Expression e, ref IRState irs)
                 switch (elem.type.toBasetype().ty)
                 {
                     case Tfloat32:
-                        // Must not call toReal directly, to avoid dmd bug 14203 from breaking dmd
+                        // Must not call toReal directly, to avoid destiny bug 14203 from breaking destiny
                         e.Vfloat8[i] = cast(float) complex.re;
                         break;
 
                     case Tfloat64:
-                        // Must not call toReal directly, to avoid dmd bug 14203 from breaking dmd
+                        // Must not call toReal directly, to avoid destiny bug 14203 from breaking destiny
                         e.Vdouble4[i] = cast(double) complex.re;
                         break;
 
@@ -3984,7 +3984,7 @@ elem* toElem(Expression e, ref IRState irs)
             // If se is in left side operand of element-wise
             // assignment, the element type can be painted to the base class.
             int offset;
-            import dmd.typesem : isBaseOf;
+            import destiny.typesem : isBaseOf;
             assert(t1.nextOf().equivalent(tb.nextOf()) ||
                    tb.nextOf().isBaseOf(t1.nextOf(), &offset) && offset == 0);
         }
@@ -4307,7 +4307,7 @@ elem* toElem(Expression e, ref IRState irs)
  * [3] v = v
  *  => v
  *
- * NOTE: Please keep in sync with dmd.expressionsem.canElideCopy().
+ * NOTE: Please keep in sync with destiny.expressionsem.canElideCopy().
  */
 elem* toElemRVO(Expression e, elem* ehidden, ref IRState irs, Type forceType = null, uint offset = 0)
 {
@@ -4921,7 +4921,7 @@ elem* toElemCast(CastExp ce, elem* e, bool isLvalue, ref IRState irs)
         else if (cdfrom.classKind == cdto.classKind)
         {
             /* Casting from a non-D linkage class/interface to a unrelated class/interface
-             * is always a 'paint' operation (for dmd, other backends might use RTTI
+             * is always a 'paint' operation (for destiny, other backends might use RTTI
              * of other languages)
              */
             return Lret(ce, e);                  // no-op
@@ -5770,7 +5770,7 @@ elem* callfunc(Loc loc,
         else
             elem*[10] elems_array = void;
 
-        import dmd.common.smallbuffer : SmallBuffer;
+        import destiny.common.smallbuffer : SmallBuffer;
         auto pe = SmallBuffer!(elem*)(n, elems_array[]);
         elem*[] elems = pe[];
 

@@ -275,7 +275,7 @@ alias  FLOAT  toFLOAT;
  auto  SQRT(  ARG1 )(ARG1  x) { return  sqrt(x); }
 void  printFLOAT(const(char) *fmt, FLOAT  f) { printExtended(fmt, f); }
 } else version(ExtendedSoft) {
-import dmd.root.longdouble;
+import destiny.root.longdouble;
 alias  longdouble_soft  FLOAT;
 alias  longdouble_soft  toFLOAT;
  auto  FABS(  ARG1 )(ARG1  x) { return   fabsl(x); }
@@ -296,7 +296,7 @@ void printExtended(const(char) *fmt, FLOAT f)
 
 	else version(CRuntime_Microsoft)
 	{
-		import dmd.root.longdouble;
+		import destiny.root.longdouble;
 		char[64] str;
 		if (cast(double)f == f)
 			printf("%lg", cast(double)f);

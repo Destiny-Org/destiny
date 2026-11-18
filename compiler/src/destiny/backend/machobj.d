@@ -9,10 +9,10 @@
  * Copyright:   Copyright (C) 2009-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/machobj.d, backend/machobj.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/machobj.d, backend/machobj.d)
  */
 
-module dmd.backend.machobj;
+module destiny.backend.machobj;
 
 import core.stdc.ctype;
 import core.stdc.stdint;
@@ -20,36 +20,36 @@ import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.barray;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.arm.instr;
-import dmd.backend.x86.code_x86;
-import dmd.backend.mem;
-import dmd.backend.aarray;
-import dmd.backend.el;
-import dmd.backend.global : _align, err_nomem, error, symboldata;
-import dmd.backend.dout : alignOffset;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.arm.instr;
+import destiny.backend.x86.code_x86;
+import destiny.backend.mem;
+import destiny.backend.aarray;
+import destiny.backend.el;
+import destiny.backend.global : _align, err_nomem, error, symboldata;
+import destiny.backend.dout : alignOffset;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.debugprint : class_str, fl_str;
+import destiny.backend.debugprint : class_str, fl_str;
 
-import dmd.common.outbuffer;
+import destiny.common.outbuffer;
 
 nothrow:
 @safe:
 
 private enum log = false;
 
-import dmd.backend.dwarf;
-import dmd.backend.mach;
+import destiny.backend.dwarf;
+import destiny.backend.mach;
 
-alias nlist = dmd.backend.mach.nlist;   // avoid conflict with dmd.backend.dlist.nlist
+alias nlist = destiny.backend.mach.nlist;   // avoid conflict with destiny.backend.dlist.nlist
 
 struct MachObj
 {
@@ -224,7 +224,7 @@ int mach_seg_data_isCode(const ref seg_data sd)
     }
 }
 
-import dmd.backend.code: SegData;
+import destiny.backend.code: SegData;
 
 
 /*******************************
@@ -1141,7 +1141,7 @@ void MachObj_term(const(char)[] objfilename)
                             //assert(rel.r_address < section.size);
 
                             /* Ensure relocation matches instruction */
-                            //import dmd.backend.x86.cgcod : disassemble;
+                            //import destiny.backend.x86.cgcod : disassemble;
                             //printf("value: x%08x\n", value); disassemble(value);
                             switch (rel.r_type)
                             {
@@ -2547,7 +2547,7 @@ seg_data* MachObj_tlsseg_bss()
 
     if (I32)
     {
-        /* Because DMD does not support native tls for Mach-O 32bit,
+        /* Because Destiny does not support native tls for Mach-O 32bit,
          * it's easier to support if we have all the tls in one segment.
          */
         return MachObj_tlsseg();
@@ -3597,7 +3597,7 @@ const struct VersionCommand
     private
     {
         /**
-         * This is the absolute minimum supported version of macOS (64 bit) for DMD,
+         * This is the absolute minimum supported version of macOS (64 bit) for Destiny,
          * as documented at: https://github.com/Destiny-Org/destiny/blob/main/README.md
          * NOTE: Versions earlier than 10.7 do not support thread local storage.
          */

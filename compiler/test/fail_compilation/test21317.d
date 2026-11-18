@@ -1,4 +1,4 @@
-module dmd.compiler.test.fail_compilation.test21317;
+module destiny.compiler.test.fail_compilation.test21317;
 
 /* TEST_OUTPUT:
 ---

@@ -8,22 +8,22 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/ee.d, backend/ee.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/ee.d, backend/ee.d)
  */
-module dmd.backend.ee;
+module destiny.backend.ee;
 
 import core.stdc.stdio;
 import core.stdc.string;
 import core.stdc.time;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.symbol;
-import dmd.backend.type;
-import dmd.backend.oper;
-import dmd.backend.el;
-import dmd.backend.cgcv;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.symbol;
+import destiny.backend.type;
+import destiny.backend.oper;
+import destiny.backend.el;
+import destiny.backend.cgcv;
 
-import dmd.backend.iasm;
+import destiny.backend.iasm;
 
 nothrow:
 @safe:

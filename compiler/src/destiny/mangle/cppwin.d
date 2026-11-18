@@ -4,44 +4,44 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors: Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mangle/cppwin.d, _cppmanglewin.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mangle/cppwin.d, _cppmanglewin.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.mangle.cppwin;
+module destiny.mangle.cppwin;
 
 import core.stdc.stdio;
 
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum : isSpecialEnumIdent;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem : toAlias;
-import dmd.expressionsem : toStringExp, toInteger, toUInteger;
-import dmd.templatesem : computeOneMember;
-import dmd.dtemplate;
-import dmd.errors;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen : toErrMsg;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mangle.cpp : isAggregateDtor, isCppOperator, CppOperator;
-import dmd.mtype;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.target;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum : isSpecialEnumIdent;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem : toAlias;
+import destiny.expressionsem : toStringExp, toInteger, toUInteger;
+import destiny.templatesem : computeOneMember;
+import destiny.dtemplate;
+import destiny.errors;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen : toErrMsg;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mangle.cpp : isAggregateDtor, isCppOperator, CppOperator;
+import destiny.mtype;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.target;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
 
 const(char)* toCppMangleMSVC(Dsymbol s)
 {

@@ -5,42 +5,42 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/clone.d, _clone.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/clone.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/clone.d, _clone.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/clone.d
  *
  */
 
-module dmd.clone;
+module destiny.clone;
 
 import core.stdc.stdio;
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.opover;
-import dmd.semantic2;
-import dmd.semantic3;
-import dmd.statement;
-import dmd.target;
-import dmd.typesem;
-import dmd.tokens;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.opover;
+import destiny.semantic2;
+import destiny.semantic3;
+import destiny.statement;
+import destiny.target;
+import destiny.typesem;
+import destiny.tokens;
 
 /*******************************************
  * Merge function attributes pure, nothrow, @safe, @nogc, and @disable

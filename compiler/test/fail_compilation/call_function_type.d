@@ -6,7 +6,7 @@ fail_compilation/call_function_type.d(19): Error: cannot call `int(int)(3)` at c
 ---
 */
 
-// This is a rare case where `dmd.expressionsem.functionParameters` catches a missing argument error,
+// This is a rare case where `destiny.expressionsem.functionParameters` catches a missing argument error,
 // which is usually caught earlier by `TypeFunction.callMatch`, and had no test coverage yet.
 // This was found while implementing named arguments and reduced from `vibe.internal.meta.traits`.
 

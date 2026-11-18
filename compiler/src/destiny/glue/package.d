@@ -6,80 +6,80 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/glue.d, _glue.d)
- * Documentation: $(LINK https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/package.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/glue.d, _glue.d)
+ * Documentation: $(LINK https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/package.d)
  *
  */
 
-module dmd.glue;
+module destiny.glue;
 
 import core.stdc.stdio;
 import core.stdc.string;
 import core.stdc.stdlib;
 
-import dmd.root.array;
-import dmd.root.file;
-import dmd.root.filename;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.root.string;
+import destiny.root.array;
+import destiny.root.file;
+import destiny.root.filename;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.root.string;
 
 // `ObjcGlue_initialize` and `generateCodeAndWrite` (declared below)
 // are the only public functions of this package
-public import dmd.glue.objc;
+public import destiny.glue.objc;
 
-import dmd.glue.e2ir;
-import dmd.glue.tocsym;
-import dmd.glue.toctype;
-import dmd.glue.toir;
-import dmd.glue.toobj;
+import destiny.glue.e2ir;
+import destiny.glue.tocsym;
+import destiny.glue.toctype;
+import destiny.glue.toir;
+import destiny.glue.toobj;
 
-import dmd.backend.cdef;
-import dmd.backend.cc;
-import dmd.backend.code;
-import dmd.backend.dt;
-import dmd.backend.el;
-import dmd.backend.blockopt;
-import dmd.backend.cg : localgot;
-import dmd.backend.dout : out_readonly, out_reset, outdata, writefunc;
-import dmd.backend.x86.cg87 : cg87_reset;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
-import dmd.glue.s2ir;
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.blockexit;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dmdparams;
-import dmd.dmodule;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem : getLocalClasses, getType, findGetMembers;
-import dmd.expressionsem : toInteger;
-import dmd.dtemplate;
-import dmd.errors : fatal;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.func;
-import dmd.funcsem : onlyOneMain, isVirtual;
-import dmd.globals;
-import dmd.hdrgen : toErrMsg;
-import dmd.identifier;
-import dmd.id;
-import dmd.lib;
-import dmd.location;
-import dmd.mtype;
-import dmd.statement;
-import dmd.target;
-import dmd.typesem;
-import dmd.funcsem : genCfunc;
-import dmd.utils;
+import destiny.backend.cdef;
+import destiny.backend.cc;
+import destiny.backend.code;
+import destiny.backend.dt;
+import destiny.backend.el;
+import destiny.backend.blockopt;
+import destiny.backend.cg : localgot;
+import destiny.backend.dout : out_readonly, out_reset, outdata, writefunc;
+import destiny.backend.x86.cg87 : cg87_reset;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
+import destiny.glue.s2ir;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.blockexit;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dmdparams;
+import destiny.dmodule;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem : getLocalClasses, getType, findGetMembers;
+import destiny.expressionsem : toInteger;
+import destiny.dtemplate;
+import destiny.errors : fatal;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.func;
+import destiny.funcsem : onlyOneMain, isVirtual;
+import destiny.globals;
+import destiny.hdrgen : toErrMsg;
+import destiny.identifier;
+import destiny.id;
+import destiny.lib;
+import destiny.location;
+import destiny.mtype;
+import destiny.statement;
+import destiny.target;
+import destiny.typesem;
+import destiny.funcsem : genCfunc;
+import destiny.utils;
 
 /**
  * Generate code for `modules` and write objects/libraries
@@ -199,10 +199,10 @@ public void generateCodeAndWrite(Module[] modules, const(char)*[] libmodules,
 }
 
 // FIXME: does not work on old bootstrap compilers
-//package(dmd.glue):
+//package(destiny.glue):
 
 
-alias toSymbol = dmd.glue.tocsym.toSymbol;
+alias toSymbol = destiny.glue.tocsym.toSymbol;
 
 //extern
 __gshared Symbol* bzeroSymbol;        /// common location for immutable zeros
@@ -465,7 +465,7 @@ void FuncDeclaration_toObjFile(FuncDeclaration fd, bool multiobj)
     if (ud && !global.params.useUnitTests)
         return;
 
-    import dmd.timetrace;
+    import destiny.timetrace;
     timeTraceBeginEvent(TimeTraceEventType.codegenFunction);
     scope (exit) timeTraceEndEvent(TimeTraceEventType.codegenFunction, fd);
 
@@ -1327,7 +1327,7 @@ private void genObjFile(Module m, bool multiobj, bool doppelganger)
 
     //printf("Module.genobjfile(multiobj = %d) %s\n", multiobj, m.toChars());
 
-    import dmd.timetrace;
+    import destiny.timetrace;
     timeTraceBeginEvent(TimeTraceEventType.codegenModule);
     scope(exit) timeTraceEndEvent(TimeTraceEventType.codegenModule, m);
 

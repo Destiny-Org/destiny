@@ -6,66 +6,66 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/funcsem.d, _funcsem.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/funcsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/funcsem.d, _funcsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/funcsem.d
  *
  */
 
-module dmd.funcsem;
+module destiny.funcsem;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.blockexit;
-import dmd.dcast;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.delegatize;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.escape;
-import dmd.expression;
-import dmd.func;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.importc;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.mustuse;
-import dmd.objc;
-import dmd.opover;
-import dmd.pragmasem;
-import dmd.root.aav;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.root.filename;
-import dmd.root.string;
-import dmd.root.stringtable;
-import dmd.safe;
-import dmd.semantic2;
-import dmd.semantic3;
-import dmd.statement;
-import dmd.statementsem;
-import dmd.target;
-import dmd.targetcompiler;
-import dmd.templatesem;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
-import dmd.visitor.statement_rewrite_walker;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.blockexit;
+import destiny.dcast;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.delegatize;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.escape;
+import destiny.expression;
+import destiny.func;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.importc;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.mustuse;
+import destiny.objc;
+import destiny.opover;
+import destiny.pragmasem;
+import destiny.root.aav;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.root.filename;
+import destiny.root.string;
+import destiny.root.stringtable;
+import destiny.safe;
+import destiny.semantic2;
+import destiny.semantic3;
+import destiny.statement;
+import destiny.statementsem;
+import destiny.target;
+import destiny.targetcompiler;
+import destiny.templatesem;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
+import destiny.visitor.statement_rewrite_walker;
 
 bool addPostInvariant(FuncDeclaration _this)
 {
@@ -443,7 +443,7 @@ void funcDeclarationSemantic(Scope* sc, FuncDeclaration funcdecl)
         printf("type: %p, %s\n", funcdecl.type, funcdecl.type.toChars());
     }
 
-    import dmd.timetrace;
+    import destiny.timetrace;
     timeTraceBeginEvent(TimeTraceEventType.sema1Function);
     scope (exit) timeTraceEndEvent(TimeTraceEventType.sema1Function, funcdecl);
 
@@ -1581,6 +1581,8 @@ private bool getsSafeDefault(FuncDeclaration fd, Scope* sc)
 {
     if (sc.inCfile)
         return false;
+    if (!global.params.safeDefault && !isBundledLibraryModule(sc._module))
+        return false;   // -revert=safedefault: upstream's default
     if (sc.stc & STC.system)
         return false;   // under a `@system:` label: upstream's default
     if (!fd.fbody && fd._linkage != LINK.d && fd._linkage != LINK.default_)
@@ -1590,6 +1592,22 @@ private bool getsSafeDefault(FuncDeclaration fd, Scope* sc)
     if (isLocalTypeMember(fd, sc))
         return false;   // safety is inferred instead
     return true;
+}
+
+/// Destiny: whether `m` belongs to the libraries shipped with the compiler
+/// (druntime and Fate). They are prebuilt with the `@safe` default, so
+/// `-revert=safedefault` must not change their declarations (and mangled names).
+private bool isBundledLibraryModule(Module m)
+{
+    if (!m)
+        return false;
+    Identifier top = m.ident;
+    if (m.md && m.md.packages.length)
+        top = m.md.packages[0];
+    foreach (name; ["object", "core", "rt", "std", "etc"])
+        if (top.toString() == name)
+            return true;
+    return false;
 }
 
 /// Destiny: a non-virtual member function (with a body) of a type declared
@@ -1704,7 +1722,7 @@ bool functionSemantic(FuncDeclaration fd)
         AggregateDeclaration ad = fd.isMemberLocal();
         if (ad && ad.sizeok != Sizeok.done)
         {
-            /* Currently dmd cannot resolve forward references per methods,
+            /* Currently destiny cannot resolve forward references per methods,
              * then setting SIZOKfwd is too conservative and would break existing code.
              * So, just stop method attributes inference until ad.dsymbolSemantic() done.
              */
@@ -1866,7 +1884,7 @@ extern (D) bool checkForwardRef(FuncDeclaration fd, Loc loc)
 int findVtblIndex(FuncDeclaration fd, Dsymbol[] vtbl)
 {
     //printf("findVtblIndex() %s\n", toChars());
-    import dmd.typesem : covariant;
+    import destiny.typesem : covariant;
 
     auto eSink = global.errorSink;
 
@@ -2206,7 +2224,7 @@ FuncDeclaration resolveFuncCall(Loc loc, Scope* sc, Dsymbol s,
         return null;
     }
 
-    import dmd.expressionsem : checkDisabled;
+    import destiny.expressionsem : checkDisabled;
     // remove when deprecation period of class allocators and deallocators is over
     if (fd.isNewDeclaration() && fd.checkDisabled(loc, sc))
         return null;
@@ -2460,7 +2478,7 @@ private void printCandidates(Decl)(Loc loc, Decl declaration, bool showDeprecate
         }
         else if (auto td = s.isTemplateDeclaration())
         {
-            import dmd.staticcond;
+            import destiny.staticcond;
 
             if (!print)
                 return true;
@@ -4096,7 +4114,7 @@ private bool isTypeIsolatedIndirect(FuncDeclaration fd, Type t)
     // The 'this' reference is a parameter, too
     if (AggregateDeclaration ad = fd.isCtorDeclaration() ? null : fd.isThis())
     {
-        Type tthis = dmd.dsymbolsem.getType(ad).addMod(tf.mod);
+        Type tthis = destiny.dsymbolsem.getType(ad).addMod(tf.mod);
         //printf("\ttthis = %s\n", tthis.toChars());
         if (!traverseIndirections(tthis, t))
             return false;
@@ -4248,7 +4266,7 @@ private void checkPrintfScanfSignature(FuncDeclaration funcdecl, TypeFunction f,
     }
     else if (f.parameterList.varargs == VarArg.none)
     {
-        import dmd.safe;
+        import destiny.safe;
         if (!(nparams >= 2 && isPointerToChar(f.parameterList[nparams - 2]) &&
             isVa_list(f.parameterList[nparams - 1])))
             eSink.error(funcdecl.loc, "`pragma(%s)` function `%s` must have"~
@@ -4294,7 +4312,7 @@ extern (D) int overloadApply(Dsymbol fstart, scope int delegate(Dsymbol) dg, Sco
                 return 0;
             visited.push(d);
 
-            import dmd.access : checkSymbolAccess;
+            import destiny.access : checkSymbolAccess;
             if (auto od = d.isOverDeclaration())
             {
                 /* The scope is needed here to check whether a function in

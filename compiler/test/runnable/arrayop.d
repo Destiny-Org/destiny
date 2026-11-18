@@ -1,4 +1,4 @@
-// RUNNABLE_PHOBOS_TEST
+// RUNNABLE_FATE_TEST
 @system: import std.math;
 
 extern(C) int printf(const char*, ...);

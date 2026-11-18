@@ -4,72 +4,72 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/semantic2.d, _semantic2.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/semantic2.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/semantic2.d, _semantic2.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/semantic2.d
  *
  */
 
-module dmd.semantic2;
+module destiny.semantic2;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.aggregate;
-import dmd.aliasthis;
-import dmd.arraytypes;
-import dmd.astcodegen;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.blockexit;
-import dmd.timetrace;
-import dmd.clone;
-import dmd.dcast;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dimport;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.dversion;
-import dmd.errors : fatal;
-import dmd.errorsink;
-import dmd.escape;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.initsem;
-import dmd.hdrgen;
-import dmd.mtype;
-import dmd.nogc;
-import dmd.nspace;
-import dmd.objc;
-import dmd.opover;
-import dmd.parse;
-import dmd.root.filename;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.root.string : toDString;
-import dmd.rootobject;
-import dmd.root.utf;
-import dmd.sideeffect;
-import dmd.statementsem;
-import dmd.staticassert;
-import dmd.tokens;
-import dmd.statement;
-import dmd.target;
-import dmd.templateparamsem;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.aliasthis;
+import destiny.arraytypes;
+import destiny.astcodegen;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.blockexit;
+import destiny.timetrace;
+import destiny.clone;
+import destiny.dcast;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dimport;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.dversion;
+import destiny.errors : fatal;
+import destiny.errorsink;
+import destiny.escape;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.initsem;
+import destiny.hdrgen;
+import destiny.mtype;
+import destiny.nogc;
+import destiny.nspace;
+import destiny.objc;
+import destiny.opover;
+import destiny.parse;
+import destiny.root.filename;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.root.string : toDString;
+import destiny.rootobject;
+import destiny.root.utf;
+import destiny.sideeffect;
+import destiny.statementsem;
+import destiny.staticassert;
+import destiny.tokens;
+import destiny.statement;
+import destiny.target;
+import destiny.templateparamsem;
+import destiny.typesem;
+import destiny.visitor;
 
 enum LOG = false;
 
@@ -111,7 +111,7 @@ private extern(C++) final class Semantic2Visitor : Visitor
         sc.tinst = null;
         sc.minst = null;
 
-        import dmd.staticcond;
+        import destiny.staticcond;
         bool errors;
         bool result = evalStaticCondition(sc, sa.exp, sa.exp, errors);
         sc = sc.pop();
@@ -341,7 +341,7 @@ private extern(C++) final class Semantic2Visitor : Visitor
         if (!ei.exp.isIntegerExp())
             return;
 
-        import dmd.intrange;
+        import destiny.intrange;
         auto value = getIntRange(ei.exp);
 
         const bool isUnsigned = bfd.type.isUnsigned();
@@ -791,7 +791,7 @@ private extern(C++) final class Semantic2Visitor : Visitor
  */
 private void doGNUABITagSemantic(ref Expression e, ref Expression* lastTag)
 {
-    import dmd.mangle : isValidMangling;
+    import destiny.mangle : isValidMangling;
     auto eSink = global.errorSink;
 
     // When `@gnuAbiTag` is used, the type will be the UDA, not the struct literal

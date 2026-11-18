@@ -5,26 +5,26 @@
  * Copyright: Copyright (C) 2015-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors: Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dwarfeh.d, backend/dwarfeh.d)
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/dwarfeh.d, backend/dwarfeh.d)
  */
 
-module dmd.backend.dwarfeh;
+module destiny.backend.dwarfeh;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
 
-import dmd.backend.barray : Barray;
-import dmd.backend.dwarf;
-import dmd.backend.dwarf2;
-import dmd.backend.symbol;
+import destiny.backend.barray : Barray;
+import destiny.backend.dwarf;
+import destiny.backend.dwarf2;
+import destiny.backend.symbol;
 
-import dmd.common.outbuffer;
+import destiny.common.outbuffer;
 
 
 nothrow:

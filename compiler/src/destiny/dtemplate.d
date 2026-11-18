@@ -20,7 +20,7 @@
  * - A `TypeInstance` or `TypeIdentifier` is encountered.
  *   `TypeInstance` have a bang (e.g. `Foo!(arg)`) while `TypeIdentifier` don't.
  * - A `TemplateInstance` is instantiated
- * - Semantic is run on the `TemplateInstance` (see `dmd.dsymbolsem`)
+ * - Semantic is run on the `TemplateInstance` (see `destiny.dsymbolsem`)
  * - The `TemplateInstance` search for its `TemplateDeclaration`,
  *   runs semantic on the template arguments and deduce the best match
  *   among the possible overloads.
@@ -31,37 +31,37 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dtemplate.d, _dtemplate.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dtemplate.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dtemplate.d, _dtemplate.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dtemplate.d
  *
  */
 
-module dmd.dtemplate;
+module destiny.dtemplate;
 
 import core.stdc.stdio;
 import core.stdc.string;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.ast_node;
-import dmd.declaration;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.errors : Classification;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.func;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.identifier;
-import dmd.location;
-import dmd.mangle;
-import dmd.mtype;
-import dmd.root.array;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.tokens;
-import dmd.visitor;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.ast_node;
+import destiny.declaration;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.errors : Classification;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.func;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.identifier;
+import destiny.location;
+import destiny.mangle;
+import destiny.mtype;
+import destiny.root.array;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.tokens;
+import destiny.visitor;
 
 //debug = FindExistingInstance; // print debug stats of findExistingInstance
 private enum LOG = false;
@@ -233,7 +233,7 @@ struct TemplatePrevious
  */
 extern (C++) final class TemplateDeclaration : ScopeDsymbol
 {
-    import dmd.root.array : Array;
+    import destiny.root.array : Array;
 
     TemplateParameters* parameters;     // array of TemplateParameter's
     TemplateParameters* origParameters; // originals for Ddoc

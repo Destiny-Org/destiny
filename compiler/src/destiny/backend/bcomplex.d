@@ -9,12 +9,12 @@
  * Source:      $(DMDSRC backend/_bcomplex.d)
  */
 
-module dmd.backend.bcomplex;
+module destiny.backend.bcomplex;
 
-public import dmd.root.longdouble : targ_real = longdouble;
+public import destiny.root.longdouble : targ_real = longdouble;
 import core.stdc.math : fabs, fabsl, sqrt;
 version(CRuntime_Microsoft)
-    private import dmd.root.longdouble : fabsl, sqrt; // needed if longdouble is longdouble_soft
+    private import destiny.root.longdouble : fabsl, sqrt; // needed if longdouble is longdouble_soft
 
 @nogc:
 @safe:

@@ -222,7 +222,7 @@ void test_visitors()
     assert(tv.stmt == true);
 
     TypePointer *tp = TypePointer::create(Type::tvoid);
-    assert(dmd::hasPointers(tp) == true);
+    assert(destiny::hasPointers(tp) == true);
     tp->accept(&tv);
     assert(tv.type == true);
 
@@ -282,12 +282,12 @@ void test_semantic()
     m->src = src;
     m->parse();
     m->importedFrom = m;
-    dmd::importAll(m, NULL);
-    dmd::dsymbolSemantic(m, NULL);
-    dmd::semantic2(m, NULL);
-    dmd::semantic3(m, NULL);
+    destiny::importAll(m, NULL);
+    destiny::dsymbolSemantic(m, NULL);
+    destiny::semantic2(m, NULL);
+    destiny::semantic3(m, NULL);
 
-    Dsymbol *s = dmd::search(m, Loc(), Identifier::idPool("Error"));
+    Dsymbol *s = destiny::search(m, Loc(), Identifier::idPool("Error"));
     assert(s);
     AggregateDeclaration *ad = s->isAggregateDeclaration();
     assert(ad && ad->ctor && ad->sizeok == Sizeok::done);
@@ -320,9 +320,9 @@ void test_skip_importall()
     m->src = src;
     m->parse();
     m->importedFrom = m;
-    dmd::dsymbolSemantic(m, NULL);
-    dmd::semantic2(m, NULL);
-    dmd::semantic3(m, NULL);
+    destiny::dsymbolSemantic(m, NULL);
+    destiny::semantic2(m, NULL);
+    destiny::semantic3(m, NULL);
 
     assert(!global.endGagging(errors));
 }
@@ -333,12 +333,12 @@ void test_expression()
 {
     Loc loc;
     IntegerExp *ie = IntegerExp::create(loc, 42, Type::tint32);
-    Expression *e = dmd::ctfeInterpret(ie);
+    Expression *e = destiny::ctfeInterpret(ie);
 
     assert(e);
     assert(e->isConst());
 
-    Optional<bool> res = dmd::toBool(e);
+    Optional<bool> res = destiny::toBool(e);
     assert(res.get());
 }
 
@@ -470,7 +470,7 @@ void test_array()
 void test_outbuffer()
 {
     OutBuffer buf;
-    dmd::mangleToBuffer(Type::tint64, buf);
+    destiny::mangleToBuffer(Type::tint64, buf);
     assert(strcmp(buf.peekChars(), "l") == 0);
     buf.reset();
 
@@ -507,12 +507,12 @@ void test_cppmangle()
     m->src = src;
     m->parse();
     m->importedFrom = m;
-    dmd::importAll(m, NULL);
-    dmd::dsymbolSemantic(m, NULL);
-    dmd::semantic2(m, NULL);
-    dmd::semantic3(m, NULL);
+    destiny::importAll(m, NULL);
+    destiny::dsymbolSemantic(m, NULL);
+    destiny::semantic2(m, NULL);
+    destiny::semantic3(m, NULL);
 
-    Dsymbol *s = dmd::search(m, Loc(), Identifier::idPool("Derived"));
+    Dsymbol *s = destiny::search(m, Loc(), Identifier::idPool("Derived"));
     assert(s);
     ClassDeclaration *cd = s->isClassDeclaration();
     assert(cd && cd->sizeok == Sizeok::done);
@@ -522,12 +522,12 @@ void test_cppmangle()
 
     fd = (*cd->members)[0]->isFuncDeclaration();
     assert(fd);
-    mangle = dmd::cppThunkMangleItanium(fd, b->offset);
+    mangle = destiny::cppThunkMangleItanium(fd, b->offset);
     assert(strcmp(mangle, "_ZThn8_N7Derived9MethodCPPEv") == 0);
 
     fd = (*cd->members)[1]->isFuncDeclaration();
     assert(fd);
-    mangle = dmd::cppThunkMangleItanium(fd, b->offset);
+    mangle = destiny::cppThunkMangleItanium(fd, b->offset);
     assert(strcmp(mangle, "_ZThn8_N7Derived7MethodDEv") == 0);
 
     assert(!global.endGagging(errors));
@@ -634,9 +634,9 @@ public:
     }
     void visit(TypeSArray *t) override
     {
-        if (t->dim->isConst() && dmd::isIntegral(t->dim->type))
+        if (t->dim->isConst() && destiny::isIntegral(t->dim->type))
         {
-            (void)dmd::toUInteger(t->dim);
+            (void)destiny::toUInteger(t->dim);
             t->next->accept(this);
             (void)t->ctype;
         }
@@ -645,7 +645,7 @@ public:
     }
     void visit(TypeVector *t) override
     {
-        (void)dmd::toUInteger(t->basetype->isTypeSArray()->dim);
+        (void)destiny::toUInteger(t->basetype->isTypeSArray()->dim);
         t->elementType()->accept(this);
         if (t->ty == TY::Tvoid)
             Type::tuns8->accept(this);
@@ -698,14 +698,14 @@ public:
     {
         if (!sym->userAttribDecl())
             return;
-        Expressions *attrs = dmd::getAttributes(sym->userAttribDecl());
+        Expressions *attrs = destiny::getAttributes(sym->userAttribDecl());
         if (attrs)
         {
-            dmd::expandTuples(attrs);
+            destiny::expandTuples(attrs);
             for (size_t i = 0; i < attrs->length; i++)
             {
                 Expression *attr = (*attrs)[i];
-                Dsymbol *sym = dmd::toDsymbol(attr->type, 0);
+                Dsymbol *sym = destiny::toDsymbol(attr->type, 0);
                 if (!sym)
                 {
                     if (TemplateExp *te = attr->isTemplateExp())
@@ -719,7 +719,7 @@ public:
                 }
                 sym->getModule()->accept(this);
                 if (attr->op == EXP::call)
-                    attr = dmd::ctfeInterpret(attr);
+                    attr = destiny::ctfeInterpret(attr);
                 if (attr->op != EXP::structLiteral)
                     continue;
             }
@@ -742,7 +742,7 @@ public:
         else
         {
             (void)t->ctype;
-            dmd::size(t, t->sym->loc);
+            destiny::size(t, t->sym->loc);
             if (t->sym->members)
             {
                 for (size_t i = 0; i < t->sym->members->length; i++)
@@ -751,7 +751,7 @@ public:
                     if (member == NULL)
                         continue;
                     (void)member->ident->toChars();
-                    (void)dmd::toInteger(member->value());
+                    (void)destiny::toInteger(member->value());
                 }
             }
         }
@@ -768,7 +768,7 @@ public:
             (void)t->sym->alignment.isDefault();
             (void)t->sym->alignsize;
             (void)t->sym->alignment.get();
-            (void)dmd::isPOD(t->sym);
+            (void)destiny::isPOD(t->sym);
             for (size_t i = 0; i < t->sym->members->length; i++)
             {
                 Dsymbol *sym = (*t->sym->members)[i];
@@ -792,7 +792,7 @@ public:
                 }
                 if (AttribDeclaration *attrib = sym->isAttribDeclaration())
                 {
-                    dmd::include(attrib, NULL);
+                    destiny::include(attrib, NULL);
                     continue;
                 }
                 if (sym->isTemplateMixin() || sym->isNspace())
@@ -854,7 +854,7 @@ public:
                 }
                 if (AttribDeclaration *attrib = sym->isAttribDeclaration())
                 {
-                    dmd::include(attrib, NULL);
+                    destiny::include(attrib, NULL);
                     continue;
                 }
                 if (sym->isTemplateMixin() || sym->isNspace())
@@ -958,7 +958,7 @@ public:
         s->getRelatedLabeled()->accept(this);
         s->condition->accept(this);
         Type *condtype = s->condition->type->toBasetype();
-        if (!dmd::isScalar(condtype))
+        if (!destiny::isScalar(condtype))
             assert(0);
         if (s->cases)
         {
@@ -976,7 +976,7 @@ public:
     void visit(CaseStatement *s) override
     {
         s->getRelatedLabeled()->accept(this);
-        if (dmd::isScalar(s->exp->type))
+        if (destiny::isScalar(s->exp->type))
             s->exp->accept(this);
         else
             (void)s->index;
@@ -1134,7 +1134,7 @@ public:
             for (size_t i = 0; i < s->args->length; i++)
             {
                 (void)(*s->names)[i]->toChars();
-                dmd::toStringExp((*s->constraints)[i])->accept(this);
+                destiny::toStringExp((*s->constraints)[i])->accept(this);
                 (*s->args)[i]->accept(this);
                 (void)s->outputargs;
             }
@@ -1142,7 +1142,7 @@ public:
         if (s->clobbers)
         {
             for (size_t i = 0; i < s->clobbers->length; i++)
-                dmd::toStringExp((*s->clobbers)[i])->accept(this);
+                destiny::toStringExp((*s->clobbers)[i])->accept(this);
         }
         if (s->labels)
         {
@@ -1179,14 +1179,14 @@ public:
                 s->accept(this);
             }
             ClassDeclarations aclasses;
-            dmd::getLocalClasses(d, aclasses);
+            destiny::getLocalClasses(d, aclasses);
             for (size_t i = 0; i < d->aimports.length; i++)
             {
                 Module *mi = d->aimports[i];
                 if (mi->needmoduleinfo)
                     mi->accept(this);
             }
-            (void)dmd::findGetMembers(d);
+            (void)destiny::findGetMembers(d);
             (void)d->needmoduleinfo;
         }
         d->semanticRun(PASS::obj);
@@ -1224,7 +1224,7 @@ public:
     }
     void visit(AttribDeclaration *d) override
     {
-        Dsymbols *ds = dmd::include(d, NULL);
+        Dsymbols *ds = destiny::include(d, NULL);
 
         if (!ds)
             return;
@@ -1242,7 +1242,7 @@ public:
     }
     void visit(Nspace *d) override
     {
-        if (dmd::isError(d) || !d->members)
+        if (destiny::isError(d) || !d->members)
             return;
         for (size_t i = 0; i < d->members->length; i++)
             (*d->members)[i]->accept(this);
@@ -1264,18 +1264,18 @@ public:
     }
     void visit(TemplateInstance *d) override
     {
-        if (dmd::isError(d) || !d->members)
+        if (destiny::isError(d) || !d->members)
             return;
-        if (!dmd::needsCodegen(d))
+        if (!destiny::needsCodegen(d))
             return;
-        if (dmd::isDiscardable(d))
+        if (destiny::isDiscardable(d))
             return;
         for (size_t i = 0; i < d->members->length; i++)
             (*d->members)[i]->accept(this);
     }
     void visit(TemplateMixin *d) override
     {
-        if (dmd::isError(d) || !d->members)
+        if (destiny::isError(d) || !d->members)
             return;
         for (size_t i = 0; i < d->members->length; i++)
             (*d->members)[i]->accept(this);
@@ -1291,7 +1291,7 @@ public:
             return;
         (void)d->sinit;
         StructLiteralExp *sle = StructLiteralExp::create(d->loc, d, NULL);
-        if (!dmd::fill(d, d->loc, *sle->elements, true))
+        if (!destiny::fill(d, d->loc, *sle->elements, true))
             assert(0);
         sle->type = d->type;
         sle->accept(this);
@@ -1318,11 +1318,11 @@ public:
         for (size_t i = d->vtblOffset(); i < d->vtbl.length; i++)
         {
             FuncDeclaration *fd = d->vtbl[i]->isFuncDeclaration();
-            if (!fd || (!fd->fbody && dmd::isAbstract(d)))
+            if (!fd || (!fd->fbody && destiny::isAbstract(d)))
                 continue;
-            if (!dmd::functionSemantic(fd))
+            if (!destiny::functionSemantic(fd))
                 return;
-            if (!dmd::isFuncHidden(d, fd) || fd->isFuture())
+            if (!destiny::isFuncHidden(d, fd) || fd->isFuture())
                 continue;
             for (size_t j = 1; j < d->vtbl.length; j++)
             {
@@ -1333,19 +1333,19 @@ public:
                     continue;
                 if (fd2->isFuture())
                     continue;
-                if (dmd::leastAsSpecialized(fd, fd2, NULL) != MATCH::nomatch ||
-                    dmd::leastAsSpecialized(fd2, fd, NULL) != MATCH::nomatch)
+                if (destiny::leastAsSpecialized(fd, fd2, NULL) != MATCH::nomatch ||
+                    destiny::leastAsSpecialized(fd2, fd, NULL) != MATCH::nomatch)
                 {
                     return;
                 }
             }
         }
         (void)d->csym;
-        (void)dmd::vtblSymbol(d)->csym;
+        (void)destiny::vtblSymbol(d)->csym;
         (void)d->sinit;
         NewExp *ne = NewExp::create(d->loc, NULL, NULL, d->type, NULL);
         ne->type = d->type;
-        Expression *e = dmd::ctfeInterpret(ne);
+        Expression *e = destiny::ctfeInterpret(ne);
         assert(e->op == EXP::classReference);
         ClassReferenceExp *exp = e->isClassReferenceExp();
         ClassDeclaration *cd = exp->originalClass();
@@ -1371,7 +1371,7 @@ public:
                         for (size_t k = 0; k < cd3->vtblInterfaces->length; k++)
                         {
                             BaseClass *bs = (*cd3->vtblInterfaces)[k];
-                            if (dmd::fillVtbl(bs, cd2, NULL, 0))
+                            if (destiny::fillVtbl(bs, cd2, NULL, 0))
                             {
                                 if (bc == bs)
                                     break;
@@ -1396,7 +1396,7 @@ public:
         for (size_t i = d->vtblOffset(); i < d->vtbl.length; i++)
         {
             FuncDeclaration *fd = d->vtbl[i]->isFuncDeclaration();
-            if (fd && (fd->fbody || !dmd::isAbstract(d)))
+            if (fd && (fd->fbody || !destiny::isAbstract(d)))
                 visitDeclaration(fd);
         }
         d->type->accept(this);
@@ -1425,7 +1425,7 @@ public:
         if (d->isAnonymous())
             return;
         TypeEnum *tc = d->type->isTypeEnum();
-        if (tc->sym->members && !dmd::isZeroInit(d->type))
+        if (tc->sym->members && !destiny::isZeroInit(d->type))
         {
             (void)d->sinit;
             tc->sym->defaultval->accept(this);
@@ -1456,7 +1456,7 @@ public:
         }
         if (FuncDeclaration *fd = decl->isFuncDeclaration())
         {
-            if (!dmd::functionSemantic(fd))
+            if (!destiny::functionSemantic(fd))
                 return;
             if (fd->needThis() && !fd->isMember2())
                 return;
@@ -1493,7 +1493,7 @@ public:
             {
                 if (vd->_init && !vd->_init->isVoidInitializer())
                 {
-                    Expression *ie = dmd::initializerToExpression(vd->_init, nullptr, nullptr);
+                    Expression *ie = destiny::initializerToExpression(vd->_init, nullptr, nullptr);
                     ie->accept(this);
                 }
             }
@@ -1533,37 +1533,37 @@ public:
             if (!d->isDataseg() && !d->isMember() &&
                 d->_init && !d->_init->isVoidInitializer())
             {
-                Expression *e = dmd::defaultInitLiteral(d->type, d->loc);
+                Expression *e = destiny::defaultInitLiteral(d->type, d->loc);
                 e->accept(this);
             }
             return;
         }
         if (d->aliasTuple)
         {
-            dmd::toAlias(d)->accept(this);
-            (void) dmd::toAlias2(d);
+            destiny::toAlias(d)->accept(this);
+            (void) destiny::toAlias2(d);
             return;
         }
         if (!d->canTakeAddressOf())
         {
-            if (!dmd::isScalar(d->type))
+            if (!destiny::isScalar(d->type))
                 visitDeclaration(d);
         }
         else if (d->isDataseg() && !(d->storage_class & STCextern))
         {
             visitDeclaration(d);
-            dmd::size(d->type, d->loc);
+            destiny::size(d->type, d->loc);
             if (d->_init)
             {
                 if (!d->_init->isVoidInitializer())
                 {
-                    Expression *e = dmd::initializerToExpression(d->_init, nullptr, d->type);
+                    Expression *e = destiny::initializerToExpression(d->_init, nullptr, d->type);
                     e->accept(this);
                 }
             }
             else
             {
-                Expression *e = dmd::defaultInitLiteral(d->type, d->loc);
+                Expression *e = destiny::defaultInitLiteral(d->type, d->loc);
                 e->accept(this);
             }
         }
@@ -1573,7 +1573,7 @@ public:
             if (d->_init && !d->_init->isVoidInitializer())
             {
                 ExpInitializer *vinit = d->_init->isExpInitializer();
-                dmd::initializerToExpression(vinit, nullptr, nullptr)->accept(this);
+                destiny::initializerToExpression(vinit, nullptr, nullptr)->accept(this);
                 if (d->needsScopeDtor())
                     d->edtor->accept(this);
             }
@@ -1615,8 +1615,8 @@ public:
         }
         if (d->semanticRun() < PASS::semantic3)
         {
-            dmd::functionSemantic3(d);
-            dmd::runDeferredSemantic3();
+            destiny::functionSemantic3(d);
+            destiny::runDeferredSemantic3();
         }
         if (global.errors)
             return;
@@ -1671,7 +1671,7 @@ void test_backend(FuncDeclaration *f, Type *t)
         t->accept(&v);
     else
     {
-        Type *tb = dmd::castMod(t, 0);
+        Type *tb = destiny::castMod(t, 0);
         tb->accept(&v);
         (void)t->mod;
     }
@@ -1717,165 +1717,165 @@ int main(int argc, char **argv)
 
 void aggregate_h(StructDeclaration *sd, ClassDeclaration *cd, FuncDeclaration *fd)
 {
-    dmd::search_toString(sd);
-    dmd::semanticTypeInfoMembers(sd);
-    dmd::isFuncHidden(cd, fd);
+    destiny::search_toString(sd);
+    destiny::semanticTypeInfoMembers(sd);
+    destiny::isFuncHidden(cd, fd);
 }
 
 void argtypes_h(Type *t)
 {
     // LLVM-only
-    //dmd::toArgTypes_x86(t);
-    //dmd::toArgTypes_sysv_x64(t);
-    //dmd::toArgTypes_aarch64(t);
-    //dmd::isHFVA(t);
+    //destiny::toArgTypes_x86(t);
+    //destiny::toArgTypes_sysv_x64(t);
+    //destiny::toArgTypes_aarch64(t);
+    //destiny::isHFVA(t);
 }
 
 void declaration_h(FuncDeclaration *fd, Loc loc, Expressions* args, Parameters* params,
 		   ClassDeclaration *cd)
 {
-    dmd::functionSemantic(fd);
-    dmd::functionSemantic3(fd);
+    destiny::functionSemantic(fd);
+    destiny::functionSemantic3(fd);
     ::eval_builtin(loc, fd, args);
     ::isBuiltin(fd);
-    dmd::genCfunc(params, fd->type, "test");
-    dmd::genCfunc(params, fd->type, Identifier::idPool("test"));
-    dmd::isAbstract(cd);
+    destiny::genCfunc(params, fd->type, "test");
+    destiny::genCfunc(params, fd->type, Identifier::idPool("test"));
+    destiny::isAbstract(cd);
 }
 
 void doc_h(Module *m, const char *ptr, d_size_t length, const char *date,
            ErrorSink *sink, OutBuffer &buf)
 {
-    dmd::gendocfile(m, ptr, length, date, sink, buf);
+    destiny::gendocfile(m, ptr, length, date, sink, buf);
 }
 
 void dsymbol_h(Dsymbol *d, Scope *sc, ScopeDsymbol *sds, Loc loc, Identifier *ident)
 {
-    dmd::dsymbolSemantic(d, sc);
-    dmd::semantic2(d, sc);
-    dmd::semantic3(d, sc);
-    dmd::addMember(d, sc, sds);
-    dmd::search(d, loc, ident);
-    dmd::setScope(d, sc);
-    dmd::importAll(d, sc);
-    dmd::include(d, sc);
+    destiny::dsymbolSemantic(d, sc);
+    destiny::semantic2(d, sc);
+    destiny::semantic3(d, sc);
+    destiny::addMember(d, sc, sds);
+    destiny::search(d, loc, ident);
+    destiny::setScope(d, sc);
+    destiny::importAll(d, sc);
+    destiny::include(d, sc);
 }
 
 void expression_h(Expression *e, Scope *sc, Type *t, Loc loc, Expressions *es)
 {
-    dmd::expressionSemantic(e, sc);
-    dmd::defaultInit(t, loc);
-    dmd::ctfeInterpret(e);
-    dmd::expandTuples(es);
-    dmd::optimize(e, 0);
-    dmd::isLvalue(e);
-    dmd::canElideCopy(e, t);
+    destiny::expressionSemantic(e, sc);
+    destiny::defaultInit(t, loc);
+    destiny::ctfeInterpret(e);
+    destiny::expandTuples(es);
+    destiny::optimize(e, 0);
+    destiny::isLvalue(e);
+    destiny::canElideCopy(e, t);
 }
 
 void hdrgen_h(Module *m, OutBuffer &buf, Modules &ms, ParameterList pl,
               Expression *e, Initializer *i, Statement *s, Type *t, ErrorSink *sink)
 {
-    dmd::genhdrfile(m, true, buf);
-    dmd::genCppHdrFiles(ms, sink, CppStdRevisionCpp11);
-    dmd::moduleToBuffer(buf, true, m);
-    dmd::parametersTypeToChars(pl);
-    dmd::toChars(e);
-    dmd::toChars(i);
-    dmd::toChars(s);
-    dmd::toChars(t);
+    destiny::genhdrfile(m, true, buf);
+    destiny::genCppHdrFiles(ms, sink, CppStdRevisionCpp11);
+    destiny::moduleToBuffer(buf, true, m);
+    destiny::parametersTypeToChars(pl);
+    destiny::toChars(e);
+    destiny::toChars(i);
+    destiny::toChars(s);
+    destiny::toChars(t);
 }
 
 void init_h(Initializer *i, Type *t, Scope *sc, NeedInterpret ni)
 {
-    dmd::initializerToExpression(i, sc, t);
-    dmd::initializerSemantic(i, sc, t, ni);
+    destiny::initializerToExpression(i, sc, t);
+    destiny::initializerSemantic(i, sc, t, ni);
 }
 
 void json_h(Modules &ms, OutBuffer &buf, const char *name)
 {
-    dmd::json_generate(ms, buf);
-    dmd::tryParseJsonField(name);
+    destiny::json_generate(ms, buf);
+    destiny::tryParseJsonField(name);
 }
 
 void mangle_h(Dsymbol *s, FuncDeclaration *fd, Type *t, OutBuffer &buf,
               Expression *e, TemplateInstance *ti)
 {
-    dmd::toCppMangleItanium(s);
-    dmd::cppTypeInfoMangleItanium(s);
-    dmd::cppThunkMangleItanium(fd, 42);
-    dmd::mangleExact(fd);
-    dmd::mangleToBuffer(t, buf);
-    dmd::mangleToBuffer(e, buf);
-    dmd::mangleToBuffer(s, buf);
-    dmd::mangleToBuffer(ti, buf);
+    destiny::toCppMangleItanium(s);
+    destiny::cppTypeInfoMangleItanium(s);
+    destiny::cppThunkMangleItanium(fd, 42);
+    destiny::mangleExact(fd);
+    destiny::mangleToBuffer(t, buf);
+    destiny::mangleToBuffer(e, buf);
+    destiny::mangleToBuffer(s, buf);
+    destiny::mangleToBuffer(ti, buf);
 }
 
 void module_h(Module *m, Array<ClassDeclaration* >& acs, ScopeDsymbol *sds)
 {
-    dmd::getLocalClasses(m, acs);
-    dmd::findGetMembers(sds);
+    destiny::getLocalClasses(m, acs);
+    destiny::findGetMembers(sds);
 }
 
 void mtype_h(Type *t1, Type *t2, Loc loc, Scope *sc, int *p)
 {
-    dmd::typeSemantic(t1, loc, sc);
-    dmd::merge(t1);
-    dmd::isAggregate(t1);
-    dmd::hasPointers(t1);
-    dmd::toDsymbol(t1, sc);
-    dmd::equivalent(t1, t2);
-    dmd::covariant(t1, t2);
-    dmd::isBaseOf(t1, t2, p);
-    dmd::trySemantic(t1, loc, sc);
-    dmd::merge2(t1);
-    dmd::sarrayOf(t1, 0);
-    dmd::arrayOf(t1);
-    dmd::constOf(t1);
-    dmd::immutableOf(t1);
-    dmd::mutableOf(t1);
-    dmd::sharedOf(t1);
-    dmd::sharedConstOf(t1);
-    dmd::unSharedOf(t1);
-    dmd::wildOf(t1);
-    dmd::wildConstOf(t1);
-    dmd::sharedWildOf(t1);
-    dmd::sharedWildConstOf(t1);
-    dmd::castMod(t1, 0);
-    dmd::addMod(t1, 0);
-    dmd::pointerTo(t1);
-    dmd::referenceTo(t1);
+    destiny::typeSemantic(t1, loc, sc);
+    destiny::merge(t1);
+    destiny::isAggregate(t1);
+    destiny::hasPointers(t1);
+    destiny::toDsymbol(t1, sc);
+    destiny::equivalent(t1, t2);
+    destiny::covariant(t1, t2);
+    destiny::isBaseOf(t1, t2, p);
+    destiny::trySemantic(t1, loc, sc);
+    destiny::merge2(t1);
+    destiny::sarrayOf(t1, 0);
+    destiny::arrayOf(t1);
+    destiny::constOf(t1);
+    destiny::immutableOf(t1);
+    destiny::mutableOf(t1);
+    destiny::sharedOf(t1);
+    destiny::sharedConstOf(t1);
+    destiny::unSharedOf(t1);
+    destiny::wildOf(t1);
+    destiny::wildConstOf(t1);
+    destiny::sharedWildOf(t1);
+    destiny::sharedWildConstOf(t1);
+    destiny::castMod(t1, 0);
+    destiny::addMod(t1, 0);
+    destiny::pointerTo(t1);
+    destiny::referenceTo(t1);
 }
 
 void statement_h(Statement *s, AsmStatement *as, GccAsmStatement *gas,
                  CAsmDeclaration *ad, Scope *sc)
 {
-    dmd::statementSemantic(s, sc);
-    dmd::asmSemantic(as, sc);
-    dmd::asmSemantic(ad, sc);
-    dmd::gccAsmSemantic(gas, sc);
-    dmd::gccAsmSemantic(ad, sc);
+    destiny::statementSemantic(s, sc);
+    destiny::asmSemantic(as, sc);
+    destiny::asmSemantic(ad, sc);
+    destiny::gccAsmSemantic(gas, sc);
+    destiny::gccAsmSemantic(ad, sc);
 }
 
 void template_h(TemplateParameter *tp, Scope *sc, TemplateParameters *tps,
                 RootObject *o, ErrorSink *sink)
 {
-    dmd::tpsemantic(tp, sc, tps);
-    dmd::isExpression(o);
-    dmd::isDsymbol(o);
-    dmd::isType(o);
-    dmd::isTuple(o);
-    dmd::isParameter(o);
-    dmd::isTemplateParameter(o);
-    dmd::isError(o);
-    dmd::printTemplateStats(true, sink);
-    dmd::printInstantiationTrace (sc->tinst);
+    destiny::tpsemantic(tp, sc, tps);
+    destiny::isExpression(o);
+    destiny::isDsymbol(o);
+    destiny::isType(o);
+    destiny::isTuple(o);
+    destiny::isParameter(o);
+    destiny::isTemplateParameter(o);
+    destiny::isError(o);
+    destiny::printTemplateStats(true, sink);
+    destiny::printInstantiationTrace (sc->tinst);
 }
 
 void typinf_h(Expression *e, Loc loc, Type *t, Scope *sc)
 {
-    dmd::genTypeInfo(e, loc, t, sc);
+    destiny::genTypeInfo(e, loc, t, sc);
     ::getTypeInfoType(loc, t, sc);
-    dmd::builtinTypeInfo(t);
-    dmd::makeNakedAssociativeArray(t->isTypeAArray());
-    dmd::getTypeInfoAssocArrayDeclaration(t->isTypeAArray(), sc);
+    destiny::builtinTypeInfo(t);
+    destiny::makeNakedAssociativeArray(t->isTypeAArray());
+    destiny::getTypeInfoAssocArrayDeclaration(t->isTypeAArray(), sc);
 }

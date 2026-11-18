@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/argtypes.h
+ * https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/argtypes.h
  */
 
 #pragma once
@@ -13,7 +13,7 @@
 class Type;
 class TypeTuple;
 
-namespace dmd
+namespace destiny
 {
     // in argtypes_x86.d
     TypeTuple *toArgTypes_x86(Type *t);

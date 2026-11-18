@@ -11,34 +11,34 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/func.d, _func.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/func.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/func.d, _func.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/func.d
  *
  */
 
-module dmd.func;
+module destiny.func;
 
 import core.stdc.stdio;
 import core.stdc.string;
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dsymbol;
-import dmd.dtemplate;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.objc;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.statement;
-import dmd.targetcompiler;
-import dmd.tokens;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dsymbol;
+import destiny.dtemplate;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.objc;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.statement;
+import destiny.targetcompiler;
+import destiny.tokens;
+import destiny.visitor;
 
 /// Inline Status
 enum ILS : ubyte
@@ -407,7 +407,7 @@ extern (C++) class FuncDeclaration : Declaration
     ParametersDFAInfo* parametersDFAInfo;
 
     /// See the `FUNCFLAG` struct
-    import dmd.common.bitfields;
+    import destiny.common.bitfields;
     mixin(generateBitFields!(FUNCFLAG, uint));
 
     bool safeDefaultHinted;             // Destiny: hintSafeByDefault already printed for this function

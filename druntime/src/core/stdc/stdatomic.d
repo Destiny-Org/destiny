@@ -165,7 +165,7 @@ void atomic_flag_clear_explicit_impl()(atomic_flag* obj, memory_order order)
 {
     assert(obj !is null);
 
-    // use series of ternary expressions instead of switch to help the dmd inliner
+    // use series of ternary expressions instead of switch to help the destiny inliner
     order == memory_order.memory_order_relaxed ?
         atomicStore!(memory_order.memory_order_relaxed)(&obj.b, false) :
 
@@ -206,7 +206,7 @@ bool atomic_flag_test_and_set_explicit_impl()(atomic_flag* obj, memory_order ord
 {
     assert(obj !is null);
 
-    // use series of ternary expressions instead of switch to help the dmd inliner
+    // use series of ternary expressions instead of switch to help the destiny inliner
     return
         order == memory_order.memory_order_relaxed ?
             atomicExchange!(memory_order.memory_order_relaxed)(&obj.b, true) :
@@ -276,7 +276,7 @@ A kill_dependency(A)(A y) @trusted
 pragma(inline, true)
 void atomic_signal_fence_impl()(memory_order order)
 {
-    // use series of ternary expressions instead of switch to help the dmd inliner
+    // use series of ternary expressions instead of switch to help the destiny inliner
     order == memory_order.memory_order_relaxed ?
         // This is a no-op operation for relaxed memory orders.
         cast(void)0 :
@@ -306,7 +306,7 @@ unittest
 pragma(inline, true)
 void atomic_thread_fence_impl()(memory_order order)
 {
-    // use series of ternary expressions instead of switch to help the dmd inliner
+    // use series of ternary expressions instead of switch to help the destiny inliner
     order == memory_order.memory_order_relaxed ?
         // This is a no-op operation for relaxed memory orders.
         cast(void)0 :
@@ -436,7 +436,7 @@ void atomic_store_explicit_impl(A, C)(shared(A)* obj, C desired, memory_order or
 {
     assert(obj !is null);
 
-    // use series of ternary expressions instead of switch to help the dmd inliner
+    // use series of ternary expressions instead of switch to help the destiny inliner
     order == memory_order.memory_order_relaxed ?
         atomicStore!(memory_order.memory_order_relaxed)(cast(A*)obj, cast(A)desired) :
 
@@ -498,7 +498,7 @@ A atomic_load_explicit_impl(A)(const shared(A)* obj, memory_order order) @truste
 {
     assert(obj !is null);
 
-    // use series of ternary expressions instead of switch to help the dmd inliner
+    // use series of ternary expressions instead of switch to help the destiny inliner
     return
         order == memory_order.memory_order_relaxed ?
             atomicLoad!(memory_order.memory_order_relaxed)(cast(A*)obj) :
@@ -552,7 +552,7 @@ A atomic_exchange_explicit_impl(A, C)(shared(A)* obj, C desired, memory_order or
 {
     assert(obj !is null);
 
-    // use series of ternary expressions instead of switch to help the dmd inliner
+    // use series of ternary expressions instead of switch to help the destiny inliner
     return
         order == memory_order.memory_order_relaxed ?
             atomicExchange!(memory_order.memory_order_relaxed)(cast(A*)obj, cast(A)desired) :
@@ -640,7 +640,7 @@ bool atomic_compare_exchange_strong_explicit_impl(A, B, C)(shared(A)* obj, B* ex
     assert(obj !is null);
     // NOTE: To not have to deal with all invalid cases, the failure model is ignored for now.
 
-    // use series of ternary expressions instead of switch to help the dmd inliner
+    // use series of ternary expressions instead of switch to help the destiny inliner
     return
         succ == memory_order.memory_order_relaxed ?
             atomicCompareExchangeStrong!(memory_order.memory_order_relaxed, memory_order.memory_order_relaxed)(cast(B*)obj, expected, cast(B)desired) :
@@ -688,7 +688,7 @@ bool atomic_compare_exchange_weak_explicit_impl(A, B, C)(shared(A)* obj, B* expe
     assert(obj !is null);
     // NOTE: To not have to deal with all invalid cases, the failure model is ignored for now.
 
-    // use series of ternary expressions instead of switch to help the dmd inliner
+    // use series of ternary expressions instead of switch to help the destiny inliner
     return
         succ == memory_order.memory_order_relaxed ?
             atomicCompareExchangeWeak!(memory_order.memory_order_relaxed, memory_order.memory_order_relaxed)(cast(B*)obj, expected, cast(B)desired) :
@@ -773,7 +773,7 @@ A atomic_fetch_add_explicit_impl(A, M)(shared(A)* obj, M arg, memory_order order
 {
     assert(obj !is null);
 
-    // use series of ternary expressions instead of switch to help the dmd inliner
+    // use series of ternary expressions instead of switch to help the destiny inliner
     return
         order == memory_order.memory_order_relaxed ?
             atomic_fetch_op!(memory_order.memory_order_relaxed, "+=")(cast(A*)obj, arg) :

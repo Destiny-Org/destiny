@@ -4,87 +4,87 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/toobj.d, _toobj.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/toobj.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/toobj.d, _toobj.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/toobj.d
  *
  */
 
-module dmd.glue.toobj;
+module destiny.glue.toobj;
 
 import core.stdc.stdio;
 import core.stdc.stddef;
 import core.stdc.string;
 import core.stdc.time;
 
-import dmd.root.array;
-import dmd.common.outbuffer;
-import dmd.common.smallbuffer : SmallBuffer;
-import dmd.root.rmem;
-import dmd.rootobject;
+import destiny.root.array;
+import destiny.common.outbuffer;
+import destiny.common.smallbuffer : SmallBuffer;
+import destiny.root.rmem;
+import destiny.rootobject;
 
-import dmd.glue;
-import dmd.glue.objc;
-import dmd.glue.tocsym;
-import dmd.glue.toctype;
-import dmd.glue.tocvdebug;
-import dmd.glue.todt;
+import destiny.glue;
+import destiny.glue.objc;
+import destiny.glue.tocsym;
+import destiny.glue.toctype;
+import destiny.glue.tocvdebug;
+import destiny.glue.todt;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.dcast;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dmdparams;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem : hasPointers, hasStaticCtorOrDtor, include, isFuncHidden,
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.dcast;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dmdparams;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem : hasPointers, hasStaticCtorOrDtor, include, isFuncHidden,
                         isAbstract, toAlias, fillVtbl, size;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem : getDsymbol, toInteger;
-import dmd.typesem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.nspace;
-import dmd.statement;
-import dmd.staticassert;
-import dmd.target;
-import dmd.templatesem;
-import dmd.tokens;
-import dmd.traits;
-import dmd.typinf;
-import dmd.typesem : size;
-import dmd.visitor;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem : getDsymbol, toInteger;
+import destiny.typesem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.nspace;
+import destiny.statement;
+import destiny.staticassert;
+import destiny.target;
+import destiny.templatesem;
+import destiny.tokens;
+import destiny.traits;
+import destiny.typinf;
+import destiny.typesem : size;
+import destiny.visitor;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.cgcv;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.cv4;
-import dmd.backend.dt;
-import dmd.backend.el;
-import dmd.backend.dout : out_readonly, outdata;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.cgcv;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.cv4;
+import destiny.backend.dt;
+import destiny.backend.el;
+import destiny.backend.dout : out_readonly, outdata;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-package(dmd.glue):
+package(destiny.glue):
 
 private:
 
@@ -98,7 +98,7 @@ private:
  *      s      = symbol that contains the data
  *      offset = offset of the data inside the Symbol's memory
  */
-package(dmd.glue)
+package(destiny.glue)
 void write_pointers(Type type, Symbol* s, uint offset)
 {
     uint ty = type.toBasetype().ty;
@@ -116,10 +116,10 @@ void write_pointers(Type type, Symbol* s, uint offset)
 *      s      = symbol that contains the data
 *      offset = offset of the data inside the Symbol's memory
 */
-package(dmd.glue)
+package(destiny.glue)
 void write_instance_pointers(Type type, Symbol* s, uint offset)
 {
-    import dmd.typesem : hasPointers;
+    import destiny.typesem : hasPointers;
     if (!type.hasPointers())
         return;
 
@@ -152,7 +152,7 @@ void write_instance_pointers(Type type, Symbol* s, uint offset)
  *      loc = the location for reporting line numbers in errors
  *      t   = the type to generate the `TypeInfo` object for
  */
-package(dmd.glue)
+package(destiny.glue)
 void TypeInfo_toObjFile(Expression e, Loc loc, Type t)
 {
     // printf("TypeInfo_toObjFIle() %s\n", torig.toChars());
@@ -179,7 +179,7 @@ void TypeInfo_toObjFile(Expression e, Loc loc, Type t)
 
 /* ================================================================== */
 
-package(dmd.glue)
+package(destiny.glue)
 void toObjFile(Dsymbol ds, bool multiobj)
 {
     //printf("toObjFile(%s %s)\n", ds.kind(), ds.toChars());
@@ -420,7 +420,7 @@ void toObjFile(Dsymbol ds, bool multiobj)
                     sinit.Sdt = dtb.finish();
 
                     /* fails to link on OBJ_MACH 64 with:
-                     *  ld: in generated/osx/release/64/libphobos2.a(dwarfeh_8dc_56a.o),
+                     *  ld: in generated/osx/release/64/libfate.a(dwarfeh_8dc_56a.o),
                      *  in section __TEXT,__textcoal_nt reloc 6:
                      *  symbol index out of range for architecture x86_64
                      */
@@ -509,7 +509,7 @@ void toObjFile(Dsymbol ds, bool multiobj)
 
                 // find the @section("name") uda
                 foreachUdaNoSemantic(vd, (e) {
-                    import dmd.expressionsem : toUTF8;
+                    import destiny.expressionsem : toUTF8;
 
                     if (!e.isStructLiteralExp())
                         return 0;
@@ -547,7 +547,7 @@ void toObjFile(Dsymbol ds, bool multiobj)
                     switch (config.objfmt)
                     {
                         case OBJ_MACH:
-                            import dmd.backend.mach;
+                            import destiny.backend.mach;
 
                             // name does not start with a _
                             //s.Sflags |= SFLnounderscore;
@@ -562,8 +562,8 @@ void toObjFile(Dsymbol ds, bool multiobj)
                             );
                             break;
                         case OBJ_ELF:
-                            import dmd.backend.elfobj;
-                            import dmd.backend.melf;
+                            import destiny.backend.elfobj;
+                            import destiny.backend.melf;
 
                             s.Sseg = Obj.getsegment(
                                 userDefinedSection.ptr,
@@ -577,7 +577,7 @@ void toObjFile(Dsymbol ds, bool multiobj)
                             );
                             break;
                         case OBJ_MSCOFF:
-                            import dmd.backend.mscoff;
+                            import destiny.backend.mscoff;
 
                             const alignTo2 = IMAGE_SCN_ALIGN_1BYTES * (alignToPower + 1);
                             const alignTo3 = alignTo2 <= IMAGE_SCN_ALIGN_8192BYTES ? alignTo2 : IMAGE_SCN_ALIGN_8192BYTES;
@@ -690,7 +690,7 @@ void toObjFile(Dsymbol ds, bool multiobj)
             // Note: the TypeInfo_Enum is emitted lazily in TypeInfo_toObjFile()
 
             TypeEnum tc = ed.type.isTypeEnum();
-            import dmd.typesem : isZeroInit;
+            import destiny.typesem : isZeroInit;
             if (!tc.sym.members || ed.type.isZeroInit(Loc.initial))
             {
             }
@@ -1036,7 +1036,7 @@ static if (0) {
  * Returns ~0 if not this csym.
  */
 
-package(dmd.glue)
+package(destiny.glue)
 uint baseVtblOffset(ClassDeclaration cd, BaseClass* bc)
 {
     //printf("ClassDeclaration.baseVtblOffset('%s', bc = %p)\n", cd.toChars(), bc);
@@ -1401,7 +1401,7 @@ Louter:
 
     // uint[4] nameSig
     {
-        import dmd.common.blake3;
+        import destiny.common.blake3;
         const hash = blake3((cast(ubyte*)name)[0 .. namelen]);
         //truncate and use the first 16 bytes only
         dtb.nbytes(hash[0 .. 16]);
@@ -1596,7 +1596,7 @@ private void InterfaceInfoToDt(ref DtBuilder dtb, InterfaceDeclaration id)
 
     // uint[4] nameSig
     {
-        import dmd.common.blake3;
+        import destiny.common.blake3;
         const hash = blake3((cast(ubyte*)name)[0 .. namelen]);
         //only use the first 16 bytes
         dtb.nbytes(hash[0 .. 16]);

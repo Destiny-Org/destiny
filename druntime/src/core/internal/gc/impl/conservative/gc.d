@@ -2558,7 +2558,7 @@ struct Gcx
 
         size_t pcache = 0;
 
-        // let dmd allocate a register for this.pools
+        // let destiny allocate a register for this.pools
         auto pools = pooltable.pools;
         const highpool = pooltable.length - 1;
         const minAddr = pooltable.minAddr;

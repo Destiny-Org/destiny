@@ -5,36 +5,36 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/blockopt.d, backend/blockopt.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/blockopt.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/blockopt.d, backend/blockopt.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/blockopt.d
  *
  */
 
-module dmd.backend.blockopt;
+module destiny.backend.blockopt;
 
 import core.stdc.stdio;
 import core.stdc.string;
 import core.stdc.time;
 import core.stdc.stdlib;
 
-import dmd.backend.backconfig : debugb, debugc, debugw;
-import dmd.backend.barray;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.oper;
-import dmd.backend.dvec;
-import dmd.backend.el;
-import dmd.backend.mem;
-import dmd.backend.type;
-import dmd.backend.cg : localgot;
-import dmd.backend.cgcs : comsubs;
-import dmd.backend.cgelem : doptelem;
-import dmd.backend.debugprint : WRblock, WReqn, WRfunc, numberBlocks;
-import dmd.backend.evalu8 : iffalse, iftrue;
-import dmd.backend.go;
-import dmd.backend.code;
-import dmd.backend.symbol;
-import dmd.backend.ty;
+import destiny.backend.backconfig : debugb, debugc, debugw;
+import destiny.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.oper;
+import destiny.backend.dvec;
+import destiny.backend.el;
+import destiny.backend.mem;
+import destiny.backend.type;
+import destiny.backend.cg : localgot;
+import destiny.backend.cgcs : comsubs;
+import destiny.backend.cgelem : doptelem;
+import destiny.backend.debugprint : WRblock, WReqn, WRfunc, numberBlocks;
+import destiny.backend.evalu8 : iffalse, iftrue;
+import destiny.backend.go;
+import destiny.backend.code;
+import destiny.backend.symbol;
+import destiny.backend.ty;
 
 static if (NTEXCEPTIONS)
     enum SCPP_OR_NTEXCEPTIONS = true;
@@ -44,7 +44,7 @@ else
 nothrow:
 @safe:
 
-import dmd.backend.gflow : util_realloc;
+import destiny.backend.gflow : util_realloc;
 
 struct BlockOpt
 {

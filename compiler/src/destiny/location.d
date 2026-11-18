@@ -4,20 +4,20 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/location.d, _location.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/location.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/location.d, _location.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/location.d
  *
  */
 
-module dmd.location;
+module destiny.location;
 
 import core.stdc.stdio;
 
-import dmd.common.outbuffer;
-import dmd.root.array;
-import dmd.root.filename;
-import dmd.root.string: toDString;
-import dmd.root.utf : utf_countColumnsUntil;
+import destiny.common.outbuffer;
+import destiny.root.array;
+import destiny.root.filename;
+import destiny.root.string: toDString;
+import destiny.root.utf : utf_countColumnsUntil;
 
 /// How code locations are formatted for diagnostic reporting
 enum MessageStyle : ubyte

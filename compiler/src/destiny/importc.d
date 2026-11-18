@@ -6,37 +6,37 @@
  * Copyright:   Copyright (C) 2021-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/importc.d, _importc.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/importc.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/importc.d, _importc.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/importc.d
  *
  */
 
-module dmd.importc;
+module destiny.importc;
 
 import core.stdc.stdio;
 
-import dmd.astenums;
-import dmd.dcast;
-import dmd.denum;
-import dmd.declaration;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dinterpret : ctfeInterpret;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.globals : global;
-import dmd.hdrgen : toErrMsg;
-import dmd.identifier;
-import dmd.id : Id;
-import dmd.init;
-import dmd.intrange : IntRange;
-import dmd.mtype;
-import dmd.optimize : optimize;
-import dmd.rootobject : DYNCAST;
-import dmd.tokens;
-import dmd.typesem;
+import destiny.astenums;
+import destiny.dcast;
+import destiny.denum;
+import destiny.declaration;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dinterpret : ctfeInterpret;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.globals : global;
+import destiny.hdrgen : toErrMsg;
+import destiny.identifier;
+import destiny.id : Id;
+import destiny.init;
+import destiny.intrange : IntRange;
+import destiny.mtype;
+import destiny.optimize : optimize;
+import destiny.rootobject : DYNCAST;
+import destiny.tokens;
+import destiny.typesem;
 
 /**************************************
  * C11 does not allow array or function parameters.

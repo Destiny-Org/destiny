@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/statement.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/statement.h
  */
 
 #pragma once
@@ -706,7 +706,7 @@ public:
     void accept(Visitor *v) override { v->visit(this); }
 };
 
-namespace dmd
+namespace destiny
 {
     // in statementsem.d
     Statement* statementSemantic(Statement *s, Scope *sc);

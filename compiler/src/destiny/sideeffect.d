@@ -4,30 +4,30 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/sideeffect.d, _sideeffect.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/sideeffect.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/sideeffect.d, _sideeffect.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/sideeffect.d
  *
  */
 
-module dmd.sideeffect;
+module destiny.sideeffect;
 
-import dmd.astenums;
-import dmd.declaration;
-import dmd.dscope;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.mtype;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
-import dmd.visitor.postorder;
+import destiny.astenums;
+import destiny.declaration;
+import destiny.dscope;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.mtype;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
+import destiny.visitor.postorder;
 
 /**************************************************
  * Front-end expression rewriting should create temporary variables for
@@ -245,14 +245,14 @@ private bool lambdaHasSideEffect(Expression e, bool assumeImpureCalls = false)
  */
 bool discardValue(Expression e)
 {
-    import dmd.globals : global;
+    import destiny.globals : global;
     auto eSink = global.errorSink;
 
     void checkOpOverload(CallExp ce)
     {
         if (ce.f && ce.f.ident == Id.opEquals && ce.fromOpOverload)
         {
-            import dmd.root.string : startsWith;
+            import destiny.root.string : startsWith;
             // avoid breaking `lhs.should == rhs`
             // https://github.com/atilaneves/unit-threaded#custom-assertions
             // lowered: `should(lhs).opEquals(rhs)`
@@ -284,7 +284,7 @@ bool discardValue(Expression e)
         {
             if (auto dve = ce.e1.isDotVarExp())
             {
-                import dmd.dcast : implicitConvTo;
+                import destiny.dcast : implicitConvTo;
                 auto lhs = dve.e1;
                 auto ts = lhs.type.isTypeStruct();
                 if (ts && !lhs.isLvalue() && ts.constOf().implicitConvTo(ts)) // Don't disallow writing to data through a *mutable* pointer field

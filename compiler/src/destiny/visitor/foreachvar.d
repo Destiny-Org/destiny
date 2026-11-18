@@ -4,40 +4,40 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/visitor/foreachvar.d, _foreachvar.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/visitor/foreachvar.d, _foreachvar.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.visitor.foreachvar;
+module destiny.visitor.foreachvar;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.expression;
-import dmd.func;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.initsem;
-import dmd.mtype;
-import dmd.printast;
-import dmd.root.array;
-import dmd.rootobject;
-import dmd.statement;
-import dmd.tokens;
-import dmd.visitor;
-import dmd.visitor.postorder;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.expression;
+import destiny.func;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.initsem;
+import destiny.mtype;
+import destiny.printast;
+import destiny.root.array;
+import destiny.rootobject;
+import destiny.statement;
+import destiny.tokens;
+import destiny.visitor;
+import destiny.visitor.postorder;
 
 /*********************************************
  * Visit each Expression in e, and call dgVar() on each variable declared in it.

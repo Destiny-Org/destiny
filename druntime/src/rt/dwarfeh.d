@@ -138,7 +138,7 @@ debug (EH_personality)
 }
 
 /* High 4 bytes = vendor, low 4 bytes = language
- * For us: "DMD\0D\0\0\0"
+ * For us: "Destiny\0D\0\0\0"
  */
 enum _Unwind_Exception_Class dmdExceptionClass =
         (cast(_Unwind_Exception_Class)'D' << 56) |
@@ -378,7 +378,7 @@ struct ExceptionHeader
 
 /*****************************************
  * "personality" function, specific to each language.
- * This one, of course, is specific to DMD.
+ * This one, of course, is specific to Destiny.
  * Params:
  *      ver = version must be 1
  *      actions = bitwise OR of the 4 actions _UA_xxx.
@@ -702,7 +702,7 @@ enum
 
 /**************************************************
  * Read and extract information from the LSDA (aka gcc_except_table section).
- * The dmd Call Site Table is structurally different from other implementations. It
+ * The destiny Call Site Table is structurally different from other implementations. It
  * is organized as nested ranges, and one ip can map to multiple ranges. The most
  * nested candidate is selected when searched. Other implementations have one candidate
  * per ip.

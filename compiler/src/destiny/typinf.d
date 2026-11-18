@@ -4,28 +4,28 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/typinf.d, _typinf.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/typinf.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/typinf.d, _typinf.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/typinf.d
  *
  */
 
-module dmd.typinf;
+module destiny.typinf;
 
-import dmd.astenums;
-import dmd.declaration;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dclass;
-import dmd.dstruct;
-import dmd.errors : fatal, Classification;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.hdrgen : toErrMsg;
-import dmd.location;
-import dmd.mtype;
-import dmd.templatesem;
-import dmd.typesem;
-import dmd.dsymbolsem : addDeferredSemantic3;
+import destiny.astenums;
+import destiny.declaration;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dclass;
+import destiny.dstruct;
+import destiny.errors : fatal, Classification;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.hdrgen : toErrMsg;
+import destiny.location;
+import destiny.mtype;
+import destiny.templatesem;
+import destiny.typesem;
+import destiny.dsymbolsem : addDeferredSemantic3;
 import core.stdc.stdio;
 
 /****************************************************
@@ -40,7 +40,7 @@ import core.stdc.stdio;
 void genTypeInfo(Expression e, Loc loc, Type torig, Scope* sc)
 {
     // printf("genTypeInfo() %s\n", torig.toChars());
-    import dmd.globals : global;
+    import destiny.globals : global;
     auto eSink = global.errorSink;
 
     // Even when compiling without `useTypeInfo` (e.g. -betterC) we should
@@ -48,7 +48,7 @@ void genTypeInfo(Expression e, Loc loc, Type torig, Scope* sc)
     // upstream issue 18472
     if (!sc || !sc.ctfe)
     {
-        import dmd.globals : global;
+        import destiny.globals : global;
         if (!global.params.useTypeInfo)
         {
             global.gag = 0;
@@ -70,7 +70,7 @@ void genTypeInfo(Expression e, Loc loc, Type torig, Scope* sc)
         fatal();
     }
 
-    import dmd.typesem : merge2;
+    import destiny.typesem : merge2;
     Type t = torig.merge2(); // do this since not all Type's are merge'd
     if (t.ty == Taarray)
         t = makeNakedAssociativeArray(cast(TypeAArray)t);
@@ -158,9 +158,9 @@ private TypeInfoDeclaration getTypeInfoDeclaration(Type t, Scope* sc)
  */
 TypeInfoDeclaration getTypeInfoAssocArrayDeclaration(TypeAArray t, Scope* sc)
 {
-    import dmd.arraytypes;
-    import dmd.expressionsem;
-    import dmd.id;
+    import destiny.arraytypes;
+    import destiny.expressionsem;
+    import destiny.id;
 
     assert(sc); // must not be called in the code generation phase
 

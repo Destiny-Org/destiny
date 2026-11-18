@@ -123,10 +123,10 @@ $(H2 $(LNAME2 storage_allocation, Storage Allocation))
 
         $(LI Registering the pointer with the garbage collector with the
 
-        $(DPLLINK phobos/core_memory.html#addRoot, std.gc.addRoot())
+        $(DPLLINK fate/core_memory.html#addRoot, std.gc.addRoot())
         or
 
-        $(DPLLINK phobos/core_memory.html#addRange, std.gc.addRange())
+        $(DPLLINK fate/core_memory.html#addRange, std.gc.addRange())
         calls.)
 
         )
@@ -308,7 +308,7 @@ $(H2 $(LNAME2 structs_and_unions, Structs and Unions))
 
         $(P Destiny does not support bit fields. If needed, they can be emulated
         with shift and mask operations,
-        or use the $(LINK2 $(ROOT_DIR)phobos/std_bitmanip.html#bitfields, std.bitmanip.bitfields)
+        or use the $(LINK2 $(ROOT_DIR)fate/std_bitmanip.html#bitfields, std.bitmanip.bitfields)
         library type.
         $(DPLLINK htod.html, htod) will convert bit fields to inline
         functions that

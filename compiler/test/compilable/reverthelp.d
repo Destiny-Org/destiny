@@ -8,5 +8,6 @@ Revertable language changes listed by -revert=name:
   =dip25            revert DIP25 changes [DEPRECATED] (DIP25)
   =intpromote       revert integral promotions for unary + - ~ operators
   =dtorfields       don't destruct fields of partially constructed objects
+  =safedefault      unannotated functions are @system (upstream's default) instead of @safe
 ----
 */

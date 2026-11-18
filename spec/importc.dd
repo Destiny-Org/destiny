@@ -31,7 +31,7 @@ int main()
     $(P Compile and run:)
 
 $(CONSOLE
-dmd hello.c
+destiny hello.c
 ./hello
 hello world)
 
@@ -58,7 +58,7 @@ int square(int i)
     $(P Compile and run:)
 
 $(CONSOLE
-dmd demo.d functions.c
+destiny demo.d functions.c
 ./demo
 The square of 7 is 49)
 
@@ -99,7 +99,7 @@ $(H2 $(LNAME2 command-line, Invoking ImportC))
     )
 
 $(CONSOLE
-dmd hello.c)
+destiny hello.c)
 
     $(P will compile `hello.c` with ImportC and link it to create the executable
     file `hello` (`hello.exe` on Windows)
@@ -144,7 +144,7 @@ dmd hello.c)
     ---
 
 $(CONSOLE
-user@ -- project % dmd hello.d net/hi.c
+user@ -- project % destiny hello.d net/hi.c
 )
 
 $(H2 $(LNAME2 preprocessor, Preprocessor))
@@ -161,20 +161,20 @@ $(H2 $(LNAME2 preprocessor, Preprocessor))
     for it automatically.)
 
     $(OL
-    $(LI When compiling for Windows with the $(DDSUBLINK dmd, switch-m32omf, $(TT -m32omf)) switch,
+    $(LI When compiling for Windows with the $(DDSUBLINK destiny, switch-m32omf, $(TT -m32omf)) switch,
     $(TT sppn.exe) will be used as the preprocessor.)
-    $(LI When compiling for Windows with the $(DDSUBLINK dmd, switch-m32mscoff, $(TT -m32mscoff))
-    or the $(DDSUBLINK dmd, switch-m64, $(TT -m64)) switch, $(TT cl.exe /P /Zc:preprocessor) will be used
+    $(LI When compiling for Windows with the $(DDSUBLINK destiny, switch-m32mscoff, $(TT -m32mscoff))
+    or the $(DDSUBLINK destiny, switch-m64, $(TT -m64)) switch, $(TT cl.exe /P /Zc:preprocessor) will be used
     as the preprocessor.)
     $(LI When compiling for OSX, the $(TT clang -E) preprocessor will be used.)
     $(LI Otherwise the $(TT cpp) preprocessor will be used.)
     )
 
-    $(P The $(DDSUBLINK dmd, switch-v, $(TT -v)) switch can be used to observe the command
+    $(P The $(DDSUBLINK destiny, switch-v, $(TT -v)) switch can be used to observe the command
     that invokes the preprocessor.
     )
 
-    $(P The $(DDSUBLINK dmd, switch-P, $(TT -P$(I preprocessorflag))) switch passes $(TT $(I preprocessorflag))
+    $(P The $(DDSUBLINK destiny, switch-P, $(TT -P$(I preprocessorflag))) switch passes $(TT $(I preprocessorflag))
     to the preprocessor.
     )
 
@@ -1093,7 +1093,7 @@ $(H2 $(LNAME2 ctod, Converting C Code to Destiny Code))
     $(P This can be done with the Destiny compiler by using the $(TT -Hf) switch:)
 
 $(CONSOLE
-dmd -c mycode.c -Hf=mycode.di)
+destiny -c mycode.c -Hf=mycode.di)
 
     $(P which will convert the C source code in $(TT mycode.c) to Destiny source code in $(TT mycode.di).
     If the $(TT -inline) switch is also used, it will emit the C function bodies as well, instead

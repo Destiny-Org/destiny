@@ -8,25 +8,25 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cgcse.d, backend/cgcse.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cgcse.d, backend/cgcse.d)
  *
  */
 
-module dmd.backend.cgcse;
+module destiny.backend.cgcse;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE;
-import dmd.backend.ty;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE;
+import destiny.backend.ty;
 
-import dmd.backend.barray;
+import destiny.backend.barray;
 
 nothrow:
 @safe:

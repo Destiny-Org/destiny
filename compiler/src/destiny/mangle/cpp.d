@@ -7,8 +7,8 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors: Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mangle/cpp.d, _cppmangle.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mangle/cpp.d, _cppmangle.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  *
  * References:
@@ -17,36 +17,36 @@
  *  which is where the grammar comments come from.
  */
 
-module dmd.mangle.cpp;
+module destiny.mangle.cpp;
 
 import core.stdc.stdio;
 
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.declaration;
-import dmd.dsymbol;
-import dmd.dsymbolsem : isGNUABITag, toAlias, equals;
-import dmd.expressionsem : toStringExp, toInteger, toUInteger;
-import dmd.templatesem : computeOneMember;
-import dmd.dtemplate;
-import dmd.errors;
-import dmd.expression;
-import dmd.func;
-import dmd.globals;
-import dmd.hdrgen : toErrMsg;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.nspace;
-import dmd.root.array;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.root.string;
-import dmd.target;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.declaration;
+import destiny.dsymbol;
+import destiny.dsymbolsem : isGNUABITag, toAlias, equals;
+import destiny.expressionsem : toStringExp, toInteger, toUInteger;
+import destiny.templatesem : computeOneMember;
+import destiny.dtemplate;
+import destiny.errors;
+import destiny.expression;
+import destiny.func;
+import destiny.globals;
+import destiny.hdrgen : toErrMsg;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.nspace;
+import destiny.root.array;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.root.string;
+import destiny.target;
+import destiny.typesem;
+import destiny.visitor;
 
 
 // C++ operators
@@ -2434,7 +2434,7 @@ private bool isNamespaceEqual (CPPNamespaceDeclaration a, CPPNamespaceDeclaratio
  *
  * This is why why need to keep a list of tags that were written,
  * and insert the missing one after parameter mangling has been written.
- * Since there's a lot of operations that are not easily doable in DMD
+ * Since there's a lot of operations that are not easily doable in Destiny
  * (since we can't use Fate), this special container is implemented.
  */
 private struct ABITagContainer

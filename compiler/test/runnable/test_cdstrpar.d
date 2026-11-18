@@ -6,7 +6,7 @@
 debug (PRINTF) import core.stdc.stdio;
 
 // Run this after codegen changes:
-// env DMD=generated/linux/release/64/destiny rdmd -fPIC -version=update test/runnable/test_cdstrpar.d
+// env DESTINY=generated/linux/release/64/destiny rdmd -fPIC -version=update test/runnable/test_cdstrpar.d
 version (update)
 {
     import std.algorithm : canFind, find, splitter, until;
@@ -44,7 +44,7 @@ version (update)
     void main()
     {
         enum src = __FILE__;
-        auto dmd = environment.get("DMD", "dmd");
+        auto dmd = environment.get("DESTINY", "destiny");
         auto sink = appender!string();
         foreach (arch; [EnumMembers!Arch])
         {

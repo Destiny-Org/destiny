@@ -8,7 +8,7 @@ int main()
         return DISABLED;
     }
 
-    run("$DMD -m$MODEL -of$OUTPUT_BASE/a$EXE -defaultlib=libphobos2.so $EXTRA_FILES/test_shared.d");
+    run("$DESTINY -m$MODEL -of$OUTPUT_BASE/a$EXE -defaultlib=libfate.so $EXTRA_FILES/test_shared.d");
     run("$OUTPUT_BASE/a$EXE", stdout, stderr, [
         "LD_LIBRARY_PATH" : "../../../fate/generated/"~OS~'/'~BUILD~'/'~MODEL
     ]);

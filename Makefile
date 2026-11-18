@@ -60,7 +60,7 @@ endif
 
 .PHONY: all clean test html install \
         destiny destiny-unittest destiny-test druntime druntime-test \
-        phobos fate destiny-pgo \
+        fate destiny-pgo \
         auto-tester-build auto-tester-test buildkite-test \
         toolchain-info check-clean-git style
 
@@ -89,14 +89,13 @@ clean:
 	$(RM) tags
 	$(QUIET)$(MAKE) -C druntime clean
 
-# the build tool's internal name for the compiler target is still `dmd`
 destiny: $(BUILD_EXE)
-	$(BUILD_CMD) dmd
+	$(BUILD_CMD) destiny
 
 destiny-unittest: $(BUILD_EXE)
 	$(BUILD_CMD) unittest
 
-destiny-test: destiny-unittest destiny druntime phobos $(RUN_EXE)
+destiny-test: destiny-unittest destiny druntime fate $(RUN_EXE)
 	$(RUN_EXE) --environment
 
 druntime: destiny
@@ -110,10 +109,9 @@ test: destiny-test druntime-test
 ../fate:
 	git clone --depth=1 https://github.com/Destiny-Org/fate $@
 
-phobos: ../fate druntime
+fate: ../fate druntime
 	$(MAKE) -C ../fate
 
-fate: phobos
 
 html: $(BUILD_EXE)
 	$(BUILD_CMD) $@
@@ -165,8 +163,8 @@ endif
 
 destiny-pgo: $(BUILD_EXE) $(RUN_EXE) ../fate
 	@echo "PGO step 1/4: Building instrumented compiler"
-	$(BUILD_EXE) ENABLE_RELEASE=1 DFLAGS='-fprofile-generate=$(abspath $(GENERATED))/%p.profraw $(HOST_DFLAGS)' dmd --force
-	@echo "PGO step 2/4: Gathering profiles by compiling druntime & phobos and running 'compilable' test suite"
+	$(BUILD_EXE) ENABLE_RELEASE=1 DFLAGS='-fprofile-generate=$(abspath $(GENERATED))/%p.profraw $(HOST_DFLAGS)' destiny --force
+	@echo "PGO step 2/4: Gathering profiles by compiling druntime & Fate and running 'compilable' test suite"
 	$(MAKE) -C ../fate
 	$(RUN_EXE) compilable
 	@echo "PGO step 3/4: Merging profiles"
@@ -175,7 +173,7 @@ destiny-pgo: $(BUILD_EXE) $(RUN_EXE) ../fate
 	cd $(GENERATED) && $(LDC_PROFDATA) merge --output=merged.profdata --input-files=profraw_list.rsp
 	cd $(GENERATED) && xargs $(RM) < profraw_list.rsp && $(RM) profraw_list.rsp
 	@echo "PGO step 4/4: Building PGO+LTO'd compiler"
-	$(BUILD_EXE) ENABLE_RELEASE=1 ENABLE_LTO=1 DFLAGS='-fprofile-use=$(abspath $(GENERATED))/merged.profdata $(HOST_DFLAGS)' dmd --force
+	$(BUILD_EXE) ENABLE_RELEASE=1 ENABLE_LTO=1 DFLAGS='-fprofile-use=$(abspath $(GENERATED))/merged.profdata $(HOST_DFLAGS)' destiny --force
 	$(RM) $(GENERATED)/merged.profdata
 
 endif # ldmd2

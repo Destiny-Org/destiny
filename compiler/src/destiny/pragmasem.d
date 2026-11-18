@@ -6,31 +6,31 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/pragmasem.d, _pragmasem.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/pragmasem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/pragmasem.d, _pragmasem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/pragmasem.d
  *
  */
 
-module dmd.pragmasem;
+module destiny.pragmasem;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.astenums;
-import dmd.arraytypes;
-import dmd.attrib;
-import dmd.dinterpret;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.dsymbolsem : include;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.globals;
-import dmd.hdrgen : toErrMsg;
-import dmd.location;
-import dmd.id;
-import dmd.statement;
+import destiny.astenums;
+import destiny.arraytypes;
+import destiny.attrib;
+import destiny.dinterpret;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.dsymbolsem : include;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.globals;
+import destiny.hdrgen : toErrMsg;
+import destiny.location;
+import destiny.id;
+import destiny.statement;
 
 /**
  * Run semantic on `pragma` declaration.
@@ -41,13 +41,13 @@ import dmd.statement;
  */
 void pragmaDeclSemantic(PragmaDeclaration pd, Scope* sc)
 {
-    import dmd.common.outbuffer;
-    import dmd.dmodule;
-    import dmd.dsymbolsem;
-    import dmd.identifier;
-    import dmd.root.rmem;
-    import dmd.target;
-    import dmd.utils;
+    import destiny.common.outbuffer;
+    import destiny.dmodule;
+    import destiny.dsymbolsem;
+    import destiny.identifier;
+    import destiny.root.rmem;
+    import destiny.target;
+    import destiny.utils;
 
     auto eSink = global.errorSink;
 
@@ -258,7 +258,7 @@ void pragmaDeclSemantic(PragmaDeclaration pd, Scope* sc)
  */
 bool pragmaStmtSemantic(PragmaStatement ps, Scope* sc)
 {
-    import dmd.statementsem;
+    import destiny.statementsem;
 
     auto eSink = global.errorSink;
 
@@ -432,8 +432,8 @@ package PINLINE evalPragmaInline(Loc loc, Scope* sc, Expressions* args)
  */
 private bool pragmaMsgSemantic(Loc loc, Scope* sc, Expressions* args)
 {
-    import dmd.tokens;
-    import dmd.common.outbuffer;
+    import destiny.tokens;
+    import destiny.common.outbuffer;
 
     if (!args)
         return true;
@@ -482,7 +482,7 @@ private void setPragmaPrintf(Dsymbol s, bool printf)
  */
 private bool pragmaStartAddressSemantic(Loc loc, Scope* sc, Expressions* args)
 {
-    import dmd.dtemplate;
+    import destiny.dtemplate;
 
     auto eSink = global.errorSink;
 
@@ -535,14 +535,14 @@ private bool pragmaStartAddressSemantic(Loc loc, Scope* sc, Expressions* args)
  */
 private bool pragmaMangleSemantic(Loc loc, Scope* sc, Expressions* args, Dsymbols* decls)
 {
-    import dmd.root.rmem;
+    import destiny.root.rmem;
 
     auto eSink = global.errorSink;
 
     StringExp verifyMangleString(ref Expression e)
     {
-        import dmd.mangle : isValidMangling;
-        import dmd.root.utf : utf_decodeChar;
+        import destiny.mangle : isValidMangling;
+        import destiny.root.utf : utf_decodeChar;
         auto se = semanticString(sc, e, "pragma mangle argument");
         if (!se)
             return null;
@@ -571,11 +571,11 @@ private bool pragmaMangleSemantic(Loc loc, Scope* sc, Expressions* args, Dsymbol
 
         foreach (s; (*decls)[])
         {
-            import dmd.aggregate;
-            import dmd.common.outbuffer;
-            import dmd.dsymbolsem : dsymbolSemantic;
-            import dmd.hdrgen : arrayObjectsToBuffer;
-            import dmd.identifier : Identifier;
+            import destiny.aggregate;
+            import destiny.common.outbuffer;
+            import destiny.dsymbolsem : dsymbolSemantic;
+            import destiny.hdrgen : arrayObjectsToBuffer;
+            import destiny.identifier : Identifier;
 
             s.dsymbolSemantic(sc);
 

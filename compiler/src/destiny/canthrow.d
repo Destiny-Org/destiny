@@ -6,28 +6,28 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/canthrow.d, _canthrow.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/canthrow.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/canthrow.d, _canthrow.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/canthrow.d
  *
  */
 
-module dmd.canthrow;
+module destiny.canthrow;
 
-import dmd.aggregate;
-import dmd.astenums;
-import dmd.blockexit : BE, checkThrow;
-import dmd.dsymbol;
-import dmd.dsymbolsem : include, toAlias;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.hdrgen : toErrMsg;
-import dmd.typesem;
-import dmd.func;
-import dmd.mtype;
-import dmd.tokens;
-import dmd.visitor;
-import dmd.visitor.postorder;
+import destiny.aggregate;
+import destiny.astenums;
+import destiny.blockexit : BE, checkThrow;
+import destiny.dsymbol;
+import destiny.dsymbolsem : include, toAlias;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.hdrgen : toErrMsg;
+import destiny.typesem;
+import destiny.func;
+import destiny.mtype;
+import destiny.tokens;
+import destiny.visitor;
+import destiny.visitor.postorder;
 
 /**
  * Status indicating what kind of throwable might be caused by an expression.
@@ -83,7 +83,7 @@ CT canThrow(Expression e, FuncDeclaration func, ErrorSink eSink)
                     if (!f.isDtorDeclaration())
                         errorSupplementalInferredAttr(f, 10, false, STC.nothrow_, eSink);
 
-                    import dmd.expressionsem : checkOverriddenDtor;
+                    import destiny.expressionsem : checkOverriddenDtor;
                     f.checkOverriddenDtor(null, e.loc, dd => dd.type.toTypeFunction().isNothrow, "not nothrow");
                 }
                 else if (func)
@@ -108,7 +108,7 @@ CT canThrow(Expression e, FuncDeclaration func, ErrorSink eSink)
             if (ce.inDebugStatement)
                 return;
 
-            import dmd.globals;
+            import destiny.globals;
             if (global.errors && !ce.e1.type)
                 return; // error recovery
 

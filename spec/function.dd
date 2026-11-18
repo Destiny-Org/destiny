@@ -190,7 +190,7 @@ int foo();
     )
 
     $(P A function prototype can have `extern(D)` linkage.
-    This is useful for $(DDSUBLINK dmd, interface-files, Destiny interface files).
+    This is useful for $(DDSUBLINK destiny, interface-files, Destiny interface files).
     )
 
 
@@ -1654,7 +1654,7 @@ $(H3 $(LNAME2 in-params, In Parameters))
         the $(D const) storage class.)
 
         $(NOTE The following requires the $(D -preview=in) switch and a compiler compliant with
-        $(LINK2 $(ROOT_DIR)changelog/2.094.0.html#preview-in, dmd v2.094.0) or higher.)
+        $(LINK2 $(ROOT_DIR)changelog/2.094.0.html#preview-in, destiny v2.094.0) or higher.)
 
         $(P `in` parameters also behave like $(RELATIVE_LINK2 scope-parameters, `scope`) parameters.)
 
@@ -2382,7 +2382,7 @@ $(H4 $(LNAME2 c_style_variadic_functions, C-style Variadic Functions))
 
         $(P To access the variadic arguments,
         import the standard library
-        module $(LINK2 $(ROOT_DIR)phobos/core_stdc_stdarg.html, $(D core.stdc.stdarg)).
+        module $(LINK2 $(ROOT_DIR)fate/core_stdc_stdarg.html, $(D core.stdc.stdarg)).
         )
 
         $(SPEC_RUNNABLE_EXAMPLE_COMPILE
@@ -2432,7 +2432,7 @@ $(H4 $(LNAME2 d_style_variadic_functions, D-style Variadic Functions))
 
         $(P `va_list _argptr` is declared & initialized as a pointer to the
         first of the variadic arguments. To access the variadic arguments,
-        import $(LINK2 $(ROOT_DIR)phobos/core_vararg.html, $(D core.vararg)) and
+        import $(LINK2 $(ROOT_DIR)fate/core_vararg.html, $(D core.vararg)) and
         use $(D _argptr) in conjunction with $(REF_SHORT va_arg, core,stdc,stdarg):)
 
 $(SPEC_RUNNABLE_EXAMPLE_COMPILE
@@ -3748,7 +3748,7 @@ $(GNAME CmainParameters):
         $(P This function takes the place of the C main function and is executed immediately without
         any setup or teardown associated with a Destiny $(D main) function. Programs reliant on module
         constructors, module destructors, or unittests need to manually perform (de)initialization
-        using the appropriate $(DDSUBLINK phobos/core_runtime, Runtime, runtime functions).)
+        using the appropriate $(DDSUBLINK fate/core_runtime, Runtime, runtime functions).)
 
         $(IMPLEMENTATION_DEFINED Other system-specific entry points may exist, such as
         `WinMain` and `DllMain` on Windows systems.
@@ -4442,7 +4442,7 @@ $(H3 $(LNAME2 null-dereferences, Null Dereferences))
             is `@system`).
           - On all systems when an expression causes a null pointer to be indexed,
             causing a memory access that is not prevented by the system.
-            $(RED Warning:) $(TT dmd)
+            $(RED Warning:) $(TT destiny)
             has not implemented (upstream dmd issue 17776) this yet.
 
 $(H3 $(LNAME2 safe-aliasing, Safe Aliasing))

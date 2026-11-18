@@ -3,19 +3,19 @@
  *
  * Copyright: Copyright (C) 2022-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mustuse.d, _mustuse.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mustuse.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mustuse.d, _mustuse.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mustuse.d
  *
  */
 
-module dmd.mustuse;
+module destiny.mustuse;
 
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.identifier;
-import dmd.location;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.identifier;
+import destiny.location;
 
 /**
  * Check whether discarding an expression would violate the requirements of
@@ -29,8 +29,8 @@ import dmd.location;
  */
 bool checkMustUse(Expression e, Scope* sc)
 {
-    import dmd.id : Id;
-    import dmd.typesem : toDsymbol;
+    import destiny.id : Id;
+    import destiny.typesem : toDsymbol;
 
     assert(e.type);
     if (auto sym = e.type.toDsymbol(sc))
@@ -39,7 +39,7 @@ bool checkMustUse(Expression e, Scope* sc)
         // isStructDeclaration returns non-null for both structs and unions
         if (sd && hasMustUseAttribute(sd, sc) && !isAssignment(e) && !isIncrementOrDecrement(e))
         {
-            import dmd.globals : global;
+            import destiny.globals : global;
             auto eSink = global.errorSink;
             eSink.error(e.loc, "ignored value of `@%s` type `%s`; prepend a `cast(void)` if intentional",
                 Id.udaMustUse.toChars(), e.type.toPrettyChars(true));
@@ -59,16 +59,16 @@ bool checkMustUse(Expression e, Scope* sc)
  */
 void checkMustUseReserved(Dsymbol sym)
 {
-    import dmd.attrib : foreachUdaNoSemantic;
-    import dmd.errors : error;
-    import dmd.id : Id;
+    import destiny.attrib : foreachUdaNoSemantic;
+    import destiny.errors : error;
+    import destiny.id : Id;
 
     // Can't use foreachUda (and by extension hasMustUseAttribute) while
     // semantic analysis of `sym` is still in progress
     foreachUdaNoSemantic(sym, (exp) {
         if (isMustUseAttribute(exp))
         {
-            import dmd.globals : global;
+            import destiny.globals : global;
             auto eSink = global.errorSink;
             if (sym.isFuncDeclaration())
             {
@@ -112,7 +112,7 @@ private bool isAssignment(Expression e)
  */
 private bool isAssignmentOpId(Identifier id)
 {
-    import dmd.id : Id;
+    import destiny.id : Id;
 
     return id == Id.opAssign
         || id == Id.opIndexAssign
@@ -128,10 +128,10 @@ private bool isAssignmentOpId(Identifier id)
  */
 private bool isIncrementOrDecrement(Expression e)
 {
-    import dmd.dtemplate : isExpression;
-    import dmd.location;
-    import dmd.id : Id;
-    import dmd.tokens : EXP;
+    import destiny.dtemplate : isExpression;
+    import destiny.location;
+    import destiny.id : Id;
+    import destiny.tokens : EXP;
 
     if (e.op == EXP.plusPlus
         || e.op == EXP.minusMinus
@@ -192,7 +192,7 @@ private bool isIncrementOrDecrement(Expression e)
  */
 private bool hasMustUseAttribute(Dsymbol sym, Scope* sc)
 {
-    import dmd.attribsem : foreachUda;
+    import destiny.attribsem : foreachUda;
 
     bool result = false;
 
@@ -213,7 +213,7 @@ private bool hasMustUseAttribute(Dsymbol sym, Scope* sc)
  */
 private bool isMustUseAttribute(Expression e)
 {
-    import dmd.attrib : isEnumAttribute;
-    import dmd.id : Id;
+    import destiny.attrib : isEnumAttribute;
+    import destiny.id : Id;
     return isEnumAttribute(e, Id.udaMustUse);
 }

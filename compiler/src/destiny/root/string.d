@@ -4,14 +4,14 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/string.d, root/_string.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/string.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/string.d, root/_string.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/string.d
  *
  */
-module dmd.root.string;
+module destiny.root.string;
 
 import core.stdc.string;
-import dmd.root.rmem;
+import destiny.root.rmem;
 
 nothrow:
 
@@ -94,8 +94,8 @@ The return value of `T`
 */
 auto toCStringThen(alias dg)(const(char)[] src) nothrow
 {
-    import dmd.root.rmem : mem;
-    import dmd.common.smallbuffer : SmallBuffer;
+    import destiny.root.rmem : mem;
+    import destiny.common.smallbuffer : SmallBuffer;
 
     const len = src.length + 1;
     char[512] small = void;

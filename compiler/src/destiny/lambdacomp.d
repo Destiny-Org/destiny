@@ -8,35 +8,35 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/lambdacomp.d, _lambdacomp.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/lambdacomp.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/lambdacomp.d, _lambdacomp.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/lambdacomp.d
  *
  */
 
-module dmd.lambdacomp;
+module destiny.lambdacomp;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.astenums;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.expression;
-import dmd.expressionsem : getConstInitializer, toInteger;
-import dmd.func;
-import dmd.hdrgen;
-import dmd.mangle;
-import dmd.mtype;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.root.stringtable;
-import dmd.dscope;
-import dmd.statement;
-import dmd.tokens;
-import dmd.visitor;
+import destiny.astenums;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.expression;
+import destiny.expressionsem : getConstInitializer, toInteger;
+import destiny.func;
+import destiny.hdrgen;
+import destiny.mangle;
+import destiny.mtype;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.root.stringtable;
+import destiny.dscope;
+import destiny.statement;
+import destiny.tokens;
+import destiny.visitor;
 
 enum LOG = false;
 
@@ -82,7 +82,7 @@ bool isSameFuncLiteral(FuncLiteralDeclaration l1, FuncLiteralDeclaration l2, Sco
 /**
  * Computes the string representation of a
  * lambda function described by the subtree starting from a
- * $(REF dmd, func, FuncLiteralDeclaration).
+ * $(REF destiny, func, FuncLiteralDeclaration).
  *
  * Limitations: only IntegerExps, Enums and function
  * arguments are supported in the lambda function body. The

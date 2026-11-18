@@ -15,15 +15,15 @@ die()
 ulimit -c 0
 
 # returns 1 (failure)
-$DMD -run ${src_file} 2> /dev/null && die 1
+$DESTINY -run ${src_file} 2> /dev/null && die 1
 
 # returns 1 (failure)
-$DMD -release -run ${src_file} 2> /dev/null && die 2
+$DESTINY -release -run ${src_file} 2> /dev/null && die 2
 
 # returns 1 (failure)
-$DMD -version=Safe -run ${src_file} 2> /dev/null && die 3
+$DESTINY -version=Safe -run ${src_file} 2> /dev/null && die 3
 
 # returns 1 (failure)
-$DMD -release -version=Safe -run ${src_file} 2> /dev/null && die 4
+$DESTINY -release -version=Safe -run ${src_file} 2> /dev/null && die 4
 
 exit 0

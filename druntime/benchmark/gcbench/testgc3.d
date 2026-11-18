@@ -1,5 +1,5 @@
 /**
- * taken from the dmd test suite, added options to run multiple times
+ * taken from the destiny test suite, added options to run multiple times
  *
  * This test creates 10000 associative arrays uint[uint] multiple times
  * collecting arrays created in previous iterations.

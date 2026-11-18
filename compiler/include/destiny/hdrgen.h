@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/hdrgen.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/hdrgen.h
  */
 
 #pragma once
@@ -18,7 +18,7 @@ class Initializer;
 class Module;
 class Statement;
 
-namespace dmd
+namespace destiny
 {
     void genhdrfile(Module *m, bool doFuncBodies, OutBuffer &buf);
     void genCppHdrFiles(Modules &ms, ErrorSink *eSink, CppStdRevision cppStdRevision);

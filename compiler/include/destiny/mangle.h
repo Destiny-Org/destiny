@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/mangle.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/mangle.h
  */
 
 #pragma once
@@ -17,7 +17,7 @@ class TemplateInstance;
 class Type;
 struct OutBuffer;
 
-namespace dmd
+namespace destiny
 {
     // In cppmangle.d
     const char *toCppMangleItanium(Dsymbol *s);

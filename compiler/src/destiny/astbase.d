@@ -3,17 +3,17 @@
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/astbase.d, _astbase.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/astbase.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/astbase.d, _astbase.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/astbase.d
  *
  */
 
-module dmd.astbase;
+module destiny.astbase;
 
-import dmd.astenums;
-import dmd.visitor.parsetime;
-import dmd.tokens : EXP;
-import dmd.expression;
+import destiny.astenums;
+import destiny.visitor.parsetime;
+import destiny.tokens : EXP;
+import destiny.expression;
 
 /** The ASTBase  family defines a family of AST nodes appropriate for parsing with
   * no semantic information. It defines all the AST nodes that the parser needs
@@ -23,23 +23,23 @@ import dmd.expression;
   */
 struct ASTBase
 {
-    import dmd.root.file;
-    import dmd.root.filename;
-    import dmd.root.array;
-    import dmd.rootobject;
-    import dmd.common.outbuffer;
-    import dmd.root.ctfloat;
-    import dmd.root.rmem;
-    import dmd.root.string : toDString;
-    import dmd.root.stringtable;
+    import destiny.root.file;
+    import destiny.root.filename;
+    import destiny.root.array;
+    import destiny.rootobject;
+    import destiny.common.outbuffer;
+    import destiny.root.ctfloat;
+    import destiny.root.rmem;
+    import destiny.root.string : toDString;
+    import destiny.root.stringtable;
 
-    import dmd.tokens;
-    import dmd.identifier;
-    import dmd.globals;
-    import dmd.id;
-    import dmd.errors;
-    import dmd.lexer;
-    import dmd.location;
+    import destiny.tokens;
+    import destiny.identifier;
+    import destiny.globals;
+    import destiny.id;
+    import destiny.errors;
+    import destiny.lexer;
+    import destiny.location;
 
     import core.stdc.string;
     import core.stdc.stdarg;
@@ -6285,7 +6285,7 @@ struct ASTBase
                 * and we need to set the error count to prevent bogus code
                 * generation. At least give a message.
                 */
-                dmd.errors.error(Loc.initial, "unknown, please file report at https://github.com/Destiny-Org/destiny/issues/new");
+                destiny.errors.error(Loc.initial, "unknown, please file report at https://github.com/Destiny-Org/destiny/issues/new");
             }
 
             return errorexp;

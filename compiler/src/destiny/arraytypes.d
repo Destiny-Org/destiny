@@ -4,26 +4,26 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/arraytypes.d, _arraytypes.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/arraytypes.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/arraytypes.d, _arraytypes.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/arraytypes.d
  *
  */
 
-module dmd.arraytypes;
+module destiny.arraytypes;
 
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dmodule;
-import dmd.dsymbol;
-import dmd.dtemplate;
-import dmd.expression;
-import dmd.func;
-import dmd.identifier;
-import dmd.init;
-import dmd.mtype;
-import dmd.root.array;
-import dmd.rootobject;
-import dmd.statement;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dmodule;
+import destiny.dsymbol;
+import destiny.dtemplate;
+import destiny.expression;
+import destiny.func;
+import destiny.identifier;
+import destiny.init;
+import destiny.mtype;
+import destiny.root.array;
+import destiny.rootobject;
+import destiny.statement;
 
 alias Strings = Array!(const(char)*);
 alias Identifiers = Array!(Identifier);

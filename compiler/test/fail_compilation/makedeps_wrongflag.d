@@ -4,8 +4,8 @@ REQUIRED_ARGS: -makedepsbla -Jcompilable/extra-files -Icompilable/extra-files
 TEST_OUTPUT:
 ---
 Error: unrecognized switch '-makedepsbla'
-       run `dmd` to print the compiler manual
-       run `dmd -man` to open browser on manual
+       run `destiny` to print the compiler manual
+       run `destiny -man` to open browser on manual
 ---
 */
 module makedeps_wrongflag;

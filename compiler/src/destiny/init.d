@@ -4,24 +4,24 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/init.d, _init.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/init.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/init.d, _init.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/init.d
  *
  */
 
-module dmd.init;
+module destiny.init;
 
 import core.stdc.stdio;
 
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.ast_node;
-import dmd.expression;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.rootobject;
-import dmd.visitor;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.ast_node;
+import destiny.expression;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.rootobject;
+import destiny.visitor;
 
 enum NeedInterpret : int
 {

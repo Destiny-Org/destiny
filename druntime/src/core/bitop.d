@@ -553,7 +553,7 @@ ushort byteswap(ushort x) pure
 {
     /* Calling it bswap(ushort) would break existing code that calls bswap(uint).
      *
-     * This pattern is meant to be recognized by the dmd code generator.
+     * This pattern is meant to be recognized by the destiny code generator.
      * Don't change it without checking that an XCH instruction is still
      * used to implement it.
      * Inlining may also throw it off.

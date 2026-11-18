@@ -6,7 +6,7 @@ if [[ $OS = "win"* ]] && ! which -s nm; then
 fi
 
 objfile="${OUTPUT_BASE}${OBJ}"
-$DMD -c -m${MODEL} -allinst -of${objfile} ${EXTRA_FILES}/${TEST_NAME}a.d -I${EXTRA_FILES}
+$DESTINY -c -m${MODEL} -allinst -of${objfile} ${EXTRA_FILES}/${TEST_NAME}a.d -I${EXTRA_FILES}
 
 # This test is brittle and might break in the future.
 # For now, ensure a specific AA TypeInfo isn't defined multiple times, as happened with DMD v2.111.0.

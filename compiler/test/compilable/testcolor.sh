@@ -27,7 +27,7 @@ normalize()
 check()
 {
     local actual expected
-    actual=$(echo "$2" | ("$DMD" -c -o- -verrors=simple "$1" - 2>&1 || true) | normalize)
+    actual=$(echo "$2" | ("$DESTINY" -c -o- -verrors=simple "$1" - 2>&1 || true) | normalize)
     compare "$actual" "$3"
 }
 
@@ -47,7 +47,7 @@ check -color=off "$gooCode" "$gooExpectedWithoutColor"
 
 if [[ "$(script --version)" == script\ from\ util-linux\ * ]]
 then
-    actual="$(SHELL="$(command -v bash)" TERM="faketerm" script -q -c "echo test | ( $DMD -c -o- -verrors=simple -)" /dev/null | normalize)" || true
+    actual="$(SHELL="$(command -v bash)" TERM="faketerm" script -q -c "echo test | ( $DESTINY -c -o- -verrors=simple -)" /dev/null | normalize)" || true
 
     # Weird results for WSL, probably some environmental issue
     if uname -a | grep -i linux | grep -i microsoft &> /dev/null

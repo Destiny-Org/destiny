@@ -16,38 +16,38 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/arm/cod4.d, backend/cod4.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/arm/cod4.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/arm/cod4.d, backend/cod4.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/arm/cod4.d
  *
  */
 
-module dmd.backend.arm.cod4;
+module destiny.backend.arm.cod4;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.cg : datafl;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.codebuilder;
-import dmd.backend.divcoeff : choose_multiplier, udiv_coefficients;
-import dmd.backend.mem;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE, mask, size;
-import dmd.backend.debugprint : oper_str;
-import dmd.backend.evalu8 : boolres, evalu8;
-import dmd.backend.oper;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.evalu8 : el_toreald;
-import dmd.backend.x86.xmm;
-import dmd.backend.arm.cod1 : getlvalue, loadFromEA, storeToEA,CLIB_A,callclib;
-import dmd.backend.arm.cod2 : idxregm, tyToExtend;
-import dmd.backend.arm.cod3 : COND, conditionCode, gentstreg, loadFloatRegConst;
-import dmd.backend.arm.instr;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.cg : datafl;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.codebuilder;
+import destiny.backend.divcoeff : choose_multiplier, udiv_coefficients;
+import destiny.backend.mem;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE, mask, size;
+import destiny.backend.debugprint : oper_str;
+import destiny.backend.evalu8 : boolres, evalu8;
+import destiny.backend.oper;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.evalu8 : el_toreald;
+import destiny.backend.x86.xmm;
+import destiny.backend.arm.cod1 : getlvalue, loadFromEA, storeToEA,CLIB_A,callclib;
+import destiny.backend.arm.cod2 : idxregm, tyToExtend;
+import destiny.backend.arm.cod3 : COND, conditionCode, gentstreg, loadFloatRegConst;
+import destiny.backend.arm.instr;
 
 
 nothrow:
@@ -1694,7 +1694,7 @@ void cdcnvt(ref CGstate cg, ref CodeBuilder cdb,elem* e, ref regm_t pretregs)
         case OPld_d:    // call __trunctfdf2
             regm_t retregs1 = mask(32);
             codelem(cg,cdb,e.E1,retregs1,false);
-            import dmd.backend.arm.cod1 : CLIB_A, callclib;
+            import destiny.backend.arm.cod1 : CLIB_A, callclib;
             CLIB_A clib = e.Eoper == OPd_ld ? CLIB_A.doubleToReal : CLIB_A.realToDouble;
             callclib(cg,cdb,e,clib,pretregs,0);
             break;

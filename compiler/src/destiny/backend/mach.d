@@ -4,9 +4,9 @@
  * Translated to D from mach.h
  */
 
-module dmd.backend.mach;
+module destiny.backend.mach;
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/mach.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/mach.d
 // location of system .h files on Mac: xcrun --show-sdk-path
 // location of machine.h: usr/include/mach
 // https://alexdremov.me/mystery-of-mach-o-object-file-builders/

@@ -1,20 +1,20 @@
 
 /**
- * Entry point for DMD console version.
+ * Entry point for Destiny console version.
  *
- * This modules defines the entry point (main) for DMD, as well as related
+ * This modules defines the entry point (main) for Destiny, as well as related
  * utilities needed for arguments parsing, path manipulation, etc...
  * This file is not shared with other compilers which use the DMD front-end.
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/main.d, _main.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/main.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/main.d, _main.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/main.d
  *
  */
 
-module dmd.main;
+module destiny.main;
 
 version (NoMain) {} else
 {
@@ -23,60 +23,60 @@ import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.arraytypes : Modules, Strings;
-import dmd.astenums;
-import dmd.common.outbuffer;
-import dmd.compiler;
-import dmd.cond;
-import dmd.console;
-import dmd.cpreprocess;
-import dmd.declaration;
-import dmd.deps;
-import dmd.dinifile;
-import dmd.dinterpret;
-import dmd.dmdparams;
-import dmd.dsymbolsem;
-import dmd.errorsink;
-import dmd.typesem : Type_init;
-import dmd.dtemplate;
-import dmd.dtoh;
-import dmd.glue : generateCodeAndWrite, ObjcGlue_initialize;
-import dmd.dmodule;
-import dmd.dmsc : backend_init, backend_term;
-import dmd.doc;
-import dmd.dsymbol;
-import dmd.errors : fatal;
-import dmd.expression;
-import dmd.file_manager;
-import dmd.hdrgen;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.inline;
-import dmd.link;
-import dmd.location;
-import dmd.mars;
-import dmd.mtype;
-import dmd.objc;
-import dmd.root.env;
-import dmd.root.file;
-import dmd.root.filename;
-import dmd.root.man;
-import dmd.root.response;
-import dmd.root.rmem;
-import dmd.root.string;
-import dmd.root.stringtable;
-import dmd.root.array;
-import dmd.semantic2;
-import dmd.semantic3;
-import dmd.target;
-import dmd.timetrace;
-import dmd.utils;
-import dmd.vsoptions;
+import destiny.arraytypes : Modules, Strings;
+import destiny.astenums;
+import destiny.common.outbuffer;
+import destiny.compiler;
+import destiny.cond;
+import destiny.console;
+import destiny.cpreprocess;
+import destiny.declaration;
+import destiny.deps;
+import destiny.dinifile;
+import destiny.dinterpret;
+import destiny.dmdparams;
+import destiny.dsymbolsem;
+import destiny.errorsink;
+import destiny.typesem : Type_init;
+import destiny.dtemplate;
+import destiny.dtoh;
+import destiny.glue : generateCodeAndWrite, ObjcGlue_initialize;
+import destiny.dmodule;
+import destiny.dmsc : backend_init, backend_term;
+import destiny.doc;
+import destiny.dsymbol;
+import destiny.errors : fatal;
+import destiny.expression;
+import destiny.file_manager;
+import destiny.hdrgen;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.inline;
+import destiny.link;
+import destiny.location;
+import destiny.mars;
+import destiny.mtype;
+import destiny.objc;
+import destiny.root.env;
+import destiny.root.file;
+import destiny.root.filename;
+import destiny.root.man;
+import destiny.root.response;
+import destiny.root.rmem;
+import destiny.root.string;
+import destiny.root.stringtable;
+import destiny.root.array;
+import destiny.semantic2;
+import destiny.semantic3;
+import destiny.target;
+import destiny.timetrace;
+import destiny.utils;
+import destiny.vsoptions;
 
 /**
- * DMD's entry point, C main.
+ * Destiny's entry point, C main.
  *
  * Without `-lowmem`, we need to switch to the bump-pointer allocation scheme
  * right from the start, before any module ctors are run, so we need this hook
@@ -157,7 +157,7 @@ extern (C) int _Dmain(const(char)[][] dargs)
 private:
 
 /**
- * DMD's real entry point
+ * Destiny's real entry point
  *
  * Parses command line arguments and config file, open and read all
  * provided source file and do semantic analysis on them.
@@ -171,8 +171,8 @@ private:
  */
 private int tryMain(const(char)[][] argv, out Param params)
 {
-    import dmd.common.charactertables;
-    import dmd.sarif;
+    import destiny.common.charactertables;
+    import destiny.sarif;
     import core.stdc.stdarg;
 
     Strings files;
@@ -330,7 +330,7 @@ private int tryMain(const(char)[][] argv, out Param params)
         }
         return s;
     }
-    import dmd.cli : CLIUsage;
+    import destiny.cli : CLIUsage;
     mixin(generateUsageChecks(["mcpu", "transition", "check", "checkAction",
         "preview", "revert", "externStd", "hc"]));
 
@@ -406,10 +406,10 @@ private int tryMain(const(char)[][] argv, out Param params)
     reconcileLinkRunLib(params, files.length, target.obj_ext, eSink);
     version(CRuntime_Microsoft)
     {
-        import dmd.root.longdouble;
+        import destiny.root.longdouble;
         initFPU();
     }
-    import dmd.root.ctfloat : CTFloat;
+    import destiny.root.ctfloat : CTFloat;
     CTFloat.initialize();
 
     // Predefined version identifiers
@@ -470,7 +470,7 @@ private int tryMain(const(char)[][] argv, out Param params)
 
     if (params.timeTrace)
     {
-        import dmd.timetrace;
+        import destiny.timetrace;
         initializeTimeTrace(params.timeTraceGranularityUs, toCString(argv[0]).ptr);
     }
 
@@ -778,7 +778,7 @@ private int tryMain(const(char)[][] argv, out Param params)
     }
     if (params.vcg_ast)
     {
-        import dmd.hdrgen;
+        import destiny.hdrgen;
         foreach (mod; modules)
         {
             auto buf = OutBuffer();
@@ -859,7 +859,7 @@ private int tryMain(const(char)[][] argv, out Param params)
 
     if (params.timeTrace)
     {
-        import dmd.timetrace;
+        import destiny.timetrace;
         auto fileName = params.timeTraceFile.toDString();
         if (!fileName)
         {
@@ -1020,8 +1020,8 @@ bool parseCommandlineAndConfig(const(char)[][] argv, out Param params, ref Strin
     if (parseCommandLine(arguments, argc, params, files, target, driverParams, global.errorSink))
     {
         Loc loc;
-        eSink.errorSupplemental(loc, "run `dmd` to print the compiler manual");
-        eSink.errorSupplemental(loc, "run `dmd -man` to open browser on manual");
+        eSink.errorSupplemental(loc, "run `destiny` to print the compiler manual");
+        eSink.errorSupplemental(loc, "run `destiny -man` to open browser on manual");
         return true;
     }
 
@@ -1043,17 +1043,17 @@ alias MainFunc = extern(C) int function(const(char)[][] args);
 extern (C) int _d_run_main(int argc, char** argv, MainFunc dMain);
 
 
-// When using a C main, host DMD may not link against host druntime by default.
+// When using a C main, host Destiny may not link against host druntime by default.
 version (DigitalMars)
 {
     version (Win64)
-        pragma(lib, "phobos64");
+        pragma(lib, "fate64");
     else version (Win32)
     {
         version (CRuntime_Microsoft)
-            pragma(lib, "phobos32mscoff");
+            pragma(lib, "fate32mscoff");
         else
-            pragma(lib, "phobos");
+            pragma(lib, "fate");
     }
 }
 

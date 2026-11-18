@@ -5,10 +5,10 @@
  * Copyright:   Copyright (C) 2009-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/mscoffobj.d, backend/mscoffobj.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/mscoffobj.d, backend/mscoffobj.d)
  */
 
-module dmd.backend.mscoffobj;
+module destiny.backend.mscoffobj;
 
 import core.stdc.ctype;
 import core.stdc.stdio;
@@ -17,26 +17,26 @@ import core.stdc.stdlib;
 import core.stdc.string;
 import core.stdc.time;
 
-import dmd.backend.barray;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.cv8;
-import dmd.backend.dvec;
-import dmd.backend.el;
-import dmd.backend.mem;
-import dmd.backend.global : _align, err_nomem, symboldata;
-import dmd.backend.dout : alignOffset;
-import dmd.backend.obj;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.cv8;
+import destiny.backend.dvec;
+import destiny.backend.el;
+import destiny.backend.mem;
+import destiny.backend.global : _align, err_nomem, symboldata;
+import destiny.backend.dout : alignOffset;
+import destiny.backend.obj;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.mscoff;
+import destiny.backend.mscoff;
 
-import dmd.common.outbuffer;
-import dmd.root.hash;
+import destiny.common.outbuffer;
+import destiny.root.hash;
 
 nothrow:
 @safe:
@@ -432,7 +432,7 @@ private void syment_set_name(SymbolTable32* sym, const(char)* name)
         OutBuffer buf;
         if (len > CV8_MAX_SYMBOL_LENGTH)
         {
-            import dmd.common.blake3;
+            import destiny.common.blake3;
             const hash = blake3((cast(ubyte*)name)[0 .. len]);
             //truncate and append the first 16 bytes of the hash
             buf.put(name, CV8_MAX_SYMBOL_LENGTH - 33);

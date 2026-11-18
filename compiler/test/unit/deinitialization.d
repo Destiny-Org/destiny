@@ -5,7 +5,7 @@ module deinitialization; @system:
 @("global.deinitialize")
 unittest
 {
-    import dmd.globals : global;
+    import destiny.globals : global;
 
     static void assertStructsEqual(T)(const ref T a, const ref T b)
     if (is(T == struct))
@@ -33,10 +33,10 @@ unittest
 @("Type.deinitialize")
 unittest
 {
-    import dmd.target : addDefaultVersionIdentifiers;
-    import dmd.mtype : Type;
-    import dmd.globals : global;
-    import dmd.typesem : Type_init;
+    import destiny.target : addDefaultVersionIdentifiers;
+    import destiny.mtype : Type;
+    import destiny.globals : global;
+    import destiny.typesem : Type_init;
 
     assert(Type.stringtable == Type.stringtable.init);
 
@@ -53,7 +53,7 @@ unittest
 @("Id.deinitialize")
 unittest
 {
-    import dmd.id : Id;
+    import destiny.id : Id;
 
     static void assertInitialState()
     {
@@ -75,7 +75,7 @@ unittest
 @("Module.deinitialize")
 unittest
 {
-    import dmd.dmodule : Module;
+    import destiny.dmodule : Module;
 
     assert(Module.modules is Module.modules.init);
 
@@ -88,9 +88,9 @@ unittest
 @("Target.deinitialize")
 unittest
 {
-    import dmd.globals : Param;
-    import dmd.dmdparams : setTargetBuildDefaults;
-    import dmd.target : target, Target;
+    import destiny.globals : Param;
+    import destiny.dmdparams : setTargetBuildDefaults;
+    import destiny.target : target, Target;
 
     static bool isFPTypeProperties(T)()
     {
@@ -126,7 +126,7 @@ unittest
 @("Expression.deinitialize")
 unittest
 {
-    import dmd.expression : Expression, CTFEExp;
+    import destiny.expression : Expression, CTFEExp;
 
     static void assertInitialState()
     {
@@ -149,7 +149,7 @@ unittest
 @("Objc.deinitialize")
 unittest
 {
-    import dmd.objc : Objc, objc;
+    import destiny.objc : Objc, objc;
 
     assert(objc is null);
 

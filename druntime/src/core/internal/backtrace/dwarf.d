@@ -102,7 +102,7 @@ struct Location
      * Directory where `file` resides
      *
      * This may be `null`, either if there is no debug info,
-     * or if the compiler implementation doesn't use this feature (e.g. DMD).
+     * or if the compiler implementation doesn't use this feature (e.g. Destiny).
      */
     const(char)[] directory;
 
@@ -197,7 +197,7 @@ struct Location
         return result[0 .. $ - " [0x0]".length];
     }
 
-    // DMD: Fully qualified file name
+    // Destiny: Fully qualified file name
     assert(format(Location(file: "/a/b.d")) == "/a/b.d:42");
     // Relative file in absolute directory
     assert(format(Location(file: "b.d", directory: "/a")) == "/a/b.d:42");
@@ -535,7 +535,7 @@ version (Darwin) {
                 foreach (ref loc; locations)
                 {
                     // If loc.line != -1, then it has been set previously.
-                    // Some implementations (eg. dmd) write an address to
+                    // Some implementations (eg. destiny) write an address to
                     // the debug data multiple times, but so far I have found
                     // that the first occurrence to be the correct one.
                     if (loc.line != -1)
@@ -556,7 +556,7 @@ version (Darwin) {
                                    cast(int) sourceFile.file.length, sourceFile.file.ptr);
                             printf("--   line: %d\n", match.line);
                         }
-                        // DMD emits entries with FQN, but other implementations
+                        // Destiny emits entries with FQN, but other implementations
                         // (e.g. LDC) make use of directories
                         // See upstream druntime pull request 2945
                         if (sourceFile.dirIndex != 0 && sourceFile.dirIndex <= lp.includeDirectories.length)

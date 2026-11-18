@@ -6,16 +6,16 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/fp.d, backend/fp.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/fp.d, backend/fp.d)
  *
  */
 
-module dmd.backend.fp;
+module destiny.backend.fp;
 
 import core.stdc.math;
 import core.stdc.fenv;
-import dmd.root.longdouble;
-import dmd.backend.cdef;
+import destiny.root.longdouble;
+import destiny.backend.cdef;
 
 
 nothrow:

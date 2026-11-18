@@ -1,12 +1,12 @@
 /**
  * Microsoft COFF object file format
  *
- * Source: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/mscoff.d, backend/_mscoff.d)
+ * Source: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/mscoff.d, backend/_mscoff.d)
  */
 
-module dmd.backend.mscoff;
+module destiny.backend.mscoff;
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/mscoff.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/mscoff.d
 
 @safe:
 align (1):

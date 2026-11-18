@@ -8,12 +8,12 @@
  *              Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/ty.d, backend/_ty.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/ty.d, backend/_ty.d)
  */
 
-module dmd.backend.ty;
+module destiny.backend.ty;
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/ty.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/ty.d
 
 @nogc:
 nothrow:
@@ -606,7 +606,7 @@ private enum tyequiv_init =
 /// Size of a type
 /// -1 means error
 
-import dmd.backend.cdef : CHARSIZE,SHORTSIZE,WCHARSIZE,LONGSIZE,LLONGSIZE,CENTSIZE,FLOATSIZE,DOUBLESIZE,TMAXSIZE;
+import destiny.backend.cdef : CHARSIZE,SHORTSIZE,WCHARSIZE,LONGSIZE,LLONGSIZE,CENTSIZE,FLOATSIZE,DOUBLESIZE,TMAXSIZE;
 
 __gshared byte[256] _tysize =
 [

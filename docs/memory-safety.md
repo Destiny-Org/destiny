@@ -92,6 +92,12 @@ upstream's default for the declarations after it:
 
 A `@system` written on the function itself is always exact.
 
+For a whole code base written for upstream D, the compiler switch
+`-revert=safedefault` restores upstream's default everywhere (the Destiny
+compiler uses it to build its own sources; see [self-hosting.md](self-hosting.md)).
+The libraries shipped with the compiler (druntime and Fate) keep the `@safe`
+default even then, since they are prebuilt with it.
+
 ```d
 @system:
 void raw(int* p) { p++; }          // @system: unchecked

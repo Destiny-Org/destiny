@@ -4,9 +4,9 @@ module support; @system:
 
 import core.stdc.stdarg : va_list;
 
-import dmd.console : Color;
-import dmd.frontend : DiagnosticReporter;
-import dmd.location;
+import destiny.console : Color;
+import destiny.frontend : DiagnosticReporter;
+import destiny.location;
 
 /// UDA used to indicate a function should be run before each test.
 enum beforeEach;
@@ -44,7 +44,7 @@ string[] defaultImportPaths()
 string stripDelimited(string str)
 {
     import std.string : chomp, outdent;
-    import dmd.root.string : stripLeadingLineTerminator;
+    import destiny.root.string : stripLeadingLineTerminator;
 
     return str
         .stripLeadingLineTerminator
@@ -54,7 +54,7 @@ string stripDelimited(string str)
 
 const struct CompilationResult
 {
-    import dmd.dmodule : Module;
+    import destiny.dmodule : Module;
 
     Diagnostic[] diagnostics;
     Module module_;
@@ -87,11 +87,11 @@ const struct CompilationResult
  */
 CompilationResult compiles(string code, string filename = "test.d")
 {
-    import dmd.globals : global;
+    import destiny.globals : global;
     import std.algorithm : each;
 
-    import dmd.frontend : addImport, fullSemantic, parseModule;
-    import dmd.errors : diagnosticHandler;
+    import destiny.frontend : addImport, fullSemantic, parseModule;
+    import destiny.errors : diagnosticHandler;
 
     defaultImportPaths.each!addImport;
     auto diagnosticCollector = DiagnosticCollector();
@@ -110,7 +110,7 @@ CompilationResult compiles(string code, string filename = "test.d")
 class NoopDiagnosticReporter : DiagnosticReporter
 {
     import core.stdc.stdarg : va_list;
-    import dmd.location;
+    import destiny.location;
 
     override int errorCount() { return 0; }
     override int warningCount() { return 0; }
@@ -134,7 +134,7 @@ const struct Diagnostic
 
     string toString() nothrow
     {
-        import dmd.common.outbuffer : OutBuffer;
+        import destiny.common.outbuffer : OutBuffer;
 
         auto buffer = OutBuffer();
         buffer.printf("%s: %.*s", location.toChars(true),
@@ -168,7 +168,7 @@ struct DiagnosticCollector
     {
         import std.array : replace;
         import std.string : strip;
-        import dmd.common.outbuffer : OutBuffer;
+        import destiny.common.outbuffer : OutBuffer;
 
         auto buffer = OutBuffer();
 

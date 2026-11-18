@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/module.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/module.h
  */
 
 #pragma once
@@ -148,7 +148,7 @@ struct ModuleDeclaration
     const char *toChars() const;
 };
 
-namespace dmd
+namespace destiny
 {
     void getLocalClasses(Module* mod, Array<ClassDeclaration* >& aclasses);
     FuncDeclaration *findGetMembers(ScopeDsymbol *dsym);

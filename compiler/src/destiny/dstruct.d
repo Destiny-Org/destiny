@@ -6,26 +6,26 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dstruct.d, _dstruct.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dstruct.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dstruct.d, _dstruct.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dstruct.d
  *
  */
 
-module dmd.dstruct;
+module destiny.dstruct;
 
 import core.stdc.stdio;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.dmodule;
-import dmd.dsymbol;
-import dmd.func;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.dmodule;
+import destiny.dsymbol;
+import destiny.func;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.visitor;
 
 enum StructFlags : int
 {
@@ -70,7 +70,7 @@ extern (C++) class StructDeclaration : AggregateDeclaration
         bool computedTypeProperties;// the above 3 fields are computed
     }
 
-    import dmd.common.bitfields : generateBitFields;
+    import destiny.common.bitfields : generateBitFields;
     mixin(generateBitFields!(BitFields, ushort));
 
     extern (D) this(Loc loc, Identifier id, bool inObject)

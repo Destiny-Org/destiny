@@ -4,80 +4,80 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/enumsem.d, _enumsem.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/enumsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/enumsem.d, _enumsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/enumsem.d
  *
  */
 
-module dmd.enumsem;
+module destiny.enumsem;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.aggregate;
-import dmd.aliasthis;
-import dmd.arraytypes;
-import dmd.astcodegen;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.blockexit;
-import dmd.clone;
-import dmd.cond;
-import dmd.compiler;
-import dmd.dcast;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dimport;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.dversion;
-import dmd.errorsink;
-import dmd.escape;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.id;
-import dmd.identifier;
-import dmd.importc;
-import dmd.init;
-import dmd.initsem;
-import dmd.intrange;
-import dmd.hdrgen;
-import dmd.location;
-import dmd.mtype;
-import dmd.mustuse;
-import dmd.nogc;
-import dmd.nspace;
-import dmd.objc;
-import dmd.opover;
-import dmd.optimize;
-import dmd.parse;
-import dmd.root.array;
-import dmd.root.filename;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.rootobject;
-import dmd.root.utf;
-import dmd.semantic2;
-import dmd.semantic3;
-import dmd.sideeffect;
-import dmd.statementsem;
-import dmd.staticassert;
-import dmd.tokens;
-import dmd.utils;
-import dmd.statement;
-import dmd.target;
-import dmd.templateparamsem;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.aliasthis;
+import destiny.arraytypes;
+import destiny.astcodegen;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.blockexit;
+import destiny.clone;
+import destiny.cond;
+import destiny.compiler;
+import destiny.dcast;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dimport;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.dversion;
+import destiny.errorsink;
+import destiny.escape;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.id;
+import destiny.identifier;
+import destiny.importc;
+import destiny.init;
+import destiny.initsem;
+import destiny.intrange;
+import destiny.hdrgen;
+import destiny.location;
+import destiny.mtype;
+import destiny.mustuse;
+import destiny.nogc;
+import destiny.nspace;
+import destiny.objc;
+import destiny.opover;
+import destiny.optimize;
+import destiny.parse;
+import destiny.root.array;
+import destiny.root.filename;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.rootobject;
+import destiny.root.utf;
+import destiny.semantic2;
+import destiny.semantic3;
+import destiny.sideeffect;
+import destiny.statementsem;
+import destiny.staticassert;
+import destiny.tokens;
+import destiny.utils;
+import destiny.statement;
+import destiny.target;
+import destiny.templateparamsem;
+import destiny.typesem;
+import destiny.visitor;
 
 
 /*********************************

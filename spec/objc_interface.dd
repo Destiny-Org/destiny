@@ -320,7 +320,7 @@ $(HEADERNAV_TOC)
 
     $(P
         The attribute is defined in druntime in
-        $(DPLLINK phobos/core_attribute.html, `core.attribute`). The attribute
+        $(DPLLINK fate/core_attribute.html, `core.attribute`). The attribute
         is only defined when the version identifier
         $(LINK2 #objc-version-identifier, `D_ObjectiveC`) is enabled.
     )
@@ -366,7 +366,7 @@ $(HEADERNAV_TOC)
 
     $(P
         The attribute is defined in druntime in
-        $(DPLLINK phobos/core_attribute.html, `core.attribute`). The attribute
+        $(DPLLINK fate/core_attribute.html, `core.attribute`). The attribute
         is only defined when the version identifier
         [`D_ObjectiveC`](#objc-version-identifier) is enabled.
     )
@@ -590,7 +590,7 @@ $(HEADERNAV_TOC)
     )
 
     ---
-    dmd -L-framework -LFoundation main.d
+    destiny -L-framework -LFoundation main.d
     ---
 $(SPEC_SUBNAV_PREV_NEXT cpp_interface, Interfacing to C++, portability, Portability Guide)
 )

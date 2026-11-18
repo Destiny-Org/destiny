@@ -10,37 +10,37 @@
  * Copyright:    Copyright (C) 2012-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cv8.d, backend/cv8.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cv8.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cv8.d, backend/cv8.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cv8.d
  *
  */
 
-module dmd.backend.cv8;
+module destiny.backend.cv8;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 extern (C) nothrow char* getcwd(char*, size_t);
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.cgcv;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.cv4;
-import dmd.backend.mem;
-import dmd.backend.el;
-import dmd.backend.mscoffobj;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.global : getFileContentsCallback;
-import dmd.common.outbuffer;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
-import dmd.backend.dvarstats;
-import dmd.root.filename : FileName;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.cgcv;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.cv4;
+import destiny.backend.mem;
+import destiny.backend.el;
+import destiny.backend.mscoffobj;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.global : getFileContentsCallback;
+import destiny.common.outbuffer;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
+import destiny.backend.dvarstats;
+import destiny.root.filename : FileName;
 
 
 nothrow:
@@ -1207,7 +1207,7 @@ bool cv8_filehash(const(char)* filename, ref ubyte[32] hash)
     if (!data)
         return false;
 
-    import dmd.common.sha;
+    import destiny.common.sha;
     SHA!(512, 256) md;
     md.start();
     md.put(data[0 .. length]);

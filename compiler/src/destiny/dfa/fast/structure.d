@@ -4,25 +4,25 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   $(LINK2 https://cattermole.co.nz, Richard (Rikki) Andrew Cattermole)
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/structure.d, dfa/fast/structure.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/structure.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/fast/structure.d, dfa/fast/structure.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/fast/structure.d
  *
  */
-module dmd.dfa.fast.structure;
-import dmd.dfa.utils;
-import dmd.common.outbuffer;
-import dmd.declaration;
-import dmd.statement;
-import dmd.func;
-import dmd.mtype;
-import dmd.typesem;
-import dmd.identifier;
-import dmd.globals : dinteger_t;
-import dmd.dsymbol;
-import dmd.location;
-import dmd.expression;
-import dmd.astenums;
-import dmd.id;
+module destiny.dfa.fast.structure;
+import destiny.dfa.utils;
+import destiny.common.outbuffer;
+import destiny.declaration;
+import destiny.statement;
+import destiny.func;
+import destiny.mtype;
+import destiny.typesem;
+import destiny.identifier;
+import destiny.globals : dinteger_t;
+import destiny.dsymbol;
+import destiny.location;
+import destiny.expression;
+import destiny.astenums;
+import destiny.id;
 import core.stdc.stdio;
 
 package static immutable PrintPipeText = "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||";
@@ -1220,7 +1220,7 @@ struct DFACommon
 
 struct DFAAllocator
 {
-    package(dmd.dfa)
+    package(destiny.dfa)
     {
         DFACommon* dfaCommon;
     }
@@ -1271,7 +1271,7 @@ struct DFAAllocator
 
     static void deinitialize()
     {
-        import dmd.root.rmem;
+        import destiny.root.rmem;
 
         while (lastRegion !is null)
         {
@@ -1606,7 +1606,7 @@ private:
     T* allocInternal(T)(ref T* freelist)
     {
         import core.stdc.string;
-        import dmd.root.rmem;
+        import destiny.root.rmem;
 
         T* ret = freelist;
 

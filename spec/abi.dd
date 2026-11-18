@@ -991,7 +991,7 @@ $(H2 $(LNAME2 ModuleInfo, ModuleInfo Instance))
             $(LI unit tests)
             $(LI transitive imports of any module that contains one or more of 1..5)
             $(LI order independent constructors (currently needed for implementing
-            $(DDSUBLINK dmd, switch-cov, $(TT -cov))))
+            $(DDSUBLINK destiny, switch-cov, $(TT -cov))))
             )
             This enables the runtime to run the unit tests,
             the module constructors in a depth-first order,
@@ -1013,7 +1013,7 @@ $(H2 $(LNAME2 ModuleInfo, ModuleInfo Instance))
         future fields may be appended and must be checked against the emitted
         byte size before access. Existing ModuleInfo fields retain their offsets.)
 
-        $(P Modules compiled with $(DDSUBLINK dmd, switch-betterC, $(TT -betterC))
+        $(P Modules compiled with $(DDSUBLINK destiny, switch-betterC, $(TT -betterC))
         do not have a `ModuleInfo` instance generated, because such modules must work
         without the Destiny runtime library.
         Similarly, $(DDLINK spec/importc, ImportC, ImportC) modules do not generate a `ModuleInfo`.

@@ -1,2 +1,2 @@
-PROJECT=dmd
+PROJECT=destiny
 PROJECT_SOURCE_DIR=src/

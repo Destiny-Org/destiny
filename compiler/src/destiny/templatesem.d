@@ -4,61 +4,61 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/templatesem.d, _templatesem.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/templatesem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/templatesem.d, _templatesem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/templatesem.d
  *
  */
 
-module dmd.templatesem;
+module destiny.templatesem;
 
 import core.stdc.stdio;
 import core.stdc.string;
-import dmd.aggregate;
-import dmd.aliasthis;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.ast_node;
-import dmd.attrib;
-import dmd.dcast;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.errors : fatal;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.impcnvtab;
-import dmd.init;
-import dmd.initsem;
-import dmd.location;
-import dmd.mtype;
-import dmd.opover;
-import dmd.optimize;
-import dmd.root.array;
-import dmd.root.string : toDString;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.semantic2;
-import dmd.semantic3;
-import dmd.templateparamsem;
-import dmd.timetrace;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.aliasthis;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.ast_node;
+import destiny.attrib;
+import destiny.dcast;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.errors : fatal;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.impcnvtab;
+import destiny.init;
+import destiny.initsem;
+import destiny.location;
+import destiny.mtype;
+import destiny.opover;
+import destiny.optimize;
+import destiny.root.array;
+import destiny.root.string : toDString;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.semantic2;
+import destiny.semantic3;
+import destiny.templateparamsem;
+import destiny.timetrace;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
 
-alias funcLeastAsSpecialized = dmd.funcsem.leastAsSpecialized;
+alias funcLeastAsSpecialized = destiny.funcsem.leastAsSpecialized;
 
 enum LOG = false;
 
@@ -556,7 +556,7 @@ bool declareParameter(TemplateParameter _this, Scope* sc)
  */
 private size_t arrayObjectHash(ref Objects oa1)
 {
-    import dmd.root.hash : mixHash;
+    import destiny.root.hash : mixHash;
 
     size_t hash = 0;
     foreach (o1; oa1)
@@ -586,8 +586,8 @@ private size_t arrayObjectHash(ref Objects oa1)
  */
 private size_t expressionHash(Expression e)
 {
-    import dmd.root.ctfloat : CTFloat;
-    import dmd.root.hash : calcHash, mixHash;
+    import destiny.root.ctfloat : CTFloat;
+    import destiny.root.hash : calcHash, mixHash;
 
     switch (e.op)
     {
@@ -748,7 +748,7 @@ void templateDeclarationSemantic(Scope* sc, TemplateDeclaration tempdecl)
     if (!sc)
         return;
 
-    import dmd.timetrace;
+    import destiny.timetrace;
     timeTraceBeginEvent(TimeTraceEventType.sema1TemplateDecl);
     scope (exit) timeTraceEndEvent(TimeTraceEventType.sema1TemplateDecl, tempdecl);
     // Remember templates defined in module object that we need to know about
@@ -1064,7 +1064,7 @@ void templateInstanceSemantic(TemplateInstance tempinst, Scope* sc, ArgumentList
          * in module scope (e,g, `alias Base64 = Base64Impl!('+', '/');`).
          * If the first instantiation 'inst' had happened in non-root module,
          * compiler can assume that its instantiated code would be included
-         * in the separately compiled obj/lib file (e.g. phobos.lib).
+         * in the separately compiled obj/lib file (e.g. fate.lib).
          *
          * However, if 'this' second instantiation happened in root module,
          * compiler might need to invoke its codegen
@@ -3019,12 +3019,12 @@ bool updateTempDecl(TemplateInstance ti, Scope* sc, Dsymbol s)
     if (!s.parent && global.errors)
         return false;
 
-    if (!s.parent && dmd.dsymbolsem.getType(s))
+    if (!s.parent && destiny.dsymbolsem.getType(s))
     {
-        Dsymbol s2 = dmd.dsymbolsem.getType(s).toDsymbol(sc);
+        Dsymbol s2 = destiny.dsymbolsem.getType(s).toDsymbol(sc);
         if (!s2)
         {
-            eSink.error(ti.loc, "`%s` is not a valid template instance, because `%s` is not a template declaration but a type (`%s == %s`)", ti.toErrMsg(), id.toErrMsg(), id.toErrMsg(), dmd.dsymbolsem.getType(s).kind());
+            eSink.error(ti.loc, "`%s` is not a valid template instance, because `%s` is not a template declaration but a type (`%s == %s`)", ti.toErrMsg(), id.toErrMsg(), id.toErrMsg(), destiny.dsymbolsem.getType(s).kind());
             return false;
         }
         // because s can be the alias created for a TemplateParameter
@@ -3322,7 +3322,7 @@ bool isDiscardable(TemplateInstance ti)
 
     // but if it passes through this gauntlet... it should be fine. D code will
     // see only the eponymous member, outside stuff can never access it, even through
-    // reflection; the outside world ought to be none the wiser. Even dmd should be
+    // reflection; the outside world ought to be none the wiser. Even destiny should be
     // able to simply free the memory of everything except the final result.
 
     return true;
@@ -3601,7 +3601,7 @@ private bool evaluateConstraint(TemplateDeclaration td, TemplateInstance ti, Sco
     td.lastConstraintTiargs = ti.tiargs;
     td.lastConstraintNegs.setDim(0);
 
-    import dmd.staticcond;
+    import destiny.staticcond;
 
     assert(ti.inst is null);
     ti.inst = ti; // temporary instantiation to enable genIdent()
@@ -3630,7 +3630,7 @@ private bool evaluateConstraint(TemplateDeclaration td, TemplateInstance ti, Sco
  */
 const(char)* getConstraintEvalError(TemplateDeclaration td, ref const(char)* tip)
 {
-    import dmd.staticcond;
+    import destiny.staticcond;
     // there will be a full tree view in verbose mode, and more compact list in the usual
     const full = global.params.v.verbose;
     uint count;
@@ -6721,7 +6721,7 @@ private MATCH deduceParentInstance(Scope* sc, Dsymbol sym, TypeInstance tpi,
     if (id.dyncast() != DYNCAST.identifier || !sym.ident.equals(cast(Identifier)id))
         return MATCH.nomatch;
 
-    Type tparent = dmd.dsymbolsem.getType(sym.parent);
+    Type tparent = destiny.dsymbolsem.getType(sym.parent);
     if (!tparent)
         return MATCH.nomatch;
 
@@ -6862,7 +6862,7 @@ MATCH deduceType(scope RootObject o, scope Scope* sc, scope Type tparam,
                             //printf("[%d] s = %s %s, s2 = %s %s\n", j, s.kind(), s.toChars(), s2.kind(), s2.toChars());
                             if (s != s2)
                             {
-                                if (Type tx = dmd.dsymbolsem.getType(s2))
+                                if (Type tx = destiny.dsymbolsem.getType(s2))
                                 {
                                     if (s != tx.toDsymbol(sc))
                                         goto Lnomatch;
@@ -6878,7 +6878,7 @@ MATCH deduceType(scope RootObject o, scope Scope* sc, scope Type tparam,
                     //printf("[e] s = %s\n", s?s.toChars():"(null)");
                     if (tp.isTemplateTypeParameter())
                     {
-                        Type tt = dmd.dsymbolsem.getType(s);
+                        Type tt = destiny.dsymbolsem.getType(s);
                         if (!tt)
                             goto Lnomatch;
                         Type at = cast(Type)(*dedtypes)[i];

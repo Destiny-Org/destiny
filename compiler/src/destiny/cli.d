@@ -1,5 +1,5 @@
 /**
- * Defines the help texts for the CLI options offered by DMD.
+ * Defines the help texts for the CLI options offered by Destiny.
  *
  * This file is not shared with other compilers which use the DMD front-end.
  * However, this file will be used to generate the
@@ -8,15 +8,15 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cli.d, _cli.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cli.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/cli.d, _cli.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/cli.d
  *
  */
-module dmd.cli;
+module destiny.cli;
 
 nothrow @safe:
 
-/* The enum TargetOS is an exact copy of the one in dmd.globals.
+/* The enum TargetOS is an exact copy of the one in destiny.globals.
  * Duplicated here because this file is stand-alone.
  */
 
@@ -180,7 +180,7 @@ struct Usage
                 $(LI $(LINK2 spec/statement.html#final-switch-statement/, Final switch errors)
                 call the C runtime library assert failure function
                 rather than a function in the D runtime.)
-                $(LI Does not automatically link with phobos runtime library.)
+                $(LI Does not automatically link with fate runtime library.)
                 $(UNIX
                 $(LI Does not generate Dwarf `eh_frame` with full unwinding information, i.e. exception tables
                 are not inserted into `eh_frame`.)
@@ -191,7 +191,7 @@ struct Usage
                 $(LINK2 $(ROOT_DIR)spec/class.html#StaticDestructor, destructors)
                 will not get called.)
                 $(LI `ModuleInfo` is not generated.)
-                $(LI $(LINK2 $(ROOT_DIR)phobos/object.html#.TypeInfo, `TypeInfo`)
+                $(LI $(LINK2 $(ROOT_DIR)fate/object.html#.TypeInfo, `TypeInfo`)
                 instances will not be generated for structs.)
             )",
         ),
@@ -280,7 +280,7 @@ struct Usage
             `Perform $(LINK2 $(ROOT_DIR)code_coverage.html, code coverage analysis) and generate
             $(TT .lst) file with report.)
 ---
-dmd -cov -unittest myprog.d
+destiny -cov -unittest myprog.d
 ---
             `,
         ),
@@ -493,7 +493,7 @@ dmd -cov -unittest myprog.d
              $(P The process of finding a module during the resolution of an import
              declaration involves several steps.
              $(UL
-                $(LI $(B Search paths): $(B dmd) searches for the module in all directories
+                $(LI $(B Search paths): $(B destiny) searches for the module in all directories
                 specified with the $(SWLINK -I) option in the following sequence:
                     $(OL
                         $(LI From the command line.)
@@ -556,7 +556,7 @@ dmd -cov -unittest myprog.d
             q"{$(P Enables "include imports" mode, where the compiler will include imported
              modules in the compilation, as if they were given on the command line. By default, when
              this option is enabled, all imported modules are included except those in
-             druntime/phobos. This behavior can be overridden by providing patterns via `-i=<pattern>`.
+             druntime/Fate. This behavior can be overridden by providing patterns via `-i=<pattern>`.
              A pattern of the form `-i=<package>` is an "inclusive pattern", whereas a pattern
              of the form `-i=-<package>` is an "exclusive pattern". Inclusive patterns will include
              all module's whose names match the pattern, whereas exclusive patterns will exclude them.
@@ -564,7 +564,7 @@ dmd -cov -unittest myprog.d
              using `-i=-foo.bar`. Note that each component of the fully qualified name must match the
              pattern completely, so the pattern `foo.bar` would not match a module named `foo.barx`.)
 
-             $(P The default behavior of excluding druntime/phobos is accomplished by internally adding a
+             $(P The default behavior of excluding druntime/Fate is accomplished by internally adding a
              set of standard exclusions, namely, `-i=-std -i=-core -i=-etc -i=-object`. Note that these
              can be overridden with `-i=std -i=core -i=etc -i=object`.)
 
@@ -641,7 +641,7 @@ dmd -cov -unittest myprog.d
         ),
         Option("m32",
             "generate 32 bit code",
-            `$(UNIX Compile a 32 bit executable. This is the default for the 32 bit dmd.)`,
+            `$(UNIX Compile a 32 bit executable. This is the default for the 32 bit destiny.)`,
             cast(TargetOS) (TargetOS.all & ~cast(uint)TargetOS.DragonFlyBSD)  // available on all OS'es except DragonFly, which does not support 32-bit binaries
         ),
         Option("m32mscoff",
@@ -650,7 +650,7 @@ dmd -cov -unittest myprog.d
         ),
         Option("m64",
             "generate 64 bit code",
-            `$(UNIX Compile a 64 bit executable. This is the default for the 64 bit dmd.)
+            `$(UNIX Compile a 64 bit executable. This is the default for the 64 bit destiny.)
             $(WINDOWS The generated object code is in MS-COFF and is meant to be used with the
             $(LINK2 https://msdn.microsoft.com/en-us/library/dd831853(v=vs.100).aspx, Microsoft Visual Studio 10)
             or later compiler.)`,
@@ -729,7 +729,7 @@ dmd -cov -unittest myprog.d
             shipped with Visual Studio 2015 (or later) and the Windows 10 SDK. The other
             usual alternatives are $(TT libcmtd), $(TT msvcrt) and $(TT msvcrtd).
             If no Universal CRT capable Visual C installation is detected, the UCRT-based
-            libraries bundled with DMD (the mingw $(TT ucrtbase.lib) and
+            libraries bundled with Destiny (the mingw $(TT ucrtbase.lib) and
             $(TT vcruntime140.lib)) are linked instead using the LLD linker provided by the
             LLVM project.
             If $(I libname) is empty, no C runtime library is automatically linked in.",
@@ -1073,6 +1073,7 @@ dmd -cov -unittest myprog.d
         "DIP25", true, true),
         Feature("intpromote", "fix16997", "revert integral promotions for unary + - ~ operators"),
         Feature("dtorfields", "dtorFields", "don't destruct fields of partially constructed objects"),
+        Feature("safedefault", "safeDefault", "unannotated functions are @system (upstream's default) instead of @safe"),
     ];
 
     /// Returns all available previews

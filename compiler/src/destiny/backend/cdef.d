@@ -8,20 +8,20 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cdef.d, backend/_cdef.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cdef.d, backend/_cdef.d)
  */
 
-module dmd.backend.cdef;
+module destiny.backend.cdef;
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cdef.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cdef.d
 
-import dmd.common.int128;
+import destiny.common.int128;
 
-import dmd.backend.cc: Classsym, param_t, config;
-import dmd.backend.el;
-import dmd.backend.symbol;
-import dmd.backend.ty : I32;
-import dmd.backend.global : REGSIZE;
+import destiny.backend.cc: Classsym, param_t, config;
+import destiny.backend.el;
+import destiny.backend.symbol;
+import destiny.backend.ty : I32;
+import destiny.backend.global : REGSIZE;
 
 @nogc:
 nothrow:
@@ -123,7 +123,7 @@ alias targ_llong = long;
 alias targ_ullong = ulong;
 alias targ_float = float;
 alias targ_double = double;
-public import dmd.root.longdouble : targ_real = longdouble;
+public import destiny.root.longdouble : targ_real = longdouble;
 
 // Extract most significant register from constant
 ulong MSREG(ulong p) { return (REGSIZE == 2) ? p >> 16 : ((targ_llong.sizeof == 8) ? p >> 32 : 0); }
@@ -537,7 +537,7 @@ struct con_t
  * Bootstrap complex types.
  */
 
-import dmd.backend.bcomplex;
+import destiny.backend.bcomplex;
 
 /*********************************
  * Union of all arithmetic data types. Storage allocated must be the right

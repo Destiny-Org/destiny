@@ -21,7 +21,7 @@ ln -s ../file ${OUTPUT_BASE}/import/file
 # ln can be disfunction when run via WSL
 if [[ -f ../file ]]
 then
-    $DMD -o- -od=${OUTPUT_BASE} -J=${OUTPUT_BASE}/import ${OUTPUT_BASE}/src.d
+    $DESTINY -o- -od=${OUTPUT_BASE} -J=${OUTPUT_BASE}/import ${OUTPUT_BASE}/src.d
 fi
 
 rm_retry -r ${OUTPUT_BASE}

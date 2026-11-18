@@ -5,12 +5,12 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/strtold.d, backend/strtold.c)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/strtold.d, backend/strtold.c)
  */
 
-module dmd.root.strtold;
+module destiny.root.strtold; @safe:
 
-import dmd.root.longdouble;
+import destiny.root.longdouble;
 import core.stdc.ctype;
 import core.stdc.errno;
 
@@ -392,7 +392,7 @@ longdouble strtold_ms(const(char) *p, char** pend)
     if (p[0] == '0' && (p[1] == 'x' || p[1] == 'X'))
     {
         // _atoldbl() limits hex exponents by decimal max/min eponents
-        import dmd.root.strtold;
+        import destiny.root.strtold;
         r = strtold_dm(p, pend);
     }
     else

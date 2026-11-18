@@ -6,22 +6,22 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/tokens.d, _tokens.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/tokens.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/tokens.d, _tokens.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/tokens.d
  *
  */
 
-module dmd.tokens;
+module destiny.tokens;
 
 import core.stdc.ctype;
 import core.stdc.stdio;
 import core.stdc.string;
-import dmd.identifier;
-import dmd.location;
-import dmd.root.ctfloat;
-import dmd.common.outbuffer;
-import dmd.root.rmem;
-import dmd.root.utf;
+import destiny.identifier;
+import destiny.location;
+import destiny.root.ctfloat;
+import destiny.common.outbuffer;
+import destiny.root.rmem;
+import destiny.root.utf;
 
 enum TOK : ubyte
 {

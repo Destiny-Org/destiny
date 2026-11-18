@@ -83,7 +83,7 @@ version (AArch64)
 
     void atomicSignalFence(MemoryOrder order = MemoryOrder.seq)() pure nothrow @nogc @trusted
     {
-        // no-op, dmd doesn't reorder instructions
+        // no-op, destiny doesn't reorder instructions
     }
 
     void pause() pure nothrow @nogc @trusted
@@ -652,7 +652,7 @@ else // X86 and X86_64
 
     void atomicSignalFence(MemoryOrder order = MemoryOrder.seq)() pure nothrow @nogc @trusted
     {
-        // no-op, dmd doesn't reorder instructions
+        // no-op, destiny doesn't reorder instructions
     }
 
     void pause() pure nothrow @nogc @trusted

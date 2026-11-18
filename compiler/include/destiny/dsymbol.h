@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/dsymbol.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/dsymbol.h
  */
 
 #pragma once
@@ -98,7 +98,7 @@ enum class ThreeState : uint8_t
     yes,          // value is true
 };
 
-namespace dmd
+namespace destiny
 {
     void dsymbolSemantic(Dsymbol *dsym, Scope *sc);
     void semantic2(Dsymbol *dsym, Scope *sc);
@@ -417,7 +417,7 @@ public:
     size_t length() const;
 };
 
-namespace dmd
+namespace destiny
 {
     void addMember(Dsymbol *dsym, Scope *sc, ScopeDsymbol *sds);
     Dsymbol *search(Dsymbol *d, Loc loc, Identifier *ident, SearchOptFlags flags = (SearchOptFlags)SearchOpt::localsOnly);

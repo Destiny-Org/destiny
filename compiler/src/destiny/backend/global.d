@@ -8,24 +8,24 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/global.d, backend/global.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/global.d, backend/global.d)
  */
-module dmd.backend.global;
+module destiny.backend.global;
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/global.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/global.d
 
 import core.stdc.stdio;
 import core.stdc.stdint;
 
-import dmd.backend.barray;
-import dmd.backend.cdef;
-import dmd.backend.cc : block, Classsym, BlockState, FL, Srcpos;
-import dmd.backend.code;
-import dmd.backend.el : elem;
-import dmd.backend.mem;
-import dmd.backend.symbol;
-import dmd.backend.ty : TYnptr, TYvoid, tybasic, tysize, _tysize;
-import dmd.backend.type;
+import destiny.backend.barray;
+import destiny.backend.cdef;
+import destiny.backend.cc : block, Classsym, BlockState, FL, Srcpos;
+import destiny.backend.code;
+import destiny.backend.el : elem;
+import destiny.backend.mem;
+import destiny.backend.symbol;
+import destiny.backend.ty : TYnptr, TYvoid, tybasic, tysize, _tysize;
+import destiny.backend.type;
 
 nothrow:
 @nogc:
@@ -33,14 +33,14 @@ nothrow:
 /// Callback for errors raised by the backend
 alias ErrorCallbackBackend = extern(C++) void function(const(char)* filename, uint linnum, uint charnum, const(char)* format, ...);
 
-package(dmd.backend) __gshared ErrorCallbackBackend errorCallbackBackend;
+package(destiny.backend) __gshared ErrorCallbackBackend errorCallbackBackend;
 
 /// Callback to fetch cached source-file contents from the front-end FileManager
 /// (Module.src), avoiding a re-read from disk. Returns a pointer to the bytes
 /// and sets `length`; returns null if the content is unavailable.
 alias GetFileContentsCallback = extern(C++) const(ubyte)* function(const(char)* filename, ref size_t length);
 
-package(dmd.backend) __gshared GetFileContentsCallback getFileContentsCallback;
+package(destiny.backend) __gshared GetFileContentsCallback getFileContentsCallback;
 
 /**
  * Backend error report function
@@ -95,7 +95,7 @@ targ_size_t size(tym_t ty)
     int sz = (tybasic(ty) == TYvoid) ? 1 : tysize(ty);
     debug
     {
-        import dmd.backend.debugprint : tym_str;
+        import destiny.backend.debugprint : tym_str;
         if (sz == -1)
             printf("ty: %s\n", tym_str(ty));
     }
@@ -108,7 +108,7 @@ targ_size_t size(tym_t ty)
  */
 Symbol* symboldata(targ_size_t offset, tym_t ty)
 {
-    import dmd.backend.symbol : symbol_generate;
+    import destiny.backend.symbol : symbol_generate;
     Symbol* s = symbol_generate(SC.locstat, type_fake(ty));
     s.Sfl = FL.data;
     s.Soffset = offset;
@@ -127,7 +127,7 @@ void util_free(void* p) { mem_free(p); }
 
 void err_nomem() @nogc nothrow @trusted
 {
-    import dmd.backend.util2 : err_exit;
+    import destiny.backend.util2 : err_exit;
     printf("Error: out of memory\n");
     err_exit();
 }

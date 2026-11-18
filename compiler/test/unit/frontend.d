@@ -6,7 +6,7 @@ import support : afterEach, defaultImportPaths;
 
 @afterEach deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }
 
@@ -15,10 +15,10 @@ unittest
 {
     import std.algorithm : each;
 
-    import dmd.astcodegen : ASTCodegen;
-    import dmd.dclass : ClassDeclaration;
-    import dmd.frontend;
-    import dmd.visitor : SemanticTimeTransitiveVisitor;
+    import destiny.astcodegen : ASTCodegen;
+    import destiny.dclass : ClassDeclaration;
+    import destiny.frontend;
+    import destiny.visitor : SemanticTimeTransitiveVisitor;
 
     static struct AST
     {
@@ -27,9 +27,9 @@ unittest
 
         extern (C++) static final class InterfaceDeclaration : ClassDeclaration
         {
-            import dmd.arraytypes : BaseClasses;
-            import dmd.identifier : Identifier;
-            import dmd.location;
+            import destiny.arraytypes : BaseClasses;
+            import destiny.identifier : Identifier;
+            import destiny.location;
 
             bool created = false;
 
@@ -72,7 +72,7 @@ unittest
 @("parseModule - invalid module name")
 unittest
 {
-    import dmd.frontend;
+    import destiny.frontend;
 
     initDMD();
 
@@ -88,7 +88,7 @@ unittest
 @("parseModule - missing package")
 unittest
 {
-    import dmd.frontend;
+    import destiny.frontend;
 
     initDMD();
 
@@ -106,11 +106,11 @@ unittest
 unittest
 {
     import std.conv : to;
-    import dmd.frontend;
+    import destiny.frontend;
 
-    import dmd.common.outbuffer;
-    import dmd.console : Color;
-    import dmd.location;
+    import destiny.common.outbuffer;
+    import destiny.console : Color;
+    import destiny.location;
     import core.stdc.stdarg : va_list;
 
     string[] diagnosticMessages;
@@ -168,8 +168,8 @@ unittest
 {
     import std.algorithm : each;
 
-    import dmd.frontend;
-    import dmd.globals : global;
+    import destiny.frontend;
+    import destiny.globals : global;
 
     initDMD();
     defaultImportPaths.each!addImport;
@@ -213,8 +213,8 @@ unittest
 {
     import std.algorithm : each;
 
-    import dmd.frontend;
-    import dmd.globals : global;
+    import destiny.frontend;
+    import destiny.globals : global;
 
     initDMD(null, null, ["Foo"]);
     defaultImportPaths.each!addImport;
@@ -244,10 +244,10 @@ unittest
 
     import core.stdc.stdarg : va_list;
 
-    import dmd.frontend;
-    import dmd.common.outbuffer;
-    import dmd.console : Color;
-    import dmd.location;
+    import destiny.frontend;
+    import destiny.common.outbuffer;
+    import destiny.console : Color;
+    import destiny.location;
 
     string[] diagnosticMessages;
 
@@ -280,8 +280,8 @@ unittest
     import std.algorithm : each;
     import std.path : dirName, buildPath;
 
-    import dmd.frontend;
-    import dmd.globals : global;
+    import destiny.frontend;
+    import destiny.globals : global;
 
     initDMD();
     defaultImportPaths.each!addImport;
@@ -304,8 +304,8 @@ unittest
 {
     import std.algorithm : each;
 
-    import dmd.frontend;
-    import dmd.globals : global;
+    import destiny.frontend;
+    import destiny.globals : global;
 
     initDMD();
     defaultImportPaths.each!addImport;
@@ -327,8 +327,8 @@ unittest
 {
     import std.algorithm : each;
 
-    import dmd.frontend;
-    import dmd.globals : global;
+    import destiny.frontend;
+    import destiny.globals : global;
 
     initDMD();
     defaultImportPaths.each!addImport;
@@ -360,11 +360,11 @@ unittest
 
     import core.stdc.stdarg : va_list;
 
-    import dmd.frontend;
-    import dmd.globals : global;
-    import dmd.common.outbuffer;
-    import dmd.console : Color;
-    import dmd.location;
+    import destiny.frontend;
+    import destiny.globals : global;
+    import destiny.common.outbuffer;
+    import destiny.console : Color;
+    import destiny.location;
 
     string[] diagnosticMessages;
 

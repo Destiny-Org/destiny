@@ -4,12 +4,12 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/tocvdebug.d, _tocvdebug.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/tocvdebug.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/tocvdebug.d, _tocvdebug.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/tocvdebug.d
  *
  */
 
-module dmd.glue.tocvdebug;
+module destiny.glue.tocvdebug;
 
 import core.stdc.stdio;
 import core.stdc.string;
@@ -17,44 +17,44 @@ import core.stdc.stddef;
 import core.stdc.stdlib;
 import core.stdc.time;
 
-import dmd.root.array;
-import dmd.root.rmem;
+import destiny.root.array;
+import destiny.root.rmem;
 
-import dmd.glue.toctype;
+import destiny.glue.toctype;
 
-import dmd.aggregate;
-import dmd.astenums;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dmodule;
-import dmd.dsymbol;
-import dmd.dsymbolsem : apply;
-import dmd.expressionsem : toInteger;
-import dmd.typesem;
-import dmd.dstruct;
-import dmd.dtemplate;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.id;
-import dmd.mtype;
-import dmd.target;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.astenums;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dmodule;
+import destiny.dsymbol;
+import destiny.dsymbolsem : apply;
+import destiny.expressionsem : toInteger;
+import destiny.typesem;
+import destiny.dstruct;
+import destiny.dtemplate;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.id;
+import destiny.mtype;
+import destiny.target;
+import destiny.visitor;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.cgcv;
-import dmd.backend.code;
-import dmd.backend.cv4;
-import dmd.backend.dt;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.cgcv;
+import destiny.backend.code;
+import destiny.backend.cv4;
+import destiny.backend.dt;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-package(dmd.glue):
+package(destiny.glue):
 
 /* The CV4 debug format is defined in:
  *      "CV4 Symbolic Debug Information Specification"

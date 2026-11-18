@@ -8,29 +8,29 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/gdag.d, backend/gdag.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/gdag.d, backend/gdag.d)
  *
  */
 
-module dmd.backend.gdag;
+module destiny.backend.gdag;
 
 import core.stdc.stdio;
 import core.stdc.time;
 
-import dmd.backend.backconfig : debugc;
-import dmd.backend.blockopt : BlockOpt, bo;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.oper;
-import dmd.backend.blockopt : blockopt, compdfo;
-import dmd.backend.debugprint : WReqn;
-import dmd.backend.go;
-import dmd.backend.el;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.backconfig : debugc;
+import destiny.backend.blockopt : BlockOpt, bo;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.oper;
+import destiny.backend.blockopt : blockopt, compdfo;
+import destiny.backend.debugprint : WReqn;
+import destiny.backend.go;
+import destiny.backend.el;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.dvec;
+import destiny.backend.dvec;
 
 
 nothrow:

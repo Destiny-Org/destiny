@@ -7,57 +7,57 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mars.d, _mars.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mars.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mars.d, _mars.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mars.d
  *
  */
 
-module dmd.mars;
+module destiny.mars;
 
 import core.stdc.ctype;
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.cond;
-import dmd.console;
-import dmd.compiler;
-import dmd.cpreprocess;
-import dmd.dmdparams;
-import dmd.dinifile;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.doc;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.dtemplate;
-import dmd.dtoh;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.inline;
-import dmd.location;
-import dmd.json;
-import dmd.mtype;
-import dmd.objc;
-import dmd.root.array;
-import dmd.root.file;
-import dmd.root.filename;
-import dmd.root.man;
-import dmd.common.outbuffer;
-import dmd.root.response;
-import dmd.root.rmem;
-import dmd.root.string;
-import dmd.root.stringtable;
-import dmd.semantic2;
-import dmd.semantic3;
-import dmd.target;
-import dmd.utils;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.cond;
+import destiny.console;
+import destiny.compiler;
+import destiny.cpreprocess;
+import destiny.dmdparams;
+import destiny.dinifile;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.doc;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.dtemplate;
+import destiny.dtoh;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.inline;
+import destiny.location;
+import destiny.json;
+import destiny.mtype;
+import destiny.objc;
+import destiny.root.array;
+import destiny.root.file;
+import destiny.root.filename;
+import destiny.root.man;
+import destiny.common.outbuffer;
+import destiny.root.response;
+import destiny.root.rmem;
+import destiny.root.string;
+import destiny.root.stringtable;
+import destiny.semantic2;
+import destiny.semantic3;
+import destiny.target;
+import destiny.utils;
 
 version (Windows)
     import core.sys.windows.winbase : getpid = GetCurrentProcessId;
@@ -67,7 +67,7 @@ else
     static assert(0);
 
 /**
- * Print DMD's logo to `buf`
+ * Print Destiny's logo to `buf`
  * Params:
  *   buf = output stream to print the information to
  */
@@ -108,13 +108,13 @@ void printInternalFailure(ref OutBuffer buf)
 }
 
 /**
- * Print DMD's usage message to `buf`
+ * Print Destiny's usage message to `buf`
  * Params:
  *   buf = output stream to print the information to
  */
 void usage(ref OutBuffer buf)
 {
-    import dmd.cli : CLIUsage;
+    import destiny.cli : CLIUsage;
     logo(buf);
     auto help = CLIUsage.usage;
     const inifileCanon = FileName.canonicalName(global.inifilename);
@@ -188,7 +188,7 @@ version (DigitalMars)
 {
     void installMemErrHandler()
     {
-        // (only available on some platforms on DMD)
+        // (only available on some platforms on Destiny)
         const shouldDoMemoryError = getenv("DMD_INSTALL_MEMERR_HANDLER");
         if (shouldDoMemoryError !is null && *shouldDoMemoryError == '1')
         {
@@ -387,15 +387,15 @@ void setDefaultLibraries(const ref Target target, ref const(char)[] defaultlibna
     {
         if (target.os == Target.OS.Windows)
         {
-            defaultlibname = target.isX86_64 ? "phobos64" : "phobos32mscoff";
+            defaultlibname = target.isX86_64 ? "fate64" : "fate32mscoff";
         }
         else if (target.os & (Target.OS.linux | Target.OS.FreeBSD | Target.OS.OpenBSD | Target.OS.Solaris | Target.OS.DragonFlyBSD | Target.OS.Hurd))
         {
-            defaultlibname = "libphobos2.a";
+            defaultlibname = "libfate.a";
         }
         else if (target.os == Target.OS.OSX)
         {
-            defaultlibname = "phobos2";
+            defaultlibname = "fate";
         }
         else
         {
@@ -468,7 +468,7 @@ void printGlobalConfig(ref OutBuffer buf)
 
 /**************************************
  * we want to write the mixin expansion file also on error, but there
- * are too many ways to terminate dmd (e.g. fatal() which calls exit(EXIT_FAILURE)),
+ * are too many ways to terminate destiny (e.g. fatal() which calls exit(EXIT_FAILURE)),
  * so we can't rely on scope(exit) ... in tryMain() actually being executed
  * so we add atexit(&flushMixins); for those fatal exits (with the GC still valid)
  */
@@ -513,13 +513,13 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
     }
     else version (IN_LLVM)
     {
-        import dmd.console : detectTerminal;
+        import destiny.console : detectTerminal;
         params.v.color = detectTerminal();
     }
     else // MARS
     {
         // -color=auto is the default value
-        import dmd.console : detectTerminal, detectColorPreference;
+        import destiny.console : detectTerminal, detectColorPreference;
         params.v.color = detectTerminal() && detectColorPreference();
     }
 
@@ -601,7 +601,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
         };
     }
 
-    import dmd.cli : Usage;
+    import destiny.cli : Usage;
     bool parseCLIOption(string name, Usage.Feature[] features)(ref Param params, const(char)[] p)
     {
         // Parse:
@@ -612,7 +612,7 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
         {
             string generateTransitionsText()
             {
-                import dmd.cli : Usage;
+                import destiny.cli : Usage;
                 string buf = `case "all":`;
                 foreach (t; features)
                 {

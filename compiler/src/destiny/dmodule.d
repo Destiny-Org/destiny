@@ -6,45 +6,45 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dmodule.d, _dmodule.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dmodule.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dmodule.d, _dmodule.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dmodule.d
  *
  */
 
-module dmd.dmodule;
+module destiny.dmodule;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astcodegen;
-import dmd.astenums;
-import dmd.common.outbuffer;
-import dmd.compiler;
-import dmd.cparse;
-import dmd.declaration;
-import dmd.dmacro;
-import dmd.dsymbol;
-import dmd.errors : fatal;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.file_manager;
-import dmd.func;
-import dmd.globals;
-import dmd.hdrgen : toErrMsg;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.parse;
-import dmd.root.array;
-import dmd.root.file;
-import dmd.root.filename;
-import dmd.root.port;
-import dmd.root.string;
-import dmd.target;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astcodegen;
+import destiny.astenums;
+import destiny.common.outbuffer;
+import destiny.compiler;
+import destiny.cparse;
+import destiny.declaration;
+import destiny.dmacro;
+import destiny.dsymbol;
+import destiny.errors : fatal;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.file_manager;
+import destiny.func;
+import destiny.globals;
+import destiny.hdrgen : toErrMsg;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.parse;
+import destiny.root.array;
+import destiny.root.file;
+import destiny.root.filename;
+import destiny.root.port;
+import destiny.root.string;
+import destiny.target;
+import destiny.visitor;
 
 version (Windows)
 {
@@ -695,7 +695,7 @@ extern (C++) final class Module : Package
         //printf("Module::parse(srcname = '%s')\n", srcname);
         auto eSink = global.errorSink;
 
-        import dmd.timetrace;
+        import destiny.timetrace;
         timeTraceBeginEvent(TimeTraceEventType.parse);
         scope (exit) timeTraceEndEvent(TimeTraceEventType.parse, this);
 

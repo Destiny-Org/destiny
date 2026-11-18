@@ -7,11 +7,11 @@
  *
  * Translation to D of Linux's melf.h
  *
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/melf.d, backend/melf.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/melf.d, backend/melf.d)
  * References:  $(LINK2 https://github.com/ARM-software/abi-aa/blob/main/aaelf64/aaelf64.rst, aaelf64)
  */
 
-module dmd.backend.melf;
+module destiny.backend.melf;
 
 /* ELF file format */
 

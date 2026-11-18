@@ -6,34 +6,34 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/statement.d, _statement.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/statement.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/statement.d, _statement.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/statement.d
  *
  */
 
-module dmd.statement;
+module destiny.statement;
 
 import core.stdc.stdarg;
 import core.stdc.stdio;
 
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.ast_node;
-import dmd.cond;
-import dmd.declaration;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.expression;
-import dmd.func;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.rootobject;
-import dmd.staticassert;
-import dmd.tokens;
-import dmd.visitor;
-import dmd.visitor.postorder;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.ast_node;
+import destiny.cond;
+import destiny.declaration;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.expression;
+import destiny.func;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.rootobject;
+import destiny.staticassert;
+import destiny.tokens;
+import destiny.visitor;
+import destiny.visitor.postorder;
 
 /***********************************************************
  * Specification: https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
@@ -330,11 +330,11 @@ extern (C++) final class ErrorStatement : Statement
         super(loc, STMT.Error);
     }
 
-    // unused default arg is for DMD as a library to hook this function to save
+    // unused default arg is for Destiny as a library to hook this function to save
     // the original statement to provide diagnostics for
     static ErrorStatement get(Statement orig = null)
     {
-        import dmd.globals;
+        import destiny.globals;
         assert(global.gaggedErrors || global.errors);
         return errorstmt;
     }
@@ -671,7 +671,7 @@ extern (C++) final class ScopeStatement : Statement
  * local scope and forwards other members to the parent scope.  This
  * wraps a statement.
  *
- * Also see: `dmd.attrib.ForwardingAttribDeclaration`
+ * Also see: `destiny.attrib.ForwardingAttribDeclaration`
  */
 extern (C++) final class ForwardingStatement : Statement
 {
@@ -1776,7 +1776,7 @@ extern (C++) class AsmStatement : Statement
     bool isVolatile;     // ImportC asm "volatile"
     bool isInline;       // ImportC asm "inline"
     }
-    import dmd.common.bitfields;
+    import destiny.common.bitfields;
     mixin(generateBitFields!(BitFields, ubyte));
 
     extern (D) this(Loc loc, Token* tokens) @safe

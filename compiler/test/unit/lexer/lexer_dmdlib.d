@@ -1,8 +1,8 @@
 module lexer.lexer_dmdlib; @system:
 
-import dmd.lexer : Lexer;
-import dmd.tokens : TOK;
-import dmd.errorsink;
+import destiny.lexer : Lexer;
+import destiny.tokens : TOK;
+import destiny.errorsink;
 
 /// Test that lexing `code` generates the `expected` tokens
 private void test(string code, const TOK[] expected, bool keepComments = false, bool keepWhitespace = false)
@@ -238,11 +238,11 @@ unittest
 
     import core.stdc.stdarg : va_list;
 
-    import dmd.frontend;
-    import dmd.location;
-    import dmd.common.outbuffer;
-    import dmd.console : Color;
-    import dmd.errors;
+    import destiny.frontend;
+    import destiny.location;
+    import destiny.common.outbuffer;
+    import destiny.console : Color;
+    import destiny.errors;
 
     const(char)[][2][] diagnosticMessages;
     nothrow bool diagnosticHandler(const ref SourceLoc loc, Color headerColor, const(char)* header,

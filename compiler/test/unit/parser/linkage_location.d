@@ -1,9 +1,9 @@
 module parser.linkage_location; @system:
 
-import dmd.frontend : parseModule, initDMD, deinitializeDMD;
-import dmd.attrib : CPPMangleDeclaration, CPPNamespaceDeclaration, LinkDeclaration;
-import dmd.location;
-import dmd.visitor : SemanticTimeTransitiveVisitor;
+import destiny.frontend : parseModule, initDMD, deinitializeDMD;
+import destiny.attrib : CPPMangleDeclaration, CPPNamespaceDeclaration, LinkDeclaration;
+import destiny.location;
+import destiny.visitor : SemanticTimeTransitiveVisitor;
 
 extern (C++) static class LinkVisitor : SemanticTimeTransitiveVisitor
 {

@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/doc.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/doc.h
  */
 
 #pragma once
@@ -15,7 +15,7 @@
 class Module;
 class ErrorSink;
 
-namespace dmd
+namespace destiny
 {
     void gendocfile(Module *m, const char *ddoctext_ptr, d_size_t ddoctext_length,
                     const char *datetime, ErrorSink *eSink, OutBuffer &outbuf);

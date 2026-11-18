@@ -4,8 +4,8 @@ REQUIRED_ARGS: -makedeps=${RESULTS_DIR}/compilable/makedeps.dep -makedeps=other-
 TEST_OUTPUT:
 ---
 Error: -makedeps[=file] can only be provided once!
-       run `dmd` to print the compiler manual
-       run `dmd -man` to open browser on manual
+       run `destiny` to print the compiler manual
+       run `destiny -man` to open browser on manual
 ---
 */
 module makedeps_doubleparam;

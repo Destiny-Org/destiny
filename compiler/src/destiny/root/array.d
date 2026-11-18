@@ -5,18 +5,18 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/array.d, root/_array.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/array.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/array.d, root/_array.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/array.d
  *
  */
 
-module dmd.root.array;
+module destiny.root.array;
 
 import core.stdc.stdlib : _compare_fp_t;
 import core.stdc.string;
 
-import dmd.root.rmem;
-import dmd.root.string : toDString;
+import destiny.root.rmem;
+import destiny.root.string : toDString;
 
 // `qsort` is only `nothrow` since 2.081.0
 private extern(C) void qsort(scope void* base, size_t nmemb, size_t size, _compare_fp_t compar) nothrow @nogc;
@@ -653,7 +653,7 @@ unittest
 unittest
 {
     //test toString/toChars.  Identifier is a simple object that has a usable .toString
-    import dmd.identifier : Identifier;
+    import destiny.identifier : Identifier;
     import core.stdc.string : strcmp;
 
     auto array = Array!Identifier();
@@ -740,7 +740,7 @@ unittest
  *  callable = the callable to call for each element
  *  array = the array to iterate
  *
- * See_Also: $(REF foreachDsymbol, dmd, dsymbol)
+ * See_Also: $(REF foreachDsymbol, destiny, dsymbol)
  */
 template each(alias callable, T)
 if (is(ReturnType!(typeof((T t) => callable(t))) == void))
@@ -829,7 +829,7 @@ if (is(ReturnType!(typeof((T t) => callable(t))) == void))
  *  array = the array to iterate
  *
  * Returns: the last value returned by `callable`
- * See_Also: $(REF foreachDsymbol, dmd, dsymbol)
+ * See_Also: $(REF foreachDsymbol, destiny, dsymbol)
  */
 template each(alias callable, T)
 if (is(ReturnType!(typeof((T t) => callable(t))) == int))
@@ -1264,7 +1264,7 @@ pure nothrow @nogc @safe unittest
 pure nothrow unittest
 {
     //check to make sure that this works with the aliases in arraytypes.d
-    import dmd.rootobject;
+    import destiny.rootobject;
     alias Objects = Array!RootObject;
 
     auto ro1 = new RootObject();

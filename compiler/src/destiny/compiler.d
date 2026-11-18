@@ -4,28 +4,28 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/compiler.d, _compiler.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/compiler.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/compiler.d, _compiler.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/compiler.d
  *
  */
 
-module dmd.compiler;
+module destiny.compiler;
 
 import core.stdc.string;
 
-import dmd.astenums;
-import dmd.arraytypes;
-import dmd.ctfeexpr;
-import dmd.dmodule;
-import dmd.expression;
-import dmd.expressionsem : toInteger, toReal;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.typesem;
-import dmd.root.array;
-import dmd.root.ctfloat;
+import destiny.astenums;
+import destiny.arraytypes;
+import destiny.ctfeexpr;
+import destiny.dmodule;
+import destiny.expression;
+import destiny.expressionsem : toInteger, toReal;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.typesem;
+import destiny.root.array;
+import destiny.root.ctfloat;
 
 version (DMDLIB)
 {
@@ -143,7 +143,7 @@ extern (C++) struct Compiler
             if (includeImportedModuleCheck(ModuleComponentRange(
                 m.md ? m.md.packages : [], m.ident, m.isPackageFile)))
             {
-                import dmd.globals;
+                import destiny.globals;
                 if (global.params.v.verbose)
                 {
                     auto eSink = global.errorSink;
@@ -158,21 +158,21 @@ extern (C++) struct Compiler
 
     version (CallbackAPI)
     {
-        import dmd.statement;
-        import dmd.dscope;
+        import destiny.statement;
+        import destiny.dscope;
         alias OnStatementSemanticStart = void function(Statement, Scope*);
         alias OnStatementSemanticDone = void function(Statement, Scope*);
 
         /**
          * Used to insert functionality before the start of the
-         * semantic analysis of a statement when importing DMD as a library
+         * semantic analysis of a statement when importing Destiny as a library
          */
         __gshared OnStatementSemanticStart onStatementSemanticStart
                     = function void(Statement s, Scope* sc) {};
 
         /**
          * Used to insert functionality after the end of the
-         * semantic analysis of a statement when importing DMD as a library
+         * semantic analysis of a statement when importing Destiny as a library
          */
         __gshared OnStatementSemanticDone onStatementSemanticDone
                     = function void(Statement s, Scope* sc) {};

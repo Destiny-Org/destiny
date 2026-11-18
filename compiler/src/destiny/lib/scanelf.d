@@ -4,20 +4,20 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/lib/scanelf.d, _scanelf.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/lib/scanelf.d, _scanelf.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.lib.scanelf;
+module destiny.lib.scanelf;
 
 import core.stdc.string;
 import core.stdc.stdint;
 import core.checkedint;
 
-import dmd.errorsink;
-import dmd.location;
-import dmd.root.string : fTuple;
+import destiny.errorsink;
+import destiny.location;
+import destiny.root.string : fTuple;
 
 nothrow:
 
@@ -33,7 +33,7 @@ enum LOG = false;
  *      filename =    object file name for error printing
  *      eSink =       where the error messages go
  */
-package(dmd.lib)
+package(destiny.lib)
 void scanElfObjModule(scope void delegate(const(char)[] name, int pickAny) nothrow pAddSymbol,
         scope const ubyte[] base, const char* module_name, const(char)[] filename, ErrorSink eSink)
 {

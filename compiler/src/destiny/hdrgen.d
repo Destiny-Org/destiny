@@ -6,50 +6,50 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/hdrgen.d, _hdrgen.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/hdrgen.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/hdrgen.d, _hdrgen.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/hdrgen.d
  *
  */
 
-module dmd.hdrgen;
+module destiny.hdrgen;
 
 import core.stdc.ctype;
 import core.stdc.stdio;
 import core.stdc.string;
-import dmd.aggregate;
-import dmd.aliasthis;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.cond;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dimport;
-import dmd.dmodule;
-import dmd.doc;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dtemplate;
-import dmd.dversion;
-import dmd.expression;
-import dmd.func;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.mtype;
-import dmd.nspace;
-import dmd.optimize;
-import dmd.parse;
-import dmd.root.complex;
-import dmd.root.ctfloat;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.root.string;
-import dmd.statement;
-import dmd.staticassert;
-import dmd.tokens;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.aliasthis;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.cond;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dimport;
+import destiny.dmodule;
+import destiny.doc;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dtemplate;
+import destiny.dversion;
+import destiny.expression;
+import destiny.func;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.mtype;
+import destiny.nspace;
+import destiny.optimize;
+import destiny.parse;
+import destiny.root.complex;
+import destiny.root.ctfloat;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.root.string;
+import destiny.statement;
+import destiny.staticassert;
+import destiny.tokens;
+import destiny.visitor;
 
 struct HdrGenState
 {
@@ -2678,7 +2678,7 @@ private void expressionPrettyPrint(Expression e, ref OutBuffer buf, ref HdrGenSt
 
     void visitDeclaration(DeclarationExp e)
     {
-        /* Normal dmd execution won't reach here - regular variable declarations
+        /* Normal destiny execution won't reach here - regular variable declarations
          * are handled in visit(ExpStatement), so here would be used only when
          * we'll directly call Expression.toChars() for debugging.
          */

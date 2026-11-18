@@ -4,37 +4,37 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/optimize.d, _optimize.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/optimize.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/optimize.d, _optimize.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/optimize.d
  *
  */
 
-module dmd.optimize;
+module destiny.optimize;
 
 import core.stdc.stdio;
 
-import dmd.astenums;
-import dmd.constfold;
-import dmd.ctfeexpr;
-import dmd.dcast;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.printast;
-import dmd.root.ctfloat;
-import dmd.sideeffect;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.astenums;
+import destiny.constfold;
+import destiny.ctfeexpr;
+import destiny.dcast;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.printast;
+import destiny.root.ctfloat;
+import destiny.sideeffect;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
 
 /*************************************
  * If variable has a const initializer,
@@ -104,7 +104,7 @@ Expression expandVar(int result, VarDeclaration v)
                 {
                     if (v.storage_class & STC.manifest)
                     {
-                        eSink.error(v.loc, "%s `%s` enum cannot be initialized with `%s`", v.kind, v.toPrettyChars, dmd.hdrgen.toChars(v._init));
+                        eSink.error(v.loc, "%s `%s` enum cannot be initialized with `%s`", v.kind, v.toPrettyChars, destiny.hdrgen.toChars(v._init));
                         return errorReturn();
                     }
                     return nullReturn();
@@ -866,8 +866,8 @@ Expression optimize(Expression e, int result, bool keepLvalue = false)
         }
         if (e.type.ty == Tclass && e.e1.type.ty == Tclass)
         {
-            import dmd.astenums : Sizeok;
-            import dmd.aggregate : ClassKind;
+            import destiny.astenums : Sizeok;
+            import destiny.aggregate : ClassKind;
 
             // See if we can remove an unnecessary cast
             ClassDeclaration cdfrom = e.e1.type.isClassHandle();

@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/mtype.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/mtype.h
  */
 
 #pragma once
@@ -42,7 +42,7 @@ typedef union tree_node type;
 typedef struct TYPE type;
 #endif
 
-namespace dmd
+namespace destiny
 {
     void Type_init();
     Type *typeSemantic(Type *t, Loc loc, Scope *sc);
@@ -220,7 +220,7 @@ public:
 
     static Type *basic[(int)TY::TMAX];
 
-    static void _init() { return dmd::Type_init(); }
+    static void _init() { return destiny::Type_init(); }
 
     virtual const char *kind() const;
     Type *copy() const;
@@ -248,9 +248,9 @@ public:
     bool isNaked() const       { return mod == 0; }
     Type *nullAttributes() const;
 
-    Type *toBasetype() { return dmd::toBasetype(this); }
-    Type *nextOf()     { return dmd::nextOf(this); }
-    Type *baseElemOf() { return dmd::baseElemOf(this); }
+    Type *toBasetype() { return destiny::toBasetype(this); }
+    Type *nextOf()     { return destiny::nextOf(this); }
+    Type *baseElemOf() { return destiny::baseElemOf(this); }
 
     virtual ClassDeclaration *isClassHandle();
     virtual int hasWild() const;
@@ -713,7 +713,7 @@ public:
 
 /**************************************************************/
 
-namespace dmd
+namespace destiny
 {
     // If the type is a class or struct, returns the symbol for it, else null.
     AggregateDeclaration *isAggregate(Type *t);

@@ -7,20 +7,20 @@
  * Copyright:   Copyright (C) 2015-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     Rainer Schuetze
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/dvarstats.d, backend/dvarstats.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/dvarstats.d, backend/dvarstats.d)
  */
 
-module dmd.backend.dvarstats;
+module destiny.backend.dvarstats;
 
 import core.stdc.string;
 import core.stdc.stdlib;
 
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.barray;
 
 
 nothrow:
@@ -30,7 +30,7 @@ extern(C) void qsort(void* base, size_t nmemb, size_t size, _compare_fp_t compar
 
 version (all) // free function version
 {
-    import dmd.backend.dvarstats;
+    import destiny.backend.dvarstats;
 
     void varStats_writeSymbolTable(Symbol* sfn, ref symtab_t symtab,
             void function(Symbol*) nothrow fnWriteVar, void function() nothrow fnEndArgs,

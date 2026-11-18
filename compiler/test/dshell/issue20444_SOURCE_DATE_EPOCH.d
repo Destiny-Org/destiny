@@ -14,7 +14,7 @@ void main ()
     ];
 
     const output = shellExpand("$OUTPUT_BASE/source_date_epoch.txt");
-    run("$DMD -m$MODEL -o- -c $EXTRA_FILES/source_date_epoch.d", stdout, File(output, "wb"), env);
+    run("$DESTINY -m$MODEL -o- -c $EXTRA_FILES/source_date_epoch.d", stdout, File(output, "wb"), env);
     const result = readText(output).filterCompilerOutput;
     assert(result == expected, result);
 }

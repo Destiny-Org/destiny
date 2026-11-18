@@ -9,7 +9,7 @@ $(DL
         $(DD The Destiny compiler is matched to the Associated C Compiler.
         For example, on Win32 ImportC is matched to the Digital Mars C compiler,
         and can be matched to the Visual C compiler using the
-        command line switch $(DDSUBLINK dmd, switch-m32mscoff, $(TT -m32mscoff)).
+        command line switch $(DDSUBLINK destiny, switch-m32mscoff, $(TT -m32mscoff)).
         Win64 ImportC is matched to the Visual C compiler.
         On Posix targets, the matching C compiler is Gnu C or Clang C.
         )

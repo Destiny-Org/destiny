@@ -2,11 +2,11 @@
 
 
 
-$DMD -m${MODEL} -I${TEST_DIR} -od${RESULTS_TEST_DIR} -c ${EXTRA_FILES}/test35.d
+$DESTINY -m${MODEL} -I${TEST_DIR} -od${RESULTS_TEST_DIR} -c ${EXTRA_FILES}/test35.d
 
-$DMD -m${MODEL} -od${RESULTS_TEST_DIR} -c -release ${TEST_DIR}/imports/test35a.d
+$DESTINY -m${MODEL} -od${RESULTS_TEST_DIR} -c -release ${TEST_DIR}/imports/test35a.d
 
-$DMD -m${MODEL} -of${OUTPUT_BASE}${EXE} ${OUTPUT_BASE}${OBJ} ${OUTPUT_BASE}a${OBJ}
+$DESTINY -m${MODEL} -of${OUTPUT_BASE}${EXE} ${OUTPUT_BASE}${OBJ} ${OUTPUT_BASE}a${OBJ}
 
 ${OUTPUT_BASE}${EXE}
 

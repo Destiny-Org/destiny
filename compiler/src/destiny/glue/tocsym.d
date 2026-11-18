@@ -4,65 +4,65 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/tocsym.d, _tocsym.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/tocsym.d, _tocsym.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.glue.tocsym;
+module destiny.glue.tocsym;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.root.array;
-import dmd.root.complex;
-import dmd.root.rmem;
+import destiny.root.array;
+import destiny.root.complex;
+import destiny.root.rmem;
 
-import dmd.glue.e2ir;
-import dmd.glue.toctype;
-import dmd.glue.todt;
-import dmd.glue.toir;
+import destiny.glue.e2ir;
+import destiny.glue.toctype;
+import destiny.glue.todt;
+import destiny.glue.toir;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.ctfeexpr;
-import dmd.declaration;
-import dmd.dclass;
-import dmd.denum;
-import dmd.dmdparams;
-import dmd.dmodule;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem : vtblSymbol;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.glue;
-import dmd.identifier;
-import dmd.id;
-import dmd.init;
-import dmd.location;
-import dmd.mangle;
-import dmd.mtype;
-import dmd.safe : isSafe;
-import dmd.target;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.ctfeexpr;
+import destiny.declaration;
+import destiny.dclass;
+import destiny.denum;
+import destiny.dmdparams;
+import destiny.dmodule;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem : vtblSymbol;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.glue;
+import destiny.identifier;
+import destiny.id;
+import destiny.init;
+import destiny.location;
+import destiny.mangle;
+import destiny.mtype;
+import destiny.safe : isSafe;
+import destiny.target;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.visitor;
 
-import dmd.backend.cdef;
-import dmd.backend.cc;
-import dmd.backend.dt;
-import dmd.backend.type;
-import dmd.backend.dout : outdata, outthunk;
-import dmd.backend.oper;
-import dmd.backend.cgcv;
-import dmd.backend.symbol;
-import dmd.backend.ty;
+import destiny.backend.cdef;
+import destiny.backend.cc;
+import destiny.backend.dt;
+import destiny.backend.type;
+import destiny.backend.dout : outdata, outthunk;
+import destiny.backend.oper;
+import destiny.backend.cgcv;
+import destiny.backend.symbol;
+import destiny.backend.ty;
 
 /*************************************
  * Create a backend symbol from a D symbol.
@@ -75,11 +75,11 @@ import dmd.backend.ty;
  * Returns:
  *      generated backend symbol
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toSymbolX(Dsymbol ds, const(char)* prefix, SC sclass, type* t, const(char)* suffix)
 {
     //printf("Dsymbol::toSymbolX('%s')\n", prefix);
-    import dmd.common.outbuffer : OutBuffer;
+    import destiny.common.outbuffer : OutBuffer;
     OutBuffer buf;
     buf.writestring("_D");
     mangleToBuffer(ds, buf);
@@ -110,7 +110,7 @@ Symbol* toSymbolX(Dsymbol ds, const(char)* prefix, SC sclass, type* t, const(cha
  */
 private __gshared Array!StructLiteralExp ctfeSymbolLiterals;
 
-package(dmd.glue)
+package(destiny.glue)
 void resetCtfeSymbolCache()
 {
     foreach (sle; ctfeSymbolLiterals[])
@@ -118,7 +118,7 @@ void resetCtfeSymbolCache()
     ctfeSymbolLiterals.setDim(0);
 }
 
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toSymbol(StructLiteralExp sle)
 {
     //printf("toSymbol() %p.sym: %p\n", sle, sle.sym);
@@ -140,7 +140,7 @@ Symbol* toSymbol(StructLiteralExp sle)
     return cast(Symbol*)sle.sym;
 }
 
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toSymbol(ClassReferenceExp cre)
 {
     //printf("toSymbol() %p.value.sym: %p\n", cre, cre.value.sym);
@@ -170,7 +170,7 @@ Symbol* toSymbol(ClassReferenceExp cre)
  * Returns:
  *      corresponding Symbol
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toSymbol(Type t)
 {
     auto tc = t.isTypeClass();
@@ -185,7 +185,7 @@ Symbol* toSymbol(Type t)
  * Returns:
  *      corresponding Symbol
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toSymbol(Dsymbol s)
 {
     //printf("toSymbol() %s\n", s.toChars());
@@ -219,7 +219,7 @@ Symbol* toSymbol(Dsymbol s)
                 fprintf(stderr, "VarDeclaration.toSymbol(%s) needThis kind: %s\n", vd.toPrettyChars(), vd.kind());
             assert(!vd.needThis());
 
-            import dmd.common.outbuffer : OutBuffer;
+            import destiny.common.outbuffer : OutBuffer;
             OutBuffer buf;
             bool isNRVO = vd.nrvo;
             const(char)[] id = vd.ident.toString();
@@ -662,7 +662,7 @@ Symbol* toSymbol(Dsymbol s)
  * Returns:
  *      corresponding Symbol
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toSymbolNRVO(Dsymbol s)
 {
     if (auto parent = s.toParent2())
@@ -694,7 +694,7 @@ Symbol* toSymbolNRVO(Dsymbol s)
 /*********************************
  * Generate import symbol from symbol.
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toImport(Dsymbol ds)
 {
     if (!ds.csym)
@@ -705,7 +705,7 @@ Symbol* toImport(Dsymbol ds)
 /*************************************
  * Thunks adjust the incoming 'this' pointer by 'offset'.
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toThunkSymbol(FuncDeclaration fd, int offset)
 {
     Symbol* s = toSymbol(fd);
@@ -735,7 +735,7 @@ Symbol* toThunkSymbol(FuncDeclaration fd, int offset)
  * This is accessible via the ClassData, but since it is frequently
  * needed directly (like for rtti comparisons), make it directly accessible.
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toVtblSymbol(ClassDeclaration cd, bool genCsymbol = true)
 {
     if (!cd.vtblsym || !cd.vtblsym.csym)
@@ -757,7 +757,7 @@ Symbol* toVtblSymbol(ClassDeclaration cd, bool genCsymbol = true)
 
 /******************************
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toInitializer(EnumDeclaration ed)
 {
     if (!ed.sinit)
@@ -777,7 +777,7 @@ Symbol* toInitializer(EnumDeclaration ed)
 /**********************************
  * Create the static initializer for the struct/class.
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toInitializer(AggregateDeclaration ad)
 {
     //printf("toInitializer() %s\n", ad.toChars());
@@ -822,7 +822,7 @@ Symbol* toInitializer(AggregateDeclaration ad)
                 /* For ImportC structs, the module names are stripped from the mangled name.
                  * This leads to name collisions. Add the module name back in.
                  */
-                import dmd.common.outbuffer : OutBuffer;
+                import destiny.common.outbuffer : OutBuffer;
                 OutBuffer buf;
                 buf.writestring("__init");
                 buf.writestring(m.toChars());
@@ -851,7 +851,7 @@ Symbol* toInitializer(AggregateDeclaration ad)
  * Returns:
  *      symbol of instance of __cpp_type_info_ptr
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toSymbolCpp(ClassDeclaration cd)
 {
     assert(cd.isCPPclass());
@@ -886,7 +886,7 @@ Symbol* toSymbolCpp(ClassDeclaration cd)
  * Returns:
  *      Symbol of cd's rtti type info
  */
-package(dmd.glue)
+package(destiny.glue)
 Symbol* toSymbolCppTypeInfo(ClassDeclaration cd)
 {
     const id = target.cpp.typeInfoMangle(cd);
@@ -907,7 +907,7 @@ Symbol* toSymbolCppTypeInfo(ClassDeclaration cd)
  * Returns:
  *      Srcpos backend struct corresponding to the given location
  */
-package(dmd.glue)
+package(destiny.glue)
 Srcpos toSrcpos(Loc loc) nothrow
 {
     SourceLoc sl = SourceLoc(loc);

@@ -26,7 +26,7 @@ are needed for this sub-project.
 
 ## Compiler change
 
-In `compiler/src/dmd/`:
+In `compiler/src/destiny/`:
 
 1. `globals.d`: `useDIP1000` and `useDIP25` become always enabled.
 2. `cli.d`, `mars.d`: `-preview=dip1000`, `-preview=dip25` and `-dip1000` stay

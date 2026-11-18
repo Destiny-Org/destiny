@@ -4,12 +4,12 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/outbuffer.d, root/_outbuffer.d)
- * Documentation: https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/common/outbuffer.d, root/_outbuffer.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.common.outbuffer;
+module destiny.common.outbuffer;
 
 import core.stdc.stdarg;
 import core.stdc.stdio;
@@ -38,7 +38,7 @@ a contiguous array or a memory-mapped file.
 */
 struct OutBuffer
 {
-    import dmd.common.file : FileMapping, touchFile, writeFile;
+    import destiny.common.file : FileMapping, touchFile, writeFile;
 
     // IMPORTANT: PLEASE KEEP STATE AND DESTRUCTOR IN SYNC WITH DEFINITION IN ./outbuffer.h.
     // state {
@@ -108,12 +108,12 @@ struct OutBuffer
         dtor();
     }
 
-    /// For porting with ease from dmd.backend.outbuf.Outbuffer
+    /// For porting with ease from destiny.backend.outbuf.Outbuffer
     ubyte* buf() nothrow @system {
         return data.ptr;
     }
 
-    /// For porting with ease from dmd.backend.outbuf.Outbuffer
+    /// For porting with ease from destiny.backend.outbuf.Outbuffer
     ubyte** bufptr() nothrow @system {
         static struct Array { size_t length; ubyte* ptr; }
         auto a = cast(Array*) &data;
@@ -703,7 +703,7 @@ struct OutBuffer
      * Extract the data as a slice and take ownership of it.
      *
      * When `true` is passed as an argument, this function behaves
-     * like `dmd.utils.toDString(thisbuffer.extractChars())`.
+     * like `destiny.utils.toDString(thisbuffer.extractChars())`.
      *
      * Params:
      *   nullTerminate = When `true`, the data will be `null` terminated.

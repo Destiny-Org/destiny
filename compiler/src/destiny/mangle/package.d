@@ -6,13 +6,13 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors: Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/mangle/package.d, _dmangle.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mangle/package.d, _dmangle.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  * References:  https://github.com/Destiny-Org/destiny
  */
 
-module dmd.mangle;
+module destiny.mangle;
 
 
 /******************************************************************************
@@ -70,9 +70,9 @@ void mangleToBuffer(TemplateInstance ti, ref OutBuffer buf)
 }
 
 /// Returns: `true` if the given character is a valid mangled character
-package(dmd) bool isValidMangling(dchar c) nothrow
+package(destiny) bool isValidMangling(dchar c) nothrow
 {
-    import dmd.common.charactertables;
+    import destiny.common.charactertables;
 
     return
         c >= 'A' && c <= 'Z' ||
@@ -136,37 +136,37 @@ import core.stdc.ctype;
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.mangle.basic;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.dsymbol;
-import dmd.dsymbolsem : toAlias;
-import dmd.expressionsem : toInteger, toReal, toImaginary;
-import dmd.dtemplate;
-import dmd.errors;
-import dmd.expression;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen : toErrMsg;
-import dmd.id;
-import dmd.identifier;
-import dmd.mtype;
-import dmd.root.ctfloat;
-import dmd.common.outbuffer;
-import dmd.optimize;
-import dmd.root.aav;
-import dmd.root.string;
-import dmd.root.stringtable;
-import dmd.root.utf;
-import dmd.target;
-import dmd.tokens;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.mangle.basic;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.dsymbol;
+import destiny.dsymbolsem : toAlias;
+import destiny.expressionsem : toInteger, toReal, toImaginary;
+import destiny.dtemplate;
+import destiny.errors;
+import destiny.expression;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen : toErrMsg;
+import destiny.id;
+import destiny.identifier;
+import destiny.mtype;
+import destiny.root.ctfloat;
+import destiny.common.outbuffer;
+import destiny.optimize;
+import destiny.root.aav;
+import destiny.root.string;
+import destiny.root.stringtable;
+import destiny.root.utf;
+import destiny.target;
+import destiny.tokens;
+import destiny.visitor;
 
 /************************************************
  * Append the mangling of type `t` to `buf`.
@@ -1125,7 +1125,7 @@ private struct Backref
         {
             if (t.isFunction_Delegate_PtrToFunction())
             {
-                import dmd.typesem : merge2;
+                import destiny.typesem : merge2;
                 t = t.merge2();
             }
         }

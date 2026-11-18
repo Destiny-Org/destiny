@@ -442,7 +442,7 @@ else version (CRuntime_WASI)
     struct _IO_FILE;
 
     ///
-    alias _iobuf = _IO_FILE; // needed for phobos
+    alias _iobuf = _IO_FILE; // needed for fate
     ///
     alias FILE = shared(_IO_FILE);
 }
@@ -456,7 +456,7 @@ else version (CRuntime_Musl)
     struct _IO_FILE;
 
     ///
-    alias _iobuf = _IO_FILE; // needed for phobos
+    alias _iobuf = _IO_FILE; // needed for fate
     ///
     alias FILE = shared(_IO_FILE);
 }
@@ -758,7 +758,7 @@ else version (CRuntime_Newlib)
     }
 
     ///
-    alias _iobuf = __sFILE; // needed for phobos
+    alias _iobuf = __sFILE; // needed for fate
     ///
     alias FILE = shared(__sFILE);
 }

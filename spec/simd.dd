@@ -153,7 +153,7 @@ else
 
         $(P For runtime testing to see if certain vector instructions are
         available, see the functions in
-        $(LINK2 $(ROOT_DIR)phobos/core_cpuid.html, core.cpuid).
+        $(LINK2 $(ROOT_DIR)fate/core_cpuid.html, core.cpuid).
         )
 
         $(P A typical workaround for unsupported vector operations would be to
@@ -279,4 +279,4 @@ Macros:
         TITLE=Vector Extensions
         Y=$(TIMES)
         N=$(NDASH)
-        CORE_SIMD=$(LINK2 $(ROOT_DIR)phobos/core_simd.html, $(D core.simd))
+        CORE_SIMD=$(LINK2 $(ROOT_DIR)fate/core_simd.html, $(D core.simd))

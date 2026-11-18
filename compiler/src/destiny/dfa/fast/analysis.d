@@ -15,23 +15,23 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   $(LINK2 https://cattermole.co.nz, Richard (Rikki) Andrew Cattermole)
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/analysis.d, dfa/fast/analysis.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dfa/fast/analysis.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/fast/analysis.d, dfa/fast/analysis.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dfa/fast/analysis.d
  *
  */
-module dmd.dfa.fast.analysis;
-import dmd.dfa.fast.structure;
-import dmd.dfa.fast.report;
-import dmd.dfa.utils;
-import dmd.location;
-import dmd.identifier;
-import dmd.func;
-import dmd.declaration;
-import dmd.astenums;
-import dmd.mtype;
-import dmd.typesem;
-import dmd.root.array;
-import dmd.common.outbuffer;
+module destiny.dfa.fast.analysis;
+import destiny.dfa.fast.structure;
+import destiny.dfa.fast.report;
+import destiny.dfa.utils;
+import destiny.location;
+import destiny.identifier;
+import destiny.func;
+import destiny.declaration;
+import destiny.astenums;
+import destiny.mtype;
+import destiny.typesem;
+import destiny.root.array;
+import destiny.common.outbuffer;
 import core.stdc.stdio;
 
 //version = DebugJoinMeetOp;

@@ -93,7 +93,7 @@ else version (DigitalMars)
 }
 
 /// Provide static branch and value hints for the LDC/GDC compilers.
-/// DMD ignores these hints.
+/// Destiny ignores these hints.
 pragma(inline, true) bool likely()(bool b)   { return !!expect(b, true);  }
 /// ditto
 pragma(inline, true) bool unlikely()(bool b) { return !!expect(b, false); }

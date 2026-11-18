@@ -1,15 +1,15 @@
 module parser.conditionalcompilation_location; @system:
 
-import dmd.frontend : parseModule;
+import destiny.frontend : parseModule;
 import support : afterEach, beforeEach;
-import dmd.attrib : ConditionalDeclaration, StaticIfDeclaration, StaticForeachDeclaration;
-import dmd.location;
-import dmd.visitor : SemanticTimeTransitiveVisitor;
+import destiny.attrib : ConditionalDeclaration, StaticIfDeclaration, StaticForeachDeclaration;
+import destiny.location;
+import destiny.visitor : SemanticTimeTransitiveVisitor;
 
 @beforeEach
 void initializeFrontend()
 {
-    import dmd.frontend : initDMD;
+    import destiny.frontend : initDMD;
 
     initDMD();
 }
@@ -17,7 +17,7 @@ void initializeFrontend()
 @afterEach
 void deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }
 

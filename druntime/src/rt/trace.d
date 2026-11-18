@@ -641,7 +641,7 @@ private void trace_array(Symbol*[] psymbols, Symbol *s, ref uint u)
 }
 
 //////////////////////////////////////////////
-// This one is called by DMD
+// This one is called by Destiny
 
 @system private extern(C) void trace_pro(char[] id)
 {
@@ -678,7 +678,7 @@ private void trace_array(Symbol*[] psymbols, Symbol *s, ref uint u)
     //  tos.ohd,trace_ohd,t,starttime);
 }
 
-// Called by some old versions of DMD
+// Called by some old versions of Destiny
 @system extern(C) void _c_trace_pro(size_t idlen, char* idptr)
 {
     char[] id = idptr[0 .. idlen];
@@ -686,7 +686,7 @@ private void trace_array(Symbol*[] psymbols, Symbol *s, ref uint u)
 }
 
 /////////////////////////////////////////
-// Called by DMD generated code
+// Called by Destiny generated code
 
 @system extern(C) void _c_trace_epi()
 {

@@ -10,12 +10,12 @@
  * Copyright:    Copyright (C) 2012-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/md5.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/common/md5.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.common.sha;
+module destiny.common.sha; @safe:
 
 import core.bitop;
 
@@ -26,13 +26,21 @@ import core.bitop;
 version (LittleEndian)
 {
     private alias nativeToBigEndian = bswap;
-    private alias bigEndianToNative = bswap;
 }
 else pragma(inline, true) private pure @nogc nothrow @safe
 {
     uint nativeToBigEndian(uint val) { return val; }
     ulong nativeToBigEndian(ulong val) { return val; }
-    alias bigEndianToNative = nativeToBigEndian;
+}
+
+/// Reads a big-endian `T` from the first `T.sizeof` bytes of `b`
+/// (instead of casting a byte pointer, which `@safe` code cannot do).
+private T loadBigEndian(T)(scope const(ubyte)[] b) pure nothrow @nogc @safe
+{
+    T r = 0;
+    foreach (i; 0 .. T.sizeof)
+        r = cast(T) ((r << 8) | b[i]);
+    return r;
 }
 
 /**
@@ -244,7 +252,7 @@ private:
     static void T_0_15(int i, const(ubyte[64])* input, ref uint[16] W, uint A, ref uint B, uint C, uint D,
                        uint E, ref uint T) pure nothrow @nogc
                        {
-                        uint Wi = W[i] = bigEndianToNative(*cast(uint*) &((*input)[i*4]));
+                        uint Wi = W[i] = loadBigEndian!uint((*input)[i*4 .. i*4 + 4]);
                         T = Ch(B, C, D) + E + core.bitop.rol(A, 5) + Wi + 0x5a827999;
                         B = core.bitop.rol(B, 30);
                        }
@@ -391,7 +399,7 @@ private:
                                       Word A, Word B, Word C, ref Word D, Word E, Word F, Word G, ref Word H, Word K)
             pure nothrow @nogc
             {
-                Word Wi = W[i] = bigEndianToNative(*cast(Word*) &((*input)[i*Word.sizeof]));
+                Word Wi = W[i] = loadBigEndian!Word((*input)[i*Word.sizeof .. (i+1)*Word.sizeof]);
                 Word T1 = H + BigSigma1(E) + Ch(E, F, G) + K + Wi;
                 Word T2 = BigSigma0(A) + Maj(A, B, C);
                 D += T1;

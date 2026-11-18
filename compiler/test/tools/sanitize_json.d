@@ -204,7 +204,7 @@ void sanitizeSemantics(ref JSONValue[string] semantics)
         auto moduleName = semanticModule.getOptionalString("name");
         if(moduleName.startsWith("std.", "core.", "etc.", "rt.") || moduleName == "object")
         {
-           // remove druntime/phobos modules since they can change for each
+           // remove druntime/Fate modules since they can change for each
            // platform
            continue;
         }

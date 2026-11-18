@@ -6,32 +6,32 @@
  * Copyright:   Copyright (C) 2022-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cpreprocess.d, _cpreprocess.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cpreprocess.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/cpreprocess.d, _cpreprocess.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/cpreprocess.d
  *
  */
 
-module dmd.cpreprocess;
+module destiny.cpreprocess;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.astenums;
-import dmd.errors : fatal;
-import dmd.errorsink;
-import dmd.link;
-import dmd.location;
-import dmd.target;
-import dmd.vsoptions;
+import destiny.astenums;
+import destiny.errors : fatal;
+import destiny.errorsink;
+import destiny.link;
+import destiny.location;
+import destiny.target;
+import destiny.vsoptions;
 
-import dmd.common.outbuffer;
+import destiny.common.outbuffer;
 
-import dmd.root.array;
-import dmd.root.file;
-import dmd.root.filename;
-import dmd.root.rmem;
-import dmd.root.string;
+import destiny.root.array;
+import destiny.root.file;
+import destiny.root.filename;
+import destiny.root.rmem;
+import destiny.root.string;
 
 // Use default for other versions
 version (Posix)   version = runPreprocessor;
@@ -49,7 +49,7 @@ version (Windows) version = runPreprocessor;
 extern (C++)
 DArray!ubyte preprocess(FileName csrcfile, Loc loc, ref OutBuffer defines)
 {
-    import dmd.globals;
+    import destiny.globals;
     /* Look for "importc.h" by searching along import path.
      */
     const(char)* importc_h = findImportcH(global.importPaths[]);
@@ -127,7 +127,7 @@ private const(char)[] cppCommand()
             //if the path to cl.exe is found, check if cl.exe is in the path.
             if(FileName.exists(path) != 1)
             {
-                import dmd.globals : global;
+                import destiny.globals : global;
                 auto eSink = global.errorSink;
                 eSink.error(Loc.initial, "cl.exe not found. Please ensure that Visual Studio Build Tools are installed and properly configured.");
                 fatal();

@@ -61,7 +61,7 @@
 
 > Your new function checkBorrowArgument should be handled as part of argument convergance in analysis.d
 
-> src\dmd\dfa\fast\analysis.d(1242): Error: no property `nextOf` for `(*argListItem).paramType` of type `dmd.mtype.Type`
+> src\destiny\dfa\fast\analysis.d(1242): Error: no property `nextOf` for `(*argListItem).paramType` of type `dmd.mtype.Type`
 
 > This error message isn't correct.
 > testdfa\startd.d(393): Error: Cannot mutate the owner of an active borrow

@@ -6,35 +6,35 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cond.d, _cond.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cond.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/cond.d, _cond.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/cond.d
  *
  */
 
-module dmd.cond;
+module destiny.cond;
 
 import core.stdc.string;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.ast_node;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.globals;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.root.string;
-import dmd.tokens;
-import dmd.utils;
-import dmd.visitor;
-import dmd.statement;
-import dmd.declaration;
-import dmd.dstruct;
-import dmd.func;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.ast_node;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.globals;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.root.string;
+import destiny.tokens;
+import destiny.utils;
+import destiny.visitor;
+import destiny.statement;
+import destiny.declaration;
+import destiny.dstruct;
+import destiny.func;
 
 /***********************************************************
  */
@@ -88,7 +88,7 @@ extern (C++) abstract class Condition : ASTNode
 /***********************************************************
  * Implements common functionality for StaticForeachDeclaration and
  * StaticForeachStatement This performs the necessary lowerings before
- * dmd.statementsem.makeTupleForeach can be used to expand the
+ * destiny.statementsem.makeTupleForeach can be used to expand the
  * corresponding `static foreach` declaration or statement.
  */
 

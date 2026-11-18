@@ -4,33 +4,33 @@
  *              Copyright (C) 2018-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     Iain Buclaw
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/iasmgcc.d, _iasmgcc.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/iasmgcc.d, _iasmgcc.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.iasm.gcc;
+module destiny.iasm.gcc;
 
 import core.stdc.string;
 
-import dmd.arraytypes;
-import dmd.astcodegen;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.errors;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.identifier;
-import dmd.globals;
-import dmd.location;
-import dmd.cparse;
-import dmd.parse;
-import dmd.target;
-import dmd.tokens;
-import dmd.statement;
-import dmd.statementsem;
-import dmd.typesem;
+import destiny.arraytypes;
+import destiny.astcodegen;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.errors;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.identifier;
+import destiny.globals;
+import destiny.location;
+import destiny.cparse;
+import destiny.parse;
+import destiny.target;
+import destiny.tokens;
+import destiny.statement;
+import destiny.statementsem;
+import destiny.typesem;
 
 /***********************************
  * Parse and run semantic analysis on a GccAsmStatement.
@@ -138,12 +138,12 @@ public Statement gccAsmSemantic(GccAsmStatement s, Scope* sc)
  */
 public void gccAsmSemantic(CAsmDeclaration ad, Scope* sc)
 {
-    import dmd.typesem : pointerTo;
+    import destiny.typesem : pointerTo;
     ad.code = semanticString(sc, ad.code, "asm definition");
     ad.code.type = ad.code.type.nextOf().pointerTo();
 
     // Asm definition always needs emitting into the root module.
-    import dmd.dmodule : Module;
+    import destiny.dmodule : Module;
     if (sc._module && sc._module.isRoot())
         return;
     if (Module m = Module.rootModule)
@@ -187,10 +187,10 @@ bool requireToken(Parser)(Parser p, TOK value)
  */
 Expression semanticAsmString(Scope* sc, Expression exp, const char *s)
 {
-    import dmd.dcast : implicitCastTo;
-    import dmd.dsymbolsem : resolveAliasThis;
-    import dmd.mtype : Type;
-    import dmd.typesem : isAggregate;
+    import destiny.dcast : implicitCastTo;
+    import destiny.dsymbolsem : resolveAliasThis;
+    import destiny.mtype : Type;
+    import destiny.typesem : isAggregate;
 
     exp = expressionSemantic(exp, sc);
 
@@ -554,8 +554,8 @@ GccAsmStatement parseGccAsm(Parser)(Parser p, GccAsmStatement s)
 
 unittest
 {
-    import dmd.mtype : TypeBasic;
-    import dmd.typesem : merge;
+    import destiny.mtype : TypeBasic;
+    import destiny.typesem : merge;
 
     if (!global.errorSink)
         global.errorSink = new ErrorSinkCompiler;

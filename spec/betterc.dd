@@ -56,7 +56,7 @@ $(H2 $(LNAME2 better-c, Better C))
     ---
 
 $(CONSOLE
-$(GT) dmd -betterC hello.d && ./hello
+$(GT) destiny -betterC hello.d && ./hello
 Hello betterC
 )
 
@@ -124,7 +124,7 @@ extern(C) void main()
 ---
 
 $(CONSOLE
-$(GT) dmd -betterC -unittest -run test.d
+$(GT) destiny -betterC -unittest -run test.d
 dmd_runpezoXK: foo.d:3: Assertion `0' failed.
 )
 

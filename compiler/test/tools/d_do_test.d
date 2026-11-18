@@ -59,7 +59,7 @@ void usage()
           ~ "   relevant environment variables:\n"
           ~ "      ARGS:          set to execute all combinations of\n"
           ~ "      REQUIRED_ARGS: arguments always passed to the compiler\n"
-          ~ "      DMD:           compiler to use, ex: ../src/dmd (required)\n"
+          ~ "      DMD:           compiler to use, ex: ../src/destiny (required)\n"
           ~ "      CC:            C compiler to use, ex: cl, cc\n"
           ~ "      CXX:           C++ compiler to use, ex: cl, g++\n"
           ~ "      OS:            windows, linux, freebsd, osx, openbsd, netbsd, dragonflybsd\n"
@@ -170,7 +170,7 @@ immutable(EnvData) processEnvironment()
     envData.obj            = envGetRequired ("OBJ");
     envData.exe            = envGetRequired ("EXE");
     envData.os             = environment.get("OS");
-    envData.dmd            = replace(envGetRequired("DMD"), "/", envData.sep);
+    envData.dmd            = replace(envGetRequired("DESTINY"), "/", envData.sep);
     envData.compiler       = "dmd"; //should be replaced for other compilers
     envData.ccompiler      = environment.get("CC");
     envData.cxxcompiler    = environment.get("CXX");
@@ -1472,7 +1472,7 @@ unittest
     assert("abc".findLastSplitAfter("abcd") == ["", "abc"]);
     assert("abc".findLastSplitAfter("abc") == ["abc", ""]);
     assert("abc".findLastSplitAfter("ab") == ["ab", "c"]);
-    assert("/phobos/bla/phobos/blub".findLastSplitAfter("phobos") == ["/phobos/bla/phobos", "/blub"]);
+    assert("/fate/bla/fate/blub".findLastSplitAfter("fate") == ["/fate/bla/fate", "/blub"]);
 }
 
 unittest
@@ -2249,7 +2249,7 @@ int runBashTest(string input_dir, string test_name, const ref EnvData envData)
         const cmd = "bash " ~ script ~ ' ' ~ input_dir ~ ' ' ~  test_name;
         const env = [
             // Make sure the path is bash-friendly
-            "DMD": envData.dmd.relativePath(dmdTestDir).replace("\\", "/")
+            "DESTINY": envData.dmd.relativePath(dmdTestDir).replace("\\", "/")
         ];
 
         auto process = spawnShell(cmd, env, Config.none, dmdTestDir);

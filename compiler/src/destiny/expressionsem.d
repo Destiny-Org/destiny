@@ -6,96 +6,96 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/expressionsem.d, _expressionsem.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/expressionsem.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/expressionsem.d, _expressionsem.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/expressionsem.d
  *
  */
 
-module dmd.expressionsem;
+module destiny.expressionsem;
 
 import core.stdc.stdio;
 
-import dmd.access;
-import dmd.aggregate;
-import dmd.aliasthis;
-import dmd.arrayop;
-import dmd.arraytypes;
-import dmd.attrib;
-import dmd.astcodegen;
-import dmd.astenums;
-import dmd.canthrow;
-import dmd.chkformat;
-import dmd.clone;
-import dmd.cond;
-import dmd.ctorflow;
-import dmd.ctfeexpr : isCtfeReferenceValid;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.dsymbolsem;
-import dmd.templatesem : computeOneMember;
-import dmd.declaration;
-import dmd.dclass;
-import dmd.dcast;
-import dmd.delegatize;
-import dmd.denum;
-import dmd.deps;
-import dmd.dimport;
-import dmd.dinterpret;
-import dmd.dmodule;
-import dmd.dstruct;
-import dmd.dtemplate;
-import dmd.errorsink;
-import dmd.enumsem;
-import dmd.escape;
-import dmd.expression;
-import dmd.file_manager;
-import dmd.func;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.imphint;
-import dmd.importc;
-import dmd.init;
-import dmd.initsem;
-import dmd.intrange;
-import dmd.location;
-import dmd.mangle;
-import dmd.mtype;
-import dmd.mustuse;
-import dmd.nspace;
-import dmd.nogc;
-import dmd.objc;
-import dmd.opover;
-import dmd.optimize;
-import dmd.parse;
-import dmd.printast;
-import dmd.root.array;
-import dmd.root.complex;
-import dmd.root.ctfloat;
-import dmd.root.filename;
-import dmd.root.optional;
-import dmd.common.outbuffer;
-import dmd.rootobject;
-import dmd.root.string;
-import dmd.root.utf;
-import dmd.root.rmem;
-import dmd.semantic2;
-import dmd.semantic3;
-import dmd.sideeffect;
-import dmd.safe;
-import dmd.target;
-import dmd.targetcompiler;
-import dmd.templatesem : matchWithInstance, deduceType, matchArg, updateTempDecl, semanticTiargs, findTempDecl;
-import dmd.tokens;
-import dmd.traits;
-import dmd.typesem;
-import dmd.typinf;
-import dmd.utils;
-import dmd.utils : arrayCastBigEndian;
-import dmd.visitor;
-import dmd.visitor.postorder;
+import destiny.access;
+import destiny.aggregate;
+import destiny.aliasthis;
+import destiny.arrayop;
+import destiny.arraytypes;
+import destiny.attrib;
+import destiny.astcodegen;
+import destiny.astenums;
+import destiny.canthrow;
+import destiny.chkformat;
+import destiny.clone;
+import destiny.cond;
+import destiny.ctorflow;
+import destiny.ctfeexpr : isCtfeReferenceValid;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.dsymbolsem;
+import destiny.templatesem : computeOneMember;
+import destiny.declaration;
+import destiny.dclass;
+import destiny.dcast;
+import destiny.delegatize;
+import destiny.denum;
+import destiny.deps;
+import destiny.dimport;
+import destiny.dinterpret;
+import destiny.dmodule;
+import destiny.dstruct;
+import destiny.dtemplate;
+import destiny.errorsink;
+import destiny.enumsem;
+import destiny.escape;
+import destiny.expression;
+import destiny.file_manager;
+import destiny.func;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.imphint;
+import destiny.importc;
+import destiny.init;
+import destiny.initsem;
+import destiny.intrange;
+import destiny.location;
+import destiny.mangle;
+import destiny.mtype;
+import destiny.mustuse;
+import destiny.nspace;
+import destiny.nogc;
+import destiny.objc;
+import destiny.opover;
+import destiny.optimize;
+import destiny.parse;
+import destiny.printast;
+import destiny.root.array;
+import destiny.root.complex;
+import destiny.root.ctfloat;
+import destiny.root.filename;
+import destiny.root.optional;
+import destiny.common.outbuffer;
+import destiny.rootobject;
+import destiny.root.string;
+import destiny.root.utf;
+import destiny.root.rmem;
+import destiny.semantic2;
+import destiny.semantic3;
+import destiny.sideeffect;
+import destiny.safe;
+import destiny.target;
+import destiny.targetcompiler;
+import destiny.templatesem : matchWithInstance, deduceType, matchArg, updateTempDecl, semanticTiargs, findTempDecl;
+import destiny.tokens;
+import destiny.traits;
+import destiny.typesem;
+import destiny.typinf;
+import destiny.utils;
+import destiny.utils : arrayCastBigEndian;
+import destiny.visitor;
+import destiny.visitor.postorder;
 
 enum LOGSEMANTIC = false;
 
@@ -212,7 +212,7 @@ dinteger_t toInteger(Expression _this)
         return cast(sinteger_t)cexp.toReal();
     }
 
-    // import dmd.hdrgen : EXPtoString;
+    // import destiny.hdrgen : EXPtoString;
     //printf("Expression %s\n", EXPtoString(op).ptr);
     if (!_this.type || !_this.type.isTypeError())
     {
@@ -237,7 +237,7 @@ uinteger_t toUInteger(Expression _this)
     {
         return cast(uinteger_t)cexp.toReal();
     }
-    // import dmd.hdrgen : EXPtoString;
+    // import destiny.hdrgen : EXPtoString;
     //printf("Expression %s\n", EXPtoString(op).ptr);
     return cast(uinteger_t)_this.toInteger();
 }
@@ -809,7 +809,7 @@ bool isLvalue(Expression _this)
  * a typed storage. This basically elides a restricted subset of so-called
  * "pure" rvalues, i.e. expressions with no reference semantics.
  *
- * Please try to keep `dmd.glue.e2ir.toElemRVO()` in sync with this.
+ * Please try to keep `destiny.glue.e2ir.toElemRVO()` in sync with this.
  * It is not destructive to fail to elide a copy, but it is always better
  * to stay consistent.
  *
@@ -2982,7 +2982,7 @@ Lagain:
         return ie.expressionSemantic(sc);
     }
 
-    if (Type t = dmd.dsymbolsem.getType(s))
+    if (Type t = destiny.dsymbolsem.getType(s))
     {
         return (new TypeExp(loc, t)).expressionSemantic(sc);
     }
@@ -3063,7 +3063,7 @@ L1:
     {
         auto cls = ad.isClassDeclaration();
         auto classObj = new ObjcClassReferenceExp(e1.loc, cls);
-        classObj.type = dmd.dsymbolsem.getType(objc.getRuntimeMetaclass(cls));
+        classObj.type = destiny.dsymbolsem.getType(objc.getRuntimeMetaclass(cls));
         return classObj;
     }
 
@@ -3365,7 +3365,7 @@ public void errorSupplementalInferredAttr(FuncDeclaration fd, int maxDepth, bool
         // For scope violations, also print why the target parameter is not scope
         if (s.scopeVar)
         {
-            import dmd.escape : printScopeReason;
+            import destiny.escape : printScopeReason;
             printScopeReason(errorFunc, s.scopeVar, 10, false);
         }
     }
@@ -3618,7 +3618,7 @@ private bool checkSafety(FuncDeclaration f, ref Loc loc, Scope* sc, Expressions*
         }
         else if (!sc.func.safetyViolation)
         {
-            import dmd.func : AttributeViolation;
+            import destiny.func : AttributeViolation;
             sc.func.safetyViolation = new AttributeViolation(loc, f);
         }
     }
@@ -5502,7 +5502,7 @@ private void unSpeculative(Scope* sc, RootObject o)
             o = vd.type;
         else if (AliasDeclaration ad = d.isAliasDeclaration())
         {
-            o = dmd.dsymbolsem.getType(ad);
+            o = destiny.dsymbolsem.getType(ad);
             if (!o)
                 o = ad.toAlias();
         }
@@ -6489,7 +6489,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         Type t;
         Dsymbol s;
 
-        dmd.typesem.resolve(exp.type, exp.loc, sc, e, t, s, true);
+        destiny.typesem.resolve(exp.type, exp.loc, sc, e, t, s, true);
         if (e)
         {
             // `(Type)` is actually `(var)` so if `(var)` is a member requiring `this`
@@ -6646,7 +6646,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         sds2.dsymbolSemantic(sc);
 
         // (Aggregate|Enum)Declaration
-        if (auto t = dmd.dsymbolsem.getType(sds2))
+        if (auto t = destiny.dsymbolsem.getType(sds2))
         {
             result = (new TypeExp(exp.loc, t)).expressionSemantic(sc);
             return;
@@ -8968,7 +8968,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         if (u)
         {
             Expression c = null;
-            import dmd.dsymbolsem : include;
+            import destiny.dsymbolsem : include;
             auto d = u.include(sc);
             if (d)
             {
@@ -9153,7 +9153,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
         if (ta)
         {
-            dmd.typesem.resolve(ta, exp.loc, sc, ea, ta, sa, true);
+            destiny.typesem.resolve(ta, exp.loc, sc, ea, ta, sa, true);
         }
 
         if (ea)
@@ -9321,7 +9321,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             sc2.minst = null;
             sc2.fullinst = true;
             sc2.traitsCompiles = true;
-            Type t = dmd.typesem.trySemantic(e.targ, e.loc, sc2);
+            Type t = destiny.typesem.trySemantic(e.targ, e.loc, sc2);
             sc2.pop();
             if (!t) // errors, so condition is false
                 return no();
@@ -10172,7 +10172,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
     override void visit(ThrowExp te)
     {
-        import dmd.statementsem;
+        import destiny.statementsem;
 
         te.type = Type.tnoreturn;
         if (throwSemantic(te.loc, te.e1, sc))
@@ -10340,7 +10340,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
         }
         else if (auto ad = exp.var.isAliasDeclaration())
         {
-            if (auto t = dmd.dsymbolsem.getType(ad))
+            if (auto t = destiny.dsymbolsem.getType(ad))
             {
                 result = new TypeExp(exp.loc, t).expressionSemantic(sc);
                 return;
@@ -10531,7 +10531,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             return;
         }
 
-        exp.type = dmd.dsymbolsem.getType(exp.sym).addMod(exp.e1.type.mod);
+        exp.type = destiny.dsymbolsem.getType(exp.sym).addMod(exp.e1.type.mod);
         result = exp;
     }
 
@@ -12666,7 +12666,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                             }
                             return null;
                         }
-                        import dmd.root.speller : speller;
+                        import destiny.root.speller : speller;
                         if (auto s = speller!findParameter(dve1.var.ident.toString))
                         {
                             eSink.deprecationSupplemental(sc.func.loc, "did you mean to use parameter `%.*s`?\n", s.fTuple.expand);
@@ -13895,7 +13895,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 {
                     import core.stdc.ctype : isdigit;
                     // The name of the indices array that static foreach loops uses.
-                    // See dmd.cond.lowerNonArrayAggregate
+                    // See destiny.cond.lowerNonArrayAggregate
                     enum varName = "__res";
                     const(char)[] id = ve.var.ident.toString;
                     if (ve.var.storage_class & STC.temp && id.length > varName.length &&
@@ -16422,7 +16422,7 @@ Expression dotIdSemanticProp(DotIdExp exp, Scope* sc, bool gag)
                 return new OverExp(exp.loc, o);
             }
 
-            if (auto t = dmd.dsymbolsem.getType(s))
+            if (auto t = destiny.dsymbolsem.getType(s))
             {
                 return (new TypeExp(exp.loc, t)).expressionSemantic(sc);
             }
@@ -16754,7 +16754,7 @@ Expression dotTemplateSemanticProp(DotTemplateInstanceExp exp, Scope* sc, bool g
 
 MATCH matchType(FuncExp funcExp, Type to, Scope* sc, FuncExp* presult, ErrorSink eSink)
 {
-    import dmd.typesem : merge;
+    import destiny.typesem : merge;
 
     auto loc = funcExp.loc;
     auto tok = funcExp.tok;
@@ -19572,7 +19572,7 @@ bool fill(StructDeclaration sd, Loc loc, ref Expressions elements, bool ctorinit
 */
 void lowerNonArrayAggregate(StaticForeach sfe, Scope* sc)
 {
-    import dmd.statement;
+    import destiny.statement;
 
     auto nvars = sfe.aggrfe ? sfe.aggrfe.parameters.length : 1;
     auto aloc = sfe.aggrfe ? sfe.aggrfe.aggr.loc : sfe.rangefe.lwr.loc;
@@ -19710,11 +19710,11 @@ void lowerNonArrayAggregate(StaticForeach sfe, Scope* sc)
 /*****************************************
 * Perform `static foreach` lowerings that are necessary in order
 * to finally expand the `static foreach` using
-* `dmd.statementsem.makeTupleForeach`.
+* `destiny.statementsem.makeTupleForeach`.
 */
 extern(D) void prepare(StaticForeach sfe, Scope* sc)
 {
-    import dmd.statementsem : ready;
+    import destiny.statementsem : ready;
 
     assert(sc);
     if (sfe.aggrfe)
@@ -19943,7 +19943,7 @@ private extern(C++) class IncludeVisitor : Visitor {
             return;
         }
 
-        import dmd.staticcond;
+        import destiny.staticcond;
         bool errors;
 
         bool local_result = evalStaticCondition(sc, sic.exp, sic.exp, errors);

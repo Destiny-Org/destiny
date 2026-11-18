@@ -6,11 +6,11 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   $(LINK2 https://cattermole.co.nz, Richard (Rikki) Andrew Cattermole)
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/charactertables.d, common/charactertables.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/charactertables.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/common/charactertables.d, common/charactertables.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/common/charactertables.d
  *
  */
-module dmd.common.charactertables;
+module destiny.common.charactertables; @safe:
 
 @safe nothrow @nogc pure:
 
@@ -37,7 +37,7 @@ struct IdentifierCharLookup
     /// Lookup the table given the table name
     extern(C++) static IdentifierCharLookup forTable(IdentifierTable table)
     {
-        import dmd.common.identifiertables;
+        import destiny.common.identifiertables;
 
         // Awful solution to require these lambdas.
         // However without them the extern(C++) ABI issues crop up for isInRange,
@@ -72,7 +72,7 @@ Returns: is character a member of least restrictive of all.
 */
 bool isAnyIdentifierCharacter(dchar c)
 {
-    import dmd.common.identifiertables;
+    import destiny.common.identifiertables;
     return isInRange!LeastRestrictive_OfAll(c);
 }
 
@@ -90,7 +90,7 @@ Returns: is character a member of restrictive Start
 */
 bool isAnyStart(dchar c)
 {
-    import dmd.common.identifiertables;
+    import destiny.common.identifiertables;
     return isInRange!LeastRestrictive_Start(c);
 }
 
@@ -108,7 +108,7 @@ Returns: is character a member of least restrictive Continue
 */
 bool isAnyContinue(dchar c)
 {
-    import dmd.common.identifiertables;
+    import destiny.common.identifiertables;
     return isInRange!LeastRestrictive_Continue(c);
 }
 
@@ -194,7 +194,7 @@ bool isAlphaASCII(const dchar c)
 
 extern(D) private:
 
-// originally from dmd.root.utf
+// originally from destiny.root.utf
 bool isInRange(alias Ranges)(dchar c)
 {
     size_t high = Ranges.length - 1;
@@ -220,7 +220,7 @@ bool isInRange(alias Ranges)(dchar c)
 /********************************************
  * Do our own char maps
  */
-// originally from dmd.lexer (was private)
+// originally from destiny.lexer (was private)
 static immutable cmtable = ()
 {
     ubyte[256] table;

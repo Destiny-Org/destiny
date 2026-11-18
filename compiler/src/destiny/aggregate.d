@@ -7,29 +7,29 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/aggregate.d, _aggregate.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/aggregate.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/aggregate.d, _aggregate.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/aggregate.d
  *
  */
 
-module dmd.aggregate;
+module destiny.aggregate;
 
 import core.stdc.stdio;
 import core.checkedint;
 
-import dmd.aliasthis;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.declaration;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.func;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.visitor;
+import destiny.aliasthis;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.declaration;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.func;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.visitor;
 
 /**
  * The ClassKind enum is used in AggregateDeclaration AST nodes to
@@ -295,7 +295,7 @@ public uint placeField(Loc loc, ref uint nextoffset, uint memsize, uint memalign
     addu(ofs, sz, overflow);
     if (overflow)
     {
-        import dmd.globals : global;
+        import destiny.globals : global;
         auto eSink = global.errorSink;
         eSink.error(loc, "max object size %u exceeded from adding field size %u + alignment adjustment %u + field offset %u when placing field in aggregate",
                 uint.max, memsize, actualAlignment, ofs);

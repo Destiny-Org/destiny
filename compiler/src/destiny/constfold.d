@@ -8,37 +8,37 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/constfold.d, _constfold.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/constfold.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/constfold.d, _constfold.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/constfold.d
  *
  */
 
-module dmd.constfold;
+module destiny.constfold;
 
 import core.stdc.string;
 import core.stdc.stdio;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.ctfeexpr;
-import dmd.dcast;
-import dmd.declaration;
-import dmd.dstruct;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.globals;
-import dmd.hdrgen : toErrMsg;
-import dmd.location;
-import dmd.mtype;
-import dmd.root.complex;
-import dmd.root.ctfloat;
-import dmd.root.port;
-import dmd.root.rmem;
-import dmd.root.utf;
-import dmd.sideeffect;
-import dmd.target;
-import dmd.tokens;
-import dmd.typesem;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.ctfeexpr;
+import destiny.dcast;
+import destiny.declaration;
+import destiny.dstruct;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.globals;
+import destiny.hdrgen : toErrMsg;
+import destiny.location;
+import destiny.mtype;
+import destiny.root.complex;
+import destiny.root.ctfloat;
+import destiny.root.port;
+import destiny.root.rmem;
+import destiny.root.utf;
+import destiny.sideeffect;
+import destiny.target;
+import destiny.tokens;
+import destiny.typesem;
 
 private enum LOG = false;
 

@@ -1,13 +1,13 @@
 /**
  * A visitor that facilitates the traversal of subsets of the AST.
  *
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.visitor.permissive;
+module destiny.visitor.permissive;
 
-import dmd.visitor.parsetime;
+import destiny.visitor.parsetime;
 
 /** PermissiveVisitor overrides all the visit methods in the parent class
   * that assert(0) in order to facilitate the traversal of subsets of the AST.

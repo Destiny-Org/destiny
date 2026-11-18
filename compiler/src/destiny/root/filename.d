@@ -4,26 +4,26 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/filename.d, root/_filename.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/filename.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/filename.d, root/_filename.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/filename.d
  *
  */
 
-module dmd.root.filename;
+module destiny.root.filename;
 
 import core.stdc.ctype;
 import core.stdc.errno;
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.common.file;
-import dmd.common.outbuffer;
+import destiny.common.file;
+import destiny.common.outbuffer;
 
-import dmd.root.array;
-import dmd.root.file;
-import dmd.root.port;
-import dmd.root.rmem;
-import dmd.root.string;
+import destiny.root.array;
+import destiny.root.file;
+import destiny.root.port;
+import destiny.root.rmem;
+import destiny.root.string;
 
 version (Posix)
 {
@@ -38,7 +38,7 @@ version (Windows)
     import core.sys.windows.windef;
     import core.sys.windows.winnls;
 
-    import dmd.common.smallbuffer : extendedPathThen;
+    import destiny.common.smallbuffer : extendedPathThen;
 
     extern (Windows) DWORD GetFullPathNameW(LPCWSTR, DWORD, LPWSTR, LPWSTR*) nothrow @nogc;
     extern (Windows) void SetLastError(DWORD) nothrow @nogc;
@@ -959,7 +959,7 @@ nothrow:
         if (r == 0)
             return true;
 
-        // Don't error out if another instance of dmd just created
+        // Don't error out if another instance of destiny just created
         // this directory
         version (Windows)
         {
@@ -1000,7 +1000,7 @@ nothrow:
             import core.sys.posix.unistd; // _PC_PATH_MAX
 
             // Older versions of druntime don't have PATH_MAX defined.
-            // i.e: dmd __VERSION__ < 2085, gdc __VERSION__ < 2076.
+            // i.e: destiny __VERSION__ < 2085, gdc __VERSION__ < 2076.
             static if (!__traits(compiles, PATH_MAX))
             {
                 version (DragonFlyBSD)
@@ -1033,7 +1033,7 @@ nothrow:
             else static if (__traits(compiles, canonicalize_file_name))
             {
                 // Have canonicalize_file_name, which malloc's memory.
-                // We need a dmd.root.rmem allocation though.
+                // We need a destiny.root.rmem allocation though.
                 auto path = name.toCStringThen!((n) => canonicalize_file_name(n.ptr));
                 scope(exit) .free(path);
                 if (path !is null)
@@ -1170,7 +1170,7 @@ version(Windows)
      */
     char[] toNarrowStringz(const(wchar)[] wide, char[] buffer = null) nothrow
     {
-        import dmd.common.file : CodePage;
+        import destiny.common.file : CodePage;
 
         if (wide is null)
             return null;
@@ -1202,7 +1202,7 @@ version(Windows)
      */
     private auto toWStringzThen(alias F)(const char[] str) nothrow
     {
-        import dmd.common.smallbuffer : SmallBuffer, toWStringz;
+        import destiny.common.smallbuffer : SmallBuffer, toWStringz;
 
         if (!str.length) return F(""w.ptr);
 

@@ -1,14 +1,14 @@
 /**
- * Defines enums common to dmd and dmd as parse library.
+ * Defines enums common to destiny and destiny as parse library.
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/astenums.d, _astenums.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/astenums.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/astenums.d, _astenums.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/astenums.d
  *
  */
 
-module dmd.astenums;
+module destiny.astenums;
 
 enum Sizeok : ubyte
 {
@@ -115,7 +115,7 @@ enum STC : ulong  // transfer changes to declaration.h
     inference           = 0x1_0000_0000_0000,   /// do attribute inference
     exptemp             = 0x2_0000_0000_0000,   /// temporary variable that has lifetime restricted to an expression
     future              = 0x4_0000_0000_0000,   /// introducing new base class function
-    local               = 0x8_0000_0000_0000,   /// do not forward (see dmd.dsymbol.ForwardingScopeDsymbol).
+    local               = 0x8_0000_0000_0000,   /// do not forward (see destiny.dsymbol.ForwardingScopeDsymbol).
 
     live                = 0x10_0000_0000_0000,   /// function `@live` attribute
     register            = 0x20_0000_0000_0000,   /// `register` storage class (ImportC)

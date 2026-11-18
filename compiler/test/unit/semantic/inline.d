@@ -2,10 +2,10 @@ module semantic.inline; @system:
 
 import std.algorithm : each;
 
-import dmd.astenums : PINLINE;
-import dmd.frontend;
-import dmd.func : FuncDeclaration;
-import dmd.visitor : SemanticTimeTransitiveVisitor;
+import destiny.astenums : PINLINE;
+import destiny.frontend;
+import destiny.func : FuncDeclaration;
+import destiny.visitor : SemanticTimeTransitiveVisitor;
 
 import support : afterEach, beforeEach, defaultImportPaths;
 

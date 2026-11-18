@@ -2921,8 +2921,8 @@ $(GNAME AssertArguments):
     )
     )
 
-    $(NOTE Throwing $(D AssertError) is the default for $(B dmd), with an optional
-    $(DDSUBLINK dmd, switch-checkaction, $(B -checkaction=context))
+    $(NOTE Throwing $(D AssertError) is the default for $(B destiny), with an optional
+    $(DDSUBLINK destiny, switch-checkaction, $(B -checkaction=context))
     switch to show certain sub-expressions used in the first *AssertExpression*
     in the error message:)
 

@@ -4,11 +4,11 @@
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:   Walter Bright, https://www.digitalmars.com
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/smallbuffer.d, common/_smallbuffer.d)
- * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/common/smallbuffer.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/common/smallbuffer.d, common/_smallbuffer.d)
+ * Documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/common/smallbuffer.d
  *
  */
-module dmd.common.smallbuffer;
+module destiny.common.smallbuffer;
 
 nothrow:
 

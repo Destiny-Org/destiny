@@ -9,42 +9,42 @@
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     Distributed under the Boost Software License, Version 1.0.
  *              https://www.boost.org/LICENSE_1_0.txt
- * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/dmd/backend/go.d
+ * Source:      https://github.com/Destiny-Org/destiny/blob/main/src/destiny/backend/go.d
  */
 
-module dmd.backend.go;
+module destiny.backend.go;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 import core.stdc.time;
 
-import dmd.backend.barray;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.dvec;
-import dmd.backend.oper;
-import dmd.backend.el;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.dvec;
+import destiny.backend.oper;
+import destiny.backend.el;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.backconfig : debugb, debugc, debuge, debugf;
-import dmd.backend.blockopt : BlockOpt, bo;
-import dmd.backend.blockopt : bc_goal, block_optimizer_free, blockopt;
-import dmd.backend.cg : localgot;
-import dmd.backend.cgelem : doptelem, postoptelem;
-import dmd.backend.debugprint : WRfunc;
-import dmd.backend.dout : out_regcand;
-import dmd.backend.util2 : binary;
-import dmd.backend.inliner;
+import destiny.backend.backconfig : debugb, debugc, debuge, debugf;
+import destiny.backend.blockopt : BlockOpt, bo;
+import destiny.backend.blockopt : bc_goal, block_optimizer_free, blockopt;
+import destiny.backend.cg : localgot;
+import destiny.backend.cgelem : doptelem, postoptelem;
+import destiny.backend.debugprint : WRfunc;
+import destiny.backend.dout : out_regcand;
+import destiny.backend.util2 : binary;
+import destiny.backend.inliner;
 
-public import dmd.backend.gdag : builddags, boolopt;
-public import dmd.backend.gflow : flowrd, flowlv, flowvbe, flowcp, flowae, genkillae;
-public import dmd.backend.glocal : localize;
-public import dmd.backend.gloop : blockinit, compdom, loopopt, updaterd;
-public import dmd.backend.gother : constprop, copyprop, rmdeadass, elimass, deadvar, verybusyexp, listrds;
-public import dmd.backend.gsroa : sliceStructs;
+public import destiny.backend.gdag : builddags, boolopt;
+public import destiny.backend.gflow : flowrd, flowlv, flowvbe, flowcp, flowae, genkillae;
+public import destiny.backend.glocal : localize;
+public import destiny.backend.gloop : blockinit, compdom, loopopt, updaterd;
+public import destiny.backend.gother : constprop, copyprop, rmdeadass, elimass, deadvar, verybusyexp, listrds;
+public import destiny.backend.gsroa : sliceStructs;
 
 nothrow:
 @safe:

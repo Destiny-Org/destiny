@@ -4,38 +4,38 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     Stefan Koch
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/asttypename.d, _asttypename.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/asttypename.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/asttypename.d, _asttypename.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/asttypename.d
  *
  */
 
-module dmd.asttypename;
+module destiny.asttypename;
 
-import dmd.ast_node;
-import dmd.attrib;
-import dmd.aliasthis;
-import dmd.aggregate;
-import dmd.cond;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dimport;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dtemplate;
-import dmd.dversion;
-import dmd.expression;
-import dmd.func;
-import dmd.dmodule;
-import dmd.mtype;
-import dmd.identifier;
-import dmd.init;
-import dmd.root.complex;
-import dmd.rootobject;
-import dmd.statement;
-import dmd.staticassert;
-import dmd.nspace;
-import dmd.visitor;
+import destiny.ast_node;
+import destiny.attrib;
+import destiny.aliasthis;
+import destiny.aggregate;
+import destiny.cond;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dimport;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dtemplate;
+import destiny.dversion;
+import destiny.expression;
+import destiny.func;
+import destiny.dmodule;
+import destiny.mtype;
+import destiny.identifier;
+import destiny.init;
+import destiny.root.complex;
+import destiny.rootobject;
+import destiny.statement;
+import destiny.staticassert;
+import destiny.nspace;
+import destiny.visitor;
 
 /// Returns: the typename of the dynamic ast-node-type
 /// (this is a development tool, do not use in actual code)
@@ -113,7 +113,7 @@ mixin(mixin_string);
 ///
 unittest
 {
-    import dmd.location;
+    import destiny.location;
     Expression e = new TypeidExp(Loc.initial, null);
     Tuple t = new Tuple();
     TemplateTypeParameter tp = new TemplateTypeParameter(Loc.initial, null, null, null);

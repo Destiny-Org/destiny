@@ -26,9 +26,9 @@ int main()
         enum mainExtra = `-fPIC -L-L$OUTPUT_BASE -L$DLL`;
     }
 
-    run(`$DMD -m$MODEL -shared -od=$OUTPUT_BASE -of=$DLL $SRC/mydll.d ` ~ dllExtra);
+    run(`$DESTINY -m$MODEL -shared -od=$OUTPUT_BASE -of=$DLL $SRC/mydll.d ` ~ dllExtra);
 
-    run(`$DMD -m$MODEL -I$SRC -od=$OUTPUT_BASE -of=$EXE_NAME $SRC/testdll.d ` ~ mainExtra);
+    run(`$DESTINY -m$MODEL -I$SRC -od=$OUTPUT_BASE -of=$EXE_NAME $SRC/testdll.d ` ~ mainExtra);
 
     run(`$EXE_NAME`, stdout, stderr, [`LD_LIBRARY_PATH`: Vars.OUTPUT_BASE]);
 

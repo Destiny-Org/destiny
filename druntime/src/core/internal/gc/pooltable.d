@@ -88,7 +88,7 @@ struct PoolTable(Pool)
         {
             assert(npools);
 
-            // let dmd allocate a register for this.pools
+            // let destiny allocate a register for this.pools
             auto pools = this.pools;
 
             if (npools == 1)

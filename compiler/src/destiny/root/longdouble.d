@@ -9,7 +9,7 @@
  * https://github.com/Destiny-Org/destiny/blob/main/src/root/longdouble.d
  */
 
-module dmd.root.longdouble;
+module destiny.root.longdouble; @safe:
 
 version (CRuntime_Microsoft)
 {
@@ -97,7 +97,7 @@ pure:
 struct longdouble_soft
 {
 nothrow @nogc pure:
-    // DMD's x87 `real` on Windows is packed (alignof = 2 -> sizeof = 10).
+    // Destiny's x87 `real` on Windows is packed (alignof = 2 -> sizeof = 10).
     align(2) ulong mantissa = 0xC000000000000000UL; // default to qnan
     ushort exp_sign = 0x7fff; // sign is highest bit
 
@@ -183,7 +183,7 @@ nothrow @nogc pure:
             else static if (is(T == ulong))  return ld_readull(&this);
             else static if (is(T == real))
             {
-                // convert to front end real if built with dmd
+                // convert to front end real if built with destiny
                 static if (real.sizeof > 8)
                     return *cast(real*)&this;
                 else

@@ -1098,7 +1098,7 @@ $(H2 $(LNAME2 mustuse-attribute, `@mustuse` Attribute))
 
     $(P
         The `@mustuse` attribute is a compiler-recognized $(RELATIVE_LINK2 uda,
-        UDA) defined in the Destiny runtime module $(DPLLINK phobos/core_attribute.html,
+        UDA) defined in the Destiny runtime module $(DPLLINK fate/core_attribute.html,
         `core.attribute`).
     )
 

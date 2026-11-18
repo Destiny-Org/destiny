@@ -3,22 +3,22 @@
  *
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * License:   $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/file_manager.d, _file_manager.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/file_manager.d, _file_manager.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.file_manager;
+module destiny.file_manager;
 
 import core.stdc.stdio;
-import dmd.common.outbuffer;
-import dmd.root.stringtable : StringTable;
-import dmd.root.file : File;
-import dmd.root.filename : FileName, isDirSeparator;
-import dmd.root.string : toDString;
-import dmd.globals : mars_ext, hdr_ext, i_ext, h_ext, c_ext, ImportPathInfo;
-import dmd.identifier;
-import dmd.location;
+import destiny.common.outbuffer;
+import destiny.root.stringtable : StringTable;
+import destiny.root.file : File;
+import destiny.root.filename : FileName, isDirSeparator;
+import destiny.root.string : toDString;
+import destiny.globals : mars_ext, hdr_ext, i_ext, h_ext, c_ext, ImportPathInfo;
+import destiny.identifier;
+import destiny.location;
 
 enum package_d  = "package." ~ mars_ext;
 enum package_di = "package." ~ hdr_ext;
@@ -218,7 +218,7 @@ nothrow:
                 const file = FileName.combine(path, ext);
                 if (FileName.exists(file) == 1)
                 {
-                    import dmd.root.rmem : xarraydup;
+                    import destiny.root.rmem : xarraydup;
                     return checkLocal ? file.xarraydup : file;
                 }
                 freePath(file);
@@ -250,7 +250,7 @@ nothrow:
                 const file = FileName.combine(path, ext);
                 if (FileName.exists(file) == 1)
                 {
-                    import dmd.root.rmem : xarraydup;
+                    import destiny.root.rmem : xarraydup;
                     return checkLocal ? file.xarraydup : file;
                 }
                 freePath(file);

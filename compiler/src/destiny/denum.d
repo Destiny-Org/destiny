@@ -6,27 +6,27 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/denum.d, _denum.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/denum.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/denum.d, _denum.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/denum.d
  *
  * References:  https://github.com/Destiny-Org/destiny/blob/main/spec/enum.dd
  */
 
-module dmd.denum;
+module destiny.denum;
 
 import core.stdc.stdio;
 
-import dmd.astenums;
-import dmd.attrib;
-import dmd.declaration;
-import dmd.dsymbol;
-import dmd.expression;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.visitor;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.declaration;
+import destiny.dsymbol;
+import destiny.expression;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.visitor;
 
 /***********************************************************
  * AST node for `EnumDeclaration`
@@ -58,7 +58,7 @@ extern (C++) final class EnumDeclaration : ScopeDsymbol
         bool inuse;
     }
 
-    import dmd.common.bitfields : generateBitFields;
+    import destiny.common.bitfields : generateBitFields;
     mixin(generateBitFields!(BitFields, ubyte));
 
     void* sinit;

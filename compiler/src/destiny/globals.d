@@ -4,30 +4,30 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/globals.d, _globals.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/globals.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/globals.d, _globals.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/globals.d
  *
  */
 
-module dmd.globals;
+module destiny.globals;
 
 import core.stdc.stdio;
 import core.stdc.stdint;
 import core.stdc.string;
 
-import dmd.astenums;
-import dmd.root.array;
-import dmd.root.file;
-import dmd.root.filename;
-import dmd.common.outbuffer;
-import dmd.errorsink;
-import dmd.errors;
-import dmd.file_manager;
-import dmd.identifier;
-import dmd.location;
-import dmd.lexer : CompileEnv;
-import dmd.targetcompiler;
-import dmd.utils;
+import destiny.astenums;
+import destiny.root.array;
+import destiny.root.file;
+import destiny.root.filename;
+import destiny.common.outbuffer;
+import destiny.errorsink;
+import destiny.errors;
+import destiny.file_manager;
+import destiny.identifier;
+import destiny.location;
+import destiny.lexer : CompileEnv;
+import destiny.targetcompiler;
+import destiny.utils;
 
 /// Defines a setting for how compiler warnings and deprecations are handled
 enum DiagnosticReporting : ubyte
@@ -214,6 +214,7 @@ extern (C++) struct Param
     bool fixImmutableConv;       // error on unsound immutable conversion - upstream dmd pull request 14070
     bool fix16997 = true;        // fix integral promotions for unary + - ~ operators
                                  // upstream issue 16997
+    bool safeDefault = true;     // Destiny: unannotated functions are @safe (-revert=safedefault)
     FeatureState dtorFields;     // destruct fields of partially constructed objects
                                  // upstream issue 14246
     FeatureState systemVariables; // limit access to variables marked @system from @safe code
@@ -517,7 +518,7 @@ extern (C++) struct Global
 
 // Because int64_t and friends may be any integral type of the
 // correct size, we have to explicitly ask for the correct
-// integer type to get the correct mangling with dmd
+// integer type to get the correct mangling with destiny
 
 // Be careful not to care about sign when using dinteger_t
 // use this instead of integer_t to

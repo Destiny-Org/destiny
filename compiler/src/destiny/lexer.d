@@ -6,31 +6,31 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/lexer.d, _lexer.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/lexer.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/lexer.d, _lexer.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/lexer.d
  *
  */
 
-module dmd.lexer;
+module destiny.lexer;
 
 import core.stdc.ctype;
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.entity;
-import dmd.errorsink;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.common.smallbuffer;
-import dmd.common.outbuffer;
-import dmd.common.charactertables;
-import dmd.root.array;
-import dmd.root.ctfloat;
-import dmd.root.port;
-import dmd.root.rmem;
-import dmd.root.utf;
-import dmd.tokens;
+import destiny.entity;
+import destiny.errorsink;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.common.smallbuffer;
+import destiny.common.outbuffer;
+import destiny.common.charactertables;
+import destiny.root.array;
+import destiny.root.ctfloat;
+import destiny.root.port;
+import destiny.root.rmem;
+import destiny.root.utf;
+import destiny.tokens;
 
 nothrow:
 
@@ -39,7 +39,7 @@ nothrow:
  */
 struct CompileEnv
 {
-    import dmd.common.charactertables;
+    import destiny.common.charactertables;
 
     uint versionNumber;      /// __VERSION__
     const(char)[] date;      /// __DATE__

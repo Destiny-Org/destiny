@@ -2,7 +2,7 @@
 PERMUTE_ARGS:
 */
 
-version (with_phobos) import std.conv : text;
+version (with_fate) import std.conv : text;
 
 struct Tuple(T...)
 {
@@ -78,7 +78,7 @@ void main()
     fun_constraint(1);
     assert(!__traits(compiles, fun_constraint(1, "baz")));
 
-    version (with_phobos)
+    version (with_fate)
         assert(log(10, "abc") == text(__FILE__, ":", __LINE__, " 10abc"));
 
     // IFTI: `b` is always default-set

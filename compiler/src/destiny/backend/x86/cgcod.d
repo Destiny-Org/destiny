@@ -5,12 +5,12 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cgcod.d, backend/cgcod.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/x86/cgcod.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/cgcod.d, backend/cgcod.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/x86/cgcod.d
  *
  */
 
-module dmd.backend.x86.cgcod;
+module destiny.backend.x86.cgcod;
 
 version = FRAMEPTR;
 
@@ -19,37 +19,37 @@ import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.backconfig : debugc, debugr, debugw;
-import dmd.backend.blockopt : bo;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.cgcse;
-import dmd.backend.codebuilder;
-import dmd.backend.dvec;
-import dmd.backend.melf;
-import dmd.backend.mem;
-import dmd.backend.eh;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE, _align, mask;
-import dmd.backend.debugprint : oper_str, tym_str;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.pdata : win64_pdata;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.backconfig : debugc, debugr, debugw;
+import destiny.backend.blockopt : bo;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.cgcse;
+import destiny.backend.codebuilder;
+import destiny.backend.dvec;
+import destiny.backend.melf;
+import destiny.backend.mem;
+import destiny.backend.eh;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE, _align, mask;
+import destiny.backend.debugprint : oper_str, tym_str;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.pdata : win64_pdata;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.backend.arm.disasmarm;
-import dmd.backend.arm.instr;
+import destiny.backend.arm.disasmarm;
+import destiny.backend.arm.instr;
 
-import dmd.backend.x86.code_x86;
-import dmd.backend.x86.disasm86;
-import dmd.backend.x86.nteh : cdsetjmp;
-import dmd.backend.x86.xmm;
+import destiny.backend.x86.code_x86;
+import destiny.backend.x86.disasm86;
+import destiny.backend.x86.nteh : cdsetjmp;
+import destiny.backend.x86.xmm;
 
-import dmd.backend.barray;
+import destiny.backend.barray;
 
 
 nothrow:
@@ -60,7 +60,7 @@ extern(C) void qsort(void* base, size_t nmemb, size_t size, _compare_fp_t compar
 
 enum MARS = true;
 
-import dmd.backend.dwarfdbginf : dwarf_except_gentables;
+import destiny.backend.dwarfdbginf : dwarf_except_gentables;
 
 __gshared CGstate cgstate;     // state of code generator
 
@@ -770,7 +770,7 @@ Lagain:
      *
      * Bias depends on Para.size and needframe. The value of Para.size depends on
      * whether the function is an interrupt handler and whether it is a farfunc.
-     * DMD does not have _interrupt attribute and D does not make a distinction
+     * Destiny does not have _interrupt attribute and D does not make a distinction
      * between near and far functions, so Para.size should always be 2 * REGSIZE
      * for D.
      *
@@ -3378,7 +3378,7 @@ void disassemble(ref Symbol funcsym, ubyte[] code)
         for (size_t i = 0; i < code.length; i += 4)
         {
             printf("%04x:", cast(int)i);
-            dmd.backend.arm.disasmarm.getopstring(&put, code, cast(uint)i, 4, 64, false, true, true,
+            destiny.backend.arm.disasmarm.getopstring(&put, code, cast(uint)i, 4, 64, false, true, true,
                     null, null, null, null);
             printf("\n");
         }
@@ -3391,9 +3391,9 @@ void disassemble(ref Symbol funcsym, ubyte[] code)
         {
             printf("%04x:", cast(int)i);
             uint pc;
-            const sz = dmd.backend.x86.disasm86.calccodsize(code, cast(uint)i, pc, model);
+            const sz = destiny.backend.x86.disasm86.calccodsize(code, cast(uint)i, pc, model);
 
-            dmd.backend.x86.disasm86.getopstring(&put, code, cast(uint)i, sz, model, model == 16, true, true,
+            destiny.backend.x86.disasm86.getopstring(&put, code, cast(uint)i, sz, model, model == 16, true, true,
                     null, null, null, null);
             printf("\n");
             i += sz;
@@ -3411,7 +3411,7 @@ void disassemble(ref Symbol funcsym, ubyte[] code)
     @trusted
     void put(char c) { printf("%c", c); }
 
-    dmd.backend.arm.disasmarm.getopstring(&put, (cast(ubyte*)&ins)[0..4], 0, 4, 64, false, true, /*bURL*/ true,
+    destiny.backend.arm.disasmarm.getopstring(&put, (cast(ubyte*)&ins)[0..4], 0, 4, 64, false, true, /*bURL*/ true,
             null, null, null, null);
     printf("\n");
 }

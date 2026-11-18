@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/staticassert.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/staticassert.h
  */
 
 #pragma once

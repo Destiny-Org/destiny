@@ -5,41 +5,41 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/declaration.d, _declaration.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/declaration.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/declaration.d, _declaration.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/declaration.d
  *
  */
 
-module dmd.declaration;
+module destiny.declaration;
 
 import core.stdc.stdio;
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.dsymbol;
-import dmd.dtemplate;
-import dmd.errors : fatal;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.func;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.intrange;
-import dmd.location;
-import dmd.mtype;
-import dmd.common.outbuffer;
-import dmd.root.filename;
-import dmd.target;
-import dmd.targetcompiler;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.dsymbol;
+import destiny.dtemplate;
+import destiny.errors : fatal;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.func;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.intrange;
+import destiny.location;
+import destiny.mtype;
+import destiny.common.outbuffer;
+import destiny.root.filename;
+import destiny.target;
+import destiny.targetcompiler;
+import destiny.visitor;
 
 
 /******************************************
  */
 void ObjectNotFound(Loc loc, Identifier id)
 {
-    import dmd.globals;
+    import destiny.globals;
     global.gag = 0; // never gag the fatal error
     const dmdConfFile = global.inifilename.length ? FileName.canonicalName(global.inifilename) : "not found";
 
@@ -80,7 +80,7 @@ extern (C++) abstract class Declaration : Dsymbol
         bool nrvo;         /// forward to fd.nrvo_var when generating code
     }
 
-    import dmd.common.bitfields;
+    import destiny.common.bitfields;
     mixin(generateBitFields!(BitFields, ubyte));
 
     final extern (D) this(DSYM tag, Identifier ident) @safe
@@ -337,7 +337,7 @@ extern (C++) final class AliasDeclaration : Declaration
     extern (D) this(Loc loc, Identifier ident, Type type) @safe
     {
         super(DSYM.aliasDeclaration, loc, ident);
-        //debug printf("AliasDeclaration(id = '%s', type = `%s`, %p)\n", ident.toChars(), dmd.hdrgen.toChars(type), type.isTypeIdentifier());
+        //debug printf("AliasDeclaration(id = '%s', type = `%s`, %p)\n", ident.toChars(), destiny.hdrgen.toChars(type), type.isTypeIdentifier());
         this.type = type;
         assert(type);
     }
@@ -504,7 +504,7 @@ extern (C++) class VarDeclaration : Declaration
         bool systemInferred;    /// @system was inferred from initializer
     }
 
-    import dmd.common.bitfields : generateBitFields;
+    import destiny.common.bitfields : generateBitFields;
     mixin(generateBitFields!(BitFields, uint));
 
     byte canassign;                 // it can be assigned to
@@ -629,8 +629,8 @@ extern (C++) class VarDeclaration : Declaration
             Dsymbol parent = toParent();
             if (!parent && !(storage_class & STC.static_))
             {
-                import dmd.globals : global;
-                import dmd.errorsink;
+                import destiny.globals : global;
+                import destiny.errorsink;
                 auto eSink = global.errorSink;
                 eSink.error(loc, "%s `%s` forward referenced", kind, toPrettyChars);
                 type = Type.terror;
@@ -755,7 +755,7 @@ private Identifier getTypeInfoIdent(Type t)
     // _init_10TypeInfo_%s
     OutBuffer buf;
     buf.reserve(32);
-    import dmd.mangle;
+    import destiny.mangle;
     mangleToBuffer(t, buf);
 
     OutBuffer buf2;

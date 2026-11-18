@@ -34,7 +34,7 @@ string dmd()
 {
     import tools.paths : dmdPath;
 
-    auto env = environment.get("DMD");
+    auto env = environment.get("DESTINY");
     return env ? env : dmdPath;
 }
 

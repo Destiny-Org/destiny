@@ -6,40 +6,40 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/safe.d, _safe.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/safe.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/safe.d, _safe.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/safe.d
  *
  */
 
-module dmd.safe;
+module destiny.safe;
 
 import core.stdc.stdio;
 
-import dmd.aggregate;
-import dmd.astenums;
-import dmd.common.outbuffer;
-import dmd.dcast : implicitConvTo;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dscope;
-import dmd.dsymbol;
-import dmd.dsymbolsem : determineSize;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.func;
-import dmd.funcsem : isRootTraitsCompilesScope;
-import dmd.globals : FeatureState, global;
-import dmd.hdrgen : toErrMsg;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.rootobject;
-import dmd.root.string : fTuple;
-import dmd.target;
-import dmd.targetcompiler;
-import dmd.tokens;
-import dmd.typesem;
+import destiny.aggregate;
+import destiny.astenums;
+import destiny.common.outbuffer;
+import destiny.dcast : implicitConvTo;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dscope;
+import destiny.dsymbol;
+import destiny.dsymbolsem : determineSize;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.func;
+import destiny.funcsem : isRootTraitsCompilesScope;
+import destiny.globals : FeatureState, global;
+import destiny.hdrgen : toErrMsg;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.rootobject;
+import destiny.root.string : fTuple;
+import destiny.target;
+import destiny.targetcompiler;
+import destiny.tokens;
+import destiny.typesem;
 
 /*************************************************************
  * Check for unsafe access in @safe code:
@@ -602,7 +602,7 @@ bool setUnsafePreview(Scope* sc, FeatureState fs, bool gag, Loc loc, VarDeclarat
         }
         else if (!sc.func.safetyViolation)
         {
-            import dmd.func : AttributeViolation;
+            import destiny.func : AttributeViolation;
             if (scopeVar)
                 sc.func.safetyViolation = new AttributeViolation(loc, format, scopeVar, args);
             else

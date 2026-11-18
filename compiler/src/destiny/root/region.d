@@ -4,19 +4,19 @@
  * Copyright:   Copyright (C) 2019-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/region.d, root/_region.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/region.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/region.d, root/_region.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/region.d
  *
  */
 
-module dmd.root.region;
+module destiny.root.region;
 
 import core.stdc.stdio;
 import core.stdc.string;
 import core.stdc.stdlib;
 
-import dmd.root.rmem;
-import dmd.root.array;
+import destiny.root.rmem;
+import destiny.root.array;
 
 nothrow:
 

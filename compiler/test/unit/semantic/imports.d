@@ -3,22 +3,22 @@ module semantic.imports; @system:
 import std.algorithm;
 import std.typecons;
 
-import dmd.frontend;
-import dmd.dsymbol;
-import dmd.astcodegen;
-import dmd.common.outbuffer;
+import destiny.frontend;
+import destiny.dsymbol;
+import destiny.astcodegen;
+import destiny.common.outbuffer;
 
 import support;
 
 @beforeEach void initializeFrontend()
 {
-    import dmd.frontend : initDMD;
+    import destiny.frontend : initDMD;
     initDMD();
 }
 
 @afterEach void deinitializeFrontend()
 {
-    import dmd.frontend : deinitializeDMD;
+    import destiny.frontend : deinitializeDMD;
     deinitializeDMD();
 }
 

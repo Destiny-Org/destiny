@@ -8,25 +8,25 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/code.d, backend/_code.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/code.d, backend/_code.d)
  */
 
-module dmd.backend.code;
+module destiny.backend.code;
 
-// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/code.d
+// Online documentation: https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/code.d
 
-import dmd.backend.barray;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.x86.code_x86;
-import dmd.backend.codebuilder : CodeBuilder;
-import dmd.backend.el : elem;
-import dmd.backend.oper : OPMAX;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.x86.code_x86;
+import destiny.backend.codebuilder : CodeBuilder;
+import destiny.backend.el : elem;
+import destiny.backend.oper : OPMAX;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-import dmd.common.outbuffer;
+import destiny.common.outbuffer;
 
 
 nothrow:
@@ -81,7 +81,7 @@ union evc
 
 /********************** PUBLIC FUNCTIONS *******************/
 
-public import dmd.backend.dcode : code_calloc, code_free, code_term, code_chunk_alloc, code_list;
+public import destiny.backend.dcode : code_calloc, code_free, code_term, code_chunk_alloc, code_list;
 
 code* code_next(code* c) { return c.next; }
 
@@ -245,12 +245,12 @@ struct CGstate
     }
 }
 
-public import dmd.backend.x86.nteh;
-public import dmd.backend.cgen;
-public import dmd.backend.x86.cgreg : cgreg_init, cgreg_term, cgreg_reset, cgreg_used,
+public import destiny.backend.x86.nteh;
+public import destiny.backend.cgen;
+public import destiny.backend.x86.cgreg : cgreg_init, cgreg_term, cgreg_reset, cgreg_used,
     cgreg_spillreg_prolog, cgreg_spillreg_epilog, cgreg_assign, cgreg_unregister;
 
-public import dmd.backend.cgsched : cgsched_block;
+public import destiny.backend.cgsched : cgsched_block;
 
 alias IDXSTR = uint;
 alias IDXSEC = uint;
@@ -313,8 +313,8 @@ struct Relocation
 }
 
 
-public import dmd.backend.machobj : mach_seg_data_isCode;
-public import dmd.backend.mscoffobj : mscoff_seg_data_isCode;
+public import destiny.backend.machobj : mach_seg_data_isCode;
+public import destiny.backend.mscoffobj : mscoff_seg_data_isCode;
 
 struct linnum_data
 {
@@ -361,10 +361,10 @@ struct FuncParamRegs
     const(reg_t)* floatregs;    // map to fp register
 }
 
-public import dmd.backend.cg : BPRM, FLOATREGS, FLOATREGS2, DOUBLEREGS,
+public import destiny.backend.cg : BPRM, FLOATREGS, FLOATREGS2, DOUBLEREGS,
     localsize, cseg, STACKALIGN, TARGET_STACKALIGN;
 
-public import dmd.backend.x86.cgcod;
+public import destiny.backend.x86.cgcod;
 enum BackendPass
 {
     initial,    /// initial pass through code generator
@@ -372,20 +372,20 @@ enum BackendPass
     final_,     /// final pass
 }
 
-public import dmd.backend.x86.cgcod : findreg;
+public import destiny.backend.x86.cgcod : findreg;
 
 reg_t findregmsw(regm_t regm) { return findreg(regm & mMSW); }
 reg_t findreglsw(regm_t regm) { return findreg(regm & (mLSW | mBP)); }
 
-public import dmd.backend.x86.cod1;
-public import dmd.backend.x86.cod2;
-public import dmd.backend.x86.cod3;
-public import dmd.backend.x86.cod4;
-public import dmd.backend.x86.cod5;
-public import dmd.backend.cgen : outfixlist, addtofixlist;
+public import destiny.backend.x86.cod1;
+public import destiny.backend.x86.cod2;
+public import destiny.backend.x86.cod3;
+public import destiny.backend.x86.cod4;
+public import destiny.backend.x86.cod5;
+public import destiny.backend.cgen : outfixlist, addtofixlist;
 
-public import dmd.backend.x86.cgxmm;
-public import dmd.backend.x86.cg87;
+public import destiny.backend.x86.cgxmm;
+public import destiny.backend.x86.cg87;
 
 /**********************************
  * Get registers used by a given block

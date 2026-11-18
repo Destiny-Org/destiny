@@ -3,7 +3,7 @@
 DMD builder
 
 Usage:
-  ./build.d dmd
+  ./build.d destiny
 
 See `--help` for targets.
 
@@ -94,7 +94,7 @@ void runMain(string[] args)
 Examples
 --------
 
-    ./build.d dmd           # build DMD
+    ./build.d destiny           # build the compiler
     ./build.d unittest      # runs internal unittests
     ./build.d clean         # remove all generated files
     ./build.d generated/linux/release/64/destiny.conf
@@ -116,10 +116,10 @@ ENABLE_RELEASE:       Optimized release build
 ENABLE_DEBUG:         Add debug instructions and symbols (set if ENABLE_RELEASE isn't set)
 ENABLE_ASSERTS:       Don't use -release if ENABLE_RELEASE is set
 ENABLE_LTO:           Enable link-time optimizations
-ENABLE_UNITTEST:      Build dmd with unittests (sets ENABLE_COVERAGE=1)
-ENABLE_PROFILE:       Build dmd with a profiling recorder (D)
-ENABLE_COVERAGE       Build dmd with coverage counting
-ENABLE_SANITIZERS     Build dmd with sanitizer (e.g. ENABLE_SANITIZERS=address,undefined)
+ENABLE_UNITTEST:      Build destiny with unittests (sets ENABLE_COVERAGE=1)
+ENABLE_PROFILE:       Build destiny with a profiling recorder (D)
+ENABLE_COVERAGE       Build destiny with coverage counting
+ENABLE_SANITIZERS     Build destiny with sanitizer (e.g. ENABLE_SANITIZERS=address,undefined)
 
 Targets
 -------
@@ -158,7 +158,7 @@ Command-line parameters
         return showHelp;
 
     // Since we're ultimately outputting to a TTY, force colored output
-    // A more proper solution would be to redirect DMD's output to this script's
+    // A more proper solution would be to redirect Destiny's output to this script's
     // output using `std.process`', but it's more involved and the following
     // "just works"
     version(Posix) // UPDATE: only when ANSII color codes are supported, that is. Don't do this on Windows.
@@ -167,7 +167,7 @@ Command-line parameters
         flags["DFLAGS"] ~= "-color=on";
     // default target
     if (!args.length)
-        args = ["dmd"];
+        args = ["destiny"];
 
     auto targets = predefinedTargets(args); // preprocess
 
@@ -481,8 +481,8 @@ alias dmdExe = makeRuleWithArgs!((MethodInitializer!BuildRule builder, BuildRule
 });
 
 alias dmdDefault = makeRule!((builder, rule) => builder
-    .name("dmd")
-    .description("Build dmd")
+    .name("destiny")
+    .description("Build destiny")
     .deps([dmdExe(null, null, null), dmdConf])
 );
 
@@ -517,12 +517,12 @@ alias runTests = makeRule!((testBuilder, testRule)
         });
 });
 
-/// BuildRule to run the DMD unittest executable.
+/// BuildRule to run the Destiny unittest executable.
 alias runDmdUnittest = makeRule!((builder, rule) {
     auto dmdUnittestExe = dmdExe("-unittest", ["-version=NoMain", "-unittest", env["HOST_DC_KIND"] == "gdc" ? "-fmain" : "-main"], ["-unittest"]);
     builder
         .name("unittest")
-        .description("Run the dmd unittests")
+        .description("Run the destiny unittests")
         .msg("(RUN) DMD-UNITTEST")
         .deps([dmdUnittestExe])
         .command(dmdUnittestExe.targets);
@@ -540,7 +540,7 @@ alias runCxxUnittest = makeRule!((runCxxBuilder, runCxxRule) {
         .target(env["G"].buildPath("cxxfrontend").objName)
         // No explicit if since CXX_KIND will always be either g++ or clang++
         .command([ env["CXX"], "-xc++", "-std=c++11",
-                   "-c", frontendRule.sources[0], "-o" ~ frontendRule.target, "-I" ~ env["D"] ~ "/../../include/dmd" ] ~ flags["CXXFLAGS"])
+                   "-c", frontendRule.sources[0], "-o" ~ frontendRule.target, "-I" ~ env["D"] ~ "/../../include/destiny" ] ~ flags["CXXFLAGS"])
     );
 
     alias cxxUnittestExe = methodInit!(BuildRule, (exeBuilder, exeRule) => exeBuilder
@@ -578,10 +578,10 @@ alias runCppLayoutTest = makeRule!((builder, rule) {
 
     builder
         .name("cpp-layout-test")
-        .description("Check that compiler/include/dmd/*.h matches the D extern(C++) declarations")
+        .description("Check that compiler/include/destiny/*.h matches the D extern(C++) declarations")
         .msg("(TEST) CPP-LAYOUT")
         .commandFunction(() {
-            const includeDir = compilerDir.buildPath("include", "dmd");
+            const includeDir = compilerDir.buildPath("include", "destiny");
             const script = compilerDir.buildPath("tools", "gen_cpp_layout_test.py");
             const result = tryRun(["python3", script, includeDir, generatedPath], runDir);
             if (result.status != 0)
@@ -684,11 +684,11 @@ alias style = makeRule!((builder, rule)
     builder
         .name("style")
         .description("Check for style errors using D-Scanner")
-        .msg("(DSCANNER) dmd")
+        .msg("(DSCANNER) destiny")
         .deps([dscanner])
         .command([
             dscanner.target, "--styleCheck", "--config", srcDir.buildPath(".dscanner.ini"),
-            srcDir.buildPath("dmd"), "-I" ~ srcDir
+            srcDir.buildPath("destiny"), "-I" ~ srcDir
         ]);
 });
 
@@ -710,7 +710,7 @@ alias man = makeRule!((builder, rule) {
 
     const genManDir = env["GENERATED"].buildPath("docs", "man");
     alias dmdMan = methodInit!(BuildRule, (dmdManBuilder, dmdManRule) => dmdManBuilder
-        .target(genManDir.buildPath("man1", "dmd.1"))
+        .target(genManDir.buildPath("man1", "destiny.1"))
         .deps([genMan, directoryRule(dmdManRule.target.dirName)])
         .msg("(GEN_MAN) " ~ dmdManRule.target)
         .commandFunction(() {
@@ -928,7 +928,7 @@ LtargetsLoop:
         switch (t)
         {
             case "all":
-                // "all" must include dmd + destiny.conf
+                // "all" must include destiny + destiny.conf
                 newTargets ~= dmdDefault;
                 break;
 
@@ -999,9 +999,9 @@ void parseEnvironment()
         // However, there are a good number of components in this repo and the other
         // repos that set this environment variable to "windows" without checking whether
         // it's already configured, i.e.
-        //      dmd\src\win32.mak (OS=windows)
+        //      destiny\src\win32.mak (OS=windows)
         //      druntime\win32.mak (OS=windows)
-        //      phobos\win32.mak (OS=windows)
+        //      fate\win32.mak (OS=windows)
         //
         // It's necessary to emulate the same behavior in this tool in order to make this
         // new tool compatible with existing tools. We can do this by also setting the
@@ -1061,7 +1061,7 @@ void parseEnvironment()
         : "https://github.com/Destiny-Org");
     env.setDefault("SYSCONFDIR", "/etc");
     env.setDefault("TMP", tempDir);
-    env.setDefault("RES", srcDir.buildPath("dmd", "res"));
+    env.setDefault("RES", srcDir.buildPath("destiny", "res"));
     env.setDefault("MAKE", "make");
 
     version (Windows)
@@ -1075,7 +1075,7 @@ void parseEnvironment()
     env.setDefault("DOCDIR", srcDir);
     env.setDefault("DOC_OUTPUT_DIR", env["DOCDIR"]);
 
-    auto d = env["D"] = srcDir.buildPath("dmd");
+    auto d = env["D"] = srcDir.buildPath("destiny");
     env["C"] = d.buildPath("backend");
     env["COMMON"] = d.buildPath("common");
     env["ROOT"] = d.buildPath("root");
@@ -1270,10 +1270,22 @@ void processEnvironment()
     if (!userDflags.any!(f => f.startsWith("-mtriple") || f.startsWith("-march")))
         dflags ~= env["MODEL_FLAG"];
 
+    // Destiny: when Destiny builds itself, compile the sources under upstream's
+    // `@system` default (modules opt in with `@safe:`; see docs/self-hosting.md)
+    if (hostSupportsSafeDefaultRevert())
+        dflags ~= "-revert=safedefault";
+
     flags["DFLAGS"] = dflags;
 }
 
 /// Setup environment for a C++ compiler
+/// Destiny: whether the host compiler is Destiny (it lists `-revert=safedefault`)
+bool hostSupportsSafeDefaultRevert()
+{
+    const res = [env["HOST_DC_RUN"], "-revert=h"].execute();
+    return res.status == 0 && res.output.canFind("safedefault");
+}
+
 void processEnvironmentCxx()
 {
     // Windows requires additional work to handle e.g. Cygwin on Azure
@@ -1301,7 +1313,7 @@ void processEnvironmentCxx()
         cxxFlags ~= "-fsanitize=" ~ sanitizers;
 
     // Enable a temporary workaround in globals.h and rmem.h concerning
-    // wrong name mangling using DMD.
+    // wrong name mangling using Destiny.
     // Remove when the minimally required D version becomes 2.082 or later
     if (env["HOST_DC_KIND"] == "dmd")
     {

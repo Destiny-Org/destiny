@@ -7,16 +7,16 @@
  *              Some portions copyright (c) 1994-1995 by Symantec
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/response.d, root/_response.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/root/response.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/response.d, root/_response.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/response.d
  *
  */
 
-module dmd.root.response;
+module destiny.root.response;
 
-import dmd.root.file;
-import dmd.root.filename;
-import dmd.common.outbuffer;
+import destiny.root.file;
+import destiny.root.filename;
+import destiny.common.outbuffer;
 
 nothrow:
 
@@ -94,7 +94,7 @@ version (unittest)
     char[] testEnvironment(const(char)* str) nothrow pure
     {
         import core.stdc.string: strlen;
-        import dmd.root.string : toDString;
+        import destiny.root.string : toDString;
         switch (str.toDString())
         {
         case "Foo":
@@ -347,7 +347,7 @@ private char[] lookupInEnvironment(scope const(char)* cp) nothrow
 {
     import core.stdc.stdlib: getenv;
     import core.stdc.string: strlen;
-    import dmd.root.rmem: mem;
+    import destiny.root.rmem: mem;
 
     if (auto p = getenv(cp))
     {
@@ -356,7 +356,7 @@ private char[] lookupInEnvironment(scope const(char)* cp) nothrow
     }
     else
     {
-        import dmd.root.string : toDString;
+        import destiny.root.string : toDString;
         OutBuffer buf;
         if (File.read(cp.toDString(), buf))
             return null;

@@ -4,7 +4,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/globals.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/globals.h
  */
 
 #pragma once
@@ -236,6 +236,7 @@ struct Param
     d_bool fixImmutableConv;       // error on unsound immutable conversion - upstream dmd pull request 14070
     d_bool fix16997;               // fix integral promotions for unary + - ~ operators
                                  // upstream issue 16997
+    d_bool safeDefault;            // Destiny: unannotated functions are @safe (-revert=safedefault)
     FeatureState dtorFields;     // destruct fields of partially constructed objects
                                  // upstream issue 14246
     FeatureState systemVariables; // limit access to variables marked @system from @safe code
@@ -418,11 +419,11 @@ extern Global global;
 
 // Because int64_t and friends may be any integral type of the correct size,
 // we have to explicitly ask for the correct integer type to get the correct
-// mangling with dmd. The #if logic here should match the mangling of
+// mangling with destiny. The #if logic here should match the mangling of
 // Tint64 and Tuns64 in cppmangle.d.
 #if MARS && DMD_VERSION >= 2079 && DMD_VERSION <= 2081 && \
     __APPLE__ && __SIZEOF_LONG__ == 8
-// DMD versions between 2.079 and 2.081 mapped D long to int64_t on OS X.
+// Destiny versions between 2.079 and 2.081 mapped D long to int64_t on OS X.
 typedef uint64_t dinteger_t;
 typedef int64_t sinteger_t;
 typedef uint64_t uinteger_t;

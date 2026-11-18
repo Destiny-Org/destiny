@@ -5,39 +5,39 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cgen.d, backend/cgen.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/cgen.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cgen.d, backend/cgen.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/cgen.d
  *
  */
 
-module dmd.backend.cgen;
+module destiny.backend.cgen;
 
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.barray;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.codebuilder;
-import dmd.backend.mem;
-import dmd.backend.el;
-import dmd.backend.global : error;
-import dmd.backend.dout : outdata;
-import dmd.backend.util2 : err_exit;
-import dmd.backend.obj;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.barray;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.codebuilder;
+import destiny.backend.mem;
+import destiny.backend.el;
+import destiny.backend.global : error;
+import destiny.backend.dout : outdata;
+import destiny.backend.util2 : err_exit;
+import destiny.backend.obj;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
 
 nothrow:
 @safe:
 
-public import dmd.backend.dt : dt_get_nzeros;
-public import dmd.backend.x86.cgcod : cgstate;
+public import destiny.backend.dt : dt_get_nzeros;
+public import destiny.backend.x86.cgcod : cgstate;
 
 /*****************************
  * Find last code in list.

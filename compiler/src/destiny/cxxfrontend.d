@@ -1,53 +1,53 @@
 /**
- * Contains C++ interfaces for interacting with DMD as a library.
+ * Contains C++ interfaces for interacting with Destiny as a library.
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cxxfrontend.d, _cxxfrontend.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/cxxfrontend.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/cxxfrontend.d, _cxxfrontend.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/cxxfrontend.d
  *
  */
-module dmd.cxxfrontend;
+module destiny.cxxfrontend;
 
-import dmd.aggregate : AggregateDeclaration;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.common.outbuffer : OutBuffer;
-import dmd.dclass : ClassDeclaration, BaseClass;
-import dmd.declaration : TypeInfoDeclaration, VarDeclaration, TupleDeclaration;
-import dmd.denum : EnumDeclaration;
-import dmd.dmodule /*: Module*/;
-import dmd.dscope : Scope;
-import dmd.dstruct /*: StructDeclaration*/;
-import dmd.dsymbol : Dsymbol, ScopeDsymbol, CAsmDeclaration, SearchOpt, SearchOptFlags;
-import dmd.dtemplate /*: TemplateInstance, TemplateParameter, Tuple*/;
-import dmd.errorsink : ErrorSink;
-import dmd.expression /*: Expression*/;
-import dmd.func : FuncDeclaration;
-import dmd.globals : dinteger_t, uinteger_t, JsonFieldFlags, CppStdRevision;
-import dmd.identifier : Identifier;
-import dmd.init : Initializer, NeedInterpret;
-import dmd.location : Loc;
-import dmd.mtype /*: Covariant, Type, Parameter, ParameterList*/;
-import dmd.rootobject : RootObject;
-import dmd.root.optional;
-import dmd.root.longdouble : real_t = longdouble;
-import dmd.root.complex;
-import dmd.semantic3;
-import dmd.statement : Statement, AsmStatement, GccAsmStatement;
+import destiny.aggregate : AggregateDeclaration;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.common.outbuffer : OutBuffer;
+import destiny.dclass : ClassDeclaration, BaseClass;
+import destiny.declaration : TypeInfoDeclaration, VarDeclaration, TupleDeclaration;
+import destiny.denum : EnumDeclaration;
+import destiny.dmodule /*: Module*/;
+import destiny.dscope : Scope;
+import destiny.dstruct /*: StructDeclaration*/;
+import destiny.dsymbol : Dsymbol, ScopeDsymbol, CAsmDeclaration, SearchOpt, SearchOptFlags;
+import destiny.dtemplate /*: TemplateInstance, TemplateParameter, Tuple*/;
+import destiny.errorsink : ErrorSink;
+import destiny.expression /*: Expression*/;
+import destiny.func : FuncDeclaration;
+import destiny.globals : dinteger_t, uinteger_t, JsonFieldFlags, CppStdRevision;
+import destiny.identifier : Identifier;
+import destiny.init : Initializer, NeedInterpret;
+import destiny.location : Loc;
+import destiny.mtype /*: Covariant, Type, Parameter, ParameterList*/;
+import destiny.rootobject : RootObject;
+import destiny.root.optional;
+import destiny.root.longdouble : real_t = longdouble;
+import destiny.root.complex;
+import destiny.semantic3;
+import destiny.statement : Statement, AsmStatement, GccAsmStatement;
 
 // NB: At some point in the future, we can switch to shortened function syntax.
-extern (C++, "dmd"):
+extern (C++, "destiny"):
 
 /***********************************************************
  * atrtibsem.d
  */
 Expressions* getAttributes(UserAttributeDeclaration a)
 {
-    import dmd.attribsem;
-    return dmd.attribsem.getAttributes(a);
+    import destiny.attribsem;
+    return destiny.attribsem.getAttributes(a);
 }
 
 /***********************************************************
@@ -55,20 +55,20 @@ Expressions* getAttributes(UserAttributeDeclaration a)
  */
 const(char)* toCppMangleItanium(Dsymbol s)
 {
-    import dmd.mangle.cpp;
-    return dmd.mangle.cpp.toCppMangleItanium(s);
+    import destiny.mangle.cpp;
+    return destiny.mangle.cpp.toCppMangleItanium(s);
 }
 
 const(char)* cppTypeInfoMangleItanium(Dsymbol s)
 {
-    import dmd.mangle.cpp;
-    return dmd.mangle.cpp.cppTypeInfoMangleItanium(s);
+    import destiny.mangle.cpp;
+    return destiny.mangle.cpp.cppTypeInfoMangleItanium(s);
 }
 
 const(char)* cppThunkMangleItanium(FuncDeclaration fd, int offset)
 {
-    import dmd.mangle.cpp;
-    return dmd.mangle.cpp.cppThunkMangleItanium(fd, offset);
+    import destiny.mangle.cpp;
+    return destiny.mangle.cpp.cppThunkMangleItanium(fd, offset);
 }
 
 /***********************************************************
@@ -76,8 +76,8 @@ const(char)* cppThunkMangleItanium(FuncDeclaration fd, int offset)
  */
 Expression ctfeInterpret(Expression e)
 {
-    import dmd.dinterpret;
-    return dmd.dinterpret.ctfeInterpret(e);
+    import destiny.dinterpret;
+    return destiny.dinterpret.ctfeInterpret(e);
 }
 
 /***********************************************************
@@ -85,32 +85,32 @@ Expression ctfeInterpret(Expression e)
  */
 const(char)* mangleExact(FuncDeclaration fd)
 {
-    import dmd.mangle;
-    return dmd.mangle.mangleExact(fd);
+    import destiny.mangle;
+    return destiny.mangle.mangleExact(fd);
 }
 
 void mangleToBuffer(Type t, ref OutBuffer buf)
 {
-    import dmd.mangle;
-    return dmd.mangle.mangleToBuffer(t, buf);
+    import destiny.mangle;
+    return destiny.mangle.mangleToBuffer(t, buf);
 }
 
 void mangleToBuffer(Expression e, ref OutBuffer buf)
 {
-    import dmd.mangle;
-    return dmd.mangle.mangleToBuffer(e, buf);
+    import destiny.mangle;
+    return destiny.mangle.mangleToBuffer(e, buf);
 }
 
 void mangleToBuffer(Dsymbol s, ref OutBuffer buf)
 {
-    import dmd.mangle;
-    return dmd.mangle.mangleToBuffer(s, buf);
+    import destiny.mangle;
+    return destiny.mangle.mangleToBuffer(s, buf);
 }
 
 void mangleToBuffer(TemplateInstance ti, ref OutBuffer buf)
 {
-    import dmd.mangle;
-    return dmd.mangle.mangleToBuffer(ti, buf);
+    import destiny.mangle;
+    return destiny.mangle.mangleToBuffer(ti, buf);
 }
 
 /***********************************************************
@@ -119,8 +119,8 @@ void mangleToBuffer(TemplateInstance ti, ref OutBuffer buf)
 void gendocfile(Module m, const char* ddoctext_ptr, size_t ddoctext_length,
                 const char* datetime, ErrorSink eSink, ref OutBuffer outbuf)
 {
-    import dmd.doc;
-    return dmd.doc.gendocfile(m, ddoctext_ptr, ddoctext_length, datetime, eSink, outbuf);
+    import destiny.doc;
+    return destiny.doc.gendocfile(m, ddoctext_ptr, ddoctext_length, datetime, eSink, outbuf);
 }
 
 /***********************************************************
@@ -128,7 +128,7 @@ void gendocfile(Module m, const char* ddoctext_ptr, size_t ddoctext_length,
  */
 FuncDeclaration search_toString(StructDeclaration sd)
 {
-    return dmd.semantic3.search_toString(sd);
+    return destiny.semantic3.search_toString(sd);
 }
 
 /***********************************************************
@@ -136,184 +136,184 @@ FuncDeclaration search_toString(StructDeclaration sd)
  */
 void dsymbolSemantic(Dsymbol dsym, Scope* sc)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.dsymbolSemantic(dsym, sc);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.dsymbolSemantic(dsym, sc);
 }
 
 void addMember(Dsymbol dsym, Scope* sc, ScopeDsymbol sds)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.addMember(dsym, sc, sds);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.addMember(dsym, sc, sds);
 }
 
 Dsymbol search(Dsymbol d, Loc loc, Identifier ident, SearchOptFlags
                flags = SearchOpt.all)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.search(d, loc, ident, flags);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.search(d, loc, ident, flags);
 }
 
 void setScope(Dsymbol d, Scope* sc)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.setScope(d, sc);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.setScope(d, sc);
 }
 
 void importAll(Dsymbol d, Scope* sc)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.importAll(d, sc);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.importAll(d, sc);
 }
 
 Dsymbols* include(Dsymbol d, Scope* sc)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.include(d, sc);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.include(d, sc);
 }
 
 bool isFuncHidden(ClassDeclaration cd, FuncDeclaration fd)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.isFuncHidden(cd, fd);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.isFuncHidden(cd, fd);
 }
 
 Dsymbol vtblSymbol(ClassDeclaration cd)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.vtblSymbol(cd);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.vtblSymbol(cd);
 }
 
 bool isAbstract(ClassDeclaration cd)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.isAbstract(cd);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.isAbstract(cd);
 }
 
 bool hasPointers(Dsymbol d)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.hasPointers(d);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.hasPointers(d);
 }
 
 void getLocalClasses(Module mod, ref ClassDeclarations aclasses)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.getLocalClasses(mod, aclasses);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.getLocalClasses(mod, aclasses);
 }
 
 Dsymbol toAlias(Dsymbol s)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.toAlias(s);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.toAlias(s);
 }
 
 Dsymbol toAlias2(Dsymbol s)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.toAlias2(s);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.toAlias2(s);
 }
 
 bool isPOD(StructDeclaration sd)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.isPOD(sd);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.isPOD(sd);
 }
 
 bool fillVtbl(BaseClass* bc, ClassDeclaration cd, FuncDeclarations* vtbl, int newinstance)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.fillVtbl(bc, cd, vtbl, newinstance);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.fillVtbl(bc, cd, vtbl, newinstance);
 }
 
 bool overloadInsert(Dsymbol ds, Dsymbol s)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.overloadInsert(ds, s);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.overloadInsert(ds, s);
 }
 
 bool equals(const Dsymbol ds, const Dsymbol s)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.equals(ds, s);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.equals(ds, s);
 }
 
 Type getType(Dsymbol ds)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.getType(ds);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.getType(ds);
 }
 
 uinteger_t size(Dsymbol ds, Loc loc)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.size(ds, loc);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.size(ds, loc);
 }
 
 void addDeferredSemantic(Dsymbol s)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.addDeferredSemantic(s);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.addDeferredSemantic(s);
 }
 
 void addDeferredSemantic2(Dsymbol s)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.addDeferredSemantic2(s);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.addDeferredSemantic2(s);
 }
 
 void addDeferredSemantic3(Dsymbol s)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.addDeferredSemantic3(s);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.addDeferredSemantic3(s);
 }
 
 void runDeferredSemantic()
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.runDeferredSemantic();
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.runDeferredSemantic();
 }
 
 void runDeferredSemantic2()
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.runDeferredSemantic2();
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.runDeferredSemantic2();
 }
 
 void runDeferredSemantic3()
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.runDeferredSemantic3();
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.runDeferredSemantic3();
 }
 
 bool isOverlappedWith(VarDeclaration vd, VarDeclaration v)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.isOverlappedWith(vd, v);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.isOverlappedWith(vd, v);
 }
 
 Scope* newScope(AggregateDeclaration ad, Scope* sc)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.newScope(ad, sc);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.newScope(ad, sc);
 }
 
 Dsymbol search(Scope* sc, Loc loc, Identifier ident, out Dsymbol pscopesym,
     SearchOptFlags flags = SearchOpt.all)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.search(sc, loc, ident, pscopesym, flags);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.search(sc, loc, ident, pscopesym, flags);
 }
 
 void addObjcSymbols(Dsymbol sym, ClassDeclarations* classes, ClassDeclarations* categories)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.addObjcSymbols(sym, classes, categories);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.addObjcSymbols(sym, classes, categories);
 }
 
 FuncDeclaration findGetMembers(ScopeDsymbol dsym)
 {
-    import dmd.dsymbolsem;
-    return dmd.dsymbolsem.findGetMembers(dsym);
+    import destiny.dsymbolsem;
+    return destiny.dsymbolsem.findGetMembers(dsym);
 }
 
 /***********************************************************
@@ -321,42 +321,42 @@ FuncDeclaration findGetMembers(ScopeDsymbol dsym)
  */
 inout(Expression) isExpression(inout RootObject o)
 {
-    return dmd.dtemplate.isExpression(o);
+    return destiny.dtemplate.isExpression(o);
 }
 
 inout(Dsymbol) isDsymbol(inout RootObject o)
 {
-    return dmd.dtemplate.isDsymbol(o);
+    return destiny.dtemplate.isDsymbol(o);
 }
 
 inout(Type) isType(inout RootObject o)
 {
-    return dmd.dtemplate.isType(o);
+    return destiny.dtemplate.isType(o);
 }
 
 inout(Tuple) isTuple(inout RootObject o)
 {
-    return dmd.dtemplate.isTuple(o);
+    return destiny.dtemplate.isTuple(o);
 }
 
 inout(Parameter) isParameter(inout RootObject o)
 {
-    return dmd.dtemplate.isParameter(o);
+    return destiny.dtemplate.isParameter(o);
 }
 
 inout(TemplateParameter) isTemplateParameter(inout RootObject o)
 {
-    return dmd.dtemplate.isTemplateParameter(o);
+    return destiny.dtemplate.isTemplateParameter(o);
 }
 
 bool isError(const RootObject o)
 {
-    return dmd.dtemplate.isError(o);
+    return destiny.dtemplate.isError(o);
 }
 
 void printTemplateStats(bool listInstances, ErrorSink eSink)
 {
-    return dmd.dtemplate.printTemplateStats(listInstances, eSink);
+    return destiny.dtemplate.printTemplateStats(listInstances, eSink);
 }
 
 void printInstantiationTrace(TemplateInstance ti)
@@ -369,8 +369,8 @@ void printInstantiationTrace(TemplateInstance ti)
  */
 void genCppHdrFiles(ref Modules ms, ErrorSink eSink, CppStdRevision cppStdRevision)
 {
-    import dmd.dtoh;
-    return dmd.dtoh.genCppHdrFiles(ms, eSink, cppStdRevision);
+    import destiny.dtoh;
+    return destiny.dtoh.genCppHdrFiles(ms, eSink, cppStdRevision);
 }
 
 /***********************************************************
@@ -378,8 +378,8 @@ void genCppHdrFiles(ref Modules ms, ErrorSink eSink, CppStdRevision cppStdRevisi
  */
 Expression getDefaultValue(EnumDeclaration ed, Loc loc)
 {
-    import dmd.enumsem;
-    return dmd.enumsem.getDefaultValue(ed, loc);
+    import destiny.enumsem;
+    return destiny.enumsem.getDefaultValue(ed, loc);
 }
 
 
@@ -389,99 +389,99 @@ Expression getDefaultValue(EnumDeclaration ed, Loc loc)
 
 void expandTuples(Expressions* exps, ArgumentLabels* names = null)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.expandTuples(exps, names);
+    import destiny.expressionsem;
+    return destiny.expressionsem.expandTuples(exps, names);
 }
 
 Expression expressionSemantic(Expression e, Scope* sc)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.expressionSemantic(e, sc);
+    import destiny.expressionsem;
+    return destiny.expressionsem.expressionSemantic(e, sc);
 }
 
 bool fill(StructDeclaration sd, Loc loc,
           ref Expressions elements, bool ctorinit)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.fill(sd, loc, elements, ctorinit);
+    import destiny.expressionsem;
+    return destiny.expressionsem.fill(sd, loc, elements, ctorinit);
 }
 
 bool isIdentical(const Expression exp, const Expression e)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.isIdentical(exp, e);
+    import destiny.expressionsem;
+    return destiny.expressionsem.isIdentical(exp, e);
 }
 
 bool equals(const Expression exp, const Expression e)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.equals(exp, e);
+    import destiny.expressionsem;
+    return destiny.expressionsem.equals(exp, e);
 }
 
 bool isLvalue(Expression exp)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.isLvalue(exp);
+    import destiny.expressionsem;
+    return destiny.expressionsem.isLvalue(exp);
 }
 
 bool canElideCopy(Expression exp, Type to, bool checkMod)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.canElideCopy(exp, to, checkMod);
+    import destiny.expressionsem;
+    return destiny.expressionsem.canElideCopy(exp, to, checkMod);
 }
 
 int getFieldIndex(ClassReferenceExp cre, Type fieldtype, uint fieldoffset)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.getFieldIndex(cre, fieldtype, fieldoffset);
+    import destiny.expressionsem;
+    return destiny.expressionsem.getFieldIndex(cre, fieldtype, fieldoffset);
 }
 
 void fillTupleExpExps(TupleExp te, TupleDeclaration tup)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.fillTupleExpExps(te, tup);
+    import destiny.expressionsem;
+    return destiny.expressionsem.fillTupleExpExps(te, tup);
 }
 
 Optional!bool toBool(Expression exp)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.toBool(exp);
+    import destiny.expressionsem;
+    return destiny.expressionsem.toBool(exp);
 }
 
 StringExp toStringExp(Expression exp)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.toStringExp(exp);
+    import destiny.expressionsem;
+    return destiny.expressionsem.toStringExp(exp);
 }
 
 dinteger_t toInteger(Expression exp)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.toInteger(exp);
+    import destiny.expressionsem;
+    return destiny.expressionsem.toInteger(exp);
 }
 
 uinteger_t toUInteger(Expression exp)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.toUInteger(exp);
+    import destiny.expressionsem;
+    return destiny.expressionsem.toUInteger(exp);
 }
 
 real_t toReal(Expression exp)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.toReal(exp);
+    import destiny.expressionsem;
+    return destiny.expressionsem.toReal(exp);
 }
 
 complex_t toComplex(Expression exp)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.toComplex(exp);
+    import destiny.expressionsem;
+    return destiny.expressionsem.toComplex(exp);
 }
 
 real_t toImaginary(Expression exp)
 {
-    import dmd.expressionsem;
-    return dmd.expressionsem.toImaginary(exp);
+    import destiny.expressionsem;
+    return destiny.expressionsem.toImaginary(exp);
 }
 
 /***********************************************************
@@ -489,62 +489,62 @@ real_t toImaginary(Expression exp)
  */
 FuncDeclaration genCfunc(Parameters* fparams, Type treturn, const(char)* name, StorageClass stc = STC.none)
 {
-    import dmd.funcsem;
-    return dmd.funcsem.genCfunc(fparams, treturn, name, cast(STC) stc);
+    import destiny.funcsem;
+    return destiny.funcsem.genCfunc(fparams, treturn, name, cast(STC) stc);
 }
 
 FuncDeclaration genCfunc(Parameters* fparams, Type treturn, Identifier id, StorageClass stc = STC.none)
 {
-    import dmd.funcsem;
-    return dmd.funcsem.genCfunc(fparams, treturn, id, cast(STC) stc);
+    import destiny.funcsem;
+    return destiny.funcsem.genCfunc(fparams, treturn, id, cast(STC) stc);
 }
 
 bool functionSemantic(FuncDeclaration fd)
 {
-    import dmd.funcsem;
-    return dmd.funcsem.functionSemantic(fd);
+    import destiny.funcsem;
+    return destiny.funcsem.functionSemantic(fd);
 }
 
 bool functionSemantic3(FuncDeclaration fd)
 {
-    import dmd.funcsem;
-    return dmd.funcsem.functionSemantic3(fd);
+    import destiny.funcsem;
+    return destiny.funcsem.functionSemantic3(fd);
 }
 
 MATCH leastAsSpecialized(FuncDeclaration fd, FuncDeclaration g, ArgumentLabels* names)
 {
-    import dmd.funcsem;
-    return dmd.funcsem.leastAsSpecialized(fd, g, names);
+    import destiny.funcsem;
+    return destiny.funcsem.leastAsSpecialized(fd, g, names);
 }
 
 PURE isPure(FuncDeclaration fd)
 {
-    import dmd.funcsem;
-    return dmd.funcsem.isPure(fd);
+    import destiny.funcsem;
+    return destiny.funcsem.isPure(fd);
 }
 
 bool needsClosure(FuncDeclaration fd)
 {
-    import dmd.funcsem;
-    return dmd.funcsem.needsClosure(fd);
+    import destiny.funcsem;
+    return destiny.funcsem.needsClosure(fd);
 }
 
 bool hasNestedFrameRefs(FuncDeclaration fd)
 {
-    import dmd.funcsem;
-    return dmd.funcsem.hasNestedFrameRefs(fd);
+    import destiny.funcsem;
+    return destiny.funcsem.hasNestedFrameRefs(fd);
 }
 
 bool isVirtualMethod(FuncDeclaration fd)
 {
-    import dmd.funcsem;
-    return dmd.funcsem.isVirtualMethod(fd);
+    import destiny.funcsem;
+    return destiny.funcsem.isVirtualMethod(fd);
 }
 
 bool isVirtual(const FuncDeclaration fd)
 {
-    import dmd.funcsem;
-    return dmd.funcsem.isVirtual(fd);
+    import destiny.funcsem;
+    return destiny.funcsem.isVirtual(fd);
 }
 
 /***********************************************************
@@ -552,44 +552,44 @@ bool isVirtual(const FuncDeclaration fd)
  */
 void genhdrfile(Module m, bool doFuncBodies, ref OutBuffer buf)
 {
-    import dmd.hdrgen;
-    return dmd.hdrgen.genhdrfile(m, doFuncBodies, buf);
+    import destiny.hdrgen;
+    return destiny.hdrgen.genhdrfile(m, doFuncBodies, buf);
 }
 
 const(char)* toChars(const Statement s)
 {
-    import dmd.hdrgen;
-    return dmd.hdrgen.toChars(s);
+    import destiny.hdrgen;
+    return destiny.hdrgen.toChars(s);
 }
 
 const(char)* toChars(const Expression e)
 {
-    import dmd.hdrgen;
-    return dmd.hdrgen.toChars(e);
+    import destiny.hdrgen;
+    return destiny.hdrgen.toChars(e);
 }
 
 const(char)* toChars(const Initializer i)
 {
-    import dmd.hdrgen;
-    return dmd.hdrgen.toChars(i);
+    import destiny.hdrgen;
+    return destiny.hdrgen.toChars(i);
 }
 
 const(char)* toChars(const Type t)
 {
-    import dmd.hdrgen;
-    return dmd.hdrgen.toChars(t);
+    import destiny.hdrgen;
+    return destiny.hdrgen.toChars(t);
 }
 
 void moduleToBuffer(ref OutBuffer buf, bool vcg_ast, Module m)
 {
-    import dmd.hdrgen;
-    return dmd.hdrgen.moduleToBuffer(buf, vcg_ast, m);
+    import destiny.hdrgen;
+    return destiny.hdrgen.moduleToBuffer(buf, vcg_ast, m);
 }
 
 const(char)* parametersTypeToChars(ParameterList pl)
 {
-    import dmd.hdrgen;
-    return dmd.hdrgen.parametersTypeToChars(pl);
+    import destiny.hdrgen;
+    return destiny.hdrgen.parametersTypeToChars(pl);
 }
 
 /***********************************************************
@@ -597,14 +597,14 @@ const(char)* parametersTypeToChars(ParameterList pl)
  */
 Statement asmSemantic(AsmStatement s, Scope* sc)
 {
-    import dmd.iasm;
-    return dmd.iasm.asmSemantic(s, sc);
+    import destiny.iasm;
+    return destiny.iasm.asmSemantic(s, sc);
 }
 
 void asmSemantic(CAsmDeclaration d, Scope* sc)
 {
-    import dmd.iasm;
-    return dmd.iasm.asmSemantic(d, sc);
+    import destiny.iasm;
+    return destiny.iasm.asmSemantic(d, sc);
 }
 
 /***********************************************************
@@ -612,14 +612,14 @@ void asmSemantic(CAsmDeclaration d, Scope* sc)
  */
 Statement gccAsmSemantic(GccAsmStatement s, Scope* sc)
 {
-    import dmd.iasm.gcc;
-    return dmd.iasm.gcc.gccAsmSemantic(s, sc);
+    import destiny.iasm.gcc;
+    return destiny.iasm.gcc.gccAsmSemantic(s, sc);
 }
 
 void gccAsmSemantic(CAsmDeclaration d, Scope* sc)
 {
-    import dmd.iasm.gcc;
-    return dmd.iasm.gcc.gccAsmSemantic(d, sc);
+    import destiny.iasm.gcc;
+    return destiny.iasm.gcc.gccAsmSemantic(d, sc);
 }
 
 /***********************************************************
@@ -628,18 +628,18 @@ void gccAsmSemantic(CAsmDeclaration d, Scope* sc)
 Initializer initializerSemantic(Initializer init, Scope* sc, ref Type tx,
                                 NeedInterpret needInterpret)
 {
-    import dmd.initsem;
-    import dmd.globals : global;
+    import destiny.initsem;
+    import destiny.globals : global;
     auto eSink = global.errorSink;
-    return dmd.initsem.initializerSemantic(init, sc, tx, needInterpret, eSink);
+    return destiny.initsem.initializerSemantic(init, sc, tx, needInterpret, eSink);
 }
 
 Expression initializerToExpression(Initializer init, Scope* sc, Type itype)
 {
-    import dmd.initsem;
-    import dmd.globals : global;
+    import destiny.initsem;
+    import destiny.globals : global;
     auto eSink = global.errorSink;
-    return dmd.initsem.initializerToExpression(init, sc, itype, eSink);
+    return destiny.initsem.initializerToExpression(init, sc, itype, eSink);
 }
 
 /***********************************************************
@@ -647,14 +647,14 @@ Expression initializerToExpression(Initializer init, Scope* sc, Type itype)
  */
 void json_generate(ref Modules modules, ref OutBuffer buf)
 {
-    import dmd.json;
-    return dmd.json.json_generate(modules, buf);
+    import destiny.json;
+    return destiny.json.json_generate(modules, buf);
 }
 
 JsonFieldFlags tryParseJsonField(const(char)* fieldName)
 {
-    import dmd.json;
-    return dmd.json.tryParseJsonField(fieldName);
+    import destiny.json;
+    return destiny.json.tryParseJsonField(fieldName);
 }
 
 /***********************************************************
@@ -662,8 +662,8 @@ JsonFieldFlags tryParseJsonField(const(char)* fieldName)
  */
 Expression optimize(Expression e, int result, bool keepLvalue = false)
 {
-    import dmd.optimize;
-    return dmd.optimize.optimize(e, result, keepLvalue);
+    import destiny.optimize;
+    return destiny.optimize.optimize(e, result, keepLvalue);
 }
 
 /***********************************************************
@@ -671,8 +671,8 @@ Expression optimize(Expression e, int result, bool keepLvalue = false)
  */
 void semantic2(Dsymbol dsym, Scope* sc)
 {
-    import dmd.semantic2;
-    return dmd.semantic2.semantic2(dsym, sc);
+    import destiny.semantic2;
+    return destiny.semantic2.semantic2(dsym, sc);
 }
 
 /***********************************************************
@@ -680,28 +680,28 @@ void semantic2(Dsymbol dsym, Scope* sc)
  */
 void semantic3(Dsymbol dsym, Scope* sc)
 {
-    import dmd.semantic3;
-    return dmd.semantic3.semantic3(dsym, sc);
+    import destiny.semantic3;
+    return destiny.semantic3.semantic3(dsym, sc);
 }
 
 void semanticTypeInfoMembers(StructDeclaration sd)
 {
-    import dmd.semantic3;
-    return dmd.semantic3.semanticTypeInfoMembers(sd);
+    import destiny.semantic3;
+    return destiny.semantic3.semanticTypeInfoMembers(sd);
 }
 
 bool checkClosure(FuncDeclaration fd)
 {
-    import dmd.semantic3;
-    return dmd.semantic3.checkClosure(fd);
+    import destiny.semantic3;
+    return destiny.semantic3.checkClosure(fd);
 }
 /***********************************************************
  * statementsem.d
  */
 Statement statementSemantic(Statement s, Scope* sc)
 {
-    import dmd.statementsem;
-    return dmd.statementsem.statementSemantic(s, sc);
+    import destiny.statementsem;
+    return destiny.statementsem.statementSemantic(s, sc);
 }
 
 /***********************************************************
@@ -709,8 +709,8 @@ Statement statementSemantic(Statement s, Scope* sc)
  */
 bool tpsemantic(TemplateParameter tp, Scope* sc, TemplateParameters* parameters)
 {
-    import dmd.templateparamsem;
-    return dmd.templateparamsem.tpsemantic(tp, sc, parameters);
+    import destiny.templateparamsem;
+    return destiny.templateparamsem.tpsemantic(tp, sc, parameters);
 }
 
 /***********************************************************
@@ -718,441 +718,441 @@ bool tpsemantic(TemplateParameter tp, Scope* sc, TemplateParameters* parameters)
  */
 bool hasDeprecatedAliasThis(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.hasDeprecatedAliasThis(type);
+    import destiny.typesem;
+    return destiny.typesem.hasDeprecatedAliasThis(type);
 }
 
 AggregateDeclaration isAggregate(Type t)
 {
-    import dmd.typesem;
-    return dmd.typesem.isAggregate(t);
+    import destiny.typesem;
+    return destiny.typesem.isAggregate(t);
 }
 
 bool hasPointers(Type t)
 {
-    import dmd.typesem;
-    return dmd.typesem.hasPointers(t);
+    import destiny.typesem;
+    return destiny.typesem.hasPointers(t);
 }
 
 Type typeSemantic(Type type, Loc loc, Scope* sc)
 {
-    import dmd.typesem;
-    return dmd.typesem.typeSemantic(type, loc, sc);
+    import destiny.typesem;
+    return destiny.typesem.typeSemantic(type, loc, sc);
 }
 
 Type trySemantic(Type type, Loc loc, Scope* sc)
 {
-    import dmd.typesem;
-    return dmd.typesem.trySemantic(type, loc, sc);
+    import destiny.typesem;
+    return destiny.typesem.trySemantic(type, loc, sc);
 }
 
 Type merge(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.merge(type);
+    import destiny.typesem;
+    return destiny.typesem.merge(type);
 }
 
 Type merge2(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.merge2(type);
+    import destiny.typesem;
+    return destiny.typesem.merge2(type);
 }
 
 Type toBasetype(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.toBasetype(type);
+    import destiny.typesem;
+    return destiny.typesem.toBasetype(type);
 }
 
 Expression defaultInit(Type mt, Loc loc, const bool isCfile = false)
 {
-    import dmd.typesem;
-    return dmd.typesem.defaultInit(mt, loc, isCfile);
+    import destiny.typesem;
+    return destiny.typesem.defaultInit(mt, loc, isCfile);
 }
 
 Dsymbol toDsymbol(Type type, Scope* sc)
 {
-    import dmd.typesem;
-    return dmd.typesem.toDsymbol(type, sc);
+    import destiny.typesem;
+    return destiny.typesem.toDsymbol(type, sc);
 }
 
 Covariant covariant(Type src, Type t, StorageClass* pstc = null, bool
                     cppCovariant = false)
 {
-    import dmd.typesem;
-    return dmd.typesem.covariant(src, t, cast(STC*) pstc, cppCovariant);
+    import destiny.typesem;
+    return destiny.typesem.covariant(src, t, cast(STC*) pstc, cppCovariant);
 }
 
 bool isZeroInit(Type t, Loc loc)
 {
-    import dmd.typesem;
-    return dmd.typesem.isZeroInit(t, loc);
+    import destiny.typesem;
+    return destiny.typesem.isZeroInit(t, loc);
 }
 
 bool isBaseOf(Type tthis, Type t, int* poffset)
 {
-    import dmd.typesem;
-    return dmd.typesem.isBaseOf(tthis, t, poffset);
+    import destiny.typesem;
+    return destiny.typesem.isBaseOf(tthis, t, poffset);
 }
 
 bool equivalent(Type src, Type t)
 {
-    import dmd.typesem;
-    return dmd.typesem.equivalent(src, t);
+    import destiny.typesem;
+    return destiny.typesem.equivalent(src, t);
 }
 
 Type sarrayOf(Type type, dinteger_t dim)
 {
-    import dmd.typesem;
-    return dmd.typesem.sarrayOf(type, dim);
+    import destiny.typesem;
+    return destiny.typesem.sarrayOf(type, dim);
 }
 
 Type arrayOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.arrayOf(type);
+    import destiny.typesem;
+    return destiny.typesem.arrayOf(type);
 }
 
 Type constOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.constOf(type);
+    import destiny.typesem;
+    return destiny.typesem.constOf(type);
 }
 
 Type immutableOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.immutableOf(type);
+    import destiny.typesem;
+    return destiny.typesem.immutableOf(type);
 }
 
 Type mutableOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.mutableOf(type);
+    import destiny.typesem;
+    return destiny.typesem.mutableOf(type);
 }
 
 Type sharedOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.sharedOf(type);
+    import destiny.typesem;
+    return destiny.typesem.sharedOf(type);
 }
 
 Type sharedConstOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.sharedConstOf(type);
+    import destiny.typesem;
+    return destiny.typesem.sharedConstOf(type);
 }
 
 Type unSharedOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.unSharedOf(type);
+    import destiny.typesem;
+    return destiny.typesem.unSharedOf(type);
 }
 
 Type wildOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.wildOf(type);
+    import destiny.typesem;
+    return destiny.typesem.wildOf(type);
 }
 
 Type wildConstOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.wildConstOf(type);
+    import destiny.typesem;
+    return destiny.typesem.wildConstOf(type);
 }
 
 Type sharedWildOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.sharedWildOf(type);
+    import destiny.typesem;
+    return destiny.typesem.sharedWildOf(type);
 }
 
 Type sharedWildConstOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.sharedWildConstOf(type);
+    import destiny.typesem;
+    return destiny.typesem.sharedWildConstOf(type);
 }
 
 Type substWildTo(Type type, uint mod)
 {
-    import dmd.typesem;
-    return dmd.typesem.substWildTo(type, mod);
+    import destiny.typesem;
+    return destiny.typesem.substWildTo(type, mod);
 }
 
 Type unqualify(Type type, uint m)
 {
-    import dmd.typesem;
-    return dmd.typesem.unqualify(type, m);
+    import destiny.typesem;
+    return destiny.typesem.unqualify(type, m);
 }
 
 Type toHeadMutable(const(Type) type)
 {
-    import dmd.typesem;
-    return dmd.typesem.toHeadMutable(type);
+    import destiny.typesem;
+    return destiny.typesem.toHeadMutable(type);
 }
 
 Type aliasthisOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.aliasthisOf(type);
+    import destiny.typesem;
+    return destiny.typesem.aliasthisOf(type);
 }
 
 Type castMod(Type type, MOD mod)
 {
-    import dmd.typesem;
-    return dmd.typesem.castMod(type, mod);
+    import destiny.typesem;
+    return destiny.typesem.castMod(type, mod);
 }
 
 Type addMod(Type type, MOD mod)
 {
-    import dmd.typesem;
-    return dmd.typesem.addMod(type, mod);
+    import destiny.typesem;
+    return destiny.typesem.addMod(type, mod);
 }
 
 Type addStorageClass(Type type, StorageClass stc)
 {
-    import dmd.typesem;
-    return dmd.typesem.addStorageClass(type, cast(STC) stc);
+    import destiny.typesem;
+    return destiny.typesem.addStorageClass(type, cast(STC) stc);
 }
 
 Type pointerTo(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.pointerTo(type);
+    import destiny.typesem;
+    return destiny.typesem.pointerTo(type);
 }
 
 Type referenceTo(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.referenceTo(type);
+    import destiny.typesem;
+    return destiny.typesem.referenceTo(type);
 }
 
 Type memType(TypeEnum type)
 {
-    import dmd.typesem;
-    return dmd.typesem.memType(type);
+    import destiny.typesem;
+    return destiny.typesem.memType(type);
 }
 
 uinteger_t size(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.size(type);
+    import destiny.typesem;
+    return destiny.typesem.size(type);
 }
 
 uinteger_t size(Type type, Loc loc)
 {
-    import dmd.typesem;
-    return dmd.typesem.size(type, loc);
+    import destiny.typesem;
+    return destiny.typesem.size(type, loc);
 }
 
 structalign_t alignment(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.alignment(type);
+    import destiny.typesem;
+    return destiny.typesem.alignment(type);
 }
 
 uint alignsize(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.alignsize(type);
+    import destiny.typesem;
+    return destiny.typesem.alignsize(type);
 }
 
 MATCH implicitConvTo(Type from, Type to)
 {
-    import dmd.dcast;
-    return dmd.dcast.implicitConvTo(from, to);
+    import destiny.dcast;
+    return destiny.dcast.implicitConvTo(from, to);
 }
 
 MATCH constConv(Type from, Type to)
 {
-    import dmd.typesem;
-    return dmd.typesem.constConv(from, to);
+    import destiny.typesem;
+    return destiny.typesem.constConv(from, to);
 }
 
 Expression defaultInitLiteral(Type t, Loc loc)
 {
-    import dmd.typesem;
-    return dmd.typesem.defaultInitLiteral(t, loc);
+    import destiny.typesem;
+    return destiny.typesem.defaultInitLiteral(t, loc);
 }
 
 bool hasUnsafeBitpatterns(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.hasUnsafeBitpatterns(type);
+    import destiny.typesem;
+    return destiny.typesem.hasUnsafeBitpatterns(type);
 }
 
 bool hasInvariant(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.hasInvariant(type);
+    import destiny.typesem;
+    return destiny.typesem.hasInvariant(type);
 }
 
 bool hasVoidInitPointers(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.hasVoidInitPointers(type);
+    import destiny.typesem;
+    return destiny.typesem.hasVoidInitPointers(type);
 }
 
 void Type_init()
 {
-    import dmd.typesem;
-    return dmd.typesem.Type_init();
+    import destiny.typesem;
+    return destiny.typesem.Type_init();
 }
 
 void transitive(TypeNext type)
 {
-    import dmd.typesem;
-    return dmd.typesem.transitive(type);
+    import destiny.typesem;
+    return destiny.typesem.transitive(type);
 }
 
 Type makeConst(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.makeConst(type);
+    import destiny.typesem;
+    return destiny.typesem.makeConst(type);
 }
 
 Type makeImmutable(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.makeImmutable(type);
+    import destiny.typesem;
+    return destiny.typesem.makeImmutable(type);
 }
 
 Type makeMutable(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.makeMutable(type);
+    import destiny.typesem;
+    return destiny.typesem.makeMutable(type);
 }
 
 Type makeShared(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.makeShared(type);
+    import destiny.typesem;
+    return destiny.typesem.makeShared(type);
 }
 
 Type makeSharedConst(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.makeSharedConst(type);
+    import destiny.typesem;
+    return destiny.typesem.makeSharedConst(type);
 }
 
 Type makeWild(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.makeWild(type);
+    import destiny.typesem;
+    return destiny.typesem.makeWild(type);
 }
 
 Type makeWildConst(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.makeWildConst(type);
+    import destiny.typesem;
+    return destiny.typesem.makeWildConst(type);
 }
 
 Type makeSharedWild(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.makeSharedWild(type);
+    import destiny.typesem;
+    return destiny.typesem.makeSharedWild(type);
 }
 
 Type makeSharedWildConst(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.makeSharedWildConst(type);
+    import destiny.typesem;
+    return destiny.typesem.makeSharedWildConst(type);
 }
 
 Type nextOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.nextOf(type);
+    import destiny.typesem;
+    return destiny.typesem.nextOf(type);
 }
 
 Type baseElemOf(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.baseElemOf(type);
+    import destiny.typesem;
+    return destiny.typesem.baseElemOf(type);
 }
 
 Type isLazyArray(Parameter param)
 {
-    import dmd.typesem;
-    return dmd.typesem.isLazyArray(param);
+    import destiny.typesem;
+    return destiny.typesem.isLazyArray(param);
 }
 
 MOD deduceWild(Type type, Type t, bool isRef)
 {
-    import dmd.typesem;
-    return dmd.typesem.deduceWild(type, t, isRef);
+    import destiny.typesem;
+    return destiny.typesem.deduceWild(type, t, isRef);
 }
 
 bool isIntegral(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.isIntegral(type);
+    import destiny.typesem;
+    return destiny.typesem.isIntegral(type);
 }
 
 bool isFloating(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.isFloating(type);
+    import destiny.typesem;
+    return destiny.typesem.isFloating(type);
 }
 
 bool isScalar(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.isScalar(type);
+    import destiny.typesem;
+    return destiny.typesem.isScalar(type);
 }
 
 bool isReal(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.isReal(type);
+    import destiny.typesem;
+    return destiny.typesem.isReal(type);
 }
 
 bool isComplex(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.isComplex(type);
+    import destiny.typesem;
+    return destiny.typesem.isComplex(type);
 }
 
 bool isImaginary(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.isImaginary(type);
+    import destiny.typesem;
+    return destiny.typesem.isImaginary(type);
 }
 
 bool isString(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.isString(type);
+    import destiny.typesem;
+    return destiny.typesem.isString(type);
 }
 
 bool isBoolean(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.isBoolean(type);
+    import destiny.typesem;
+    return destiny.typesem.isBoolean(type);
 }
 
 bool isUnsigned(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.isUnsigned(type);
+    import destiny.typesem;
+    return destiny.typesem.isUnsigned(type);
 }
 
 bool needsNested(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.needsNested(type);
+    import destiny.typesem;
+    return destiny.typesem.needsNested(type);
 }
 
 bool needsDestruction(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.needsDestruction(type);
+    import destiny.typesem;
+    return destiny.typesem.needsDestruction(type);
 }
 
 bool needsCopyOrPostblit(Type type)
 {
-    import dmd.typesem;
-    return dmd.typesem.needsCopyOrPostblit(type);
+    import destiny.typesem;
+    return destiny.typesem.needsCopyOrPostblit(type);
 }
 
 /***********************************************************
@@ -1160,26 +1160,26 @@ bool needsCopyOrPostblit(Type type)
  */
 void genTypeInfo(Expression e, Loc loc, Type torig, Scope* sc)
 {
-    import dmd.typinf;
-    return dmd.typinf.genTypeInfo(e, loc, torig, sc);
+    import destiny.typinf;
+    return destiny.typinf.genTypeInfo(e, loc, torig, sc);
 }
 
 bool builtinTypeInfo(Type t)
 {
-    import dmd.typinf;
-    return dmd.typinf.builtinTypeInfo(t);
+    import destiny.typinf;
+    return destiny.typinf.builtinTypeInfo(t);
 }
 
 Type makeNakedAssociativeArray(TypeAArray t)
 {
-    import dmd.typinf;
-    return dmd.typinf.makeNakedAssociativeArray(t);
+    import destiny.typinf;
+    return destiny.typinf.makeNakedAssociativeArray(t);
 }
 
 TypeInfoDeclaration getTypeInfoAssocArrayDeclaration(TypeAArray t, Scope* sc)
 {
-    import dmd.typinf;
-    return dmd.typinf.getTypeInfoAssocArrayDeclaration(t, sc);
+    import destiny.typinf;
+    return destiny.typinf.getTypeInfoAssocArrayDeclaration(t, sc);
 }
 
 /**
@@ -1187,20 +1187,20 @@ TypeInfoDeclaration getTypeInfoAssocArrayDeclaration(TypeAArray t, Scope* sc)
  */
 bool declareParameter(TemplateParameter tp, Scope* sc)
 {
-    import dmd.templatesem;
-    return dmd.templatesem.declareParameter(tp, sc);
+    import destiny.templatesem;
+    return destiny.templatesem.declareParameter(tp, sc);
 }
 
 bool needsCodegen(TemplateInstance ti)
 {
-    import dmd.templatesem;
-    return dmd.templatesem.needsCodegen(ti);
+    import destiny.templatesem;
+    return destiny.templatesem.needsCodegen(ti);
 }
 
 bool isDiscardable(TemplateInstance ti)
 {
-    import dmd.templatesem;
-    return dmd.templatesem.isDiscardable(ti);
+    import destiny.templatesem;
+    return destiny.templatesem.isDiscardable(ti);
 }
 version (IN_LLVM)
 {
@@ -1209,14 +1209,14 @@ version (IN_LLVM)
      */
     TypeTuple toArgTypes_aarch64(Type t)
     {
-        import dmd.argtypes_aarch64;
-        return dmd.argtypes_aarch64.toArgTypes_aarch64(t);
+        import destiny.argtypes_aarch64;
+        return destiny.argtypes_aarch64.toArgTypes_aarch64(t);
     }
 
     bool isHFVA(Type t, int maxNumElements = 4, Type* rewriteType = null)
     {
-        import dmd.argtypes_aarch64;
-        return dmd.argtypes_aarch64.isHFVA(t, maxNumElements, rewriteType);
+        import destiny.argtypes_aarch64;
+        return destiny.argtypes_aarch64.isHFVA(t, maxNumElements, rewriteType);
     }
 
     /***********************************************************
@@ -1224,8 +1224,8 @@ version (IN_LLVM)
      */
     TypeTuple toArgTypes_sysv_x64(Type t)
     {
-        import dmd.argtypes_sysv_x64;
-        return dmd.argtypes_sysv_x64.toArgTypes_sysv_x64(t);
+        import destiny.argtypes_sysv_x64;
+        return destiny.argtypes_sysv_x64.toArgTypes_sysv_x64(t);
     }
 
     /***********************************************************
@@ -1233,7 +1233,7 @@ version (IN_LLVM)
      */
     TypeTuple toArgTypes_x86(Type t)
     {
-        import dmd.argtypes_x86;
-        return dmd.argtypes_x86.toArgTypes_x86(t);
+        import destiny.argtypes_x86;
+        return destiny.argtypes_x86.toArgTypes_x86(t);
     }
 }

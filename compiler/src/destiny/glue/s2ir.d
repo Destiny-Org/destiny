@@ -4,12 +4,12 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/glue/s2ir.d, _s2ir.d)
- * Documentation: $(LINK https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/glue/s2ir.d, _s2ir.d)
+ * Documentation: $(LINK https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny)
  *
  */
 
-module dmd.glue.s2ir;
+module destiny.glue.s2ir;
 
 import core.stdc.stdio;
 import core.stdc.string;
@@ -17,75 +17,75 @@ import core.stdc.stddef;
 import core.stdc.stdlib;
 import core.stdc.time;
 
-import dmd.root.array;
-import dmd.root.rmem;
-import dmd.rootobject;
+import destiny.root.array;
+import destiny.root.rmem;
+import destiny.rootobject;
 
-import dmd.glue;
-import dmd.glue.e2ir;
-import dmd.glue.toctype;
-import dmd.glue.tocsym;
-import dmd.glue.toir;
+import destiny.glue;
+import destiny.glue.e2ir;
+import destiny.glue.toctype;
+import destiny.glue.tocsym;
+import destiny.glue.toir;
 
-import dmd.aggregate;
-import dmd.astenums;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.denum;
-import dmd.dmdparams;
-import dmd.dmodule;
-import dmd.dsymbol;
-import dmd.dstruct;
-import dmd.dtemplate;
-import dmd.expression;
-import dmd.expressionsem : canElideCopy, getDsymbol, toInteger;
-import dmd.func;
-import dmd.id;
-import dmd.init;
-import dmd.location;
-import dmd.mtype;
-import dmd.statement;
-import dmd.stmtstate;
-import dmd.target;
-import dmd.tokens;
-import dmd.typesem;
-import dmd.funcsem : genCfunc;
-import dmd.visitor;
+import destiny.aggregate;
+import destiny.astenums;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.denum;
+import destiny.dmdparams;
+import destiny.dmodule;
+import destiny.dsymbol;
+import destiny.dstruct;
+import destiny.dtemplate;
+import destiny.expression;
+import destiny.expressionsem : canElideCopy, getDsymbol, toInteger;
+import destiny.func;
+import destiny.id;
+import destiny.init;
+import destiny.location;
+import destiny.mtype;
+import destiny.statement;
+import destiny.stmtstate;
+import destiny.target;
+import destiny.tokens;
+import destiny.typesem;
+import destiny.funcsem : genCfunc;
+import destiny.visitor;
 
-import dmd.backend.barray;
-import dmd.backend.blockopt : BlockOpt, block_next, bo;
-import dmd.backend.cc;
-import dmd.backend.cdef;
-import dmd.backend.cgcv;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.cv4;
-import dmd.backend.dt;
-import dmd.backend.el;
-import dmd.backend.blockopt : block_appendexp, block_calloc, block_goto, blockopt;
-import dmd.backend.debugprint : WRblock, numberBlocks;
-import dmd.backend.evalu8 : iftrue;
-import dmd.backend.symbol : symbol_add, symbol_genauto, symbol_name, SYMIDX;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.barray;
+import destiny.backend.blockopt : BlockOpt, block_next, bo;
+import destiny.backend.cc;
+import destiny.backend.cdef;
+import destiny.backend.cgcv;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.cv4;
+import destiny.backend.dt;
+import destiny.backend.el;
+import destiny.backend.blockopt : block_appendexp, block_calloc, block_goto, blockopt;
+import destiny.backend.debugprint : WRblock, numberBlocks;
+import destiny.backend.evalu8 : iftrue;
+import destiny.backend.symbol : symbol_add, symbol_genauto, symbol_name, SYMIDX;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
-package(dmd.glue):
+package(destiny.glue):
 
 private:  // detect unmarked symbols that should be public
 
-alias StmtState = dmd.stmtstate.StmtState!block;
+alias StmtState = destiny.stmtstate.StmtState!block;
 
-package(dmd.glue)
+package(destiny.glue)
 void elem_setLoc(elem* e, Loc loc) nothrow
 {
     e.Esrcpos = toSrcpos(loc);
 }
 
-package(dmd.glue)
+package(destiny.glue)
 void Statement_toIR(Statement s, ref IRState irs)
 {
     /* Generate a block for each label
@@ -104,19 +104,19 @@ void Statement_toIR(Statement s, ref IRState irs)
     Statement_toIR(s, irs, &stmtstate);
 }
 
-package(dmd.glue)
+package(destiny.glue)
 void Statement_toIR(Statement s, ref IRState irs, StmtState* stmtstate)
 {
-    static import dmd.backend.blockopt;
+    static import destiny.backend.blockopt;
 
     void block_next(BlockState* bctx, BC bc, block* bn)
     {
-        return dmd.backend.blockopt.block_next(bo, bctx, bc, bn);
+        return destiny.backend.blockopt.block_next(bo, bctx, bc, bn);
     }
 
     block* block_goto(BlockState* bx, BC bc, block* bn)
     {
-        return dmd.backend.blockopt.block_goto(bo, bx, bc, bn);
+        return destiny.backend.blockopt.block_goto(bo, bx, bc, bn);
     }
 
     /****************************************
@@ -1445,7 +1445,7 @@ void Statement_toIR(Statement s, ref IRState irs, StmtState* stmtstate)
  * Params:
  *      startblock = first block in function
  */
-package(dmd.glue)
+package(destiny.glue)
 void insertFinallyBlockCalls(block* startblock)
 {
     int flagvalue = 0;          // 0 is forunwind_resume
@@ -1620,7 +1620,7 @@ void insertFinallyBlockCalls(block* startblock)
  * Params:
  *      startblock = first block in function
  */
-package(dmd.glue)
+package(destiny.glue)
 void insertFinallyBlockGotos(block* startblock)
 {
     enum log = false;

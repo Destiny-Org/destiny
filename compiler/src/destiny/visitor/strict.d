@@ -1,11 +1,11 @@
 /**
- * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/dmd
+ * Documentation:  https://github.com/Destiny-Org/destiny/tree/main/compiler/src/destiny
  *
  */
 
-module dmd.visitor.strict;
+module destiny.visitor.strict;
 
-import dmd.visitor.parsetime;
+import destiny.visitor.parsetime;
 
 /** The StrictVisitor asserts 0 in all visiting functions in order to
   * make sure that all the nodes are visited.

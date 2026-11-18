@@ -5,29 +5,29 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dinifile.d, _dinifile.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/dinifile.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dinifile.d, _dinifile.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dinifile.d
  *
  */
 
-module dmd.dinifile;
+module destiny.dinifile;
 
 import core.stdc.ctype;
 import core.stdc.stdio;
 import core.stdc.string;
 import core.stdc.stdlib;
 
-import dmd.errors : error;
-import dmd.errorsink;
-import dmd.globals : global;
-import dmd.location;
-import dmd.root.env;
-import dmd.root.rmem;
-import dmd.root.filename;
-import dmd.common.outbuffer;
-import dmd.root.port;
-import dmd.root.string;
-import dmd.root.stringtable;
+import destiny.errors : error;
+import destiny.errorsink;
+import destiny.globals : global;
+import destiny.location;
+import destiny.root.env;
+import destiny.root.rmem;
+import destiny.root.filename;
+import destiny.common.outbuffer;
+import destiny.root.port;
+import destiny.root.string;
+import destiny.root.stringtable;
 
 version (Windows)
 {

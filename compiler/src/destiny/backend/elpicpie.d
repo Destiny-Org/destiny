@@ -8,31 +8,31 @@
  *              Copyright (C) 2000-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/backend/elpicpie.d, backend/elpicpie.d)
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/backend/elpicpie.d, backend/elpicpie.d)
  */
 
-module dmd.backend.elpicpie;
+module destiny.backend.elpicpie;
 
 import core.stdc.stdarg;
 import core.stdc.stdio;
 import core.stdc.stdlib;
 import core.stdc.string;
 
-import dmd.backend.cdef;
-import dmd.backend.cc;
-import dmd.backend.code;
-import dmd.backend.x86.code_x86;
-import dmd.backend.el;
-import dmd.backend.global : REGSIZE, symbol_keep, symboldata;
-import dmd.backend.cg : localgot, tls_get_addr_sym;
-import dmd.backend.cgelem : doptelem;
-import dmd.backend.debugprint : class_str;
-import dmd.backend.obj;
-import dmd.backend.oper;
-import dmd.backend.rtlsym;
-import dmd.backend.symbol;
-import dmd.backend.ty;
-import dmd.backend.type;
+import destiny.backend.cdef;
+import destiny.backend.cc;
+import destiny.backend.code;
+import destiny.backend.x86.code_x86;
+import destiny.backend.el;
+import destiny.backend.global : REGSIZE, symbol_keep, symboldata;
+import destiny.backend.cg : localgot, tls_get_addr_sym;
+import destiny.backend.cgelem : doptelem;
+import destiny.backend.debugprint : class_str;
+import destiny.backend.obj;
+import destiny.backend.oper;
+import destiny.backend.rtlsym;
+import destiny.backend.symbol;
+import destiny.backend.ty;
+import destiny.backend.type;
 
 
 nothrow:

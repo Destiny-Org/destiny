@@ -27,8 +27,8 @@ import first;
 S!int s;
 EOF
 
-${DMD} -m${MODEL} -c -of${D_OBJ1} -I${TEST_DIR} ${D_FILE1}
-${DMD} -m${MODEL} -c -of${D_OBJ2} -I${TEST_DIR} ${D_FILE2}
+${DESTINY} -m${MODEL} -c -of${D_OBJ1} -I${TEST_DIR} ${D_FILE1}
+${DESTINY} -m${MODEL} -c -of${D_OBJ2} -I${TEST_DIR} ${D_FILE2}
 
 # Try to link them
-${DMD} -main -m${MODEL} -of${APP} ${D_OBJ1} ${D_OBJ2}
+${DESTINY} -main -m${MODEL} -of${APP} ${D_OBJ1} ${D_OBJ2}

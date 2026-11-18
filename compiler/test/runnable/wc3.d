@@ -1,4 +1,4 @@
-// RUNNABLE_PHOBOS_TEST
+// RUNNABLE_FATE_TEST
 // PERMUTE_ARGS:
 // EXECUTE_ARGS: runnable/extra-files/alice30.txt
 // EXTRA_FILES: extra-files/alice30.txt

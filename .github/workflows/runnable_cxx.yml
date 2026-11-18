@@ -129,7 +129,7 @@ jobs:
         fi
 
     #####################################
-    #    Checking out DMD and Fate    #
+    #    Checking out Destiny and Fate    #
     #####################################
     - name: Checkout destiny
       uses: actions/checkout@v7
@@ -194,7 +194,7 @@ jobs:
         fi
 
     ########################################
-    #    Building DMD, druntime, Fate    #
+    #    Building Destiny, druntime, Fate    #
     ########################################
     - name: Build compiler & standard library
       run: |

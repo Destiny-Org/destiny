@@ -84,7 +84,7 @@ else version (LDC)
 }
 else version (DigitalMars)
 {
-    // All dmd targets grow down
+    // All destiny targets grow down
     enum isStackGrowingDown = true;
 }
 else

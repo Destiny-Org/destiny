@@ -6,33 +6,33 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/arrayop.d, _arrayop.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/arrayop.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/arrayop.d, _arrayop.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/arrayop.d
  *
  */
 
-module dmd.arrayop;
+module destiny.arrayop;
 
 import core.stdc.stdio;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.dcast : implicitConvTo;
-import dmd.declaration;
-import dmd.dscope;
-import dmd.errorsink;
-import dmd.expression;
-import dmd.expressionsem;
-import dmd.funcsem;
-import dmd.globals;
-import dmd.hdrgen;
-import dmd.id;
-import dmd.identifier;
-import dmd.location;
-import dmd.mtype;
-import dmd.common.outbuffer;
-import dmd.tokens;
-import dmd.typesem : isAssignable, nextOf, toBasetype;
-import dmd.visitor;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.dcast : implicitConvTo;
+import destiny.declaration;
+import destiny.dscope;
+import destiny.errorsink;
+import destiny.expression;
+import destiny.expressionsem;
+import destiny.funcsem;
+import destiny.globals;
+import destiny.hdrgen;
+import destiny.id;
+import destiny.identifier;
+import destiny.location;
+import destiny.mtype;
+import destiny.common.outbuffer;
+import destiny.tokens;
+import destiny.typesem : isAssignable, nextOf, toBasetype;
+import destiny.visitor;
 
 /**********************************************
  * Check that there are no uses of arrays without [].
@@ -135,7 +135,7 @@ Expression arrayOp(BinExp e, Scope* sc)
     auto tiargs = new Objects();
     auto args = buildArrayOp(sc, e, tiargs);
 
-    import dmd.dtemplate : TemplateDeclaration;
+    import destiny.dtemplate : TemplateDeclaration;
     __gshared TemplateDeclaration arrayOp;
     if (arrayOp is null)
     {

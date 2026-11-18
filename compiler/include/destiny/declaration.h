@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/declaration.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/declaration.h
  */
 
 #pragma once
@@ -30,7 +30,7 @@ class StructDeclaration;
 struct IntRange;
 struct AttributeViolation;
 
-namespace dmd
+namespace destiny
 {
     bool functionSemantic(FuncDeclaration* fd);
     bool functionSemantic3(FuncDeclaration* fd);
@@ -114,7 +114,7 @@ namespace dmd
     #define STCinference          0x1000000000000ULL    /// do attribute inference
     #define STCexptemp            0x2000000000000ULL    /// temporary variable that has lifetime restricted to an expression
     #define STCfuture             0x4000000000000ULL    /// introducing new base class function
-    #define STClocal              0x8000000000000ULL    /// do not forward (see dmd.dsymbol.ForwardingScopeDsymbol).
+    #define STClocal              0x8000000000000ULL    /// do not forward (see destiny.dsymbol.ForwardingScopeDsymbol).
 
     #define STClive               0x10000000000000ULL    /// function `@live` attribute
     #define STCregister           0x20000000000000ULL    /// `register` storage class (ImportC)
@@ -722,7 +722,7 @@ public:
     virtual bool isNested() const;
     AggregateDeclaration *isThis() override;
     bool needThis() override final;
-    bool isVirtual() const { return dmd::isVirtual(this); };
+    bool isVirtual() const { return destiny::isVirtual(this); };
     bool isFinalFunc() const;
     const char *kind() const override;
     ParameterList getParameterList();

@@ -260,10 +260,11 @@ string[] buildCmdArgs(string runnerPath, string outputPath, const string[] testF
         "-version=NoMain",
         "-version=MARS",
         "-version=DMDLIB",
+        "-revert=safedefault", // Destiny: the compiler's sources use upstream's default (docs/self-hosting.md)
         "-g",
         "-unittest",
         "-J" ~ buildOutputPath,
-        "-Jsrc/dmd/res",
+        "-Jsrc/destiny/res",
         "-Isrc",
         "-I" ~ unitTestDir,
         "-i",
@@ -328,11 +329,7 @@ int main(string[] args)
     const flags = buildCmdArgs(runnerPath, outputPath, testFiles);
     write(cmdfilePath, flags.join("\n"));
 
-    // Destiny: the compiler's own sources are written for upstream's
-    // `@system` default, so build the unit tests with the host compiler
-    // (the one that builds the compiler itself) when one is given.
-    const compiler = environment.get("HOST_DC", dmdPath);
-    const dmd = execute([ compiler, "@" ~ cmdfilePath ], null, Config.none, size_t.max, compilerRootDir);
+    const dmd = execute([ dmdPath, "@" ~ cmdfilePath ], null, Config.none, size_t.max, compilerRootDir);
     if (dmd.status)
     {
         enum msg = "Failed to compile the `unit` test executable! (exit code %d)
@@ -340,7 +337,7 @@ int main(string[] args)
 > %-(%s %)
 %s";
         // Build the string in advance to avoid cluttering
-        writeln(format(msg, dmd.status, compiler ~ flags, dmd.output));
+        writeln(format(msg, dmd.status, dmdPath ~ flags, dmd.output));
         return 1;
     }
 
@@ -354,7 +351,7 @@ int main(string[] args)
 > %s
 %s";
         // Build the string in advance to avoid cluttering
-        writeln(format(msg, test.status, compiler ~ flags, dmd.output, outputPath, test.output));
+        writeln(format(msg, test.status, dmdPath ~ flags, dmd.output, outputPath, test.output));
         return 1;
     }
 

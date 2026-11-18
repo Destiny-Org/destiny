@@ -4,39 +4,39 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/inlinecost.d, _inlinecost.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/inlinecost.d
+ * Source:    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/inlinecost.d, _inlinecost.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/inlinecost.d
  *
  */
 
-module dmd.inlinecost;
+module destiny.inlinecost;
 
 import core.stdc.stdio;
 import core.stdc.string;
 
-import dmd.aggregate;
-import dmd.arraytypes;
-import dmd.astenums;
-import dmd.attrib;
-import dmd.dclass;
-import dmd.declaration;
-import dmd.dmodule;
-import dmd.dscope;
-import dmd.dstruct;
-import dmd.dsymbol;
-import dmd.dsymbolsem : toAlias;
-import dmd.expression;
-import dmd.func;
-import dmd.id;
-import dmd.identifier;
-import dmd.init;
-import dmd.mtype;
-import dmd.typesem;
-import dmd.opover;
-import dmd.statement;
-import dmd.tokens;
-import dmd.visitor;
-import dmd.visitor.postorder;
+import destiny.aggregate;
+import destiny.arraytypes;
+import destiny.astenums;
+import destiny.attrib;
+import destiny.dclass;
+import destiny.declaration;
+import destiny.dmodule;
+import destiny.dscope;
+import destiny.dstruct;
+import destiny.dsymbol;
+import destiny.dsymbolsem : toAlias;
+import destiny.expression;
+import destiny.func;
+import destiny.id;
+import destiny.identifier;
+import destiny.init;
+import destiny.mtype;
+import destiny.typesem;
+import destiny.opover;
+import destiny.statement;
+import destiny.tokens;
+import destiny.visitor;
+import destiny.visitor.postorder;
 
 enum COST_MAX = 250;
 

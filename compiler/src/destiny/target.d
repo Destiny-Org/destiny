@@ -18,17 +18,17 @@
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
  * License:     $(LINK2 https://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
- * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/target.d, _target.d)
- * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/dmd/target.d
+ * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/target.d, _target.d)
+ * Documentation:  https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/target.d
  *
  */
 
-module dmd.target;
+module destiny.target;
 
 import core.stdc.stdio;
 
-import dmd.astenums : CHECKENABLE;
-import dmd.globals : Param;
+import destiny.astenums : CHECKENABLE;
+import destiny.globals : Param;
 
 enum CPU : ubyte
 {
@@ -95,7 +95,7 @@ ubyte defaultTargetOSMajor() @safe
 }
 
 /**
- * Add default `version` identifier for dmd, and set the
+ * Add default `version` identifier for destiny, and set the
  * target platform in `params`.
  * https://github.com/Destiny-Org/destiny/blob/main/spec/version.dd
  *
@@ -110,8 +110,8 @@ ubyte defaultTargetOSMajor() @safe
 public
 void addDefaultVersionIdentifiers(const ref Param params, const ref Target tgt)
 {
-    import dmd.cond : VersionCondition;
-    import dmd.dmdparams : driverParams, PIC;
+    import destiny.cond : VersionCondition;
+    import destiny.dmdparams : driverParams, PIC;
 
     VersionCondition.addPredefinedGlobalIdent("DigitalMars");
     VersionCondition.addPredefinedGlobalIdent("LittleEndian");
@@ -170,7 +170,7 @@ void addDefaultVersionIdentifiers(const ref Param params, const ref Target tgt)
 private
 void addPredefinedGlobalIdentifiers(const ref Target tgt)
 {
-    import dmd.cond : VersionCondition;
+    import destiny.cond : VersionCondition;
 
     alias predef = VersionCondition.addPredefinedGlobalIdent;
     if ((tgt.isX86_64 || tgt.isX86) && tgt.cpu >= CPU.sse2)
@@ -256,7 +256,7 @@ void addPredefinedGlobalIdentifiers(const ref Target tgt)
 private
 void addCRuntimePredefinedGlobalIdent(const ref TargetC c)
 {
-    import dmd.cond : VersionCondition;
+    import destiny.cond : VersionCondition;
 
     alias predef = VersionCondition.addPredefinedGlobalIdent;
     with (TargetC.Runtime) switch (c.runtime)
@@ -276,7 +276,7 @@ void addCRuntimePredefinedGlobalIdent(const ref TargetC c)
 private
 void addCppRuntimePredefinedGlobalIdent(const ref TargetCPP cpp)
 {
-    import dmd.cond : VersionCondition;
+    import destiny.cond : VersionCondition;
 
     alias predef = VersionCondition.addPredefinedGlobalIdent;
     with (TargetCPP.Runtime) switch (cpp.runtime)
@@ -313,16 +313,16 @@ void addCppRuntimePredefinedGlobalIdent(const ref TargetCPP cpp)
  */
 extern (C++) struct Target
 {
-    import dmd.dscope : Scope;
-    import dmd.expression : Expression;
-    import dmd.func : FuncDeclaration;
-    import dmd.location;
-    import dmd.astenums : LINK, TY;
-    import dmd.mtype : Type, TypeFunction, TypeTuple;
-    import dmd.typesem;
-    import dmd.root.ctfloat : real_t;
-    import dmd.statement : Statement;
-    import dmd.tokens : EXP;
+    import destiny.dscope : Scope;
+    import destiny.expression : Expression;
+    import destiny.func : FuncDeclaration;
+    import destiny.location;
+    import destiny.astenums : LINK, TY;
+    import destiny.mtype : Type, TypeFunction, TypeTuple;
+    import destiny.typesem;
+    import destiny.root.ctfloat : real_t;
+    import destiny.statement : Statement;
+    import destiny.tokens : EXP;
 
     /// Bit decoding of the Target.OS
     enum OS : ubyte
@@ -630,7 +630,7 @@ extern (C++) struct Target
      */
     extern (C++) uint fieldalign(Type type)
     {
-        import dmd.typesem : alignsize;
+        import destiny.typesem : alignsize;
         const size = type.alignsize();
 
         if ((isX86_64 || isAArch64 || os == Target.OS.OSX) && (size == 16 || size == 32))
@@ -664,9 +664,9 @@ extern (C++) struct Target
         {
             if (isX86_64 || isAArch64)
             {
-                import dmd.identifier : Identifier;
-                import dmd.mtype : TypeIdentifier;
-                import dmd.typesem : typeSemantic;
+                import destiny.identifier : Identifier;
+                import destiny.mtype : TypeIdentifier;
+                import destiny.typesem : typeSemantic;
                 tvalist = new TypeIdentifier(Loc.initial, Identifier.idPool("__va_list_tag")).pointerTo();
                 tvalist = typeSemantic(tvalist, loc, sc);
             }
@@ -767,7 +767,7 @@ extern (C++) struct Target
      */
     extern (C++) bool isVectorOpSupported(Type type, EXP op, Type t2 = null)
     {
-        import dmd.hdrgen : EXPtoString;
+        import destiny.hdrgen : EXPtoString;
 
         auto tvec = type.isTypeVector();
         if (tvec is null)
@@ -987,7 +987,7 @@ extern (C++) struct Target
      */
     extern (C++) TypeTuple toArgTypes(Type t)
     {
-        import dmd.argtypes_sysv_x64 : toArgTypes_sysv_x64;
+        import destiny.argtypes_sysv_x64 : toArgTypes_sysv_x64;
         if (isX86_64)
         {
             // no argTypes for Win64 yet
@@ -995,12 +995,12 @@ extern (C++) struct Target
         }
         else if (isX86)
         {
-            import dmd.argtypes_x86 : toArgTypes_x86;
+            import destiny.argtypes_x86 : toArgTypes_x86;
             return toArgTypes_x86(t);
         }
         else if (isAArch64)
         {
-            import dmd.argtypes_aarch64 : toArgTypes_aarch64;
+            import destiny.argtypes_aarch64 : toArgTypes_aarch64;
             static if (0)
             {
                 auto tt = toArgTypes_aarch64(t);
@@ -1029,10 +1029,10 @@ extern (C++) struct Target
      */
     extern (C++) bool isReturnOnStack(TypeFunction tf, bool needsThis)
     {
-        import dmd.id : Id;
-        import dmd.argtypes_sysv_x64 : toArgTypes_sysv_x64;
-        import dmd.dsymbolsem : isPOD;
-        import dmd.typesem : castMod;
+        import destiny.id : Id;
+        import destiny.argtypes_sysv_x64 : toArgTypes_sysv_x64;
+        import destiny.dsymbolsem : isPOD;
+        import destiny.typesem : castMod;
 
         if (tf.isRef)
         {
@@ -1103,7 +1103,7 @@ extern (C++) struct Target
         }
         else if (isAArch64 && isPOSIX)
         {
-            import dmd.argtypes_aarch64 : toArgTypes_aarch64;
+            import destiny.argtypes_aarch64 : toArgTypes_aarch64;
 
             TypeTuple tt = toArgTypes_aarch64(tn);
             if (!tt)
@@ -1254,7 +1254,7 @@ extern (C++) struct Target
 
                 TypeTuple getArgTypes()
                 {
-                    import dmd.astenums : Sizeok;
+                    import destiny.astenums : Sizeok;
                     if (auto ts = t.toBasetype().isTypeStruct())
                     {
                         auto sd = ts.sym;
@@ -1296,9 +1296,9 @@ extern (C++) struct Target
      */
     extern (C++) Expression getTargetInfo(const(char)* name, Loc loc)
     {
-        import dmd.dmdparams : driverParams;
-        import dmd.expression : IntegerExp, StringExp;
-        import dmd.root.string : toDString;
+        import destiny.dmdparams : driverParams;
+        import destiny.expression : IntegerExp, StringExp;
+        import destiny.root.string : toDString;
 
         StringExp stringExp(const(char)[] sval)
         {
@@ -1381,7 +1381,7 @@ extern (C++) struct Target
 
     ////////////////////////////////////////////////////////////////////////////
     /* All functions after this point are extern (D), as they are only relevant
-     * for targets of DMD, and should not be used in front-end code.
+     * for targets of Destiny, and should not be used in front-end code.
      */
 
     /******************
@@ -1425,7 +1425,7 @@ extern (C++) struct Target
  */
 struct TargetC
 {
-    import dmd.declaration : BitFieldDeclaration;
+    import destiny.declaration : BitFieldDeclaration;
 
     enum Runtime : ubyte
     {
@@ -1534,7 +1534,7 @@ struct TargetC
             return true;
         if (bitFieldStyle == BitFieldStyle.Gcc_Clang)
         {
-            // sufficient for DMD's currently supported architectures
+            // sufficient for Destiny's currently supported architectures
             return !bfd.isAnonymous() || (target.isAArch64 && target.os != Target.OS.OSX);
         }
         assert(0);
@@ -1547,10 +1547,10 @@ struct TargetC
  */
 struct TargetCPP
 {
-    import dmd.dsymbol : Dsymbol;
-    import dmd.dclass : ClassDeclaration;
-    import dmd.func : FuncDeclaration;
-    import dmd.mtype : Type;
+    import destiny.dsymbol : Dsymbol;
+    import destiny.dclass : ClassDeclaration;
+    import destiny.func : FuncDeclaration;
+    import destiny.mtype : Type;
 
     enum Runtime : ubyte
     {
@@ -1605,8 +1605,8 @@ struct TargetCPP
      */
     extern (C++) const(char)* toMangle(Dsymbol s)
     {
-        import dmd.mangle.cpp : toCppMangleItanium;
-        import dmd.mangle.cppwin : toCppMangleMSVC;
+        import destiny.mangle.cpp : toCppMangleItanium;
+        import destiny.mangle.cppwin : toCppMangleMSVC;
 
         if (target.os & (Target.OS.linux | Target.OS.OSX | Target.OS.FreeBSD | Target.OS.OpenBSD | Target.OS.Solaris | Target.OS.DragonFlyBSD | Target.OS.Hurd))
             return toCppMangleItanium(s);
@@ -1625,8 +1625,8 @@ struct TargetCPP
      */
     extern (C++) const(char)* typeInfoMangle(ClassDeclaration cd)
     {
-        import dmd.mangle.cpp : cppTypeInfoMangleItanium;
-        import dmd.mangle.cppwin : cppTypeInfoMangleMSVC;
+        import destiny.mangle.cpp : cppTypeInfoMangleItanium;
+        import destiny.mangle.cppwin : cppTypeInfoMangleMSVC;
 
         if (target.os & (Target.OS.linux | Target.OS.OSX | Target.OS.FreeBSD | Target.OS.OpenBSD | Target.OS.Solaris | Target.OS.DragonFlyBSD | Target.OS.Hurd))
             return cppTypeInfoMangleItanium(cd);

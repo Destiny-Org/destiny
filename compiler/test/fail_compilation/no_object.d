@@ -3,7 +3,7 @@ DFLAGS:
 TEST_OUTPUT:
 ---
 Error: `object` not found. object.d may be incorrectly installed or corrupt.
-       dmd might not be correctly installed. Run 'dmd -man' for installation instructions.
+       destiny might not be correctly installed. Run 'destiny -man' for installation instructions.
        config file: not found
 ---
 */

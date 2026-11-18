@@ -5,7 +5,7 @@
  * https://www.digitalmars.com
  * Distributed under the Boost Software License, Version 1.0.
  * https://www.boost.org/LICENSE_1_0.txt
- * https://github.com/Destiny-Org/destiny/blob/main/src/dmd/aggregate.h
+ * https://github.com/Destiny-Org/destiny/blob/main/src/destiny/aggregate.h
  */
 
 #pragma once
@@ -41,7 +41,7 @@ enum class Baseok : uint8_t
     semanticdone  // all base classes semantic done
 };
 
-namespace dmd
+namespace destiny
 {
     FuncDeclaration *search_toString(StructDeclaration *sd);
     void semanticTypeInfoMembers(StructDeclaration *sd);
