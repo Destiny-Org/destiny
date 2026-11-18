@@ -1219,7 +1219,9 @@ private bool checkReturnEscapeImpl(ref Scope sc, Expression e, bool refs, bool g
                             "scope parameter `%s` may not be returned", v.toChars()
                         );
                         printScopeFix(previewSupplementalFunc(eSink, sc.isDeprecated(), sc.useDIP1000), e.loc,
-                            "mark the parameter `return scope` so the result may refer to it, or return a copy (`.dup`)");
+                            v.ident == Id.This
+                                ? "mark the member function `return scope` so the result may refer to `this`, or return a copy (`.dup`)"
+                                : "mark the parameter `return scope` so the result may refer to it, or return a copy (`.dup`)");
                         result = true;
                         return;
                     }
