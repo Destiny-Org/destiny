@@ -1,4 +1,4 @@
-module test10993;
+module test10993; @system:
 
 import core.demangle : demangleType;
 

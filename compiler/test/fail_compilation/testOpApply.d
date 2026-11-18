@@ -8,7 +8,7 @@ fail_compilation/testOpApply.d(18):     `testOpApply.SameAttr.opApply(int delega
 ---
 +/
 
-struct SameAttr
+@system: struct SameAttr
 {
     int opApply(int delegate(int) @system dg) @system
     {

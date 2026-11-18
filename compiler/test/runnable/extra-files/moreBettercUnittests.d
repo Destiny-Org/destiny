@@ -1,4 +1,4 @@
-__gshared uint sum;
+@system: __gshared uint sum;
 
 unittest
 {

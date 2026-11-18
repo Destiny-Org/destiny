@@ -16,7 +16,7 @@
        |
        |bool[8191] flags;
        |
-       |int sieve()
+       |@system int sieve()
        |{
       1|    int count;
        |
@@ -46,7 +46,7 @@
        |
        |extern(C) void dmd_coverDestPath(string path);
        |
-       |int main(string[] args)
+       |@system int main(string[] args)
        |{
        |
       1|    dmd_coverDestPath(args[1]);

@@ -12,7 +12,7 @@ int _bar(int x)
     return x * 2;
 }
 
-void* memset(void* destination, int value, size_t count)
+@system void* memset(void* destination, int value, size_t count)
 {
     foreach (index; 0 .. count)
     {

@@ -5,7 +5,7 @@ template drt_envvars()
     extern(C) __gshared bool enabled = false;
 }
 
-bool foo()
+@system bool foo()
 {
 	return drt_envvars!().enabled;
 }

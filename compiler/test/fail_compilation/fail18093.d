@@ -9,7 +9,7 @@ fail_compilation/fail18093.d(28): Error: template instance `fail18093.GenericTra
  */
 
 
-struct ASTCodegen {}
+@system: struct ASTCodegen {}
 
 extern (C++) class ParseTimeVisitor(AST)
 {

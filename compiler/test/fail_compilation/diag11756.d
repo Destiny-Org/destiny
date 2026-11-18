@@ -8,7 +8,7 @@ fail_compilation/diag11756.d(39):        while evaluating: `static assert(test()
 ---
 */
 
-struct Ptr
+@system: struct Ptr
 {
     void opAssign(Ptr other)
     {

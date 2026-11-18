@@ -1,7 +1,7 @@
 // EXTRA_CPP_SOURCES: externmangle2.cpp
 // DISABLED: win
 
-extern(C++):
+@system: extern(C++):
 
 struct Test32NS1
 {

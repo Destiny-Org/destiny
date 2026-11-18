@@ -1,4 +1,4 @@
-immutable(T)[] assumeUnique(T)(ref T[] array) pure nothrow
+@system: immutable(T)[] assumeUnique(T)(ref T[] array) pure nothrow
 {
     auto result = cast(immutable(T)[]) array;
     array = null;

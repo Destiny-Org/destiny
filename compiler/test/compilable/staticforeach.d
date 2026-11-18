@@ -125,7 +125,7 @@ issue22007
 ---
 */
 
-module staticforeach;
+module staticforeach; @system:
 
 struct Tuple(T...){
     T expand;

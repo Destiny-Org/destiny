@@ -43,6 +43,23 @@ Rules of thumb:
   safe. Make the unsafe part small rather than marking a large function.
 - Never make a function `@trusted` if some argument could make it misbehave
   (for example a pointer and a length that may not match).
+- **Callbacks count as arguments.** A function that stores or runs a
+  `void delegate()` it was given will run code that was never checked. Give it
+  two overloads: a `@trusted` one taking `void delegate() @safe`, and a
+  `@system` one taking any delegate. The library does this for `Thread`,
+  `Fiber` (constructors and `reset`) and Fate's `Scheduler` (`start`, `spawn`,
+  which are `@system`):
+
+  ```d
+  void work() {}                 // @safe by default
+  @system void raw() {}
+
+  void main()                    // @safe by default
+  {
+      auto t = new Thread(&work);    // fine: runs @safe code
+      // auto u = new Thread(&raw);  // error: Thread.this(void function()) is @system
+  }
+  ```
 
 ```d
 // @system: the caller must pass a valid buffer of `len` bytes
@@ -57,6 +74,29 @@ void user()            // @safe by default
     zero(b[]);         // fine
     // fill(b.ptr, 99); // error: @safe function cannot call @system function
 }
+```
+
+### Opting a whole module out
+
+`@system:` at the top of a module (or a `@system { }` block) brings back
+upstream's default for the declarations after it:
+
+- unannotated functions are `@system` (unchecked);
+- templates, function literals and `auto` functions still **infer** their
+  safety, and overriding methods still **inherit** it from the method they
+  override;
+- member functions of types declared inside a function (and inside the
+  label or block) are `@system`, as in upstream, instead of inferred;
+- variables are not affected: a variable is `@system` only when it is
+  annotated itself (`@system int* p;`).
+
+A `@system` written on the function itself is always exact.
+
+```d
+@system:
+void raw(int* p) { p++; }          // @system: unchecked
+auto twice()(int x) => 2 * x;      // inferred @safe, callable from @safe code
+class C : Base { override void f() {} }   // inherits Base.f's @safe
 ```
 
 ### What the compiler tells you

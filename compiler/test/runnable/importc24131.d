@@ -1,7 +1,7 @@
 // upstream dmd issue 24131
 // EXTRA_SOURCES: imports/c24131.c
 
-import c24131;
+@system: import c24131;
 
 void main()
 {

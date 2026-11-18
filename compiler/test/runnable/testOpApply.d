@@ -3,7 +3,7 @@
 
 // upstream issue 15624
 
-struct Foo {
+@system: struct Foo {
         int x;
         int opApply(int delegate(int, string, string) @safe dg) @safe {
                 x = 1;

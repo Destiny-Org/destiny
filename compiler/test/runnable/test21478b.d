@@ -6,7 +6,7 @@
 //      and an lvalue is preferably matched to the ref parameter.
 //      An RvalueExpression will preferably match with the non-ref parameter.
 
-struct S21478
+@system: struct S21478
 {
     this(ref return scope S21478) { assert(0); }
 }

@@ -3,7 +3,7 @@
 
 // upstream issue 22104
 
-struct S { int a1, a2, a3; }
+@system: struct S { int a1, a2, a3; }
 
 version (none)
 void throws2ndCall(ref S x);

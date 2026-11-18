@@ -3,10 +3,10 @@ TEST_OUTPUT:
 ---
 fail_compilation/diag9451.d(27): Error: cannot create instance of abstract class `C2`
 fail_compilation/diag9451.d(21):        class `C2` is declared here
-fail_compilation/diag9451.d(15):        function `void f1()` is not implemented
-fail_compilation/diag9451.d(16):        function `void f2(int)` is not implemented
-fail_compilation/diag9451.d(17):        function `void f2(float) const` is not implemented
-fail_compilation/diag9451.d(18):        function `int f2(float) pure` is not implemented
+fail_compilation/diag9451.d(15):        function `void f1() @safe` is not implemented
+fail_compilation/diag9451.d(16):        function `void f2(int) @safe` is not implemented
+fail_compilation/diag9451.d(17):        function `void f2(float) const @safe` is not implemented
+fail_compilation/diag9451.d(18):        function `int f2(float) pure @safe` is not implemented
 ---
 */
 

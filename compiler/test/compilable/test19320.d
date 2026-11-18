@@ -2,7 +2,7 @@
 
 // REQUIRED_ARGS: -O -cov
 
-auto staticArray(U, T)(T)
+@system: auto staticArray(U, T)(T)
 {
     U[] theArray = void;
     return theArray;

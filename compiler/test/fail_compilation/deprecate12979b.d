@@ -7,7 +7,7 @@ fail_compilation/deprecate12979b.d(12): Error: `asm` statement is assumed to be 
 ---
 */
 
-void foo() pure
+@system: void foo() pure
 {
     asm
     {

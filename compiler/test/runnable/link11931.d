@@ -6,6 +6,6 @@
 // EXTRA_SOURCES: imports/test11931d.d
 // COMPILE_SEPARATELY: -g
 
-void main()
+@system: void main()
 {
 }

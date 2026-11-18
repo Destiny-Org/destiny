@@ -1,4 +1,4 @@
-module parser.aliasdeclaration_location;
+module parser.aliasdeclaration_location; @system:
 
 import dmd.frontend : parseModule;
 import support : afterEach, beforeEach;

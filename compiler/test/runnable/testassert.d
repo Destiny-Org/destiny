@@ -3,7 +3,7 @@ REQUIRED_ARGS: -checkaction=context
 PERMUTE_ARGS: -O -g -inline
 */
 
-void test8765()
+@system: void test8765()
 {
     string msg;
     try

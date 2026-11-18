@@ -2,7 +2,7 @@
  * upstream issue 19813
  */
 
-struct BitArray
+@system: struct BitArray
 {
     import core.bitop : btc, bts, btr, bsf, bt;
 

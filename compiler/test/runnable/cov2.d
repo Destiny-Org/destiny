@@ -55,14 +55,14 @@ void test3()
 
 import ccov2;
 
-int test24264()
+@system int test24264()
 {
     return def();
 }
 
 /***************************************************/
 
-int main(string[] args)
+@system int main(string[] args)
 {
     dmd_coverDestPath(args[1]);
     test1();

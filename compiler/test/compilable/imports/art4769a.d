@@ -1,4 +1,4 @@
-module imports.art4769a;
+module imports.art4769a; @system:
 
 import core.stdc.stdio;
 

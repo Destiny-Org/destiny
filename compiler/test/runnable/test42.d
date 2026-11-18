@@ -12,7 +12,7 @@ C6test427test219FZ16__mixin_L3578_C31C
 ---
 */
 
-module test42;
+module test42; @system:
 
 import core.stdc.stdio;
 import core.memory;
@@ -3620,7 +3620,7 @@ static assert(is(typeof(S5110.value) == int));
 class C5110
 {
  override:
-    string toString() { return ""; }
+    string toString() @safe { return ""; }
 
     class Nested
     {

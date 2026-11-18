@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 interface IUnknown{
         extern(Windows):
         void func();

@@ -1,4 +1,4 @@
-module parser.linkage_location;
+module parser.linkage_location; @system:
 
 import dmd.frontend : parseModule, initDMD, deinitializeDMD;
 import dmd.attrib : CPPMangleDeclaration, CPPNamespaceDeclaration, LinkDeclaration;

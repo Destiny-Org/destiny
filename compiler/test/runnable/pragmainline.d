@@ -6,7 +6,7 @@
 */
 
 
-import imports.pragmainline_a;
+@system: import imports.pragmainline_a;
 
 auto anonclass()
 {

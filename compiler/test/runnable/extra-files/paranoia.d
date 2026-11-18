@@ -1,4 +1,4 @@
-module paranoia;
+module paranoia; @system:
 
 /*	A D version of Kahan's Floating Point Test "Paranoia"
 

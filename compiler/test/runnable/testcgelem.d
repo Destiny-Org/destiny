@@ -9,7 +9,7 @@ PERMUTE_ARGS: -O -inline -release
  * compiler/src/dmd/backend/cgelem.d
  */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 template tuple(A...) { alias tuple = A; }
 

@@ -28,7 +28,7 @@ fail_compilation/fail_scope.d(140): Error: returning `foo16226(i)` escapes a ref
 
 
 
-alias int delegate() dg_t;
+@system: alias int delegate() dg_t;
 
 int[]  checkEscapeScope1(scope int[]  da) { return da; }
 int[3] checkEscapeScope2(scope int[3] sa) { return sa; }

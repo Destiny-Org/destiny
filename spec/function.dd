@@ -4062,6 +4062,31 @@ $(H3 $(LNAME2 safe-functions, Safe Functions))
         `@safe` can be inferred,
         see $(RELATIVE_LINK2 function-attribute-inference, Function Attribute Inference).)
 
+$(H4 $(LNAME2 safe-default, `@safe` by default))
+
+        $(P A function that is not marked `@safe`, `@trusted` or `@system`,
+        and whose attributes are not inferred, is `@safe`. The exceptions are:)
+        $(UL
+            $(LI Functions whose attributes are inferred (templates, function
+            literals, `auto` functions, nested functions) get the inferred
+            safety instead.)
+            $(LI Non-virtual member functions with a body, of a type declared
+            inside a function body, get their safety inferred.)
+            $(LI Declarations without a body with a linkage other than D
+            (`extern (C)`, `extern (C++)`, `extern (Windows)`, ...), and all
+            ImportC code, are `@system`.)
+        )
+        $(P The default is part of the function's type and mangled name.)
+
+        $(P Inside a function that is `@safe` only by default,
+        `__traits(compiles, ...)` does not consider safety, so a
+        `static if (__traits(compiles, ...))` keeps choosing the same branch;
+        the chosen code is then checked as `@safe`.)
+
+        $(P The first safety error in a function that is `@safe` only by
+        default is followed by a hint to mark it `@system`, or to move the
+        unsafe part into a small `@trusted` function with a safe interface.)
+
         $(P Safe functions have $(RELATIVE_LINK2 safe-interfaces, safe
         interfaces). An implementation must enforce this by restricting the
         function's body to operations that are known to be safe,
@@ -4195,10 +4220,10 @@ $(H3 $(LNAME2 trusted-functions, Trusted Functions))
 
 $(H3 $(LNAME2 system-functions, System Functions))
 
-        $(P System functions are functions not marked with $(CODE @safe) or
-        $(CODE @trusted)
-        and are not nested inside $(CODE @safe) functions.
-        System functions may be marked with the $(CODE @system) attribute.
+        $(P System functions are functions marked with the $(CODE @system)
+        attribute, or inferred to be system, or declarations that are
+        $(CODE @system) by default (see $(RELATIVE_LINK2 safe-default,
+        `@safe` by default)).
         A function being system does not mean it actually is unsafe, it just
         means that its safety must be manually verified.
         )

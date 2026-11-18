@@ -1,6 +1,6 @@
 // EXTRA_CPP_SOURCES: test22898.cpp
 
-import core.stdc.config;
+@system: import core.stdc.config;
 
 extern(C++):
 

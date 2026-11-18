@@ -410,6 +410,7 @@ extern (C++) class FuncDeclaration : Declaration
     import dmd.common.bitfields;
     mixin(generateBitFields!(FUNCFLAG, uint));
 
+    bool safeDefaultHinted;             // Destiny: hintSafeByDefault already printed for this function
     bool requiresClosure;               // this function needs a closure
 
     /**

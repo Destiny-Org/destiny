@@ -326,7 +326,7 @@
                         "kind": "constructor",
                         "line": 28,
                         "name": "this",
-                        "originalType": "()",
+                        "originalType": "@safe ()",
                         "protection": "public"
                     },
                     {
@@ -415,7 +415,7 @@
                         "kind": "constructor",
                         "line": 38,
                         "name": "this",
-                        "originalType": "(int i)",
+                        "originalType": "@safe (int i)",
                         "parameters": [
                             {
                                 "deco": "VALUE_REMOVED_FOR_TEST",

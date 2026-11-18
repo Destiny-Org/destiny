@@ -1,6 +1,6 @@
 // mod2.d
 
-module imports.mod2;
+module imports.mod2; @system:
 
 import mod1;
 

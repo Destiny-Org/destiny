@@ -8,7 +8,7 @@ fail_compilation/fail11510.d(40):        called from here: `test11510b()`
 ---
 */
 
-struct S11510
+@system: struct S11510
 {
     union
     {

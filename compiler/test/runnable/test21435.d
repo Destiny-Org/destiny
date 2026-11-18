@@ -1,6 +1,6 @@
 // upstream dmd issue 21435
 
-void check_align()
+@system: void check_align()
 {
     pragma(inline, false);
     int x;

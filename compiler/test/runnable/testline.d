@@ -4,7 +4,7 @@
 // $Date$
 // $Author$
 
-module dstress.run.line_token_03;
+module dstress.run.line_token_03; @system:
 
 import core.exception;
 

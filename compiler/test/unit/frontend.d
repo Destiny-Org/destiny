@@ -1,6 +1,6 @@
 // See ../README.md for information about DMD unit tests.
 
-module frontend;
+module frontend; @system:
 
 import support : afterEach, defaultImportPaths;
 
@@ -334,7 +334,7 @@ unittest
     defaultImportPaths.each!addImport;
 
     auto t = parseModule("frontendinlineassembly.d", q{
-        void foo()
+        void foo() @system // Destiny: asm needs @system
         {
             asm
             {

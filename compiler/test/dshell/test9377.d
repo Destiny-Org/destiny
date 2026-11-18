@@ -1,4 +1,4 @@
-import dshell;
+@system: import dshell;
 void main()
 {
     Vars.set("libname", "$OUTPUT_BASE/a$LIBEXT");

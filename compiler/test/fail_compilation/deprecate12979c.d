@@ -7,7 +7,7 @@ fail_compilation/deprecate12979c.d(12): Error: `asm` statement is assumed to use
 ---
 */
 
-void foo() @nogc
+@system: void foo() @nogc
 {
     asm
     {

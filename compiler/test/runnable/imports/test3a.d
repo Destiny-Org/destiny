@@ -1,4 +1,4 @@
-module imports.test3a;
+module imports.test3a; @system:
 
 import imports.test3b;
 

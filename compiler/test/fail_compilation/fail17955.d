@@ -4,7 +4,7 @@ TEST_OUTPUT:
 ---
 fail_compilation/fail17955.d(82): Error: cannot create instance of abstract class `SimpleTimeZone`
 fail_compilation/fail17955.d(76):        class `SimpleTimeZone` is declared here
-fail_compilation/fail17955.d(73):        function `bool hasDST()` is not implemented
+fail_compilation/fail17955.d(73):        function `bool hasDST() @safe` is not implemented
 fail_compilation/fail17955.d(94): Error: template instance `fail17955.SimpleTimeZone.fromISOExtString!dstring` error instantiating
 fail_compilation/fail17955.d(26):        instantiated from here: `fromISOExtString!string`
 fail_compilation/fail17955.d(57):        instantiated from here: `isISOExtStringSerializable!(SysTime)`

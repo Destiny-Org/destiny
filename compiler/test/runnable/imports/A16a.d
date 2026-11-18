@@ -1,4 +1,4 @@
-import A16;
+@system: import A16;
 
 import core.stdc.stdio;
 

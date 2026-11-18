@@ -10,7 +10,7 @@ p x
 ---
 GDB_MATCH: RESULT=.*33
 */
-void call(void delegate() dg) { dg(); }
+@system: void call(void delegate() dg) { dg(); }
 
 void main()
 {

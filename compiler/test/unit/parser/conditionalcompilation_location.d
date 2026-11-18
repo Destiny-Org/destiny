@@ -1,4 +1,4 @@
-module parser.conditionalcompilation_location;
+module parser.conditionalcompilation_location; @system:
 
 import dmd.frontend : parseModule;
 import support : afterEach, beforeEach;

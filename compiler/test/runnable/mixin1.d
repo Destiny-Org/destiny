@@ -48,7 +48,7 @@ Success
 ---
 */
 
-module mixin1;
+module mixin1; @system:
 
 import core.stdc.stdio;
 

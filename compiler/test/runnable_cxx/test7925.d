@@ -1,6 +1,6 @@
 // EXTRA_CPP_SOURCES: cpp7925.cpp
 
-import core.vararg;
+@system: import core.vararg;
 
 extern(C++) class C1
 {

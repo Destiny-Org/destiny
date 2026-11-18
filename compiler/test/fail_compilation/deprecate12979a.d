@@ -7,7 +7,7 @@ fail_compilation/deprecate12979a.d(12): Error: `asm` statement is assumed to thr
 ---
 */
 
-void foo() nothrow
+@system: void foo() nothrow
 {
     asm
     {

@@ -1,5 +1,5 @@
 
-import core.stdc.stdio: fflush, stdout;
+@system: import core.stdc.stdio: fflush, stdout;
 
 extern(C) int printf(const char*, ...);
 

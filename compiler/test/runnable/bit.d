@@ -1,7 +1,7 @@
 /*
  */
 
-struct T
+@system: struct T
 {
     uint x : 2, y : 3, :0;
     int :0;

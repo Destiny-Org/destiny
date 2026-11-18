@@ -5,7 +5,7 @@
 
 // upstream issue 14203
 
-extern (C++) float func1();
+@system: extern (C++) float func1();
 
 void test14203()
 {

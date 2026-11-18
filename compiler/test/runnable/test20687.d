@@ -1,7 +1,7 @@
 // PERMUTE_ARGS:
 // upstream issue 20687
 
-struct S
+@system: struct S
 {
     void foo(){}
 }

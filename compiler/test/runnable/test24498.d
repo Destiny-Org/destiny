@@ -1,4 +1,4 @@
-import core.memory;
+@system: import core.memory;
 
 void main()
 {

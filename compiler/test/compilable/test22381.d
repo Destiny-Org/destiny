@@ -11,7 +11,7 @@ _D9test223814maskFPtZv:
 
 // upstream dmd issue 22381
 
-void mask(ushort* p)
+@system: void mask(ushort* p)
 {
     *p &= 0xfffe;
 }

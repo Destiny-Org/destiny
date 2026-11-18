@@ -25,7 +25,7 @@ Success
 ---
 */
 
-extern (C) int printf(const(char*) fmt, ...);
+@system: extern (C) int printf(const(char*) fmt, ...);
 import core.vararg;
 
 struct Tup(T...)

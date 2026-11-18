@@ -1,7 +1,7 @@
 // DISABLED: win32 win64
 // EXTRA_CPP_SOURCES: cpp_stdlib.cpp
 // CXXFLAGS(osx linux freebsd openbsd netbsd dragonflybsd solaris): -std=c++11
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 // Disabled on windows because it needs bindings
 

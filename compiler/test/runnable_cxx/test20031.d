@@ -3,7 +3,7 @@
 // deriving from it constructs its base subobject through the base-object constructor.
 // EXTRA_CPP_SOURCES: test20031.cpp
 
-extern(C++) abstract class C
+@system: extern(C++) abstract class C
 {
     this();
     abstract void f();

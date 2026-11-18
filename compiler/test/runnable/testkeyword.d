@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 // EXTRA_SOURCES: imports/testkwd_file.d
-module testkeyword;
+module testkeyword; @system:
 import imports.testkwd;
 
 /****************************************/

@@ -253,7 +253,8 @@ class Object
      * }
      * ---
      */
-    @trusted static Object factory(string classname)
+    // Destiny: @system, because it runs the class's default constructor, which may be @system
+    @system static Object factory(string classname)
     {
         auto ci = TypeInfo_Class.find(classname);
         if (ci)
@@ -1772,7 +1773,8 @@ class TypeInfo_Class : TypeInfo
     /**
      * Create instance of Object represented by 'this'.
      */
-    @trusted Object create() const
+    // Destiny: @system, because it runs the class's default constructor, which may be @system
+    @system Object create() const
     {
         if (m_flags & 8 && !defaultConstructor)
             return null;
@@ -2557,7 +2559,13 @@ const:
         return p[0 .. strlen(p)];
     }
 
-    @trusted static int opApply(scope int delegate(ModuleInfo*) dg)
+    @trusted static int opApply(scope int delegate(ModuleInfo*) @safe dg)
+    {
+        return opApply(cast(int delegate(ModuleInfo*)) dg);
+    }
+
+    /// ditto: any loop body; `@system` because it runs code that was never checked.
+    @system static int opApply(scope int delegate(ModuleInfo*) dg)
     {
         import core.internal.traits : externDFunc;
         alias moduleinfos_apply = externDFunc!("rt.minfo.moduleinfos_apply",
@@ -2597,8 +2605,22 @@ class Throwable : Object
 {
     interface TraceInfo
     {
-        int opApply(scope int delegate(ref const(char[]))) const;
-        int opApply(scope int delegate(ref size_t, ref const(char[]))) const;
+        // Destiny: implementations run the loop body unchecked, so these are
+        // @system; `@safe` loop bodies use the `@trusted` overloads below.
+        @system int opApply(scope int delegate(ref const(char[]))) const;
+        @system int opApply(scope int delegate(ref size_t, ref const(char[]))) const;
+
+        /// ditto
+        final int opApply(scope int delegate(ref const(char[])) @safe dg) const @trusted
+        {
+            return opApply(cast(int delegate(ref const(char[]))) dg);
+        }
+
+        /// ditto
+        final int opApply(scope int delegate(ref size_t, ref const(char[])) @safe dg) const @trusted
+        {
+            return opApply(cast(int delegate(ref size_t, ref const(char[]))) dg);
+        }
         string toString() const;
     }
 
@@ -2713,7 +2735,13 @@ class Throwable : Object
     /**
      * Loop over the chain of Throwables.
      */
-    @trusted int opApply(scope int delegate(Throwable) dg)
+    @trusted int opApply(scope int delegate(Throwable) @safe dg)
+    {
+        return opApply(cast(int delegate(Throwable)) dg);
+    }
+
+    /// ditto: any loop body; `@system` because it runs code that was never checked.
+    @system int opApply(scope int delegate(Throwable) dg)
     {
         int result = 0;
         for (Throwable t = this; t; t = t.next)
@@ -2798,7 +2826,14 @@ class Throwable : Object
      * performed in certain error situations.  Override this $(D
      * toString) method to customize the error message.
      */
-    @trusted void toString(scope void delegate(in char[]) sink) const
+    /// Destiny: overload for `@safe` sinks; the one below runs any sink unchecked.
+    final void toString(scope void delegate(in char[]) @safe sink) const @trusted
+    {
+        toString(cast(void delegate(in char[])) sink);
+    }
+
+    /// ditto
+    @system void toString(scope void delegate(in char[]) sink) const
     {
         import core.internal.string : unsignedToTempString;
 

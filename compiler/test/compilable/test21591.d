@@ -1,6 +1,6 @@
 // upstream issue 21591
 
-alias F = void function();
+@system: alias F = void function();
 
 void fn1(void function(), void function());
 void fr1(F, F);

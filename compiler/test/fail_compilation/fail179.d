@@ -5,7 +5,7 @@ fail_compilation/fail179.d(11): Error: variable `fail179.main.px` cannot be `fin
 ---
 */
 
-void main()
+@system: void main()
 {
     int x = 3;
     final px = &x;

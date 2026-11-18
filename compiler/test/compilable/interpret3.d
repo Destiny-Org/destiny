@@ -7,7 +7,7 @@ compilable/interpret3.d(6435): Deprecation: identity comparison of static arrays
 ---
 */
 
-template compiles(int T)
+@system: template compiles(int T)
 {
     bool compiles = true;
 }

@@ -1,7 +1,7 @@
 // upstream issue 751
 // Compiler segfault on template expansion
 
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 
 template TypeTuple( TList... )
 {

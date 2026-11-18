@@ -5,7 +5,7 @@
 // EXTRA_SOURCES: imports/tlsa.d
 // PERMUTE_ARGS:
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import imports.tlsa;
 
 int x = 3;

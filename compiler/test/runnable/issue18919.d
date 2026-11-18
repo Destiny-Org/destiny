@@ -23,7 +23,7 @@ imports.issue18919b.func12: issue18919.d issue18919.main void issue18919.main() 
 imports.issue18919b.func13: runnable/issue18919.d
 ---
 */
-import imports.issue18919b;
+@system: import imports.issue18919b;
 
 #line 26
 

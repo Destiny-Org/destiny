@@ -1,6 +1,6 @@
 // upstream issue 20656
 
-import core.stdc.stdlib : free, malloc;
+@system: import core.stdc.stdlib : free, malloc;
 
 @live
 void main()

@@ -4,7 +4,7 @@
 // virtual dtor dispatch through A* to call A's dtor instead of C's.
 // EXTRA_CPP_SOURCES: cpp_dtor.cpp
 
-extern(C) __gshared int aDestroyed;
+@system: extern(C) __gshared int aDestroyed;
 extern(C) __gshared int cDestroyed;
 extern(C) __gshared int sDestroyed;
 

@@ -1,4 +1,4 @@
-struct X {
+@system: struct X {
   int* rc;
   this (int n) { auto x = new int[](1); rc = x.ptr; *rc = n; }
   this (this)  { ++*rc; }

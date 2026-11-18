@@ -1,4 +1,4 @@
-import dshell;
+@system: import dshell;
 
 // upstream dmd issue 23745
 // Nested functions were inline-scanned in symbol-table bucket order, which

@@ -2,7 +2,7 @@
 // Nested functions whose inline verdicts depend on the order they are
 // scanned in: groups of near-threshold visitors calling shared helpers.
 // The varied identifier lengths give each symbol table its own layout.
-module test23745;
+module test23745; @system:
 struct Node { int val; int extra; Node* next; }
 
 int processA(Node* root)

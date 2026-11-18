@@ -1,6 +1,6 @@
 // PERMUTE_ARGS: -fPIC -inline -release -g -O
 
-module test;
+module test; @system:
 
 import core.stdc.stdio;
 import core.vararg;

@@ -1,4 +1,4 @@
-module imports.Other; // makes no difference if removed
+module imports.Other; @system: // makes no difference if removed
 import Same;
 import core.stdc.stdio;
 

@@ -90,9 +90,9 @@ void names()
         static assert(__traits(fullyQualifiedName, typeof(data)) == "shared(const(" ~ xx ~ "[string])[])");
 
         // Function types + function attributes
-        static assert(__traits(fullyQualifiedName, typeof(func)) == "ref const(" ~ xx ~ "[string])(ref " ~ xx ~ ", lazy scope string)");
-        static assert(__traits(fullyQualifiedName, typeof(retfunc)) == "ref const(" ~ xx ~ "[string])(return ref " ~ xx ~ ")");
-        static assert(__traits(fullyQualifiedName, typeof(inoutFunc)) == "inout "~xx~"(inout("~xx~"))");
+        static assert(__traits(fullyQualifiedName, typeof(func)) == "ref @safe const(" ~ xx ~ "[string])(ref " ~ xx ~ ", lazy scope string)");
+        static assert(__traits(fullyQualifiedName, typeof(retfunc)) == "ref @safe const(" ~ xx ~ "[string])(return ref " ~ xx ~ ")");
+        static assert(__traits(fullyQualifiedName, typeof(inoutFunc)) == "inout @safe "~xx~"(inout("~xx~"))");
         static assert(__traits(fullyQualifiedName, typeof(deleg)) == "const(" ~ xx ~ " delegate(double, string) nothrow @safe)");
         static assert(__traits(fullyQualifiedName, typeof(inoutDeleg)) == "inout(int) delegate(inout(int)) inout");
         static assert(__traits(fullyQualifiedName, typeof(funcPtr)) == "" ~ xx ~ " function(out double, string)");
@@ -104,9 +104,9 @@ void names()
 
         // Variable argument function types
         static assert(__traits(fullyQualifiedName, typeof(cVarArg)) == "extern(C) void(int, ...)");
-        static assert(__traits(fullyQualifiedName, typeof(dVarArg)) == "void(...)");
-        static assert(__traits(fullyQualifiedName, typeof(dVarArg2)) == "void(int, ...)");
-        static assert(__traits(fullyQualifiedName, typeof(typesafeVarArg)) == "void(int[]...)");
+        static assert(__traits(fullyQualifiedName, typeof(dVarArg)) == "@safe void(...)");
+        static assert(__traits(fullyQualifiedName, typeof(dVarArg2)) == "@safe void(int, ...)");
+        static assert(__traits(fullyQualifiedName, typeof(typesafeVarArg)) == "@safe void(int[]...)");
 
         // SIMD vector
         static if (is(__vector(float[4])))

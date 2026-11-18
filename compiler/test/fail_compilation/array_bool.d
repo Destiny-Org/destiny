@@ -7,7 +7,7 @@ fail_compilation/array_bool.d(13): Error: static assert condition cannot be a st
 fail_compilation/array_bool.d(13):        If intentional, use `"foo" !is null` instead to preserve behaviour
 ---
 */
-void main()
+@system: void main()
 {
     assert("foo");
     static assert("foo");

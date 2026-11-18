@@ -5,7 +5,7 @@ REQUIRED_ARGS:
 REQUIRED_ARGS(windows): -L/INCREMENTAL:NO
 */
 // Incremental linking must be turned off, or it will add padding.
-module sectiondefs;
+module sectiondefs; @system:
 import core.attribute;
 
 version (ELFv1)

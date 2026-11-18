@@ -14,7 +14,7 @@ __lambda_L1073_C5
 ---
 */
 
-module traits;
+module traits; @system:
 
 import core.stdc.stdio;
 

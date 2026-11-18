@@ -1,4 +1,4 @@
-template forward(args...)
+@system: template forward(args...)
 {
     @property fwd()() { return args[0]; }
     static assert(__traits(compiles, { auto ex = fwd; }));

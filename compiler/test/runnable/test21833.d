@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -O -inline
 // upstream issue 20855
 
-void testit()
+@system: void testit()
 {
     pragma(inline, false);
     short[4] arr = [-1, 6, 0, 4];

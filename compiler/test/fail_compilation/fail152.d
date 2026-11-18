@@ -8,7 +8,7 @@ fail_compilation/fail152.d(22): Error: template instance `fail152.a!double` erro
 
 // upstream issue 1028
 // Segfault using tuple inside asm code.
-void a(X...)(X expr)
+@system: void a(X...)(X expr)
 {
     alias X[0] var1;
     asm {

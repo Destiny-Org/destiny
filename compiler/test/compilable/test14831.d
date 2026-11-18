@@ -1,6 +1,6 @@
 // upstream issue 14831
 
-void main()
+@system: void main()
 {
     {
         int x;

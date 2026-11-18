@@ -6,7 +6,7 @@ fail_compilation/test21256.d(11): Error: cannot cast expression `x""` of type `s
 */
 
 // upstream dmd issue 21256
-void f21256()
+@system: void f21256()
 {
     auto s = cast(ubyte[]) [x""];
 }

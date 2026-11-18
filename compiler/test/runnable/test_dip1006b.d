@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -check=in=off -check=invariant=off
 // PERMUTE_ARGS:
-class C
+@system: class C
 {
     int foo(int a)
     in { assert(a != 0); } // skipped

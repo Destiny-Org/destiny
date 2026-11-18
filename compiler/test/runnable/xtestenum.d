@@ -7,7 +7,7 @@ Success
 ---
 */
 
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 
 /***********************************/
 

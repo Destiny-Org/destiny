@@ -1,6 +1,6 @@
 // PERMUTE_ARGS: -w
 
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 
 int testswitch(string h)
 {

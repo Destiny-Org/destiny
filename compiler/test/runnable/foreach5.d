@@ -15,7 +15,7 @@ runnable/foreach5.d(1200): Deprecation: foreach: loop index implicitly converted
 ---
 */
 
-extern(C) int printf(const char* fmt, ...);
+@system: extern(C) int printf(const char* fmt, ...);
 
 alias AliasSeq(X...) = X;
 

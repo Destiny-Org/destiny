@@ -9,7 +9,7 @@ static ~this()
 ---
 */
 
-import imports.test49a;
+@system: import imports.test49a;
 
 alias Foo!(int) foo;
 

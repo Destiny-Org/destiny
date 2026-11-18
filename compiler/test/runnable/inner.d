@@ -1,5 +1,5 @@
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 /*******************************************************/
 
@@ -473,7 +473,7 @@ void test14()
 
     C14 c = new class C14
         {
-            override void foo()
+            @system override void foo()
             {
                 printf("in inner class\n");
                 assert(m == 3);
@@ -506,7 +506,7 @@ void test15()
                 assert(j == 2);
             }
 
-            override void foo()
+            @system override void foo()
             {
                 printf("in inner class\n");
                 assert(m == 3);
@@ -764,7 +764,7 @@ class C24
     {
         auto i = new class() I24
         {
-            override public void callI()
+            @system override public void callI()
             {
                 foo();
             }

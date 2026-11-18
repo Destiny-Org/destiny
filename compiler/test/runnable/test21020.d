@@ -1,6 +1,6 @@
 // upstream dmd issue 21020
 
-shared struct Queue {
+@system: shared struct Queue {
     int[int] map;
 }
 

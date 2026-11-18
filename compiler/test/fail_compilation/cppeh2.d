@@ -6,7 +6,7 @@ fail_compilation/cppeh2.d(21): Error: cannot mix catching D and C++ exceptions i
 ---
 */
 
-version(Windows) static assert(0, "This test should not run on this platform");
+@system: version(Windows) static assert(0, "This test should not run on this platform");
 
 extern (C++, std)
 {

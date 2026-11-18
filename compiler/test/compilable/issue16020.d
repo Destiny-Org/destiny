@@ -1,5 +1,5 @@
 // function type aliases
-module issue16020;
+module issue16020; @system:
 
 alias F1 = const(int)(); const(int) f1(){return 42;}
 static assert (is(F1 == typeof(f1)));

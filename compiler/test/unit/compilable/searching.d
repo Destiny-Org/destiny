@@ -3,7 +3,7 @@
 // Verify that searches using Dsymbol.search inside of templates respect
 // the IgnoreErrors flag (instead of raising an error)
 
-module compilable.searching;
+module compilable.searching; @system:
 
 import support : afterEach, beforeEach, compiles;
 

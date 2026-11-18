@@ -11,4 +11,4 @@ ARG_SETS(windows): -version=ExtendedSoft ../src/dmd/root/longdouble.d
 ARG_SETS(linux osx): -version=Extended
 */
 
-module test.runnable.paranoia;
+module test.runnable.paranoia; @system:

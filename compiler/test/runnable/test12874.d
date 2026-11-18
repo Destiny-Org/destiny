@@ -1,7 +1,7 @@
 // EXTRA_SOURCES: imports/a12874.d
 // PERMUTE_ARGS: -inline -g -O
 
-import imports.a12874;
+@system: import imports.a12874;
 
 void main()
 {

@@ -1,7 +1,7 @@
 // A caught Throwable must always get D linkage for its variable, even
 // inside an extern(C) function.
 
-extern(C) int caughtPath()
+@system: extern(C) int caughtPath()
 {
     try
     {

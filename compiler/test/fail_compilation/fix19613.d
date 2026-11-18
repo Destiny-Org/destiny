@@ -7,7 +7,7 @@ fail_compilation/fix19613.d(15):        Did you mean to override `void fix19613.
 ---
 */
 
-class A {
+@system: class A {
         final void a(int) {}
         void a(string) {}
 }

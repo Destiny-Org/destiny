@@ -1,11 +1,11 @@
 /*
 TEST_OUTPUT:
 ---
-fail_compilation/class_interface_checks.d(22): Error: class `class_interface_checks.B` interface function `int f()` is not implemented
-fail_compilation/class_interface_checks.d(26): Error: class `class_interface_checks.D` interface function `int f()` is not implemented
-fail_compilation/class_interface_checks.d(31): Error: class `class_interface_checks.F` interface function `int f()` is not implemented
-fail_compilation/class_interface_checks.d(31): Error: class `class_interface_checks.F` interface function `int g()` is not implemented
-fail_compilation/class_interface_checks.d(37): Error: class `class_interface_checks.K` interface function `int h()` is not implemented
+fail_compilation/class_interface_checks.d(22): Error: class `class_interface_checks.B` interface function `int f() @safe` is not implemented
+fail_compilation/class_interface_checks.d(26): Error: class `class_interface_checks.D` interface function `int f() @safe` is not implemented
+fail_compilation/class_interface_checks.d(31): Error: class `class_interface_checks.F` interface function `int f() @safe` is not implemented
+fail_compilation/class_interface_checks.d(31): Error: class `class_interface_checks.F` interface function `int g() @safe` is not implemented
+fail_compilation/class_interface_checks.d(37): Error: class `class_interface_checks.K` interface function `int h() @safe` is not implemented
 ---
 */
 

@@ -3,7 +3,7 @@
 // COMPILED_IMPORTS: imports/art4769a.d imports/art4769b.d
 // PERMUTE_ARGS:
 
-module art4769;
+module art4769; @system:
 
 private import imports.art4769a;
 

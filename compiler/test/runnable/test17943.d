@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -O
 
-void main()
+@system: void main()
 {
     int[32] data;
     auto p1 = data.ptr + 0;

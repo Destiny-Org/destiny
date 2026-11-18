@@ -1,5 +1,5 @@
 // upstream dmd issue 17487
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 // version = PRINT;
 

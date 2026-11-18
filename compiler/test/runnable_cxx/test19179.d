@@ -2,7 +2,7 @@
 
 // upstream issue 19179
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 extern(C++) struct SmallStruct { int x = 10, y = 20; }
 

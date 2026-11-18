@@ -1,6 +1,6 @@
 // See ../README.md for information about DMD unit tests.
 
-module triple;
+module triple; @system:
 
 import support : afterEach, defaultImportPaths;
 import dmd.target;

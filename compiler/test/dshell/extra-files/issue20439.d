@@ -1,4 +1,4 @@
-module issue20439;
+module issue20439; @system:
 import issue20439a;
 
 // This module independently bakes the `.init` images of S and T (and the CTFE instances

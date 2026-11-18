@@ -2,7 +2,7 @@
 import std.stdio;
 import importc_test;
 
-int main()
+@system int main()
 {
     auto rc = someCodeInC(3, 4);
     writeln("Result of someCodeInC(3,4) = ", rc );

@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -inline -O
 
 // upstream issue 23307
-import core.simd;
+@system: import core.simd;
 
 static if(__traits(compiles, int4))
 {

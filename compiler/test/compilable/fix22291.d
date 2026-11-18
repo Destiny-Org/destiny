@@ -1,6 +1,6 @@
 //upstream issue 22291
 
-alias AliasSeq(T...) = T;
+@system: alias AliasSeq(T...) = T;
 void noParameters()
 {
     static assert(typeof(__traits(parameters)).length == 0);

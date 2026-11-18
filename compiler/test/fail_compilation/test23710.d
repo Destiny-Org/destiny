@@ -6,7 +6,7 @@ fail_compilation/test23710.d(112): Error: array concatenation of expression `foo
  */
 // upstream issue 23710
 
-#line 100
+@system: #line 100
 
 int test(int i)
 {

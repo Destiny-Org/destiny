@@ -1,4 +1,4 @@
-class Klazz
+@system: class Klazz
 {
     __gshared size_t count;
     ~this()

@@ -348,7 +348,7 @@ template V10(T)
 		}
 	}
 }
-int foo11(int function() fn);
+int foo11(int function() @safe fn);
 int bar11(T)()
 {
 	return foo11(function int()

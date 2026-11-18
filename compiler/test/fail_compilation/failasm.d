@@ -6,7 +6,7 @@ fail_compilation/failasm.d(111): Error: use -m64 to compile 64 bit instructions
 ---
 */
 
-#line 100
+@system: #line 100
 
 // upstream issue 21181
 

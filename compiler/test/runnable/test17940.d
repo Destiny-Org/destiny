@@ -2,7 +2,7 @@
 
 // upstream issue 17940
 
-struct Array
+@system: struct Array
 {
     long length;
     long ptr;

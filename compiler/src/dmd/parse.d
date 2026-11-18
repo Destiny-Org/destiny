@@ -101,7 +101,7 @@ class Parser(AST, Lexer = dmd.lexer.Lexer) : Lexer
      + Returns: the list of declarations or an empty list in case of malformed declarations,
      +          the module declaration will be stored as `this.md` if found
      +/
-    AST.Dsymbols* parseModule()
+    AST.Dsymbols* parseModule() @system
     {
         if (!parseModuleDeclaration())
             return errorReturn();

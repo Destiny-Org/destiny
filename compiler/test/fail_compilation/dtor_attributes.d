@@ -23,7 +23,7 @@ fail_compilation/dtor_attributes.d(103):           not nothrow `HasDtor.~this` i
 fail_compilation/dtor_attributes.d(116): Error: function `dtor_attributes.test1` may throw but is marked as `nothrow`
 ---
 */
-#line 100
+@system: #line 100
 
 struct HasDtor
 {

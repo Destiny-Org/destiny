@@ -8,7 +8,7 @@ RUN_OUTPUT:
 ---
 */
 
-import imports.test29a;
+@system: import imports.test29a;
 import imports.test29b;
 
 extern(C) int printf(const char*, ...);

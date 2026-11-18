@@ -50,7 +50,7 @@ Success
 ---
 */
 
-module breaker;
+module breaker; @system:
 
 import core.stdc.stdio, core.vararg;
 

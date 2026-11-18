@@ -13,7 +13,7 @@ bar(t,i)
 ---
 */
 
-import imports.test45a;
+@system: import imports.test45a;
 import imports.test45b;
 
 alias int function() fp1;

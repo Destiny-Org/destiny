@@ -1,4 +1,4 @@
-alias noreturn = typeof(*null);
+@system: alias noreturn = typeof(*null);
 
 extern (C) noreturn exit();
 

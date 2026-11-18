@@ -24,14 +24,14 @@ Emulates bash environment variables. Variables set here will be availble for BAS
 struct Vars
 {
     private static __gshared string[string] map;
-    static void set(string name, string value)
+    static void set(string name, string value) @trusted // test tool: single-threaded __gshared map
     in { assert(value !is null); } do
     {
         const expanded = shellExpand(value);
         assert(expanded !is null, "codebug");
         map[name] = expanded;
     }
-    static string get(const(char)[] name)
+    static string get(const(char)[] name) @trusted // test tool: single-threaded __gshared map
     {
         auto result = map.get(cast(string)name, null);
         if (result is null)
@@ -106,7 +106,7 @@ void dshellPrebuiltInit(string testDir, string testName)
     }
 }
 
-private string requireEnv(string name)
+private string requireEnv(string name) @trusted // only calls exit()
 {
     const result = environment.get(name, null);
     if (result is null)
@@ -161,7 +161,7 @@ void mkdirFor(string filename)
 Run the given command. The `tryRun` variants return the exit code, whereas the `run` variants
 will assert on a non-zero exit code.
 */
-int tryRun(scope const(char[])[] args, File stdout = std.stdio.stdout,
+@trusted int tryRun(scope const(char[])[] args, File stdout = std.stdio.stdout,
             File stderr = std.stdio.stderr, string[string] env = null)
 {
     std.stdio.stdout.write("[RUN]");
@@ -272,7 +272,7 @@ string shellExpand(const(char)[] s)
         }
     }
     auto result = expanded.data;
-    return (result is null) ? "" : result.assumeUnique;
+    return (result is null) ? "" : result.idup;
 }
 
 // [a-zA-Z0-9_]

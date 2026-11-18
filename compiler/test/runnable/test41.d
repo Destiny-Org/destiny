@@ -1,7 +1,7 @@
 // EXTRA_SOURCES: imports/test41a.d
 // PERMUTE_ARGS: -inline -g -O
 
-import imports.test41a;
+@system: import imports.test41a;
 import core.exception;
 
 int main()

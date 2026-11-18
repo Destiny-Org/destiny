@@ -4,7 +4,7 @@
 
 // upstream dmd issue 23668
 
-module inline5;
+module inline5; @system:
 
 pragma(mangle, "dummyFunc") extern(D) void dummyFunc() {}
 

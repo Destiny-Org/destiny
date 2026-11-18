@@ -3,7 +3,7 @@ import core.sys.posix.sys.wait : waitpid;
 import core.sys.posix.unistd : fork, _exit;
 import core.thread : Thread;
 
-void main()
+@system void main()
 {
     foreach (t; 0 .. 10)
         new Thread({

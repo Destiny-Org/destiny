@@ -1,6 +1,6 @@
 // EXTRA_SOURCES: imports/importc_wchar_t_c.c
 
-import importc_wchar_t_c;
+@system: import importc_wchar_t_c;
 
 version (Windows)
 {

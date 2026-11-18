@@ -16,7 +16,7 @@ import core.stdc.stdio;
 
 bool[8191] flags;
 
-int sieve()
+@system int sieve()
 {
     int count;
 
@@ -46,7 +46,7 @@ int sieve()
 
 extern(C) void dmd_coverDestPath(string path);
 
-int main(string[] args)
+@system int main(string[] args)
 {
 
     dmd_coverDestPath(args[1]);

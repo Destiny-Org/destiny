@@ -3,7 +3,7 @@
 
 // test case comes from unittests in core.lifetime
 
-void test()
+@system: void test()
 {
     alias T = immutable(S);
     T source;

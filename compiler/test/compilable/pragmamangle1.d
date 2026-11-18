@@ -1,5 +1,5 @@
 // Tests for pragma mangle
-module pragmamangle;
+module pragmamangle; @system:
 
 version (Posix): // Itanium C++ ABI only
 

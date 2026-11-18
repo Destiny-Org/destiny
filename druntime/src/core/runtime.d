@@ -1009,7 +1009,7 @@ else version (Posix) private class DefaultTraceInfo : Throwable.TraceInfo
         }
     }
 
-    @trusted override int opApply( scope int delegate(ref const(char[])) dg ) const // safe interface: passes each frame to dg
+    @system override int opApply( scope int delegate(ref const(char[])) dg ) const // runs dg unchecked; see TraceInfo
     {
         return opApply( (ref size_t, ref const(char[]) buf)
                         {
@@ -1017,7 +1017,7 @@ else version (Posix) private class DefaultTraceInfo : Throwable.TraceInfo
                         } );
     }
 
-    @trusted override int opApply( scope int delegate(ref size_t, ref const(char[])) dg ) const // safe interface: walks the captured frames
+    @system override int opApply( scope int delegate(ref size_t, ref const(char[])) dg ) const // runs dg unchecked; see TraceInfo
     {
         version (linux) enum enableDwarf = true;
         else version (FreeBSD) enum enableDwarf = true;

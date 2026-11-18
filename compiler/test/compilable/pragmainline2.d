@@ -8,7 +8,7 @@ compilable/pragmainline2.d(25): Warning: cannot inline function `pragmainline2.f
 ---
 */
 
-pragma(inline, true):
+@system: pragma(inline, true):
 pragma(inline, false):
 pragma(inline)
 void foo()

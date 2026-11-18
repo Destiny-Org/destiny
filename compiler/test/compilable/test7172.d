@@ -12,7 +12,7 @@ void main()
     static assert( __traits(compiles, { scope sc = new ScopeC(); }));
 
     synchronized class SyncC{ void f(){} }
-    static assert(SyncC.f.mangleof[$-13..$] == "5SyncC1fMOFZv");
+    static assert(SyncC.f.mangleof[$-15..$] == "5SyncC1fMOFNfZv");
 
     @safe    class SCx{ void f(){} }
     @trusted class SCy{ void f(){} }

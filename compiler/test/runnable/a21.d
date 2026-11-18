@@ -8,7 +8,7 @@ badFunc
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import imports.a21a;
 
 

@@ -2,7 +2,7 @@
 // PERMUTE_ARGS:
 // REQUIRED_ARGS:
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import imports.test40a;
 
 class Foo {

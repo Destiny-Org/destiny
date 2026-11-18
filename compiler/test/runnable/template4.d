@@ -10,7 +10,7 @@ Alias Test instantiated
 Alias Test instantiated
 ---
 */
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 /*********************************************************/
 

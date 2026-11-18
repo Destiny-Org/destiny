@@ -1,4 +1,4 @@
-class A { this(A) {} }
+@system: class A { this(A) {} }
 class B {}
 class C {}
 

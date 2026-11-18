@@ -1,4 +1,4 @@
-module semantic.imports;
+module semantic.imports; @system:
 
 import std.algorithm;
 import std.typecons;

@@ -1,6 +1,6 @@
 // EXTRA_CPP_SOURCES: test24292.cpp
 
-extern(C++) struct List(T)
+@system: extern(C++) struct List(T)
 {
     // Any of the following static ifs can trigger the problem.
     static if (T.sizeof > 4) {}

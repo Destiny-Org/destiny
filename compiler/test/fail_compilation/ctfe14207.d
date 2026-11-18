@@ -7,7 +7,7 @@ fail_compilation/ctfe14207.d(22):        called from here: `digest()`
 ---
 */
 
-ubyte[8] nativeToBigEndian()
+@system: ubyte[8] nativeToBigEndian()
 {
     immutable ulong res = 1;
     return *cast(ubyte[8]*) &res;

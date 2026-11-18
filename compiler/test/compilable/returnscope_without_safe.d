@@ -4,7 +4,7 @@
 // and it breaks existing code:
 // upstream issue 23657
 
-int* identity(return scope int* x);
+@system: int* identity(return scope int* x);
 
 auto identityAuto(int* x) => x;
 

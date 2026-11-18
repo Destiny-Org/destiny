@@ -1,6 +1,6 @@
 // upstream dmd issue 21416
 
-struct S
+@system: struct S
 {
 	@disable this(ref S);
 }

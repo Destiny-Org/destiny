@@ -1,5 +1,5 @@
 
-static if (__traits(compiles, __vector(float[4])))
+@system: static if (__traits(compiles, __vector(float[4])))
 {
     struct vfloat
     {

@@ -8,7 +8,7 @@ fail_compilation/diag7050a.d(11):        `diag7050a.Foo.this` is declared here
 
 struct Foo
 {
-    this (int a) {}
+    this (int a) @system {}
 }
 @safe void foo()
 {

@@ -7,7 +7,7 @@ fail_compilation/test13867.d(21): Error: function `void test13867.Z.blah()` does
 fail_compilation/test13867.d(11):        did you mean to override `extern(C++) void test13867.Base.blah()`?
 ---
 */
-extern (C++) class Base {
+@system: extern (C++) class Base {
     void blah() {}
 }
 class X : Base {

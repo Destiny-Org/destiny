@@ -3,7 +3,7 @@ REQUIRED_ARGS: -mcpu=native
 PERMUTE_ARGS: -O -inline -release
 */
 
-import core.stdc.config;
+@system: import core.stdc.config;
 import core.stdc.stdio;
 
 template tuple(A...) { alias tuple = A; }

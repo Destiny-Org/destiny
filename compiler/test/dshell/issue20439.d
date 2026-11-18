@@ -9,7 +9,7 @@
 //
 // The issue used `SysTime.max`; reduced here to a plain CTFE instance to avoid importing
 // Fate (the test suite must not), exercising both toSymbol overloads (class + struct).
-import dshell;
+@system: import dshell;
 
 int main()
 {

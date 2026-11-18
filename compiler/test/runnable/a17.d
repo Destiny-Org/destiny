@@ -6,7 +6,7 @@ barx
 ---
 */
 
-module a17;
+module a17; @system:
 
 import core.stdc.stdio;
 

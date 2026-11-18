@@ -2,7 +2,7 @@
 
 /* Test associative arrays */
 
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 extern(C) int memcmp(const void *s1, const void *s2, size_t n);
 
 import core.memory;  // for GC.collect

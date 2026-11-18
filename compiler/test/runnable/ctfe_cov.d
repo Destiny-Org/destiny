@@ -1,5 +1,5 @@
 //REQUIRED_ARGS: -cov=100 -cov=ctfe
-int f(int n) { int acc;
+@system: int f(int n) { int acc;
     foreach(i;0 .. n)
     {
         acc += i;

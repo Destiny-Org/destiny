@@ -1,6 +1,6 @@
 // upstream issue 7932
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 size_t N;
 

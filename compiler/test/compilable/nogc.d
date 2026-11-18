@@ -2,7 +2,7 @@
 
 /***************** Covariance ******************/
 
-class C1
+@system: class C1
 {
     void foo() @nogc;
     void bar();

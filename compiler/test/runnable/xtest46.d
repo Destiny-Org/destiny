@@ -21,12 +21,12 @@ double[]
 {}
 AliasSeq!("m")
 true
-TFunction1: extern(C) void function()
+TFunction1: extern(C) void function() @system
 ---
 */
 
 //import std.stdio;
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 /******************************************/
 
@@ -5828,7 +5828,7 @@ class B158 : A158
     override void foo1() { }
     override void foo2() const { }
     override void foo3() { }
-    override void foo4() { }
+    override void foo4() @safe { }
 }
 
 /***************************************************/

@@ -1,6 +1,6 @@
 // upstream issue 21997
 
-struct Strukt
+@system: struct Strukt
 {
     int i;
     string s;

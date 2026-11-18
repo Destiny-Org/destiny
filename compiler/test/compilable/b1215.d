@@ -1,7 +1,7 @@
 // PERMUTE_ARGS:
 // REQUIRED_ARGS: -o-
 
-struct A(Args...)
+@system: struct A(Args...)
 {
     enum i = 1;
 

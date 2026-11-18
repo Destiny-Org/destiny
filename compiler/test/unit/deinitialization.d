@@ -1,6 +1,6 @@
 // See ../README.md for information about DMD unit tests.
 
-module deinitialization;
+module deinitialization; @system:
 
 @("global.deinitialize")
 unittest

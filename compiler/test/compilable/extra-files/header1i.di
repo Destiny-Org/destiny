@@ -438,7 +438,7 @@ template V10(T)
 		}
 	}
 }
-int foo11(int function() fn)
+int foo11(int function() @safe fn)
 {
 	return fn();
 }

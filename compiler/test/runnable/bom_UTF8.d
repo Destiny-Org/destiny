@@ -8,7 +8,7 @@ hello world
 
 extern(C) int printf(const char *, ...);
 
-int main(char[][] args)
+@system int main(char[][] args)
 {
     printf("hello world\n");
 

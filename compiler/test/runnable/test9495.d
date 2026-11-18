@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-import core.vararg;
+@system: import core.vararg;
 
 int func1(int a, ...)
 {

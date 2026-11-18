@@ -6,7 +6,7 @@ TEST_OUTPUT:
 fail_compilation/fail13939.d(15): Error: cannot directly load global variable `val` with PIC or PIE code
 ---
 */
-version(Windows) static assert(0);
+@system: version(Windows) static assert(0);
 void test1()
 {
     __gshared int val;

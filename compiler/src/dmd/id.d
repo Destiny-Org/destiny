@@ -578,7 +578,7 @@ struct Msgtable
  * and accumulates a string from each return value of calling the lambda.
  * Appends a newline character after each call to the lambda.
  */
-string generate(immutable(Msgtable)[] msgtable, string function(Msgtable) dg)
+string generate(immutable(Msgtable)[] msgtable, string function(Msgtable) dg) @system
 {
     string code;
 

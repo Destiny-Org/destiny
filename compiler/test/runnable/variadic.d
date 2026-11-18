@@ -1,6 +1,6 @@
 // TRANSFORM_OUTPUT: remove_lines("warning: vsprintf\(\) is often misused")
 
-alias TypeTuple(T...) = T;
+@system: alias TypeTuple(T...) = T;
 
 class A { }
 class B : A { }

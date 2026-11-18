@@ -1,6 +1,6 @@
 // upstream issue 20470
 
-alias AliasSeq(Args...) = Args;
+@system: alias AliasSeq(Args...) = Args;
 
 int g, h;
 
@@ -84,7 +84,7 @@ void test2()
     }
 
     S s;
-    alias voidTf = void();
+    alias voidTf = void() @safe;  // Destiny: @safe by default
     foreach (f; s.funcs)
         static assert(is(typeof(f) == voidTf));
 }

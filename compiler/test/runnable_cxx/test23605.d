@@ -3,7 +3,7 @@
 // EXTRA_FILES: extra-files/test23605.h
 // CXXFLAGS(osx linux freebsd openbsd netbsd dragonflybsd solaris): -std=c++11 -O2
 
-import core.stdcpp.new_;
+@system: import core.stdcpp.new_;
 
 extern(C++) class A
 {

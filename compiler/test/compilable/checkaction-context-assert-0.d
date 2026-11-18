@@ -1,4 +1,4 @@
-module checkaction_context_assert_0;
+module checkaction_context_assert_0; @system:
 /*
 REQUIRED_ARGS: -vcg-ast -o- -checkaction=context
 OUTPUT_FILES: compilable/checkaction-context-assert-0.d.cg

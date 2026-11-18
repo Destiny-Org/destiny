@@ -5,7 +5,7 @@ fail_compilation/fail306.d(11): Error: cannot perform array operations on `void[
 ---
 */
 
-void bar()
+@system: void bar()
 {
     void [] x;
     x[] = -x[];

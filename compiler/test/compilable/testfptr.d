@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-ref int frvv();
+@system: ref int frvv();
 class A {}
 class B : A {}
 

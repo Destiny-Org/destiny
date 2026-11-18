@@ -1,7 +1,7 @@
 /* REQUIRED_ARGS: -preview=in -mcpu=native
  */
 
-import core.stdc.time;
+@system: import core.stdc.time;
 
 void fun(in int* inParam) @safe;
 static assert([__traits(getParameterStorageClasses, fun, 0)] == ["in"]);

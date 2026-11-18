@@ -8,5 +8,5 @@ success
 ---
 */
 
-import imports.test10736a;
+@system: import imports.test10736a;
 import imports.test10736b;

@@ -1,4 +1,4 @@
-struct S
+@system: struct S
 {
     int a;
     int b;
@@ -349,7 +349,7 @@ void testRvalueRefReturn()
 // upstream dmd issue 22157
 class Test22157
 {
-    override string toString()
+    override string toString() @trusted
     {
         auto e = { return cast() super; } ();
         return null;

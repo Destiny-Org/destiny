@@ -1,4 +1,4 @@
-module semantic.inline;
+module semantic.inline; @system:
 
 import std.algorithm : each;
 

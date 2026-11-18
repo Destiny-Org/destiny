@@ -6,7 +6,7 @@ fail_compilation/fail3354.d(17): Error: 4 operands found for `fld` instead of th
 ---
 */
 
-void main()
+@system: void main()
 {
     version(D_InlineAsm_X86) {}
     else version(D_InlineAsm_X86_64) {}

@@ -1,7 +1,7 @@
 // Issue 23676 - Static foreach hangs compilation for some time
 // upstream issue 23676
 
-void f()
+@system: void f()
 {
     int i;
     void g(int I)()

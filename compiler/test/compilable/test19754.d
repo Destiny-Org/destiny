@@ -1,6 +1,6 @@
 // upstream issue 19754
 
-void test19754()
+@system: void test19754()
 {
     shared int x;
     static assert((cast(int*) &x) == &(cast() x));

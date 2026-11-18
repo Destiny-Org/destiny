@@ -1,6 +1,6 @@
 // upstream dmd issue 21891
 
-import imports.imp21891a;
+@system: import imports.imp21891a;
 import imports.imp21891b;
 
 void main()

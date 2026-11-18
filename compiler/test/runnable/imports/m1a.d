@@ -1,4 +1,4 @@
-module imports.m1a;
+module imports.m1a; @system:
 
 import m1;
 

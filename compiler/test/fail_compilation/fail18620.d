@@ -7,7 +7,7 @@ fail_compilation/fail18620.d(14): Error: `strlen` cannot be interpreted at compi
 fail_compilation/fail18620.d(20):        compile time context created here
 ---
 */
-class A{
+@system: class A{
     this(const(char)* s)
     {
         import core.stdc.string;

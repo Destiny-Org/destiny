@@ -7,7 +7,7 @@ fail_compilation/fail23816.d(14): Error: opcode expected, not `NOP`
 ---
 */
 
-void main()
+@system: void main()
 {
     asm
     {

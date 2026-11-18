@@ -1,4 +1,4 @@
-module imports.testminitBB;
+module imports.testminitBB; @system:
 
 import core.stdc.stdio;
 int bb;

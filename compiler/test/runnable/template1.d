@@ -1,6 +1,6 @@
 // REQUIRED_ARGS:
 
-module template1;
+module template1; @system:
 
 import core.stdc.stdio : printf;
 import core.vararg;

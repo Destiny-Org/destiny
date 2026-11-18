@@ -10,7 +10,7 @@
  *
  * [1]: upstream issue 20861
  */
-module interfaces.check_implementations_20861;
+module interfaces.check_implementations_20861; @system:
 
 import dmd.location;
 
@@ -44,7 +44,7 @@ import support : afterEach, beforeEach, compiles, stripDelimited, Diagnostic;
             class Bar : Foo { }
         }.stripDelimited;
 
-        enum message = "Error: class test.Bar interface function void foo() is not implemented";
+        enum message = "Error: class test.Bar interface function void foo() @safe is not implemented";
         const expected = Diagnostic(SourceLoc(filename, 6, 1), message);
 
         const diagnostics = compiles(code, filename);
@@ -66,7 +66,7 @@ import support : afterEach, beforeEach, compiles, stripDelimited, Diagnostic;
             class Bar : Foo { }
         }.stripDelimited;
 
-        enum message = "Error: class test.Bar interface function void foo() is not implemented";
+        enum message = "Error: class test.Bar interface function void foo() @safe is not implemented";
         const expected = Diagnostic(SourceLoc(filename, 6, 1), message);
 
         const diagnostics = compiles(code, filename);
@@ -93,7 +93,7 @@ import support : afterEach, beforeEach, compiles, stripDelimited, Diagnostic;
             class Bar : Foo { }
         }.stripDelimited;
 
-        enum message = "Error: class test.Bar interface function void foo() is not implemented";
+        enum message = "Error: class test.Bar interface function void foo() @safe is not implemented";
         const expected = Diagnostic(SourceLoc(filename, 11, 1), message);
 
         const diagnostics = compiles(code, filename);
@@ -122,7 +122,7 @@ import support : afterEach, beforeEach, compiles, stripDelimited, Diagnostic;
             }
         }.stripDelimited;
 
-        enum message = "Error: class test.B interface function void foo() is not implemented";
+        enum message = "Error: class test.B interface function void foo() @safe is not implemented";
         const expected = Diagnostic(SourceLoc(filename, 11, 1), message);
 
         const diagnostics = compiles(code, filename);

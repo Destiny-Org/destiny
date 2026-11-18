@@ -49,6 +49,11 @@ $(H2 $(LNAME2 usage, Usage))
 
         $(P The `@safe` attribute $(DDSUBLINK spec/function, function-attribute-inference, can be inferred) when the compiler has the function body available, such as with templates.)
 
+        $(P Functions are $(DDSUBLINK spec/function, safe-default, `@safe` by default):
+        a function that is not annotated and whose attributes are not inferred is `@safe`.
+        Use `@system` for code that must do unchecked work, and `@trusted` only for
+        small functions with a safe interface.)
+
         $(P Array bounds checks are necessary to enforce memory safety, so
         these are enabled (by default) for `@safe` code even in $(B -release) mode.
         )

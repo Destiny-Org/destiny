@@ -12,7 +12,7 @@ false
 ---
 */
 
-import imports.testmangle;
+@system: import imports.testmangle;
 
 /***************************************************/
 // upstream issue 10077
@@ -158,7 +158,7 @@ auto iota8847c()
     static class Result
     {
         this(int) {}
-        inout(Result) test() inout { return cast(inout)new Result(0); }
+        @system inout(Result) test() inout { return cast(inout)new Result(0); }
     }
     static assert(Result.mangleof == result8847c);
     return Result.init;
@@ -170,7 +170,7 @@ auto iota8847d()
         static class Result
         {
             this(int) {}
-            inout(Result) test() inout { return cast(inout)new Result(0); }
+            @system inout(Result) test() inout { return cast(inout)new Result(0); }
         }
         static assert(Result.mangleof == result8847d);
         return Result.init;
@@ -304,13 +304,13 @@ auto bar12352()
 
     static assert(!__traits(compiles, bar12352.mangleof));   // forward reference to bar
     static assert(S     .mangleof ==  "S6mangle8bar12352FZ1S");
-    static assert(S.func.mangleof == "_D6mangle8bar12352FZ1S4funcMFZv");
+    static assert(S.func.mangleof == "_D6mangle8bar12352FZ1S4funcMFNfZv");
 
     return S();
 }
 static assert(       bar12352        .mangleof == "_D6mangle8bar12352FNaNbNiNfZS"~id!("6mangle8bar12352FZ","QBbQxFZ","QL2H")~"1S");
 static assert(typeof(bar12352())     .mangleof ==  "S6mangle8bar12352FZ1S");
-static assert(typeof(bar12352()).func.mangleof == "_D6mangle8bar12352FZ1S4funcMFZv");
+static assert(typeof(bar12352()).func.mangleof == "_D6mangle8bar12352FZ1S4funcMFNfZv");
 
 auto baz12352()
 {
@@ -318,13 +318,13 @@ auto baz12352()
 
     static assert(!__traits(compiles, baz12352.mangleof));   // forward reference to baz
     static assert(C     .mangleof ==  "C6mangle8baz12352FZ1C");
-    static assert(C.func.mangleof == "_D6mangle8baz12352FZ1C4funcMFZv");
+    static assert(C.func.mangleof == "_D6mangle8baz12352FZ1C4funcMFNfZv");
 
     return new C();
 }
 static assert(       baz12352      .mangleof == "_D6mangle8baz12352FNaNbNfZC"~id!("6mangle8baz12352FZ","QzQuFZ","QL2F")~"1C");
 static assert(typeof(baz12352())     .mangleof ==  "C6mangle8baz12352FZ1C");
-static assert(typeof(baz12352()).func.mangleof == "_D6mangle8baz12352FZ1C4funcMFZv");
+static assert(typeof(baz12352()).func.mangleof == "_D6mangle8baz12352FZ1C4funcMFNfZv");
 
 /*******************************************/
 // upstream issue 9525

@@ -126,7 +126,7 @@ fail_compilation/chkformat.d(234):        `"%d"` requires `int*`
 */
 
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 #line 100
 

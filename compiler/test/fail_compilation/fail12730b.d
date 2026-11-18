@@ -6,7 +6,7 @@ fail_compilation/fail12730b.d(13): Error: cannot negate register
 */
 // upstream issue 12730
 
-void test()
+@system: void test()
 {
     asm
     {

@@ -8,7 +8,7 @@ import a20a;
 
 extern(C) void dmd_coverDestPath(string path);
 
-void main(string[] args)
+@system void main(string[] args)
 {
     dmd_coverDestPath(args[1]);
 }

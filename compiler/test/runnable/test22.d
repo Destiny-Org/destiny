@@ -1,6 +1,6 @@
 // REQUIRED_ARGS:
 
-import core.stdc.stdarg;
+@system: import core.stdc.stdarg;
 
 extern(C)
 {

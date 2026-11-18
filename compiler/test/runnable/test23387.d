@@ -11,7 +11,7 @@ struct Foo {
 };
 FooRef make_foo(void);
 +/
-import imports.maker;
+@system: import imports.maker;
 
 
 /+ freer.i

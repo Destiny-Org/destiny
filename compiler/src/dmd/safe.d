@@ -359,6 +359,21 @@ bool isTrusted(FuncDeclaration fd)
     return fd.type.toTypeFunction().trust == TRUST.trusted;
 }
 
+/****************************************
+ * Destiny: after the first `@safe` error in a function that is `@safe` only by
+ * default, tell the user what to do about it. Printed once per function.
+ */
+void hintSafeByDefault(FuncDeclaration fd)
+{
+    if (!fd || !fd.safeByDefault || global.gag || fd.safeDefaultHinted)
+        return;
+    fd.safeDefaultHinted = true;
+    global.errorSink.errorSupplemental(fd.loc,
+        "`%s` is `@safe` by default. If it must do this, mark it `@system`, "
+        ~ "or move the unsafe part into a small `@trusted` function with a safe interface",
+        fd.toPrettyChars());
+}
+
 /*****************************************************
  * Report safety violation for function `fd`, or squirrel away
  * error message in fd.safetyViolation if needed later.
@@ -372,22 +387,6 @@ bool isTrusted(FuncDeclaration fd)
  *   format = printf-style format string
  *   args  = arguments for %s format specifier
  */
-/****************************************
- * Destiny: after the first `@safe` error in a function that is `@safe` only by
- * default, tell the user what to do about it. Printed once per function.
- */
-void hintSafeByDefault(FuncDeclaration fd)
-{
-    __gshared bool[void*] hinted;
-    if (!fd || !fd.safeByDefault || global.gag || (cast(void*) fd) in hinted)
-        return;
-    hinted[cast(void*) fd] = true;
-    global.errorSink.errorSupplemental(fd.loc,
-        "`%s` is `@safe` by default. If it must do this, mark it `@system`, "
-        ~ "or move the unsafe part into a small `@trusted` function with a safe interface",
-        fd.toPrettyChars());
-}
-
 private
 void reportSafeError(FuncDeclaration fd, bool gag, Loc loc,
     VarDeclaration scopeVar, const(char)* format, RootObject[] args...)

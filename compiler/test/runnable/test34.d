@@ -1,4 +1,4 @@
-module test34;
+module test34; @system:
 
 import core.exception;
 import core.stdc.stdio;

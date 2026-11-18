@@ -1,6 +1,6 @@
 // PERMUTE_ARGS: -O
 
-void sliceAssign()
+@system: void sliceAssign()
 {
     enum size_t len = 2_147_483_648UL;
     char* src, dst;

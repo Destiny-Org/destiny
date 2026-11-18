@@ -9,7 +9,7 @@ bytes allocated, allocations, type, function, file:line
 ---
 */
 
-import core.runtime;
+@system: import core.runtime;
 
 void main()
 {

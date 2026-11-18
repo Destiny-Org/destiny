@@ -5,7 +5,7 @@ fail_compilation/fail10806.d(12): Error: function `fail10806.Class.clone` incomp
 ---
 */
 
-interface First { First clone(); }
+@system: interface First { First clone(); }
 interface Second { Second clone(); void call(); }
 
 class Class : First, Second {

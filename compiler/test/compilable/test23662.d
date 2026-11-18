@@ -1,6 +1,6 @@
 // upstream issue 23662
 // EXTRA_FILES: imports/imp23662.c
-import imports.imp23662;
+@system: import imports.imp23662;
 
 void main(string[] args) {
     auto r = func(A);

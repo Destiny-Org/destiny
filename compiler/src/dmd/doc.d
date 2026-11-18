@@ -1851,7 +1851,15 @@ void toDocBuffer(Dsymbol s, ref OutBuffer buf, Scope* sc)
                 Type origType = d.originalType ? d.originalType : d.type;
                 if (origType.ty == Tfunction)
                 {
-                    functionToBufferFull(cast(TypeFunction)origType, *buf, d.ident, hgs, td);
+                    // Destiny: do not document the `@safe` default
+                    auto otf = cast(TypeFunction)origType;
+                    auto fd = d.isFuncDeclaration();
+                    const hideDefault = fd && fd.safeByDefault && otf.trust == TRUST.safe;
+                    if (hideDefault)
+                        otf.trust = TRUST.default_;
+                    functionToBufferFull(otf, *buf, d.ident, hgs, td);
+                    if (hideDefault)
+                        otf.trust = TRUST.safe;
                 }
                 else
                     toCBuffer(origType, *buf, d.ident, hgs);

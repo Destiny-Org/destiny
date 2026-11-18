@@ -33,7 +33,7 @@ extern(C) nothrow {
     int square (int x);
 }
 
-bool testSquare() {
+@system bool testSquare() {
     return square(2) == 4 && square(5) == 25;
 }
 EOF
@@ -43,7 +43,7 @@ module APP;
 
 import square;
 
-int main() {
+@system int main() {
     return testSquare() ? 0 : 1;
 }
 EOF

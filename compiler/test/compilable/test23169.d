@@ -1,7 +1,7 @@
 // upstream issue 23169
 // Issue 23169 - [DIP1000] Mangling does not distinguish return and return scope
 
-struct Ptr
+@system: struct Ptr
 {
 	int* impl;
 	void* fun0() return scope {return impl;}

@@ -4,7 +4,7 @@ TEST_OUTPUT:
 fail_compilation/fail2456.d(14): Error: cannot put `scope(success)` statement inside `finally` block
 ---
 */
-void test_success()
+@system: void test_success()
 {
     try
     {

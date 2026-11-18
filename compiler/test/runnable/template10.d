@@ -59,7 +59,7 @@ runnable/template10.d(741):        instantiated from here: `fun!(n)`
 */
 
 /********************************************/
-void test1a()
+@system: void test1a()
 {
     int a = 1;
 

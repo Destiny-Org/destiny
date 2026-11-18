@@ -12,7 +12,7 @@ fail_compilation/misc1.d(128): Deprecation: `j` has no effect
 ---
 */
 
-#line 100
+@system: #line 100
 
 /***************************************************/
 //upstream issue 12490

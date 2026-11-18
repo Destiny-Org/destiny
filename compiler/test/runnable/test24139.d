@@ -1,6 +1,6 @@
 // upstream issue 24139
 
-struct S1
+@system: struct S1
 {
     int x;
     extern(C++) ~this() { assert(&this == s1); }

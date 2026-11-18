@@ -1,6 +1,6 @@
 // helper for mangling tests with back references
 
-module imports.testmangle;
+module imports.testmangle; @system:
 
 public import core.demangle : demangle, demangleType;
 

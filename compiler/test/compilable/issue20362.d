@@ -1,4 +1,4 @@
-void main() {
+@system: void main() {
     string str;
     stringify((chars) {str ~= chars; });
 }

@@ -10,7 +10,7 @@ fail_compilation/fail10254.d(16):        `fail10254.S.this` is declared here
 ---
 */
 
-int a;
+@system: int a;
 
 class C { this() { a = 2; } }
 struct S { this(int) { a = 2; } }

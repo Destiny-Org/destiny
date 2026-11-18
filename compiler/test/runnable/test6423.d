@@ -1,6 +1,6 @@
 // DISABLED: osx64
 
-bool flag;
+@system: bool flag;
 
 void f()
 {

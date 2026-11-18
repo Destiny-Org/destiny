@@ -1,5 +1,5 @@
 // upstream dmd issue 24276
-extern (C) struct S { }
+@system: extern (C) struct S { }
 extern (C) struct E { S s; }
 
 version (CRuntime_Microsoft)

@@ -13,7 +13,7 @@ fail_compilation/failasm2.d(116): Error: operand size for opcode `not` is ambigu
 ---
 */
 
-#line 100
+@system: #line 100
 
 // upstream issue 2617
 

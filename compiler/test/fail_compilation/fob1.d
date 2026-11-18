@@ -7,7 +7,7 @@ fail_compilation/fob1.d(104): Error: variable `fob1.foo1.p` is returned but is U
 ---
 */
 
-#line 100
+@system: #line 100
 
 @live int* foo1()
 {

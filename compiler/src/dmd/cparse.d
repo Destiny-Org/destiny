@@ -116,7 +116,7 @@ final class CParser(AST) : Parser!AST
      * Returns:
      *  array of Dsymbols that were declared
      */
-    override AST.Dsymbols* parseModule()
+    override AST.Dsymbols* parseModule() @system
     {
         //printf("cparseTranslationUnit()\n");
         symbols = new AST.Dsymbols();
@@ -5215,7 +5215,7 @@ final class CParser(AST) : Parser!AST
     /********************************* Directive Parser ***************************/
     //{
 
-    override bool parseSpecialTokenSequence()
+    override bool parseSpecialTokenSequence() @system
     {
         Token n;
         scan(&n);

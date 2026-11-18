@@ -1,4 +1,4 @@
-module object;
+module object; @system:
 
 extern(C) void _Dmain();
 

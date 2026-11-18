@@ -5,7 +5,7 @@
 // Adapted from DMC++ test file test3/ccompile.c
 
 
-    struct HDS        {
+@system: struct HDS {
       char state;
       uint done;
       uint retry;

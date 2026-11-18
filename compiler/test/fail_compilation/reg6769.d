@@ -9,7 +9,7 @@ fail_compilation/reg6769.d(28):        called from here: `reg6769b([0, 1, 2, 3, 
 fail_compilation/reg6769.d(28):        while evaluating: `static assert(reg6769b([0, 1, 2, 3, 4, 5, 6]) == 1)`
 ---
 */
-int reg6769a(int[] a)
+@system: int reg6769a(int[] a)
 {
     int[7]* b = cast(int[7]*)&a;
     return (*b)[1];

@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -O
 
-import core.stdc.math;
+@system: import core.stdc.math;
 
 int screenNum()
 {

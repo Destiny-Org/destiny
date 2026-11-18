@@ -1,4 +1,4 @@
-void fn(int* x, real[1] arr)
+@system: void fn(int* x, real[1] arr)
 {
     auto y = *x;  // should not segfault
     assert(y == 42, "x parameter corrupted");

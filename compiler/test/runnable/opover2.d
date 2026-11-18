@@ -3,7 +3,7 @@
 
 // Test operator overloading
 
-extern (C) int printf(const(char*) fmt, ...);
+@system: extern (C) int printf(const(char*) fmt, ...);
 
 template Seq(T...){ alias T Seq; }
 
@@ -137,7 +137,7 @@ void test4()
 
 class A5
 {
-    override bool opEquals(Object o)
+    override bool opEquals(Object o) @trusted // Destiny: Object.opEquals is @safe
     {
         printf("A.opEquals!(%p)\n", o);
         return 1;
@@ -159,7 +159,7 @@ class A5
 
 class B5 : A5
 {
-    override bool opEquals(Object o)
+    override bool opEquals(Object o) @trusted
     {
         printf("B.opEquals!(%p)\n", o);
         return 1;

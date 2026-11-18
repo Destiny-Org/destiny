@@ -3,7 +3,7 @@
 
 // upstream issue 23076
 
-struct S
+@system: struct S
 {
     int depthLow = 0;
     int depthHigh = 30000;

@@ -10,7 +10,7 @@ fini
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 pragma(crt_constructor)
 pragma(crt_destructor)

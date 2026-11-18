@@ -2,7 +2,7 @@
 // EXTRA_SOURCES: imports/standalone_b.d
 // PERMUTE_ARGS: -cov
 
-import standalone_b;
+@system: import standalone_b;
 import core.attribute : standalone;
 
 immutable int* x;

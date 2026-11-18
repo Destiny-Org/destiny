@@ -4,7 +4,7 @@ RUN_OUTPUT:
 Success
 ---
 */
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 
 template Seq(T...) { alias T Seq; }
 

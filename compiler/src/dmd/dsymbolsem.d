@@ -2267,7 +2267,11 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
             /* Pick up storage classes from context, but except synchronized,
              * override, abstract, and final.
              */
-            dsym.storage_class |= (sc.stc & ~(STC.synchronized_ | STC.override_ | STC.abstract_ | STC.final_));
+            /* Destiny: a `@system:` label or `@system { }` block is how code
+             * opts out of the `@safe` default; it applies to functions only.
+             * A variable is `@system` only when it is annotated itself.
+             */
+            dsym.storage_class |= (sc.stc & ~(STC.synchronized_ | STC.override_ | STC.abstract_ | STC.final_ | STC.system));
             dsym.userAttribDecl = sc.userAttribDecl;
             dsym.cppnamespace = sc.namespace;
             dsym._linkage = sc.linkage;
@@ -2463,6 +2467,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
              *      static assert(is(typeof(fp) == void function() pure nothrow));
              */
             Scope* sc2 = sc.push();
+            sc2.stc &= ~STC.system;     // Destiny: a `@system:` label does not apply to variables
             sc2.stc |= (dsym.storage_class & STC.FUNCATTR);
             dsym.inuse++;
             dsym.type = dsym.type.typeSemantic(dsym.loc, sc2);

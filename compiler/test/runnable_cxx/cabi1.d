@@ -1,7 +1,7 @@
 
 // EXTRA_CPP_SOURCES: cabi2.cpp
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import core.stdc.config;
 
 struct Foo1 { char c; }

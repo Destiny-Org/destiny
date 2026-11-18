@@ -1,4 +1,4 @@
-void delegate() foo()
+@system: void delegate() foo()
 {
     size_t value = 0;
 

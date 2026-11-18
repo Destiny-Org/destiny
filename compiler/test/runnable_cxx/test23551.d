@@ -2,7 +2,7 @@
 // EXTRA_CPP_SOURCES: test23551.cpp
 // EXTRA_FILES: test23551.h
 
-extern(C++)
+@system: extern(C++)
 class Base
 {
     int i;

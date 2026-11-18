@@ -10,7 +10,7 @@ p 'gdb.x' + 'gdb.y'
 ---
 GDB_MATCH: RESULT=.*4000065002
 */
-module gdb;
+module gdb; @system:
 
 __gshared uint x = 4_000_000_000;
 __gshared ushort y = 65000;

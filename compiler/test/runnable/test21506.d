@@ -7,7 +7,7 @@ value: -5
 
 // upstream issue 21506
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import core.stdc.stdarg;
 
 extern(C++)

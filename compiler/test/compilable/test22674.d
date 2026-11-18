@@ -1,7 +1,7 @@
 // upstream issue 22674
 // EXTRA_FILES: imports/cimports2a.i imports/cimports2b.i
 
-import imports.cimports2a;
+@system: import imports.cimports2a;
 import imports.cimports2b;
 
 void do_foo(){

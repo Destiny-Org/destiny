@@ -1,6 +1,6 @@
 // upstream issue 11294
 
-string result;
+@system: string result;
 
 extern(C) void rt_finalize(void *ptr, bool det=true);
 void clear(T)(T obj) if (is(T == class))

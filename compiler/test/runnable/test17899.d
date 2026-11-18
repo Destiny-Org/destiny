@@ -1,4 +1,4 @@
-module test17899;
+module test17899; @system:
 
 // Test that the ICE in 13259 does not ICE but produces correct code
 auto dg = delegate {};

@@ -1,4 +1,4 @@
-module imports.test11931d;
+module imports.test11931d; @system:
 
 template filter(alias pred)
 {

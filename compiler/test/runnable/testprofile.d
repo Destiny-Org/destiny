@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -profile
 
-module testprofile;
+module testprofile; @system:
 
 // ------------------
 
@@ -57,7 +57,7 @@ class C10953
 }
 class D10953 : C10953
 {
-    override void func()    // inherits attributes of Foo.func
+    override void func() @safe // inherits nothrow pure of Foo.func (@safe: Destiny label)
     in {} out {} do {}
 }
 

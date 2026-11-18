@@ -1,4 +1,4 @@
-extern(C++) struct S
+@system: extern(C++) struct S
 {
     int opBinary(string op)(S rhs) if (op == "+")
     {

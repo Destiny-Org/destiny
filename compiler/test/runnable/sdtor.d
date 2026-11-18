@@ -7,7 +7,7 @@ S7353
 ---
 */
 
-import core.vararg;
+@system: import core.vararg;
 // FIXME: Shouldn't tests that use this go in core.memory now that `delete` has been removed?
 import core.memory : __delete;
 
@@ -2888,16 +2888,16 @@ void test10055a()
     static void check(S)() { S s; }
 
     static struct S1 {                                             }
-    static struct S2 {                                  ~this() {} }
+    static struct S2 {                          @system ~this() {} }
     static struct SA { SX sx; SY sy;                               }
     static struct SB { SX sx; SY sy; pure nothrow @safe ~this() {} }
     static struct SC { SX sx; SY sy;      nothrow @safe ~this() {} }
     static struct SD { SX sx; SY sy; pure         @safe ~this() {} }
-    static struct SE { SX sx; SY sy; pure nothrow       ~this() {} }
+    static struct SE { SX sx; SY sy; pure nothrow @system ~this() {} }
     static struct SF { SX sx; SY sy;              @safe ~this() {} }
-    static struct SG { SX sx; SY sy;      nothrow       ~this() {} }
-    static struct SH { SX sx; SY sy; pure               ~this() {} }
-    static struct SI { SX sx; SY sy;                    ~this() {} }
+    static struct SG { SX sx; SY sy;      nothrow @system ~this() {} }
+    static struct SH { SX sx; SY sy; pure       @system ~this() {} }
+    static struct SI { SX sx; SY sy;            @system ~this() {} }
     static assert(is( typeof(&check!S1) == void function() pure nothrow @nogc @safe ));
     static assert(is( typeof(&check!S2) == void function()                    ));
     static assert(is( typeof(&check!SA) == void function() pure nothrow @safe ));
@@ -2937,16 +2937,16 @@ void test10055b()
     static void check(S)() { S s; S s2 = s; }
 
     static struct S1 {                                               }
-    static struct S2 {                                  this(this) {} }
+    static struct S2 {                           @system this(this) {} }
     static struct SA { SX sx; SY sy;                                  }
     static struct SB { SX sx; SY sy; pure nothrow @safe this(this) {} }
     static struct SC { SX sx; SY sy;      nothrow @safe this(this) {} }
     static struct SD { SX sx; SY sy; pure         @safe this(this) {} }
-    static struct SE { SX sx; SY sy; pure nothrow       this(this) {} }
+    static struct SE { SX sx; SY sy; pure nothrow @system this(this) {} }
     static struct SF { SX sx; SY sy;              @safe this(this) {} }
-    static struct SG { SX sx; SY sy;      nothrow       this(this) {} }
-    static struct SH { SX sx; SY sy; pure               this(this) {} }
-    static struct SI { SX sx; SY sy;                    this(this) {} }
+    static struct SG { SX sx; SY sy;      nothrow @system this(this) {} }
+    static struct SH { SX sx; SY sy; pure        @system this(this) {} }
+    static struct SI { SX sx; SY sy;             @system this(this) {} }
     static assert(is( typeof(&check!S1) == void function() pure nothrow @nogc @safe ));
     static assert(is( typeof(&check!S2) == void function()                    ));
     static assert(is( typeof(&check!SA) == void function() pure nothrow @safe ));

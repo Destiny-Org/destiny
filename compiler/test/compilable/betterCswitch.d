@@ -1,4 +1,4 @@
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 extern (C) int main()
 {

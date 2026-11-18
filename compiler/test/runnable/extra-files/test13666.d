@@ -1,4 +1,4 @@
-import lib13666;
+@system: import lib13666;
 
 int main()
 {

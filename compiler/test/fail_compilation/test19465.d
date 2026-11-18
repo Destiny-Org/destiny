@@ -16,7 +16,7 @@ fail_compilation/test19465.d(21):            parameter 1: `foreach` declares `st
 ---
 */
 
-struct S
+@system: struct S
 {
     int opApply(int delegate(int) dg)
     {

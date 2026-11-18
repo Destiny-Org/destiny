@@ -2,7 +2,7 @@
 // CXXFLAGS(osx linux freebsd openbsd netbsd dragonflybsd solaris): -std=c++11 -O2
 // CXXFLAGS(windows): /std:c11 /O2
 
-int baseDestroyed;
+@system: int baseDestroyed;
 int sDestroyed;
 
 struct S

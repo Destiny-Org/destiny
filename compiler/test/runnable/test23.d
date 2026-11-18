@@ -1,4 +1,4 @@
-module test;
+module test; @system:
 
 import core.vararg;
 import core.stdc.stdlib;
@@ -731,7 +731,7 @@ void delegate() foo39()
 
                 this() { a = 3; }
 
-                void dg()
+                @system void dg()
                 {
                         printf("delegate!\n");
                         assert(a == 3);

@@ -11,7 +11,7 @@ fail_compilation/test15989.d(51): Error: cannot use non-constant CTFE pointer in
 
 // upstream issue 15989
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 interface Kickstart{
     bool foo( int );

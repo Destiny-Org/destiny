@@ -4,7 +4,7 @@
  */
 
 
-struct Allocation {
+@system: struct Allocation {
     int* ptr;
     size_t length;
 }

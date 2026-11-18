@@ -1,6 +1,6 @@
 // upstream issue 20603
 
-enum immutable(int)* x = new int(3);
+@system: enum immutable(int)* x = new int(3);
 enum const(int)* y = new int(5);
 
 struct Base {

@@ -28,7 +28,7 @@ pure nothrow @safe int i6265c() {
 /***************************************************/
 // Make sure a function is not infered as pure if it isn't.
 
-int fNPa() {
+int fNPa() @system {   // Destiny: explicitly not @safe
     return 1;
 }
 int gNPa()() {
@@ -59,7 +59,7 @@ void fECPb() {
         fECPb();
     }
     static assert(!is(typeof(&g!()) == void delegate() pure));
-    static assert( is(typeof(&g!()) == void delegate()));
+    static assert( is(typeof(&g!()) == void delegate() @safe)); // Destiny: fECPb is @safe by default
 }
 
 /***************************************************/
@@ -105,7 +105,7 @@ void test6351()
 
 void    impure6359()      nothrow @safe @nogc {}
 void throwable6359() pure         @safe @nogc {}
-void    system6359() pure nothrow       @nogc {}
+void    system6359() pure nothrow @system @nogc {}
 void    gcable6359() pure nothrow @safe       {}
 
 int global6359;
@@ -284,10 +284,10 @@ void test8504()
     auto fp1 = toDelegate8504a(&testC8504);
     auto fp2 = toDelegate8504b(&testC8504);
     static assert(is(typeof(fp1) == typeof(fp2)));
-    static assert(typeof(fp1).stringof == "extern(C) void function()");
-    static assert(typeof(fp2).stringof == "extern(C) void function()");
-    static assert(typeof(fp1).mangleof == "PUZv");
-    static assert(typeof(fp2).mangleof == "PUZv");
+    static assert(typeof(fp1).stringof == "extern(C) void function() @safe");
+    static assert(typeof(fp2).stringof == "extern(C) void function() @safe");
+    static assert(typeof(fp1).mangleof == "PUNfZv");
+    static assert(typeof(fp2).mangleof == "PUNfZv");
 }
 
 /***************************************************/
@@ -424,15 +424,15 @@ void test9148a() pure
 
     S sm;
     sm.foo1();
-    static assert(is(typeof(&sm.foo1) == void delegate() pure));
+    static assert(is(typeof(&sm.foo1) == void delegate() pure @safe));
     sm.foo2();
-    static assert(is(typeof(&sm.foo2) == void delegate() pure));
+    static assert(is(typeof(&sm.foo2) == void delegate() pure @safe));
 
     immutable S si;
     si.bar1();
-    static assert(is(typeof(&si.bar1) == void delegate() pure immutable));
+    static assert(is(typeof(&si.bar1) == void delegate() pure immutable @safe));
     si.bar2();
-    static assert(is(typeof(&si.bar2) == void delegate() pure immutable));
+    static assert(is(typeof(&si.bar2) == void delegate() pure immutable @safe));
 }
 
 // ----
@@ -465,7 +465,7 @@ void test9148b() pure nothrow @nogc @safe
     static assert(is(typeof(&SS.sf) == void function() pure nothrow @nogc @safe));
 }
 
-void impureSystem9148b() {}
+void impureSystem9148b() @system {}  // Destiny: explicitly @system
 void func9148b()()
 {
     void bar()  // do not inherit PUREfwdref
@@ -572,7 +572,7 @@ class Node10002
 /***************************************************/
 // upstream issue 10148
 
-void fa10148() {}  // fa is @system
+void fa10148() @system {}  // fa is @system (Destiny: explicitly)
 
 auto fb10148(T)()
 {
@@ -596,7 +596,7 @@ auto fb10148(T)()
     return A!int(0);
 }
 
-void test10148()
+@system void test10148()
 {
     fb10148!int.fc!int;  // [0] instantiate fb
                          // [3] instantiate fc
@@ -804,7 +804,7 @@ void func13840()
 {
 }
 
-void test13840() nothrow
+@system void test13840() nothrow
 {
     try
     {

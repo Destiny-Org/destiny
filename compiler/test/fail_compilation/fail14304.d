@@ -14,7 +14,7 @@ fail_compilation/fail14304.d(70):        called from here: `modify14304(cast(con
 ---
 */
 
-struct S14304
+@system: struct S14304
 {
     int x;
 

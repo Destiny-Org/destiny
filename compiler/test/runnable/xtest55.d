@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-import core.memory, core.stdc.stdio;
+@system: import core.memory, core.stdc.stdio;
 
 Stuff* stuff1;
 

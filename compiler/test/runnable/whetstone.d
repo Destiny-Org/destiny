@@ -33,7 +33,7 @@ Intel   390.0 sec   8086 alone (286WD Micro Development System,Intel FORTRAN)
 Table compiled by Richard Gillmann (Gillmann@ISIB).
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import core.stdc.time;
 import core.stdc.math;
 

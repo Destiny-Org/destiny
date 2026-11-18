@@ -5,7 +5,7 @@
 // upstream issue 7024
 // upstream issue 10058
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 version (CppRuntime_LLVM)        version = CppMangle_Itanium;
 version (CppRuntime_GNU)         version = CppMangle_Itanium;

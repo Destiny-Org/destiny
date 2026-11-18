@@ -135,12 +135,38 @@ class Thread : ThreadBase
 
     alias TLSKey = pthread_key_t;
 
-    this( void function() fn, size_t sz = 0 ) @safe pure nothrow @nogc
+    /// Destiny: `@safe` code may only start a thread running `@safe` code.
+
+    this( void function() @safe fn, size_t sz = 0 ) @trusted pure nothrow @nogc
+
+    {
+
+        this(cast(void function()) fn, sz);
+
+    }
+
+
+    /// ditto: any function; `@system` because it will run code that was never checked.
+
+    this( void function() fn, size_t sz = 0 ) @system pure nothrow @nogc
     {
         super(fn, sz);
     }
 
-    this( void delegate() dg, size_t sz = 0 ) @safe pure nothrow @nogc
+    /// Destiny: `@safe` code may only start a thread running `@safe` code.
+
+    this( void delegate() @safe dg, size_t sz = 0 ) @trusted pure nothrow @nogc
+
+    {
+
+        this(cast(void delegate()) dg, sz);
+
+    }
+
+
+    /// ditto: any delegate; `@system` because it will run code that was never checked.
+
+    this( void delegate() dg, size_t sz = 0 ) @system pure nothrow @nogc
     {
         super(dg, sz);
     }

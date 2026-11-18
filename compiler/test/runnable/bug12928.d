@@ -1,5 +1,5 @@
 // PERMUTE_ARGS: -inline -g -O
-import core.exception : RangeError;
+@system: import core.exception : RangeError;
 void main(string[] args)
 {
   int[2] a;

@@ -5,7 +5,7 @@ fail_compilation/fail2350.d(8): Error: function `fail2350.test2350` naked assemb
 ---
 */
 
-void test2350()
+@system: void test2350()
 in
 {
 }

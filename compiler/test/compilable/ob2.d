@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -preview=dip1021
 
-void* malloc();
+@system: void* malloc();
 
 @live T* foo1(T)(T* p)
 {

@@ -1,4 +1,4 @@
-module imports.link13415a;
+module imports.link13415a; @system:
 struct S(alias func)
 {
     void call()

@@ -1,6 +1,6 @@
 // Test UnaryExp (expr)++ parsing
 
-void main(){
+@system: void main(){
     int[2] y;
     int *x = y.ptr;
     *(x)++=0;

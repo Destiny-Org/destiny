@@ -1,7 +1,7 @@
 // PERMUTE_ARGS:
 // REQUIRED_ARGS:
 
-import core.exception;
+@system: import core.exception;
 import core.stdc.math;
 import core.vararg;
 

@@ -9,7 +9,7 @@ fail_compilation/iasm1.d(104): Error: `and` instruction requires operands of mat
 
 // upstream issue 15999
 
-#line 100
+@system: #line 100
 
 void test100(ulong bar)
 {

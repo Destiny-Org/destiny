@@ -5,7 +5,7 @@ void comdef()()
     __gshared int a;
 }
 
-void use1()
+@system void use1()
 {
     comdef();
 }

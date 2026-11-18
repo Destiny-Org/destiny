@@ -1,6 +1,6 @@
 // upstream dmd issue 22422
 
-class C {}
+@system: class C {}
 class D {}
 
 struct S {

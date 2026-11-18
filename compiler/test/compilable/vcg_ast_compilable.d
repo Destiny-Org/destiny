@@ -15,7 +15,7 @@ void find(Element)(Element needle) if (is(typeof(binaryFun(needle))))
 void find()(string needle)
 {
 }
-void splitter()
+@safe void splitter()
 {
 	vcg_ast_compilable.find!int(3);
 	vcg_ast_compilable.find!()("");

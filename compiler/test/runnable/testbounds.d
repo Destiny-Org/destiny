@@ -8,7 +8,7 @@ Success
 
 // Test array bounds checking
 
-import core.exception;
+@system: import core.exception;
 extern(C) int printf(const char*, ...);
 
 template TypeTuple(T...) { alias T TypeTuple; }

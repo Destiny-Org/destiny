@@ -7,7 +7,7 @@ finished
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 /* This isn't a very good test. If it 'fails' it just takes a very
  * long time. The performance improved by a factor of five between

@@ -1,7 +1,7 @@
 // PERMUTE_ARGS: -O
 // upstream issue 20855
 
-string exp()
+@system: string exp()
 {
     string s = "a = b + c * d + a;";
     foreach (i; 0 .. 8)

@@ -1,5 +1,5 @@
 // REQUIRED_ARGS: -checkaction=context
-struct STuple {
+@system: struct STuple {
 	bool opEquals(STuple) { return false; }
 }
 

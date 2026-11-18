@@ -3,7 +3,7 @@
 /*
 REQUIRED_ARGS: -preview=fastdfa
 */
-module __fastdfa_escape_test;
+module __fastdfa_escape_test; @system:
 
 struct __FastDFAEscapeTest {
     Param[] params;

@@ -2,7 +2,7 @@
 
 
 // references
-alias P = int*;             P p;
+@system: alias P = int*;             P p;
 alias FP = int function();  FP fp;
 alias DG = int delegate();  DG dg;
 alias DA = int[];           DA da;
@@ -21,13 +21,13 @@ struct S {}                 S s;
 TEST_OUTPUT:
 ---
 fail_compilation/fail_casting1.d(39): Error: cannot cast expression `p` of type `int*` to `int[1]`
-fail_compilation/fail_casting1.d(40): Error: cannot cast expression `fp` of type `int function()` to `int[1]`
-fail_compilation/fail_casting1.d(41): Error: cannot cast expression `dg` of type `int delegate()` to `int[1]`
+fail_compilation/fail_casting1.d(40): Error: cannot cast expression `fp` of type `int function() @system` to `int[1]`
+fail_compilation/fail_casting1.d(41): Error: cannot cast expression `dg` of type `int delegate() @system` to `int[1]`
 fail_compilation/fail_casting1.d(42): Error: cannot cast expression `da` of type `int[]` to `int[1]`
 fail_compilation/fail_casting1.d(43): Error: cannot cast expression `aa` of type `int[int]` to `int[1]`
 fail_compilation/fail_casting1.d(44): Error: cannot cast expression `c` of type `fail_casting1.C` to `int[1]`
 fail_compilation/fail_casting1.d(45): Error: cannot cast expression `n` of type `typeof(null)` to `int[1]`
-fail_compilation/fail_casting1.d(49): Error: cannot cast expression `sa` of type `int[1]` to `int delegate()`
+fail_compilation/fail_casting1.d(49): Error: cannot cast expression `sa` of type `int[1]` to `int delegate() @system`
 fail_compilation/fail_casting1.d(51): Error: cannot cast expression `sa` of type `int[1]` to `double[]` since sizes don't line up
 fail_compilation/fail_casting1.d(52): Error: cannot cast expression `sa` of type `int[1]` to `int[int]`
 fail_compilation/fail_casting1.d(53): Error: cannot cast expression `sa` of type `int[1]` to `fail_casting1.C`
@@ -58,15 +58,15 @@ void test1()
 TEST_OUTPUT:
 ---
 fail_compilation/fail_casting1.d(78): Error: cannot cast expression `p` of type `int*` to `S`
-fail_compilation/fail_casting1.d(79): Error: cannot cast expression `fp` of type `int function()` to `S`
-fail_compilation/fail_casting1.d(80): Error: cannot cast expression `dg` of type `int delegate()` to `S`
+fail_compilation/fail_casting1.d(79): Error: cannot cast expression `fp` of type `int function() @system` to `S`
+fail_compilation/fail_casting1.d(80): Error: cannot cast expression `dg` of type `int delegate() @system` to `S`
 fail_compilation/fail_casting1.d(81): Error: cannot cast expression `da` of type `int[]` to `S`
 fail_compilation/fail_casting1.d(82): Error: cannot cast expression `aa` of type `int[int]` to `S`
 fail_compilation/fail_casting1.d(83): Error: cannot cast expression `c` of type `fail_casting1.C` to `S`
 fail_compilation/fail_casting1.d(84): Error: cannot cast expression `n` of type `typeof(null)` to `S`
 fail_compilation/fail_casting1.d(85): Error: cannot cast expression `s` of type `S` to `int*`
-fail_compilation/fail_casting1.d(86): Error: cannot cast expression `s` of type `S` to `int function()`
-fail_compilation/fail_casting1.d(87): Error: cannot cast expression `s` of type `S` to `int delegate()`
+fail_compilation/fail_casting1.d(86): Error: cannot cast expression `s` of type `S` to `int function() @system`
+fail_compilation/fail_casting1.d(87): Error: cannot cast expression `s` of type `S` to `int delegate() @system`
 fail_compilation/fail_casting1.d(88): Error: cannot cast expression `s` of type `S` to `int[]`
 fail_compilation/fail_casting1.d(89): Error: cannot cast expression `s` of type `S` to `int[int]`
 fail_compilation/fail_casting1.d(90): Error: cannot cast expression `s` of type `S` to `fail_casting1.C`
@@ -94,26 +94,26 @@ void test2()
 /*
 TEST_OUTPUT:
 ---
-fail_compilation/fail_casting1.d(125): Error: cannot cast expression `p` of type `int*` to `int delegate()`
+fail_compilation/fail_casting1.d(125): Error: cannot cast expression `p` of type `int*` to `int delegate() @system`
 fail_compilation/fail_casting1.d(126): Error: cannot cast expression `p` of type `int*` to `int[]`
 fail_compilation/fail_casting1.d(129): Error: cannot cast expression `p` of type `int*` to `typeof(null)`
-fail_compilation/fail_casting1.d(133): Error: cannot cast expression `fp` of type `int function()` to `int delegate()`
-fail_compilation/fail_casting1.d(134): Error: cannot cast expression `fp` of type `int function()` to `int[]`
-fail_compilation/fail_casting1.d(137): Error: cannot cast expression `fp` of type `int function()` to `typeof(null)`
-fail_compilation/fail_casting1.d(139): Deprecation: casting from int delegate() to int* is deprecated
-fail_compilation/fail_casting1.d(140): Deprecation: casting from int delegate() to int function() is deprecated
-fail_compilation/fail_casting1.d(142): Error: cannot cast expression `dg` of type `int delegate()` to `int[]`
-fail_compilation/fail_casting1.d(143): Error: cannot cast expression `dg` of type `int delegate()` to `int[int]`
-fail_compilation/fail_casting1.d(144): Error: cannot cast expression `dg` of type `int delegate()` to `fail_casting1.C`
-fail_compilation/fail_casting1.d(145): Error: cannot cast expression `dg` of type `int delegate()` to `typeof(null)`
-fail_compilation/fail_casting1.d(157): Error: cannot cast expression `da` of type `int[]` to `int delegate()`
+fail_compilation/fail_casting1.d(133): Error: cannot cast expression `fp` of type `int function() @system` to `int delegate() @system`
+fail_compilation/fail_casting1.d(134): Error: cannot cast expression `fp` of type `int function() @system` to `int[]`
+fail_compilation/fail_casting1.d(137): Error: cannot cast expression `fp` of type `int function() @system` to `typeof(null)`
+fail_compilation/fail_casting1.d(139): Deprecation: casting from int delegate() @system to int* is deprecated
+fail_compilation/fail_casting1.d(140): Deprecation: casting from int delegate() @system to int function() @system is deprecated
+fail_compilation/fail_casting1.d(142): Error: cannot cast expression `dg` of type `int delegate() @system` to `int[]`
+fail_compilation/fail_casting1.d(143): Error: cannot cast expression `dg` of type `int delegate() @system` to `int[int]`
+fail_compilation/fail_casting1.d(144): Error: cannot cast expression `dg` of type `int delegate() @system` to `fail_casting1.C`
+fail_compilation/fail_casting1.d(145): Error: cannot cast expression `dg` of type `int delegate() @system` to `typeof(null)`
+fail_compilation/fail_casting1.d(157): Error: cannot cast expression `da` of type `int[]` to `int delegate() @system`
 fail_compilation/fail_casting1.d(159): Error: cannot cast expression `da` of type `int[]` to `int[int]`
 fail_compilation/fail_casting1.d(160): Error: cannot cast expression `da` of type `int[]` to `fail_casting1.C`
 fail_compilation/fail_casting1.d(161): Error: cannot cast expression `da` of type `int[]` to `typeof(null)`
-fail_compilation/fail_casting1.d(165): Error: cannot cast expression `aa` of type `int[int]` to `int delegate()`
+fail_compilation/fail_casting1.d(165): Error: cannot cast expression `aa` of type `int[int]` to `int delegate() @system`
 fail_compilation/fail_casting1.d(166): Error: cannot cast expression `aa` of type `int[int]` to `int[]`
 fail_compilation/fail_casting1.d(169): Error: cannot cast expression `aa` of type `int[int]` to `typeof(null)`
-fail_compilation/fail_casting1.d(173): Error: cannot cast expression `c` of type `fail_casting1.C` to `int delegate()`
+fail_compilation/fail_casting1.d(173): Error: cannot cast expression `c` of type `fail_casting1.C` to `int delegate() @system`
 fail_compilation/fail_casting1.d(174): Error: cannot cast expression `c` of type `fail_casting1.C` to `int[]`
 fail_compilation/fail_casting1.d(177): Error: cannot cast expression `c` of type `fail_casting1.C` to `typeof(null)`
 ---
@@ -180,17 +180,17 @@ void test3()    // between reference types
 /*
 TEST_OUTPUT:
 ---
-fail_compilation/fail_casting1.d(203): Error: cannot cast expression `0` of type `int` to `int delegate()`
+fail_compilation/fail_casting1.d(203): Error: cannot cast expression `0` of type `int` to `int delegate() @system`
 fail_compilation/fail_casting1.d(204): Error: cannot cast expression `0` of type `int` to `int[]`
 fail_compilation/fail_casting1.d(206): Error: cannot cast expression `0` of type `int` to `int[int]`
 fail_compilation/fail_casting1.d(207): Error: cannot cast expression `0` of type `int` to `fail_casting1.C`
 fail_compilation/fail_casting1.d(208): Error: cannot cast expression `0` of type `int` to `typeof(null)`
-fail_compilation/fail_casting1.d(212): Error: cannot cast expression `i` of type `int` to `int delegate()`
+fail_compilation/fail_casting1.d(212): Error: cannot cast expression `i` of type `int` to `int delegate() @system`
 fail_compilation/fail_casting1.d(213): Error: cannot cast expression `i` of type `int` to `int[]`
 fail_compilation/fail_casting1.d(215): Error: cannot cast expression `i` of type `int` to `int[int]`
 fail_compilation/fail_casting1.d(216): Error: cannot cast expression `i` of type `int` to `fail_casting1.C`
 fail_compilation/fail_casting1.d(217): Error: cannot cast expression `i` of type `int` to `typeof(null)`
-fail_compilation/fail_casting1.d(221): Error: cannot cast expression `dg` of type `int delegate()` to `int`
+fail_compilation/fail_casting1.d(221): Error: cannot cast expression `dg` of type `int delegate() @system` to `int`
 fail_compilation/fail_casting1.d(222): Error: cannot cast expression `da` of type `int[]` to `int`
 fail_compilation/fail_casting1.d(224): Error: cannot cast expression `aa` of type `int[int]` to `int`
 fail_compilation/fail_casting1.d(225): Error: cannot cast expression `c` of type `fail_casting1.C` to `int`

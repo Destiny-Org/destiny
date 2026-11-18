@@ -11,7 +11,7 @@ CT x.offsetof = <
 ---
 */
 
-mixin template MT(string id)
+@system: mixin template MT(string id)
 {
     union
     {

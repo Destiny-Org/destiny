@@ -21,7 +21,7 @@ mkdir -p $TEST_DIR
 cat << EOF | $DMD -m$MODEL -fPIC -shared -of$ORIG_SO -
 import core.stdc.stdio;
 
-extern(C) int func()
+extern(C) int func() @system
 {
     printf("liborig\n");
     return 1;
@@ -31,7 +31,7 @@ EOF
 cat << EOF | $DMD -m$MODEL -fPIC -shared -of$OVERRIDE_SO -
 import core.stdc.stdio;
 
-extern(C) int func()
+extern(C) int func() @system
 {
     printf("liboverride\n");
     return 2;
@@ -43,7 +43,7 @@ extern(C) int func();
 
 pragma(lib, "orig");
 
-void main()
+@system void main()
 {
     assert(func() == 2);
 }

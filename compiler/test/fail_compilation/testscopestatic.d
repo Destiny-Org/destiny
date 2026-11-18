@@ -9,7 +9,7 @@ fail_compilation/testscopestatic.d(21): Error: field `x` cannot be `scope`
 */
 
 
-void foo()
+@system: void foo()
 {
     scope int a;
     static scope int* p;

@@ -5,7 +5,7 @@ fail_compilation/fail12635.d(13): Error: Cannot generate a segment prefix for a 
 ---
 */
 
-void foo()
+@system: void foo()
 {
     asm
     {

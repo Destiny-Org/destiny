@@ -313,7 +313,7 @@ static if (UseBumpMalloc)
         return (cast(size_t*)p)[-1];
     }
 
-    void* bumpMalloc(size_t size)
+    void* bumpMalloc(size_t size) @system
     {
         if (size <= maxSmallSize - smallAlignment)
         {
@@ -359,7 +359,7 @@ static if (UseBumpMalloc)
         return p;
     }
 
-    void bumpFree(void* p)
+    void bumpFree(void* p) @system
     {
         if (!p)
             return;
@@ -389,8 +389,8 @@ static if (UseBumpMalloc)
         }
     }
 
-    enum pureBumpMalloc = cast(void* function(size_t) pure nothrow)&bumpMalloc;
-    enum pureBumpFree  = cast(void function(void*p) pure nothrow)&bumpFree;
+    enum pureBumpMalloc = cast(void* function(size_t) pure nothrow @system)&bumpMalloc;
+    enum pureBumpFree  = cast(void function(void*p) pure nothrow @system)&bumpFree;
 
     void* pureBumpCalloc(size_t size, size_t n) pure nothrow
     {

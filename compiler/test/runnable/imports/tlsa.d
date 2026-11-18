@@ -1,4 +1,4 @@
-module imports.tlsa;
+module imports.tlsa; @system:
 
 import core.stdc.stdio;
 

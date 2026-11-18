@@ -1,4 +1,4 @@
-module parser.test_astbase;
+module parser.test_astbase; @system:
 
 // Simple test to check whether ASTBase respects the interface
 // that the parser expects from an AST family

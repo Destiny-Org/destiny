@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -boundscheck=safeonly
 // PERMUTE_ARGS: -inline -g -O
 
-import core.exception : RangeError;
+@system: import core.exception : RangeError;
 
 // Check for RangeError is thrown
 bool thrown(T)(lazy T cond)

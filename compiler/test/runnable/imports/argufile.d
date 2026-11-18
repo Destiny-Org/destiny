@@ -1,6 +1,6 @@
 // argufile.d ----------------------------------------------------
 
-public:
+@system: public:
 
 import core.vararg;
 import std.stdio;

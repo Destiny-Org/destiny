@@ -1,7 +1,7 @@
 // upstream dmd issue 22594
 // PERMUTE_ARGS:
 
-import core.memory : GC;
+@system: import core.memory : GC;
 
 class C(Ts...) {
     Ts tuple;

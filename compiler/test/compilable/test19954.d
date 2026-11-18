@@ -1,6 +1,6 @@
 // upstream issue 19954
 
-template AliasSeq(TList...)
+@system: template AliasSeq(TList...)
 {
     alias AliasSeq = TList;
 }

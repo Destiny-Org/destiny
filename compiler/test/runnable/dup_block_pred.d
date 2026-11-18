@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -O
 // upstream dmd issue 24268
 
-struct S { int[10] x; }
+@system: struct S { int[10] x; }
 
 __gshared int result;
 bool pred() { return true; }

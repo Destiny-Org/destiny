@@ -1,6 +1,6 @@
 /// Verifies that DMD using default settings work as expected
 /// when using the default configuration + some example programs
-module defaults;
+module defaults; @system:
 
 import std.algorithm;
 import std.file;

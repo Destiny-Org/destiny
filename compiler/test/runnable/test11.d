@@ -1,7 +1,7 @@
 // REQUIRED_ARGS:
 // EXTRA_SOURCES: imports/std11file.d
 
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 extern(C) size_t strlen(const char*);
 
 /**************************************/

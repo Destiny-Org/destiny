@@ -1,4 +1,4 @@
-import core.stdc.stdio : printf;
+@system: import core.stdc.stdio : printf;
 
 __gshared int counter;
 

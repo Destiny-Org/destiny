@@ -6,7 +6,7 @@
  * e.g. when pasted into another file.
  */
 
-struct S {
+@system: struct S {
    int i;
 }
 

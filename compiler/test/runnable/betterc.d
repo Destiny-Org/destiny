@@ -3,7 +3,7 @@
  */
 
 
-void test(int ij)
+@system: void test(int ij)
 {
     assert(ij);
 #line 100 "anotherfile"

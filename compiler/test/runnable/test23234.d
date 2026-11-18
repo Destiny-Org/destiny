@@ -1,6 +1,6 @@
 // upstream issue 23234
 
-class Bar
+@system: class Bar
 {
 }
 

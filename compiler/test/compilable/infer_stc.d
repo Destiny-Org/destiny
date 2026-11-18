@@ -1,6 +1,6 @@
 /// Test storage class inference on delegate parameters
 
-alias FPT = void function (in string, ref string, out string, scope string);
+@system: alias FPT = void function (in string, ref string, out string, scope string);
 alias DGT = void delegate (in string, ref string, out string, scope string);
 
 void f1 (FPT func)

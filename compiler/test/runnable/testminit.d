@@ -10,7 +10,7 @@ Success
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 import imports.testminitAA;
 private import imports.testminitBB;

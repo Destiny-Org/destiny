@@ -2,7 +2,7 @@
 
 // upstream issue 14114
 
-import core.volatile;
+@system: import core.volatile;
 
 struct Ports {
     static ubyte B() { return volatileLoad(cast(ubyte *)0x0025); }

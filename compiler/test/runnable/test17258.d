@@ -1,4 +1,4 @@
-class ByNameC(alias Var)
+@system: class ByNameC(alias Var)
 {
     alias var = Var;
 }

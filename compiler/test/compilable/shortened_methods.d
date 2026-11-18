@@ -1,5 +1,5 @@
 // N.B. Shortened methods are no longer under a preview flag
-class A {
+@system: class A {
     int _x = 34;
     // short syntax works in all contexts
     @property x() => _x;

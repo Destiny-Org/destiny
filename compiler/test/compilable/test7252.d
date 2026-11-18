@@ -1,4 +1,4 @@
-alias char* function() Func;
+@system: alias char* function() Func;
 
 alias const char* function() CFunc;
 

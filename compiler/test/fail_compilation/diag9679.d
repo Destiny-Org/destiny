@@ -11,7 +11,7 @@ fail_compilation/diag9679.d(18): Error: variable `diag9679.main.S.a` - field dec
 fail_compilation/diag9679.d(25): Error: returning `r` escapes a reference to local variable `i`
 ---
 */
-void main()
+@system: void main()
 {
     if (ref n = 1) {}
     if (auto int n = 1) {}

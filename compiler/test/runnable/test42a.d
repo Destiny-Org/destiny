@@ -6,7 +6,7 @@ Success
 ---
 */
 
-module test42;
+module test42; @system:
 
 import core.stdc.stdio;
 

@@ -4,7 +4,7 @@
 // CXXFLAGS: -std=c++11
 // DISABLED: win32
 
-void main()
+@system: void main()
 {
     test23135();
 }

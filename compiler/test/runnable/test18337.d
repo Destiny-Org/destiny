@@ -18,7 +18,7 @@ int addSquares(int a, int b)
     return square(a) + square(b);
 }
 
-void main(string[] args)
+@system void main(string[] args)
 {
     dmd_coverDestPath(args[1]);
     auto value = addSquares(2, 3);

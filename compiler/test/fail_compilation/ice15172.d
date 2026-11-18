@@ -6,7 +6,7 @@ fail_compilation/ice15172.d(14): Error: constructor `ice15172.ThreadError.this` 
 */
 
 // 1. ClassDeclaration.semantic
-class ThreadError : Error
+@system: class ThreadError : Error
 {
     // 2. FuncDeclaration.semantic
     // 4. FuncDeclaration.semantic3

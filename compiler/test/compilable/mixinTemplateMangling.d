@@ -1,6 +1,6 @@
 // upstream issue 20012
 
-mixin template mixinFoo() {
+@system: mixin template mixinFoo() {
 
     extern(C) void cFoo() {}
 

@@ -4,7 +4,7 @@
 // otherwise the `catch (Exception)` clause around it gets wrongly elided and
 // the exception is only caught by a more general `catch (Throwable)`.
 
-string caught;
+@system: string caught;
 
 void foo(bool shouldThrow)
 {

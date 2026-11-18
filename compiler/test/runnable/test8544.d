@@ -1,6 +1,6 @@
 // EXECUTE_ARGS: foo bar doo
 // PERMUTE_ARGS:
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import std.conv;
 import core.runtime;
 

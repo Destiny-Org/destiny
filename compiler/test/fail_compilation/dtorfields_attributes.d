@@ -19,7 +19,7 @@ fail_compilation/dtorfields_attributes.d(115):         - HasDtor member
 fail_compilation/dtorfields_attributes.d(103):           non-@nogc `HasDtor.~this` is declared here
 ---
 */
-#line 100
+@system: #line 100
 
 struct HasDtor
 {

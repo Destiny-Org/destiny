@@ -1863,7 +1863,18 @@ private final class DsymbolPrettyPrintVisitor : Visitor
         // return/scope storage classes are printed as part of function type
         if (stcToBuffer(*buf, f.storage_class & ~(STC.scope_ | STC.return_ | STC.returnScope | STC.returnRef)))
             buf.put(' ');
-        typeToBuffer(f.type, f.ident, *buf, *hgs);
+        {
+            // Destiny: docs and .di headers do not spell out the `@safe`
+            // default (a .di read back gets the same default, so the
+            // mangled name is unchanged).
+            auto ftf = f.type.isTypeFunction();
+            const hideDefault = ftf && f.safeByDefault && ftf.trust == TRUST.safe && (hgs.ddoc || hgs.hdrgen);
+            if (hideDefault)
+                ftf.trust = TRUST.default_;
+            typeToBuffer(f.type, f.ident, *buf, *hgs);
+            if (hideDefault)
+                ftf.trust = TRUST.safe;
+        }
         auto tf = f.type.isTypeFunction();
 
         if (hgs.hdrgen && tf)

@@ -1,4 +1,4 @@
-module parser.dvcondition_location;
+module parser.dvcondition_location; @system:
 
 import dmd.frontend : parseModule;
 import support : afterEach, beforeEach;

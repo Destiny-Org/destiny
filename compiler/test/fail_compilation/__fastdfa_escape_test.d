@@ -16,7 +16,7 @@ fail_compilation/__fastdfa_escape_test.d(1040): Error: Stack variable exceeds it
 fail_compilation/__fastdfa_escape_test.d(1038):        Pointer stored in variable `ptr` has potentially escaped
 ---
 */
-module __fastdfa_escape_test;
+module __fastdfa_escape_test; @system:
 
 struct __FastDFAEscapeTest {
     Param[] params;

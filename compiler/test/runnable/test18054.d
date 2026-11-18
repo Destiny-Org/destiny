@@ -14,7 +14,7 @@ creal: 1 == 1
 ---
 +/
 
-import core.stdc.stdio : printf;
+@system: import core.stdc.stdio : printf;
 
 void test(T, string lit)()
 {

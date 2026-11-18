@@ -9,7 +9,7 @@ fail_compilation/fail263.d(14):        `fail263.f(byte* p)` declared here
 
 // upstream issue 2766
 // DMD hangs with 0%cpu
-const byte[] A = [ cast(byte)0 ];
+@system: const byte[] A = [ cast(byte)0 ];
 
 void f(byte* p)
 {

@@ -1,6 +1,6 @@
 // upstream issue 19946
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 template Tests(TY)
 {

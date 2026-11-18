@@ -1,6 +1,6 @@
 // EXTRA_SOURCES: imports/tlsa.d
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import imports.tlsa;
 
 int x = 3;

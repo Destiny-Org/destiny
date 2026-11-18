@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -betterC
 
-struct Arr(T, int CAPACITY)
+@system: struct Arr(T, int CAPACITY)
 {
     int count = 0;
     T[CAPACITY] items;

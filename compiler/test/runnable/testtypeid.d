@@ -1,5 +1,5 @@
 
-import core.vararg;
+@system: import core.vararg;
 import core.stdc.stdio;
 
 /******************************************************/

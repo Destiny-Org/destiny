@@ -71,13 +71,13 @@ static assert(is(T8 == immutable(float*)*));
 // upstream issue 22356
 
 mixin("void") func22356(int) { }
-static assert(is(typeof(&func22356) == void function(int)));
+static assert(is(typeof(&func22356) == void function(int) @safe));
 
 static mixin("void") func22356_s(char) { }
-static assert(is(typeof(&func22356_s) == void function(char)));
+static assert(is(typeof(&func22356_s) == void function(char) @safe));
 
 mixin("int")[2] func22356_2(int) { return [1, 2]; }
-static assert(is(typeof(&func22356_2) == int[2] function(int)));
+static assert(is(typeof(&func22356_2) == int[2] function(int) @safe));
 
 mixin("int") func22356tp(S, T)(S, T) { return 1; }
 static assert(is(typeof(&func22356tp!(char, float)) == int function(char, float) pure nothrow @nogc @safe));

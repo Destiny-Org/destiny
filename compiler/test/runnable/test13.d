@@ -2,7 +2,7 @@
 // PERMUTE_ARGS:
 // REQUIRED_ARGS: -unittest
 
-module test13;
+module test13; @system:
 
 import imports.test13a;
 

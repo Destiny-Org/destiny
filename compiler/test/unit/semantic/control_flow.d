@@ -2,7 +2,7 @@
 //
 // See ../../README.md for information about DMD unit tests.
 
-module semantic.control_flow;
+module semantic.control_flow; @system:
 
 import dmd.blockexit : BE;
 import dmd.func : FuncDeclaration;
@@ -821,7 +821,7 @@ void executeTest(const string code, Handler handler)
             assert(fd);
             if (fd.ident && fd.ident.toString() == "test")
             {
-                handler(fd);
+                () @trusted { handler(fd); }(); // Destiny: visit is @safe (inherited), the test handler is not
                 called = true;
             }
         }
@@ -838,7 +838,8 @@ void executeTest(const string code, Visitor visitor)
     assert(code);
     assert(visitor);
 
-    auto res = support.compiles(code);
+    // Destiny: the snippets use asm, so compile them under upstream's default
+    auto res = support.compiles("@system: " ~ code);
     if (!res)
     {
         const error = "Test failed!"

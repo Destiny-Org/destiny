@@ -1,6 +1,6 @@
 // EXTRA_CPP_SOURCES: stdint.cpp
 
-module stdint_test;
+module stdint_test; @system:
 
 import core.stdc.stdint;
 

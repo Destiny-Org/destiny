@@ -3,7 +3,7 @@ REQUIRED_ARGS: -de
 */
 
 // This test can be removed once the deprecation period is over
-deprecated void appendSlices ( Types ... ) ( ref void[][] slices, ref Types x )
+@system: deprecated void appendSlices ( Types ... ) ( ref void[][] slices, ref Types x )
 {
     foreach (i, T; Types)
     {

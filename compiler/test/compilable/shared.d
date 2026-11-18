@@ -5,7 +5,7 @@ pure nothrow @nogc ref @safe shared(C1)(return ref shared(C1) c)
 pure nothrow @nogc ref @safe shared(int)(return ref shared(C3) c)
 ---
 */
-ref shared(int) f(return ref shared int y)
+@system: ref shared(int) f(return ref shared int y)
 {
     return y;
 }

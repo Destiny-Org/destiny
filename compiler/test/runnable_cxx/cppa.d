@@ -9,7 +9,7 @@
 
 // N.B MSVC doesn't have a C++11 switch, but it defaults to the latest fully-supported standard
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import core.stdc.stdarg;
 import core.stdc.config;
 import core.stdc.stdint;

@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-module run.module_01;
+module run.module_01; @system:
 
 import core.memory;
 import core.exception;

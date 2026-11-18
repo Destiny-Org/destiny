@@ -49,7 +49,7 @@ A0 = x1
 ---
  */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 int is64bit() { return size_t.sizeof == 8; }  // otherwise assume 32 bit
 

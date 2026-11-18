@@ -2,7 +2,7 @@
  */
 // https://github.com/Destiny-Org/destiny
 
-version (D_SIMD)
+@system: version (D_SIMD)
 {
 
 mixin template VectorOps(VectorType, ArrayType: BaseType[N], BaseType, size_t N)

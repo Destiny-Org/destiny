@@ -1,5 +1,5 @@
 // upstream issue 809
-void test(lazy int dg)
+@system: void test(lazy int dg)
 {
     int delegate() dg_ = &dg;
     assert(dg_() == 7);

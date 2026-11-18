@@ -18,7 +18,7 @@ fail_compilation/fail7848.d(30): Error: function `fail7848.C.invariant` may thro
 ---
 */
 
-void func() {}
+@system: void func() {}
 
 class C
 {

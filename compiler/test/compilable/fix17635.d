@@ -1,6 +1,6 @@
 // upstream issue 17635
 
-alias T = immutable int;
+@system: alias T = immutable int;
 
 T** f(const T** input) pure
 {

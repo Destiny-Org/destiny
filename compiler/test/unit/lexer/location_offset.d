@@ -1,4 +1,4 @@
-module lexer.location_offset;
+module lexer.location_offset; @system:
 
 import dmd.lexer : Lexer;
 import dmd.tokens : TOK;

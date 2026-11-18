@@ -225,7 +225,13 @@ class FiberBase
      * In:
      *  fn must not be null.
      */
-    @trusted this( void function() fn, size_t sz, size_t guardPageSize ) nothrow
+    @trusted this( void function() @safe fn, size_t sz, size_t guardPageSize ) nothrow
+    {
+        this( cast(void function()) fn, sz, guardPageSize );
+    }
+
+    /// ditto: any function; `@system` because `call` will run code that was never checked.
+    @system this( void function() fn, size_t sz, size_t guardPageSize ) nothrow
     in
     {
         assert( fn );
@@ -252,7 +258,13 @@ class FiberBase
      * In:
      *  dg must not be null.
      */
-    @trusted this( void delegate() dg, size_t sz, size_t guardPageSize ) nothrow
+    @trusted this( void delegate() @safe dg, size_t sz, size_t guardPageSize ) nothrow
+    {
+        this( cast(void delegate()) dg, sz, guardPageSize );
+    }
+
+    /// ditto: any delegate; `@system` because `call` will run code that was never checked.
+    @system this( void delegate() dg, size_t sz, size_t guardPageSize ) nothrow
     {
         allocStack( sz, guardPageSize );
         reset( cast(void delegate() const) dg );
@@ -390,14 +402,26 @@ class FiberBase
     }
 
     /// ditto
-    @trusted final void reset( void function() fn ) nothrow @nogc
+    @trusted final void reset( void function() @safe fn ) nothrow @nogc
+    {
+        reset( cast(void function()) fn );
+    }
+
+    /// ditto: any function; `@system` because `call` will run code that was never checked.
+    @system final void reset( void function() fn ) nothrow @nogc
     {
         reset();
         m_call  = fn;
     }
 
     /// ditto
-    @trusted final void reset( void delegate() dg ) nothrow @nogc
+    @trusted final void reset( void delegate() @safe dg ) nothrow @nogc
+    {
+        reset( cast(void delegate()) dg );
+    }
+
+    /// ditto: any delegate; `@system` because `call` will run code that was never checked.
+    @system final void reset( void delegate() dg ) nothrow @nogc
     {
         reset();
         m_call  = dg;

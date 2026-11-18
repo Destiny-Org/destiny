@@ -14,7 +14,7 @@ RUN_OUTPUT:
 Success
 ---
 */
-import core.vararg;
+@system: import core.vararg;
 
 extern (C) int printf(const char*, ...);
 

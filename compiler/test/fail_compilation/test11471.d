@@ -6,5 +6,5 @@ fail_compilation/test11471.d(10): Error: `asm` statement is assumed to throw - m
 ---
 */
 
-void main() nothrow
+@system: void main() nothrow
 { asm { nop; } } // Error: asm statements are assumed to throw

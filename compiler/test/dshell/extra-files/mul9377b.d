@@ -1,4 +1,4 @@
-module mul9377b;
+module mul9377b; @system:
 
 import core.stdc.stdio;
 
@@ -12,7 +12,7 @@ int foo()()
     return ++z;
 }
 
-void bar()
+@system void bar()
 {
     assert(j == 7);
     foo();

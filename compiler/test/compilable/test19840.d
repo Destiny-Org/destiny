@@ -1,5 +1,5 @@
 // upstream issue 19840
-struct G
+@system: struct G
 {
     ubyte[] I;
     alias I this;

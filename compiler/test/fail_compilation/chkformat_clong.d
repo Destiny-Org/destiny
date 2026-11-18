@@ -13,7 +13,7 @@ fail_compilation/chkformat_clong.d(22):        `char*` may be formatted with `"%
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 #line 20
 void test_lu_ulong()    { printf("%lu", ulong.init); } // no error: ulong matches %lu on 64-bit
 void test_lu_charstar() { char* p; printf("%lu", p); }

@@ -1,5 +1,5 @@
 
-module traits_getPointerBitmap;
+module traits_getPointerBitmap; @system:
 
 import core.stdc.stdio;
 

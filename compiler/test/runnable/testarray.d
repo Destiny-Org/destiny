@@ -1,7 +1,7 @@
 // PERMUTE_ARGS:
 // REQUIRED_ARGS:
 
-import core.memory;
+@system: import core.memory;
 
 // see https://github.com/Destiny-Org/destiny for more info
 

@@ -1,6 +1,6 @@
 // upstream issue 22638
 
-struct S
+@system: struct S
 {
     this(ref const(S));
     ~this();

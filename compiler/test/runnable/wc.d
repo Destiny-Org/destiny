@@ -2,7 +2,7 @@
 // PERMUTE_ARGS:
 // EXECUTE_ARGS: runnable/wc.d
 
-import std.file;
+@system: import std.file;
 
 extern(C) int printf(const char*, ...);
 

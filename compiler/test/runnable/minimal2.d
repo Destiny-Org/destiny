@@ -6,7 +6,7 @@
 // runtime as long as they only contain shared static members.  Non-shared
 // static members would require a thread-local storage (TLS) implementation.
 
-interface I
+@system: interface I
 {
     shared static int i;
 }

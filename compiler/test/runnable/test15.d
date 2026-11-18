@@ -3,7 +3,7 @@ REQUIRED_ARGS: -Jrunnable/extra-files
 EXTRA_FILES: extra-files/test15.txt
 */
 
-import core.math;
+@system: import core.math;
 import core.vararg;
 
 extern (C)

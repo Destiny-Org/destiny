@@ -8,7 +8,7 @@ enum thatFile = "runnable"~sep~"imports"~sep~"testkwd_file.d";
 enum thatMod  = "imports.testkwd";
 //enum thatLine;
 enum thatFunc  = "imports.testkwd.getCalleeFunc";
-enum thatFunc2 = `string imports.testkwd.getCalleeFunc2(int x = 1, string s = "hello")`;
+enum thatFunc2 = `string imports.testkwd.getCalleeFunc2(int x = 1, string s = "hello") @safe`;
 
 string getCalleeFile() { return __FILE__; }
 ulong  getCalleeLine() { return __LINE__; }         enum thatLine = 14;

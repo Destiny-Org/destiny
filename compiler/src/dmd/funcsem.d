@@ -479,7 +479,9 @@ void funcDeclarationSemantic(Scope* sc, FuncDeclaration funcdecl)
 
     funcdecl.foverrides.setDim(0); // reset in case semantic() is being retried for this function
 
-    funcdecl.storage_class |= sc.stc & ~STC.ref_;
+    // Destiny: a `@system` label is not copied onto the function; it only
+    // changes the default (see "decide the @safe default" below).
+    funcdecl.storage_class |= sc.stc & ~(STC.ref_ | STC.system);
     AggregateDeclaration ad = funcdecl.isThis();
     // Don't nest structs b/c of generated methods which should not access the outer scopes.
     // upstream issue 16627
@@ -708,7 +710,20 @@ void funcDeclarationSemantic(Scope* sc, FuncDeclaration funcdecl)
         // Destiny: decide the @safe default *before* the type's semantic, so the
         // function type (and its mangled name) includes it from the start, even
         // when something asks for the type before this declaration is finished.
-        if (!((sc.stc | funcdecl.storage_class) & STC.safeGroup) &&
+        //
+        // A `@system:` label or `@system { }` block (not an annotation on the
+        // function itself) only changes the default back to upstream's: the
+        // function stays unannotated, so templates and literals still infer
+        // their safety and overrides still inherit it from the base.
+        // Members of local types neither override nor get instantiated, so for
+        // them the label stays an explicit `@system`, as upstream (otherwise
+        // their safety would be inferred).
+        if ((sc.stc & STC.system) && !(funcdecl.storage_class & STC.safeGroup))
+        {
+            if (!isLocalTypeMember(funcdecl, sc))
+                sc.stc &= ~STC.system;
+        }
+        else if (!((sc.stc | funcdecl.storage_class) & STC.safeGroup) &&
             funcdecl.type.toTypeFunction().trust == TRUST.default_ &&
             getsSafeDefault(funcdecl, sc))
         {
@@ -922,8 +937,7 @@ Ldone:
      */
     if (funcdecl.canInferAttributes(sc))
         funcdecl.initInferAttributes();
-    else if (sc.func && funcdecl.fbody && funcdecl.isMember() && !funcdecl.isVirtualMethod() &&
-             funcdecl.type.toTypeFunction().trust == TRUST.default_)
+    else if (isLocalTypeMember(funcdecl, sc) && funcdecl.type.toTypeFunction().trust == TRUST.default_)
     {
         // Destiny: members of types declared inside a function body are not
         // part of any API; infer their safety (only) instead of defaulting to @safe.
@@ -1567,28 +1581,35 @@ private bool getsSafeDefault(FuncDeclaration fd, Scope* sc)
 {
     if (sc.inCfile)
         return false;
+    if (sc.stc & STC.system)
+        return false;   // under a `@system:` label: upstream's default
     if (!fd.fbody && fd._linkage != LINK.d && fd._linkage != LINK.default_)
         return false;
     if (fd.canInferAttributes(sc))
         return false;
-    if (sc.func && fd.fbody && fd.isMember() && !fd.isVirtualMethod())
-        return false;   // member of a local type: safety is inferred
+    if (isLocalTypeMember(fd, sc))
+        return false;   // safety is inferred instead
     return true;
 }
 
+/// Destiny: a non-virtual member function (with a body) of a type declared
+/// inside a function body. Such types are not part of any API.
+private bool isLocalTypeMember(FuncDeclaration fd, Scope* sc)
+{
+    return sc.func && fd.fbody && fd.isMember() && !fd.isVirtualMethod();
+}
+
 /*****************************************
- * Destiny: a function whose safety is neither specified nor inferred is
- * `@safe`, except body-less declarations with non-D linkage (implemented
- * outside Destiny, so they cannot be checked) and ImportC, which are `@system`.
+ * Destiny: fallback for the rule in `getsSafeDefault`. Normally the default is
+ * applied before the type's semantic (see funcDeclarationSemantic), so the type
+ * is already `@safe` here and this does nothing. It still matters when that
+ * step was skipped because the type already had a mangled name (`deco`), e.g.
+ * a function declared through an alias of a function type.
  */
 private void setDefaultSafety(FuncDeclaration fd, Scope* sc)
 {
     auto tf = fd.type.toTypeFunction();
-    if (tf.trust != TRUST.default_)
-        return;
-    if (sc.inCfile)
-        return;
-    if (!fd.fbody && fd._linkage != LINK.d && fd._linkage != LINK.default_)
+    if (tf.trust != TRUST.default_ || !getsSafeDefault(fd, sc))
         return;
     // Like the end of attribute inference (semantic3): make a new type with the
     // attribute and redo its semantic, so the mangled name (deco) includes @safe.
@@ -2874,7 +2895,9 @@ private bool canInferAttributes(FuncDeclaration fd, Scope* sc)
         return false;               // since they may be overridden
     if (sc.func &&
         /********** this is for backwards compatibility for the moment ********/
-        (!fd.isMember() || sc.func.isSafeBypassingInference() && !fd.isInstantiated()))
+        // Destiny: not for functions that are @safe only by default, whose
+        // local types get safety-only inference (see isLocalTypeMember)
+        (!fd.isMember() || sc.func.isSafeBypassingInference() && !sc.func.safeByDefault && !fd.isInstantiated()))
         return true;
     if (fd.isFuncLiteralDeclaration() ||               // externs are not possible with literals
         (fd.storage_class & STC.inference) ||          // do attribute inference

@@ -8,7 +8,7 @@
 /*
 TEST_OUTPUT:
 ----
-$r:.+_D7imports9pkgmod3133mod3barFZv.*Error: linker exited with status.+$
+$r:.+_D7imports9pkgmod3133mod3barFNfZv.*Error: linker exited with status.+$
 ----
 */
 import imports.pkgmod313.mod;

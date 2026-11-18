@@ -1,7 +1,7 @@
 // See ../../../README.md for information about DMD unit tests.
 
 /// Test cases for diagnostic messages on Objective-C protocols
-module objc.protocols.diagnostic_messages;
+module objc.protocols.diagnostic_messages; @system:
 
 version (D_ObjectiveC):
 

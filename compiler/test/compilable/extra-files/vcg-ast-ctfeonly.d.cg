@@ -1,7 +1,7 @@
 === compilable/vcg-ast-ctfeonly.d.cg
 module vcg_ast_ctfeonly;
 import object;
-int twice(int x)
+@safe int twice(int x)
 {
 	return x * 2;
 }
@@ -21,13 +21,13 @@ int atRuntime(T)(T x)
 	return twice(x);
 }
 enum int e = 3;
-int main()
+@safe int main()
 {
 	return vcg_ast_ctfeonly.atRuntime!int(3);
 }
 mixin _d_cmain!();
 {
-	extern (C)
+	extern (C) @system
 	{
 		extern(C) int _d_run_main(int argc, char** argv, void* mainFunc);
 		extern(C) int _Dmain(char[][] args);
@@ -46,7 +46,7 @@ mixin _d_cmain!();
 }
 atRuntime!int
 {
-	@system int atRuntime(int x)
+	@safe int atRuntime(int x)
 	{
 		return vcg_ast_ctfeonly.twice(x);
 	}

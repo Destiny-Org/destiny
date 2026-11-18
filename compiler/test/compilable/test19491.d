@@ -1,6 +1,6 @@
 // upstream issue 19491
 
-class Foo
+@system: class Foo
 {
     shared this();
 }

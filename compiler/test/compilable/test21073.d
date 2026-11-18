@@ -1,6 +1,6 @@
 // upstream issue 21073
 
-class C
+@system: class C
 {
     auto internal() const
     {

@@ -1,4 +1,4 @@
-import lib18456;
+@system: import lib18456;
 
 void main()
 {

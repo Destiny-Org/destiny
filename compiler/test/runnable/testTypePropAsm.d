@@ -1,4 +1,4 @@
-module testTypePropAsm;
+module testTypePropAsm; @system:
 
 alias Seq(T...) = T;
 

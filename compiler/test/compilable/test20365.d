@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -preview=bitfields
 
-struct A { int x : 16, y : 16; }
+@system: struct A { int x : 16, y : 16; }
 
 void autoref_assign(A a)
 {

@@ -3,7 +3,7 @@
 // POST_SCRIPT: runnable/extra-files/hello-profile-postscript.sh
 // EXECUTE_ARGS: ${RESULTS_DIR}/runnable
 
-module hello;
+module hello; @system:
 
 extern(C)
 {

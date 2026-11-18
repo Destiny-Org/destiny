@@ -1,4 +1,4 @@
-module imports.test45a;
+module imports.test45a; @system:
 
 import core.stdc.stdio;
 

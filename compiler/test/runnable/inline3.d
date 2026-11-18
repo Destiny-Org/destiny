@@ -2,7 +2,7 @@
 
 // Test operator overloading
 
-extern (C) int printf(const(char*) fmt, ...);
+@system: extern (C) int printf(const(char*) fmt, ...);
 
 struct Tuple6798(T...)
 {

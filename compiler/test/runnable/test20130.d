@@ -1,6 +1,6 @@
 // upstream issue 20130
 
-void main() {
+@system: void main() {
     auto a1 = cast(char[])  "12345678";
     auto a2 = cast(wchar[]) "12345678"; // Or cast(string|wstring|dstring).
     auto a3 = cast(dchar[]) "12345678"; // Encoding conversion.

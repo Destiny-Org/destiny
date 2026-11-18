@@ -28,7 +28,7 @@ int   AAAA0021
 // upstream issue 21301
 
 //extern (C)
-void func(
+@system: void func(
     int p0, int[3] p1, float[3] p2, float p3, float p4, float p5, float p6, float p7,
     float p8, float p9, float p10, float p11, int p12, int[2] p13, int p14, int p15, int p16
 ) {

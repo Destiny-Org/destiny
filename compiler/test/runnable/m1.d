@@ -7,7 +7,7 @@ Success
 ---
 */
 
-module m1;
+module m1; @system:
 
 import core.stdc.stdio;
 

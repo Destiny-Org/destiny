@@ -1,6 +1,6 @@
 // See ../../README.md for information about DMD unit tests.
 
-module lexer.diagnostic_reporter;
+module lexer.diagnostic_reporter; @system:
 
 import core.stdc.stdarg;
 

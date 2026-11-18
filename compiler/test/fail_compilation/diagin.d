@@ -10,7 +10,7 @@ fail_compilation/diagin.d(21):        Candidate is: `foo1(T)(in T v, string)`
 ---
  */
 
-void main ()
+@system: void main ()
 {
     foo();
     bool[] lvalue;

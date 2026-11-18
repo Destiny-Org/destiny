@@ -5,7 +5,7 @@ REQUIRED_ARGS: -checkaction=context -debug
 PERMUTE_ARGS:
 */
 
-void main()
+@system: void main()
 {
 	bool caught;
 	try

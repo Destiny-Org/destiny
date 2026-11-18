@@ -25,7 +25,7 @@ fail_compilation/typeerrors.d(60): Error: variable `typeerrors.foo.manifestC` re
 */
 
 
-template tuple(T...) { alias T tuple; }
+@system: template tuple(T...) { alias T tuple; }
 
 void bar();
 

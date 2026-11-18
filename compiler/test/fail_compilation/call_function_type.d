@@ -10,7 +10,7 @@ fail_compilation/call_function_type.d(19): Error: cannot call `int(int)(3)` at c
 // which is usually caught earlier by `TypeFunction.callMatch`, and had no test coverage yet.
 // This was found while implementing named arguments and reduced from `vibe.internal.meta.traits`.
 
-int f(int);
+@system: int f(int);
 
 void m()
 {

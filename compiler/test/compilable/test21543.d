@@ -1,6 +1,6 @@
 // upstream issue 21543
 
-class B
+@system: class B
 {
     Nullable!B data;
     alias data this;

@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -preview=nosharedaccess
 
-import core.atomic;
+@system: import core.atomic;
 
 struct List
 {

@@ -1,7 +1,7 @@
 // EXTRA_CPP_SOURCES: externmangle.cpp
 // REQUIRED_ARGS: -extern-std=c++11
 
-import core.stdc.config;
+@system: import core.stdc.config;
 import core.stdc.stdint;
 
 extern(C++):

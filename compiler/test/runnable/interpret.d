@@ -10,7 +10,7 @@ Crash!
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 template Tuple(A...)
 {

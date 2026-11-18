@@ -1,7 +1,7 @@
 // PERMUTE_ARGS:
 // EXECUTE_ARGS: A B C
 
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 
 int main(char[][] args)
 {

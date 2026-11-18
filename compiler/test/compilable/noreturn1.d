@@ -9,7 +9,7 @@ Basic properties and usage mentioned in the DIP:
 DIP1034
 */
 
-alias noreturn = typeof(*null);
+@system: alias noreturn = typeof(*null);
 pragma(msg, noreturn);
 
 static assert(!is(noreturn == void));

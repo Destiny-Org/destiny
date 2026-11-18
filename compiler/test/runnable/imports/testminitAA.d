@@ -1,4 +1,4 @@
-module imports.testminitAA;
+module imports.testminitAA; @system:
 
 import core.stdc.stdio;
 int aa;

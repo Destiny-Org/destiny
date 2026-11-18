@@ -10,7 +10,7 @@ fail_compilation/fail6889.d(29): Error: `continue` is not allowed inside `scope(
 fail_compilation/fail6889.d(30): Error: `break` is not allowed inside `scope(success)` bodies
 ---
 */
-void test_success()
+@system: void test_success()
 {
 L1:
     scope(success) { L2: goto L1; } // NG

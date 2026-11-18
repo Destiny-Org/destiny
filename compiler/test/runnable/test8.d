@@ -6,7 +6,7 @@ runnable/test8.d(262): Deprecation: identity comparison of static arrays implici
 ---
 */
 
-module testxxx8;
+module testxxx8; @system:
 
 import core.vararg;
 

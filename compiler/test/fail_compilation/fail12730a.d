@@ -6,7 +6,7 @@ fail_compilation/fail12730a.d(13): Error: cannot subtract register
 */
 // upstream issue 12730
 
-void test()
+@system: void test()
 {
     asm
     {

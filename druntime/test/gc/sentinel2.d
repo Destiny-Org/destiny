@@ -1,5 +1,5 @@
 debug (SENTINEL)
-void main()
+@system void main()
 {
     import core.internal.thread : isSingleThreaded;
     import core.stdc.stdio : printf;

@@ -1,6 +1,6 @@
 // PERMUTE_ARGS: -release -g
 
-version(Windows) {}
+@system: version(Windows) {}
 else version(X86_64)
 {
         version = Run_X86_64_Tests;

@@ -10,7 +10,7 @@ $r:.*check\(&x\) \|\| 3 - 3.*$
 
 // upstream dmd issue 18075
 
-bool check(int* p) { return *p == 1; }
+@system: bool check(int* p) { return *p == 1; }
 
 void main()
 {

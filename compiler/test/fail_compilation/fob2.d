@@ -2,7 +2,7 @@
 REQUIRED_ARGS: -preview=dip1021
  */
 
-int* malloc();
+@system: int* malloc();
 void free(int*);
 
 /* TEST_OUTPUT:

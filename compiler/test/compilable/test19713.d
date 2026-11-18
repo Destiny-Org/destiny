@@ -1,4 +1,4 @@
-extern (C++)
+@system: extern (C++)
 {
     double twice(double d)
     {

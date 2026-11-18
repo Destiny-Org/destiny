@@ -1,5 +1,5 @@
 
-string tls_var = "tls_string";
+@system: string tls_var = "tls_string";
 
 __gshared string data_var = "data_string";
 

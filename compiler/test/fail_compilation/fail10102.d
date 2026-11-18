@@ -11,7 +11,7 @@ fail_compilation/fail10102.d(54): Error: field `S.m` must be initialized because
 ---
 */
 
-struct NotNull(T)
+@system: struct NotNull(T)
 {
     T p;
 

@@ -18,7 +18,7 @@ RUN_OUTPUT:
 Success
 ---
 */
-extern (C) int printf(const char* fmt, ...);
+@system: extern (C) int printf(const char* fmt, ...);
 
 /*******************************************/
 

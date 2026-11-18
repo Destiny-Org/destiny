@@ -1,6 +1,6 @@
 // upstream issue 17494
 // REQUIRED_ARGS: -revert=dtorfields
-struct S
+@system: struct S
 {
     ~this() {}
 }

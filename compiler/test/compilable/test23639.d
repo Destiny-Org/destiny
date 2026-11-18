@@ -2,7 +2,7 @@
 
 // REQUIRED_ARGS: -preview=nosharedaccess
 
-class T {}
+@system: class T {}
 
 shared(T) allocClassMem()
 {

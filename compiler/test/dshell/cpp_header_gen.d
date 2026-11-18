@@ -1,4 +1,4 @@
-module test.dshell.cpp_header_gen;
+module test.dshell.cpp_header_gen; @system:
 
 import dshell;
 

@@ -12,7 +12,7 @@ compilable/compile1.d(231): Deprecation: use of complex type `cdouble` is deprec
 // upstream issue 1748
 // class template with stringof
 
-struct S1748(T) {}
+@system: struct S1748(T) {}
 static assert(S1748!int.stringof == "S1748!int");
 
 class C1748(T) {}

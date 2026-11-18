@@ -888,7 +888,7 @@ extern (C)
 {
     /* One of these three is called upon an assert() fail.
      */
-    @trusted void _d_assertp(immutable(char)* file, uint line)
+    @system void _d_assertp(immutable(char)* file, uint line)
     {
         import core.stdc.string : strlen;
         onAssertError(file[0 .. strlen(file)], line);
@@ -923,7 +923,7 @@ extern (C)
     }
 
     /// Called when an invalid array index/slice or associative array key is accessed
-    @trusted void _d_arrayboundsp(immutable(char*) file, uint line)
+    @system void _d_arrayboundsp(immutable(char*) file, uint line)
     {
         import core.stdc.string : strlen;
         onRangeError(file[0 .. strlen(file)], line);
@@ -936,7 +936,7 @@ extern (C)
     }
 
     /// Called when an out of range slice of an array is created
-    @trusted void _d_arraybounds_slicep(immutable(char*) file, uint line, size_t lower, size_t upper, size_t length)
+    @system void _d_arraybounds_slicep(immutable(char*) file, uint line, size_t lower, size_t upper, size_t length)
     {
         import core.stdc.string : strlen;
         onArraySliceError(lower, upper, length, file[0 .. strlen(file)], line);
@@ -949,7 +949,7 @@ extern (C)
     }
 
     /// Called when an out of range array index is accessed
-    @trusted void _d_arraybounds_indexp(immutable(char*) file, uint line, size_t index, size_t length)
+    @system void _d_arraybounds_indexp(immutable(char*) file, uint line, size_t index, size_t length)
     {
         import core.stdc.string : strlen;
         onArrayIndexError(index, length, file[0 .. strlen(file)], line);
@@ -961,7 +961,7 @@ extern (C)
         onArrayIndexError(index, length, file, line);
     }
 
-    @trusted void _d_nullpointerp(immutable(char*) file, uint line)
+    @system void _d_nullpointerp(immutable(char*) file, uint line)
     {
         import core.stdc.string : strlen;
         onNullPointerError(file[0 .. strlen(file)], line);

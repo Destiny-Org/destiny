@@ -1,6 +1,6 @@
 // upstream issue 23337
 
-int copies, destroyed;
+@system: int copies, destroyed;
 
 void reset() { copies = destroyed = 0; }
 

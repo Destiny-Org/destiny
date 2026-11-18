@@ -1,3 +1,3 @@
 // upstream dmd issue 18250
 extern(C) void f() { }
-static assert(typeof(&f).stringof == "extern(C) void function()");
+static assert(typeof(&f).stringof == "extern(C) void function() @safe");

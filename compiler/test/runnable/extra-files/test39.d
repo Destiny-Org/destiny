@@ -3,7 +3,7 @@
 
 import imports.test39a;
 
-void main()
+@system void main()
 {
         auto t = new Test!(char);
         t.show ("hello");

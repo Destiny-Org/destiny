@@ -1,6 +1,6 @@
 // test that the import of std.math is not needed
 
-__gshared uint x0 = 0;
+@system: __gshared uint x0 = 0;
 __gshared uint x1 = 1;
 __gshared uint x2 = 2;
 __gshared uint x3 = 3;

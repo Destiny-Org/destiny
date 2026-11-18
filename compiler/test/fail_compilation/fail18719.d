@@ -8,7 +8,7 @@ fail_compilation/fail18719.d(29): Error: immutable field `x` initialized multipl
 ---
 */
 
-struct S
+@system: struct S
 {
     int x = -1;
     this(int y) immutable

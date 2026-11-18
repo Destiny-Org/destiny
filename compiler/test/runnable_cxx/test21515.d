@@ -4,7 +4,7 @@
 // DISABLED: win32 win64
 
 // ABI layout of native complex
-struct _Complex(T) { T re; T im; }
+@system: struct _Complex(T) { T re; T im; }
 
 // Special enum definitions.
 version (Posix)

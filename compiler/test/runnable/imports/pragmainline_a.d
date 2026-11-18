@@ -1,4 +1,4 @@
-module imports.pragmainline_a;
+module imports.pragmainline_a; @system:
 
 pragma(inline, true)
 int foo()

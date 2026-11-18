@@ -2,7 +2,7 @@
 //
 // See ../../README.md for information about DMD unit tests.
 
-module semantic.covariance;
+module semantic.covariance; @system:
 
 import dmd.astenums : STC, StorageClass;
 import dmd.func : FuncDeclaration;
@@ -540,7 +540,7 @@ unittest
 
         targetToBase: {
             result: Covariant.no,
-            suggestion: STC.pure_ | STC.nothrow_ | STC.nogc | STC.safe
+            suggestion: STC.pure_ | STC.nothrow_ | STC.nogc // Destiny: target is already @safe by default
         }
     };
     runTest(test);

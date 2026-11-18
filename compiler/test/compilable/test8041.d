@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-struct Foo { }
+@system: struct Foo { }
 
 void main()
 {

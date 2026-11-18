@@ -5,7 +5,7 @@ RUN_OUTPUT:
 Success
 ---
 */
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 void test1()
 {

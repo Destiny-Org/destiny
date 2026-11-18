@@ -6,7 +6,7 @@ it is 32
 ---
 */
 
-import imports.test10a;
+@system: import imports.test10a;
 
 extern(C) int printf(const char*, ...);
 

@@ -2,7 +2,7 @@
 
 // Test memset style array assignments.
 
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 
 /**************************************/
 

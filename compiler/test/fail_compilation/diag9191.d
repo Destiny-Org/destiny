@@ -7,11 +7,11 @@ fail_compilation/diag9191.d(25): Error: function `diag9191.C2.aaa` does not over
 fail_compilation/diag9191.d(36): Error: function `void diag9191.C3.foo()` does not override any function
 fail_compilation/diag9191.d(31):        did you mean to override `void diag9191.B2._foo()`?
 fail_compilation/diag9191.d(41): Error: function `void diag9191.C4.toStringa()` does not override any function
-$p:druntime/import/object.d$($n$):        did you mean to override `string object.Object.toString()`?
+$p:druntime/import/object.d$($n$):        did you mean to override `@safe string object.Object.toString()`?
 ---
 */
 
-interface I1 { void a(); }
+@system: interface I1 { void a(); }
 class B1 { void aa(); }
 
 class C1 : B1, I1

@@ -7,7 +7,7 @@ fail_compilation/fail24238.d(15): Error: cannot cast `v` of type `void[]` to `by
 */
 // upstream dmd issue 24238
 
-void main()
+@system: void main()
 {
     int[] a;
     void[] v;

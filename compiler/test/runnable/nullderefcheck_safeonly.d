@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -check=nullderef=safeonly
 // PERMUTE_ARGS:
 
-struct Struct
+@system: struct Struct
 {
     int field;
 }

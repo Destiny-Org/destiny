@@ -94,7 +94,14 @@ class Thread : ThreadBase
      * In:
      *  fn must not be null.
      */
-    this( void function() fn, size_t sz = 0 ) @safe pure nothrow @nogc
+    /// Destiny: `@safe` code may only start a thread running `@safe` code.
+    this( void function() @safe fn, size_t sz = 0 ) @trusted pure nothrow @nogc
+    {
+        this(cast(void function()) fn, sz);
+    }
+
+    /// ditto: any function; `@system` because it will run code that was never checked.
+    this( void function() fn, size_t sz = 0 ) @system pure nothrow @nogc
     {
     }
 
@@ -110,7 +117,14 @@ class Thread : ThreadBase
      * In:
      *  dg must not be null.
      */
-    this( void delegate() dg, size_t sz = 0 ) @safe pure nothrow @nogc
+    /// Destiny: `@safe` code may only start a thread running `@safe` code.
+    this( void delegate() @safe dg, size_t sz = 0 ) @trusted pure nothrow @nogc
+    {
+        this(cast(void delegate()) dg, sz);
+    }
+
+    /// ditto: any delegate; `@system` because it will run code that was never checked.
+    this( void delegate() dg, size_t sz = 0 ) @system pure nothrow @nogc
     {
     }
 

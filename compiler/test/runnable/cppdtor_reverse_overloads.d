@@ -4,7 +4,7 @@ of the destructor's reserved vtbl slot must move that slot too; otherwise the de
 overwrites the function that shifted into the old slot.
 */
 
-template Prop(alias member) { alias p = member; }
+@system: template Prop(alias member) { alias p = member; }
 template AliasSeq(T...) { alias AliasSeq = T; }
 
 __gshared int destroyed;

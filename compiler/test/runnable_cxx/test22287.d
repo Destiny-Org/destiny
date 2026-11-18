@@ -1,6 +1,6 @@
 // EXTRA_CPP_SOURCES: cpp22287.cpp
 
-extern(C++):
+@system: extern(C++):
 
 class X
 {

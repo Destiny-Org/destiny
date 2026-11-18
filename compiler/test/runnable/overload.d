@@ -9,7 +9,7 @@ Success
 ---
 */
 
-import imports.template_ovs1;
+@system: import imports.template_ovs1;
 import imports.template_ovs2;
 import imports.template_ovs3;
 

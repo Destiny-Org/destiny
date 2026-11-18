@@ -4,7 +4,7 @@ upstream issue 21799
 PERMUTE_ARGS:
 **/
 
-int main()
+@system: int main()
 {
 	testDeleteD();
 	testDeleteDScope();

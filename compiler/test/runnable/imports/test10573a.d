@@ -1,4 +1,4 @@
-module imports.test10573a;
+module imports.test10573a; @system:
 
 abstract class base {}
 class mysql : base {}

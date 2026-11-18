@@ -2,7 +2,7 @@
 // REQUIRED_ARGS: -Jrunnable/extra-files
 // EXTRA_FILES: extra-files/foo37.txt extra-files/std14198/uni.d
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 void main()
 {

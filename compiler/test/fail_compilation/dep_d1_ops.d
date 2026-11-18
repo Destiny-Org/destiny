@@ -171,7 +171,7 @@ fail_compilation/dep_d1_ops.d(390):        perhaps overload the operator with `a
 ---
 */
 
-struct S
+@system: struct S
 {
     int opAdd(int i) { return 0; }
     int opAdd_r(int i) { return 0; }

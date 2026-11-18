@@ -1,7 +1,7 @@
 // REQUIRED_ARGS:
 // PERMUTE_ARGS: -mcpu=native -inline -O
 
-version (D_SIMD)
+@system: version (D_SIMD)
 {
 
 import core.simd;

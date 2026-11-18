@@ -14,7 +14,7 @@ fail_compilation/test23786.d(34):        `test23786.baz(int i)` declared here
 
 // upstream issue 23786
 
-module test23786;
+module test23786; @system:
 
 void foo(int i)
 {

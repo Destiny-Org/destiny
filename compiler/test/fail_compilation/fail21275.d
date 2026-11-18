@@ -4,12 +4,12 @@
 /*
 TEST_OUTPUT:
 ---
-fail_compilation/fail21275.d(17): Error: function `imports.fail21275a.Foo.x` of type `ref int() return` is not accessible from module `fail21275`
-fail_compilation/fail21275.d(20): Error: function `imports.fail21275a.Bar.x` of type `int(int)` is not accessible from module `fail21275`
+fail_compilation/fail21275.d(17): Error: function `imports.fail21275a.Foo.x` of type `ref @safe int() return` is not accessible from module `fail21275`
+fail_compilation/fail21275.d(20): Error: function `imports.fail21275a.Bar.x` of type `@safe int(int)` is not accessible from module `fail21275`
 ---
 */
 
-void main()
+@system: void main()
 {
     import imports.fail21275a;
 

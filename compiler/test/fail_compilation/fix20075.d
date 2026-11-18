@@ -6,7 +6,7 @@ fail_compilation/fix20075.d(11):        Candidate is: `fix20075.Foo.this(immutab
 ---
 */
 
-struct Foo {
+@system: struct Foo {
     @disable this();
     immutable this(immutable int* a) {}
 }

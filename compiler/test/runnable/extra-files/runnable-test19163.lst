@@ -5,7 +5,7 @@
        |
        |extern(C) void dmd_coverDestPath(string pathname);
        |
-       |void main(string[] args)
+       |@system void main(string[] args)
        |{
       1|    dmd_coverDestPath(args[1]);
        |

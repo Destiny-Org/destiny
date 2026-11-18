@@ -6,7 +6,7 @@ TEST_OUTPUT:
 fail_compilation/enum_init.d(5): Error: type `SQRTMAX` has no value
 ---
 */
-#line 1
+@system: #line 1
 
 real hypot()
 {

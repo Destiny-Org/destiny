@@ -91,7 +91,7 @@ The compiler tests live in `compiler/test/`, one file per test:
 | `fail_compilation/` | compiling fails with exactly the messages in its `TEST_OUTPUT` block |
 | `runnable/` | the program compiles, runs and exits with 0 |
 | `runnable_cxx/`, `dshell/` | C++ interop and shell-driven tests |
-| `unit/` | unittests of the compiler as a library |
+| `unit/` | unittests of the compiler as a library (built with `HOST_DC` when set, because the compiler's own sources assume upstream's `@system` default) |
 
 Run single tests with the test runner (built by `make ... destiny-test`, or by
 `make generated/run`):
@@ -239,16 +239,26 @@ entries in `changelog/` named `destiny.*`, `dmd.*` or `druntime.*`.
 
 ## Status (2026-11-17)
 
-Verified in the `destiny-lang` VM with dmd 2.113.1 as host compiler, after
-sub-project 1 (scope checking always on):
+Sub-project 1 (scope checking always on) and sub-project 2 (`@safe` by
+default) are done. Verified in the `destiny-lang` VM with dmd 2.113.1 as host
+compiler:
 
-- the compiler test suite passes;
+- the compiler test suite passes, including `unit/` (run with `-k`, so one
+  failing group does not hide the rest);
 - druntime unittests pass;
 - Fate unittests pass for every module (debug and release), with `-k`;
 - `make destiny-test HOST_DC=dmd` (renamed targets and variable) works.
+
+Every `@trusted` added for sub-project 2 is listed, with its reason, in
+[trusted-review.md](trusted-review.md).
 
 The suite needs `gdb` installed. Generated API docs link to `FATE_PATH`,
 `https://destiny-org.github.io/fate/`, a placeholder until docs are published.
 
 Not yet verified: CI on GitHub (needs the `DESTINY_REPO_TOKEN` repository
 secrets).
+
+Known: the `std.process` signal test needs SIGINT to have its default action
+in the child. It now resets it itself, so it also passes when the tests are
+started from a background job of a non-interactive shell (which ignores
+SIGINT).

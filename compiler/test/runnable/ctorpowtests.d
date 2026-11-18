@@ -1,7 +1,7 @@
 // RUNNABLE_PHOBOS_TEST
 // PERMUTE_ARGS:
 
-int magicVariable()
+@system: int magicVariable()
 {
     if (__ctfe)
         return 3;

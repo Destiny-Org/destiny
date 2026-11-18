@@ -4,7 +4,7 @@ RUN_OUTPUT:
 Success
 ---
 */
-import core.stdc.stdio : printf;
+@system: import core.stdc.stdio : printf;
 
 //------------------------------------------------------------------------------
 

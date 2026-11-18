@@ -22,7 +22,7 @@ fail_compilation/fail10968.d(31):        `fail10968.SA.this(this)` is declared h
 ---
 */
 
-#line 29
+@system: #line 29
 struct SA
 {
     this(this)

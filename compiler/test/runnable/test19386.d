@@ -1,4 +1,4 @@
-struct Thing
+@system: struct Thing
 {
     this(int* i)
     {

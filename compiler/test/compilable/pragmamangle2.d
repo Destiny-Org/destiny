@@ -48,19 +48,19 @@ void pragma_statement_test()
     extern(C++) void test_struct2b1(S1);
     extern(D) void externD_struct2b1(S1);
     static assert(test_struct2b1.mangleof == "_ZN21pragma_statement_test14test_struct2b1ENS_13mangle_structE");
-    static assert(externD_struct2b1.mangleof == "_D12pragmamangle21pragma_statement_testFZ17externD_struct2b1MFSQCjQByFZ2S1Zv");
+    static assert(externD_struct2b1.mangleof == "_D12pragmamangle21pragma_statement_testFNfZ17externD_struct2b1MFNfSQCnQCcFNfZ2S1Zv");
 
     pragma(mangle, type_symbol, "mangle_struct") struct S2 { }
     extern(C++) void test_struct2b3(S2);
     extern(D) void externD_struct2b3(S2);
     static assert(test_struct2b3.mangleof == "_ZN21pragma_statement_test14test_struct2b3ENS_13mangle_structE");
-    static assert(externD_struct2b3.mangleof == "_D12pragmamangle21pragma_statement_testFZ17externD_struct2b3MFSQCjQByFZ2S2Zv");
+    static assert(externD_struct2b3.mangleof == "_D12pragmamangle21pragma_statement_testFNfZ17externD_struct2b3MFNfSQCnQCcFNfZ2S2Zv");
 
     pragma(mangle, "mangle_struct", type_symbol) struct S3 { }
     extern(C++) void test_struct2b4(S3);
     extern(D) void externD_struct2b4(S3);
     static assert(test_struct2b4.mangleof == "_ZN21pragma_statement_test14test_struct2b4ENS_13mangle_structE");
-    static assert(externD_struct2b4.mangleof == "_D12pragmamangle21pragma_statement_testFZ17externD_struct2b4MFSQCjQByFZ2S3Zv");
+    static assert(externD_struct2b4.mangleof == "_D12pragmamangle21pragma_statement_testFNfZ17externD_struct2b4MFNfSQCnQCcFNfZ2S3Zv");
 
     // Repeat struct tests on classes.
 
@@ -68,19 +68,19 @@ void pragma_statement_test()
     extern(C++) void test_class2b1(C1);
     extern(D) void externD_class2b1(C1);
     static assert(test_class2b1.mangleof == "_ZN21pragma_statement_test13test_class2b1EPNS_12mangle_classE");
-    static assert(externD_class2b1.mangleof == "_D12pragmamangle21pragma_statement_testFZ16externD_class2b1MFCQCiQBxFZ2C1Zv");
+    static assert(externD_class2b1.mangleof == "_D12pragmamangle21pragma_statement_testFNfZ16externD_class2b1MFNfCQCmQCbFNfZ2C1Zv");
 
     pragma(mangle, type_symbol, "mangle_class") class C2 { }
     extern(C++) void test_class2b3(C2);
     extern(D) void externD_class2b3(C2);
     static assert(test_class2b3.mangleof == "_ZN21pragma_statement_test13test_class2b3EPNS_12mangle_classE");
-    static assert(externD_class2b3.mangleof == "_D12pragmamangle21pragma_statement_testFZ16externD_class2b3MFCQCiQBxFZ2C2Zv");
+    static assert(externD_class2b3.mangleof == "_D12pragmamangle21pragma_statement_testFNfZ16externD_class2b3MFNfCQCmQCbFNfZ2C2Zv");
 
     pragma(mangle, "mangle_class", type_symbol) class C3 { }
     extern(C++) void test_class2b4(C3);
     extern(D) void externD_class2b4(C3);
     static assert(test_class2b4.mangleof == "_ZN21pragma_statement_test13test_class2b4EPNS_12mangle_classE");
-    static assert(externD_class2b4.mangleof == "_D12pragmamangle21pragma_statement_testFZ16externD_class2b4MFCQCiQBxFZ2C3Zv");
+    static assert(externD_class2b4.mangleof == "_D12pragmamangle21pragma_statement_testFNfZ16externD_class2b4MFNfCQCmQCbFNfZ2C3Zv");
 
     /* 2c. If that symbol is a TemplateInstance, the aggregate is treated as a
      * template that has the signature and arguments of the TemplateInstance.

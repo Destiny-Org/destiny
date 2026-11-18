@@ -8,7 +8,7 @@ Test enumerator
 ---
 */
 
-import imports.a18a;
+@system: import imports.a18a;
 
 extern(C) int printf(const char*, ...);
 

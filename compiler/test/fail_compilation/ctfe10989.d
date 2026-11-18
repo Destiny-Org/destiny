@@ -6,7 +6,7 @@ fail_compilation/ctfe10989.d(14):        called from here: `throwing()`
 fail_compilation/ctfe10989.d(14):        while evaluating: `static assert(throwing())`
 ---
 */
-int throwing()
+@system: int throwing()
 {
     throw new Exception(['a', 'b', 'c']);
     return 0;

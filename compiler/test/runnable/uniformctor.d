@@ -4,7 +4,7 @@ RUN_OUTPUT:
 Success
 ---
 */
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 template TypeTuple(TL...) { alias TypeTuple = TL; }
 
 import core.stdc.math : isnan;

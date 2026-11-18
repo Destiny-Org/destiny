@@ -13,7 +13,7 @@ fail_compilation/diag10319.d(25): Error: function `D main` may throw but is mark
 ---
 */
 
-void foo() {}
+@system: void foo() {}
 
 void bar(T)()
 {

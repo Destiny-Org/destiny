@@ -18,7 +18,7 @@ void main()
 
 class MyThread : Thread
 {
-    this( void function() fn, size_t sz = 0 ) @safe pure nothrow @nogc
+    this( void function() fn, size_t sz = 0 ) @system pure nothrow @nogc
     {
         super(fn, sz);
     }

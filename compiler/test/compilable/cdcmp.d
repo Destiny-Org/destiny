@@ -4,7 +4,7 @@
 // only testing on SYSV-ABI, but backend code is identical across platforms
 // DISABLED: win32 win64 osx linux32 freebsd32 freebsd64 openbsd32 openbsd64 hurd32
 
-bool test_ltz(ubyte x) { return x <  0; }
+@system: bool test_ltz(ubyte x) { return x <  0; }
 bool test_lez(ubyte x) { return x <= 0; }
 bool test_eqz(ubyte x) { return x == 0; }
 bool test_nez(ubyte x) { return x != 0; }

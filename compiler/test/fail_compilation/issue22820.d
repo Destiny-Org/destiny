@@ -14,7 +14,7 @@ fail_compilation/issue22820.d(142):        pointer `e` points to an aggregate th
 ---
 */
 
-#line 100
+@system: #line 100
 
 // normal functions
 struct S1 {

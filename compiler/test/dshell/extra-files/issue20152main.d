@@ -1,4 +1,4 @@
-import issue20152;
+@system: import issue20152;
 
 int main()
 {

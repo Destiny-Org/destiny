@@ -6,7 +6,7 @@ fail_compilation/fail23626a.d(16): Error: function `fail23626a.ambigCxx(int a)` 
 ---
 */
 
-extern(D) int ambig(int a) { return 0; }
+@system: extern(D) int ambig(int a) { return 0; }
 extern(D) int ambig(int a) @system { return 1; }
 
 extern(C) int ambigC(int a) { return 2; }

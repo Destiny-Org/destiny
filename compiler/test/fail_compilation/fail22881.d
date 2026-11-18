@@ -15,7 +15,7 @@ fail_compilation/fail22881.d(401): Error: slice `[0..1]` exceeds array bounds `[
 fail_compilation/fail22881.d(403): Error: slice `[0..1]` exceeds array bounds `[0..0]`
 ---
 */
-#line 100
+@system: #line 100
 // SliceExp: e1.type.ty == pointer
 static pstr22881 = "hello".ptr[0 .. 6];
 static parr22881 = ['h','e','l','l','o'].ptr[0 .. 6];

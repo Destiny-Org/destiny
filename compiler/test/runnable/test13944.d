@@ -1,5 +1,5 @@
 // PERMUTE_ARGS:
-module m;
+module m; @system:
 
 struct S {}
 enum E { a }

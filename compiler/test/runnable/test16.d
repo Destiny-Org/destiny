@@ -1,6 +1,6 @@
 // REQUIRED_ARGS:
 
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 
 /************************************************/
 // These seem to be the original tests for $ (originally 'length').

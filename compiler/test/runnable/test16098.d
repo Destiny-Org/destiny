@@ -3,7 +3,7 @@
 
 /*********************************************/
 
-void testDynamicClosure()
+@system: void testDynamicClosure()
 {
     byte a;
     align(128) byte b;

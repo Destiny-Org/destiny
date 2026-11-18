@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -o- -d -m64
 
-struct S1 { int v; }
+@system: struct S1 { int v; }
 struct S2 { int* p; }
 class C { int v; }
 

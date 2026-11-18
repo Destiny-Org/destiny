@@ -3,7 +3,7 @@
 // The ImportC unreferenced-inline scan must only walk analysed code: enum members
 // without a value have a null initializer until semantic assigns one.
 
-import cinline_unanalysed;
+@system: import cinline_unanalysed;
 
 version (none)
 {

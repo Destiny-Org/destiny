@@ -1,4 +1,4 @@
-module parser.visibilitydeclaration_location;
+module parser.visibilitydeclaration_location; @system:
 
 import dmd.frontend : parseModule;
 import support : afterEach, beforeEach;

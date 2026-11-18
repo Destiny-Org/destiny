@@ -11,7 +11,7 @@ RUN_OUTPUT:
 ---
 */
 
-void main()
+@system: void main()
 {
     {
         int x = 1;

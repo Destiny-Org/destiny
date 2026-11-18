@@ -1,4 +1,4 @@
-module lexer.lexer_dmdlib;
+module lexer.lexer_dmdlib; @system:
 
 import dmd.lexer : Lexer;
 import dmd.tokens : TOK;

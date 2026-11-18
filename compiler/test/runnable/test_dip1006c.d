@@ -2,7 +2,7 @@
 // ARG_SETS: -check=off -version=CheckOff
 // PERMUTE_ARGS:
 
-import core.exception : AssertError, SwitchError;
+@system: import core.exception : AssertError, SwitchError;
 
 struct S
 {

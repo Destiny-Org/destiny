@@ -1,6 +1,6 @@
 // upstream issue 23710
 
-int test(int i)
+@system: int test(int i)
 {
     int j;
     int[] foo;

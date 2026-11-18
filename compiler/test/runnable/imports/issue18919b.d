@@ -1,4 +1,4 @@
-module imports.issue18919b;
+module imports.issue18919b; @system:
 
 import core.stdc.stdio;
 

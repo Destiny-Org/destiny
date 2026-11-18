@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -O
 // upstream dmd issue 22069
 
-int recurse(int* i)
+@system: int recurse(int* i)
 {
   L1:
     int j = 0;

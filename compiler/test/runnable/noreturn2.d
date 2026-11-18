@@ -6,7 +6,7 @@ getAndPrintS
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import core.exception : AssertError;
 
 /*****************************************/

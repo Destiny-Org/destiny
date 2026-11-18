@@ -5,7 +5,7 @@ ARG_SETS: -debug
 ARG_SETS: -debug=bar
 */
 
-import object;
+@system: import object;
 import core.stdc.stdio;
 
 /* ================================ */

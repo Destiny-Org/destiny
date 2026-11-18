@@ -1,7 +1,7 @@
 // PERMUTE_ARGS:
 // REQUIRED_ARGS: -d
 
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 
 class Eh : Exception
 {

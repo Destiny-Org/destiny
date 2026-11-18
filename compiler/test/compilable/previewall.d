@@ -2,7 +2,7 @@
 // ARG_SETS: -transition=all
 // ARG_SETS: -revert=all
 // TRANSFORM_OUTPUT: remove_lines(druntime)
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 void main (string[] args)
 {

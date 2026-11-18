@@ -1,0 +1,82 @@
+Functions are `@safe` by default
+
+A function that is not marked `@safe`, `@trusted` or `@system`, and whose
+attributes are not inferred, is now `@safe`:
+
+---
+void fill(int[] a) { a[] = 0; }          // @safe: checked
+void bump(int* p) { p++; }               // error: pointer arithmetic in @safe code
+@system void raw(int* p) { p++; }        // fine: explicitly @system
+---
+
+The first error in such a function is followed by a hint:
+
+---
+app.d(2): Error: pointer arithmetic is not allowed in a `@safe` function
+app.d(2):        `app.bump` is `@safe` by default. If it must do this, mark it
+                 `@system`, or move the unsafe part into a small `@trusted`
+                 function with a safe interface
+---
+
+$(UL
+$(LI $(B Still inferred, not defaulted:) templates, function literals,
+`auto` functions, nested functions, and non-virtual member functions of types
+declared inside a function body (safety only).)
+$(LI $(B Still `@system`:) declarations without a body that use another
+linkage (`extern(C)`, `extern(C++)`, `extern(Windows)`, ...), and all ImportC
+code. Their code cannot be checked.)
+$(LI Declarations without a body that use D linkage, including interface
+methods, are `@safe`. An implementation must then be `@safe` or `@trusted`;
+mark the declaration `@system` if implementations need unchecked code.)
+$(LI The mangled name of a defaulted function includes `@safe` (`Nf`). Code
+compiled by an older compiler does not link against it.)
+$(LI `__traits(compiles, ...)` inside a function that is `@safe` only by
+default ignores safety, so `static if (__traits(compiles, ...))` keeps
+choosing the same branch. The chosen code is then checked as `@safe`.)
+$(LI `__traits(getOverloads)` and `__traits(getVirtualMethods)` now return
+functions whose attributes are known (including the `@safe` default).
+Before, they could return a method's raw, unanalysed type.)
+$(LI `@system:` and `@system { }` bring back upstream's default for what
+follows: unannotated functions are `@system`, while templates and literals
+still infer their safety and overrides still inherit it. They no longer apply
+to variables; a variable is `@system` only when annotated directly.)
+$(LI Generated documentation (`-D`) and `.di` headers (`-H`) do not spell
+out the `@safe` default. A `.di` file read back by the compiler gets the same
+default, so names still match.)
+$(LI `-preview=safer` is deprecated and has no effect.)
+)
+
+Library changes (druntime and Fate). A `@trusted` function must be safe for
+$(I every) argument, so functions that store or run a delegate they are given
+now have two overloads: a `@trusted` one for `@safe` callbacks and a
+`@system` one for any callback:
+
+$(UL
+$(LI `core.thread`: `Thread` and `Fiber` constructors, `Fiber.reset`,
+`ThreadGroup.create`, `ThreadGroup.opApply`.)
+$(LI `object`: `Throwable.opApply`, `ModuleInfo.opApply`,
+`Throwable.TraceInfo.opApply`.)
+$(LI `std.range.interfaces.InputRange.opApply` and
+`std.concurrency.Generator.opApply`.)
+)
+
+---
+void work() {}                      // @safe by default
+@system void raw() {}
+
+void main()
+{
+    auto t = new Thread(&work);     // fine
+    // auto u = new Thread(&raw);   // error: needs @system or @trusted code
+}
+---
+
+Now `@system` (they can corrupt memory with some arguments):
+`Object.factory`, `TypeInfo_Class.create` (they run a constructor that may be
+`@system`), the `std.experimental.allocator` interfaces (`IAllocator`,
+`ISharedAllocator` and their implementations), `std.concurrency.Scheduler`
+`start`/`spawn`, and low-level helpers such as `std.internal.digest`'s
+assembly routines. `std.process.kill` is now `@trusted`.
+
+Fixed along the way: `AscendingPageAllocator.owns` reported every address
+past the start of its memory as owned.

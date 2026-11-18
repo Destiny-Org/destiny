@@ -29,7 +29,7 @@ fail_compilation/test24353.d(59):        `int(int delegate(int, int) dg)` is not
 */
 
 
-struct S
+@system: struct S
 {
     int opApply(int delegate(int) dg)
     {

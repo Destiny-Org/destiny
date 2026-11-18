@@ -1,6 +1,6 @@
 // upstream issue 21772
 
-import core.stdc.string;
+@system: import core.stdc.string;
 
 int main()
 {

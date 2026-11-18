@@ -1,4 +1,4 @@
-module imports.test10736b;
+module imports.test10736b; @system:
 
 version(A) import std.range;
 else       import imports.test10736c;

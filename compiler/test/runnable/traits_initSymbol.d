@@ -1,4 +1,4 @@
-struct Zero
+@system: struct Zero
 {
     int x;
 }

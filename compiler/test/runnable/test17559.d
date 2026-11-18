@@ -3,7 +3,7 @@
 // PERMUTE_ARGS:
 // DISABLED: osx
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 void main()
 {

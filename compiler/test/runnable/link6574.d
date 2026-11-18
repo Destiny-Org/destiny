@@ -9,7 +9,7 @@ true
 false
 ---
 */
-module link6574;
+module link6574; @system:
 
 import imports.testmangle;
 

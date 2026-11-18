@@ -14,7 +14,7 @@ why is 8 scared of 7? because789
 
 // main.d -------------------------------------------------------
 
-import argufile;
+@system: import argufile;
 
 int main(string[] args)
 {

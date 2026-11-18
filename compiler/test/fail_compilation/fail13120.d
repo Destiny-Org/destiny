@@ -5,7 +5,7 @@ fail_compilation/fail13120.d(13): Error: `pure` delegate `fail13120.g1.__foreach
 fail_compilation/fail13120.d(13): Error: `@nogc` delegate `fail13120.g1.__foreachbody_L12_C5` cannot call non-@nogc function `fail13120.f1`
 ---
 */
-void f1() {}
+@system: void f1() {}
 
 void g1(char[] s) pure @nogc
 {

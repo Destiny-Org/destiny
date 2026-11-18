@@ -3,7 +3,7 @@
 
 // upstream issue 16225
 
-struct C
+@system: struct C
 {
     hash_t foo( )
     {

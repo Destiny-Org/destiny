@@ -5,7 +5,7 @@
 // upstream issue 18472
 // upstream dmd pull request 14676
 
-@nogc nothrow pure:
+@system: @nogc nothrow pure:
 immutable(Char)[] format(Char, Args...)(in Char[] fmt, Args args)
 {
 

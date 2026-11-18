@@ -2,7 +2,7 @@
 // EXTRA_SOURCES: imports/imports20709_c.c
 // A C header's size_t/ptrdiff_t/hash_t should win over object.d's aliases.
 
-import imports20709_c;
+@system: import imports20709_c;
 
 static assert(size_t.sizeof == 4);
 static assert(ptrdiff_t.sizeof == 4);

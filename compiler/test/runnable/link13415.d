@@ -9,7 +9,7 @@ i = 77;
 ---
 */
 
-import imports.link13415a;
+@system: import imports.link13415a;
 
 void main()
 {

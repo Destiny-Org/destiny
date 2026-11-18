@@ -572,7 +572,14 @@ class Fiber : FiberBase
      * In:
      *  fn must not be null.
      */
-    @trusted this( void function() fn, size_t sz = pageSize * defaultStackPages,
+    @trusted this( void function() @safe fn, size_t sz = pageSize * defaultStackPages,
+          size_t guardPageSize = pageSize ) nothrow
+    {
+        super( fn, sz, guardPageSize );
+    }
+
+    /// ditto: any function; `@system` because `call` will run code that was never checked.
+    @system this( void function() fn, size_t sz = pageSize * defaultStackPages,
           size_t guardPageSize = pageSize ) nothrow
     {
         super( fn, sz, guardPageSize );
@@ -594,7 +601,14 @@ class Fiber : FiberBase
      * In:
      *  dg must not be null.
      */
-    @trusted this( void delegate() dg, size_t sz = pageSize * defaultStackPages,
+    @trusted this( void delegate() @safe dg, size_t sz = pageSize * defaultStackPages,
+          size_t guardPageSize = pageSize ) nothrow
+    {
+        super( dg, sz, guardPageSize );
+    }
+
+    /// ditto: any delegate; `@system` because `call` will run code that was never checked.
+    @system this( void delegate() dg, size_t sz = pageSize * defaultStackPages,
           size_t guardPageSize = pageSize ) nothrow
     {
         super( dg, sz, guardPageSize );

@@ -3233,7 +3233,7 @@ class Lexer
      * References:
      *  https://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd
      */
-    bool parseSpecialTokenSequence()
+    bool parseSpecialTokenSequence() @system
     {
         Token n;
         scan(&n);

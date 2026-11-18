@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -de
 // EXTRA_FILES: imports/imp15907.d
 // PERMUTE_ARGS:
-import imports.imp15907;
+@system: import imports.imp15907;
 
 struct S
 {

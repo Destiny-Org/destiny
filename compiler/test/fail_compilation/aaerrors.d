@@ -14,7 +14,7 @@ fail_compilation\aaerrors.d-mixin-43(43): Error: `assert((*(1 in aas)).x == 0)` 
 */
 
 
-struct S
+@system: struct S
 {
     int x;
     this(int _x){ x = _x; }

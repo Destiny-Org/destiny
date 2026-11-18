@@ -19,7 +19,7 @@ RUN_OUTPUT:
 ---
  */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 version (all)
 {

@@ -9,7 +9,7 @@ foo4 int function(return ref inout(int*) p) ref
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 /********************************************/
 

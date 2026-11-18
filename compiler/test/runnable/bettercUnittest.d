@@ -4,7 +4,7 @@ PERMUTE_ARGS:
 EXTRA_SOURCES: extra-files/moreBettercUnittests.d
 */
 
-import moreBettercUnittests;
+@system: import moreBettercUnittests;
 
 unittest
 {

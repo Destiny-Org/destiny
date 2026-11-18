@@ -1,5 +1,5 @@
 
-version (D_InlineAsm_X86)
+@system: version (D_InlineAsm_X86)
     version = TestInlineAsm;
 else version (D_InlineAsm_X86_64)
     version = TestInlineAsm;

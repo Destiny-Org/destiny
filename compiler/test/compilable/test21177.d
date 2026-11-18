@@ -27,7 +27,7 @@ compilable/test21177.d(207):        `char*` may be formatted with `"%s"`
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import core.stdc.string;
 import core.stdc.stdlib;
 

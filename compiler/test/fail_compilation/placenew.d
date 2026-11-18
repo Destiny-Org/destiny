@@ -15,7 +15,7 @@ fail_compilation/placenew.d(95): Error: PlacementExpression `s` of type `const(i
 ---
 */
 
-void test0()
+@system: void test0()
 {
     int i;
     int* pi = new (i) int; // OK

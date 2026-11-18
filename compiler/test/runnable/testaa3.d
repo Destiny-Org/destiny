@@ -7,7 +7,7 @@
  * With all aas: literal, variable, ref parameter, rvalue
  */
 
-int testLiteral()
+@system: int testLiteral()
 {
     assert([5 : 4].length == 1);
     assert([5 : 4].values == [4]);

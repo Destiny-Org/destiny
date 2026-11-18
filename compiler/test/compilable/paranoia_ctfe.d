@@ -16,4 +16,4 @@ $n$ defects/flaws
 ----
 */
 
-module test.compilable.paranoia_ctfe;
+module test.compilable.paranoia_ctfe; @system:

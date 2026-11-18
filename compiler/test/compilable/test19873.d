@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 // upstream issue 19873
-int* ed(scope int* x)
+@system: int* ed(scope int* x)
 {
     auto y = x;
     return y;

@@ -1,4 +1,4 @@
-module issue22682;
+module issue22682; @system:
 
 void main()
 {

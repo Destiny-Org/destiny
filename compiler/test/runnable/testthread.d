@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import core.thread;
 
 int tlsx;

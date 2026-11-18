@@ -7,7 +7,7 @@ import imports.testmangle;
 
 void main()
 {
-    static assert(equalDemangle(foo.mangleof, "_D8lib103863foo3bar3fooFiZv"));
+    static assert(equalDemangle(foo.mangleof, "_D8lib103863foo3bar3fooFNfiZv"));
     foo(1);
 }
 

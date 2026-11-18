@@ -1,6 +1,6 @@
 // REQUIRED_ARGS: -o-
 
-module pkg.test9554;
+module pkg.test9554; @system:
 alias mod = pkg.test9554;
 
 template Test(alias name) { enum Test = name; }

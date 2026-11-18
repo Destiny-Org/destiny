@@ -37,7 +37,7 @@ struct S
     void opUnary(string op : "*")();
 }
 
-void test()
+void test() @system // Destiny: Ptr(&i) below needs @system
 {
 	int i;
 

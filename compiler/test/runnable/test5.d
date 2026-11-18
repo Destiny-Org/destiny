@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 
 interface foo
 {

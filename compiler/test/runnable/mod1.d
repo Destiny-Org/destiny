@@ -9,7 +9,7 @@ EvilOne
 
 // mod1.d
 
-import imports.mod2;
+@system: import imports.mod2;
 
 string name()
 {

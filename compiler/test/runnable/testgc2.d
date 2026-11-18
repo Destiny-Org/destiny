@@ -6,7 +6,7 @@ Success
 ---
 */
 
-module testgc2;
+module testgc2; @system:
 
 import core.stdc.stdio;
 import core.exception : OutOfMemoryError;

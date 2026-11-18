@@ -8,7 +8,7 @@ fail_compilation/format.d(104): Error: `pragma(printf)` function `printf4` must 
 ---
  */
 
-#line 100
+@system: #line 100
 
 pragma(printf)           void printf1(const(char)*, ...);
 pragma(printf) extern (C) int printf2(const(int )*, ...);

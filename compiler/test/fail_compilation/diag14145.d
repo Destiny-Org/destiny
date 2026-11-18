@@ -7,7 +7,7 @@ fail_compilation/diag14145.d(14): Error: template instance `diag14145.main.Captu
 ---
 */
 
-int main()
+@system: int main()
 {
     int i;
     auto _ = capture!i;

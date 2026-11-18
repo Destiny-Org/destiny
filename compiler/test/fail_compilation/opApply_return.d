@@ -11,7 +11,7 @@ fail_compilation/opApply_return.d(20):        Any non-zero value must be the res
 ---
 */
 
-class Tree {
+@system: class Tree {
     Tree lhs;
     Tree rhs;
     int opApply(int delegate(Tree) dg) {

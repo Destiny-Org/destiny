@@ -1,6 +1,6 @@
 // upstream issue 23402
 
-import imports.imp23402a;
+@system: import imports.imp23402a;
 import imports.imp23402b;
 
 int main()

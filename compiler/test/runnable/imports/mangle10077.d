@@ -1,4 +1,4 @@
-module imports.mangle10077;
+module imports.mangle10077; @system:
 
 //UTF-8 chars
 __gshared pragma(mangle, "test_эльфийские_письмена_9") ubyte test10077i_v;

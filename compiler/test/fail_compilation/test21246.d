@@ -4,10 +4,10 @@
 TEST_OUTPUT:
 ---
 fail_compilation/test21246.d(17): Error: function `void test21246.C.set(Clock clock)` does not override any function
-fail_compilation/imports/test21246.d(7):        did you mean to override `void imports.test21246.B.set(imports.test21246.Clock clock)`?
+fail_compilation/imports/test21246.d(7):        did you mean to override `@safe void imports.test21246.B.set(imports.test21246.Clock clock)`?
 ---
 */
-module test21246;
+module test21246; @system:
 
 import imports.test21246;
 

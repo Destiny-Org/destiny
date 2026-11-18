@@ -42,6 +42,7 @@ auto moduleNames(const string[] testFiles)
 void writeRunnerFile(Range)(Range moduleNames, string path, string filter)
 {
     enum codeTemplate = q{
+        @system: // Destiny: the runner calls the @system unittests and catches Throwable
         import core.runtime : Runtime, UnitTestResult;
         import std.meta : AliasSeq;
 
@@ -327,7 +328,11 @@ int main(string[] args)
     const flags = buildCmdArgs(runnerPath, outputPath, testFiles);
     write(cmdfilePath, flags.join("\n"));
 
-    const dmd = execute([ dmdPath, "@" ~ cmdfilePath ], null, Config.none, size_t.max, compilerRootDir);
+    // Destiny: the compiler's own sources are written for upstream's
+    // `@system` default, so build the unit tests with the host compiler
+    // (the one that builds the compiler itself) when one is given.
+    const compiler = environment.get("HOST_DC", dmdPath);
+    const dmd = execute([ compiler, "@" ~ cmdfilePath ], null, Config.none, size_t.max, compilerRootDir);
     if (dmd.status)
     {
         enum msg = "Failed to compile the `unit` test executable! (exit code %d)
@@ -335,7 +340,7 @@ int main(string[] args)
 > %-(%s %)
 %s";
         // Build the string in advance to avoid cluttering
-        writeln(format(msg, dmd.status, dmdPath ~ flags, dmd.output));
+        writeln(format(msg, dmd.status, compiler ~ flags, dmd.output));
         return 1;
     }
 
@@ -349,7 +354,7 @@ int main(string[] args)
 > %s
 %s";
         // Build the string in advance to avoid cluttering
-        writeln(format(msg, test.status, dmdPath ~ flags, dmd.output, outputPath, test.output));
+        writeln(format(msg, test.status, compiler ~ flags, dmd.output, outputPath, test.output));
         return 1;
     }
 

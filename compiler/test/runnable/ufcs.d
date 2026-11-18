@@ -1,7 +1,7 @@
 // EXTRA_SOURCES: imports/ufcs5a.d imports/ufcs5b.d imports/ufcs5c.d imports/ufcs5d.d imports/ufcs5e.d
 // UNICODE_NAMES:
 
-module ufcs;
+module ufcs; @system:
 
 extern (C) int printf(const char*, ...);
 

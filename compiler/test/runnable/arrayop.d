@@ -1,5 +1,5 @@
 // RUNNABLE_PHOBOS_TEST
-import std.math;
+@system: import std.math;
 
 extern(C) int printf(const char*, ...);
 

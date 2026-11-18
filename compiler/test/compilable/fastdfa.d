@@ -2,7 +2,7 @@
  * REQUIRED_ARGS: -preview=fastdfa
  */
 
-struct S1
+@system: struct S1
 {
     S2 s2;
 }

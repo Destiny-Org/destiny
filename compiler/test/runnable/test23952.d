@@ -1,6 +1,6 @@
 // upstream dmd issue 23952
 
-import core.stdc.string;
+@system: import core.stdc.string;
 
 extern(C++):
 class A

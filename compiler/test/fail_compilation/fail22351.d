@@ -8,7 +8,7 @@ fail_compilation/fail22351.d(20): Error: function `extern(C++) void fail22351.Fa
 fail_compilation/fail22351.d(13):        did you mean to override `extern(C++) void fail22351.C22351.func(int*)`?
 ---
 */
-extern(C++) class C22351
+@system: extern(C++) class C22351
 {
     void func(int*) { }
     void func(int***) { }

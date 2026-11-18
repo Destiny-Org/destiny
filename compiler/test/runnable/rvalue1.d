@@ -1,7 +1,7 @@
 /* REQUIRED_ARGS: -preview=rvaluerefparam
 /* testing __rvalue */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 /********************************/
 

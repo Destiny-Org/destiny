@@ -9,7 +9,7 @@ fail_compilation/attributediagnostic_pure.d(14):        and executing an `asm` s
 // Issue 17374 - Improve inferred attribute error message
 // upstream issue 17374
 
-auto gc()
+@system: auto gc()
 {
     asm {}
 }

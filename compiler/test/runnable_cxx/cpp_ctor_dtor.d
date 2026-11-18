@@ -9,7 +9,7 @@ CXXFLAGS(linux osx freebsd openbsd netbsd dragonflybsd solaris): -fno-rtti
 CXXFLAGS(windows): /GR-
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 extern(C) __gshared char[64] trace;
 extern(C) __gshared int trace_len;

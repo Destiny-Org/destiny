@@ -8,7 +8,7 @@ fail_compilation/test24157.d(27): Error: cannot take address of expression `p.un
 ---
 */
 
-class Promise {
+@system: class Promise {
     auto ref self() {
         return this;
     }

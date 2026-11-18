@@ -7,7 +7,7 @@ class B16
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 class AA16
 {

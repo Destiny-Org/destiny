@@ -1,4 +1,4 @@
-__gshared private:
+@system: __gshared private:
     int j;
     extern(C++, ns) int k;
 

@@ -5,7 +5,7 @@ must still be constructed in the caller's return slot (NRVO through the closure)
 PERMUTE_ARGS: -O -inline -release
 */
 
-struct S
+@system: struct S
 {
     S* self;
     int value;

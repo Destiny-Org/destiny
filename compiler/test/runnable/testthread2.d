@@ -2,7 +2,7 @@
 // TRANSFORM_OUTPUT: remove_lines("warning: rand\(\) may return deterministic values")
 
 // Quick, dirty and inefficient AA using linear search, useful for testing.
-struct LinearAA(K, V) {
+@system: struct LinearAA(K, V) {
     K[] keys;
     V[] values;
 

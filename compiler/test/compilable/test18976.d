@@ -1,6 +1,6 @@
 // upstream issue 18976
 
-class Expression : Statement {}
+@system: class Expression : Statement {}
 class Statement {}
 
 class AssertSemanticVisitor

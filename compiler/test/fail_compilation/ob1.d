@@ -6,7 +6,7 @@ fail_compilation/ob1.d(23): Error: variable `ob1.mars.t` has undefined state and
   upstream issue 21923
 */
 
-@live:
+@system: @live:
 
 struct Handle
 {

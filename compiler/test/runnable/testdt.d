@@ -2,7 +2,7 @@
 
 /******************************************/
 
-static int[100][100] bigarray;
+@system: static int[100][100] bigarray;
 
 void test1()
 {

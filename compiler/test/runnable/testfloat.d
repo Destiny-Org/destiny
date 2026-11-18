@@ -2,7 +2,7 @@
  * Test floating point code generation
  */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import core.stdc.stdlib;
 
 double value_1() {

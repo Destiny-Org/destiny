@@ -1,4 +1,4 @@
-struct S
+@system: struct S
 {
     string[] delegate() dg;
 }

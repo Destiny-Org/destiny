@@ -6,7 +6,7 @@ null
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 /*******************************************/
 
@@ -1024,7 +1024,7 @@ class C40
     {
         I40 i = new class() I40
         {
-            void get( string s )
+            @system void get( string s )
             {
                 func();
             }
@@ -1049,7 +1049,7 @@ class C41
     {
         class N
         {
-            void get()
+            @system void get()
             {
                 func();
             }
@@ -1079,11 +1079,11 @@ class C42
     {
         class N
         {
-            void init()
+            @system void init()
             {
                 class M
                 {
-                    void get()
+                    @system void get()
                     {
                         func();
                     }
@@ -1390,7 +1390,7 @@ class C52
     {
         class N
         {
-            void callI()
+            @system void callI()
             {
                 printf("test1\n");
                 test1();

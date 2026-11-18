@@ -10,7 +10,7 @@
  * CXXFLAGS: -std=c++11
  */
 
-#line 100
+@system: #line 100
 import core.attribute;
 
 alias Tuple(A...) = A;

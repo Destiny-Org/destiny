@@ -1,6 +1,6 @@
 #!/opt/dmd/пробы/rdmd
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 
 
 void main () {

@@ -8,7 +8,7 @@ count = 3
 
 // upstream issue 2311
 
-extern(C) int printf(const char*, ...);
+@system: extern(C) int printf(const char*, ...);
 
 __gshared ulong count;
 

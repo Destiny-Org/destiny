@@ -1,4 +1,4 @@
-void f(int* p) @nogc
+@system: void f(int* p) @nogc
 {
     new(*p) int;
 }

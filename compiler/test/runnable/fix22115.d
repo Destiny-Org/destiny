@@ -3,7 +3,7 @@
 // upstream issue 22115
 
 
-int sx;
+@system: int sx;
 void sss() {  ++sx; }
 
 static if (1)

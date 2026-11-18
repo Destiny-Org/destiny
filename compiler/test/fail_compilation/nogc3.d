@@ -10,7 +10,7 @@ fail_compilation/nogc3.d(16): Error: setting this array's `length` causes a GC a
 fail_compilation/nogc3.d(17): Error: setting this array's `length` causes a GC allocation in `@nogc` function `testArrayLength`
 ---
 */
-@nogc void testArrayLength(int[] a)
+@system: @nogc void testArrayLength(int[] a)
 {
     a.length = 3;
     a.length += 1;

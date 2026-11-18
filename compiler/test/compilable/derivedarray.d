@@ -1,6 +1,6 @@
 // PERMUTE_ARGS:
 
-class C {}
+@system: class C {}
 class D : C {}
 
 void dynamicarrays()

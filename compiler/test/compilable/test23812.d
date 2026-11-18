@@ -1,6 +1,6 @@
 // EXTRA_FILES: imports/imp23812.c
 
-import imports.imp23812;
+@system: import imports.imp23812;
 
 void callDefault()
 {

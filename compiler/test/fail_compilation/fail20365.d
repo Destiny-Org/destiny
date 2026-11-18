@@ -9,7 +9,7 @@ fail_compilation/fail20365.d(28): Error: cannot `ref` return bitfield `a.y`
 ---
 */
 
-struct A { int x : 16, y : 16; }
+@system: struct A { int x : 16, y : 16; }
 
 void ref_assign(A a)
 {

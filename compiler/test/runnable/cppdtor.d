@@ -33,7 +33,7 @@ DC:
 ---
 */
 
-extern (C) int printf(scope const char*, ...);
+@system: extern (C) int printf(scope const char*, ...);
 
 extern (C++) class CppA
 {

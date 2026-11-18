@@ -8,7 +8,7 @@ other
 ---
 */
 
-module Same; // makes no difference if removed
+module Same; @system: // makes no difference if removed
 import core.stdc.stdio;
 class Same
 {

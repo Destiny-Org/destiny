@@ -27,8 +27,8 @@ void main()
 /*
 TEST_OUTPUT:
 ---
-fail_compilation/bug15613.d(35): Error: function `h` is not callable using argument types `(int, void function(int[]...))`
-fail_compilation/bug15613.d(35):        cannot pass argument `& h` of type `void function(int[]...)` to parameter `int[]...`
+fail_compilation/bug15613.d(35): Error: function `h` is not callable using argument types `(int, void function(int[]...) @safe)`
+fail_compilation/bug15613.d(35):        cannot pass argument `& h` of type `void function(int[]...) @safe` to parameter `int[]...`
 fail_compilation/bug15613.d(31):        `bug15613.h(int[]...)` declared here
 ---
 */

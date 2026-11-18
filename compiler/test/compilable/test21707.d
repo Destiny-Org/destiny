@@ -15,7 +15,7 @@ template TypeTuple(T...)
 	alias TypeTuple = T;
 }
 enum foobar(T) = 2;
-void test()
+@safe void test()
 {
 	/*unrolled*/ {
 		{

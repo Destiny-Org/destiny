@@ -1,4 +1,4 @@
-module imports.a21a;
+module imports.a21a; @system:
 
 import core.stdc.stdio;
 import a21;

@@ -5,7 +5,7 @@ TEST_OUTPUT:
 ---
 */
 
-import core.stdc.math : isnan, signbit;
+@system: import core.stdc.math : isnan, signbit;
 import core.stdc.stdio;
 
 template AliasSeq(T...) { alias T AliasSeq; }

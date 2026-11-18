@@ -1,7 +1,7 @@
 // upstream dmd issue 23678
 // REQUIRED_ARGS: -betterC
 
-struct S
+@system: struct S
 {
     int value;
 

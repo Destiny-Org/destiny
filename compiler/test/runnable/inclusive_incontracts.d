@@ -1,7 +1,7 @@
 // REQUIRED_ARGS: -preview=inclusiveincontracts
 // PERMUTE_ARGS: -O -inline
 
-import core.exception : AssertError;
+@system: import core.exception : AssertError;
 
 void main()
 {

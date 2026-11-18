@@ -1,6 +1,6 @@
 // See ../../README.md for information about DMD unit tests.
 
-module compilable.crlf;
+module compilable.crlf; @system:
 
 import support : afterEach, beforeEach, defaultImportPaths;
 

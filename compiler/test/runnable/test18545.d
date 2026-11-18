@@ -1,4 +1,4 @@
-module test18545;
+module test18545; @system:
 
 enum Constness
 {

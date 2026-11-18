@@ -6,7 +6,7 @@ Success
 ---
 */
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import core.stdc.math : isnan;
 
 void test12826()

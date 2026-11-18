@@ -4,7 +4,7 @@ inside switch: 1
 ---
 */
 
-int get() { return 1; }
+@system: int get() { return 1; }
 
 void test() {
     import core.stdc.stdio : printf;

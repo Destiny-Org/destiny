@@ -6,7 +6,7 @@
 // Disabled on win32 because the compiler is too old
 
 /****************************************/
-alias nullptr_t = typeof(null);
+@system: alias nullptr_t = typeof(null);
 
 // Only run on OSX/Win64 because the compilers are too old
 // and nullptr_t gets substituted

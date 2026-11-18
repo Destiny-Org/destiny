@@ -7,7 +7,7 @@ fail_compilation/fail12749.d(25): Error: immutable field `inum` initialization i
 fail_compilation/fail12749.d(26): Error: const field `cnum` initialization is not allowed in nested function `set`
 ---
 */
-struct S
+@system: struct S
 {
     immutable int inum;
     const     int cnum;

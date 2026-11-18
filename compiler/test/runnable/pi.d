@@ -1,7 +1,7 @@
 // PERMUTE_ARGS:
 // EXECUTE_ARGS: 1000
 
-import core.stdc.stdio;
+@system: import core.stdc.stdio;
 import core.stdc.time;
 
 const int LONG_TIME=4000;

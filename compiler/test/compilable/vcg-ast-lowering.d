@@ -24,7 +24,7 @@ template fun(T)
 		return 2 * cast(T)x;
 	}
 }
-auto @system void test()
+auto @safe void test()
 {
 	long x = test.func!long(3);
 	long x1 = test.fun!long.fun1(3);
@@ -50,11 +50,11 @@ func!long
 }
 fun!long
 {
-	long fun1(int x)
+	@safe long fun1(int x)
 	{
 		return 2L * cast(long)x;
 	}
-	long fun2(int x)
+	@safe long fun2(int x)
 	{
 		return 2L * cast(long)x;
 	}

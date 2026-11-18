@@ -8,7 +8,7 @@ fail_compilation/ice9540.d(27): Error: template instance `ice9540.A.test.AddFron
 ----
 */
 
-template Tuple(E...) { alias E Tuple; }
+@system: template Tuple(E...) { alias E Tuple; }
 alias Tuple!(int) Args;
 
 void main() {

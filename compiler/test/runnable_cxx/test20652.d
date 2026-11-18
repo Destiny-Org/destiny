@@ -1,7 +1,7 @@
 // upstream issue 20652
 // EXTRA_CPP_SOURCES: test20652.cpp
 
-import core.simd;
+@system: import core.simd;
 
 static if (!__traits(compiles, float4)) // No __vector support
 {
