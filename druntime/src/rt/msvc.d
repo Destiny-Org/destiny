@@ -11,6 +11,8 @@
  */
 module rt.msvc;
 
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
+
 version (CRuntime_Microsoft):
 
 import core.stdc.stdarg : va_list;

@@ -1,4 +1,6 @@
 module core.sys.windows.com;
+
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
 version (Windows):
 
 pragma(lib,"uuid");

@@ -7,6 +7,8 @@
  * Source: $(DRUNTIMESRC core/sys/windows/_winuser.d)
  */
 module core.sys.windows.winuser;
+
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
 version (Windows):
 
 version (ANSI) {} else version = Unicode;

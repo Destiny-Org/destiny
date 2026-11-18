@@ -7,6 +7,8 @@
  * Source: $(DRUNTIMESRC core/sys/windows/_shlwapi.d)
  */
 module core.sys.windows.shlwapi;
+
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
 version (Windows):
 
 version (ANSI) {} else version = Unicode;

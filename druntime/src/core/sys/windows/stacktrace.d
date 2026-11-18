@@ -10,6 +10,8 @@
  */
 
 module core.sys.windows.stacktrace;
+
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
 version (Windows):
 
 import core.demangle;

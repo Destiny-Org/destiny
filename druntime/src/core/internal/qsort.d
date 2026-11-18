@@ -64,7 +64,7 @@ else version (FreeBSD)
         alias Cmp = extern (C) int function(scope const void*, scope const void*, scope void*);
         extern (C) void qsort_r(scope void* base, size_t nmemb, size_t size, Cmp cmp, scope void* thunk);
 
-        extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
+        @system extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
         {
             extern (C) int cmp(scope const void* p1, scope const void* p2, scope void* ti)
             {
@@ -79,7 +79,7 @@ else version (FreeBSD)
         alias Cmp = extern (C) int function(scope void *, scope const void *, scope const void *);
         extern (C) void qsort_r(scope void* base, size_t nmemb, size_t size, scope void* thunk, Cmp cmp);
 
-        extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
+        @system extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
         {
             extern (C) int cmp(scope void* ti, scope const void* p1, scope const void* p2)
             {
@@ -95,7 +95,7 @@ else version (DragonFlyBSD)
     alias Cmp = extern (C) int function(scope void *, scope const void *, scope const void *);
     extern (C) void qsort_r(scope void *base, size_t nmemb, size_t size, scope void *thunk, Cmp cmp);
 
-    extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
+    @system extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
     {
         extern (C) int cmp(scope void* ti, scope const void* p1, scope const void* p2)
         {
@@ -110,7 +110,7 @@ else version (Darwin)
     alias Cmp = extern (C) int function(scope void *, scope const void *, scope const void *);
     extern (C) void qsort_r(scope void *base, size_t nmemb, size_t size, scope void *thunk, Cmp cmp);
 
-    extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
+    @system extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
     {
         extern (C) int cmp(scope void* ti, scope const void* p1, scope const void* p2)
         {
@@ -125,7 +125,7 @@ else version (CRuntime_UClibc)
     alias __compar_d_fn_t = extern (C) int function(scope const void *, scope const void *, scope void *);
     extern (C) void qsort_r(scope void *base, size_t nmemb, size_t size, __compar_d_fn_t cmp, scope void *arg);
 
-    extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
+    @system extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
     {
         extern (C) int cmp(scope const void* p1, scope const void* p2, scope void* ti)
         {
@@ -141,7 +141,7 @@ else
 
     private TypeInfo tiglobal;
 
-    extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
+    @system extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
     {
         extern (C) int cmp(scope const void* p1, scope const void* p2)
         {

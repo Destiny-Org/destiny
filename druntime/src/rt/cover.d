@@ -476,7 +476,7 @@ string chomp( string str, string delim = null )
     return fdopen(fd, "r+b");
 }
 
-version (Windows) HANDLE handle(int fd)
+version (Windows) HANDLE handle(int fd) @trusted // converts a file descriptor to its handle
 {
     return cast(HANDLE)_get_osfhandle(fd);
 }
@@ -498,7 +498,7 @@ void lockFile(int fd)
     {
         OVERLAPPED off;
         // exclusively lock first byte
-        LockFileEx(handle(fd), LOCKFILE_EXCLUSIVE_LOCK, 0, 1, 0, &off);
+        () @trusted { LockFileEx(handle(fd), LOCKFILE_EXCLUSIVE_LOCK, 0, 1, 0, &off); }(); // locks one byte of this file
     }
 }
 

@@ -8,6 +8,8 @@
  * Source: $(DRUNTIMESRC core/sys/windows/_winldap.d)
  */
 module core.sys.windows.winldap;
+
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
 version (Windows):
 
 version (ANSI) {} else version = Unicode;

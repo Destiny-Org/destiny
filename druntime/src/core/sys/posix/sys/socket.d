@@ -818,12 +818,12 @@ else version (FreeBSD)
         extern (D) size_t _ALIGN( size_t p ) { return (p + _ALIGNBYTES) & ~_ALIGNBYTES; }
     }
 
-    extern (D) ubyte* CMSG_DATA( cmsghdr* cmsg )
+    @system extern (D) ubyte* CMSG_DATA( cmsghdr* cmsg )
     {
         return cast(ubyte*) cmsg + _ALIGN( cmsghdr.sizeof );
     }
 
-    extern (D) cmsghdr* CMSG_NXTHDR( msghdr* mhdr, cmsghdr* cmsg )
+    @system extern (D) cmsghdr* CMSG_NXTHDR( msghdr* mhdr, cmsghdr* cmsg )
     {
         if ( cmsg == null )
         {
@@ -839,7 +839,7 @@ else version (FreeBSD)
         }
     }
 
-    extern (D) cmsghdr* CMSG_FIRSTHDR( msghdr* mhdr )
+    @system extern (D) cmsghdr* CMSG_FIRSTHDR( msghdr* mhdr )
     {
         return mhdr.msg_controllen >= cmsghdr.sizeof ? cast(cmsghdr*) mhdr.msg_control : null;
     }
@@ -976,12 +976,12 @@ else version (NetBSD)
         extern (D) size_t _ALIGN( size_t p ) { return (p + _ALIGNBYTES) & ~_ALIGNBYTES; }
     }
 
-    extern (D) ubyte* CMSG_DATA( cmsghdr* cmsg )
+    @system extern (D) ubyte* CMSG_DATA( cmsghdr* cmsg )
     {
         return cast(ubyte*) cmsg + _ALIGN( cmsghdr.sizeof );
     }
 
-    extern (D) cmsghdr* CMSG_NXTHDR( msghdr* mhdr, cmsghdr* cmsg )
+    @system extern (D) cmsghdr* CMSG_NXTHDR( msghdr* mhdr, cmsghdr* cmsg )
     {
         if ( cmsg == null )
         {
@@ -997,7 +997,7 @@ else version (NetBSD)
         }
     }
 
-    extern (D) cmsghdr* CMSG_FIRSTHDR( msghdr* mhdr )
+    @system extern (D) cmsghdr* CMSG_FIRSTHDR( msghdr* mhdr )
     {
         return mhdr.msg_controllen >= cmsghdr.sizeof ? cast(cmsghdr*) mhdr.msg_control : null;
     }
@@ -1435,12 +1435,12 @@ else version (DragonFlyBSD)
         extern (D) size_t _ALIGN( size_t p ) { return (p + _ALIGNBYTES) & ~_ALIGNBYTES; }
     }
 
-    extern (D) ubyte* CMSG_DATA( cmsghdr* cmsg )
+    @system extern (D) ubyte* CMSG_DATA( cmsghdr* cmsg )
     {
         return cast(ubyte*) cmsg + _ALIGN( cmsghdr.sizeof );
     }
 
-    extern (D) cmsghdr* CMSG_NXTHDR( msghdr* mhdr, cmsghdr* cmsg )
+    @system extern (D) cmsghdr* CMSG_NXTHDR( msghdr* mhdr, cmsghdr* cmsg )
     {
         if ( cmsg == null )
         {
@@ -1456,7 +1456,7 @@ else version (DragonFlyBSD)
         }
     }
 
-    extern (D) cmsghdr* CMSG_FIRSTHDR( msghdr* mhdr )
+    @system extern (D) cmsghdr* CMSG_FIRSTHDR( msghdr* mhdr )
     {
         return mhdr.msg_controllen >= cmsghdr.sizeof ? cast(cmsghdr*) mhdr.msg_control : null;
     }

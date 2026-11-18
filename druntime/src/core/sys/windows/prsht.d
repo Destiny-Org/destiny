@@ -8,6 +8,8 @@
  * Source: $(DRUNTIMESRC core/sys/windows/_prsht.d)
  */
 module core.sys.windows.prsht;
+
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
 version (Windows):
 
 version (ANSI) {} else version = Unicode;

@@ -8,7 +8,12 @@
  * Source:      $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/root/strtold.d, backend/strtold.c)
  */
 
-module destiny.root.strtold; @safe:
+module destiny.root.strtold;
+
+// Windows only (CRuntime_Microsoft): parses C strings with raw pointers, so
+// it is @system. (It was marked @safe once without being compiled; the Linux
+// build never sees this module.)
+@system:
 
 import destiny.root.longdouble;
 import core.stdc.ctype;

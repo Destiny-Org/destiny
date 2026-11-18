@@ -8,6 +8,8 @@
  */
 module core.internal.backtrace.macho;
 
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
+
 version (OSX)
     version = Darwin;
 else version (iOS)

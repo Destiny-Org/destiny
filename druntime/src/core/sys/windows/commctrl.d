@@ -7,6 +7,8 @@
  * Source: $(DRUNTIMESRC core/sys/windows/_commctrl.d)
  */
 module core.sys.windows.commctrl;
+
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
 version (Windows):
 
 version (ANSI) {} else version = Unicode;

@@ -8,6 +8,8 @@
  * Source: $(DRUNTIMESRC core/sys/windows/_winver.d)
  */
 module core.sys.windows.winver;
+
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
 version (Windows):
 import core.sys.windows.w32api;
 import core.sys.windows.winbase;

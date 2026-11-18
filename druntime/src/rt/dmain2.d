@@ -374,7 +374,7 @@ private alias MainFunc = extern(C) int function(char[][] args);
  * _d_run_main which uses the actual (wide) process arguments instead.
  */
 version (Windows)
-extern (C) int _d_wrun_main(int argc, wchar** wargv, MainFunc mainFunc)
+@system extern (C) int _d_wrun_main(int argc, wchar** wargv, MainFunc mainFunc)
 {
      // Allocate args[] on the stack
     char[][] args = (cast(char[]*) alloca(argc * (char[]).sizeof))[0 .. argc];

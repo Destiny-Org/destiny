@@ -8,6 +8,8 @@
  * Source: $(DRUNTIMESRC core/sys/windows/_dde.d)
  */
 module core.sys.windows.dde;
+
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
 version (Windows):
 pragma(lib, "user32");
 

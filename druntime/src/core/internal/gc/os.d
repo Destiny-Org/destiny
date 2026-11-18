@@ -15,7 +15,7 @@ version (Windows)
 
     alias pthread_t = int;
 
-    pthread_t pthread_self() nothrow
+    pthread_t pthread_self() nothrow @trusted
     {
         return cast(pthread_t) GetCurrentThreadId();
     }
@@ -166,13 +166,13 @@ version (CoreDdoc)
 }
 else static if (is(typeof(VirtualAlloc))) // version (GC_Use_Alloc_Win32)
 {
-    void *os_mem_map(size_t nbytes) nothrow @nogc
+    @system void *os_mem_map(size_t nbytes) nothrow @nogc
     {
         return VirtualAlloc(null, nbytes, MEM_RESERVE | MEM_COMMIT,
                 PAGE_READWRITE);
     }
 
-    int os_mem_unmap(void *base, size_t nbytes) nothrow @nogc
+    @system int os_mem_unmap(void *base, size_t nbytes) nothrow @nogc
     {
         return cast(int)(VirtualFree(base, 0, MEM_RELEASE) == 0);
     }
@@ -273,7 +273,7 @@ bool isLowOnMem(size_t mapped) nothrow @nogc
 
         MEMORYSTATUSEX stat;
         stat.dwLength = stat.sizeof;
-        const success = GlobalMemoryStatusEx(&stat) != 0;
+        const success = (() @trusted => GlobalMemoryStatusEx(&stat))() != 0; // fills the local struct only
         assert(success, "GlobalMemoryStatusEx() failed");
         if (!success)
             return false;
@@ -315,7 +315,7 @@ bool isLowOnMem(size_t mapped) nothrow @nogc
 */
 version (Windows)
 {
-    ulong os_physical_mem(bool avail) nothrow @nogc
+    ulong os_physical_mem(bool avail) nothrow @nogc @trusted // fills a local struct only
     {
         import core.sys.windows.winbase : GlobalMemoryStatus, MEMORYSTATUS;
         MEMORYSTATUS stat;
@@ -326,7 +326,7 @@ version (Windows)
 else version (Darwin)
 {
     extern (C) int sysctl(const int* name, uint namelen, void* oldp, size_t* oldlenp, const void* newp, size_t newlen) @nogc nothrow;
-    ulong os_physical_mem(bool avail) nothrow @nogc
+    ulong os_physical_mem(bool avail) nothrow @nogc @trusted // reads into local variables only
     {
         enum
         {
@@ -371,7 +371,7 @@ else version (Posix)
  */
 version (GCSignalsUnblock)
 {
-    void os_unblock_gc_signals() nothrow @nogc
+    void os_unblock_gc_signals() nothrow @nogc @trusted // changes only this thread's signal mask
     {
         import core.sys.posix.signal : pthread_sigmask, sigaddset, sigemptyset, sigset_t, SIG_UNBLOCK;
         import core.thread : thread_getGCSignals;

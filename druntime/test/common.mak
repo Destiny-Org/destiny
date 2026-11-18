@@ -119,7 +119,7 @@ $(OBJDIR)/%$(DOTEXE): %.cpp | $(OBJDIR)
 # message the compiler must print. The output is kept in $@.compile instead of
 # the build log, and the build fails if the message is missing.
 $(OBJDIR)/%$(DOTEXE): %.d $(DMD_DEP) $(DRUNTIME_DEP)
-	$(if $(compile_exp),@echo Building $@; \
+	$(if $(compile_exp),@echo Building $@; mkdir -p $(dir $@); \
 	$(LINK.d) $< $(extra_sources) $(extra_ldlibs.d) $(LDLIBS.d) $(OUTPUT_OPTION.d) > $@.compile 2>&1 \
 	  || { cat $@.compile; exit 1; }; \
 	grep -qF $(compile_exp) $@.compile \

@@ -68,3 +68,6 @@ untracked_files/
 
 # documentation is kept locally, not on GitHub
 docs/
+
+# ci/cross_bootstrap.sh output
+cross/

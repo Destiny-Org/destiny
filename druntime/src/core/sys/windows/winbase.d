@@ -7,6 +7,8 @@
  * Source: $(DRUNTIMESRC core/sys/windows/_winbase.d)
  */
 module core.sys.windows.winbase;
+
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
 version (Windows):
 
 version (ANSI) {} else version = Unicode;

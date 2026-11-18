@@ -8,6 +8,8 @@
  */
 module core.sys.freebsd.execinfo;
 
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
+
 version (FreeBSD):
 extern (C):
 nothrow:

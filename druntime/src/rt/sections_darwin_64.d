@@ -11,6 +11,8 @@
  */
 module rt.sections_darwin_64;
 
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
+
 version (OSX)
     version = Darwin;
 else version (iOS)

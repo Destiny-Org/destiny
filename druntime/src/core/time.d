@@ -2884,7 +2884,7 @@ unittest
 }
 
 version (Darwin)
-long machTicksPerSecond() @nogc nothrow
+long machTicksPerSecond() @nogc nothrow @trusted // fills a local struct only
 {
     // Be optimistic that ticksPerSecond (1e9*denom/numer) is integral. So far
     // so good on Darwin based platforms OS X, iOS.

@@ -12,6 +12,8 @@
 
 module rt.sections_win64;
 
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
+
 version (CRuntime_Microsoft):
 
 version (DigitalMars) version (Win64) version = hasEHTables;

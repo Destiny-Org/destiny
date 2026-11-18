@@ -1,0 +1,99 @@
+# Bootstraps a Destiny compiler for FreeBSD, macOS and Windows without any
+# upstream D compiler (see ci/cross_bootstrap.sh):
+#   1. on Linux, the released Linux destiny compiles the compiler, druntime
+#      and Fate for each platform into object files;
+#   2. on each platform, its own C compiler and linker turn them into a
+#      working destiny, which then rebuilds itself natively.
+# The result, destiny64-<version>-<os>.tar.xz, is kept as a workflow artifact:
+# upload it to a Destiny-Org/host-compilers release to make it the host
+# compiler for that platform.
+
+name: Bootstrap platforms
+on:
+  workflow_dispatch:
+
+jobs:
+  cross:
+    name: Cross-compile on Linux
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    env:
+      OS_NAME: linux
+      MODEL: 64
+      HOST_DC: destiny-2.115.0-master
+      FULL_BUILD: false
+    steps:
+      - uses: actions/checkout@v7
+      - name: Clone fate
+        run: git clone --depth 1 https://github.com/Destiny-Org/fate.git ../fate
+      - name: Install host compiler
+        run: ci/run.sh install_host_compiler
+      - name: Cross-compile
+        run: |
+          source ~/host-compilers/*/activate
+          for os in freebsd osx windows; do ci/cross_bootstrap.sh compile $os; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cross-objects
+          path: cross/
+
+  native:
+    name: Link and rebuild on ${{ matrix.os_name }}
+    needs: cross
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os_name: freebsd, runner: ubuntu-latest, vm: freebsd }
+          - { os_name: osx,     runner: macos-15-intel }
+          - { os_name: windows, runner: windows-2022 }
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 90
+    defaults:
+      run:
+        # FreeBSD runs in a VM; cpa.sh runs each step there
+        shell: ${{ matrix.vm && 'cpa.sh {0} --sync-files runner-to-vm' || 'bash' }}
+    steps:
+      - name: Start FreeBSD VM
+        if: matrix.vm
+        uses: cross-platform-actions/action@v1.5.0
+        with:
+          operating_system: freebsd
+          version: '14.4'
+          shell: bash
+          sync_files: false
+          shutdown_vm: false
+      - name: 'FreeBSD: install git and GNU make'
+        if: matrix.vm
+        run: sudo pkg install -y git gmake bash
+      - uses: actions/checkout@v7
+      - name: Clone fate
+        run: git clone --depth 1 https://github.com/Destiny-Org/fate.git ../fate
+      - uses: actions/download-artifact@v4
+        with:
+          name: cross-objects
+          path: cross/
+      - name: 'Windows: set up MSVC'
+        if: matrix.os_name == 'windows'
+        uses: seanmiddleditch/gha-setup-vsdevenv@v5
+        with:
+          arch: x64
+      - name: Link the bootstrapped compiler
+        run: bash ci/cross_bootstrap.sh link ${{ matrix.os_name }}
+      - name: 'Posix: rebuild the compiler natively with it'
+        if: matrix.os_name != 'windows'
+        run: |
+          source ~/host-compilers/destiny-bootstrap/activate
+          MAKE=make; command -v gmake >/dev/null && MAKE=gmake
+          $MAKE -j2 HOST_DC=destiny destiny
+          ls -la generated/*/release/64/destiny
+          generated/*/release/64/destiny --version | head -1
+      - name: Package
+        run: |
+          version=$(sed 's/^v//' VERSION)
+          tar -C cross/${{ matrix.os_name }} -cJf destiny64-$version-${{ matrix.os_name }}.tar.xz destiny64
+          ls -la destiny64-*.tar.xz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: destiny64-${{ matrix.os_name }}
+          path: destiny64-*.tar.xz

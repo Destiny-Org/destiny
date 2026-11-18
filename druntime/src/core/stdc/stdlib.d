@@ -139,7 +139,7 @@ version (CRuntime_Microsoft)
     {
         // strtold exists starting from VS2013, so we give it D linkage to avoid link errors
         ///
-        extern (D) real strtold(scope inout(char)* nptr, inout(char)** endptr)
+        @system extern (D) real strtold(scope inout(char)* nptr, inout(char)** endptr)
         {   // Fake it 'till we make it
             return strtod(nptr, endptr);
         }

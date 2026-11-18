@@ -12,6 +12,8 @@
 
 module core.thread.windows_impl;
 
+@system: // Destiny: platform-specific C bindings and raw-pointer code (D's default)
+
 import core.atomic;
 import core.exception : onOutOfMemoryError;
 import core.internal.traits : externDFunc;
@@ -193,7 +195,7 @@ class Thread : ThreadBase
         }
     }
 
-    override final Throwable join( bool rethrow = true )
+    override final Throwable join( bool rethrow = true ) @trusted // waits on this thread's own handle
     {
         if ( m_tdescr.tid != m_tdescr.tid.init && WaitForSingleObject( m_tdescr.hndl, INFINITE ) != WAIT_OBJECT_0 )
             throw new ThreadException( "Unable to join thread" );
@@ -242,7 +244,7 @@ class Thread : ThreadBase
             throw new ThreadException( "Unable to set thread priority" );
     }
 
-    override final @property bool isRunning() nothrow @nogc
+    override final @property bool isRunning() nothrow @nogc @trusted // reads this thread's own exit code
     {
         if (!super.isRunning())
             return false;

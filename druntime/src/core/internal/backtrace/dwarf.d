@@ -352,7 +352,7 @@ version (Darwin) {
      * Params:
      * locations = The locations to resolve
      */
-    private void resolveAddressesWithAtos(Location[] locations) @nogc nothrow
+    private void resolveAddressesWithAtos(Location[] locations) @nogc nothrow @system // runs atos through C stdio
     {
         import core.stdc.stdio : fclose, fflush, fgets, fprintf, printf, snprintf;
         import core.stdc.stdlib : exit;
@@ -435,7 +435,7 @@ version (Darwin) {
         close(read_from_atos);
         waitpid(child_id, null, 0);
     }
-    private Location parseAtosLine(char* buffer) @nogc nothrow
+    private Location parseAtosLine(char* buffer) @nogc nothrow @system // parses a C string
     {
         // The line from `atos` is in one of these formats:
         // myfunction (in library.dylib) (sourcefile.c:17)
