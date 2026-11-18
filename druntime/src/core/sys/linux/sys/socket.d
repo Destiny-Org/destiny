@@ -61,7 +61,9 @@ enum
     PF_KCM        = 41,
     PF_QIPCRTR    = 42,
     PF_SMC        = 43,
-    PF_MAX        = 44,
+    PF_XDP        = 44,
+    PF_MCTP       = 45,
+    PF_MAX        = 46,
 
     // Address families.
     AF_LOCAL      = PF_LOCAL,
@@ -105,6 +107,8 @@ enum
     AF_KCM        = PF_KCM,
     AF_QIPCRTR    = PF_QIPCRTR,
     AF_SMC        = PF_SMC,
+    AF_XDP        = PF_XDP,
+    AF_MCTP       = PF_MCTP,
     AF_MAX        = PF_MAX,
 }
 

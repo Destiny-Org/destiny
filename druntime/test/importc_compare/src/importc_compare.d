@@ -45,8 +45,6 @@ immutable ErrorFilter[] knownProblems = [
     ErrorFilter("core.stdc.math.float_t", "", "Hurd", 0, ""),
     ErrorFilter("core.stdc.signal.sig_atomic_t", "", "FreeBSD", 0, ""),
     ErrorFilter("core.stdc.stdio.FILE", "", "FreeBSD", 0, ""),
-    ErrorFilter("core.stdc.stdio.FILE", "", "linux", 0, ""),
-    ErrorFilter("core.stdc.stdio._IO_FILE", "", "linux", 0, ""),
     ErrorFilter("core.stdc.stdio.FILE", "", "Hurd", 0, ""),
     ErrorFilter("core.stdc.stdio._IO_FILE", "", "Hurd", 0, ""),
     ErrorFilter("core.stdc.stdio.__sFILE", "", "FreeBSD", 0, ""),
@@ -56,9 +54,7 @@ immutable ErrorFilter[] knownProblems = [
     ErrorFilter("core.sys.posix.fcntl.flock", "", "linux", 32, ""),
     ErrorFilter("core.sys.posix.sched.sched_param", "", "Apple", 0, ""),
     ErrorFilter("core.sys.posix.semaphore.sem_t", "", "FreeBSD", 0, ""),
-    ErrorFilter("core.sys.posix.semaphore.sem_t", "", "linux", 0, ""),
     ErrorFilter("core.sys.posix.signal.siginfo_t", "", "Apple", 0, ""),
-    ErrorFilter("core.sys.posix.sys.ipc.ipc_perm", "mode", "linux", 0, ""),
     ErrorFilter("core.sys.posix.sys.shm.shmatt_t", "", "FreeBSD", 0, ""),
     ErrorFilter("core.sys.posix.sys.shm.shmid_ds", "", "FreeBSD", 0, ""),
     ErrorFilter("core.sys.posix.sys.types.clock_t", "", "FreeBSD", 0, ""),
@@ -82,6 +78,28 @@ immutable ErrorFilter[] knownProblems = [
     ErrorFilter("core.sys.posix.sys.types.pthread_rwlock_t", "", "Emscripten", 0, ""),
     ErrorFilter("core.sys.posix.sys.types.pthread_barrier_t", "", "Emscripten", 0, ""),
 ];
+
+// Constants whose D value differs from the C headers on purpose.
+// Matched by the start of the qualified name.
+immutable string[2][] knownConstantDivergences = [
+    // glibc 2.42+ headers define B* as the baud rate (B9600 == 9600) for its
+    // new cfsetospeed etc. druntime binds the original versions of those
+    // functions, which take the traditional codes (B9600 == 13), so the
+    // codes are correct with every glibc. See core.sys.posix.termios.
+    ["core.sys.posix.termios.B", "glibc 2.42 baud constants; druntime uses the original functions"],
+    ["core.sys.linux.termios.B", "glibc 2.42 baud constants; druntime uses the original functions"],
+    // The kernel's struct termios (used with ioctl TCGETS) has 19 control
+    // characters; glibc's struct termios has 32.
+    ["core.sys.posix.sys.ioctl.NCCS", "kernel termios, not glibc termios"],
+];
+
+bool isKnownConstantDivergence(string qualifiedName)
+{
+    foreach (k; knownConstantDivergences)
+        if (qualifiedName.startsWith(k[0]))
+            return true;
+    return false;
+}
 
 struct ErrorFilter
 {
@@ -381,7 +399,8 @@ int main()
                 continue;
             }
 
-            if (infoD.value != infoC.value)
+            if (infoD.value != infoC.value
+                && !isKnownConstantDivergence(infoD.modulename ~ "." ~ infoD.name))
             {
                 // FIXME: promote to errors once the bindings have been fixed
                 printf("Warning: Constant %s.%s diverges: %lld (D) vs. %lld (ImportC)\n", infoD.modulename.toStringz, infoD.name.toStringz, infoD.value, infoC.value);

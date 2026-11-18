@@ -13,8 +13,18 @@ Destiny/
 ├── destiny_engine/   Destiny-Org/destiny     compiler, druntime, spec, tests
 ├── fate/             Destiny-Org/fate        standard library (from Phobos)
 ├── tools/            Destiny-Org/tools       test extractor, whitespace check, rdmd, DustMite
-└── d-scanner/        Destiny-Org/d-scanner   style checker; provides libdparse
+├── d-scanner/        Destiny-Org/d-scanner   style checker; provides libdparse
+├── des/              Destiny-Org/des         DES, package manager and build tool (fork of dub)
+└── serve-destiny/    Destiny-Org/serve-destiny  language server (editor support)
 ```
+
+These repositories are independent. Nothing is pulled from the original D
+repositories (dmd, druntime, Phobos, tools, D-Scanner, serve-d) any more, so
+there are no `upstream` remotes, and code can be restructured freely without
+regard to merging. `des` and `serve-destiny` are D programs built *with*
+Destiny (`-revert=safedefault`, see [memory-safety.md](memory-safety.md)).
+Licence files keep the original copyright notices, and
+comments may still cite upstream issues ("upstream dmd issue 1234") as history.
 
 `Destiny-Org/host-compilers` (public) holds the host compiler; it is not
 checked out.
@@ -153,6 +163,37 @@ Known flaky: Fate's `std.process` spawns child processes (`sleep 10000`) and
 sometimes fails when the debug and release runs go in parallel. A failed run can
 leave those processes behind, after which it fails every time; kill them
 (`pkill -x sleep`) and rerun.
+
+### No warnings
+
+A build or test run must print no warnings and no deprecations, in the
+compiler, druntime, Fate, DES, serve-destiny or the examples. A warning
+is treated like a failing test:
+
+- Fix the cause. Do not hide it with `-d`, `-wi` or by removing `-w`.
+- If the warning is the thing a test checks (a test that exercises a
+  deprecated feature on purpose), the test must check for it: put the
+  expected message in the test's expected output, so it is no longer
+  stray output and the test fails if it changes.
+- druntime's `importc_compare` test compares the C bindings with the
+  system's C headers. A difference there is a binding bug: fix the binding
+  so it matches the headers without breaking older C libraries (for
+  example, bind to a versioned symbol). Add an entry to `knownProblems`
+  only when the two cannot match, and give the reason in the entry.
+
+To check a log for stray output:
+
+```
+grep -iE "warning|deprecation" build.log
+```
+
+### Gaps are fixed, not listed
+
+A gap found while working is fixed as part of the work, not left as a
+note: a missing test, an untested path, a stale doc, a workflow that still
+uses upstream D, a binding that no longer matches the C library, a
+`FIXME`. When it is too large to fix in the same change, open an issue
+for it and say so in the change description.
 
 ### After changing the compiler
 

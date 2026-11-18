@@ -1,4 +1,4 @@
-// REQUIRED_ARGS: -preview=in
+// REQUIRED_ARGS:
 /*
 TEST_OUTPUT:
 ---

@@ -1,4 +1,4 @@
-/* REQUIRED_ARGS: -preview=in -mcpu=native
+/* REQUIRED_ARGS: -mcpu=native
  */
 
 @system: import core.stdc.time;

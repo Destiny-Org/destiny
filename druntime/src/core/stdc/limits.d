@@ -47,7 +47,10 @@ enum CHAR_MIN       = char.min;
 ///
 enum CHAR_MAX       = char.max;
 ///
-enum MB_LEN_MAX     = 2;
+version (CRuntime_Glibc)
+    enum MB_LEN_MAX = 16; // glibc: longest multibyte character in any locale
+else
+    enum MB_LEN_MAX = 2;
 ///
 enum SHRT_MIN       = short.min;
 ///

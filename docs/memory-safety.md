@@ -96,7 +96,21 @@ For a whole code base written for upstream D, the compiler switch
 `-revert=safedefault` restores upstream's default everywhere (the Destiny
 compiler uses it to build its own sources; see [self-hosting.md](self-hosting.md)).
 The libraries shipped with the compiler (druntime and Fate) keep the `@safe`
-default even then, since they are prebuilt with it.
+default even then, since they are prebuilt with it. Two rules keep code written
+for upstream D building unchanged with the switch:
+
+- **Templates follow the module that uses them.** Code a Fate template
+  generates for your module (for example the class methods of
+  `std.typecons.AutoImplement`) gets your module's default, not Fate's.
+- **Overrides of methods that are `@safe` only by default are not checked.**
+  `Object.toString`, `opEquals`, `opCmp` and `toHash` are `@safe` in Destiny
+  because of the default. An override without an attribute of its own would
+  normally inherit `@safe` (as in upstream D); under the switch its body is
+  left unchecked instead, and `@safe` code can still call it through `Object`.
+  Overrides of methods that are explicitly `@safe` stay `@safe`.
+
+These were found by building dub and serve-destiny (both written for upstream
+D) with Destiny.
 
 ```d
 @system:
@@ -156,6 +170,7 @@ void ok() @safe
 | `scope T* p` | `p` is not stored anywhere that outlives the call |
 | `return scope T* p` | `p` may be returned; the result has `p`'s lifetime |
 | `return ref T x` | a reference to `x` may be returned (or stored in the first parameter) |
+| `in T x` | `scope const T x`, passed by `ref` when that is cheaper (large or non-copyable types) |
 
 Inside templates, lambdas and `auto` functions these are inferred.
 
@@ -169,6 +184,21 @@ int sum(scope const(int)[] a) @safe
     return s;
 }
 ```
+
+### `in` parameters
+
+`in` always means `scope const` (upstream's `-preview=in`, always on in
+Destiny). An `in` parameter cannot be stored, returned or escaped, and the
+compiler may pass it by reference instead of copying it:
+
+```d
+void log(in string msg) @safe { writeln(msg); }   // fine
+string keep;
+void save(in string msg) @safe { keep = msg; }    // error: scope value stored
+```
+
+Use `const` instead of `in` when the function needs to keep the value.
+`-preview=in` is still accepted and has no effect.
 
 ### `opApply`
 

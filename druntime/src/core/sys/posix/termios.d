@@ -952,10 +952,32 @@ int     tcsetattr(int, int, const scope termios*);
 
 version (CRuntime_Glibc)
 {
-    speed_t cfgetispeed(const scope termios*);
-    speed_t cfgetospeed(const scope termios*);
-    int     cfsetispeed(termios*, speed_t);
-    int     cfsetospeed(termios*, speed_t);
+    // glibc 2.42 added new versions of the speed functions that take the
+    // baud rate itself (B9600 == 9600). The B* constants here are the
+    // traditional codes (B9600 == 13), which the new versions read as
+    // 13 baud. Bind to the original versions, present in every glibc,
+    // which keep taking the codes.
+    version (X86_64)
+    {
+        pragma(mangle, "cfgetispeed@GLIBC_2.2.5") speed_t cfgetispeed(const scope termios*);
+        pragma(mangle, "cfgetospeed@GLIBC_2.2.5") speed_t cfgetospeed(const scope termios*);
+        pragma(mangle, "cfsetispeed@GLIBC_2.2.5") int     cfsetispeed(termios*, speed_t);
+        pragma(mangle, "cfsetospeed@GLIBC_2.2.5") int     cfsetospeed(termios*, speed_t);
+    }
+    else version (X86)
+    {
+        pragma(mangle, "cfgetispeed@GLIBC_2.0") speed_t cfgetispeed(const scope termios*);
+        pragma(mangle, "cfgetospeed@GLIBC_2.0") speed_t cfgetospeed(const scope termios*);
+        pragma(mangle, "cfsetispeed@GLIBC_2.0") int     cfsetispeed(termios*, speed_t);
+        pragma(mangle, "cfsetospeed@GLIBC_2.0") int     cfsetospeed(termios*, speed_t);
+    }
+    else
+    {
+        speed_t cfgetispeed(const scope termios*);
+        speed_t cfgetospeed(const scope termios*);
+        int     cfsetispeed(termios*, speed_t);
+        int     cfsetospeed(termios*, speed_t);
+    }
     int     tcdrain(int);
     int     tcflow(int, int);
     int     tcflush(int, int);

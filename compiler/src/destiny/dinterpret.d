@@ -533,8 +533,17 @@ private Expression interpretFunction(UnionExp* pue, FuncDeclaration fd, InterSta
                 eSink.error(earg.loc, "global `%s` cannot be passed as an `out` parameter at compile time", earg.toErrMsg());
                 return CTFEExp.cantexp;
             }
-            // Convert all reference arguments into lvalue references
-            earg = interpretRegion(earg, istate, CTFEGoal.LValue);
+            /* An `in` parameter may be passed by reference (`in` means
+             * `scope const`, always on in Destiny). It cannot be written
+             * through or escape, so CTFE passes the value. Taking an
+             * lvalue instead breaks when the argument is an rvalue: the
+             * compiler stores it in a temporary (`__rvalue`), and when CTFE
+             * starts from an initializer the temporary's stack frame ends
+             * before the call runs.
+             */
+            const bool inByRef = (fparam.storageClass & STC.in_) != 0;
+            // Convert all other reference arguments into lvalue references
+            earg = interpretRegion(earg, istate, inByRef ? CTFEGoal.RValue : CTFEGoal.LValue);
             if (CTFEExp.isCantExp(earg))
                 return earg;
         }

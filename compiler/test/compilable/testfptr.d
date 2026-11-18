@@ -107,7 +107,9 @@ void bug3797()
     static assert(!is(typeof( purefunc = nonpurefunc )));
     static assert( is(typeof( nonpurefunc = purefunc )));
 
-    // Cannot convert parameter storage classes (except const to in and in to const)
+    // Cannot convert parameter storage classes, except `in` to `const`.
+    // `in` means `scope const` in Destiny: a function that keeps its
+    // argument (`const`) cannot be used where the argument must not escape.
 
     void function(const(int)) constfunc;
     void function(in int) infunc;
@@ -115,7 +117,7 @@ void bug3797()
     void function(ref int) reffunc;
     void function(lazy int) lazyfunc;
 
-    static assert(is(typeof( infunc = constfunc )));
+    static assert(!is(typeof( infunc = constfunc )));
     static assert(is(typeof( constfunc = infunc )));
 
     static assert(!is(typeof( infunc = outfunc )));
@@ -250,7 +252,9 @@ void bug3797dg()
     static assert(!is(typeof( purefunc = nonpurefunc )));
     static assert( is(typeof( nonpurefunc = purefunc )));
 
-    // Cannot convert parameter storage classes (except const to in and in to const)
+    // Cannot convert parameter storage classes, except `in` to `const`.
+    // `in` means `scope const` in Destiny: a function that keeps its
+    // argument (`const`) cannot be used where the argument must not escape.
 
     void delegate(const(int)) constfunc;
     void delegate(in int) infunc;
@@ -258,7 +262,7 @@ void bug3797dg()
     void delegate(ref int) reffunc;
     void delegate(lazy int) lazyfunc;
 
-    static assert(is(typeof( infunc = constfunc )));
+    static assert(!is(typeof( infunc = constfunc )));
     static assert(is(typeof( constfunc = infunc )));
 
     static assert(!is(typeof( infunc = outfunc )));

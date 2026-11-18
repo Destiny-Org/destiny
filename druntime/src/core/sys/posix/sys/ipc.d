@@ -65,8 +65,13 @@ version (linux)
         gid_t   gid;
         uid_t   cuid;
         gid_t   cgid;
-        ushort  mode;
-        ushort  __pad1;
+        version (CRuntime_Glibc)
+            mode_t  mode;   // glibc: mode_t, no __pad1 (glibc bug 18231)
+        else
+        {
+            ushort  mode;
+            ushort  __pad1;
+        }
         ushort  __seq;
         ushort  __pad2;
         c_ulong __unused1;

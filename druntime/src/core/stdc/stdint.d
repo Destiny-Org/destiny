@@ -551,9 +551,19 @@ enum wchar_t WCHAR_MIN = wchar_t.min;
 enum wchar_t WCHAR_MAX = wchar_t.max;
 
 ///
-enum wint_t  WINT_MIN  = wint_t.min;
-///
-enum wint_t  WINT_MAX  = wint_t.max;
+version (CRuntime_Glibc)
+{
+    // glibc's wint_t is unsigned int; druntime's wint_t is dchar of the same size
+    enum wint_t  WINT_MIN  = cast(wint_t) 0;
+    enum wint_t  WINT_MAX  = cast(wint_t) uint.max;
+}
+else
+{
+    ///
+    enum wint_t  WINT_MIN  = wint_t.min;
+    ///
+    enum wint_t  WINT_MAX  = wint_t.max;
+}
 
 ///
 alias INT8_C  = _typify!int8_t ;

@@ -679,7 +679,7 @@ else
             FE_OVERFLOW     = 0x08, ///
             FE_UNDERFLOW    = 0x10, ///
             FE_INEXACT      = 0x20, ///
-            FE_ALL_EXCEPT   = 0x3F, ///
+            FE_ALL_EXCEPT   = 0x3D, /// all standard flags; FE_DENORMAL is not included (as in glibc and musl)
         }
 
         // The ix87 FPU supports all of the four defined rounding modes.
@@ -702,7 +702,7 @@ else
             FE_OVERFLOW     = 0x08, ///
             FE_UNDERFLOW    = 0x10, ///
             FE_INEXACT      = 0x20, ///
-            FE_ALL_EXCEPT   = 0x3F, ///
+            FE_ALL_EXCEPT   = 0x3D, /// all standard flags; FE_DENORMAL is not included (as in glibc and musl)
         }
 
         // The ix87 FPU supports all of the four defined rounding modes.

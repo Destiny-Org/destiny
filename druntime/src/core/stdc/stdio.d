@@ -90,7 +90,7 @@ else version (CRuntime_Glibc)
         ///
         FOPEN_MAX    = 16,
         ///
-        FILENAME_MAX = 4095,
+        FILENAME_MAX = 4096, // glibc: PATH_MAX
         ///
         TMP_MAX      = 238328,
         ///
@@ -421,10 +421,15 @@ else version (CRuntime_Glibc)
         /*_IO_wide_data*/ void* _wide_data;
         _IO_FILE *_freeres_list;
         void *_freeres_buf;
-        size_t __pad5;
+        _IO_FILE** _prevchain;  // was __pad5 before glibc 2.42 (same size)
         int _mode;
+        static if ((void*).sizeof == 8)
+            int _unused3;
+        ulong _total_written;   // was part of _unused2 before glibc 2.42
+        static if ((void*).sizeof == 4)
+            int _unused3;
 
-        char[15 * int.sizeof - 4 * (void*).sizeof - size_t.sizeof] _unused2;
+        char[12 * int.sizeof - 5 * (void*).sizeof] _unused2;
     }
 
     ///

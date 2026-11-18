@@ -7927,7 +7927,8 @@ Type addStorageClass(Type type, STC stc)
             (stc & STC.nothrow_ && !t.isNothrow) ||
             (stc & STC.nogc && !t.isNogc) ||
             (stc & STC.scope_ && !t.isScopeQual) ||
-            (stc & STC.safe && t.trust < TRUST.trusted))
+            (stc & STC.safe && t.trust < TRUST.trusted) ||
+            (stc & STC.trusted && t.trust < TRUST.trusted))
         {
             // Klunky to change these
             auto tf = new TypeFunction(t.parameterList, t.next, t.linkage, STC.none);
@@ -7956,6 +7957,8 @@ Type addStorageClass(Type type, STC stc)
                 tf.isNogc = true;
             if (stc & STC.safe)
                 tf.trust = TRUST.safe;
+            else if (stc & STC.trusted)
+                tf.trust = TRUST.trusted; // Destiny: see findVtblIndex (-revert=safedefault)
             if (stc & STC.scope_)
             {
                 tf.isScopeQual = true;

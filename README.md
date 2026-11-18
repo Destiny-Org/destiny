@@ -68,6 +68,42 @@ make -j$(nproc) test            # compiler, druntime and Fate tests
 See [compiler/test/README.md](compiler/test/README.md) for running single
 tests.
 
+## Using D packages
+
+Destiny does not fetch packages from code.dlang.org. Code written for D
+does not build in Destiny without changes:
+
+- Destiny is `@safe` by default; D is `@system` by default.
+- Scope checking is always on, so code that lets references to stack
+  memory escape is rejected.
+- `in` parameters always mean `scope const`.
+
+Packages come from `Destiny-Org/packages` instead, where each one has been
+ported and tested with Destiny. Add one with DES (`des`, Destiny's package
+manager) as usual:
+
+```
+des add vibe-d
+des build
+```
+
+To use a D package that is not there yet, port it:
+
+1. Copy its source at a release tag, with its license file.
+2. Build it with Destiny and fix the errors. While porting, build with
+   `-revert=safedefault` first to see only the scope and `in` errors:
+
+   ```
+   DFLAGS="-revert=safedefault" des build
+   ```
+
+   (`-revert=safedefault` makes functions without `@safe`, `@trusted` or
+   `@system` `@system` again, as in D). Then fix the `@safe` errors and
+   build without it.
+3. Add it to `Destiny-Org/packages`.
+
+The steps, license rules and tags are in [docs/packages.md](docs/packages.md).
+
 ## Layout
 
 | Directory | Description |

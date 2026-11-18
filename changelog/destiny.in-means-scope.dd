@@ -1,0 +1,17 @@
+`in` parameters always mean `scope const`
+
+The behaviour of upstream's `-preview=in` is now always on. An `in`
+parameter is `scope const`: it may not be stored, returned or otherwise
+escaped, and it may be passed by reference instead of being copied.
+
+---
+string keep;
+void save(in string s) @safe { keep = s; }   // error: scope parameter stored
+void save2(const string s) @safe { keep = s; } // fine
+---
+
+$(UL
+$(LI `-preview=in` is still accepted but has no effect.)
+$(LI `in ref` is an error, as with `-preview=in`; write `in` alone.)
+$(LI Code that kept an `in` argument must change the parameter to `const`.)
+)

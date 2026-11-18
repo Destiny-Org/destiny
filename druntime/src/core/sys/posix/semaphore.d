@@ -56,19 +56,12 @@ version (CRuntime_Glibc)
 {
     version(linux)
     {
-        private alias __atomic_lock_t = int;
-
-        private struct _pthread_fastlock
+        // glibc's sem_t is an opaque union of this size
+        private enum __SIZEOF_SEM_T = (void*).sizeof == 8 ? 32 : 16;
+        union sem_t
         {
-            c_long            __status;
-            __atomic_lock_t   __spinlock;
-        }
-
-        struct sem_t
-        {
-            _pthread_fastlock __sem_lock;
-            int               __sem_value;
-            void*             __sem_waiting;
+            byte[__SIZEOF_SEM_T] __size;
+            c_long __align;
         }
     }
     else version (Hurd)

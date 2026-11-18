@@ -1,5 +1,4 @@
-// REQUIRED_ARGS: -preview=in
-
+// REQUIRED_ARGS:
 void main ()
 {
     testWithAllAttributes();

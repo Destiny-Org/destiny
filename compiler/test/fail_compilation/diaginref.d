@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=in
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/diaginref.d(11): Error: attribute `ref` is redundant with previously-applied `in`

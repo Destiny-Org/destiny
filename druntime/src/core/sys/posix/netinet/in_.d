@@ -123,7 +123,7 @@ version (CRuntime_Glibc)
         IPPROTO_UDP  = 17,
         IPPROTO_IDP  = 22,
         IPPROTO_ND   = 77,
-        IPPROTO_MAX  = 256
+        IPPROTO_MAX  = 263   // Linux 5.16+ (IPPROTO_MPTCP = 262)
     }
 
     enum : uint

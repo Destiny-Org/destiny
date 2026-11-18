@@ -94,6 +94,7 @@ $(ROOT)/unknown_gc.done: stderr_exp="'unknowngc'"
 $(ROOT)/static_dtor.done: stderr_exp="dtor_called_more_than_once"
 $(ROOT)/static_dtor.done: private negate=!
 $(ROOT)/future_message.done: stderr_exp="exception I have a custom message. exception exception "
+$(ROOT)/future_message$(DOTEXE): compile_exp='implicitly overrides `@__future` base class method'
 $(ROOT)/catch_in_finally.done: stderr_exp="success."
 $(ROOT)/rt_trap_exceptions.done: stderr_exp="object.Exception@src/rt_trap_exceptions.d(12): this will abort"
 $(ROOT)/rt_trap_exceptions.done: stderr_exp2="src/rt_trap_exceptions.d:8 main"

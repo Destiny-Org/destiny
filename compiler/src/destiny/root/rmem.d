@@ -714,7 +714,7 @@ class BumpPointerGC : GCInterface
     {
         gc.removeRoot(p);
     }
-    @property RootIterator rootIter() @nogc
+    @property RootIterator rootIter() @nogc @trusted // only forwards; @trusted fits both the host GC interface (@system) and Destiny's (@safe)
     {
         return gc.rootIter();
     }
@@ -728,7 +728,7 @@ class BumpPointerGC : GCInterface
         gc.removeRange(p);
     }
 
-    @property RangeIterator rangeIter() @nogc
+    @property RangeIterator rangeIter() @nogc @trusted // only forwards (see rootIter)
     {
         return gc.rangeIter();
     }

@@ -115,8 +115,16 @@ $(OBJDIR)/%$(DOTEXE): %.c | $(OBJDIR)
 	$(LINK.c) $< $(extra_sources) $(extra_ldlibs) $(LDLIBS) $(OUTPUT_OPTION)
 $(OBJDIR)/%$(DOTEXE): %.cpp | $(OBJDIR)
 	$(LINK.cpp) $< $(extra_sources) $(extra_ldlibs) $(LDLIBS) $(OUTPUT_OPTION)
+# A test that uses a deprecated feature on purpose sets `compile_exp` to the
+# message the compiler must print. The output is kept in $@.compile instead of
+# the build log, and the build fails if the message is missing.
 $(OBJDIR)/%$(DOTEXE): %.d $(DMD_DEP) $(DRUNTIME_DEP)
-	$(LINK.d) $< $(extra_sources) $(extra_ldlibs.d) $(LDLIBS.d) $(OUTPUT_OPTION.d)
+	$(if $(compile_exp),@echo Building $@; \
+	$(LINK.d) $< $(extra_sources) $(extra_ldlibs.d) $(LDLIBS.d) $(OUTPUT_OPTION.d) > $@.compile 2>&1 \
+	  || { cat $@.compile; exit 1; }; \
+	grep -qF $(compile_exp) $@.compile \
+	  || { cat $@.compile; echo 'Expected compiler message not printed: '$(compile_exp); exit 1; }, \
+	$(LINK.d) $< $(extra_sources) $(extra_ldlibs.d) $(LDLIBS.d) $(OUTPUT_OPTION.d))
 $(OBJDIR)/%$(DOTEXE): %.o | $(OBJDIR)
 	$(LINK.o) $< $(extra_sources) $(extra_ldlibs) $(LDLIBS) $(OUTPUT_OPTION)
 

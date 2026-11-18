@@ -278,6 +278,16 @@ private bool checkNewEscape(ref Scope sc, Expressions* es, bool gag)
  *    recursionLimit = recursion limit for printing the reason
  *    positive = true for telling why v is scope, false for telling why v is not scope
  */
+/***************************************
+ * Destiny: after a scope error, print one line saying how to fix it.
+ * The usual fixes are to promise not to keep the reference (`scope`),
+ * to give the target its own copy, or to mark the code `@system`.
+ */
+private void printScopeFix(E)(E printFunc, Loc loc, const(char)* fix)
+{
+    printFunc(loc, "fix: %s, or mark the function `@system` if this is intended", fix);
+}
+
 public
 void printScopeReason(E)(E printFunc, VarDeclaration v, int recursionLimit, bool positive)
 {
@@ -367,6 +377,16 @@ bool checkParamArgumentEscape(ref Scope sc, FuncDeclaration fdc, Identifier parI
             auto eSink = global.errorSink;
             printScopeReason(previewSupplementalFunc(eSink, sc.isDeprecated(), sc.useDIP1000), vPar, 10, false);
             printScopeReason(previewSupplementalFunc(eSink, sc.isDeprecated(), sc.useDIP1000), v, 10, true);
+            if (!gag)
+            {
+                auto sup = previewSupplementalFunc(eSink, sc.isDeprecated(), sc.useDIP1000);
+                if (isThis)
+                    printScopeFix(sup, arg.loc, "mark the member function `scope` if it does not keep `this`");
+                else if (fdc && parId)
+                    printScopeFix(sup, arg.loc, "mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`)");
+                else
+                    printScopeFix(sup, arg.loc, "mark the parameter `scope` if it is not kept, or pass a copy (`.dup`)");
+            }
         }
     }
 
@@ -735,6 +755,9 @@ bool checkAssignEscape(ref Scope sc, Expression e, bool gag, bool byRef)
                 if (sc.setUnsafeDIP1000(gag, ae.loc, msg, v, va))
                 {
                     result = true;
+                    if (!gag)
+                        printScopeFix(previewSupplementalFunc(global.errorSink, sc.isDeprecated(), sc.useDIP1000), ae.loc,
+                            "store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`)");
                     return;
                 }
             }
@@ -1195,6 +1218,8 @@ private bool checkReturnEscapeImpl(ref Scope sc, Expression e, bool refs, bool g
                         previewErrorFunc(eSink, sc.isDeprecated(), sc.useDIP1000)(e.loc,
                             "scope parameter `%s` may not be returned", v.toChars()
                         );
+                        printScopeFix(previewSupplementalFunc(eSink, sc.isDeprecated(), sc.useDIP1000), e.loc,
+                            "mark the parameter `return scope` so the result may refer to it, or return a copy (`.dup`)");
                         result = true;
                         return;
                     }
@@ -1205,6 +1230,9 @@ private bool checkReturnEscapeImpl(ref Scope sc, Expression e, bool refs, bool g
                     if (sc.setUnsafeDIP1000(gag, e.loc, "returning scope variable `%s`", v))
                     {
                         printScopeReason(previewSupplementalFunc(eSink, sc.isDeprecated(), sc.useDIP1000), v, 10, true);
+                        if (!gag)
+                            printScopeFix(previewSupplementalFunc(eSink, sc.isDeprecated(), sc.useDIP1000), e.loc,
+                                "return a copy (`.dup`) or memory allocated with `new`");
                         result = true;
                         return;
                     }

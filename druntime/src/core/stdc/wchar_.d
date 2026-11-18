@@ -189,8 +189,17 @@ else
     ///
     alias wint_t = wchar_t;
 
-    ///
-    enum wchar_t WEOF = 0xFFFF;
+    version (CRuntime_Glibc)
+    {
+        /// glibc: `wint_t` is a 32-bit unsigned int and WEOF is 0xFFFF_FFFF,
+        /// which is what fgetwc etc. return at end of file.
+        enum wint_t WEOF = cast(wint_t) 0xFFFF_FFFF;
+    }
+    else
+    {
+        ///
+        enum wchar_t WEOF = 0xFFFF;
+    }
 }
 
 version (CRuntime_Glibc)

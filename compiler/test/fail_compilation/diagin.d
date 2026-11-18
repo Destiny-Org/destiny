@@ -1,5 +1,5 @@
 /*
-REQUIRED_ARGS: -preview=in
+REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/diagin.d(15): Error: function `foo` is not callable using argument types `()`

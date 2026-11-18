@@ -1581,7 +1581,11 @@ private bool getsSafeDefault(FuncDeclaration fd, Scope* sc)
 {
     if (sc.inCfile)
         return false;
-    if (!global.params.safeDefault && !isBundledLibraryModule(sc._module))
+    // for code generated from a template (e.g. Fate's AutoImplement), what
+    // counts is the module the instance is generated for, not where the
+    // template is written
+    if (!global.params.safeDefault
+        && !isBundledLibraryModule(sc.tinst && sc.minst ? sc.minst : sc._module))
         return false;   // -revert=safedefault: upstream's default
     if (sc.stc & STC.system)
         return false;   // under a `@system:` label: upstream's default
@@ -1992,6 +1996,15 @@ int findVtblIndex(FuncDeclaration fd, Dsymbol[] vtbl)
         //printf("stc = %llx\n", mismatchstc);
         if (mismatchstc)
         {
+            // Destiny: with -revert=safedefault (code written for upstream's
+            // @system default), an override of a method that is @safe only by
+            // Destiny's default (e.g. Object.toString) becomes @trusted rather
+            // than @safe: still callable from @safe code, but its body is not
+            // checked, as the switch promises. Overrides of explicitly @safe
+            // methods stay @safe, as in upstream.
+            if ((mismatchstc & STC.safe) && mismatch.safeByDefault && !global.params.safeDefault
+                && !isBundledLibraryModule(fd.getModule()))
+                mismatchstc = (mismatchstc & ~STC.safe) | STC.trusted;
             // Fix it by modifying the type to add the storage classes
             fd.type = fd.type.addStorageClass(mismatchstc);
             bestvi = mismatchvi;
