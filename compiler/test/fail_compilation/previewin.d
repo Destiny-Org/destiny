@@ -12,9 +12,13 @@ fail_compilation/previewin.d(6): Error: function `takeFunction` is not callable 
 fail_compilation/previewin.d(6):        cannot pass argument `(ref scope const(real) x) { }` of type `void function(ref scope const(real) x) pure nothrow @nogc @safe` to parameter `void function(in real) f`
 fail_compilation/previewin.d(11):        `previewin.takeFunction(void function(in real) f)` declared here
 fail_compilation/previewin.d(15): Error: assigning scope variable `arg` to global variable `myGlobal` is not allowed in a `@safe` function
+fail_compilation/previewin.d(15):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 fail_compilation/previewin.d(16): Error: assigning scope variable `arg` to global variable `myGlobal` is not allowed in a `@safe` function
+fail_compilation/previewin.d(16):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 fail_compilation/previewin.d(17): Error: scope parameter `arg` may not be returned
+fail_compilation/previewin.d(17):        fix: mark the parameter `return scope` so the result may refer to it, or return a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/previewin.d(18): Error: assigning scope variable `arg` to `ref` variable `escape` with longer lifetime is not allowed in a `@safe` function
+fail_compilation/previewin.d(18):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 fail_compilation/previewin.d(22): Error: escaping a reference to parameter `arg` by returning `arg` is not allowed in a `@safe` function
 fail_compilation/previewin.d(22):        perhaps annotate the parameter with `return`
 ----

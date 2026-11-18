@@ -2,10 +2,11 @@
 REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
-fail_compilation/test20881.d(20): Error: returning scope variable `this` is not allowed in a `@safe` function
-fail_compilation/test20881.d(27): Error: assigning address of variable `s` to `global` with longer lifetime is not allowed in a `@safe` function
+fail_compilation/test20881.d(21): Error: returning scope variable `this` is not allowed in a `@safe` function
+fail_compilation/test20881.d(21):        fix: return a copy (`.dup`) or memory allocated with `new`, or mark the function `@system` if this is intended
 fail_compilation/test20881.d(28): Error: assigning address of variable `s` to `global` with longer lifetime is not allowed in a `@safe` function
 fail_compilation/test20881.d(29): Error: assigning address of variable `s` to `global` with longer lifetime is not allowed in a `@safe` function
+fail_compilation/test20881.d(30): Error: assigning address of variable `s` to `global` with longer lifetime is not allowed in a `@safe` function
 ---
 */
 @safe:

@@ -1,10 +1,11 @@
 /* REQUIRED_ARGS:
    TEST_OUTPUT:
 ---
-fail_compilation/test14238.d(22): Error: scope parameter `fn` may not be returned
-fail_compilation/test14238.d(25): Error: function `test14238.bar` is `@nogc` yet allocates closure for `bar()` with the GC
-fail_compilation/test14238.d(27):        function `baz` closes over variable `x`
-fail_compilation/test14238.d(26):        `x` declared here
+fail_compilation/test14238.d(23): Error: scope parameter `fn` may not be returned
+fail_compilation/test14238.d(23):        fix: mark the parameter `return scope` so the result may refer to it, or return a copy (`.dup`), or mark the function `@system` if this is intended
+fail_compilation/test14238.d(26): Error: function `test14238.bar` is `@nogc` yet allocates closure for `bar()` with the GC
+fail_compilation/test14238.d(28):        function `baz` closes over variable `x`
+fail_compilation/test14238.d(27):        `x` declared here
 ---
 */
 // upstream issue 14238

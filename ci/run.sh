@@ -13,13 +13,13 @@ if [ -z ${OS_NAME+x} ] ; then echo "Variable 'OS_NAME' needs to be set."; exit 1
 if [ -z ${FULL_BUILD+x} ] ; then echo "Variable 'FULL_BUILD' needs to be set."; exit 1; fi
 # MODEL: 32|64
 if [ -z ${MODEL+x} ] ; then echo "Variable 'MODEL' needs to be set."; exit 1; fi
-# HOST_DC: dmd[-<version>]|ldc[-<version>]|gdmd-<version>
+# HOST_DC: destiny[-<version>] (a released Destiny compiler, see Destiny-Org/host-compilers)
 if [ ! -z ${HOST_DC+x} ] ; then HOST_DC=${HOST_DC}; fi
 if [ -z ${HOST_DC+x} ] ; then echo "Variable 'HOST_DC' needs to be set."; exit 1; fi
 # CI_DFLAGS: Optional flags to pass to the build
 if [ -z ${CI_DFLAGS+x} ] ; then CI_DFLAGS=""; fi
 
-CURL_USER_AGENT="DMD-CI $(curl --version | head -n 1)"
+CURL_USER_AGENT="Destiny-CI $(curl --version | head -n 1)"
 build_path=generated/$OS_NAME/release/$MODEL
 
 if [ "$OS_NAME" == "linux" ]; then
@@ -67,7 +67,7 @@ build() {
         make -j$N MODEL=$MODEL HOST_DC=$DMD HOST_DFLAGS="$CI_DFLAGS" BUILD=debug destiny-unittest
     fi
     make -j$N MODEL=$MODEL HOST_DC=$DMD HOST_DFLAGS="$CI_DFLAGS" ENABLE_RELEASE=${ENABLE_RELEASE:-1}
-    make -j$N -C ../fate MODEL=$MODEL
+    make -j$N -C ../fate MODEL=$MODEL DMD_DIR="$PWD"
     if [ "$OS_NAME" != "windows" ]; then
         deactivate # deactivate host compiler
     fi
@@ -88,18 +88,18 @@ rebuild() {
     # The nested folder hierarchy is needed to conform to those specified in
     # the generated destiny.conf
     mkdir -p _${build_path}
-    cp $build_path/destiny$dotexe _${build_path}/host_dmd$dotexe
+    cp $build_path/destiny$dotexe _${build_path}/host_destiny$dotexe
     cp $build_path/$conf _${build_path}/
     rm -rf $build_path
-    make -j$N MODEL=$MODEL HOST_DC=_${build_path}/host_dmd$dotexe HOST_DFLAGS="$CI_DFLAGS" ENABLE_RELEASE=${ENABLE_RELEASE:-1} destiny
+    make -j$N MODEL=$MODEL HOST_DC=_${build_path}/host_destiny$dotexe HOST_DFLAGS="$CI_DFLAGS" ENABLE_RELEASE=${ENABLE_RELEASE:-1} destiny
 
     # compare binaries to test reproducible build
     if [ $compare -eq 1 ]; then
-        if ! diff _${build_path}/host_dmd $build_path/destiny; then
-            $NM _${build_path}/host_dmd > a
+        if ! diff _${build_path}/host_destiny $build_path/destiny; then
+            $NM _${build_path}/host_destiny > a
             $NM $build_path/destiny > b
             diff -u a b
-            echo "Self-compilation failed: generated dmd created a different binary than host dmd!"
+            echo "Self-compilation failed: the rebuilt destiny differs from the destiny that built it!"
             exit 1
         fi
     fi
@@ -137,18 +137,18 @@ test_druntime() {
 
 # build and run Fate unit tests
 test_fate() {
-    make -j$N -C ../fate MODEL=$MODEL unittest
+    make -j$N -C ../fate MODEL=$MODEL DMD_DIR="$PWD" unittest
 
     if [ "$OS_NAME" == "windows" ]; then
         echo "FIXME: Skipping publictests on Windows (test failures)"
     else
-        make -j$N -C ../fate MODEL=$MODEL publictests
-        make -j$N -C ../fate MODEL=$MODEL publictests NO_BOUNDSCHECKS=1
+        make -j$N -C ../fate MODEL=$MODEL DMD_DIR="$PWD" publictests
+        make -j$N -C ../fate MODEL=$MODEL DMD_DIR="$PWD" publictests NO_BOUNDSCHECKS=1
 
         if [ "$OS_NAME" == "osx" ]; then
             echo "FIXME: Skipping betterc on macOS (Apple linker assertions)"
         else
-            make -j$N -C ../fate MODEL=$MODEL betterc
+            make -j$N -C ../fate MODEL=$MODEL DMD_DIR="$PWD" betterc
         fi
     fi
 }
@@ -186,31 +186,9 @@ testsuite() {
 }
 
 
-# install D host compiler
+# install the host compiler: a released Destiny compiler
 install_host_compiler() {
-  if [ "${HOST_DC:0:5}" == "gdmd-" ] ; then
-    local gdc_version="${HOST_DC:5}"
-    if [ ! -e ~/host-compilers/gdc-$gdc_version/activate ] ; then
-        sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-        sudo apt-get update
-        sudo apt-get install -y gdc-$gdc_version
-        # fetch the gdmd wrapper for CLI compatibility with dmd
-        sudo curl -fsSL -A "$CURL_USER_AGENT" --connect-timeout 5 --speed-time 30 --speed-limit 1024 --retry 5 --retry-delay 5 https://raw.githubusercontent.com/D-Programming-GDC/GDMD/master/dmd-script -o /usr/bin/gdmd-$gdc_version
-        sudo chmod +x /usr/bin/gdmd-$gdc_version
-        # fake install script and create a fake 'activate' script
-        mkdir -p ~/host-compilers/gdc-$gdc_version
-        echo "export DMD=gdmd-$gdc_version" > ~/host-compilers/gdc-$gdc_version/activate
-        echo "deactivate(){ echo;}" >> ~/host-compilers/gdc-$gdc_version/activate
-    fi
-  elif type -P apk &>/dev/null; then
-    # fake install script and create a fake 'activate' script
-    mkdir -p ~/host-compilers/$HOST_DC
-    echo "export DMD=$HOST_DC" > ~/host-compilers/$HOST_DC/activate
-    echo "deactivate(){ echo;}" >> ~/host-compilers/$HOST_DC/activate
-  else
-    # upstream D compiler from the Destiny-Org mirror
     bash ci/host_compiler.sh "$HOST_DC" ~/host-compilers > /dev/null
-  fi
 }
 
 # Define commands

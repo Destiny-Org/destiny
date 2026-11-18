@@ -2,6 +2,7 @@
  * TEST_OUTPUT:
 ---
 fail_compilation/test17764.d(109): Error: assigning scope variable `c` to global variable `global` is not allowed in a `@safe` function
+fail_compilation/test17764.d(109):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 ---
  */
 

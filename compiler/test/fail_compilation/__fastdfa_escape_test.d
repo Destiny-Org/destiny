@@ -5,6 +5,7 @@ REQUIRED_ARGS: -preview=fastdfa
 TEST_OUTPUT:
 ---
 fail_compilation/__fastdfa_escape_test.d(1007): Error: scope parameter `base` may not be returned
+fail_compilation/__fastdfa_escape_test.d(1007):        fix: mark the parameter `return scope` so the result may refer to it, or return a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/__fastdfa_escape_test.d(1014): Error: Escape of unknown lifetime via throw
 fail_compilation/__fastdfa_escape_test.d(1013):        Pointer stored in variable `myEx` has potentially escaped
 fail_compilation/__fastdfa_escape_test.d(1020): Error: Escape of unknown lifetime via throw

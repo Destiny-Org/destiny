@@ -2,7 +2,8 @@
 REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
-fail_compilation/fail24212.d(29): Error: assigning reference to local variable `n` to non-scope parameter `p` calling `fun` is not allowed in a `@safe` function
+fail_compilation/fail24212.d(30): Error: assigning reference to local variable `n` to non-scope parameter `p` calling `fun` is not allowed in a `@safe` function
+fail_compilation/fail24212.d(30):        fix: mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 ---
 +/
 class Base

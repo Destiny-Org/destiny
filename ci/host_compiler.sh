@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Installs a host compiler (an upstream D compiler used to build destiny).
+# Installs a host compiler: a released Destiny compiler, used to build this one.
 #
 # Usage: ci/host_compiler.sh <spec> [install-root]
-#   spec: dmd, dmd-latest, dmd-<version>, ldc, ldc-latest, ldmd2, ldc-<version>
+#   spec: destiny, destiny-latest, destiny-<version>
 #
-# The installer and the list of available versions live in the public
-# Destiny-Org/host-compilers repository, next to the mirrored compilers.
+# The installer and the list of released versions live in the public
+# Destiny-Org/host-compilers repository, next to the destiny64 packages.
 # This wrapper downloads that installer and runs it.
 
 set -euo pipefail

@@ -22,10 +22,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # The host compiler, from Destiny-Org/host-compilers
-        version: [ 2.113.1 ]
+        # The host compiler: a released Destiny compiler, from Destiny-Org/host-compilers
+        version: [ 2.115.0-master ]
 
-    name: Build with dmd-${{ matrix.version }}
+    name: Build Destiny (host compiler destiny-${{ matrix.version }})
     runs-on: ubuntu-22.04
     timeout-minutes: 10
     env:
@@ -34,7 +34,7 @@ jobs:
       # for ci/run.sh:
       OS_NAME: linux
       MODEL: 64
-      HOST_DC: dmd-${{ matrix.version }}
+      HOST_DC: destiny-${{ matrix.version }}
       # N is set dynamically below
       FULL_BUILD: true
     defaults:

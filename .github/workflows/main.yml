@@ -23,33 +23,16 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Every job uses the one host compiler, dmd 2.113.1 (Destiny-Org/host-compilers)
-          # Linux
+          # Every job builds with a released Destiny compiler (Destiny-Org/host-compilers).
+          # destiny64 is packaged for Linux x86_64 only, so only Linux jobs run;
+          # macOS, Windows and FreeBSD return once Destiny is packaged for them.
           - job_name: Ubuntu 22.04 x64
             os: ubuntu-22.04
-            host_dmd: dmd-2.113.1
+            host_dc: destiny-2.115.0-master
           - job_name: Ubuntu 22.04 x86
             os: ubuntu-22.04
             model: 32
-            host_dmd: dmd-2.113.1
-          # macOS
-          - job_name: macOS 15 x64
-            os: macos-15-intel
-            host_dmd: dmd-2.113.1
-          # Windows
-          - job_name: Windows x64
-            os: windows-2022
-            host_dmd: dmd-2.113.1
-          - job_name: Windows x86
-            os: windows-2022
-            host_dmd: dmd-2.113.1
-            model: 32
-          # FreeBSD (VM on Ubuntu)
-          - job_name: FreeBSD 14.4 x64
-            os: ubuntu-latest
-            vm_os: freebsd
-            vm_os_version: '14.4'
-            host_dmd: dmd-2.113.1
+            host_dc: destiny-2.115.0-master
     name: ${{ matrix.job_name }}
     runs-on: ${{ matrix.os }}
     container: ${{ matrix.container_image }}
@@ -60,7 +43,7 @@ jobs:
       # for ci/run.sh:
       OS_NAME: ${{ matrix.vm_os || (startsWith(matrix.os, 'ubuntu') && 'linux' || (startsWith(matrix.os, 'macos') && 'osx' || (startsWith(matrix.os, 'windows') && 'windows' || ''))) }}
       MODEL: ${{ matrix.model || '64' }}
-      HOST_DC: ${{ matrix.host_dmd }}
+      HOST_DC: ${{ matrix.host_dc }}
       # N is set dynamically below
       FULL_BUILD: true
       # for coverage:
@@ -111,7 +94,7 @@ jobs:
       - name: 'Windows: Install host compiler'
         if: runner.os == 'Windows'
         shell: bash
-        run: bash ci/host_compiler.sh "${{ matrix.host_dmd }}"
+        run: bash ci/host_compiler.sh "${{ matrix.host_dc }}"
 
       - name: Set up repos
         env:
@@ -174,7 +157,7 @@ jobs:
       DESTINY_REPO_TOKEN: ${{ secrets.DESTINY_REPO_TOKEN }}
       OS_NAME: linux
       MODEL: 64
-      HOST_DC: dmd-2.113.1
+      HOST_DC: destiny-2.115.0-master
       FULL_BUILD: true
     defaults:
       run:

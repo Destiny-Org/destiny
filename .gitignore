@@ -65,3 +65,6 @@ untracked_files/
 
 /compiler/backend/old/*
 /compiler/backend/new/*
+
+# documentation is kept locally, not on GitHub
+docs/

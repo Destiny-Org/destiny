@@ -3,6 +3,7 @@ REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/retscope2.d(102): Error: assigning scope variable `s` to `ref` variable `p` with longer lifetime is not allowed in a `@safe` function
+fail_compilation/retscope2.d(102):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 fail_compilation/retscope2.d(107): Error: assigning address of variable `s` to `p` with longer lifetime is not allowed in a `@safe` function
 ---
 */
@@ -37,6 +38,7 @@ void test200()
 TEST_OUTPUT:
 ---
 fail_compilation/retscope2.d(302): Error: assigning scope variable `a` to return scope `b` is not allowed in a `@safe` function
+fail_compilation/retscope2.d(302):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 ---
 */
 
@@ -53,6 +55,7 @@ fail_compilation/retscope2.d(302): Error: assigning scope variable `a` to return
 TEST_OUTPUT:
 ---
 fail_compilation/retscope2.d(403): Error: assigning scope variable `a` to return scope `c` is not allowed in a `@safe` function
+fail_compilation/retscope2.d(403):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 ---
 */
 
@@ -70,6 +73,7 @@ fail_compilation/retscope2.d(403): Error: assigning scope variable `a` to return
 TEST_OUTPUT:
 ---
 fail_compilation/retscope2.d(504): Error: returning scope variable `c` is not allowed in a `@safe` function
+fail_compilation/retscope2.d(504):        fix: return a copy (`.dup`) or memory allocated with `new`, or mark the function `@system` if this is intended
 ---
 */
 
@@ -87,7 +91,9 @@ fail_compilation/retscope2.d(504): Error: returning scope variable `c` is not al
 TEST_OUTPUT:
 ---
 fail_compilation/retscope2.d(604): Error: assigning scope variable `__param_0` to non-scope anonymous parameter calling `foo600` is not allowed in a `@safe` function
+fail_compilation/retscope2.d(604):        fix: mark the parameter `scope` if it is not kept, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/retscope2.d(604): Error: assigning scope variable `__param_1` to non-scope anonymous parameter calling `foo600` is not allowed in a `@safe` function
+fail_compilation/retscope2.d(604):        fix: mark the parameter `scope` if it is not kept, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/retscope2.d(614): Error: template instance `retscope2.test600!(int*, int*)` error instantiating
 ---
 */
@@ -231,6 +237,7 @@ TEST_OUTPUT:
 ---
 fail_compilation/retscope2.d(1107): Error: returning scope variable `dg` is not allowed in a `@safe` function
 fail_compilation/retscope2.d(1106):        `dg` inferred `scope` because of `dg = &s.foo`
+fail_compilation/retscope2.d(1107):        fix: return a copy (`.dup`) or memory allocated with `new`, or mark the function `@system` if this is intended
 ---
 */
 

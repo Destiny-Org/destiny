@@ -1,0 +1,13 @@
+Destiny is built with Destiny
+
+The host compiler (`HOST_DC`) is now a released Destiny compiler: a destiny64
+package from Destiny-Org/host-compilers, installed with
+`ci/host_compiler.sh destiny-<version>`. No upstream D compiler is used to
+build Destiny, its libraries or tools.
+
+$(UL
+$(LI Without `HOST_DC`, the build uses `destiny` from `PATH`.)
+$(LI With a Destiny host, the Makefiles build `build.d`, `run.d` and the
+druntime test extractor with `-revert=safedefault`.)
+$(LI CI runs on Linux only, the one platform destiny64 is packaged for.)
+)

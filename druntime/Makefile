@@ -21,7 +21,9 @@ QUIET:=
 TOOLS_DIR=../../tools
 # libdparse for tests_extractor, from the sibling Destiny-Org/d-scanner checkout
 LIBDPARSE=../../d-scanner/libdparse
-HOST_DC?=dmd
+HOST_DC?=destiny
+# tools built with the host are written for D's @system default
+HOST_REVERT:=$(shell $(HOST_DC) -revert=h 2>/dev/null | grep -q safedefault && echo -revert=safedefault)
 # Destiny-Org repository base URL; DESTINY_REPO_TOKEN (read access) is used when set,
 # so CI can clone the private repositories
 ifneq ($(DESTINY_REPO_TOKEN),)
@@ -602,7 +604,7 @@ $(LIBDPARSE)/src:
 	git clone --depth=1 $(GIT_HOME)/d-scanner $(LIBDPARSE)/..
 
 $(TESTS_EXTRACTOR): $(TOOLS_DIR)/tests_extractor.d | $(LIB) $(LIBDPARSE)/src
-	$(HOST_DC) -i -I$(LIBDPARSE)/src $< -of$@
+	$(HOST_DC) $(HOST_REVERT) -i -I$(LIBDPARSE)/src $< -of$@
 
 test_extractor: $(TESTS_EXTRACTOR)
 

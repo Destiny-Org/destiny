@@ -29,21 +29,14 @@ ECTAGS_FILES = compiler/dmd/*.[chd] compiler/dmd/backend/*.[chd] compiler/dmd/ro
 EXE:=$(if $(findstring windows,$(OS)),.exe,)
 
 ifeq (,$(HOST_DC))
-    ifneq (,$(HOST_DC))
-        $(warning The HOST_DC variable is deprecated, please use HOST_DC instead.)
-        HOST_DC:=$(HOST_DC)
-    else ifneq (,$(DMD))
+    ifneq (,$(DMD))
         HOST_DC:=$(DMD)
-    else ifneq (,$(shell which dmd 2>/dev/null))
-        HOST_DC:=dmd$(EXE)
-    else ifneq (,$(shell which ldmd2 2>/dev/null))
-        HOST_DC:=ldmd2$(EXE)
-    else ifneq (,$(shell which gdmd 2>/dev/null))
-        HOST_DC:=gdmd$(EXE)
+    else ifneq (,$(shell which destiny 2>/dev/null))
+        HOST_DC:=destiny$(EXE)
     else
-        $(error Couldn't find a D host compiler. Please set variable HOST_DC to the path to a dmd/ldmd2/gdmd executable)
+        $(error Couldn't find a host compiler. Install a released Destiny compiler (ci/host_compiler.sh destiny) or set HOST_DC to its path)
     endif
-    $(info Using D host compiler: $(HOST_DC))
+    $(info Using host compiler: $(HOST_DC))
 endif
 export HOST_DC
 
@@ -66,11 +59,15 @@ endif
 
 all: destiny druntime
 
+# build.d and run.d are written for D's @system default. A Destiny host
+# compiler (one that knows -revert=safedefault) needs the switch for them.
+HOST_REVERT:=$(shell $(HOST_DC) -revert=h 2>/dev/null | grep -q safedefault && echo -revert=safedefault)
+
 $(BUILD_EXE): compiler/src/build.d
-	$(HOST_DC) -of$@ -g $<
+	$(HOST_DC) $(HOST_REVERT) -of$@ -g $<
 
 $(RUN_EXE): compiler/test/run.d
-	$(HOST_DC) -of$@ -g -i -Icompiler/test -release $<
+	$(HOST_DC) $(HOST_REVERT) -of$@ -g -i -Icompiler/test -release $<
 
 auto-tester-build:
 	echo "Auto-Tester has been disabled"

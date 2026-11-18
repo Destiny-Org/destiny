@@ -2,8 +2,9 @@
 REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
-fail_compilation/test17422.d(24): Error: returning scope variable `p` is not allowed in a `@safe` function
-fail_compilation/test17422.d(23):        `p` inferred `scope` because of `p = rc.get()`
+fail_compilation/test17422.d(25): Error: returning scope variable `p` is not allowed in a `@safe` function
+fail_compilation/test17422.d(24):        `p` inferred `scope` because of `p = rc.get()`
+fail_compilation/test17422.d(25):        fix: return a copy (`.dup`) or memory allocated with `new`, or mark the function `@system` if this is intended
 ---
 */
 struct RC

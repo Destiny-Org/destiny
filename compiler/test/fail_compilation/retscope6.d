@@ -26,6 +26,7 @@ int* test() @safe
 fail_compilation/retscope6.d(7034): Error: assigning address of variable `i` to `s` with longer lifetime is not allowed in a `@safe` function
 fail_compilation/retscope6.d(7035): Error: assigning address of variable `i` to `s` with longer lifetime is not allowed in a `@safe` function
 fail_compilation/retscope6.d(7025): Error: assigning scope variable `__param_2` to `ref` variable `t` with longer lifetime is not allowed in a `@safe` function
+fail_compilation/retscope6.d(7025):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 fail_compilation/retscope6.d(7037): Error: template instance `retscope6.S.emplace4!(int*)` error instantiating
 fail_compilation/retscope6.d(7037): Error: assigning address of variable `i` to `s` with longer lifetime is not allowed in a `@safe` function
 ---
@@ -77,12 +78,16 @@ void foo() @safe
 ---
 fail_compilation/retscope6.d(8016): Error: assigning address of variable `i` to `p` with longer lifetime is not allowed in a `@safe` function
 fail_compilation/retscope6.d(8031): Error: assigning reference to local variable `i` to non-scope parameter `p` calling `betty` is not allowed in a `@safe` function
+fail_compilation/retscope6.d(8031):        fix: mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/retscope6.d(8031): Error: assigning reference to local variable `j` to non-scope parameter `q` calling `betty` is not allowed in a `@safe` function
 fail_compilation/retscope6.d(8023):        `q` is not `scope` because of `p = q`
+fail_compilation/retscope6.d(8031):        fix: mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/retscope6.d(8048): Error: assigning reference to local variable `i` to non-scope parameter `p` calling `archie` is not allowed in a `@safe` function
 fail_compilation/retscope6.d(8039):        `p` is not `scope` because of `r = p`
+fail_compilation/retscope6.d(8048):        fix: mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/retscope6.d(8048): Error: assigning reference to local variable `j` to non-scope parameter `q` calling `archie` is not allowed in a `@safe` function
 fail_compilation/retscope6.d(8038):        `q` is not `scope` because of `p = q`
+fail_compilation/retscope6.d(8048):        fix: mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 ---
 */
 
@@ -178,6 +183,7 @@ T9 testfred()
 /* TEST_OUTPUT:
 ---
 fail_compilation/retscope6.d(10003): Error: assigning scope variable `values` to non-scope parameter `values` calling `escape` is not allowed in a `@safe` function
+fail_compilation/retscope6.d(10003):        fix: mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 ---
 */
 
@@ -241,6 +247,7 @@ const(int)* f_c_20150() @safe nothrow
 /* TEST_OUTPUT:
 ---
 fail_compilation/retscope6.d(13010): Error: assigning reference to local variable `str` to non-scope parameter `x` calling `f_throw` is not allowed in a `@safe` function
+fail_compilation/retscope6.d(13010):        fix: mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 ---
 */
 
@@ -262,7 +269,9 @@ void escape_throw_20150() @safe
 ---
 fail_compilation/retscope6.d(14019): Error: assigning scope variable `scopePtr` to non-scope parameter `x` calling `noInfer23021` is not allowed in a `@safe` function
 fail_compilation/retscope6.d(14009):        `x` is not `scope` because of `*escapeHole = cast(const(int)*)x`
+fail_compilation/retscope6.d(14019):        fix: mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/retscope6.d(14022): Error: returning scope variable `scopePtr` is not allowed in a `@safe` function
+fail_compilation/retscope6.d(14022):        fix: return a copy (`.dup`) or memory allocated with `new`, or mark the function `@system` if this is intended
 ---
 */
 
@@ -299,8 +308,9 @@ ref int escape23021() @safe
 
 /* TEST_OUTPUT:
 ---
-fail_compilation/retscope6.d(14050): Error: assigning scope variable `z` to non-scope parameter `y` calling `f23294` is not allowed in a `@safe` function
-fail_compilation/retscope6.d(14044):        `y` is not `scope` because of `x = y`
+fail_compilation/retscope6.d(14051): Error: assigning scope variable `z` to non-scope parameter `y` calling `f23294` is not allowed in a `@safe` function
+fail_compilation/retscope6.d(14045):        `y` is not `scope` because of `x = y`
+fail_compilation/retscope6.d(14051):        fix: mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 ---
 */
 

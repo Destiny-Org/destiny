@@ -34,7 +34,9 @@ struct S {
 TEST_OUTPUT:
 ---
 fail_compilation/test17450.d(103): Error: scope parameter `c` may not be returned
+fail_compilation/test17450.d(103):        fix: mark the parameter `return scope` so the result may refer to it, or return a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/test17450.d(106): Error: scope parameter `this` may not be returned
+fail_compilation/test17450.d(106):        fix: mark the member function `return scope` so the result may refer to `this`, or return a copy (`.dup`), or mark the function `@system` if this is intended
 ---
 */
 // upstream issue 17450

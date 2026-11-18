@@ -40,6 +40,7 @@ fail_compilation/fastdfa.d(1301):        Initialize to float.nan or 0 explicitly
 fail_compilation/fastdfa.d(1312): Error: Expression reads from an uninitialized variable, it must be written to at least once before reading
 fail_compilation/fastdfa.d(1311):        For variable `v`
 fail_compilation/fastdfa.d(1319): Error: returning scope variable `b` is not allowed in a `@safe` function
+fail_compilation/fastdfa.d(1319):        fix: return a copy (`.dup`) or memory allocated with `new`, or mark the function `@system` if this is intended
 fail_compilation/fastdfa.d(1339): Error: Stack variable stores a lifetime that exceeds its own
 fail_compilation/fastdfa.d(1331):        For variable `ptr`
 fail_compilation/fastdfa.d(1334):        A pointer to the cell of the variable `buf` has potentially escaped

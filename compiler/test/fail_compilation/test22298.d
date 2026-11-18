@@ -2,8 +2,10 @@
 REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
-fail_compilation/test22298.d(18): Error: assigning scope variable `i` to `p` with longer lifetime is not allowed in a `@safe` function
-fail_compilation/test22298.d(29): Error: assigning scope variable `y` to `x` with longer lifetime is not allowed in a `@safe` function
+fail_compilation/test22298.d(20): Error: assigning scope variable `i` to `p` with longer lifetime is not allowed in a `@safe` function
+fail_compilation/test22298.d(20):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
+fail_compilation/test22298.d(31): Error: assigning scope variable `y` to `x` with longer lifetime is not allowed in a `@safe` function
+fail_compilation/test22298.d(31):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 ---
 */
 

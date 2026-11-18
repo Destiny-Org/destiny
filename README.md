@@ -2,12 +2,9 @@
 
 **destiny** is the reference compiler for the Destiny programming language.
 
-Destiny started as a fork of the D reference compiler (destiny) and its
-runtime. It is heading towards being memory safe by default; see the
-[memory safety design](docs/specs/2026-11-12-destiny-memory-safety-design.md).
-
-For building, testing in the VM, CI and the host compiler, see
-[docs/development.md](docs/development.md).
+Destiny started as a fork of the D reference compiler and its runtime. It
+is memory safe by default: functions are `@safe` unless marked otherwise,
+and scope checking is always on.
 
 ## Repositories
 
@@ -102,7 +99,7 @@ To use a D package that is not there yet, port it:
    build without it.
 3. Add it to `Destiny-Org/packages`.
 
-The steps, license rules and tags are in [docs/packages.md](docs/packages.md).
+Each package keeps its own license and copyright notices.
 
 ## Layout
 

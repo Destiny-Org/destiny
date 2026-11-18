@@ -697,7 +697,7 @@ alias man = makeRule!((builder, rule) {
     alias genMan = methodInit!(BuildRule, (genManBuilder, genManRule) => genManBuilder
         .target(env["G"].buildPath("gen_man"))
         .sources([
-            compilerDir.buildPath("docs", "gen_man.d"),
+            compilerDir.buildPath("man", "gen_man.d"),
             env["D"].buildPath("cli.d")])
         .command([
             env["HOST_DC_RUN"],
@@ -724,7 +724,7 @@ alias man = makeRule!((builder, rule) {
         "man1/dumpobj.1 man1/obj2asm.1 man5/destiny.conf.5".split
         .map!(e => methodInit!(BuildRule, (manFileBuilder, manFileRule) => manFileBuilder
             .target(genManDir.buildPath(e))
-            .sources([compilerDir.buildPath("docs", "man", e)])
+            .sources([compilerDir.buildPath("man", e)])
             .deps([directoryRule(manFileRule.target.dirName)])
             .commandFunction(() => copyAndTouch(manFileRule.sources[0], manFileRule.target))
             .msg("copy '%s' to '%s'".format(manFileRule.sources[0], manFileRule.target))

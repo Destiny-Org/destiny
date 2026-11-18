@@ -3,16 +3,16 @@ REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(22): Error: scope parameter `p` may not be returned
+fail_compilation/retscope.d(22):        fix: mark the parameter `return scope` so the result may refer to it, or return a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/retscope.d(32): Error: escaping a reference to local variable `j` by returning `b ? nested1(& i) : nested2(& j)` is not allowed in a `@safe` function
 fail_compilation/retscope.d(45): Error: assigning scope variable `p` to global variable `q` is not allowed in a `@safe` function
+fail_compilation/retscope.d(45):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 fail_compilation/retscope.d(47): Error: assigning address of variable `i` to `q` with longer lifetime is not allowed in a `@safe` function
 fail_compilation/retscope.d(48): Error: assigning scope variable `a` to global variable `b` is not allowed in a `@safe` function
+fail_compilation/retscope.d(48):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 fail_compilation/retscope.d(49): Error: assigning address of expression temporary returned by `(*fp2)()` to `q` with longer lifetime is not allowed in a `@safe` function
 ---
 */
-
-
-
 
 int* foo1(return scope int* p) @safe { return p; } // ok
 
@@ -107,10 +107,10 @@ int[] bar8(int[] a) @safe
 TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(95): Error: assigning reference to local variable `sa` to non-scope parameter `a` calling `bar8` is not allowed in a `@safe` function
+fail_compilation/retscope.d(95):        fix: mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/retscope.d(123): Error: escaping a reference to local variable `tmp` by returning `foo9(cast(char[])tmp)` is not allowed in a `@safe` function
 ---
 */
-
 char[] foo9(return char[] a) @safe pure nothrow @nogc
 {
     return a;
@@ -150,9 +150,9 @@ S10* test10()
 TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(158): Error: scope parameter `this` may not be returned
+fail_compilation/retscope.d(158):        fix: mark the member function `return scope` so the result may refer to `this`, or return a copy (`.dup`), or mark the function `@system` if this is intended
 ---
 */
-
 class C11
 {
     @safe C11 foo() scope { return this; }
@@ -183,9 +183,9 @@ TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(198): Error: returning scope variable `e` is not allowed in a `@safe` function
 fail_compilation/retscope.d(197):        `e` inferred `scope` because of `e.DG = d`
+fail_compilation/retscope.d(198):        fix: return a copy (`.dup`) or memory allocated with `new`, or mark the function `@system` if this is intended
 ---
 */
-
 struct Escaper
 {
     void* DG;
@@ -220,9 +220,9 @@ void* escape3 (scope void* p) @safe {
 TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(230): Error: scope parameter `ptr` may not be returned
+fail_compilation/retscope.d(230):        fix: mark the parameter `return scope` so the result may refer to it, or return a copy (`.dup`), or mark the function `@system` if this is intended
 ---
 */
-
 alias dg_t = void* delegate () return scope @safe;
 
 void* funretscope(scope dg_t ptr) @safe
@@ -304,11 +304,13 @@ struct S7
 TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(316): Error: scope parameter `p` may not be returned
+fail_compilation/retscope.d(316):        fix: mark the parameter `return scope` so the result may refer to it, or return a copy (`.dup`), or mark the function `@system` if this is intended
 fail_compilation/retscope.d(317): Error: returning `p[]` escapes a reference to parameter `p`
 fail_compilation/retscope.d(320): Error: scope parameter `p` may not be returned
+fail_compilation/retscope.d(320):        fix: mark the parameter `return scope` so the result may refer to it, or return a copy (`.dup`), or mark the function `@system` if this is intended
 ---
 */
-
+#line 312
 int[3] escape8(scope int[] p) @safe { return p[0 .. 3]; } // should not error
 char*[3] escape9(scope char*[] p) @safe { return p[0 .. 3]; }
 
@@ -401,9 +403,9 @@ struct Foo12
 TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(1103): Error: returning scope variable `f` is not allowed in a `@safe` function
+fail_compilation/retscope.d(1103):        fix: return a copy (`.dup`) or memory allocated with `new`, or mark the function `@system` if this is intended
 ---
 */
-
 #line 1100
 int* escape13() @safe
 {
@@ -422,9 +424,9 @@ TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(1205): Error: scope variable `f14` calling non-scope member function `Foo14.foo()` is not allowed in a `@safe` function
 fail_compilation/retscope.d(1204):        `f14` inferred `scope` because of `f14.v = & i`
+fail_compilation/retscope.d(1205):        fix: mark the member function `scope` if it does not keep `this`, or mark the function `@system` if this is intended
 ---
 */
-
 #line 1200
 int* escape14() @safe
 {
@@ -445,9 +447,9 @@ struct Foo14
 TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(1311): Error: assigning scope variable `u2` to `ek` with longer lifetime is not allowed in a `@safe` function
+fail_compilation/retscope.d(1311):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 ---
 */
-
 #line 1300
 @safe struct U13 {
   int* k;
@@ -473,9 +475,9 @@ fail_compilation/retscope.d(1311): Error: assigning scope variable `u2` to `ek` 
 TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(1405): Error: assigning reference to local variable `buf` to non-scope anonymous parameter calling `myprintf` is not allowed in a `@safe` function
+fail_compilation/retscope.d(1405):        fix: mark the parameter `scope` if it is not kept, or pass a copy (`.dup`), or mark the function `@system` if this is intended
 ---
 */
-
 #line 1400
 @trusted extern(C) int myprintf(const(char)*, ...);
 
@@ -681,10 +683,13 @@ int test21()
 TEST_OUTPUT:
 ---
 fail_compilation/retscope.d(1907): Error: assigning scope variable `x` to `ref` variable `this` with longer lifetime is not allowed in a `@safe` function
+fail_compilation/retscope.d(1907):        fix: store a copy (`.dup`) or memory that lives as long as the target (allocated with `new`), or mark the function `@system` if this is intended
 fail_compilation/retscope.d(1913): Error: returning scope variable `x` is not allowed in a `@safe` function
 fail_compilation/retscope.d(1912):        `x` inferred `scope` because of `x = __param_0`
+fail_compilation/retscope.d(1913):        fix: return a copy (`.dup`) or memory allocated with `new`, or mark the function `@system` if this is intended
 ---
 */
+#line 1900
 #line 1900
 struct Constant
 {

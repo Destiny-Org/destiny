@@ -1,0 +1,22 @@
+Scope errors say how to fix them
+
+Every scope error now ends with a `fix:` line:
+
+---
+app.d(12): Error: assigning scope variable `buf` to non-scope parameter `data` calling `send` is not allowed in a `@safe` function
+app.d(12):        fix: mark the parameter `scope` if the function does not keep it, or pass a copy (`.dup`), or mark the function `@system` if this is intended
+---
+
+$(UL
+$(LI Passing to a parameter that may keep the reference: mark the parameter
+`scope`, or pass a copy.)
+$(LI Calling a method that may keep `this`: mark the member function `scope`.)
+$(LI Storing into something that lives longer: store a copy, or memory
+allocated with `new`.)
+$(LI Returning a `scope` parameter: mark it `return scope` (for `this`, the
+member function), or return a copy.)
+$(LI Returning a `scope` variable: return a copy, or memory allocated with
+`new`.)
+)
+
+The line is printed only for reported errors, not during attribute inference.

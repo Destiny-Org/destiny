@@ -1,7 +1,8 @@
 /* REQUIRED_ARGS:
 TEST_OUTPUT:
 ---
-fail_compilation/fix22108.d(12): Error: returning scope variable `p` is not allowed in a `@safe` function
+fail_compilation/fix22108.d(13): Error: returning scope variable `p` is not allowed in a `@safe` function
+fail_compilation/fix22108.d(13):        fix: return a copy (`.dup`) or memory allocated with `new`, or mark the function `@system` if this is intended
 ---
 */
 

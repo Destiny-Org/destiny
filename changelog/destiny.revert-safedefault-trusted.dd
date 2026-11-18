@@ -1,0 +1,15 @@
+`-revert=safedefault`: overrides and interface implementations become `@trusted`
+
+Under `-revert=safedefault`, an override of a method that is `@safe` only
+because of Destiny's default (such as `Object.toString`) was meant to become
+`@trusted`. The `@trusted` was dropped, so the method stayed `@system`. That
+broke classes implementing an interface of druntime or Fate whose methods are
+`@safe` by default, for example `std.concurrency.Scheduler`:
+
+---
+class `S` interface function `void yield() nothrow @safe` is not implemented
+---
+
+Such methods are now `@trusted`: their bodies are not checked, as the switch
+promises, and `@safe` code can still call them through the base class or
+interface.
