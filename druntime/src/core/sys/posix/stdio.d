@@ -694,7 +694,7 @@ else version (CRuntime_UClibc)
 }
 
 version (HaveMemstream)
-unittest
+@system unittest
 { /* fmemopen */
     import core.stdc.string : memcmp;
     byte[10] buf;
@@ -708,7 +708,7 @@ unittest
 }
 
 version (HaveMemstream)
-unittest
+@system unittest
 { /* Note: open_memstream is only useful for writing */
     import core.stdc.string : memcmp;
     char* ptr = null;
@@ -724,7 +724,7 @@ unittest
 
 version (CRuntime_UClibc) {} else
 version (HaveMemstream)
-unittest
+@system unittest
 { /* Note: open_wmemstream is only useful for writing */
     import core.stdc.string : memcmp;
     import core.stdc.wchar_ : fwprintf;

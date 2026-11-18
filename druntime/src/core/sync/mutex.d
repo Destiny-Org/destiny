@@ -311,7 +311,7 @@ package:
 /* @safe nothrow -> see druntime PR 1726 */
 // Test regular usage.
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.thread : Thread;
 
@@ -418,7 +418,7 @@ unittest
 }
 
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.thread;
 

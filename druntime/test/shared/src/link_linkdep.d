@@ -1,4 +1,4 @@
-import liblinkdep;
+@system: import liblinkdep;
 
 void main()
 {

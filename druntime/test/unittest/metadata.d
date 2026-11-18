@@ -1,4 +1,4 @@
-module metadata;
+module metadata; @system: // Destiny: runtime test code
 
 import core.runtime : Runtime, UnitTestResult;
 

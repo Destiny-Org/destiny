@@ -44,7 +44,7 @@ class ProtoGC : GC
     // Call this function when initializing the real GC
     // upon ProtoGC term. This function should be called
     // after the real GC is in place.
-    void transferRangesAndRoots()
+    @system void transferRangesAndRoots()
     {
         // Transfer all ranges
         foreach (ref r; ranges)
@@ -60,7 +60,7 @@ class ProtoGC : GC
         }
     }
 
-    this()
+    @system this()
     {
     }
 
@@ -68,13 +68,13 @@ class ProtoGC : GC
     {
     }
 
-    void enable()
+    @system void enable()
     {
         .gc_init_nothrow();
         .gc_enable();
     }
 
-    void disable()
+    @system void disable()
     {
         .gc_init_nothrow();
         .gc_disable();
@@ -103,25 +103,25 @@ class ProtoGC : GC
         return 0;
     }
 
-    void* malloc(size_t size, uint bits, const scope TypeInfo ti) nothrow
+    @system void* malloc(size_t size, uint bits, const scope TypeInfo ti) nothrow
     {
         .gc_init_nothrow();
         return .gc_malloc(size, bits, ti);
     }
 
-    BlkInfo qalloc(size_t size, uint bits, const scope TypeInfo ti) nothrow
+    @system BlkInfo qalloc(size_t size, uint bits, const scope TypeInfo ti) nothrow
     {
         .gc_init_nothrow();
         return .gc_qalloc(size, bits, ti);
     }
 
-    void* calloc(size_t size, uint bits, const scope TypeInfo ti) nothrow
+    @system void* calloc(size_t size, uint bits, const scope TypeInfo ti) nothrow
     {
         .gc_init_nothrow();
         return .gc_calloc(size, bits, ti);
     }
 
-    void* realloc(void* p, size_t size, uint bits, const scope TypeInfo ti) nothrow
+    @system void* realloc(void* p, size_t size, uint bits, const scope TypeInfo ti) nothrow
     {
         .gc_init_nothrow();
         return .gc_realloc(p, size, bits, ti);
@@ -132,7 +132,7 @@ class ProtoGC : GC
         return 0;
     }
 
-    size_t reserve(size_t size) nothrow
+    @system size_t reserve(size_t size) nothrow
     {
         .gc_init_nothrow();
         return .gc_reserve(size);
@@ -170,12 +170,12 @@ class ProtoGC : GC
     }
 
 
-    void addRoot(void* p) nothrow @nogc
+    @system void addRoot(void* p) nothrow @nogc
     {
         roots.insertBack(Root(p));
     }
 
-    void removeRoot(void* p) nothrow @nogc
+    @system void removeRoot(void* p) nothrow @nogc
     {
         foreach (ref r; roots)
         {
@@ -193,7 +193,7 @@ class ProtoGC : GC
         return &rootsApply;
     }
 
-    private int rootsApply(scope int delegate(ref Root) nothrow dg)
+    @system private int rootsApply(scope int delegate(ref Root) nothrow dg)
     {
         foreach (ref r; roots)
         {
@@ -203,12 +203,12 @@ class ProtoGC : GC
         return 0;
     }
 
-    void addRange(void* p, size_t sz, const TypeInfo ti = null) nothrow @nogc
+    @system void addRange(void* p, size_t sz, const TypeInfo ti = null) nothrow @nogc
     {
         ranges.insertBack(Range(p, p + sz, cast() ti));
     }
 
-    void removeRange(void* p) nothrow @nogc
+    @system void removeRange(void* p) nothrow @nogc
     {
         foreach (ref r; ranges)
         {
@@ -226,7 +226,7 @@ class ProtoGC : GC
         return &rangesApply;
     }
 
-    private int rangesApply(scope int delegate(ref Range) nothrow dg)
+    @system private int rangesApply(scope int delegate(ref Range) nothrow dg)
     {
         foreach (ref r; ranges)
         {
@@ -270,7 +270,7 @@ class ProtoGC : GC
         return false;
     }
 
-    void initThread(ThreadBase thread) nothrow
+    @system void initThread(ThreadBase thread) nothrow
     {
         if (_initThreadFn is null)
         {

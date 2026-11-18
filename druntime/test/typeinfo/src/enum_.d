@@ -1,6 +1,6 @@
 // upstream issue 21441
 
-int dtorCount;
+@system: int dtorCount;
 int postblitCount;
 
 struct S

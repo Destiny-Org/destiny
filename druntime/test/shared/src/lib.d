@@ -1,4 +1,4 @@
-module lib;
+module lib; @system: // Destiny: runtime test code
 
 // use _assert instead of assert to also fail in release builds
 void _assert(bool cond)

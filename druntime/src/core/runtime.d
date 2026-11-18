@@ -107,7 +107,7 @@ private
 }
 
 
-shared static this()
+@system shared static this()
 {
     // NOTE: Some module ctors will run before this handler is set, so it's
     //       still possible the app could exit without a stack trace.  If
@@ -147,7 +147,7 @@ struct Runtime
      * Returns:
      *  true if initialization succeeded or false if initialization failed.
      */
-    static bool initialize()
+    @system static bool initialize()
     {
         return !!rt_init();
     }
@@ -161,7 +161,7 @@ struct Runtime
      * Returns:
      *  true if termination succeeded or false if termination failed.
      */
-    static bool terminate()
+    @system static bool terminate()
     {
         return !!rt_term();
     }
@@ -172,7 +172,7 @@ struct Runtime
      * Returns:
      *  The arguments supplied when this process was started.
      */
-    extern(C) pragma(mangle, "rt_args") static @property string[] args();
+    extern(C) pragma(mangle, "rt_args") static @property string[] args() @trusted; // safe interface: returns the program arguments
 
     /**
      * Returns the unprocessed C arguments supplied when the process was started.
@@ -402,13 +402,13 @@ struct Runtime
      * }
      * ---------
      */
-    static @property void extendedModuleUnitTester( ExtendedModuleUnitTester h )
+    @system static @property void extendedModuleUnitTester( ExtendedModuleUnitTester h )
     {
         sm_extModuleUnitTester = h;
     }
 
     /// Ditto
-    static @property void moduleUnitTester( ModuleUnitTester h )
+    @system static @property void moduleUnitTester( ModuleUnitTester h )
     {
         sm_moduleUnitTester = h;
     }
@@ -425,7 +425,7 @@ struct Runtime
      *  The current legacy module unit tester handler or null if none has been
      *  set.
      */
-    static @property ModuleUnitTester moduleUnitTester()
+    @system static @property ModuleUnitTester moduleUnitTester()
     {
         return sm_moduleUnitTester;
     }
@@ -440,7 +440,7 @@ struct Runtime
      *  The current  module unit tester handler or null if none has been
      *  set.
      */
-    static @property ExtendedModuleUnitTester extendedModuleUnitTester()
+    @system static @property ExtendedModuleUnitTester extendedModuleUnitTester()
     {
         return sm_extModuleUnitTester;
     }
@@ -462,7 +462,7 @@ private:
  * Note:
  *  This is a dmd specific setting.
  */
-extern (C) void dmd_coverSourcePath(string path);
+extern (C) void dmd_coverSourcePath(string path) @trusted; // safe interface: coverage setting
 
 /**
  * Set output path for coverage reports.
@@ -472,7 +472,7 @@ extern (C) void dmd_coverSourcePath(string path);
  * Note:
  *  This is a dmd specific setting.
  */
-extern (C) void dmd_coverDestPath(string path);
+extern (C) void dmd_coverDestPath(string path) @trusted; // safe interface: coverage setting
 
 /**
  * Enable merging of coverage reports with existing data.
@@ -482,7 +482,7 @@ extern (C) void dmd_coverDestPath(string path);
  * Note:
  *  This is a dmd specific setting.
  */
-extern (C) void dmd_coverSetMerge(bool flag);
+extern (C) void dmd_coverSetMerge(bool flag) @trusted; // safe interface: coverage setting
 
 /**
  * Set the output file name for profile reports (-profile switch).
@@ -579,7 +579,7 @@ extern (C) void profilegc_setlogfilename(string name);
  * Returns:
  *   A `UnitTestResult` struct indicating the result of running unit tests.
  */
-extern (C) UnitTestResult runModuleUnitTests()
+@system extern (C) UnitTestResult runModuleUnitTests()
 {
     version (Windows)
         import core.sys.windows.stacktrace;
@@ -724,7 +724,7 @@ extern (C) UnitTestResult runModuleUnitTests()
 }
 
 // Whether any module carries information about its individual unittests.
-private bool hasUnitTestInfo()
+@system private bool hasUnitTestInfo()
 {
     foreach ( m; ModuleInfo )
     {
@@ -735,7 +735,7 @@ private bool hasUnitTestInfo()
 }
 
 // Runs each unittest on its own, reporting progress per module on stderr.
-private UnitTestResult runIndividualUnitTests()
+@system private UnitTestResult runIndividualUnitTests()
 {
     import core.exception : AssertError;
     import core.stdc.stdio : FILE, fprintf, stderr;
@@ -880,7 +880,7 @@ version (DefineBacktrace_using_UnwindBacktrace)
  *   or `null`. If called from a finalizer (destructor), always returns `null`
  *   as trace handlers allocate.
  */
-Throwable.TraceInfo defaultTraceHandler( void* ptr = null ) // @nogc
+@system Throwable.TraceInfo defaultTraceHandler( void* ptr = null ) // @nogc; @system: allocates with malloc (a @safe default here made the __traits(compiles) check below silently false)
 {
     // NOTE: with traces now being allocated using C malloc, no need to worry
     // about GC reentrancy. This code left commented out for reference.
@@ -947,7 +947,7 @@ unittest
  *      info = The `TraceInfo` to deallocate. This should only be a value that
  *             was returned by `defaultTraceHandler`.
  */
-void defaultTraceDeallocator(Throwable.TraceInfo info) nothrow
+@system void defaultTraceDeallocator(Throwable.TraceInfo info) nothrow
 {
     if (info is null)
         return;
@@ -965,7 +965,7 @@ else version (Posix) private class DefaultTraceInfo : Throwable.TraceInfo
     import core.stdc.stdlib : free;
     import core.stdc.string : strlen, memchr, memmove;
 
-    this() @nogc
+    @system this() @nogc
     {
         // it may not be 1 but it is good enough to get
         // in CALL instruction address range for backtrace
@@ -1009,7 +1009,7 @@ else version (Posix) private class DefaultTraceInfo : Throwable.TraceInfo
         }
     }
 
-    override int opApply( scope int delegate(ref const(char[])) dg ) const
+    @trusted override int opApply( scope int delegate(ref const(char[])) dg ) const // safe interface: passes each frame to dg
     {
         return opApply( (ref size_t, ref const(char[]) buf)
                         {
@@ -1017,7 +1017,7 @@ else version (Posix) private class DefaultTraceInfo : Throwable.TraceInfo
                         } );
     }
 
-    override int opApply( scope int delegate(ref size_t, ref const(char[])) dg ) const
+    @trusted override int opApply( scope int delegate(ref size_t, ref const(char[])) dg ) const // safe interface: walks the captured frames
     {
         version (linux) enum enableDwarf = true;
         else version (FreeBSD) enum enableDwarf = true;
@@ -1123,7 +1123,7 @@ else version (Posix) private class DefaultTraceInfo : Throwable.TraceInfo
         }
     }
 
-    override string toString() const
+    @trusted override string toString() const // safe interface: formats the stack trace into a new string
     {
         string buf;
         foreach ( i, line; this )
@@ -1139,7 +1139,7 @@ private:
 private:
     static if (hasExecinfo)
     {
-        const(char)[] fixline( const(char)[] buf, return ref char[4096] fixbuf ) const
+        @system const(char)[] fixline( const(char)[] buf, return ref char[4096] fixbuf ) const
         {
             size_t symBeg, symEnd;
 

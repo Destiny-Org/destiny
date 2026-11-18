@@ -186,7 +186,7 @@ version (linux)
         SCM_RIGHTS = 0x01
     }
 
-    extern (D) inout(ubyte)*   CMSG_DATA( return scope inout(cmsghdr)* cmsg ) pure nothrow @nogc { return cast(ubyte*)( cmsg + 1 ); }
+    @system extern (D) inout(ubyte)*   CMSG_DATA( return scope inout(cmsghdr)* cmsg ) pure nothrow @nogc { return cast(ubyte*)( cmsg + 1 ); }
 
     version (CRuntime_Musl)
     {
@@ -218,13 +218,13 @@ version (linux)
     else
     {
         private inout(cmsghdr)* __cmsg_nxthdr(inout(msghdr)*, inout(cmsghdr)*) pure nothrow @nogc;
-        extern (D)  inout(cmsghdr)* CMSG_NXTHDR(inout(msghdr)* msg, inout(cmsghdr)* cmsg) pure nothrow @nogc
+        @system extern (D)  inout(cmsghdr)* CMSG_NXTHDR(inout(msghdr)* msg, inout(cmsghdr)* cmsg) pure nothrow @nogc
         {
             return __cmsg_nxthdr(msg, cmsg);
         }
     }
 
-    extern (D) inout(cmsghdr)* CMSG_FIRSTHDR( inout(msghdr)* mhdr ) pure nothrow @nogc
+    @system extern (D) inout(cmsghdr)* CMSG_FIRSTHDR( inout(msghdr)* mhdr ) pure nothrow @nogc
     {
         return ( cast(size_t)mhdr.msg_controllen >= cmsghdr.sizeof
                              ? cast(inout(cmsghdr)*) mhdr.msg_control

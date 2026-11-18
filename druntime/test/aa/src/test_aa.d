@@ -1,4 +1,4 @@
-void main()
+@system: void main()
 {
     testKeysValues1();
     testKeysValues2();

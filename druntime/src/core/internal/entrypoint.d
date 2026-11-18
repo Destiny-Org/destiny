@@ -18,7 +18,9 @@ this code into the module.
 */
 template _d_cmain()
 {
-    extern(C)
+    // Destiny: the C entry point receives raw argc/argv and calls into the
+    // runtime; it is @system (the D main it runs is checked normally).
+    extern(C) @system
     {
         int _d_run_main(int argc, char **argv, void* mainFunc);
 

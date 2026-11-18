@@ -1,4 +1,4 @@
-import core.runtime, core.time : MonoTime;
+@system: import core.runtime, core.time : MonoTime;
 import core.stdc.stdio : printf;
 
 version (ARM)     version = ARM_Any;

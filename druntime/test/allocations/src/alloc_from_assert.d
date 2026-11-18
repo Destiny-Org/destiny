@@ -1,4 +1,4 @@
-import core.exception;
+@system: import core.exception;
 import core.memory;
 
 class FailFinalization

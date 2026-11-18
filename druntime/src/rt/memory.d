@@ -16,7 +16,7 @@ module rt.memory;
 import core.memory;
 import rt.sections;
 
-void initStaticDataGC()
+@system void initStaticDataGC()
 {
     foreach (ref sg; SectionGroup)
     {

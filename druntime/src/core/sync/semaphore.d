@@ -92,7 +92,7 @@ class Semaphore
      * Throws:
      *  SyncError on error.
      */
-    this( uint count = 0 )
+    @trusted this( uint count = 0 )
     {
         version (Windows)
         {
@@ -119,7 +119,7 @@ class Semaphore
     }
 
 
-    ~this()
+    @trusted ~this()
     {
         version (Windows)
         {
@@ -155,7 +155,7 @@ class Semaphore
      * Throws:
      *  SyncError on error.
      */
-    void wait()
+    @trusted void wait()
     {
         version (Windows)
         {
@@ -212,7 +212,7 @@ class Semaphore
      * Returns:
      *  true if notified before the timeout and false if not.
      */
-    bool wait( Duration period )
+    @trusted bool wait( Duration period )
     in
     {
         assert( !period.isNegative );
@@ -302,7 +302,7 @@ class Semaphore
      * Throws:
      *  SyncError on error.
      */
-    void notify()
+    @trusted void notify()
     {
         version (Windows)
         {
@@ -341,7 +341,7 @@ class Semaphore
      * Returns:
      *  true if the count was above zero and false if not.
      */
-    bool tryWait()
+    @trusted bool tryWait()
     {
         version (Windows)
         {
@@ -400,7 +400,7 @@ protected:
 ////////////////////////////////////////////////////////////////////////////////
 
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.atomic;
     import core.thread;

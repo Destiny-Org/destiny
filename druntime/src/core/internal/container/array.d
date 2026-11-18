@@ -140,7 +140,7 @@ private:
     size_t _length;
 }
 
-unittest
+@system unittest
 {
     Array!size_t ary;
 
@@ -189,7 +189,7 @@ unittest
     assert(ary2.empty);
 }
 
-unittest
+@system unittest
 {
     alias RC = common.RC!();
     Array!RC ary;
@@ -208,7 +208,7 @@ unittest
     assert(cnt == 0);
 }
 
-unittest
+@system unittest
 {
     import core.exception;
     try

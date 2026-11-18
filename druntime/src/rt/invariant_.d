@@ -12,7 +12,7 @@ module rt.invariant_;
 /**
  *
  */
-void _d_invariant(Object o)
+@system void _d_invariant(Object o)
 {   ClassInfo c;
 
     //printf("__d_invariant(%p)\n", o);

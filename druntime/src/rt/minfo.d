@@ -62,7 +62,7 @@ struct ModuleGroup
     // target modules are involved in a cycle.
     //
     // The return value is malloc'd using C, so it must be freed after use.
-    private size_t[] genCyclePath(size_t srcidx, size_t targetidx, int[][] edges) nothrow
+    @system private size_t[] genCyclePath(size_t srcidx, size_t targetidx, int[][] edges) nothrow
     {
         import core.bitop : bt, btc, bts;
 
@@ -166,7 +166,7 @@ struct ModuleGroup
      * Throws:
      *  Exception if it fails.
      */
-    void sortCtors(string cycleHandling) nothrow
+    @system void sortCtors(string cycleHandling) nothrow
     {
         import core.bitop : bts, btr, bt, BitRange;
         import core.internal.container.hashtab;
@@ -530,13 +530,13 @@ struct ModuleGroup
     }
 
     /// ditto
-    void sortCtors()
+    @system void sortCtors()
     {
         import rt.config : rt_configOption;
         sortCtors(rt_configOption("oncycle"));
     }
 
-    void runCtors()
+    @system void runCtors()
     {
         // run independent ctors
         runModuleFuncs!(m => m.ictor)(_modules);
@@ -544,22 +544,22 @@ struct ModuleGroup
         runModuleFuncs!(m => m.ctor)(_ctors);
     }
 
-    void runTlsCtors()
+    @system void runTlsCtors()
     {
         runModuleFuncs!(m => m.tlsctor)(_tlsctors);
     }
 
-    void runTlsDtors()
+    @system void runTlsDtors()
     {
         runModuleFuncsRev!(m => m.tlsdtor)(_tlsctors);
     }
 
-    void runDtors()
+    @system void runDtors()
     {
         runModuleFuncsRev!(m => m.dtor)(_ctors);
     }
 
-    void free()
+    @system void free()
     {
         if (_ctors.ptr)
             .free(_ctors.ptr);
@@ -581,7 +581,7 @@ private:
  * Iterate over all module infos.
  */
 
-int moduleinfos_apply(scope int delegate(immutable(ModuleInfo*)) dg)
+@system int moduleinfos_apply(scope int delegate(immutable(ModuleInfo*)) dg)
 {
     foreach (ref sg; SectionGroup)
     {
@@ -604,7 +604,7 @@ int moduleinfos_apply(scope int delegate(immutable(ModuleInfo*)) dg)
 
 extern (C)
 {
-void rt_moduleCtor()
+@system void rt_moduleCtor()
 {
     foreach (ref sg; SectionGroup)
     {
@@ -613,7 +613,7 @@ void rt_moduleCtor()
     }
 }
 
-void rt_moduleTlsCtor()
+@system void rt_moduleTlsCtor()
 {
     foreach (ref sg; SectionGroup)
     {
@@ -621,7 +621,7 @@ void rt_moduleTlsCtor()
     }
 }
 
-void rt_moduleTlsDtor()
+@system void rt_moduleTlsDtor()
 {
     foreach_reverse (ref sg; SectionGroup)
     {
@@ -629,7 +629,7 @@ void rt_moduleTlsDtor()
     }
 }
 
-void rt_moduleDtor()
+@system void rt_moduleDtor()
 {
     foreach_reverse (ref sg; SectionGroup)
     {
@@ -684,7 +684,7 @@ void runModuleFuncsRev(alias getfp)(const(immutable(ModuleInfo)*)[] modules)
     }
 }
 
-unittest
+@system unittest
 {
     static void assertThrown(T : Throwable, E)(lazy E expr, string msg)
     {

@@ -1,4 +1,4 @@
-import core.runtime;
+@system: import core.runtime;
 
 pragma(inline, false) uint foo(uint val)
 {

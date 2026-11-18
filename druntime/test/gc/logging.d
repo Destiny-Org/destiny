@@ -10,7 +10,7 @@
  * The detector tracks every GC allocation and free, and after each
  * collection prints statistics about the collection.
  */
-import core.gc.monitor;
+@system: import core.gc.monitor;
 import core.memory;
 
 import core.stdc.stdio : printf;

@@ -1,4 +1,4 @@
-import core.memory;
+@system: import core.memory;
 
 // TODO: The following should work, but L10 (second assert) fails.
 version(none) void dotest(T) (T* ptr)

@@ -4,7 +4,7 @@
 // ranges when the range wasn't added. The ProtoGC originally would crash when
 // this happened.
 
-import core.memory;
+@system: import core.memory;
 
 void main()
 {

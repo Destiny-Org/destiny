@@ -179,7 +179,7 @@ package:
     void* _minAddr, _maxAddr;
 }
 
-unittest
+@system unittest
 {
     import core.internal.gc.impl.conservative.gc : PAGESIZE;
 

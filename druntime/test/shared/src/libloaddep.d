@@ -1,4 +1,4 @@
-import core.runtime;
+@system: import core.runtime;
 
 extern(C) alias RunTests = int function();
 

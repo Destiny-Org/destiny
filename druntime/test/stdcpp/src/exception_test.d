@@ -1,4 +1,4 @@
-import core.stdc.string;
+@system: import core.stdc.string;
 import core.stdcpp.exception;
 
 unittest

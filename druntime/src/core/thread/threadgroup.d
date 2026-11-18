@@ -29,7 +29,7 @@ class ThreadGroup
      * Returns:
      *  A reference to the newly created thread.
      */
-    final Thread create(void function() fn)
+    @trusted final Thread create(void function() fn)
     {
         Thread t = new Thread(fn).start();
 
@@ -51,7 +51,7 @@ class ThreadGroup
      * Returns:
      *  A reference to the newly created thread.
      */
-    final Thread create(void delegate() dg)
+    @trusted final Thread create(void delegate() dg)
     {
         Thread t = new Thread(dg).start();
 
@@ -113,7 +113,7 @@ class ThreadGroup
     /**
      * Operates on all threads currently tracked by this object.
      */
-    final int opApply(scope int delegate(ref Thread) dg)
+    @trusted final int opApply(scope int delegate(ref Thread) dg)
     {
         synchronized(this)
         {

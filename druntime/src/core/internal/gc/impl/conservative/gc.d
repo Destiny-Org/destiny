@@ -114,29 +114,29 @@ alias gc_t = GC;
 /* ============================ GC =============================== */
 
 // register GC in C constructor (_STI_)
-private pragma(crt_constructor) void gc_conservative_ctor()
+@system private pragma(crt_constructor) void gc_conservative_ctor()
 {
     _d_register_conservative_gc();
 }
 
-extern(C) void _d_register_conservative_gc()
+@system extern(C) void _d_register_conservative_gc()
 {
     import core.gc.registry;
     registerGCFactory("conservative", &initialize);
 }
 
-private pragma(crt_constructor) void gc_precise_ctor()
+@system private pragma(crt_constructor) void gc_precise_ctor()
 {
     _d_register_precise_gc();
 }
 
-extern(C) void _d_register_precise_gc()
+@system extern(C) void _d_register_precise_gc()
 {
     import core.gc.registry;
     registerGCFactory("precise", &initialize_precise);
 }
 
-private GC initialize()
+@system private GC initialize()
 {
     import core.lifetime : emplace;
 
@@ -147,7 +147,7 @@ private GC initialize()
     return emplace(gc);
 }
 
-private GC initialize_precise()
+@system private GC initialize_precise()
 {
     ConservativeGC.isPrecise = true;
     return initialize();
@@ -179,7 +179,7 @@ class ConservativeGC : GC
      * Throws:
      *  OutOfMemoryError if failed to initialize GC due to not enough memory.
      */
-    this()
+    @system this()
     {
         //config is assumed to have already been initialized
 
@@ -195,7 +195,7 @@ class ConservativeGC : GC
     }
 
 
-    ~this()
+    @system ~this()
     {
         version (linux)
         {
@@ -343,7 +343,7 @@ class ConservativeGC : GC
      *  A bit field containing any bits set for the memory block referenced by
      *  p or zero on error.
      */
-    uint getAttr(void* p) nothrow
+    @system uint getAttr(void* p) nothrow
     {
         if (!p)
         {
@@ -384,7 +384,7 @@ class ConservativeGC : GC
      *  The result of a call to getAttr after the specified bits have been
      *  set.
      */
-    uint setAttr(void* p, uint mask) nothrow
+    @system uint setAttr(void* p, uint mask) nothrow
     {
         if (!p)
         {
@@ -427,7 +427,7 @@ class ConservativeGC : GC
      *  The result of a call to getAttr after the specified bits have been
      *  cleared
      */
-    uint clrAttr(void* p, uint mask) nothrow
+    @system uint clrAttr(void* p, uint mask) nothrow
     {
         if (!p)
         {
@@ -469,7 +469,7 @@ class ConservativeGC : GC
      * Throws:
      *  OutOfMemoryError on allocation failure
      */
-    void *malloc(size_t size, uint bits = 0, const TypeInfo ti = null) nothrow
+    @system void *malloc(size_t size, uint bits = 0, const TypeInfo ti = null) nothrow
     {
         import core.internal.gc.blockmeta;
 
@@ -513,7 +513,7 @@ class ConservativeGC : GC
     //
     // Implementation for malloc and calloc.
     //
-    private void *mallocNoSync(size_t size, uint bits, ref size_t alloc_size, const TypeInfo ti = null) nothrow
+    @system private void *mallocNoSync(size_t size, uint bits, ref size_t alloc_size, const TypeInfo ti = null) nothrow
     {
         assert(size != 0);
 
@@ -540,7 +540,7 @@ class ConservativeGC : GC
         return p;
     }
 
-    BlkInfo qalloc( size_t size, uint bits, const scope TypeInfo ti) nothrow
+    @system BlkInfo qalloc( size_t size, uint bits, const scope TypeInfo ti) nothrow
     {
         // qalloc should not be used for building metadata-containing blocks,
         // so avoid all the checking for bits and array padding.
@@ -579,7 +579,7 @@ class ConservativeGC : GC
      * Throws:
      *  OutOfMemoryError on allocation failure.
      */
-    void *calloc(size_t size, uint bits = 0, const TypeInfo ti = null) nothrow
+    @system void *calloc(size_t size, uint bits = 0, const TypeInfo ti = null) nothrow
     {
         import core.internal.gc.blockmeta;
 
@@ -647,7 +647,7 @@ class ConservativeGC : GC
      * Throws:
      *  OutOfMemoryError on allocation failure.
      */
-    void *realloc(void *p, size_t size, uint bits = 0, const TypeInfo ti = null) nothrow
+    @system void *realloc(void *p, size_t size, uint bits = 0, const TypeInfo ti = null) nothrow
     {
         if (bits & (BlkAttr.APPENDABLE | BlkAttr.FINALIZE))
             // these bits are not allowed. We can't properly manage
@@ -682,7 +682,7 @@ class ConservativeGC : GC
     //
     // bits will be set to the resulting bits of the new block
     //
-    private void *reallocNoSync(void *p, size_t size, ref uint bits, ref size_t alloc_size, const TypeInfo ti = null) nothrow
+    @system private void *reallocNoSync(void *p, size_t size, ref uint bits, ref size_t alloc_size, const TypeInfo ti = null) nothrow
     {
         if (!size)
         {
@@ -814,7 +814,7 @@ class ConservativeGC : GC
     }
 
 
-    size_t extend(void* p, size_t minsize, size_t maxsize, const TypeInfo ti) nothrow
+    @system size_t extend(void* p, size_t minsize, size_t maxsize, const TypeInfo ti) nothrow
     {
         auto result = runLocked!(extendNoSync, extendTime, numExtends)(p, minsize, maxsize, ti);
         if (result != 0) {
@@ -832,7 +832,7 @@ class ConservativeGC : GC
     //
     // Implementation of extend.
     //
-    private size_t extendNoSync(void* p, size_t minsize, size_t maxsize, const TypeInfo ti = null) nothrow
+    @system private size_t extendNoSync(void* p, size_t minsize, size_t maxsize, const TypeInfo ti = null) nothrow
     in
     {
         assert(minsize <= maxsize);
@@ -894,7 +894,7 @@ class ConservativeGC : GC
      * Returns:
      *  The actual number of bytes reserved or zero on error.
      */
-    size_t reserve(size_t size) nothrow
+    @system size_t reserve(size_t size) nothrow
     {
         if (!size)
         {
@@ -908,7 +908,7 @@ class ConservativeGC : GC
     //
     // Implementation of reserve
     //
-    private size_t reserveNoSync(size_t size) nothrow
+    @system private size_t reserveNoSync(size_t size) nothrow
     {
         assert(size != 0);
         assert(gcx);
@@ -926,7 +926,7 @@ class ConservativeGC : GC
      * Params:
      *  p = A pointer to the root of a valid memory block or to null.
      */
-    void free(void *p) nothrow
+    @system void free(void *p) nothrow
     {
         if (!p || _inFinalizer)
         {
@@ -948,7 +948,7 @@ class ConservativeGC : GC
     //
     // Implementation of free.
     //
-    private bool freeNoSync(void *p) nothrow @nogc
+    @system private bool freeNoSync(void *p) nothrow @nogc
     {
         debug(PRINTF) printf("Freeing %#zx\n", cast(size_t) p);
         assert (p);
@@ -1037,7 +1037,7 @@ class ConservativeGC : GC
      * Returns:
      *  The base address of the memory block referenced by p or null on error.
      */
-    void* addrOf(void *p) nothrow
+    @system void* addrOf(void *p) nothrow
     {
         if (!p)
         {
@@ -1051,7 +1051,7 @@ class ConservativeGC : GC
     //
     // Implementation of addrOf.
     //
-    void* addrOfNoSync(void *p) nothrow @nogc
+    @system void* addrOfNoSync(void *p) nothrow @nogc
     {
         if (!p)
         {
@@ -1075,7 +1075,7 @@ class ConservativeGC : GC
      * Returns:
      *  The size in bytes of the memory block referenced by p or zero on error.
      */
-    size_t sizeOf(void *p) nothrow
+    @system size_t sizeOf(void *p) nothrow
     {
         if (!p)
         {
@@ -1089,7 +1089,7 @@ class ConservativeGC : GC
     //
     // Implementation of sizeOf.
     //
-    private size_t sizeOfNoSync(void *p) nothrow @nogc
+    @system private size_t sizeOfNoSync(void *p) nothrow @nogc
     {
         assert (p);
 
@@ -1119,7 +1119,7 @@ class ConservativeGC : GC
      *  Information regarding the memory block referenced by p or BlkInfo.init
      *  on error.
      */
-    BlkInfo query(void *p) nothrow
+    @system BlkInfo query(void *p) nothrow
     {
         if (!p)
         {
@@ -1133,7 +1133,7 @@ class ConservativeGC : GC
     //
     // Implementation of query
     //
-    BlkInfo queryNoSync(void *p) nothrow
+    @system BlkInfo queryNoSync(void *p) nothrow
     {
         assert(p);
 
@@ -1160,7 +1160,7 @@ class ConservativeGC : GC
      * Params:
      *  p = The pointer to be checked.
      */
-    void check(void *p) nothrow
+    @system void check(void *p) nothrow
     {
         if (!p)
         {
@@ -1174,7 +1174,7 @@ class ConservativeGC : GC
     //
     // Implementation of check
     //
-    private void checkNoSync(void *p) nothrow
+    @system private void checkNoSync(void *p) nothrow
     {
         assert(p);
 
@@ -1216,7 +1216,7 @@ class ConservativeGC : GC
      * Params:
      *  p = A pointer into a GC-managed memory block or null.
      */
-    void addRoot(void *p) nothrow @nogc
+    @system void addRoot(void *p) nothrow @nogc
     {
         if (!p)
         {
@@ -1234,7 +1234,7 @@ class ConservativeGC : GC
      * Params:
      *  p = A pointer into a GC-managed memory block or null.
      */
-    void removeRoot(void *p) nothrow @nogc
+    @system void removeRoot(void *p) nothrow @nogc
     {
         if (!p)
         {
@@ -1261,7 +1261,7 @@ class ConservativeGC : GC
      *  sz = The size in bytes of the block to add.
      *  ti = TypeInfo to describe the memory.
      */
-    void addRange(void *p, size_t sz, const TypeInfo ti = null) nothrow @nogc
+    @system void addRange(void *p, size_t sz, const TypeInfo ti = null) nothrow @nogc
     {
         if (!p || !sz)
         {
@@ -1280,7 +1280,7 @@ class ConservativeGC : GC
      * Params:
      *  p  = A pointer to a valid memory address or to null.
      */
-    void removeRange(void *p) nothrow @nogc
+    @system void removeRange(void *p) nothrow @nogc
     {
         if (!p)
         {
@@ -1306,7 +1306,7 @@ class ConservativeGC : GC
      * Params:
      *  segment = address range of a code segment
      */
-    void runFinalizers(const scope void[] segment) nothrow
+    @system void runFinalizers(const scope void[] segment) nothrow
     {
         static void go(Gcx* gcx, const scope void[] segment) nothrow
         {
@@ -1322,7 +1322,7 @@ class ConservativeGC : GC
     }
 
 
-    void collect() nothrow
+    @system void collect() nothrow
     {
         fullCollect();
     }
@@ -1334,7 +1334,7 @@ class ConservativeGC : GC
      * Returns:
      *  The number of pages freed.
      */
-    size_t fullCollect() nothrow
+    @system size_t fullCollect() nothrow
     {
         debug(PRINTF) printf("GC.fullCollect()\n");
 
@@ -1363,7 +1363,7 @@ class ConservativeGC : GC
     /**
      * Minimize free space usage.
      */
-    void minimize() nothrow
+    @system void minimize() nothrow
     {
         static void go(Gcx* gcx) nothrow
         {
@@ -1373,7 +1373,7 @@ class ConservativeGC : GC
     }
 
 
-    core.memory.GC.Stats stats() @safe nothrow @nogc
+    core.memory.GC.Stats stats() @trusted nothrow @nogc // safe interface: returns counters only
     {
         typeof(return) ret;
 
@@ -1454,7 +1454,7 @@ class ConservativeGC : GC
     }
 
     // ARRAY FUNCTIONS
-    void[] getArrayUsed(void *ptr, bool atomic = false) nothrow
+    @system void[] getArrayUsed(void *ptr, bool atomic = false) nothrow
     {
         import core.internal.gc.blockmeta;
         import core.internal.gc.blkcache;
@@ -1550,7 +1550,7 @@ class ConservativeGC : GC
         return __setArrayAllocLength(info, newUsed, atomic, existingUsed, typeInfoSize);
     }
 
-    bool shrinkArrayUsed(void[] slice, size_t existingUsed, bool atomic = false) nothrow
+    @system bool shrinkArrayUsed(void[] slice, size_t existingUsed, bool atomic = false) nothrow
     {
         import core.internal.gc.blockmeta;
         import core.internal.gc.blkcache;
@@ -1642,7 +1642,7 @@ class ConservativeGC : GC
 
     void initThread(ThreadBase t) nothrow @nogc { }
 
-    void cleanupThread(ThreadBase t) nothrow @nogc
+    @system void cleanupThread(ThreadBase t) nothrow @nogc
     {
         cleanupBlkCache(t.tlsGCData);
         t.tlsGCData = null;
@@ -1745,7 +1745,7 @@ immutable PageBits[Bins.B_NUMSMALL] baseOffsetBits = (){
     return bits;
 }();
 
-private void set(ref PageBits bits, size_t i) @nogc pure nothrow
+@system private void set(ref PageBits bits, size_t i) @nogc pure nothrow
 {
     assert(i < PageBits.sizeof * 8);
     bts(bits.ptr, i);
@@ -1783,7 +1783,7 @@ struct Gcx
     SmallObjectPool*[Bins.B_NUMSMALL] recoverPool;
     version (Posix) __gshared Gcx* instance;
 
-    void initialize()
+    @system void initialize()
     {
         (cast(byte*)&this)[0 .. Gcx.sizeof] = 0;
         roots.initialize(0x243F6A8885A308D3UL);
@@ -1812,7 +1812,7 @@ struct Gcx
 
     }
 
-    void Dtor()
+    @system void Dtor()
     {
         if (config.profile)
         {
@@ -1881,7 +1881,7 @@ struct Gcx
     void Invariant() const { }
 
     debug(INVARIANT)
-    invariant
+    @system invariant
     {
         if (initialized)
         {
@@ -1933,7 +1933,7 @@ struct Gcx
     /**
      *
      */
-    void addRoot(void *p) nothrow @nogc
+    @system void addRoot(void *p) nothrow @nogc
     {
         rootsLock.lock();
         scope (failure) rootsLock.unlock();
@@ -1945,7 +1945,7 @@ struct Gcx
     /**
      *
      */
-    void removeRoot(void *p) nothrow @nogc
+    @system void removeRoot(void *p) nothrow @nogc
     {
         rootsLock.lock();
         scope (failure) rootsLock.unlock();
@@ -1957,7 +1957,7 @@ struct Gcx
     /**
      *
      */
-    int rootsApply(scope int delegate(ref Root) nothrow dg) nothrow
+    @system int rootsApply(scope int delegate(ref Root) nothrow dg) nothrow
     {
         rootsLock.lock();
         scope (failure) rootsLock.unlock();
@@ -1970,7 +1970,7 @@ struct Gcx
     /**
      *
      */
-    void addRange(void *pbot, void *ptop, const TypeInfo ti) nothrow @nogc
+    @system void addRange(void *pbot, void *ptop, const TypeInfo ti) nothrow @nogc
     {
         //debug(PRINTF) printf("Thread %x ", pthread_self());
         debug(PRINTF) printf("%p.Gcx::addRange(%p, %p)\n", &this, pbot, ptop);
@@ -1984,7 +1984,7 @@ struct Gcx
     /**
      *
      */
-    void removeRange(void *pbot) nothrow @nogc
+    @system void removeRange(void *pbot) nothrow @nogc
     {
         //debug(PRINTF) printf("Thread %x ", pthread_self());
         debug(PRINTF) printf("Gcx.removeRange(%p)\n", pbot);
@@ -2003,7 +2003,7 @@ struct Gcx
     /**
      *
      */
-    int rangesApply(scope int delegate(ref Range) nothrow dg) nothrow
+    @system int rangesApply(scope int delegate(ref Range) nothrow dg) nothrow
     {
         rangesLock.lock();
         scope (failure) rangesLock.unlock();
@@ -2016,7 +2016,7 @@ struct Gcx
     /**
      *
      */
-    void runFinalizers(const scope void[] segment) nothrow
+    @system void runFinalizers(const scope void[] segment) nothrow
     {
         ConservativeGC._inFinalizer = true;
         scope (failure) ConservativeGC._inFinalizer = false;
@@ -2039,7 +2039,7 @@ struct Gcx
         ConservativeGC._inFinalizer = false;
     }
 
-    Pool* findPool(void* p) pure nothrow @nogc
+    @system Pool* findPool(void* p) pure nothrow @nogc
     {
         return pooltable.findPool(p);
     }
@@ -2048,7 +2048,7 @@ struct Gcx
      * Find base address of block containing pointer p.
      * Returns null if not a gc'd pointer
      */
-    void* findBase(void *p) nothrow @nogc
+    @system void* findBase(void *p) nothrow @nogc
     {
         Pool *pool;
 
@@ -2063,7 +2063,7 @@ struct Gcx
      * Find size of pointer p.
      * Returns 0 if not a gc'd pointer
      */
-    size_t findSize(void *p) nothrow @nogc
+    @system size_t findSize(void *p) nothrow @nogc
     {
         Pool* pool = findPool(p);
         if (pool)
@@ -2074,7 +2074,7 @@ struct Gcx
     /**
      *
      */
-    BlkInfo getInfo(void* p) nothrow
+    @system BlkInfo getInfo(void* p) nothrow
     {
         Pool* pool = findPool(p);
         if (pool)
@@ -2104,7 +2104,7 @@ struct Gcx
      * Mark all memory in the pool as B_FREE.
      * Return the actual number of bytes reserved or 0 on error.
      */
-    size_t reserve(size_t size) nothrow
+    @system size_t reserve(size_t size) nothrow
     {
         size_t npages = (size + PAGESIZE - 1) / PAGESIZE;
 
@@ -2119,7 +2119,7 @@ struct Gcx
     /**
      * Update the thresholds for when to collect the next time
      */
-    void updateCollectThresholds() nothrow
+    @system void updateCollectThresholds() nothrow
     {
         import core.internal.util.math : min, max;
 
@@ -2158,7 +2158,7 @@ struct Gcx
     /**
      * Minimizes physical memory usage by returning free pools to the OS.
      */
-    void minimize() nothrow
+    @system void minimize() nothrow
     {
         debug(PRINTF) printf("Minimizing.\n");
 
@@ -2178,13 +2178,13 @@ struct Gcx
         return isLowOnMem(cast(size_t)mappedPages * PAGESIZE);
     }
 
-    void* alloc(size_t size, ref size_t alloc_size, uint bits, const TypeInfo ti) nothrow
+    @system void* alloc(size_t size, ref size_t alloc_size, uint bits, const TypeInfo ti) nothrow
     {
         return size <= PAGESIZE/2 ? smallAlloc(size, alloc_size, bits, ti)
                                   : bigAlloc(size, alloc_size, bits, ti);
     }
 
-    void* smallAlloc(size_t size, ref size_t alloc_size, uint bits, const TypeInfo ti) nothrow
+    @system void* smallAlloc(size_t size, ref size_t alloc_size, uint bits, const TypeInfo ti) nothrow
     {
         Bins bin = binTable[size];
         auto alignAttr = bits & BlkAttr.ALIGNMENT_MASK;
@@ -2271,7 +2271,7 @@ struct Gcx
      * Allocate a chunk of memory that is larger than a page.
      * Return null if out of memory.
      */
-    void* bigAlloc(size_t size, ref size_t alloc_size, uint bits, const TypeInfo ti = null) nothrow
+    @system void* bigAlloc(size_t size, ref size_t alloc_size, uint bits, const TypeInfo ti = null) nothrow
     {
         debug(PRINTF) printf("In bigAlloc.  Size:  %zd\n", size);
 
@@ -2371,7 +2371,7 @@ struct Gcx
      * Sort it into pooltable[].
      * Return null if failed.
      */
-    Pool *newPool(size_t npages, bool isLargeObject) nothrow
+    @system Pool *newPool(size_t npages, bool isLargeObject) nothrow
     {
         //debug(PRINTF) printf("************Gcx::newPool(npages = %d)****************\n", npages);
 
@@ -2430,7 +2430,7 @@ struct Gcx
     * Returns:
     *           head of a single linked list of new entries
     */
-    List* allocPage(Bins bin) nothrow
+    @system List* allocPage(Bins bin) nothrow
     {
         //debug(PRINTF) printf("Gcx::allocPage(bin = %d)\n", bin);
         foreach (Pool* pool; this.pooltable[])
@@ -2792,7 +2792,7 @@ struct Gcx
     ToScanStack!(void*) toscanRoots;
 
     version (COLLECT_PARALLEL)
-    void collectRoots(void *pbot, void *ptop) scope nothrow
+    @system void collectRoots(void *pbot, void *ptop) scope nothrow
     {
         const minAddr = pooltable.minAddr;
         size_t memSize = pooltable.maxAddr - minAddr;
@@ -2807,7 +2807,7 @@ struct Gcx
     }
 
     // collection step 1: prepare freebits and mark bits
-    void prepare() nothrow
+    @system void prepare() nothrow
     {
         debug(COLLECT_PRINTF) printf("preparing mark.\n");
 
@@ -2846,7 +2846,7 @@ struct Gcx
     }
 
     version (COLLECT_PARALLEL)
-    void collectAllRoots() nothrow
+    @system void collectAllRoots() nothrow
     {
         debug(COLLECT_PRINTF) printf("\tcollect stacks.\n");
         // Scan stacks registers and TLS for each paused thread
@@ -2869,7 +2869,7 @@ struct Gcx
     }
 
     // collection step 3: finalize unreferenced objects, recover full pages with no live objects
-    size_t sweep() nothrow
+    @system size_t sweep() nothrow
     {
         // Free up everything not marked
         debug(COLLECT_PRINTF) printf("\tfree'ing\n");
@@ -3089,7 +3089,7 @@ struct Gcx
         return freedLargePages + freedSmallPages;
     }
 
-    bool recoverPage(SmallObjectPool* pool, size_t pn, Bins bin) nothrow
+    @system bool recoverPage(SmallObjectPool* pool, size_t pn, Bins bin) nothrow
     {
         size_t size = binsize[bin];
         size_t bitbase = pn * (PAGESIZE / 16);
@@ -3122,7 +3122,7 @@ struct Gcx
         return true;
     }
 
-    bool recoverNextPage(Bins bin) nothrow
+    @system bool recoverNextPage(Bins bin) nothrow
     {
         SmallObjectPool* pool = recoverPool[bin];
         while (pool)
@@ -3142,7 +3142,7 @@ struct Gcx
         return false;
     }
 
-    private SmallObjectPool* setNextRecoverPool(Bins bin, size_t poolIndex) nothrow
+    @system private SmallObjectPool* setNextRecoverPool(Bins bin, size_t poolIndex) nothrow
     {
         Pool* pool;
         while (poolIndex < this.pooltable.length &&
@@ -3161,7 +3161,7 @@ struct Gcx
     }
 
     version (COLLECT_FORK)
-    ChildStatus collectFork(bool block) nothrow
+    @system ChildStatus collectFork(bool block) nothrow
     {
         typeof(return) rc = wait_pid(markProcPid, block);
         final switch (rc)
@@ -3192,7 +3192,7 @@ struct Gcx
     }
 
     version (COLLECT_FORK)
-    ChildStatus markFork(bool block, bool doParallel) nothrow
+    @system ChildStatus markFork(bool block, bool doParallel) nothrow
     {
         // Forking is enabled, so we fork() and start a new concurrent mark phase
         // in the child. If the collection should not block, the parent process
@@ -3286,7 +3286,7 @@ struct Gcx
      * Return number of full pages free'd.
      * The collection is done concurrently only if block and isFinal are false.
      */
-    size_t fullcollect(bool block, bool isFinal) nothrow
+    @system size_t fullcollect(bool block, bool isFinal) nothrow
     {
         // It is possible that `fullcollect` will be called from a thread which
         // is not yet registered in runtime (because allocating `new Thread` is
@@ -3466,7 +3466,7 @@ Lmark:
      * the fullcollect function after all live objects have been marked, but
      * before sweeping.
      */
-    void *clearBlkCacheData(void* data) scope nothrow
+    @system void *clearBlkCacheData(void* data) scope nothrow
     {
         processGCMarks(data, &isMarked);
         return data;
@@ -3478,7 +3478,7 @@ Lmark:
      * Warning! This should only be called while the world is stopped inside
      * the fullcollect function after all live objects have been marked, but before sweeping.
      */
-    IsMarked isMarked(void *addr) scope nothrow
+    @system IsMarked isMarked(void *addr) scope nothrow
     {
         // first, we find the Pool this block is in, then check to see if the
         // mark bit is clear.
@@ -3523,7 +3523,7 @@ Lmark:
 
         __gshared int fork_cancel_state = 0;
 
-        extern(C) static void _d_gcx_atfork_prepare()
+        @system extern(C) static void _d_gcx_atfork_prepare()
         {
             static if (__traits(compiles, os_unblock_gc_signals))
                 os_unblock_gc_signals();
@@ -3535,7 +3535,7 @@ Lmark:
             }
         }
 
-        extern(C) static void _d_gcx_atfork_parent()
+        @system extern(C) static void _d_gcx_atfork_parent()
         {
             if (instance)
             {
@@ -3544,7 +3544,7 @@ Lmark:
             }
         }
 
-        extern(C) static void _d_gcx_atfork_child()
+        @system extern(C) static void _d_gcx_atfork_child()
         {
             if (instance)
             {
@@ -3593,7 +3593,7 @@ Lmark:
     shared uint stoppedThreads;
     shared bool stopGC;
 
-    void markParallel() nothrow
+    @system void markParallel() nothrow
     {
         toscanRoots.clear();
         collectAllRoots();
@@ -3646,7 +3646,7 @@ Lmark:
         debug(PARALLEL_PRINTF) printf("waitForScanDone done\n");
     }
 
-    int maxParallelThreads() nothrow
+    @system int maxParallelThreads() nothrow
     {
         auto threads = threadsPerCPU();
 
@@ -3677,7 +3677,7 @@ Lmark:
     }
 
 
-    void startScanThreads() nothrow
+    @system void startScanThreads() nothrow
     {
         auto threads = maxParallelThreads();
         debug(PARALLEL_PRINTF) printf("startScanThreads: %d threads per CPU\n", threads);
@@ -3714,7 +3714,7 @@ Lmark:
         }
     }
 
-    void stopScanThreads() nothrow
+    @system void stopScanThreads() nothrow
     {
         if (!numScanThreads)
             return;
@@ -3755,7 +3755,7 @@ Lmark:
         debug(PARALLEL_PRINTF) printf("stopScanThreads done\n");
     }
 
-    void scanBackground() nothrow
+    @system void scanBackground() nothrow
     {
         while (!stopGC)
         {
@@ -3767,7 +3767,7 @@ Lmark:
         evDone.setIfInitialized(); // wake up main
     }
 
-    bool pullFromScanStack() nothrow
+    @system bool pullFromScanStack() nothrow
     {
         if (ConservativeGC.isPrecise)
             return pullFromScanStackImpl!true();
@@ -3900,7 +3900,7 @@ struct Pool
     size_t searchStart;
     size_t largestFree; // upper limit for largest free chunk in large object pool
 
-    void initialize(size_t npages, bool isLargeObject) nothrow
+    @system void initialize(size_t npages, bool isLargeObject) nothrow
     {
         assert(npages >= 256);
 
@@ -3993,7 +3993,7 @@ struct Pool
     }
 
 
-    void Dtor() nothrow
+    @system void Dtor() nothrow
     {
         if (baseAddr)
         {
@@ -4066,7 +4066,7 @@ struct Pool
     /**
      *
      */
-    void clrBits(size_t biti, uint mask) nothrow @nogc
+    @system void clrBits(size_t biti, uint mask) nothrow @nogc
     {
         immutable dataIndex =  biti >> GCBits.BITS_SHIFT;
         immutable bitOffset = biti & GCBits.BITS_MASK;
@@ -4089,7 +4089,7 @@ struct Pool
     /**
      *
      */
-    void setBits(size_t biti, uint mask) nothrow
+    @system void setBits(size_t biti, uint mask) nothrow
     {
         // Calculate the mask and bit offset once and then use it to
         // set all of the bits we need to set.
@@ -4134,7 +4134,7 @@ struct Pool
         }
     }
 
-    void freePageBits(size_t pagenum, const scope ref PageBits toFree) nothrow
+    @system void freePageBits(size_t pagenum, const scope ref PageBits toFree) nothrow
     {
         assert(!isLargeObject);
         assert(!nointerior.nbits); // only for large objects
@@ -4167,7 +4167,7 @@ struct Pool
         }
     }
 
-    void freeAllPageBits(size_t pagenum) nothrow
+    @system void freeAllPageBits(size_t pagenum) nothrow
     {
         assert(!isLargeObject);
         assert(!nointerior.nbits); // only for large objects
@@ -4228,7 +4228,7 @@ struct Pool
         return (size + PAGESIZE - 1) / PAGESIZE;
     }
 
-    void* findBase(void* p) nothrow @nogc
+    @system void* findBase(void* p) nothrow @nogc
     {
         size_t offset = cast(size_t)(p - baseAddr);
         size_t pn = offset / PAGESIZE;
@@ -4260,7 +4260,7 @@ struct Pool
         return null;
     }
 
-    size_t slGetSize(void* p) nothrow @nogc
+    @system size_t slGetSize(void* p) nothrow @nogc
     {
         if (isLargeObject)
             return (cast(LargeObjectPool*)&this).getPages(p) * PAGESIZE;
@@ -4268,7 +4268,7 @@ struct Pool
             return (cast(SmallObjectPool*)&this).getSize(p);
     }
 
-    BlkInfo slGetInfo(void* p) nothrow
+    @system BlkInfo slGetInfo(void* p) nothrow
     {
         if (isLargeObject)
             return (cast(LargeObjectPool*)&this).getInfo(p);
@@ -4280,7 +4280,7 @@ struct Pool
     void Invariant() const {}
 
     debug(INVARIANT)
-    invariant
+    @system invariant
     {
         if (baseAddr)
         {
@@ -4299,14 +4299,14 @@ struct Pool
         }
     }
 
-    void setPointerBitmapSmall(void* p, size_t s, size_t allocSize, uint attr, const TypeInfo ti) nothrow
+    @system void setPointerBitmapSmall(void* p, size_t s, size_t allocSize, uint attr, const TypeInfo ti) nothrow
     {
         if (!(attr & BlkAttr.NO_SCAN))
             setPointerBitmap(p, s, allocSize, ti, attr);
     }
 
     pragma(inline,false)
-    void setPointerBitmap(void* p, size_t s, size_t allocSize, const TypeInfo ti, uint attr) nothrow
+    @system void setPointerBitmap(void* p, size_t s, size_t allocSize, const TypeInfo ti, uint attr) nothrow
     {
         size_t offset = p - baseAddr;
         //debug(PRINTF) printGCBits(&pool.is_pointer);
@@ -4394,7 +4394,7 @@ struct LargeObjectPool
     alias base this;
 
     debug(INVARIANT)
-    void Invariant()
+    @system void Invariant()
     {
         //base.Invariant();
         for (size_t n = 0; n < npages; )
@@ -4433,7 +4433,7 @@ struct LargeObjectPool
      * Returns:
      *  OPFAIL on failure.
      */
-    size_t allocPages(size_t n, size_t pageAlign) nothrow
+    @system size_t allocPages(size_t n, size_t pageAlign) nothrow
     {
         if (largestFree < n || searchStart + n > npages)
             return OPFAIL;
@@ -4507,7 +4507,7 @@ struct LargeObjectPool
     /**
      * Free npages pages starting with pagenum.
      */
-    void freePages(size_t pagenum, size_t npages) nothrow @nogc
+    @system void freePages(size_t pagenum, size_t npages) nothrow @nogc
     {
         //memset(&pagetable[pagenum], B_FREE, npages);
         if (pagenum < searchStart)
@@ -4525,7 +4525,7 @@ struct LargeObjectPool
     /**
      * Set the first and the last entry of a B_FREE block to the size
      */
-    void setFreePageOffsets(size_t page, size_t num) nothrow @nogc
+    @system void setFreePageOffsets(size_t page, size_t num) nothrow @nogc
     {
         assert(pagetable[page] == Bins.B_FREE);
         assert(pagetable[page + num - 1] == Bins.B_FREE);
@@ -4556,7 +4556,7 @@ struct LargeObjectPool
     /**
      * Get pages of allocation at pointer p in pool.
      */
-    size_t getPages(void *p) const nothrow @nogc
+    @system size_t getPages(void *p) const nothrow @nogc
     in
     {
         assert(p >= baseAddr);
@@ -4576,7 +4576,7 @@ struct LargeObjectPool
     /**
     * Get size of allocation at page pn in pool.
     */
-    size_t getSize(size_t pn) const nothrow @nogc
+    @system size_t getSize(size_t pn) const nothrow @nogc
     {
         assert(pagetable[pn] == Bins.B_PAGE);
         return cast(size_t) bPageOffsets[pn] * PAGESIZE;
@@ -4585,7 +4585,7 @@ struct LargeObjectPool
     /**
     *
     */
-    BlkInfo getInfo(void* p) nothrow
+    @system BlkInfo getInfo(void* p) nothrow
     {
         BlkInfo info;
 
@@ -4604,7 +4604,7 @@ struct LargeObjectPool
         return info;
     }
 
-    void runFinalizers(const scope void[] segment) nothrow
+    @system void runFinalizers(const scope void[] segment) nothrow
     {
         foreach (pn; 0 .. npages)
         {
@@ -4654,7 +4654,7 @@ struct SmallObjectPool
     alias base this;
 
     debug(INVARIANT)
-    void Invariant()
+    @system void Invariant()
     {
         //base.Invariant();
         uint cntRecover = 0;
@@ -4679,7 +4679,7 @@ struct SmallObjectPool
     /**
     * Get size of pointer p in pool.
     */
-    size_t getSize(void *p) const nothrow @nogc
+    @system size_t getSize(void *p) const nothrow @nogc
     in
     {
         assert(p >= baseAddr);
@@ -4698,7 +4698,7 @@ struct SmallObjectPool
         return binsize[bin];
     }
 
-    BlkInfo getInfo(void* p) nothrow
+    @system BlkInfo getInfo(void* p) nothrow
     {
         BlkInfo info;
         size_t offset = cast(size_t)(p - baseAddr);
@@ -4721,7 +4721,7 @@ struct SmallObjectPool
         return info;
     }
 
-    void runFinalizers(const scope void[] segment) nothrow
+    @system void runFinalizers(const scope void[] segment) nothrow
     {
         foreach (pn; 0 .. npages)
         {
@@ -4775,7 +4775,7 @@ struct SmallObjectPool
     * Returns:
     *           head of a single linked list of new entries
     */
-    List* allocPage(Bins bin) nothrow
+    @system List* allocPage(Bins bin) nothrow
     {
         if (searchStart >= npages)
             return null;
@@ -4817,7 +4817,7 @@ unittest // upstream issue 14467
     assert(arr.capacity);
 }
 
-unittest // upstream issue 15353
+@system unittest // upstream issue 15353
 {
     import core.memory : GC;
 
@@ -4834,7 +4834,7 @@ unittest // upstream issue 15353
     GC.collect();
 }
 
-unittest // upstream issue 15822
+@system unittest // upstream issue 15822
 {
     import core.memory : GC;
 
@@ -4855,7 +4855,7 @@ unittest // upstream issue 15822
     GC.collect();
 }
 
-unittest // upstream issue 1180
+@system unittest // upstream issue 1180
 {
     import core.exception;
     try
@@ -4909,7 +4909,7 @@ debug(PRINTF_TO_FILE)
     }
 }
 
-debug(PRINTF) void printFreeInfo(Pool* pool) nothrow
+debug(PRINTF) @system void printFreeInfo(Pool* pool) nothrow
 {
     uint nReallyFree;
     foreach (i; 0..pool.npages) {
@@ -4920,7 +4920,7 @@ debug(PRINTF) void printFreeInfo(Pool* pool) nothrow
 }
 
 debug(PRINTF)
-void printGCBits(GCBits* bits)
+@system void printGCBits(GCBits* bits)
 {
     for (size_t i = 0; i < bits.nwords; i++)
     {
@@ -4932,7 +4932,7 @@ void printGCBits(GCBits* bits)
 
 // we can assume the name is always from a literal, so it is zero terminated
 debug(PRINTF)
-string debugTypeName(const(TypeInfo) ti) nothrow
+@trusted string debugTypeName(const(TypeInfo) ti) nothrow // safe interface: reads the type name
 {
     string name;
     if (ti is null)
@@ -4963,12 +4963,12 @@ debug (SENTINEL)
     const uint  SENTINEL_EXTRA = 2 * uint.sizeof + 1;
 
 
-    inout(uint*)  sentinel_psize(inout void *p) nothrow @nogc { return &(cast(inout uint *)p)[-2]; }
-    inout(uint*)  sentinel_pre(inout void *p)   nothrow @nogc { return &(cast(inout uint *)p)[-1]; }
-    inout(ubyte*) sentinel_post(inout void *p)  nothrow @nogc { return &(cast(inout ubyte *)p)[*sentinel_psize(p)]; }
+    @system inout(uint*)  sentinel_psize(inout void *p) nothrow @nogc { return &(cast(inout uint *)p)[-2]; }
+    @system inout(uint*)  sentinel_pre(inout void *p)   nothrow @nogc { return &(cast(inout uint *)p)[-1]; }
+    @system inout(ubyte*) sentinel_post(inout void *p)  nothrow @nogc { return &(cast(inout ubyte *)p)[*sentinel_psize(p)]; }
 
 
-    void sentinel_init(void *p, size_t size) nothrow @nogc
+    @system void sentinel_init(void *p, size_t size) nothrow @nogc
     {
         assert(size <= uint.max);
         *sentinel_psize(p) = cast(uint)size;
@@ -4985,7 +4985,7 @@ debug (SENTINEL)
     }
 
 
-    void sentinel_Invariant(const void *p) nothrow @nogc
+    @system void sentinel_Invariant(const void *p) nothrow @nogc
     {
         debug (VALGRIND) {} else
         debug
@@ -4997,18 +4997,18 @@ debug (SENTINEL)
             onInvalidMemoryOperationError(); // also trigger in release build
     }
 
-    size_t sentinel_size(const void *p, size_t alloc_size) nothrow @nogc
+    @system size_t sentinel_size(const void *p, size_t alloc_size) nothrow @nogc
     {
         return *sentinel_psize(p);
     }
 
-    void *sentinel_add(void *p) nothrow @nogc
+    @system void *sentinel_add(void *p) nothrow @nogc
     {
         return p + 2 * uint.sizeof;
     }
 
 
-    void *sentinel_sub(void *p) nothrow @nogc
+    @system void *sentinel_sub(void *p) nothrow @nogc
     {
         return p - 2 * uint.sizeof;
     }
@@ -5032,20 +5032,20 @@ else
         return alloc_size;
     }
 
-    void *sentinel_add(void *p) nothrow @nogc
+    @system void *sentinel_add(void *p) nothrow @nogc
     {
         return p;
     }
 
 
-    void *sentinel_sub(void *p) nothrow @nogc
+    @system void *sentinel_sub(void *p) nothrow @nogc
     {
         return p;
     }
 }
 
 debug (MEMSTOMP)
-unittest
+@system unittest
 {
     import core.memory;
     auto p = cast(size_t*)GC.malloc(size_t.sizeof*3);
@@ -5056,7 +5056,7 @@ unittest
 }
 
 debug (SENTINEL)
-unittest
+@system unittest
 {
     import core.memory;
     auto p = cast(ubyte*)GC.malloc(1);
@@ -5066,7 +5066,7 @@ unittest
     // See also stand-alone tests in test/gc
 }
 
-unittest
+@system unittest
 {
     import core.memory;
 
@@ -5079,7 +5079,7 @@ unittest
 debug (SENTINEL) {} else // cannot extend with SENTINEL
 debug (MARK_PRINTF) {} else // takes forever
 version (OnlyLowMemUnittests) {} else
-unittest
+@system unittest
 {
     import core.memory;
     auto p = GC.malloc(260 << 20); // new pool has 390 MB
@@ -5121,7 +5121,7 @@ unittest
 debug (SENTINEL) {} else // cannot allow >= 4 GB with SENTINEL
 debug (MEMSTOMP) {} else // might take too long to actually touch the memory
 version (OnlyLowMemUnittests) {} else
-version (D_LP64) unittest
+@system version (D_LP64) unittest
 {
     static if (__traits(compiles, os_physical_mem))
     {
@@ -5160,7 +5160,7 @@ version (D_LP64) unittest
 }
 
 // upstream issue 19522
-unittest
+@system unittest
 {
     import core.memory;
 
@@ -5203,7 +5203,7 @@ unittest
 }
 
 // upstream issue 20214
-unittest
+@system unittest
 {
     import core.memory;
     import core.stdc.stdio : printf;
@@ -5345,7 +5345,7 @@ private void adjustAttrs(ref uint attrs, const TypeInfo ti) nothrow
 // metadata.
 //
 // The return value is the true data that the user can use.
-private void[] setupMetadata(void[] block, uint bits, size_t padding, size_t used, size_t alignment, const TypeInfo ti) nothrow
+@system private void[] setupMetadata(void[] block, uint bits, size_t padding, size_t used, size_t alignment, const TypeInfo ti) nothrow
 {
     import core.internal.gc.blockmeta;
     import core.internal.array.utils;

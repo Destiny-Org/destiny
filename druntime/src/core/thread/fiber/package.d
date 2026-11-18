@@ -187,7 +187,7 @@ package
             extern (C) void fiber_trampoline() nothrow;
     }
     else
-    extern (C) void fiber_switchContext( void** oldp, void* newp ) nothrow @nogc
+    @system extern (C) void fiber_switchContext( void** oldp, void* newp ) nothrow @nogc
     {
         // NOTE: The data pushed and popped in this routine must match the
         //       default stack created by Fiber.initStack or the initial
@@ -572,7 +572,7 @@ class Fiber : FiberBase
      * In:
      *  fn must not be null.
      */
-    this( void function() fn, size_t sz = pageSize * defaultStackPages,
+    @trusted this( void function() fn, size_t sz = pageSize * defaultStackPages,
           size_t guardPageSize = pageSize ) nothrow
     {
         super( fn, sz, guardPageSize );
@@ -594,7 +594,7 @@ class Fiber : FiberBase
      * In:
      *  dg must not be null.
      */
-    this( void delegate() dg, size_t sz = pageSize * defaultStackPages,
+    @trusted this( void delegate() dg, size_t sz = pageSize * defaultStackPages,
           size_t guardPageSize = pageSize ) nothrow
     {
         super( dg, sz, guardPageSize );
@@ -703,7 +703,7 @@ protected:
     //
     // Allocate a new stack for this fiber.
     //
-    final override void allocStack( size_t sz, size_t guardPageSize ) nothrow
+    @system final override void allocStack( size_t sz, size_t guardPageSize ) nothrow
     in
     {
         assert( !m_pmem && !m_ctxt );
@@ -862,7 +862,7 @@ protected:
     //
     // Free this fiber's stack.
     //
-    final override void freeStack() nothrow @nogc
+    @system final override void freeStack() nothrow @nogc
     in(m_pmem)
     in(m_ctxt)
     {
@@ -898,7 +898,7 @@ protected:
     // Initialize the allocated stack.
     // Look above the definition of 'class Fiber' for some information about the implementation of this routine
     //
-    final override void initStack() nothrow @nogc
+    @system final override void initStack() nothrow @nogc
     in
     {
         assert( m_ctxt.tstack && m_ctxt.tstack == m_ctxt.bstack );
@@ -1395,7 +1395,7 @@ version (AsmX86_64_Windows)
 
 version (D_InlineAsm_X86_64)
 {
-    unittest
+    @system unittest
     {
         void testStackAlignment()
         {

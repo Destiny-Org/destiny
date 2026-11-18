@@ -3589,7 +3589,7 @@ private bool checkSafety(FuncDeclaration f, ref Loc loc, Scope* sc, Expressions*
 
     if (!f.isSafe() && !f.isTrusted())
     {
-        if (isRootTraitsCompilesScope(sc) ? sc.func.isSafeBypassingInference() : sc.func.setUnsafeCall(f))
+        if (isRootTraitsCompilesScope(sc) ? (sc.func.isSafeBypassingInference() && !sc.func.safeByDefault) : sc.func.setUnsafeCall(f))
         {
             if (!loc.isValid()) // e.g. implicitly generated dtor
                 loc = sc.func.loc;
@@ -3601,6 +3601,7 @@ private bool checkSafety(FuncDeclaration f, ref Loc loc, Scope* sc, Expressions*
             if (!f.isDtorDeclaration)
                 errorSupplementalInferredAttr(f, /*max depth*/ 10, /*deprecation*/ false, STC.safe, global.errorSink);
             eSink.errorSupplemental(f.loc, "`%s` is declared here", prettyChars);
+            hintSafeByDefault(sc.func);
 
             f.checkOverriddenDtor(sc, loc, dd => dd.type.toTypeFunction().trust > TRUST.system, "@system");
 
@@ -8683,6 +8684,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
                 {
                     eSink.error(exp.loc, "`@safe` %s `%s` cannot call `@system` %s `%s`",
                         sc.func.kind(), sc.func.toPrettyChars(), p, exp.e1.toErrMsg());
+                    hintSafeByDefault(sc.func);
                     err = true;
                 }
                 if (err)

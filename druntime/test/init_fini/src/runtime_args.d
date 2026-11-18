@@ -1,5 +1,5 @@
 // Bugzilla 11149 - Runtime.args no longer available in static constructors
-import core.runtime;
+@system: import core.runtime;
 
 shared static this()
 {

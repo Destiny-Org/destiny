@@ -23,7 +23,7 @@ version (Posix)
     import core.time;
 
 
-    void mktspec( ref timespec t ) nothrow @nogc
+    @system void mktspec( ref timespec t ) nothrow @nogc
     {
         static if ( is (typeof ( imported!"core.sys.posix.pthread".pthread_condattr_setclock ) ) )
         {
@@ -42,7 +42,7 @@ version (Posix)
     }
 
 
-    void mktspec( ref timespec t, Duration delta ) nothrow @nogc
+    @system void mktspec( ref timespec t, Duration delta ) nothrow @nogc
     {
         mktspec( t );
         mvtspec( t, delta );

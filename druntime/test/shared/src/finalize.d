@@ -1,4 +1,4 @@
-import core.atomic : atomicLoad;
+@system: import core.atomic : atomicLoad;
 import core.runtime;
 import core.stdc.string : strrchr;
 import core.thread;

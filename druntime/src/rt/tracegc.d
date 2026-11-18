@@ -40,7 +40,7 @@ extern (C) void* gc_calloc(size_t sz, uint ba = 0, const TypeInfo ti = null);
 extern (C) void* gc_realloc(return scope void* p, size_t sz, uint ba = 0, const TypeInfo ti = null);
 extern (C) size_t gc_extend(void* p, size_t mx, size_t sz, const TypeInfo ti = null);
 
-private void accumulate2(string file, int line, string funcname, string name, ulong currentlyAllocated)
+@system private void accumulate2(string file, int line, string funcname, string name, ulong currentlyAllocated)
 {
     auto size = GC.allocatedInCurrentThread - currentlyAllocated;
     if (size > 0 && strstr(funcname.ptr, "core.internal") is null)
@@ -51,7 +51,7 @@ import rt.profilegc : accumulate;
 import core.memory : GC;
 import core.stdc.string : strstr;
 
-extern (C) void _d_callfinalizerTrace(string file, int line, string funcname, void* p)
+@system extern (C) void _d_callfinalizerTrace(string file, int line, string funcname, void* p)
 {
     const currentlyAllocated = GC.allocatedInCurrentThread;
     scope (exit)
@@ -60,7 +60,7 @@ extern (C) void _d_callfinalizerTrace(string file, int line, string funcname, vo
     return _d_callfinalizer(p);
 }
 
-extern (C) void _d_callinterfacefinalizerTrace(string file, int line, string funcname, void* p)
+@system extern (C) void _d_callinterfacefinalizerTrace(string file, int line, string funcname, void* p)
 {
     const currentlyAllocated = GC.allocatedInCurrentThread;
     scope (exit)
@@ -69,7 +69,7 @@ extern (C) void _d_callinterfacefinalizerTrace(string file, int line, string fun
     return _d_callinterfacefinalizer(p);
 }
 
-extern (C) void _d_delclassTrace(string file, int line, string funcname, Object* p)
+@system extern (C) void _d_delclassTrace(string file, int line, string funcname, Object* p)
 {
     const currentlyAllocated = GC.allocatedInCurrentThread;
     scope (exit)
@@ -78,7 +78,7 @@ extern (C) void _d_delclassTrace(string file, int line, string funcname, Object*
     return _d_delclass(p);
 }
 
-extern (C) void _d_delinterfaceTrace(string file, int line, string funcname, void** p)
+@system extern (C) void _d_delinterfaceTrace(string file, int line, string funcname, void** p)
 {
     const currentlyAllocated = GC.allocatedInCurrentThread;
     scope (exit)
@@ -87,7 +87,7 @@ extern (C) void _d_delinterfaceTrace(string file, int line, string funcname, voi
     return _d_delinterface(p);
 }
 
-extern (C) void _d_delmemoryTrace(string file, int line, string funcname, void** p)
+@system extern (C) void _d_delmemoryTrace(string file, int line, string funcname, void** p)
 {
     const currentlyAllocated = GC.allocatedInCurrentThread;
     scope (exit)
@@ -96,7 +96,7 @@ extern (C) void _d_delmemoryTrace(string file, int line, string funcname, void**
     return _d_delmemory(p);
 }
 
-extern (C) void[] _d_arrayappendcdTrace(string file, int line, string funcname, ref byte[] x, dchar c)
+@system extern (C) void[] _d_arrayappendcdTrace(string file, int line, string funcname, ref byte[] x, dchar c)
 {
     const currentlyAllocated = GC.allocatedInCurrentThread;
     scope (exit)
@@ -105,7 +105,7 @@ extern (C) void[] _d_arrayappendcdTrace(string file, int line, string funcname, 
     return _d_arrayappendcd(x, c);
 }
 
-extern (C) void[] _d_arrayappendwdTrace(string file, int line, string funcname, ref byte[] x, dchar c)
+@system extern (C) void[] _d_arrayappendwdTrace(string file, int line, string funcname, ref byte[] x, dchar c)
 {
     const currentlyAllocated = GC.allocatedInCurrentThread;
     scope (exit)
@@ -114,7 +114,7 @@ extern (C) void[] _d_arrayappendwdTrace(string file, int line, string funcname, 
     return _d_arrayappendwd(x, c);
 }
 
-extern (C) void* _d_allocmemoryTrace(string file, int line, string funcname, size_t sz)
+@system extern (C) void* _d_allocmemoryTrace(string file, int line, string funcname, size_t sz)
 {
     const currentlyAllocated = GC.allocatedInCurrentThread;
     scope (exit)
@@ -123,7 +123,7 @@ extern (C) void* _d_allocmemoryTrace(string file, int line, string funcname, siz
     return _d_allocmemory(sz);
 }
 
-extern (C) void* gc_mallocTrace(size_t sz, uint ba = 0, scope const(TypeInfo) ti = null,
+@system extern (C) void* gc_mallocTrace(size_t sz, uint ba = 0, scope const(TypeInfo) ti = null,
     string file = "", int line = 0, string funcname = "")
 {
     auto name = ti ? ti.toString() : "void[]";
@@ -140,7 +140,7 @@ private string nameFromTypeInfo(const(TypeInfo) ti)
     return ti ? ti.toString() : "void[]";
 }
 
-extern (C) BlkInfo gc_qallocTrace(size_t sz, uint ba = 0, scope const(TypeInfo) ti = null,
+@system extern (C) BlkInfo gc_qallocTrace(size_t sz, uint ba = 0, scope const(TypeInfo) ti = null,
     string file = "", int line = 0, string funcname = "")
 {
 
@@ -151,7 +151,7 @@ extern (C) BlkInfo gc_qallocTrace(size_t sz, uint ba = 0, scope const(TypeInfo) 
     return gc_qalloc(sz, ba, ti);
 }
 
-extern (C) void* gc_callocTrace(size_t sz, uint ba = 0, const(TypeInfo) ti = null,
+@system extern (C) void* gc_callocTrace(size_t sz, uint ba = 0, const(TypeInfo) ti = null,
     string file = "", int line = 0, string funcname = "")
 {
     const currentlyAllocated = GC.allocatedInCurrentThread;
@@ -161,7 +161,7 @@ extern (C) void* gc_callocTrace(size_t sz, uint ba = 0, const(TypeInfo) ti = nul
     return gc_calloc(sz, ba, ti);
 }
 
-extern (C) void* gc_reallocTrace(return scope void* p, size_t sz, uint ba = 0,
+@system extern (C) void* gc_reallocTrace(return scope void* p, size_t sz, uint ba = 0,
     const(TypeInfo) ti = null, string file = "", int line = 0, string funcname = "")
 {
     const currentlyAllocated = GC.allocatedInCurrentThread;
@@ -171,7 +171,7 @@ extern (C) void* gc_reallocTrace(return scope void* p, size_t sz, uint ba = 0,
     return gc_realloc(p, sz, ba, ti);
 }
 
-extern (C) size_t gc_extendTrace(void* p, size_t mx, size_t sz,
+@system extern (C) size_t gc_extendTrace(void* p, size_t mx, size_t sz,
     const(TypeInfo) ti = null, string file = "", int line = 0, string funcname = "")
 {
     const currentlyAllocated = GC.allocatedInCurrentThread;

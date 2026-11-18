@@ -57,7 +57,7 @@ alias GCThreadInitFunction = void function(ThreadBase base) nothrow @nogc;
  * See_Also:
  *   $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/garbage.dd, Configuring the Garbage Collector)
  */
-void registerGCFactory(string name, GCFactory factory,
+@system void registerGCFactory(string name, GCFactory factory,
         GCThreadInitFunction threadInit = null) nothrow @nogc
 {
     import core.stdc.stdlib : realloc;
@@ -75,7 +75,7 @@ void registerGCFactory(string name, GCFactory factory,
  * Returns:
  *   The created GC instance or `null` if no factory for that name was registered
  */
-GC createGCInstance(string name)
+@system GC createGCInstance(string name)
 {
     import core.stdc.stdlib : free;
 
@@ -98,7 +98,7 @@ GC createGCInstance(string name)
  * Note, this must be called before `createGCInstance`. It is typically called by
  * `rt_init`.
  */
-GCThreadInitFunction threadInit(string name) nothrow @nogc
+@system GCThreadInitFunction threadInit(string name) nothrow @nogc
 {
     foreach (entry; entries)
     {
@@ -109,7 +109,7 @@ GCThreadInitFunction threadInit(string name) nothrow @nogc
 }
 
 // list of all registerd GCs
-const(Entry[]) registeredGCFactories(scope int dummy=0) nothrow @nogc
+@system const(Entry[]) registeredGCFactories(scope int dummy=0) nothrow @nogc
 {
     return entries;
 }

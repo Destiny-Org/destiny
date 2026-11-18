@@ -1,4 +1,4 @@
-import core.stdcpp.string_view;
+@system: import core.stdcpp.string_view;
 
 unittest
 {

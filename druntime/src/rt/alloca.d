@@ -26,7 +26,7 @@ version (DigitalMars):
  *      EAX     allocated data, null if stack overflows
  */
 
-extern (C) void* __alloca(int nbytes)
+@system extern (C) void* __alloca(int nbytes)
 {
   version (D_InlineAsm_X86)
   {

@@ -1,4 +1,4 @@
-import core.stdcpp.new_;
+@system: import core.stdcpp.new_;
 import core.stdcpp.xutility : __cpp_aligned_new;
 
 extern(C++) struct MyStruct

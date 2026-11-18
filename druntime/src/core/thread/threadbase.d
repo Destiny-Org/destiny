@@ -115,7 +115,7 @@ class ThreadBase
     /**
      * Cleans up any remaining resources used by this object.
      */
-    package bool destructBeforeDtor() nothrow @nogc
+    @system package bool destructBeforeDtor() nothrow @nogc
     {
         destroyDataStorageIfAvail();
 
@@ -130,7 +130,7 @@ class ThreadBase
         return m_tlsgcdata;
     }
 
-    package void tlsRTdataInit() nothrow @nogc
+    @system package void tlsRTdataInit() nothrow @nogc
     {
         m_tlsrtdata = rt_tlsgc_init();
 
@@ -139,7 +139,7 @@ class ThreadBase
         gc_getProxy().initThread(this);
     }
 
-    package void initDataStorage() nothrow
+    @system package void initDataStorage() nothrow
     {
         assert(m_curr is &m_main);
 
@@ -148,13 +148,13 @@ class ThreadBase
         tlsRTdataInit();
     }
 
-    package void destroyDataStorage() nothrow @nogc
+    @system package void destroyDataStorage() nothrow @nogc
     {
         rt_tlsgc_destroy(m_tlsrtdata);
         m_tlsrtdata = null;
     }
 
-    package void destroyDataStorageIfAvail() nothrow @nogc
+    @system package void destroyDataStorageIfAvail() nothrow @nogc
     {
         if (m_tlsrtdata)
             destroyDataStorage();
@@ -313,7 +313,7 @@ class ThreadBase
      * Returns:
      *  true if the thread is the main thread
      */
-    final @property bool isMainThread() nothrow @nogc
+    @system final @property bool isMainThread() nothrow @nogc
     {
         return this is sm_main;
     }
@@ -374,7 +374,7 @@ class ThreadBase
      *  tracked by the system.  The result of deleting any contained
      *  objects is undefined.
      */
-    static ThreadBase[] getAll()
+    @system static ThreadBase[] getAll()
     {
         static void resize(ref ThreadBase[] buf, size_t nlen)
         {
@@ -396,7 +396,7 @@ class ThreadBase
      * Returns:
      *  Zero if all elemented are visited, nonzero if not.
      */
-    static int opApply(scope int delegate(ref ThreadBase) dg)
+    @system static int opApply(scope int delegate(ref ThreadBase) dg)
     {
         static void resize(ref ThreadBase[] buf, size_t nlen)
         {
@@ -447,7 +447,7 @@ class ThreadBase
     /**
      * Forces a context switch to occur away from the calling thread.
      */
-    private static void yield() @nogc nothrow
+    @system private static void yield() @nogc nothrow
     {
         thread_yield();
     }
@@ -471,7 +471,7 @@ class ThreadBase
     // Thread entry point.  Invokes the function or delegate passed on
     // construction (if any).
     //
-    package final void runFromEntryPoint()
+    @system package final void runFromEntryPoint()
     {
         m_call();
     }
@@ -526,7 +526,7 @@ package(core.thread):
     ///////////////////////////////////////////////////////////////////////////
 
 
-    final void pushContext(StackContext* c) nothrow @nogc
+    @system final void pushContext(StackContext* c) nothrow @nogc
     in
     {
         assert(!c.within);
@@ -539,7 +539,7 @@ package(core.thread):
     }
 
 
-    final void popContext() nothrow @nogc
+    @system final void popContext() nothrow @nogc
     in
     {
         assert(m_curr && m_curr.within);
@@ -608,20 +608,20 @@ package(core.thread):
     // Careful as the GC acquires this lock after the GC lock to suspend all
     // threads any GC usage with slock held can result in a deadlock through
     // lock order inversion.
-    @property static Mutex slock() nothrow @nogc
+    @system @property static Mutex slock() nothrow @nogc
     {
         return cast(Mutex)_slock.ptr;
     }
 
     __gshared align(mutexAlign) void[mutexClassInstanceSize] _slock;
 
-    static void initLocks() @nogc nothrow
+    @system static void initLocks() @nogc nothrow
     {
         import core.lifetime : emplace;
         emplace!Mutex(_slock[]);
     }
 
-    static void termLocks() @nogc nothrow
+    @system static void termLocks() @nogc nothrow
     {
         (cast(Mutex)_slock.ptr).__dtor();
     }
@@ -650,7 +650,7 @@ package(core.thread):
     //
     // Add a context to the global context list.
     //
-    static void add(StackContext* c) nothrow @nogc
+    @system static void add(StackContext* c) nothrow @nogc
     in
     {
         assert(c);
@@ -675,7 +675,7 @@ package(core.thread):
     //
     // This assumes slock being acquired. This isn't done here to
     // avoid double locking when called from remove(Thread)
-    static void remove(StackContext* c) nothrow @nogc
+    @system static void remove(StackContext* c) nothrow @nogc
     in
     {
         assert(c);
@@ -702,14 +702,14 @@ package(core.thread):
     // Global Thread List Operations
     ///////////////////////////////////////////////////////////////////////////
 
-    package static void incrementAboutToStart(ThreadBase t) nothrow @nogc
+    @system package static void incrementAboutToStart(ThreadBase t) nothrow @nogc
     {
         ++nAboutToStart;
         pAboutToStart = cast(ThreadBase*)realloc(pAboutToStart, ThreadBase.sizeof * nAboutToStart);
         pAboutToStart[nAboutToStart - 1] = t;
     }
 
-    package static void decrementAboutToStart(ThreadBase t) nothrow @nogc
+    @system package static void decrementAboutToStart(ThreadBase t) nothrow @nogc
     {
         size_t idx = -1;
         foreach (i, thr; pAboutToStart[0 .. nAboutToStart])
@@ -731,7 +731,7 @@ package(core.thread):
     //
     // Add a thread to the global thread list.
     //
-    static void add(ThreadBase t, bool rmAboutToStart = true) nothrow @nogc
+    @system static void add(ThreadBase t, bool rmAboutToStart = true) nothrow @nogc
     in
     {
         assert(t);
@@ -759,7 +759,7 @@ package(core.thread):
     //
     // Remove a thread from the global thread list.
     //
-    static void remove(ThreadBase t) nothrow @nogc
+    @system static void remove(ThreadBase t) nothrow @nogc
     in
     {
         assert(t);
@@ -810,7 +810,7 @@ package(core.thread):
     // possible a `thread_preSuspend` would return true, but the scanning
     // details would not be handled.
     //
-    static void registerThis(ThreadBase t, bool rmAboutToStart = true) nothrow @nogc
+    @system static void registerThis(ThreadBase t, bool rmAboutToStart = true) nothrow @nogc
     {
         slock.lock_nothrow();
         scope(exit) slock.unlock_nothrow();
@@ -864,7 +864,7 @@ package void thread_term_tpl(ThreadT, MainThreadStore)(ref MainThreadStore _main
 /**
  *
  */
-extern (C) bool thread_isMainThread() nothrow @nogc
+@system extern (C) bool thread_isMainThread() nothrow @nogc
 {
     return ThreadBase.getThis() is ThreadBase.sm_main;
 }
@@ -912,7 +912,7 @@ package ThreadT thread_attachThis_tpl(ThreadT)()
  * See_Also:
  *     $(REF thread_attachThis, core,thread,osthread)
  */
-extern (C) void thread_detachThis() nothrow @nogc
+@system extern (C) void thread_detachThis() nothrow @nogc
 {
     if (auto t = ThreadBase.getThis())
         ThreadBase.remove(t);
@@ -940,7 +940,7 @@ extern (C) void thread_detachThis() nothrow @nogc
  *       module dtors, it is recommended to call (from the thread itself)
  *       $(D gc_getProxy().cleanupThread(Thread.getThis());)
  */
-extern (C) void thread_detachByAddr(ThreadID addr)
+@system extern (C) void thread_detachByAddr(ThreadID addr)
 {
     if (auto t = thread_findByAddr(addr))
         ThreadBase.remove(t);
@@ -948,7 +948,7 @@ extern (C) void thread_detachByAddr(ThreadID addr)
 
 
 /// ditto
-extern (C) void thread_detachInstance(ThreadBase t) nothrow @nogc
+@system extern (C) void thread_detachInstance(ThreadBase t) nothrow @nogc
 {
     ThreadBase.remove(t);
 }
@@ -962,7 +962,7 @@ extern (C) void thread_detachInstance(ThreadBase t) nothrow @nogc
  * Returns:
  *  The thread object associated with the thread identifier, null if not found.
  */
-static ThreadBase thread_findByAddr(ThreadID addr)
+@system static ThreadBase thread_findByAddr(ThreadID addr)
 {
     ThreadBase.slock.lock_nothrow();
     scope(exit) ThreadBase.slock.unlock_nothrow();
@@ -1002,7 +1002,7 @@ extern (C) void thread_setThis(ThreadBase t) nothrow @nogc
  * performing successive scans through the thread list until a scan consists
  * of only daemon threads.
  */
-extern (C) void thread_joinAll()
+@system extern (C) void thread_joinAll()
 {
  Lagain:
     ThreadBase.slock.lock_nothrow();
@@ -1042,7 +1042,7 @@ extern (C) void thread_joinAll()
 /**
  * Performs intermediate shutdown of the thread module.
  */
-shared static ~this()
+@system shared static ~this()
 {
     // NOTE: The functionality related to garbage collection must be minimally
     //       operable after this dtor completes.  Therefore, only minimal
@@ -1068,7 +1068,7 @@ private alias resume = externDFunc!("core.thread.osthread.resume", void function
 /**
  * Run the necessary operation required after the world was resumed.
  */
-extern (C) void thread_postRestartTheWorld() nothrow {
+@system extern (C) void thread_postRestartTheWorld() nothrow {
     ThreadBase.slock.unlock_nothrow();
 }
 
@@ -1083,7 +1083,7 @@ extern (C) void thread_postRestartTheWorld() nothrow {
  * Throws:
  *  ThreadError if the resume operation fails for a running thread.
  */
-extern (C) void thread_resumeAll() nothrow
+@system extern (C) void thread_resumeAll() nothrow
 in
 {
     assert(suspendDepth > 0);
@@ -1134,7 +1134,7 @@ alias ScanAllThreadsTypeFn = void delegate(ScanType, void*, void*) nothrow; /// 
  * In:
  *  This routine must be preceded by a call to thread_suspendAll.
  */
-extern (C) void thread_scanAllType(scope ScanAllThreadsTypeFn scan) nothrow
+@system extern (C) void thread_scanAllType(scope ScanAllThreadsTypeFn scan) nothrow
 in
 {
     assert(suspendDepth > 0);
@@ -1147,7 +1147,7 @@ do
 package alias callWithStackShellDg = void delegate(void* sp) nothrow;
 private alias callWithStackShell = externDFunc!("core.thread.osthread.callWithStackShell", void function(scope callWithStackShellDg) nothrow);
 
-private void scanAllTypeImpl(scope ScanAllThreadsTypeFn scan, void* curStackTop) nothrow
+@system private void scanAllTypeImpl(scope ScanAllThreadsTypeFn scan, void* curStackTop) nothrow
 {
     ThreadBase  thisThread  = null;
     void*   oldStackTop = null;
@@ -1219,7 +1219,7 @@ private void scanAllTypeImpl(scope ScanAllThreadsTypeFn scan, void* curStackTop)
  * In:
  *  This routine must be preceded by a call to thread_suspendAll.
  */
-extern (C) void thread_scanAll(scope ScanAllThreadsFn scan) nothrow
+@system extern (C) void thread_scanAll(scope ScanAllThreadsFn scan) nothrow
 {
     thread_scanAllType((type, p1, p2) => scan(p1, p2));
 }
@@ -1236,7 +1236,7 @@ private alias thread_yield = externDFunc!("core.thread.osthread.thread_yield", v
 * Throws:
 *  ThreadError.
 */
-package void onThreadError(string msg) nothrow @nogc
+@system package void onThreadError(string msg) nothrow @nogc
 {
     __gshared ThreadError error = new ThreadError(null);
     error.msg = msg;
@@ -1250,7 +1250,7 @@ package void onThreadError(string msg) nothrow @nogc
 // GC-specific processing of TLSGC data.
 alias ProcessTLSGCDataDg = void* delegate(void* data) nothrow;
 
-void thread_processTLSGCData(ProcessTLSGCDataDg dg) nothrow
+@system void thread_processTLSGCData(ProcessTLSGCDataDg dg) nothrow
 {
     for (ThreadBase t = ThreadBase.sm_tbeg; t; t = t.next)
         t.m_tlsgcdata = dg(t.m_tlsgcdata);
@@ -1266,7 +1266,7 @@ void thread_processTLSGCData(ProcessTLSGCDataDg dg) nothrow
  * Returns:
  *  The address of the stack top.
  */
-extern (C) void* thread_stackTop() nothrow @nogc
+@system extern (C) void* thread_stackTop() nothrow @nogc
 in
 {
     // Not strictly required, but it gives us more flexibility.
@@ -1305,23 +1305,23 @@ package
 
     __gshared align(mutexAlign) void[mutexClassInstanceSize] ll_lock;
 
-    @property Mutex lowlevelLock() nothrow @nogc
+    @system @property Mutex lowlevelLock() nothrow @nogc
     {
         return cast(Mutex)ll_lock.ptr;
     }
 
-    void initLowlevelThreads() @nogc nothrow
+    @system void initLowlevelThreads() @nogc nothrow
     {
         import core.lifetime : emplace;
         emplace(lowlevelLock());
     }
 
-    void termLowlevelThreads() @nogc nothrow
+    @system void termLowlevelThreads() @nogc nothrow
     {
         lowlevelLock.__dtor();
     }
 
-    void ll_removeThread(ThreadID tid) nothrow @nogc
+    @system void ll_removeThread(ThreadID tid) nothrow @nogc
     {
         lowlevelLock.lock_nothrow();
         scope(exit) lowlevelLock.unlock_nothrow();
@@ -1348,7 +1348,7 @@ package
  *
  * Returns: `true` if the thread was created by `createLowLevelThread` and is still running.
  */
-bool findLowLevelThread(ThreadID tid) nothrow @nogc
+@system bool findLowLevelThread(ThreadID tid) nothrow @nogc
 {
     lowlevelLock.lock_nothrow();
     scope(exit) lowlevelLock.unlock_nothrow();

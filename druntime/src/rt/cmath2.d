@@ -36,7 +36,7 @@ version (X87):
  *      ST0     imaginary part
  */
 
-void _Cmul()
+@system void _Cmul()
 {
     // p.re = x.re * y.re - x.im * y.im;
     // p.im = x.im * y.re + x.re * y.im;
@@ -121,7 +121,7 @@ void _Cmul()
  *      ST0     imaginary part
  */
 
-void _Cdiv()
+@system void _Cdiv()
 {
     real x_re, x_im;
     real y_re, y_im;
@@ -201,7 +201,7 @@ void _Cdiv()
  *      flags set
  */
 
-void _Ccmp()
+@system void _Ccmp()
 {
   version (D_InlineAsm_X86)
     asm

@@ -76,7 +76,7 @@ class Barrier
      * Throws:
      *  SyncError on error.
      */
-    void wait()
+    @trusted void wait()
     {
         synchronized( m_lock )
         {
@@ -108,7 +108,7 @@ private:
 ////////////////////////////////////////////////////////////////////////////////
 
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.thread;
 

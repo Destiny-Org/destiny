@@ -40,12 +40,12 @@ __gshared
  *      name = file name
  */
 
-extern (C) void profilegc_setlogfilename(string name)
+@system extern (C) void profilegc_setlogfilename(string name)
 {
     logfilename = name ~ "\0";
 }
 
-public void accumulate(string file, uint line, string funcname, string type, ulong sz) @nogc nothrow
+@system public void accumulate(string file, uint line, string funcname, string type, ulong sz) @nogc nothrow
 {
     if (sz == 0)
         return;
@@ -90,7 +90,7 @@ public void accumulate(string file, uint line, string funcname, string type, ulo
 }
 
 // Merge thread local newCounts into globalNewCounts
-static ~this()
+@system static ~this()
 {
     if (newCounts.length)
     {
@@ -112,7 +112,7 @@ static ~this()
 }
 
 // Write report to stderr
-shared static ~this()
+@system shared static ~this()
 {
     static struct Result
     {
@@ -120,7 +120,7 @@ shared static ~this()
         Entry entry;
 
         // qsort() comparator to sort by count field
-        extern (C) static int qsort_cmp(scope const void *r1, scope const void *r2) @nogc nothrow
+        extern (C) static int qsort_cmp(scope const void *r1, scope const void *r2) @system @nogc nothrow
         {
             auto result1 = cast(Result*)r1;
             auto result2 = cast(Result*)r2;

@@ -439,14 +439,14 @@ extern(D):
      *  A bit field containing any bits set for the memory block referenced by
      *  p or zero on error.
      */
-    static uint getAttr( const scope void* p ) nothrow
+    @system static uint getAttr( const scope void* p ) nothrow
     {
         return gc_getAttr(cast(void*) p);
     }
 
 
     /// ditto
-    static uint getAttr(void* p) pure nothrow
+    @system static uint getAttr(void* p) pure nothrow
     {
         return gc_getAttr( p );
     }
@@ -466,14 +466,14 @@ extern(D):
      *  The result of a call to $(LREF getAttr) after the specified bits have been
      *  set.
      */
-    static uint setAttr( const scope void* p, uint a ) nothrow
+    @system static uint setAttr( const scope void* p, uint a ) nothrow
     {
         return gc_setAttr(cast(void*) p, a);
     }
 
 
     /// ditto
-    static uint setAttr(void* p, uint a) pure nothrow
+    @system static uint setAttr(void* p, uint a) pure nothrow
     {
         return gc_setAttr( p, a );
     }
@@ -493,14 +493,14 @@ extern(D):
      *  The result of a call to $(LREF getAttr) after the specified bits have been
      *  cleared.
      */
-    static uint clrAttr( const scope void* p, uint a ) nothrow
+    @system static uint clrAttr( const scope void* p, uint a ) nothrow
     {
         return gc_clrAttr(cast(void*) p, a);
     }
 
 
     /// ditto
-    static uint clrAttr(void* p, uint a) pure nothrow
+    @system static uint clrAttr(void* p, uint a) pure nothrow
     {
         return gc_clrAttr( p, a );
     }
@@ -645,7 +645,7 @@ extern(C):
     // upstream issue 13111
     ///
     version (OnlyLowMemUnittests) {} else // Test needs a lot of RAM
-    unittest
+    @system unittest
     {
         enum size1 = 1 << 11 + 1; // page in large object pool
         enum size2 = 1 << 22 + 1; // larger than large object pool size
@@ -692,7 +692,7 @@ extern(C):
         pragma(mangle, "gc_extend") static size_t extend(void* p, size_t mx, size_t sz, const TypeInfo ti = null) pure nothrow;
 
     /// Standard extending
-    unittest
+    @system unittest
     {
         size_t size = 1000;
         int* p = cast(int*)GC.malloc(size * int.sizeof, GC.BlkAttr.NO_SCAN);
@@ -703,7 +703,7 @@ extern(C):
             size = u / int.sizeof;
     }
     /// slice extending
-    unittest
+    @system unittest
     {
         int[] slice = new int[](1000);
         int*  p     = slice.ptr;
@@ -789,20 +789,20 @@ extern(D):
      * Returns:
      *  The size in bytes of the memory block referenced by p or zero on error.
      */
-    static size_t sizeOf( const scope void* p ) nothrow @nogc /* FIXME pure */
+    @system static size_t sizeOf( const scope void* p ) nothrow @nogc /* FIXME pure */
     {
         return gc_sizeOf(cast(void*)p);
     }
 
 
     /// ditto
-    static size_t sizeOf(void* p) pure nothrow @nogc
+    @system static size_t sizeOf(void* p) pure nothrow @nogc
     {
         return gc_sizeOf( p );
     }
 
     // verify that the reallocation doesn't leave the size cache in a wrong state
-    unittest
+    @system unittest
     {
         auto data = cast(int*)realloc(null, 4096);
         size_t size = GC.sizeOf(data);
@@ -827,14 +827,14 @@ extern(D):
      *  Information regarding the memory block referenced by p or BlkInfo.init
      *  on error.
      */
-    static BlkInfo query(return scope const void* p) nothrow
+    @system static BlkInfo query(return scope const void* p) nothrow
     {
         return gc_query(cast(void*)p);
     }
 
 
     /// ditto
-    static BlkInfo query(return scope void* p) pure nothrow
+    @system static BlkInfo query(return scope void* p) pure nothrow
     {
         return gc_query( p );
     }
@@ -996,7 +996,7 @@ extern(C):
     }
 
     ///
-    unittest
+    @system unittest
     {
         enum Outcome
         {
@@ -1086,7 +1086,7 @@ extern(C):
     pragma(mangle, "gc_allocatedInCurrentThread") static ulong allocatedInCurrentThread() nothrow;
 
     /// Using allocatedInCurrentThread
-    nothrow unittest
+    @system nothrow unittest
     {
         ulong currentlyAllocated = GC.allocatedInCurrentThread();
         struct DataStruct
@@ -1339,7 +1339,7 @@ void __delete(T)(ref T x) @system
 }
 
 /// Deleting classes
-unittest
+@system unittest
 {
     bool dtorCalled;
     class B
@@ -1365,7 +1365,7 @@ unittest
 }
 
 /// Deleting interfaces
-unittest
+@system unittest
 {
     bool dtorCalled;
     interface A
@@ -1396,7 +1396,7 @@ unittest
 }
 
 /// Deleting structs
-unittest
+@system unittest
 {
     bool dtorCalled;
     struct A
@@ -1421,7 +1421,7 @@ unittest
 }
 
 /// Deleting arrays
-unittest
+@system unittest
 {
     int[] a = [1, 2, 3];
     auto b = a;
@@ -1436,7 +1436,7 @@ unittest
 }
 
 /// Deleting arrays of structs
-unittest
+@system unittest
 {
     int dtorCalled;
     struct A
@@ -1460,7 +1460,7 @@ unittest
 }
 
 // Deleting raw memory
-unittest
+@system unittest
 {
     import core.memory : GC;
     auto a = GC.malloc(5);
@@ -1471,7 +1471,7 @@ unittest
 }
 
 // __delete returns with no effect if x is null
-unittest
+@system unittest
 {
     Object x = null;
     __delete(x);
@@ -1491,7 +1491,7 @@ unittest
 }
 
 // upstream issue 19092
-unittest
+@system unittest
 {
     const(int)[] x = [1, 2, 3];
     assert(GC.addrOf(x.ptr) != null);
@@ -1507,7 +1507,7 @@ unittest
 }
 
 // test realloc behaviour
-unittest
+@system unittest
 {
     static void set(int* p, size_t size)
     {

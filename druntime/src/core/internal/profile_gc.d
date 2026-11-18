@@ -30,7 +30,7 @@ private auto gcAllocatedInCurrentThreadPure() nothrow pure
     return impureBypass();
 }
 
-private ulong accumulatePure(string file, int line, string funcname, string name, ulong currentlyAllocated) nothrow pure
+@system private ulong accumulatePure(string file, int line, string funcname, string name, ulong currentlyAllocated) nothrow pure
 {
     const size = gcAllocatedInCurrentThreadPure - currentlyAllocated;
 

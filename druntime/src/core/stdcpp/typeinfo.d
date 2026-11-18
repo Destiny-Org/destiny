@@ -71,11 +71,11 @@ else version (CppRuntime_GNU)
     {
     @nogc:
         @weak ~this() {}
-        @weak final const(char)* name() const nothrow
+        @system @weak final const(char)* name() const nothrow
         {
             return _name[0] == '*' ? _name + 1 : _name;
         }
-        @weak final bool before(const type_info _arg) const nothrow
+        @system @weak final bool before(const type_info _arg) const nothrow
         {
             import core.stdc.string : strcmp;
             return (_name[0] == '*' && _arg._name[0] == '*')

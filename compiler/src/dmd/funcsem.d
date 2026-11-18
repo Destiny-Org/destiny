@@ -705,6 +705,17 @@ void funcDeclarationSemantic(Scope* sc, FuncDeclaration funcdecl)
             stc |= STC.wild;
         funcdecl.type = funcdecl.type.addSTC(stc);
 
+        // Destiny: decide the @safe default *before* the type's semantic, so the
+        // function type (and its mangled name) includes it from the start, even
+        // when something asks for the type before this declaration is finished.
+        if (!((sc.stc | funcdecl.storage_class) & STC.safeGroup) &&
+            funcdecl.type.toTypeFunction().trust == TRUST.default_ &&
+            getsSafeDefault(funcdecl, sc))
+        {
+            sc.stc |= STC.safe;
+            funcdecl.safeByDefault = true;
+        }
+
         funcdecl.type = funcdecl.type.typeSemantic(funcdecl.loc, sc);
 
         // semantic for parameters' UDAs
@@ -911,6 +922,15 @@ Ldone:
      */
     if (funcdecl.canInferAttributes(sc))
         funcdecl.initInferAttributes();
+    else if (sc.func && funcdecl.fbody && funcdecl.isMember() && !funcdecl.isVirtualMethod() &&
+             funcdecl.type.toTypeFunction().trust == TRUST.default_)
+    {
+        // Destiny: members of types declared inside a function body are not
+        // part of any API; infer their safety (only) instead of defaulting to @safe.
+        funcdecl.safetyInprocess = true;
+    }
+    else
+        setDefaultSafety(funcdecl, sc);
 
     funcdecl.semanticRun = PASS.semanticdone;
 
@@ -1539,6 +1559,53 @@ private TypeFunction getFunctionType(FuncDeclaration fd)
 }
 
 /*****************************************
+ * Destiny: whether a function without a safety attribute gets `@safe` by
+ * default (rather than inference, or `@system` for body-less non-D
+ * declarations and ImportC).
+ */
+private bool getsSafeDefault(FuncDeclaration fd, Scope* sc)
+{
+    if (sc.inCfile)
+        return false;
+    if (!fd.fbody && fd._linkage != LINK.d && fd._linkage != LINK.default_)
+        return false;
+    if (fd.canInferAttributes(sc))
+        return false;
+    if (sc.func && fd.fbody && fd.isMember() && !fd.isVirtualMethod())
+        return false;   // member of a local type: safety is inferred
+    return true;
+}
+
+/*****************************************
+ * Destiny: a function whose safety is neither specified nor inferred is
+ * `@safe`, except body-less declarations with non-D linkage (implemented
+ * outside Destiny, so they cannot be checked) and ImportC, which are `@system`.
+ */
+private void setDefaultSafety(FuncDeclaration fd, Scope* sc)
+{
+    auto tf = fd.type.toTypeFunction();
+    if (tf.trust != TRUST.default_)
+        return;
+    if (sc.inCfile)
+        return;
+    if (!fd.fbody && fd._linkage != LINK.d && fd._linkage != LINK.default_)
+        return;
+    // Like the end of attribute inference (semantic3): make a new type with the
+    // attribute and redo its semantic, so the mangled name (deco) includes @safe.
+    auto f = cast(TypeFunction) tf.copy();
+    f.trust = TRUST.safe;
+    f.deco = null;
+    sc = sc.push();
+    if (fd.isCtorDeclaration())
+        f.isCtor = true;
+    sc.stc = STC.none;
+    sc.linkage = fd._linkage;
+    fd.type = f.typeSemantic(fd.loc, sc);
+    sc = sc.pop();
+    fd.safeByDefault = true;
+}
+
+/*****************************************
  * Initialize for inferring the attributes of this function.
  */
 private void initInferAttributes(FuncDeclaration fd)
@@ -1628,6 +1695,15 @@ bool functionSemantic(FuncDeclaration fd)
 
     if (fd.storage_class & STC.inference)
         return fd.functionSemantic3() || !fd.errors;
+
+    // Destiny: the safety of members of local types is inferred, so the body
+    // must be analysed before the function's type is used.
+    if (fd.safetyInprocess && fd.isMember())
+    {
+        AggregateDeclaration ad = fd.isMemberLocal();
+        if (!ad || ad.sizeok == Sizeok.done)
+            return fd.functionSemantic3() || !fd.errors;
+    }
 
     return !fd.errors;
 }

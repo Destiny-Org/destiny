@@ -1,4 +1,4 @@
-import core.stdcpp.allocator;
+@system: import core.stdcpp.allocator;
 
 extern(C++) struct MyStruct
 {

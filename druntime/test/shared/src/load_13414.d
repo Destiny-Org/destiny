@@ -1,4 +1,4 @@
-import core.atomic;
+@system: import core.atomic;
 import core.runtime;
 import core.stdc.string : strrchr;
 

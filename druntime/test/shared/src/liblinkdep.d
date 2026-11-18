@@ -1,4 +1,4 @@
-import lib;
+@system: import lib;
 
 extern(C) int runDepTests()
 {

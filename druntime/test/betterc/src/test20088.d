@@ -1,7 +1,7 @@
 /*******************************************/
 // upstream issue 20088
 
-struct S {
+@system: struct S {
     int i;
 }
 

@@ -1039,9 +1039,9 @@ if (func.length == 1 /*&& isCallable!func*/)
 
 @system unittest
 {
-    int test(int a);
-    int propGet() @property;
-    int propSet(int a) @property;
+    int test(int a) @system;   // explicit, to compare with the plain pointer types below
+    int propGet() @property @system;
+    int propSet(int a) @property @system;
     int function(int) test_fp;
     int delegate(int) test_dg;
     static assert(is( typeof(test) == FunctionTypeOf!(typeof(test)) ));
@@ -1053,16 +1053,16 @@ if (func.length == 1 /*&& isCallable!func*/)
     static assert(is( FunctionTypeOf!propGet == GetterType ));
     static assert(is( FunctionTypeOf!propSet == SetterType ));
 
-    interface Prop { int prop() @property; }
+    interface Prop { int prop() @property @system; }
     Prop prop;
     static assert(is( FunctionTypeOf!(Prop.prop) == GetterType ));
     static assert(is( FunctionTypeOf!(prop.prop) == GetterType ));
 
-    class Callable { int opCall(int) { return 0; } }
+    class Callable { int opCall(int) @system { return 0; } }   // matches `test`
     auto call = new Callable;
     static assert(is( FunctionTypeOf!call == typeof(test) ));
 
-    struct StaticCallable { static int opCall(int) { return 0; } }
+    struct StaticCallable { static int opCall(int) @system { return 0; } }   // matches `test` above
     StaticCallable stcall_val;
     StaticCallable* stcall_ptr;
     static assert(is( FunctionTypeOf!stcall_val == typeof(test) ));
@@ -1070,20 +1070,20 @@ if (func.length == 1 /*&& isCallable!func*/)
 
     interface Overloads
     {
-        void test(string);
-        real test(real);
-        int  test(int);
-        int  test() @property;
+        void test(string) @safe;   // explicit: the test is about overloads, not safety
+        real test(real) @safe;
+        int  test(int) @safe;
+        int  test() @property @safe;
     }
     alias ov = __traits(getVirtualMethods, Overloads, "test");
     alias F_ov0 = FunctionTypeOf!(ov[0]);
     alias F_ov1 = FunctionTypeOf!(ov[1]);
     alias F_ov2 = FunctionTypeOf!(ov[2]);
     alias F_ov3 = FunctionTypeOf!(ov[3]);
-    static assert(is(F_ov0* == void function(string)));
-    static assert(is(F_ov1* == real function(real)));
-    static assert(is(F_ov2* == int function(int)));
-    static assert(is(F_ov3* == int function() @property));
+    static assert(is(F_ov0* == void function(string) @safe));
+    static assert(is(F_ov1* == real function(real) @safe));
+    static assert(is(F_ov2* == int function(int) @safe));
+    static assert(is(F_ov3* == int function() @property @safe));
 
     alias F_dglit = FunctionTypeOf!((int a){ return a; });
     static assert(is(F_dglit* : int function(int)));

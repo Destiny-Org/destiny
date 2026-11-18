@@ -10,6 +10,9 @@
 
 module rt.sections_elf_shared;
 
+// Destiny: shared-library loader and TLS range code; low-level by nature.
+@system:
+
 version (WebAssembly) enum SharedELF = false;
 else version (CRuntime_Glibc) enum SharedELF = true;
 else version (CRuntime_Musl) enum SharedELF = true;
@@ -81,7 +84,7 @@ debug (PRINTF) import core.stdc.stdio : printf;
 alias SectionGroup = DSO;
 struct DSO
 {
-    static int opApply(scope int delegate(ref DSO) dg)
+    @system static int opApply(scope int delegate(ref DSO) dg)
     {
         foreach (dso; _loadedDSOs)
         {
@@ -91,7 +94,7 @@ struct DSO
         return 0;
     }
 
-    static int opApplyReverse(scope int delegate(ref DSO) dg)
+    @system static int opApplyReverse(scope int delegate(ref DSO) dg)
     {
         foreach_reverse (dso; _loadedDSOs)
         {
@@ -117,7 +120,7 @@ struct DSO
         return null;
     }
 
-    @property inout(void[])[] gcRanges() inout nothrow @nogc
+    @system @property inout(void[])[] gcRanges() inout nothrow @nogc
     {
         return _gcRanges[];
     }
@@ -144,7 +147,7 @@ private:
     }
 
     // get the TLS range for the executing thread
-    void[] tlsRange() const nothrow @nogc
+    @system void[] tlsRange() const nothrow @nogc
     {
         return getTLSRange(_tlsMod, _tlsSize);
     }
@@ -414,7 +417,7 @@ T[] toRange(T)(T* beg, T* end) { return beg[0 .. end - beg]; }
  * A pointer to that code is inserted into both the .init_array and .fini_array
  * segment so it gets called by the loader on startup and shutdown.
  */
-extern(C) void _d_dso_registry(CompilerDSOData* data)
+@system extern(C) void _d_dso_registry(CompilerDSOData* data)
 {
     // only one supported currently
     safeAssert(data._version >= 1, "Incompatible compiler-generated DSO data version.");
@@ -614,38 +617,38 @@ version (Shared)
 // helper functions
 ///////////////////////////////////////////////////////////////////////////////
 
-void initLocks() nothrow @nogc
+@system void initLocks() nothrow @nogc
 {
     version (Shared)
         !pthread_mutex_init(&_handleToDSOMutex, null) || assert(0);
 }
 
-void finiLocks() nothrow @nogc
+@system void finiLocks() nothrow @nogc
 {
     version (Shared)
         !pthread_mutex_destroy(&_handleToDSOMutex) || assert(0);
 }
 
-void runModuleConstructors(DSO* pdso, bool runTlsCtors)
+@system void runModuleConstructors(DSO* pdso, bool runTlsCtors)
 {
     pdso._moduleGroup.sortCtors();
     pdso._moduleGroup.runCtors();
     if (runTlsCtors) pdso._moduleGroup.runTlsCtors();
 }
 
-void runModuleDestructors(DSO* pdso, bool runTlsDtors)
+@system void runModuleDestructors(DSO* pdso, bool runTlsDtors)
 {
     if (runTlsDtors) pdso._moduleGroup.runTlsDtors();
     pdso._moduleGroup.runDtors();
 }
 
-void registerGCRanges(DSO* pdso) nothrow @nogc
+@system void registerGCRanges(DSO* pdso) nothrow @nogc
 {
     foreach (rng; pdso._gcRanges)
         GC.addRange(rng.ptr, rng.length);
 }
 
-void unregisterGCRanges(DSO* pdso) nothrow @nogc
+@system void unregisterGCRanges(DSO* pdso) nothrow @nogc
 {
     foreach (rng; pdso._gcRanges)
         GC.removeRange(rng.ptr);
@@ -657,7 +660,7 @@ version (Shared) void runFinalizers(DSO* pdso)
         GC.runFinalizers(seg);
 }
 
-void freeDSO(DSO* pdso) nothrow @nogc
+@system void freeDSO(DSO* pdso) nothrow @nogc
 {
     pdso._gcRanges.reset();
     version (Shared)
@@ -796,7 +799,7 @@ version (Shared)
  * Scan segments in Linux dl_phdr_info struct and store
  * the TLS and writeable data segments in *pdso.
  */
-void scanSegments(const scope ref SharedObject object, DSO* pdso) nothrow @nogc
+@system void scanSegments(const scope ref SharedObject object, DSO* pdso) nothrow @nogc
 {
     foreach (ref phdr; object)
     {
@@ -917,7 +920,7 @@ else version (LoongArch64)
 else
     static assert( false, "Platform not supported." );
 
-void[] getTLSRange(size_t mod, size_t sz) nothrow @nogc
+@system void[] getTLSRange(size_t mod, size_t sz) nothrow @nogc
 {
     if (mod == 0)
         return null;

@@ -69,7 +69,7 @@ else version (Posix)
      * the process is still running. Otherwise it will return always ChildStatus.done
      * (unless there is an error, in which case ChildStatus.error is returned).
      */
-    ChildStatus wait_pid(pid_t pid, bool block = true) nothrow @nogc
+    @system ChildStatus wait_pid(pid_t pid, bool block = true) nothrow @nogc
     {
         import core.exception : onForkError;
         import core.stdc.errno : ECHILD, EINTR, errno;
@@ -179,24 +179,24 @@ else static if (is(typeof(VirtualAlloc))) // version (GC_Use_Alloc_Win32)
 }
 else static if (is(typeof(mmap)))  // else version (GC_Use_Alloc_MMap)
 {
-    void *os_mem_map(size_t nbytes) nothrow @nogc
+    @system void *os_mem_map(size_t nbytes) nothrow @nogc
     {
         void* p = mmap(null, nbytes, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
         return (p == MAP_FAILED) ? null : p;
     }
 
-    int os_mem_unmap(void *base, size_t nbytes) nothrow @nogc
+    @system int os_mem_unmap(void *base, size_t nbytes) nothrow @nogc
     {
         return munmap(base, nbytes);
     }
 
-    void *os_mem_map_shared(size_t nbytes) nothrow @nogc
+    @system void *os_mem_map_shared(size_t nbytes) nothrow @nogc
     {
         void* p = mmap(null, nbytes, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
         return (p == MAP_FAILED) ? null : p;
     }
 
-    int os_mem_unmap_shared(void *base, size_t nbytes) nothrow @nogc
+    @system int os_mem_unmap_shared(void *base, size_t nbytes) nothrow @nogc
     {
         return munmap(base, nbytes);
     }

@@ -56,7 +56,7 @@ do
     setMonitor(cast(Object) cast(void*) ownee, m);
 }
 
-extern (C) void _d_monitordelete(Object h, bool det)
+@system extern (C) void _d_monitordelete(Object h, bool det)
 {
     auto m = getMonitor(h);
     if (m is null)
@@ -77,7 +77,7 @@ extern (C) void _d_monitordelete(Object h, bool det)
 }
 
 // does not call dispose events, for internal use only
-extern (C) void _d_monitordelete_nogc(Object h) @nogc nothrow
+@system extern (C) void _d_monitordelete_nogc(Object h) @nogc nothrow
 {
     auto m = getMonitor(h);
     if (m is null)
@@ -96,7 +96,7 @@ extern (C) void _d_monitordelete_nogc(Object h) @nogc nothrow
     }
 }
 
-extern (C) void _d_monitorenter(Object h)
+@system extern (C) void _d_monitorenter(Object h)
 in
 {
     assert(h !is null, "Synchronized object must not be null.");
@@ -111,7 +111,7 @@ do
         i.lock();
 }
 
-extern (C) void _d_monitorexit(Object h)
+@system extern (C) void _d_monitorexit(Object h)
 {
     auto m = cast(Monitor*) getMonitor(h);
     auto i = m.impl;
@@ -121,7 +121,7 @@ extern (C) void _d_monitorexit(Object h)
         i.unlock();
 }
 
-extern (C) void rt_attachDisposeEvent(Object h, DEvent e)
+@system extern (C) void rt_attachDisposeEvent(Object h, DEvent e)
 {
     synchronized (h)
     {
@@ -150,7 +150,7 @@ extern (C) void rt_attachDisposeEvent(Object h, DEvent e)
     }
 }
 
-extern (C) void rt_detachDisposeEvent(Object h, DEvent e)
+@system extern (C) void rt_detachDisposeEvent(Object h, DEvent e)
 {
     synchronized (h)
     {
@@ -171,7 +171,7 @@ extern (C) void rt_detachDisposeEvent(Object h, DEvent e)
 
 nothrow:
 
-extern (C) void _d_monitor_staticctor() @nogc nothrow
+@system extern (C) void _d_monitor_staticctor() @nogc nothrow
 {
     version (Posix)
     {
@@ -181,7 +181,7 @@ extern (C) void _d_monitor_staticctor() @nogc nothrow
     initMutex(&gmtx);
 }
 
-extern (C) void _d_monitor_staticdtor() @nogc nothrow
+@system extern (C) void _d_monitor_staticdtor() @nogc nothrow
 {
     destroyMutex(&gmtx);
     version (Posix)
@@ -209,22 +209,22 @@ else version (Posix)
     alias Mutex = pthread_mutex_t;
     __gshared pthread_mutexattr_t gattr;
 
-    void initMutex(pthread_mutex_t* mtx)
+    @system void initMutex(pthread_mutex_t* mtx)
     {
         pthread_mutex_init(mtx, &gattr) && assert(0);
     }
 
-    void destroyMutex(pthread_mutex_t* mtx)
+    @system void destroyMutex(pthread_mutex_t* mtx)
     {
         pthread_mutex_destroy(mtx) && assert(0);
     }
 
-    void lockMutex(pthread_mutex_t* mtx)
+    @system void lockMutex(pthread_mutex_t* mtx)
     {
         pthread_mutex_lock(mtx) && assert(0);
     }
 
-    void unlockMutex(pthread_mutex_t* mtx)
+    @system void unlockMutex(pthread_mutex_t* mtx)
     {
         pthread_mutex_unlock(mtx) && assert(0);
     }
@@ -277,7 +277,7 @@ void setMonitor(Object h, shared(Monitor)* m) pure @nogc
     atomicStore!(MemoryOrder.rel)(*monitorPtr(h), m);
 }
 
-shared(Monitor)* ensureMonitor(Object h)
+@system shared(Monitor)* ensureMonitor(Object h)
 {
     if (auto m = getMonitor(h))
         return m;
@@ -312,13 +312,13 @@ shared(Monitor)* ensureMonitor(Object h)
     }
 }
 
-void deleteMonitor(Monitor* m) @nogc
+@system void deleteMonitor(Monitor* m) @nogc
 {
     destroyMutex(&m.mtx);
     free(m);
 }
 
-void disposeEvent(Monitor* m, Object h)
+@system void disposeEvent(Monitor* m, Object h)
 {
     foreach (v; m.devt)
     {
@@ -330,7 +330,7 @@ void disposeEvent(Monitor* m, Object h)
 }
 
 // Bugzilla 14573
-unittest
+@system unittest
 {
     import core.memory : GC;
 

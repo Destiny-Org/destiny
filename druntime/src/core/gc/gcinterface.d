@@ -43,57 +43,57 @@ interface GC
     /**
      *
      */
-    void enable();
+    @system void enable();
 
     /**
      *
      */
-    void disable();
+    @system void disable();
 
     /**
      *
      */
-    void collect() nothrow;
+    @system void collect() nothrow;
 
     /**
      * minimize free space usage
      */
-    void minimize() nothrow;
+    @system void minimize() nothrow;
 
     /**
      *
      */
-    uint getAttr(void* p) nothrow;
+    @system uint getAttr(void* p) nothrow;
 
     /**
      *
      */
-    uint setAttr(void* p, uint mask) nothrow;
+    @system uint setAttr(void* p, uint mask) nothrow;
 
     /**
      *
      */
-    uint clrAttr(void* p, uint mask) nothrow;
+    @system uint clrAttr(void* p, uint mask) nothrow;
 
     /**
      *
      */
-    void* malloc(size_t size, uint bits, const TypeInfo ti) nothrow;
+    @system void* malloc(size_t size, uint bits, const TypeInfo ti) nothrow;
 
     /*
      *
      */
-    BlkInfo qalloc(size_t size, uint bits, const scope TypeInfo ti) nothrow;
+    @system BlkInfo qalloc(size_t size, uint bits, const scope TypeInfo ti) nothrow;
 
     /*
      *
      */
-    void* calloc(size_t size, uint bits, const TypeInfo ti) nothrow;
+    @system void* calloc(size_t size, uint bits, const TypeInfo ti) nothrow;
 
     /*
      *
      */
-    void* realloc(void* p, size_t size, uint bits, const TypeInfo ti) nothrow;
+    @system void* realloc(void* p, size_t size, uint bits, const TypeInfo ti) nothrow;
 
     /**
      * Attempt to in-place enlarge the memory block pointed to by p by at least
@@ -104,35 +104,35 @@ interface GC
      *  0 if could not extend p,
      *  total size of entire memory block if successful.
      */
-    size_t extend(void* p, size_t minsize, size_t maxsize, const TypeInfo ti) nothrow;
+    @system size_t extend(void* p, size_t minsize, size_t maxsize, const TypeInfo ti) nothrow;
 
     /**
      *
      */
-    size_t reserve(size_t size) nothrow;
+    @system size_t reserve(size_t size) nothrow;
 
     /**
      *
      */
-    void free(void* p) nothrow @nogc;
+    @system void free(void* p) nothrow @nogc;
 
     /**
      * Determine the base address of the block containing p.  If p is not a gc
      * allocated pointer, return null.
      */
-    void* addrOf(void* p) nothrow @nogc;
+    @system void* addrOf(void* p) nothrow @nogc;
 
     /**
      * Determine the allocated size of pointer p.  If p is an interior pointer
      * or not a gc allocated pointer, return 0.
      */
-    size_t sizeOf(void* p) nothrow @nogc;
+    @system size_t sizeOf(void* p) nothrow @nogc;
 
     /**
      * Determine the base address of the block containing p.  If p is not a gc
      * allocated pointer, return null.
      */
-    BlkInfo query(void* p) nothrow;
+    @system BlkInfo query(void* p) nothrow;
 
     /**
      * Retrieve statistics about garbage collection.
@@ -149,12 +149,12 @@ interface GC
     /**
      * add p to list of roots
      */
-    void addRoot(void* p) nothrow @nogc;
+    @system void addRoot(void* p) nothrow @nogc;
 
     /**
      * remove p from list of roots
      */
-    void removeRoot(void* p) nothrow @nogc;
+    @system void removeRoot(void* p) nothrow @nogc;
 
     /**
      *
@@ -164,12 +164,12 @@ interface GC
     /**
      * add range to scan for roots
      */
-    void addRange(void* p, size_t sz, const TypeInfo ti) nothrow @nogc;
+    @system void addRange(void* p, size_t sz, const TypeInfo ti) nothrow @nogc;
 
     /**
      * remove range
      */
-    void removeRange(void* p) nothrow @nogc;
+    @system void removeRange(void* p) nothrow @nogc;
 
     /**
      *
@@ -179,7 +179,7 @@ interface GC
     /**
      * run finalizers
      */
-    void runFinalizers(const scope void[] segment) nothrow;
+    @system void runFinalizers(const scope void[] segment) nothrow;
 
     /*
      *
@@ -191,7 +191,7 @@ interface GC
      * since program start. It is the same as
      * GC.stats().allocatedInCurrentThread, but faster.
      */
-    ulong allocatedInCurrentThread() nothrow;
+    @system ulong allocatedInCurrentThread() nothrow;
 
     // ARRAY FUNCTIONS
     /**
@@ -211,7 +211,7 @@ interface GC
      *   Current array slice, or null if the pointer does not point to a valid
      *   appendable GC block.
      */
-    void[] getArrayUsed(void *ptr, bool atomic = false) nothrow;
+    @system void[] getArrayUsed(void *ptr, bool atomic = false) nothrow;
 
     /**
      * Expand the array used size in place.
@@ -271,7 +271,7 @@ interface GC
      *       should be atomic.
      * Returns: true if successful.
      */
-    bool shrinkArrayUsed(void[] slice, size_t existingUsed, bool atomic = false) nothrow;
+    @system bool shrinkArrayUsed(void[] slice, size_t existingUsed, bool atomic = false) nothrow;
 
     /**
      * Prepare a thread for use with the GC after the GC is initialized. Note
@@ -283,7 +283,7 @@ interface GC
      * be registered as `ThreadBase.getThis()`, as this is called before that
      * happens.
      */
-    void initThread(ThreadBase thread) nothrow @nogc;
+    @system void initThread(ThreadBase thread) nothrow @nogc;
 
     /**
      * Clean up any GC related data from the thread before it exits. There is
@@ -297,5 +297,5 @@ interface GC
      * the list of running threads and can be paused for a GC cycle. This is
      * not called for the main thread which initialized the GC.
      */
-    void cleanupThread(ThreadBase thread) nothrow @nogc;
+    @system void cleanupThread(ThreadBase thread) nothrow @nogc;
 }

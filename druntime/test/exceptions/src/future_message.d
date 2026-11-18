@@ -1,4 +1,4 @@
-import core.stdc.stdio : FILE, fprintf, stderr;
+@system: import core.stdc.stdio : FILE, fprintf, stderr;
 
 // Make sure basic stuff works with future Throwable.message
 class NoMessage : Throwable
@@ -16,7 +16,7 @@ class WithMessage : Throwable
         super(msg, next);
     }
 
-    override const(char)[] message() const
+    override const(char)[] message() const @safe
     {
         return "I have a custom message.";
     }
@@ -29,7 +29,7 @@ class WithMessageNoOverride : Throwable
         super(msg, next);
     }
 
-    const(char)[] message() const
+    const(char)[] message() const @safe
     {
         return "I have a custom message and no override.";
     }

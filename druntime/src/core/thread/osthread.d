@@ -70,7 +70,7 @@ version (GNU)
     import gcc.builtins;
 }
 
-extern(D) void* swapContext(void* newContext) nothrow @nogc => swapContextImpl(newContext);
+@system extern(D) void* swapContext(void* newContext) nothrow @nogc => swapContextImpl(newContext);
 
 /**
  * This class encapsulates all threading functionality for the D
@@ -287,13 +287,13 @@ package T toThread(T : ThreadBase = Thread)(return scope ThreadBase t) @trusted 
     return cast(T) cast(void*) t;
 }
 
-private extern(D) static void thread_yield() @nogc nothrow
+@system private extern(D) static void thread_yield() @nogc nothrow
 {
     Thread.yield();
 }
 
 ///
-unittest
+@system unittest
 {
     class DerivedThread : Thread
     {
@@ -325,7 +325,7 @@ unittest
 static if (!isSingleThreaded)
 {
 
-unittest
+@system unittest
 {
     int x = 0;
 
@@ -336,7 +336,7 @@ unittest
     assert( x == 1 );
 }
 
-unittest
+@system unittest
 {
     enum MSG = "Test message.";
     string caughtMsg;
@@ -356,14 +356,14 @@ unittest
     }
 }
 
-unittest
+@system unittest
 {
     // use >pageSize to avoid stack overflow (e.g. in an syscall)
     auto thr = new Thread(function{}, 4096 + 1).start();
     thr.join();
 }
 
-unittest
+@system unittest
 {
     import core.memory : GC;
 
@@ -379,7 +379,7 @@ unittest
     t2.join();
 }
 
-unittest
+@system unittest
 {
     import core.sync.semaphore;
     auto sem = new Semaphore();
@@ -415,7 +415,7 @@ unittest
     Thread.sleep(1.msecs);
 }
 
-unittest
+@system unittest
 {
     with(Thread)
     {
@@ -432,7 +432,7 @@ unittest
     }
 }
 
-unittest // Bugzilla 8960
+@system unittest // Bugzilla 8960
 {
     import core.sync.semaphore;
 
@@ -476,7 +476,7 @@ version (CoreDdoc)
 }
 
 version (CoreDdoc) {} else
-private extern (D) ThreadBase attachThread(ThreadBase _thisThread) @nogc nothrow
+@system private extern (D) ThreadBase attachThread(ThreadBase _thisThread) @nogc nothrow
 {
     Thread thisThread = _thisThread.toThread();
 
@@ -512,13 +512,13 @@ private extern (D) ThreadBase attachThread(ThreadBase _thisThread) @nogc nothrow
  * See_Also:
  *     $(REF thread_detachThis, core,thread,threadbase)
  */
-extern(C) Thread thread_attachThis()
+@system extern(C) Thread thread_attachThis()
 {
     return thread_attachThis_tpl!Thread();
 }
 
 // Calls the given delegate, passing the current thread's stack pointer to it.
-package extern(D) void callWithStackShell(scope callWithStackShellDg fn) nothrow
+@system package extern(D) void callWithStackShell(scope callWithStackShellDg fn) nothrow
 in (fn)
 {
     // The purpose of the 'shell' is to ensure all the registers get
@@ -726,7 +726,7 @@ version (CoreDdoc)
     size_t getpid() nothrow @nogc { return 0; }
 }
 
-private extern(D) void* getStackTop() nothrow @nogc
+@system private extern(D) void* getStackTop() nothrow @nogc
 {
     version (D_InlineAsm_X86)
         asm pure nothrow @nogc { naked; mov EAX, ESP; ret; }
@@ -744,7 +744,7 @@ private extern(D) void* getStackTop() nothrow @nogc
 }
 
 
-private extern(D) void* getStackBottom() nothrow @nogc => getStackBottomImpl();
+@system private extern(D) void* getStackBottom() nothrow @nogc => getStackBottomImpl();
 
 
 /**
@@ -763,7 +763,7 @@ private extern(D) void* getStackBottom() nothrow @nogc => getStackBottomImpl();
  * Returns:
  *  Whether the thread is now suspended (true) or terminated (false).
  */
-private extern (D) bool suspend( Thread t ) nothrow @nogc
+@system private extern (D) bool suspend( Thread t ) nothrow @nogc
 {
     if (!t.isRunning)
     {
@@ -795,7 +795,7 @@ private extern (D) bool suspend( Thread t ) nothrow @nogc
 /**
  * Runs the necessary operations required before stopping the world.
  */
-extern (C) void thread_preStopTheWorld() nothrow {
+@system extern (C) void thread_preStopTheWorld() nothrow {
     Thread.slock.lock_nothrow();
 }
 
@@ -808,7 +808,7 @@ extern (C) void thread_preStopTheWorld() nothrow {
  * Throws:
  *  ThreadError if the suspend operation fails for a running thread.
  */
-extern (C) void thread_suspendAll() nothrow
+@system extern (C) void thread_suspendAll() nothrow
 {
     // NOTE: We've got an odd chicken & egg problem here, because while the GC
     //       is required to call thread_init before calling any other thread
@@ -869,7 +869,7 @@ extern (C) void thread_suspendAll() nothrow
  * Throws:
  *  ThreadError if the resume fails for a running thread.
  */
-private extern (D) void resume(ThreadBase _t) nothrow @nogc
+@system private extern (D) void resume(ThreadBase _t) nothrow @nogc
 {
     Thread t = _t.toThread;
     const sameThread = t.m_tdescr.tid == gettid();
@@ -899,7 +899,7 @@ private extern (D) void resume(ThreadBase _t) nothrow @nogc
 version (CoreDdoc)
     extern (C) void thread_init() @nogc nothrow {}
 else
-extern (C) void thread_init() @nogc nothrow
+@system extern (C) void thread_init() @nogc nothrow
 {
     // NOTE: If thread_init itself performs any allocations then the thread
     //       routines reserved for garbage collector use may be called while
@@ -923,7 +923,7 @@ package __gshared align(__traits(classInstanceAlignment, Thread)) MainThreadStor
  * Terminates the thread module. No other thread routine may be called
  * afterwards.
  */
-extern (C) void thread_term() @nogc nothrow
+@system extern (C) void thread_term() @nogc nothrow
 {
     thread_term_tpl!(Thread)(_mainThreadStore);
 }
@@ -955,7 +955,7 @@ extern (C) void  rt_moduleTlsDtor();
  * Returns: the platform specific thread ID of the new thread. If an error occurs, `ThreadID.init`
  *  is returned.
  */
-ThreadID createLowLevelThread(void delegate() nothrow dg, uint stacksize = 0,
+@system ThreadID createLowLevelThread(void delegate() nothrow dg, uint stacksize = 0,
                               void delegate() nothrow cbDllUnload = null) nothrow @nogc
 {
     auto tprop = cast(LLThreadProperties*) malloc(LLThreadProperties.sizeof);
@@ -996,7 +996,7 @@ version (CoreDdoc)
 void joinLowLevelThread(ThreadID tid) nothrow @nogc {}
 
 static if (!isSingleThreaded)
-nothrow @nogc unittest
+@system nothrow @nogc unittest
 {
     struct TaskWithContect
     {

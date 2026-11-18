@@ -4,7 +4,7 @@
 // upstream issue 9094
 // upstream issue 13801
 // upstream issue 18900
-module testgc;
+module testgc; @system: // Destiny: runtime test code
 
 import core.memory;
 import core.stdc.stdio : printf;

@@ -253,7 +253,7 @@ class Object
      * }
      * ---
      */
-    static Object factory(string classname)
+    @trusted static Object factory(string classname)
     {
         auto ci = TypeInfo_Class.find(classname);
         if (ci)
@@ -543,7 +543,7 @@ private extern(C) void _d_setSameMutex(shared Object ownee, shared Object owner)
  * ownee = object to change
  * owner = source object
  */
-void setSameMutex(shared Object ownee, shared Object owner)
+@system void setSameMutex(shared Object ownee, shared Object owner)
 {
     import core.atomic : atomicLoad;
     _d_setSameMutex(atomicLoad(ownee), atomicLoad(owner));
@@ -665,16 +665,16 @@ class TypeInfo
     }
 
     /// Compares two instances for equality.
-    bool equals(in void* p1, in void* p2) const { return p1 == p2; }
+    @system bool equals(in void* p1, in void* p2) const { return p1 == p2; }
 
     /// Compares two instances for &lt;, ==, or &gt;.
-    int compare(in void* p1, in void* p2) const { return _xopCmp(p1, p2); }
+    @system int compare(in void* p1, in void* p2) const { return _xopCmp(p1, p2); }
 
     /// Returns size of the type.
     @property size_t tsize() nothrow pure const @safe @nogc { return 0; }
 
     /// Swaps two instances of the type.
-    void swap(void* p1, void* p2) const
+    @system void swap(void* p1, void* p2) const
     {
         size_t remaining = tsize;
         // If the type might contain pointers perform the swap in pointer-sized
@@ -748,9 +748,9 @@ class TypeInfo
     /// Get type information on the contents of the type; null if not available
     const(OffsetTypeInfo)[] offTi() const { return null; }
     /// Run the destructor on the object and all its sub-objects
-    void destroy(void* p) const {}
+    @system void destroy(void* p) const {}
     /// Run the postblit on the object and all its sub-objects
-    void postblit(void* p) const {}
+    @system void postblit(void* p) const {}
 
 
     /// Return alignment of type
@@ -889,7 +889,7 @@ class TypeInfo_Enum : TypeInfo
         assert(typeid(ES).getHash(&es2) == hashOf("bar"));
     }
 
-    override bool equals(in void* p1, in void* p2) const { return base.equals(p1, p2); }
+    @system override bool equals(in void* p1, in void* p2) const { return base.equals(p1, p2); }
 
     @system unittest
     {
@@ -902,7 +902,7 @@ class TypeInfo_Enum : TypeInfo
         assert(!typeid(E).equals(&e1, &e2));
     }
 
-    override int compare(in void* p1, in void* p2) const { return base.compare(p1, p2); }
+    @system override int compare(in void* p1, in void* p2) const { return base.compare(p1, p2); }
 
     @system unittest
     {
@@ -928,7 +928,7 @@ class TypeInfo_Enum : TypeInfo
         assert(typeid(E).tsize != ES.sizeof);
     }
 
-    override void swap(void* p1, void* p2) const { return base.swap(p1, p2); }
+    @system override void swap(void* p1, void* p2) const { return base.swap(p1, p2); }
 
     @system unittest
     {
@@ -969,8 +969,8 @@ class TypeInfo_Enum : TypeInfo
         assert(typeid(E).offTi is null);
     }
 
-    override void destroy(void* p) const { return base.destroy(p); }
-    override void postblit(void* p) const { return base.postblit(p); }
+    @system override void destroy(void* p) const { return base.destroy(p); }
+    @system override void postblit(void* p) const { return base.postblit(p); }
 
     override const(void)[] initializer() const
     {
@@ -1029,12 +1029,12 @@ class TypeInfo_Pointer : TypeInfo
         return addr ^ (addr >> 4);
     }
 
-    override bool equals(in void* p1, in void* p2) const
+    @system override bool equals(in void* p1, in void* p2) const
     {
         return *cast(void**)p1 == *cast(void**)p2;
     }
 
-    override int compare(in void* p1, in void* p2) const
+    @system override int compare(in void* p1, in void* p2) const
     {
         const v1 = *cast(void**) p1, v2 = *cast(void**) p2;
         return (v1 > v2) - (v1 < v2);
@@ -1050,7 +1050,7 @@ class TypeInfo_Pointer : TypeInfo
         return (cast(void *)null)[0 .. (void*).sizeof];
     }
 
-    override void swap(void* p1, void* p2) const
+    @system override void swap(void* p1, void* p2) const
     {
         void* tmp = *cast(void**)p1;
         *cast(void**)p1 = *cast(void**)p2;
@@ -1081,7 +1081,7 @@ class TypeInfo_Array : TypeInfo
         return getArrayHash(value, a.ptr, a.length);
     }
 
-    override bool equals(in void* p1, in void* p2) const
+    @system override bool equals(in void* p1, in void* p2) const
     {
         void[] a1 = *cast(void[]*)p1;
         void[] a2 = *cast(void[]*)p2;
@@ -1096,7 +1096,7 @@ class TypeInfo_Array : TypeInfo
         return true;
     }
 
-    override int compare(in void* p1, in void* p2) const
+    @system override int compare(in void* p1, in void* p2) const
     {
         void[] a1 = *cast(void[]*)p1;
         void[] a2 = *cast(void[]*)p2;
@@ -1124,7 +1124,7 @@ class TypeInfo_Array : TypeInfo
         return (cast(void *)null)[0 .. (void[]).sizeof];
     }
 
-    override void swap(void* p1, void* p2) const
+    @system override void swap(void* p1, void* p2) const
     {
         void[] tmp = *cast(void[]*)p1;
         *cast(void[]*)p1 = *cast(void[]*)p2;
@@ -1181,7 +1181,7 @@ class TypeInfo_StaticArray : TypeInfo
         return getArrayHash(value, p, len);
     }
 
-    override bool equals(in void* p1, in void* p2) const
+    @system override bool equals(in void* p1, in void* p2) const
     {
         size_t sz = value.tsize;
 
@@ -1193,7 +1193,7 @@ class TypeInfo_StaticArray : TypeInfo
         return true;
     }
 
-    override int compare(in void* p1, in void* p2) const
+    @system override int compare(in void* p1, in void* p2) const
     {
         size_t sz = value.tsize;
 
@@ -1211,7 +1211,7 @@ class TypeInfo_StaticArray : TypeInfo
         return len * value.tsize;
     }
 
-    override void swap(void* p1, void* p2) const
+    @system override void swap(void* p1, void* p2) const
     {
         import core.stdc.string : memcpy;
 
@@ -1239,7 +1239,7 @@ class TypeInfo_StaticArray : TypeInfo
     override @property inout(TypeInfo) next() nothrow pure inout { return value; }
     override @property uint flags() nothrow pure const { return value.flags; }
 
-    override void destroy(void* p) const
+    @system override void destroy(void* p) const
     {
         immutable sz = value.tsize;
         p += sz * len;
@@ -1250,7 +1250,7 @@ class TypeInfo_StaticArray : TypeInfo
         }
     }
 
-    override void postblit(void* p) const
+    @system override void postblit(void* p) const
     {
         immutable sz = value.tsize;
         foreach (i; 0 .. len)
@@ -1375,10 +1375,10 @@ class TypeInfo_Vector : TypeInfo
     }
 
     override size_t getHash(scope const void* p) const { return base.getHash(p); }
-    override bool equals(in void* p1, in void* p2) const { return base.equals(p1, p2); }
-    override int compare(in void* p1, in void* p2) const { return base.compare(p1, p2); }
+    @system override bool equals(in void* p1, in void* p2) const { return base.equals(p1, p2); }
+    @system override int compare(in void* p1, in void* p2) const { return base.compare(p1, p2); }
     override @property size_t tsize() nothrow pure const { return base.tsize; }
-    override void swap(void* p1, void* p2) const { return base.swap(p1, p2); }
+    @system override void swap(void* p1, void* p2) const { return base.swap(p1, p2); }
 
     override @property inout(TypeInfo) next() nothrow pure inout { return base.next; }
     override @property uint flags() nothrow pure const { return 2; /* passed in SIMD register */ }
@@ -1450,9 +1450,10 @@ class TypeInfo_Function : TypeInfo
     }
 
     alias functionTypes = typeof(__traits(getVirtualMethods, C, "func"));
-    assert(typeid(functionTypes[0]).toString() == "void function()");
-    assert(typeid(functionTypes[1]).toString() == "void function(int)");
-    assert(typeid(functionTypes[2]).toString() == "int function(int, int)");
+    // Destiny: the methods are @safe by default
+    assert(typeid(functionTypes[0]).toString() == "void function() @safe");
+    assert(typeid(functionTypes[1]).toString() == "void function(int) @safe");
+    assert(typeid(functionTypes[2]).toString() == "int function(int, int) @safe");
 }
 
 @system unittest
@@ -1534,14 +1535,14 @@ class TypeInfo_Delegate : TypeInfo
         return hashOf(*cast(const void delegate() *)p);
     }
 
-    override bool equals(in void* p1, in void* p2) const
+    @system override bool equals(in void* p1, in void* p2) const
     {
         auto dg1 = *cast(void delegate()*)p1;
         auto dg2 = *cast(void delegate()*)p2;
         return dg1 == dg2;
     }
 
-    override int compare(in void* p1, in void* p2) const
+    @system override int compare(in void* p1, in void* p2) const
     {
         auto dg1 = *cast(void delegate()*)p1;
         auto dg2 = *cast(void delegate()*)p2;
@@ -1662,7 +1663,7 @@ class TypeInfo_Class : TypeInfo
         return o ? o.toHash() : 0;
     }
 
-    override bool equals(in void* p1, in void* p2) const
+    @system override bool equals(in void* p1, in void* p2) const
     {
         Object o1 = *cast(Object*)p1;
         Object o2 = *cast(Object*)p2;
@@ -1670,7 +1671,7 @@ class TypeInfo_Class : TypeInfo
         return (o1 is o2) || (o1 && o1.opEquals(o2));
     }
 
-    override int compare(in void* p1, in void* p2) const
+    @system override int compare(in void* p1, in void* p2) const
     {
         Object o1 = *cast(Object*)p1;
         Object o2 = *cast(Object*)p2;
@@ -1748,7 +1749,7 @@ class TypeInfo_Class : TypeInfo
      * Search all modules for TypeInfo_Class corresponding to classname.
      * Returns: null if not found
      */
-    static const(TypeInfo_Class) find(const scope char[] classname)
+    @trusted static const(TypeInfo_Class) find(const scope char[] classname)
     {
         foreach (m; ModuleInfo)
         {
@@ -1771,7 +1772,7 @@ class TypeInfo_Class : TypeInfo
     /**
      * Create instance of Object represented by 'this'.
      */
-    Object create() const
+    @trusted Object create() const
     {
         if (m_flags & 8 && !defaultConstructor)
             return null;
@@ -1856,7 +1857,7 @@ class TypeInfo_Interface : TypeInfo
         return o.toHash();
     }
 
-    override bool equals(in void* p1, in void* p2) const
+    @system override bool equals(in void* p1, in void* p2) const
     {
         Interface* pi = **cast(Interface ***)*cast(void**)p1;
         Object o1 = cast(Object)(*cast(void**)p1 - pi.offset);
@@ -1866,7 +1867,7 @@ class TypeInfo_Interface : TypeInfo
         return o1 == o2 || (o1 && o1.opCmp(o2) == 0);
     }
 
-    override int compare(in void* p1, in void* p2) const
+    @system override int compare(in void* p1, in void* p2) const
     {
         Interface* pi = **cast(Interface ***)*cast(void**)p1;
         Object o1 = cast(Object)(*cast(void**)p1 - pi.offset);
@@ -2037,7 +2038,7 @@ class TypeInfo_Struct : TypeInfo
 
     override @property size_t talign() nothrow pure const { return m_align; }
 
-    final override void destroy(void* p) const
+    @system final override void destroy(void* p) const
     {
         if (xdtor)
         {
@@ -2048,7 +2049,7 @@ class TypeInfo_Struct : TypeInfo
         }
     }
 
-    override void postblit(void* p) const
+    @system override void postblit(void* p) const
     {
         if (xpostblit)
             (*xpostblit)(p);
@@ -2260,10 +2261,10 @@ class TypeInfo_Const : TypeInfo
     }
 
     override size_t getHash(scope const void *p) const { return base.getHash(p); }
-    override bool equals(in void *p1, in void *p2) const { return base.equals(p1, p2); }
-    override int compare(in void *p1, in void *p2) const { return base.compare(p1, p2); }
+    @system override bool equals(in void *p1, in void *p2) const { return base.equals(p1, p2); }
+    @system override int compare(in void *p1, in void *p2) const { return base.compare(p1, p2); }
     override @property size_t tsize() nothrow pure const { return base.tsize; }
-    override void swap(void *p1, void *p2) const { return base.swap(p1, p2); }
+    @system override void swap(void *p1, void *p2) const { return base.swap(p1, p2); }
 
     override @property inout(TypeInfo) next() nothrow pure inout { return base.next; }
     override @property uint flags() nothrow pure const { return base.flags; }
@@ -2363,7 +2364,7 @@ struct ModuleInfo
     }
 
 const:
-    private void* addrOf(int flag) return nothrow pure @nogc
+    @system private void* addrOf(int flag) return nothrow pure @nogc
     in
     {
         assert(flag >= MItlsctor && flag <= MIunitTests);
@@ -2441,7 +2442,7 @@ const:
      * Returns:
      *  module constructor for thread locals, `null` if there isn't one
      */
-    @property void function() tlsctor() nothrow pure @nogc
+    @system @property void function() tlsctor() nothrow pure @nogc
     {
         return flags & MItlsctor ? *cast(typeof(return)*)addrOf(MItlsctor) : null;
     }
@@ -2450,7 +2451,7 @@ const:
      * Returns:
      *  module destructor for thread locals, `null` if there isn't one
      */
-    @property void function() tlsdtor() nothrow pure @nogc
+    @system @property void function() tlsdtor() nothrow pure @nogc
     {
         return flags & MItlsdtor ? *cast(typeof(return)*)addrOf(MItlsdtor) : null;
     }
@@ -2459,7 +2460,7 @@ const:
      * Returns:
      *  address of a module's `const(MemberInfo)[] getMembers(string)` function, `null` if there isn't one
      */
-    @property void* xgetMembers() nothrow pure @nogc
+    @system @property void* xgetMembers() nothrow pure @nogc
     {
         return flags & MIxgetMembers ? *cast(typeof(return)*)addrOf(MIxgetMembers) : null;
     }
@@ -2468,7 +2469,7 @@ const:
      * Returns:
      *  module constructor, `null` if there isn't one
      */
-    @property void function() ctor() nothrow pure @nogc
+    @system @property void function() ctor() nothrow pure @nogc
     {
         return flags & MIctor ? *cast(typeof(return)*)addrOf(MIctor) : null;
     }
@@ -2477,7 +2478,7 @@ const:
      * Returns:
      *  module destructor, `null` if there isn't one
      */
-    @property void function() dtor() nothrow pure @nogc
+    @system @property void function() dtor() nothrow pure @nogc
     {
         return flags & MIdtor ? *cast(typeof(return)*)addrOf(MIdtor) : null;
     }
@@ -2486,7 +2487,7 @@ const:
      * Returns:
      *  module order independent constructor, `null` if there isn't one
      */
-    @property void function() ictor() nothrow pure @nogc
+    @system @property void function() ictor() nothrow pure @nogc
     {
         return flags & MIictor ? *cast(typeof(return)*)addrOf(MIictor) : null;
     }
@@ -2495,7 +2496,7 @@ const:
      * Returns:
      *  address of function that runs the module's unittests, `null` if there isn't one
      */
-    @property void function() unitTest() nothrow pure @nogc
+    @system @property void function() unitTest() nothrow pure @nogc
     {
         return flags & MIunitTest ? *cast(typeof(return)*)addrOf(MIunitTest) : null;
     }
@@ -2511,7 +2512,7 @@ const:
      *  when metadata is unavailable, including modules built by older compilers
      *  and modules without emitted tests. `unitTest` may still be non-null.
      */
-    @property const(immutable(UnitTestInfo)*)[] unitTests() return nothrow pure @nogc
+    @system @property const(immutable(UnitTestInfo)*)[] unitTests() return nothrow pure @nogc
     {
         return flags & MIunitTests ? *cast(typeof(return)*)addrOf(MIunitTests) : null;
     }
@@ -2520,7 +2521,7 @@ const:
      * Returns:
      *  array of pointers to the ModuleInfo's of modules imported by this one
      */
-    @property immutable(ModuleInfo*)[] importedModules() return nothrow pure @nogc
+    @trusted @property immutable(ModuleInfo*)[] importedModules() return nothrow pure @nogc
     {
         if (flags & MIimportedModules)
         {
@@ -2534,7 +2535,7 @@ const:
      * Returns:
      *  array of TypeInfo_Class references for classes defined in this module
      */
-    @property TypeInfo_Class[] localClasses() return nothrow pure @nogc
+    @trusted @property TypeInfo_Class[] localClasses() return nothrow pure @nogc
     {
         if (flags & MIlocalClasses)
         {
@@ -2548,7 +2549,7 @@ const:
      * Returns:
      *  name of module, `null` if no name
      */
-    @property string name() return nothrow pure @nogc
+    @trusted @property string name() return nothrow pure @nogc
     {
         import core.stdc.string : strlen;
 
@@ -2556,7 +2557,7 @@ const:
         return p[0 .. strlen(p)];
     }
 
-    static int opApply(scope int delegate(ModuleInfo*) dg)
+    @trusted static int opApply(scope int delegate(ModuleInfo*) dg)
     {
         import core.internal.traits : externDFunc;
         alias moduleinfos_apply = externDFunc!("rt.minfo.moduleinfos_apply",
@@ -2712,7 +2713,7 @@ class Throwable : Object
     /**
      * Loop over the chain of Throwables.
      */
-    int opApply(scope int delegate(Throwable) dg)
+    @trusted int opApply(scope int delegate(Throwable) dg)
     {
         int result = 0;
         for (Throwable t = this; t; t = t.next)
@@ -2784,7 +2785,7 @@ class Throwable : Object
      * Internally this forwards to the $(D toString) overload that
      * takes a $(D_PARAM sink) delegate.
      */
-    override string toString()
+    @trusted override string toString() // safe interface: builds the message string
     {
         string s;
         toString((in buf) { s ~= buf; });
@@ -2797,7 +2798,7 @@ class Throwable : Object
      * performed in certain error situations.  Override this $(D
      * toString) method to customize the error message.
      */
-    void toString(scope void delegate(in char[]) sink) const
+    @trusted void toString(scope void delegate(in char[]) sink) const
     {
         import core.internal.string : unsignedToTempString;
 
@@ -4570,7 +4571,7 @@ nothrow @safe @nogc unittest
     }
 }
 
-nothrow unittest
+@system nothrow unittest
 {
     // Bugzilla 20049: Test to ensure proper behavior of `nothrow` destructors
     class C
@@ -4586,7 +4587,7 @@ nothrow unittest
 }
 
 // upstream issue 22832
-nothrow unittest
+@system nothrow unittest
 {
     static struct A {}
     static class B
@@ -4598,7 +4599,7 @@ nothrow unittest
 }
 
 // make sure destroy!false skips re-initialization
-unittest
+@system unittest
 {
     static struct S { int x; }
     static class C { int x; }

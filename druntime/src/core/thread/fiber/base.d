@@ -32,7 +32,7 @@ package
     import core.exception : onOutOfMemoryError;
     import core.stdc.stdlib : abort;
 
-    extern (C) void fiber_entryPoint() nothrow
+    @system extern (C) void fiber_entryPoint() nothrow
     {
         FiberBase obj = FiberBase.getThis();
         assert( obj );
@@ -225,7 +225,7 @@ class FiberBase
      * In:
      *  fn must not be null.
      */
-    this( void function() fn, size_t sz, size_t guardPageSize ) nothrow
+    @trusted this( void function() fn, size_t sz, size_t guardPageSize ) nothrow
     in
     {
         assert( fn );
@@ -252,7 +252,7 @@ class FiberBase
      * In:
      *  dg must not be null.
      */
-    this( void delegate() dg, size_t sz, size_t guardPageSize ) nothrow
+    @trusted this( void delegate() dg, size_t sz, size_t guardPageSize ) nothrow
     {
         allocStack( sz, guardPageSize );
         reset( cast(void delegate() const) dg );
@@ -262,7 +262,7 @@ class FiberBase
     /**
      * Cleans up any remaining resources used by this object.
      */
-    ~this() nothrow @nogc
+    @trusted ~this() nothrow @nogc
     {
         // NOTE: A live reference to this object will exist on its associated
         //       stack from the first time its call() method has been called
@@ -309,7 +309,7 @@ class FiberBase
     // is already `@nogc nothrow`, but in order for `Fiber.call` to
     // propagate the attributes of the user's function, the Fiber
     // class needs to be templated.
-    final Throwable call( Rethrow rethrow = Rethrow.yes )
+    @trusted final Throwable call( Rethrow rethrow = Rethrow.yes )
     {
         return rethrow ? call!(Rethrow.yes)() : call!(Rethrow.no);
     }
@@ -330,7 +330,7 @@ class FiberBase
         return null;
     }
 
-    private void callImpl() nothrow @nogc
+    @system private void callImpl() nothrow @nogc
     in
     {
         assert( m_state == State.HOLD );
@@ -376,7 +376,7 @@ class FiberBase
      * In:
      *  This fiber must be in state TERM or HOLD.
      */
-    final void reset() nothrow @nogc
+    @trusted final void reset() nothrow @nogc
     in
     {
         assert( m_state == State.TERM || m_state == State.HOLD );
@@ -390,14 +390,14 @@ class FiberBase
     }
 
     /// ditto
-    final void reset( void function() fn ) nothrow @nogc
+    @trusted final void reset( void function() fn ) nothrow @nogc
     {
         reset();
         m_call  = fn;
     }
 
     /// ditto
-    final void reset( void delegate() dg ) nothrow @nogc
+    @trusted final void reset( void delegate() dg ) nothrow @nogc
     {
         reset();
         m_call  = dg;
@@ -443,7 +443,7 @@ class FiberBase
     /**
      * Forces a context switch to occur away from the calling fiber.
      */
-    static void yield() nothrow @nogc
+    @trusted static void yield() nothrow @nogc
     {
         FiberBase cur = getThis();
         assert( cur, "Fiber.yield() called with no active fiber" );
@@ -468,7 +468,7 @@ class FiberBase
      * In:
      *  t must not be null.
      */
-    static void yieldAndThrow( Throwable t ) nothrow @nogc
+    @trusted static void yieldAndThrow( Throwable t ) nothrow @nogc
     in
     {
         assert( t );
@@ -514,7 +514,7 @@ private:
     // Fiber entry point.  Invokes the function or delegate passed on
     // construction (if any).
     //
-    final void run()
+    @system final void run()
     {
         m_call();
     }
@@ -537,20 +537,20 @@ protected:
     //
     // Allocate a new stack for this fiber.
     //
-    abstract void allocStack( size_t sz, size_t guardPageSize ) nothrow;
+    @system abstract void allocStack( size_t sz, size_t guardPageSize ) nothrow;
 
 
     //
     // Free this fiber's stack.
     //
-    abstract void freeStack() nothrow @nogc;
+    @system abstract void freeStack() nothrow @nogc;
 
 
     //
     // Initialize the allocated stack.
     // Look above the definition of 'class Fiber' for some information about the implementation of this routine
     //
-    abstract void initStack() nothrow @nogc;
+    @system abstract void initStack() nothrow @nogc;
 
 
     StackContext*   m_ctxt;
@@ -593,7 +593,7 @@ private:
     //
     // Switches into the stack held by this fiber.
     //
-    final void switchIn() nothrow @nogc
+    @system final void switchIn() nothrow @nogc
     {
         ThreadBase  tobj = ThreadBase.getThis();
         void**  oldp = &tobj.m_curr.tstack;
@@ -627,7 +627,7 @@ private:
     //
     // Switches out of the current stack and into the enclosing stack.
     //
-    final void switchOut() nothrow @nogc
+    @system final void switchOut() nothrow @nogc
     {
         ThreadBase  tobj = ThreadBase.getThis();
         void**  oldp = &m_ctxt.tstack;
@@ -661,7 +661,7 @@ private:
 }
 
 ///
-unittest {
+@system unittest {
     int counter;
 
     class DerivedFiber : Fiber
@@ -770,7 +770,7 @@ unittest
 
 // Multiple threads running separate fibers
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     auto group = new ThreadGroup();
     foreach (_; 0 .. 4)
@@ -783,7 +783,7 @@ unittest
 
 // Multiple threads running shared fibers
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     shared bool[10] locks;
     TestFiber[10] fibs;
@@ -832,7 +832,7 @@ unittest
 
 
 // Test exception handling inside fibers.
-unittest
+@system unittest
 {
     enum MSG = "Test message.";
     string caughtMsg;
@@ -850,7 +850,7 @@ unittest
 }
 
 
-unittest
+@system unittest
 {
     int x = 0;
 
@@ -860,18 +860,18 @@ unittest
     assert( x == 1 );
 }
 
-nothrow unittest
+@system nothrow unittest
 {
     new Fiber({}).call!(Fiber.Rethrow.no)();
 }
 
-unittest
+@system unittest
 {
     new Fiber({}).call(Fiber.Rethrow.yes);
     new Fiber({}).call(Fiber.Rethrow.no);
 }
 
-unittest
+@system unittest
 {
     enum MSG = "Test message.";
 
@@ -889,7 +889,7 @@ unittest
 }
 
 // Test exception chaining when switching contexts in finally blocks.
-unittest
+@system unittest
 {
     static void throwAndYield(string msg) {
       try {
@@ -927,7 +927,7 @@ unittest
 }
 
 // Test Fiber resetting
-unittest
+@system unittest
 {
     static string method;
 
@@ -968,7 +968,7 @@ unittest
 }
 
 // Test unsafe reset in hold state
-unittest
+@system unittest
 {
     auto fib = new Fiber(function {ubyte[2048] buf = void; Fiber.yield();}, 4096);
     foreach (_; 0 .. 10)
@@ -981,7 +981,7 @@ unittest
 
 // stress testing GC stack scanning
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.memory;
     import core.thread.osthread : Thread;

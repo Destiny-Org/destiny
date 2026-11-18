@@ -1,4 +1,4 @@
-import core.memory;
+@system: import core.memory;
 import core.stdc.stdio : printf;
 import core.sys.posix.sys.wait;
 import core.sys.posix.unistd;

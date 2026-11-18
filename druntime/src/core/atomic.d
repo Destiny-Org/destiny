@@ -1002,7 +1002,7 @@ version (CoreUnittest)
         }
     }
 
-    @betterC pure nothrow unittest
+    @system @betterC pure nothrow unittest
     {
         static if (has128BitCAS)
         {
@@ -1051,7 +1051,7 @@ version (CoreUnittest)
     {
         debug: // tests CAS in-contract
 
-        pure nothrow unittest
+        @system pure nothrow unittest
         {
             import core.exception : AssertError;
 
@@ -1249,7 +1249,7 @@ version (CoreUnittest)
         static assert(is(typeof(atomicLoad(n)) == NoIndirections));
     }
 
-    unittest // Issue 21631
+    @system unittest // Issue 21631
     {
         shared uint si1 = 45;
         shared uint si2 = 38;

@@ -336,7 +336,8 @@ bool checkUnsafeDotExp(Scope* sc, Expression e, Identifier id, int flag)
  */
 bool isSaferD(FuncDeclaration fd)
 {
-    return fd.type.toTypeFunction().trust == TRUST.default_ && fd.saferD;
+    // Destiny: `-preview=safer` has no effect; unannotated functions are @safe
+    return false;
 }
 
 bool isSafe(FuncDeclaration fd)
@@ -371,6 +372,22 @@ bool isTrusted(FuncDeclaration fd)
  *   format = printf-style format string
  *   args  = arguments for %s format specifier
  */
+/****************************************
+ * Destiny: after the first `@safe` error in a function that is `@safe` only by
+ * default, tell the user what to do about it. Printed once per function.
+ */
+void hintSafeByDefault(FuncDeclaration fd)
+{
+    __gshared bool[void*] hinted;
+    if (!fd || !fd.safeByDefault || global.gag || (cast(void*) fd) in hinted)
+        return;
+    hinted[cast(void*) fd] = true;
+    global.errorSink.errorSupplemental(fd.loc,
+        "`%s` is `@safe` by default. If it must do this, mark it `@system`, "
+        ~ "or move the unsafe part into a small `@trusted` function with a safe interface",
+        fd.toPrettyChars());
+}
+
 private
 void reportSafeError(FuncDeclaration fd, bool gag, Loc loc,
     VarDeclaration scopeVar, const(char)* format, RootObject[] args...)
@@ -406,6 +423,8 @@ void reportSafeError(FuncDeclaration fd, bool gag, Loc loc,
                 buf.printf(" is not allowed in a function with default safety with `-%spreview=safer`", SwitchPrefix.ptr);
             }
             eSink.error(loc, "%s", buf.extractChars());
+            if (fd.isSafe())
+                hintSafeByDefault(fd);
         }
     }
 }
@@ -506,7 +525,11 @@ bool setUnsafe(Scope* sc, bool gag, Loc loc, VarDeclaration scopeVar,
 
     if (isRootTraitsCompilesScope(sc)) // __traits(compiles, x)
     {
-        if (sc.func.isSafeBypassingInference())
+        // Destiny: in a function that is @safe only by default, compile checks
+        // ignore safety (as they would in upstream's @system default), so a
+        // `static if (__traits(compiles, ...))` keeps selecting the same code;
+        // that code is then checked as @safe and fails loudly if it is unsafe.
+        if (sc.func.isSafeBypassingInference() && !sc.func.safeByDefault)
         {
             // Message wil be gagged, but still call error() to update global.errors and for
             // -verrors=spec

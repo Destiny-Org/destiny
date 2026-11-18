@@ -2,7 +2,7 @@
 // upstream issue 19933
 // upstream issue 18816
 
-import core.stdc.stdio : FILE, fprintf, stderr;
+@system: import core.stdc.stdio : FILE, fprintf, stderr;
 
 extern(C) int main()
 {

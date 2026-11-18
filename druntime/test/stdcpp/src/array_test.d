@@ -1,4 +1,4 @@
-import core.stdcpp.array;
+@system: import core.stdcpp.array;
 
 unittest
 {

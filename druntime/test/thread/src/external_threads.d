@@ -1,4 +1,4 @@
-import core.internal.thread : isSingleThreaded;
+@system: import core.internal.thread : isSingleThreaded;
 import core.memory;
 import core.sys.posix.pthread : pthread_create, pthread_join;
 import core.sys.posix.sys.types : pthread_t;

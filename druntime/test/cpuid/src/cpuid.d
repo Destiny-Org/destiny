@@ -1,4 +1,4 @@
-module puid;
+module puid; @system: // Destiny: runtime test code
 import core.cpuid;
 import core.stdc.stdio : printf;
 

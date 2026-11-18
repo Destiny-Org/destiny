@@ -1,4 +1,4 @@
-import core.internal.thread : isSingleThreaded;
+@system: import core.internal.thread : isSingleThreaded;
 import core.exception;
 import core.thread;
 

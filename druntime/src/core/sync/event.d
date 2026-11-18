@@ -81,7 +81,7 @@ nothrow @nogc:
      *  manualReset  = the state of the event is not reset automatically after resuming waiting clients
      *  initialState = initial state of the signal
      */
-    this(bool manualReset, bool initialState)
+    @trusted this(bool manualReset, bool initialState)
     {
         initialize(manualReset, initialState);
     }
@@ -93,7 +93,7 @@ nothrow @nogc:
      *  manualReset  = the state of the event is not reset automatically after resuming waiting clients
      *  initialState = initial state of the signal
      */
-    void initialize(bool manualReset, bool initialState)
+    @trusted void initialize(bool manualReset, bool initialState)
     {
         version (Windows)
         {
@@ -140,7 +140,7 @@ nothrow @nogc:
     @disable this(this);
     @disable void opAssign(Event);
 
-    ~this()
+    @trusted ~this()
     {
         terminate();
     }
@@ -149,7 +149,7 @@ nothrow @nogc:
      * deinitialize event. Does nothing if the event is not initialized. There must not be
      * threads currently waiting for the event to be signaled.
     */
-    void terminate()
+    @trusted void terminate()
     {
         version (Windows)
         {
@@ -170,13 +170,13 @@ nothrow @nogc:
         }
     }
 
-    deprecated ("Use setIfInitialized() instead") void set()
+    @trusted deprecated ("Use setIfInitialized() instead") void set()
     {
         setIfInitialized();
     }
 
     /// Set the event to "signaled", so that waiting clients are resumed
-    void setIfInitialized()
+    @trusted void setIfInitialized()
     {
         version (Windows)
         {
@@ -196,7 +196,7 @@ nothrow @nogc:
     }
 
     /// Reset the event manually
-    void reset()
+    @trusted void reset()
     {
         version (Windows)
         {
@@ -220,7 +220,7 @@ nothrow @nogc:
      * Returns:
      *  `true` if the event is in signaled state, `false` if the event is uninitialized or another error occurred
      */
-    bool wait()
+    @trusted bool wait()
     {
         version (Windows)
         {
@@ -241,7 +241,7 @@ nothrow @nogc:
      *  `true` if the event is in signaled state, `false` if the event was nonsignaled for the given time or
      *  the event is uninitialized or another error occurred
      */
-    bool wait(Duration tmout)
+    @trusted bool wait(Duration tmout)
     {
         version (Windows)
         {
@@ -317,7 +317,7 @@ private:
 }
 
 // Test single-thread (non-shared) use.
-@nogc nothrow unittest
+@system @nogc nothrow unittest
 {
     // auto-reset, initial state false
     Event ev1 = Event(false, false);
@@ -335,7 +335,7 @@ private:
 }
 
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.atomic;
     import core.thread;

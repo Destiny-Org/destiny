@@ -992,7 +992,7 @@ void _aaRangePopFront(K, V)(ref AARange!(K, V) r)
 }
 
 // test postblit for AA literals
-unittest
+@system unittest
 {
     import core.memory;
 

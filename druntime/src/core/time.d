@@ -2235,7 +2235,7 @@ private immutable long[__traits(allMembers, ClockType).length] _ticksPerSecond;
 // upstream issue 14863
 // The assert will occur when someone attempts to use _ticksPerSecond for that
 // value.
-extern(C) void _d_initMonoTime() @nogc nothrow
+@system extern(C) void _d_initMonoTime() @nogc nothrow
 {
     // We need a mutable pointer to the ticksPerSecond array. Although this
     // would appear to break immutability, it is logically the same as a static
@@ -2314,7 +2314,7 @@ extern(C) void _d_initMonoTime() @nogc nothrow
 // is a template. This unittest block also makes sure that MonoTimeImpl actually
 // is instantiated with all of the various ClockTypes so that those types and
 // their tests are compiled and run.
-unittest
+@system unittest
 {
     // This test is separate so that it can be tested with MonoTime and not just
     // MonoTimeImpl.
@@ -2399,7 +2399,7 @@ unittest
     auto nsecs = convClockFreq(1982, MonoTime.ticksPerSecond, 1_000_000_000);
 }
 
-unittest
+@system unittest
 {
     assert(convClockFreq(99, 43, 57) == 131);
     assert(convClockFreq(131, 57, 43) == 98);
@@ -2982,7 +2982,7 @@ version (CoreUnittest) void _assertThrown(T : Throwable = Exception, E)
     }
 }
 
-unittest
+@system unittest
 {
 
     void throwEx(Throwable t)

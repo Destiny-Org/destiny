@@ -1,4 +1,4 @@
-import core.runtime;
+@system: import core.runtime;
 
 void main(string[] args)
 {

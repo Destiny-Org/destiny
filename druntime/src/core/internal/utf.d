@@ -295,7 +295,7 @@ dchar decode(const scope char[] s, ref size_t idx)
     return V; // dummy return
     }
 
-unittest
+@system unittest
 {   size_t i;
     dchar c;
 

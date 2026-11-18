@@ -1,5 +1,5 @@
 // upstream issue 16594
-import core.atomic : atomicLoad;
+@system: import core.atomic : atomicLoad;
 import core.stdc.stdio : fprintf, stderr;
 
 shared static ~this()

@@ -13,7 +13,7 @@ nothrow:
 import core.sys.posix.sys.ioctl;
 import core.sys.posix.unistd;
 
-static long perf_event_open(perf_event_attr* hw_event, pid_t pid, int cpu, int group_fd, ulong flags)
+@system static long perf_event_open(perf_event_attr* hw_event, pid_t pid, int cpu, int group_fd, ulong flags)
 {
     import core.sys.linux.unistd : syscall;
     import core.sys.linux.syscall : __NR_perf_event_open;

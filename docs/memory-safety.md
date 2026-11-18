@@ -8,21 +8,70 @@ with each step of the
 | Feature | Status |
 |---|---|
 | Scope checking (no dangling pointers to the stack) in `@safe` code | **always on** |
-| `@safe` as the default for functions | planned (sub-project 2) |
+| `@safe` as the default for functions | **on** |
 | Ownership and borrow checking | planned (sub-project 3) |
 | Garbage-collected heap (no use-after-free for GC memory) | always on |
 
 ## `@safe`, `@trusted` and `@system`
 
-- `@safe` code is checked: no pointer arithmetic, no unsafe casts, and only
-  calls to other `@safe` or `@trusted` functions.
-- `@trusted` code is not checked, but can be called from `@safe` code. Use it
-  only for small functions with a safe interface, and write down why they are
-  safe.
-- `@system` code is not checked and cannot be called from `@safe` code.
+Every function is one of:
 
-Today an unannotated function is `@system`; sub-project 2 changes that to
-`@safe`.
+- **`@safe`** — checked by the compiler: no pointer arithmetic, no unsafe
+  casts, no `__gshared` data, no inline `asm`, and it only calls other `@safe`
+  or `@trusted` functions. **This is the default.**
+- **`@trusted`** — not checked, but callable from `@safe` code. You promise its
+  interface is safe.
+- **`@system`** — not checked, and not callable from `@safe` code.
+
+Templates, lambdas, `auto` functions and nested functions have their safety
+*inferred* from their body. Body-less `extern(C)`, `extern(C++)` etc.
+declarations are `@system` (they are implemented outside Destiny).
+
+### Which one do I use?
+
+| Use | When |
+|---|---|
+| nothing (`@safe`) | normal code |
+| `@system` | the function is unsafe **to call**: it takes raw pointers, frees or reuses memory, calls C, or relies on the caller to get something right |
+| `@trusted` | the function is safe to call **from anywhere** with any arguments, but its body cannot be checked (it calls C or uses pointers internally) |
+
+Rules of thumb:
+
+- Prefer `@system` over `@trusted`. `@trusted` is a promise the compiler cannot
+  check; a wrong one is a memory bug that `@safe` code cannot see.
+- Keep `@trusted` functions **small**, and put a comment saying why they are
+  safe. Make the unsafe part small rather than marking a large function.
+- Never make a function `@trusted` if some argument could make it misbehave
+  (for example a pointer and a length that may not match).
+
+```d
+// @system: the caller must pass a valid buffer of `len` bytes
+@system void fill(ubyte* buf, size_t len) { buf[0 .. len] = 0; }
+
+// @trusted: any slice is valid, so no caller can misuse it
+@trusted void zero(ubyte[] buf) { fill(buf.ptr, buf.length); }
+
+void user()            // @safe by default
+{
+    ubyte[16] b;
+    zero(b[]);         // fine
+    // fill(b.ptr, 99); // error: @safe function cannot call @system function
+}
+```
+
+### What the compiler tells you
+
+When a function that is `@safe` only by default does something unsafe, the
+first error is followed by a hint:
+
+```
+app.d(12): Error: pointer arithmetic is not allowed in a `@safe` function
+app.d(10):        `app.byDefault` is `@safe` by default. If it must do this, mark it
+                  `@system`, or move the unsafe part into a small `@trusted` function
+                  with a safe interface
+```
+
+Functions you marked `@safe` yourself do not get the hint.
 
 ## Scope checking
 

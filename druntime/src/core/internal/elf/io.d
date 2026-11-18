@@ -355,7 +355,7 @@ private struct MMapRegion
      *                the file, the pageOffset will be 4 (for pageSize == 4kiB).
      *   pageCount = The number of pages to map
      */
-    this(int fd, size_t pageOffset, size_t pageCount)
+    @system this(int fd, size_t pageOffset, size_t pageCount)
     {
         if (fd == -1)
             return;
@@ -370,7 +370,7 @@ private struct MMapRegion
 
     @disable this(this);
 
-    ~this()
+    @system ~this()
     {
         if (this.data !is null)
             munmap(cast(void*) this.data.ptr, this.data.length);
@@ -385,7 +385,7 @@ private struct MMapRegion
 /// Returns the path to the process' executable as newly allocated C string
 /// (free() when done), or null on error.
 version (LinuxOrBSD)
-char* thisExePath()
+@system char* thisExePath()
 {
     version (linux)
     {
@@ -458,7 +458,7 @@ char* thisExePath()
 
 // Tries to read the target of the specified link as newly allocated C string.
 // Returns null on error; free() result otherwise when done.
-private char* readLink(const(char)* link)
+@system private char* readLink(const(char)* link)
 {
     for (size_t bufferSize = 128; bufferSize < 131_072; bufferSize *= 2)
     {
@@ -487,7 +487,7 @@ private char* readLink(const(char)* link)
 }
 
 version (LinuxOrBSD)
-unittest
+@system unittest
 {
     import core.internal.elf.dl : SharedObject;
     import core.stdc.stdio : printf;
@@ -518,7 +518,7 @@ unittest
 }
 
 version (LinuxOrBSD)
-unittest
+@system unittest
 {
     import core.stdc.stdio : fileno, tmpfile;
 

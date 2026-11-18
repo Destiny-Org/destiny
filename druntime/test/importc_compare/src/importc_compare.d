@@ -1,4 +1,4 @@
-import core.stdc.stdio : printf;
+@system: import core.stdc.stdio : printf;
 
 /*
 This test tries to verify the druntime C bindings against the C headers,

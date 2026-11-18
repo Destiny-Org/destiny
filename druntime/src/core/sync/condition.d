@@ -169,7 +169,7 @@ class Condition
         }
     }
 
-    ~this() @nogc
+    @trusted ~this() @nogc
     {
         version (Windows)
         {
@@ -234,13 +234,13 @@ class Condition
      * Throws:
      *  SyncError on error.
      */
-    void wait()
+    @trusted void wait()
     {
         wait!(typeof(this))(true);
     }
 
     /// ditto
-    void wait() shared
+    @trusted void wait() shared
     {
         wait!(typeof(this))(true);
     }
@@ -277,13 +277,13 @@ class Condition
      * Returns:
      *  true if notified before the timeout and false if not.
      */
-    bool wait( Duration val )
+    @trusted bool wait( Duration val )
     {
         return wait!(typeof(this))(val, true);
     }
 
     /// ditto
-    bool wait( Duration val ) shared
+    @trusted bool wait( Duration val ) shared
     {
         return wait!(typeof(this))(val, true);
     }
@@ -332,13 +332,13 @@ class Condition
      * Throws:
      *  SyncError on error.
      */
-    void notify()
+    @trusted void notify()
     {
         notify!(typeof(this))(true);
     }
 
     /// ditto
-    void notify() shared
+    @trusted void notify() shared
     {
         notify!(typeof(this))(true);
     }
@@ -380,13 +380,13 @@ class Condition
      * Throws:
      *  SyncError on error.
      */
-    void notifyAll()
+    @trusted void notifyAll()
     {
         notifyAll!(typeof(this))(true);
     }
 
     /// ditto
-    void notifyAll() shared
+    @trusted void notifyAll() shared
     {
         notifyAll!(typeof(this))(true);
     }
@@ -666,7 +666,7 @@ private:
 ////////////////////////////////////////////////////////////////////////////////
 
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.atomic : atomicLoad;
     import core.sync.mutex;
@@ -834,7 +834,7 @@ unittest
 }
 
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.atomic : atomicLoad;
     import core.sync.mutex;

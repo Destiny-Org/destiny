@@ -37,14 +37,14 @@ struct Config
 
 @nogc nothrow:
 
-    bool initialize()
+    @system bool initialize()
     {
         if (!_initialized)
             _initialized = initConfigOptions(this, "gcopt");
         return _initialized;
     }
 
-    void help() @nogc nothrow
+    @system void help() @nogc nothrow
     {
         import core.gc.registry : registeredGCFactories;
 

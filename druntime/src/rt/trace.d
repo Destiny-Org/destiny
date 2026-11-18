@@ -32,7 +32,7 @@ else
     import core.stdc.stdlib : strtoull;
 }
 
-shared static this ()
+@system shared static this ()
 {
     enum DefaultLog = "trace.log";
     enum DefaultDef = "trace.def";
@@ -54,7 +54,7 @@ shared static this ()
  * Params:
  *   name = Path to the output file. Empty means stdout.
  */
-extern(C) void trace_setlogfilename(string name)
+@system extern(C) void trace_setlogfilename(string name)
 {
     updateFileName(trace_logfilename, name);
 }
@@ -72,7 +72,7 @@ extern(C) void trace_setlogfilename(string name)
  * Params:
  *   name = Path to the output file. Empty means stdout.
  */
-extern(C) void trace_setdeffilename(string name)
+@system extern(C) void trace_setdeffilename(string name)
 {
     updateFileName(trace_deffilename, name);
 }
@@ -80,7 +80,7 @@ extern(C) void trace_setdeffilename(string name)
 private:
 
 // Code shared by both `trace_setXXXfilename`
-void updateFileName(ref char[] filename, string name)
+@system void updateFileName(ref char[] filename, string name)
 {
     if (!name.length)
     {
@@ -160,7 +160,7 @@ __gshared
 ////////////////////////////////////////
 // Output optimal function link order.
 
-private void trace_order(FILE* fpdef, Symbol *s)
+@system private void trace_order(FILE* fpdef, Symbol *s)
 {
     while (s)
     {
@@ -174,7 +174,7 @@ private void trace_order(FILE* fpdef, Symbol *s)
 //////////////////////////////////////////////
 //
 
-private Stack* stack_push()
+@system private Stack* stack_push()
 {
     Stack *s;
 
@@ -204,7 +204,7 @@ private void stack_free(Stack *s)
 //////////////////////////////////////
 // Qsort() comparison routine for array of pointers to SymPair's.
 
-extern(C) int sympair_cmp(scope const void* e1, scope const void* e2) nothrow @nogc
+@system extern(C) int sympair_cmp(scope const void* e1, scope const void* e2) nothrow @nogc
 {
     auto count1 = (*cast(SymPair**)e1).count;
     auto count2 = (*cast(SymPair**)e2).count;
@@ -215,7 +215,7 @@ extern(C) int sympair_cmp(scope const void* e1, scope const void* e2) nothrow @n
 // Place symbol s, and then place any fan ins or fan outs with
 // counts greater than count.
 
-private void trace_place(FILE* fpdef, Symbol* s, ulong count)
+@system private void trace_place(FILE* fpdef, Symbol* s, ulong count)
 {
     if (!(s.Sflags & SFvisited))
     {
@@ -271,7 +271,7 @@ private void trace_place(FILE* fpdef, Symbol* s, ulong count)
 // Report results.
 // Also compute and return number of symbols.
 
-private size_t trace_report(FILE* fplog, Symbol* s)
+@system private size_t trace_report(FILE* fplog, Symbol* s)
 {
     //printf("trace_report()\n");
     size_t nsymbols;
@@ -314,7 +314,7 @@ private void trace_array(Symbol*[] psymbols, Symbol *s, ref uint u)
 //////////////////////////////////////
 // Qsort() comparison routine for array of pointers to Symbol's.
 
-extern(C) int symbol_cmp(scope const void* e1, scope const void* e2) nothrow @nogc
+@system extern(C) int symbol_cmp(scope const void* e1, scope const void* e2) nothrow @nogc
 {
     auto ps1 = cast(Symbol **)e1;
     auto ps2 = cast(Symbol **)e2;
@@ -327,7 +327,7 @@ extern(C) int symbol_cmp(scope const void* e1, scope const void* e2) nothrow @no
 ///////////////////////////////////
 // Report function timings
 
-private void trace_times(FILE* fplog, Symbol*[] psymbols)
+@system private void trace_times(FILE* fplog, Symbol*[] psymbols)
 {
     // Sort array
     qsort(psymbols.ptr, psymbols.length, (Symbol *).sizeof, &symbol_cmp);
@@ -382,7 +382,7 @@ private void trace_times(FILE* fplog, Symbol*[] psymbols)
 ///////////////////////////////////
 // Initialize.
 
-private void trace_init()
+@system private void trace_init()
 {
     synchronized        // protects gtrace_inited
     {
@@ -417,7 +417,7 @@ private void trace_init()
 /////////////////////////////////
 // Terminate.
 
-static ~this()
+@system static ~this()
 {
     // Free remainder of the thread local stack
     while (trace_tos)
@@ -520,7 +520,7 @@ static ~this()
     root = null;
 }
 
-shared static ~this()
+@system shared static ~this()
 {
     //printf("shared static ~this() groot = %p\n", groot);
     if (gtrace_inited == 1)
@@ -568,7 +568,7 @@ shared static ~this()
 /////////////////////////////////
 // Our storage allocator.
 
-private void *trace_malloc(size_t nbytes)
+@system private void *trace_malloc(size_t nbytes)
 {
     auto p = malloc(nbytes);
     if (!p)
@@ -576,7 +576,7 @@ private void *trace_malloc(size_t nbytes)
     return p;
 }
 
-private void trace_free(void *p)
+@system private void trace_free(void *p)
 {
     free(p);
 }
@@ -584,7 +584,7 @@ private void trace_free(void *p)
 //////////////////////////////////////////////
 //
 
-private Symbol* trace_addsym(Symbol** proot, const(char)[] id)
+@system private Symbol* trace_addsym(Symbol** proot, const(char)[] id)
 {
     //printf("trace_addsym('%s',%d)\n",p,len);
     auto parent = proot;
@@ -616,7 +616,7 @@ private Symbol* trace_addsym(Symbol** proot, const(char)[] id)
  * Add symbol s with count to SymPair list.
  */
 
-private void trace_sympair_add(SymPair** psp, Symbol* s, ulong count)
+@system private void trace_sympair_add(SymPair** psp, Symbol* s, ulong count)
 {
     SymPair* sp;
 
@@ -643,7 +643,7 @@ private void trace_sympair_add(SymPair** psp, Symbol* s, ulong count)
 //////////////////////////////////////////////
 // This one is called by DMD
 
-private extern(C) void trace_pro(char[] id)
+@system private extern(C) void trace_pro(char[] id)
 {
     //printf("trace_pro(ptr = %p, length = %lld)\n", id.ptr, id.length);
     //printf("trace_pro(id = '%.*s')\n", id.length, id.ptr);
@@ -679,7 +679,7 @@ private extern(C) void trace_pro(char[] id)
 }
 
 // Called by some old versions of DMD
-extern(C) void _c_trace_pro(size_t idlen, char* idptr)
+@system extern(C) void _c_trace_pro(size_t idlen, char* idptr)
 {
     char[] id = idptr[0 .. idlen];
     trace_pro(id);
@@ -688,7 +688,7 @@ extern(C) void _c_trace_pro(size_t idlen, char* idptr)
 /////////////////////////////////////////
 // Called by DMD generated code
 
-extern(C) void _c_trace_epi()
+@system extern(C) void _c_trace_epi()
 {
     //printf("_c_trace_epi()\n");
     if (auto tos = trace_tos)
@@ -736,7 +736,7 @@ extern(C) void _c_trace_epi()
 //      trace_malloc'd line buffer
 //      null if end of file
 
-char[] trace_readline(FILE* fp)
+@system char[] trace_readline(FILE* fp)
 {
     char[] buf;
     // Last character used in `buf`
@@ -773,7 +773,7 @@ char[] trace_readline(FILE* fp)
 //////////////////////////////////////
 // Skip space
 
-private char *skipspace(char *p)
+@system private char *skipspace(char *p)
 {
     while (isspace(*p))
         p++;
@@ -783,7 +783,7 @@ private char *skipspace(char *p)
 ////////////////////////////////////////////////////////
 // Merge in profiling data from existing file.
 
-private void trace_merge(Symbol** proot)
+@system private void trace_merge(Symbol** proot)
 {
     // We're outputting to stdout
     if (!trace_logfilename.length)
@@ -906,7 +906,7 @@ else version (LDC)
 }
 else
 {
-    extern (D) void QueryPerformanceCounter(timer_t* ctr)
+    @system extern (D) void QueryPerformanceCounter(timer_t* ctr)
     {
         version (D_InlineAsm_X86)
         {

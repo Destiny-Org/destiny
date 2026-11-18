@@ -541,7 +541,7 @@ private bool inFinalizer()() pure nothrow @nogc @safe
 }
 
 // upstream issue 21544
-unittest
+@system unittest
 {
     // Normal enum values
     enum E { A, BCDE }
@@ -571,7 +571,7 @@ unittest
 }
 
 // vectors
-unittest
+@system unittest
 {
     static if (is(__vector(float[4])))
     {

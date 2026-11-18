@@ -26,7 +26,7 @@ debug (PRINTF) import core.stdc.stdio : printf;
  *      t = Throwable
  */
 
-nothrow extern (C) void _d_delThrowable(Throwable t)
+@system nothrow extern (C) void _d_delThrowable(Throwable t)
 {
     if (t)
     {

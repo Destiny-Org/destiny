@@ -1,4 +1,4 @@
-import core.sys.posix.sys.mman : MAP_ANON, MAP_PRIVATE, mmap, PROT_READ, PROT_WRITE;
+@system: import core.sys.posix.sys.mman : MAP_ANON, MAP_PRIVATE, mmap, PROT_READ, PROT_WRITE;
 import core.thread;
 
 version (LDC) import ldc.attributes;

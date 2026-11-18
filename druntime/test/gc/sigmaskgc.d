@@ -1,4 +1,4 @@
-
+@system: // Destiny: runtime test code
 // upstream issue 20256
 
 extern(C) __gshared string[] rt_options = [ "gcopt=parallel:1" ];

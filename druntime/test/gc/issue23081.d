@@ -21,7 +21,7 @@
 // scan threads.  To trigger parallel marking we rely on automatic collections
 // driven by allocations filling the initial pool.
 
-import core.memory;
+@system: import core.memory;
 import core.thread;
 import core.stdc.stdio;
 import core.sys.posix.sys.resource;

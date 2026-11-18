@@ -51,7 +51,7 @@ struct Image
 {
     private ElfFile file;
 
-    static Image openSelf()
+    @system static Image openSelf()
     {
         import core.stdc.stdlib : free;
 
@@ -68,7 +68,7 @@ struct Image
         return image;
     }
 
-    @property bool isValid()
+    @system @property bool isValid()
     {
         return file != ElfFile.init;
     }
@@ -92,7 +92,7 @@ struct Image
         return processor(sections);
     }
 
-    private void mapSection(const(char)[] name, out ElfSection section)
+    @system private void mapSection(const(char)[] name, out ElfSection section)
     {
         ElfSectionHeader header;
 
@@ -104,7 +104,7 @@ struct Image
         }
     }
 
-    @property size_t baseAddress()
+    @system @property size_t baseAddress()
     {
         import core.internal.elf.dl : SharedObject;
 

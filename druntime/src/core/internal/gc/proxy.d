@@ -49,7 +49,7 @@ extern (C)
         return reg1 < reg2 ? reg1 : reg2;
     }
 
-    void gc_init()
+    @system void gc_init()
     {
         instanceLock.lock();
         if (!isInstanceInit)
@@ -79,7 +79,7 @@ extern (C)
         instanceLock.unlock();
     }
 
-    void gc_init_nothrow() nothrow
+    @system void gc_init_nothrow() nothrow
     {
         scope(failure)
         {
@@ -90,7 +90,7 @@ extern (C)
         gc_init();
     }
 
-    void gc_term()
+    @system void gc_term()
     {
         if (isInstanceInit)
         {
@@ -116,87 +116,87 @@ extern (C)
         }
     }
 
-    void gc_enable()
+    @system void gc_enable()
     {
         instance.enable();
     }
 
-    void gc_disable()
+    @system void gc_disable()
     {
         instance.disable();
     }
 
-    void gc_collect() nothrow
+    @system void gc_collect() nothrow
     {
         instance.collect();
     }
 
-    void gc_minimize() nothrow
+    @system void gc_minimize() nothrow
     {
         instance.minimize();
     }
 
-    uint gc_getAttr( void* p ) nothrow
+    @system uint gc_getAttr( void* p ) nothrow
     {
         return instance.getAttr(p);
     }
 
-    uint gc_setAttr( void* p, uint a ) nothrow
+    @system uint gc_setAttr( void* p, uint a ) nothrow
     {
         return instance.setAttr(p, a);
     }
 
-    uint gc_clrAttr( void* p, uint a ) nothrow
+    @system uint gc_clrAttr( void* p, uint a ) nothrow
     {
         return instance.clrAttr(p, a);
     }
 
-    void* gc_malloc( size_t sz, uint ba = 0, const scope TypeInfo ti = null ) nothrow
+    @system void* gc_malloc( size_t sz, uint ba = 0, const scope TypeInfo ti = null ) nothrow
     {
         return instance.malloc(sz, ba, ti);
     }
 
-    BlkInfo gc_qalloc( size_t sz, uint ba = 0, const scope TypeInfo ti = null ) nothrow
+    @system BlkInfo gc_qalloc( size_t sz, uint ba = 0, const scope TypeInfo ti = null ) nothrow
     {
         return instance.qalloc( sz, ba, ti );
     }
 
-    void* gc_calloc( size_t sz, uint ba = 0, const scope TypeInfo ti = null ) nothrow
+    @system void* gc_calloc( size_t sz, uint ba = 0, const scope TypeInfo ti = null ) nothrow
     {
         return instance.calloc( sz, ba, ti );
     }
 
-    void* gc_realloc( void* p, size_t sz, uint ba = 0, const scope TypeInfo ti = null ) nothrow
+    @system void* gc_realloc( void* p, size_t sz, uint ba = 0, const scope TypeInfo ti = null ) nothrow
     {
         return instance.realloc( p, sz, ba, ti );
     }
 
-    size_t gc_extend( void* p, size_t mx, size_t sz, const scope TypeInfo ti = null ) nothrow
+    @system size_t gc_extend( void* p, size_t mx, size_t sz, const scope TypeInfo ti = null ) nothrow
     {
         return instance.extend( p, mx, sz,ti );
     }
 
-    size_t gc_reserve( size_t sz ) nothrow
+    @system size_t gc_reserve( size_t sz ) nothrow
     {
         return instance.reserve( sz );
     }
 
-    void gc_free( void* p ) nothrow @nogc
+    @system void gc_free( void* p ) nothrow @nogc
     {
         return instance.free( p );
     }
 
-    void* gc_addrOf( void* p ) nothrow @nogc
+    @system void* gc_addrOf( void* p ) nothrow @nogc
     {
         return instance.addrOf( p );
     }
 
-    size_t gc_sizeOf( void* p ) nothrow @nogc
+    @system size_t gc_sizeOf( void* p ) nothrow @nogc
     {
         return instance.sizeOf( p );
     }
 
-    BlkInfo gc_query( void* p ) nothrow
+    @system BlkInfo gc_query( void* p ) nothrow
     {
         return instance.query( p );
     }
@@ -211,27 +211,27 @@ extern (C)
         return instance.profileStats();
     }
 
-    void gc_addRoot( void* p ) nothrow @nogc
+    @system void gc_addRoot( void* p ) nothrow @nogc
     {
         return instance.addRoot( p );
     }
 
-    void gc_addRange( void* p, size_t sz, const TypeInfo ti = null ) nothrow @nogc
+    @system void gc_addRange( void* p, size_t sz, const TypeInfo ti = null ) nothrow @nogc
     {
         return instance.addRange( p, sz, ti );
     }
 
-    void gc_removeRoot( void* p ) nothrow
+    @system void gc_removeRoot( void* p ) nothrow
     {
         return instance.removeRoot( p );
     }
 
-    void gc_removeRange( void* p ) nothrow
+    @system void gc_removeRange( void* p ) nothrow
     {
         return instance.removeRange( p );
     }
 
-    void gc_runFinalizers(const scope void[] segment ) nothrow
+    @system void gc_runFinalizers(const scope void[] segment ) nothrow
     {
         return instance.runFinalizers( segment );
     }
@@ -241,12 +241,12 @@ extern (C)
         return instance.inFinalizer();
     }
 
-    ulong gc_allocatedInCurrentThread() nothrow
+    @system ulong gc_allocatedInCurrentThread() nothrow
     {
         return instance.allocatedInCurrentThread();
     }
 
-    void[] gc_getArrayUsed(void *ptr, bool atomic) nothrow
+    @system void[] gc_getArrayUsed(void *ptr, bool atomic) nothrow
     {
         return instance.getArrayUsed( ptr, atomic );
     }
@@ -261,7 +261,7 @@ extern (C)
         return instance.reserveArrayCapacity( slice, request, atomic );
     }
 
-    bool gc_shrinkArrayUsed(void[] slice, size_t existingUsed, bool atomic) nothrow
+    @system bool gc_shrinkArrayUsed(void[] slice, size_t existingUsed, bool atomic) nothrow
     {
         return instance.shrinkArrayUsed( slice, existingUsed, atomic );
     }
@@ -273,7 +273,7 @@ extern (C)
 
     export
     {
-        void gc_setProxy( GC proxy )
+        @system void gc_setProxy( GC proxy )
         {
             foreach (root; instance.rootIter)
             {
@@ -289,7 +289,7 @@ extern (C)
             _instance = proxy;
         }
 
-        void gc_clrProxy()
+        @system void gc_clrProxy()
         {
             foreach (root; proxiedGC.rootIter)
             {

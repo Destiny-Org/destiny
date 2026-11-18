@@ -1,7 +1,7 @@
 /*******************************************/
 // upstream issue 19421
 
-import core.memory;
+@system: import core.memory;
 
 extern(C) void main() @nogc nothrow pure
 {

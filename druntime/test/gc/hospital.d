@@ -9,7 +9,7 @@
    contributed by Isaac Gouy
 */
 
-import core.memory;
+@system: import core.memory; // Destiny: runtime test code
 
 int main(string[] args)
 {

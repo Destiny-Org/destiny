@@ -1,4 +1,4 @@
-import core.stdcpp.utility;
+@system: import core.stdcpp.utility;
 
 alias SimplePair = pair!(int, float);
 alias ElaboratePair = pair!(int, Elaborate);

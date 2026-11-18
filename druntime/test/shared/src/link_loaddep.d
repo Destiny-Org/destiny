@@ -1,4 +1,4 @@
-import libloaddep;
+@system: import libloaddep;
 
 void main(string[] args)
 {

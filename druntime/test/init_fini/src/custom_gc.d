@@ -1,4 +1,4 @@
-import core.gc.gcinterface;
+@system: import core.gc.gcinterface;
 import core.gc.registry;
 import core.stdc.stdlib : calloc, malloc, realloc;
 

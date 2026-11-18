@@ -1,6 +1,6 @@
 // upstream issue 22523
 
-import core.stdc.stdio : puts;
+@system: import core.stdc.stdio : puts;
 
 int main()
 {

@@ -44,7 +44,7 @@ static if (Glibc_Qsort_R)
     alias Cmp = extern (C) int function(scope const void *, scope const void *, scope void *);
     extern (C) void qsort_r(scope void *base, size_t nmemb, size_t size, Cmp cmp, scope void *arg);
 
-    extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
+    @system extern (C) void[] _adSort(return scope void[] a, TypeInfo ti)
     {
         extern (C) int cmp(scope const void* p1, scope const void* p2, scope void* ti)
         {
@@ -153,7 +153,7 @@ else
     }
 }
 
-unittest
+@system unittest
 {
     debug(qsort) printf("array.sort.unittest()\n");
 
@@ -180,7 +180,7 @@ unittest
     }
 }
 
-unittest
+@system unittest
 {
     debug(qsort) printf("struct.sort.unittest()\n");
 

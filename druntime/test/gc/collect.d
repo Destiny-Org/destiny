@@ -1,4 +1,4 @@
-module core.thread.collect; // get access to package core.thread
+module core.thread.collect; @system: // Destiny: runtime test code // get access to package core.thread
 
 import core.thread: isSingleThreaded;
 import core.thread.threadbase;

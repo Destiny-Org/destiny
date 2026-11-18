@@ -33,7 +33,7 @@ struct GCBits
     wordtype* data;
     size_t nbits;
 
-    void Dtor(bool share = false) nothrow
+    @system void Dtor(bool share = false) nothrow
     {
         if (data)
         {
@@ -47,7 +47,7 @@ struct GCBits
         }
     }
 
-    void alloc(size_t nbits, bool share = false) nothrow
+    @system void alloc(size_t nbits, bool share = false) nothrow
     {
         this.nbits = nbits;
         if (!AllocSupportsShared || !share)
@@ -173,25 +173,25 @@ struct GCBits
     }
 
     // extract loops to allow inlining the rest
-    void clearWords(size_t firstWord, size_t lastWord) nothrow
+    @system void clearWords(size_t firstWord, size_t lastWord) nothrow
     {
         for (size_t w = firstWord; w < lastWord; w++)
             data[w] = 0;
     }
 
-    void setWords(size_t firstWord, size_t lastWord) nothrow
+    @system void setWords(size_t firstWord, size_t lastWord) nothrow
     {
         for (size_t w = firstWord; w < lastWord; w++)
             data[w] = ~0;
     }
 
-    void copyWords(size_t firstWord, size_t lastWord, const(wordtype)* source) nothrow
+    @system void copyWords(size_t firstWord, size_t lastWord, const(wordtype)* source) nothrow
     {
         for (size_t w = firstWord; w < lastWord; w++)
             data[w] = source[w - firstWord];
     }
 
-    void copyWordsShifted(size_t firstWord, size_t cntWords, size_t firstOff, const(wordtype)* source) nothrow
+    @system void copyWordsShifted(size_t firstWord, size_t cntWords, size_t firstOff, const(wordtype)* source) nothrow
     {
         wordtype mask = ~BITS_0 << firstOff;
         data[firstWord] = (data[firstWord] & ~mask) | (source[0] << firstOff);
@@ -201,7 +201,7 @@ struct GCBits
 
     // target = the biti to start the copy to
     // destlen = the number of bits to copy from source
-    void copyRange(size_t target, size_t len, const(wordtype)* source) nothrow
+    @system void copyRange(size_t target, size_t len, const(wordtype)* source) nothrow
     {
         version (gcbitsSingleBitOperation)
         {
@@ -218,7 +218,7 @@ struct GCBits
         }
     }
 
-    void copyRangeZ(size_t target, size_t len, const(wordtype)* source) nothrow
+    @system void copyRangeZ(size_t target, size_t len, const(wordtype)* source) nothrow
     {
         mixin RangeVars!();
 
@@ -247,7 +247,7 @@ struct GCBits
         }
     }
 
-    void copyRangeRepeating(size_t target, size_t destlen, const(wordtype)* source, size_t sourcelen) nothrow
+    @system void copyRangeRepeating(size_t target, size_t destlen, const(wordtype)* source, size_t sourcelen) nothrow
     {
         version (gcbitsSingleBitOperation)
         {
@@ -272,7 +272,7 @@ struct GCBits
         }
     }
 
-    unittest
+    @system unittest
     {
         // simulate broken array append test case in vibe.d
         GCBits bits;
@@ -292,7 +292,7 @@ struct GCBits
                 assert(!bits.test(i));
     }
 
-    void setRange(size_t target, size_t len) nothrow
+    @system void setRange(size_t target, size_t len) nothrow
     {
         version (gcbitsSingleBitOperation)
         {
@@ -306,7 +306,7 @@ struct GCBits
         }
     }
 
-    void setRangeZ(size_t target, size_t len) nothrow
+    @system void setRangeZ(size_t target, size_t len) nothrow
     {
         mixin RangeVars!();
 
@@ -324,7 +324,7 @@ struct GCBits
         }
     }
 
-    void clrRange(size_t target, size_t len) nothrow
+    @system void clrRange(size_t target, size_t len) nothrow
     {
         version (gcbitsSingleBitOperation)
         {
@@ -338,7 +338,7 @@ struct GCBits
         }
     }
 
-    void clrRangeZ(size_t target, size_t len) nothrow
+    @system void clrRangeZ(size_t target, size_t len) nothrow
     {
         mixin RangeVars!();
         if (firstWord == lastWord)
@@ -355,7 +355,7 @@ struct GCBits
         }
     }
 
-    unittest
+    @system unittest
     {
         GCBits bits;
         bits.alloc(1000);
@@ -439,17 +439,17 @@ struct GCBits
         testCopyRange(2, 3, 166); // failed with assert
     }
 
-    void zero() nothrow
+    @system void zero() nothrow
     {
         memset(data, 0, nwords * wordtype.sizeof);
     }
 
-    void setAll() nothrow
+    @system void setAll() nothrow
     {
         memset(data, 0xFF, nwords * wordtype.sizeof);
     }
 
-    void copy(GCBits *f) nothrow
+    @system void copy(GCBits *f) nothrow
     in
     {
         assert(nwords == f.nwords);
@@ -465,7 +465,7 @@ struct GCBits
     }
 }
 
-unittest
+@system unittest
 {
     GCBits b;
 

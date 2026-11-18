@@ -1,4 +1,4 @@
-void main()
+@system: void main()
 {
     issue19562();
     issue15111();

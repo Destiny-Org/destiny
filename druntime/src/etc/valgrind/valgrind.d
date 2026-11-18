@@ -58,28 +58,28 @@ private extern(C) nothrow @nogc
     void _d_valgrind_enable_addr_reporting_in_range (const(void)* addr, size_t len);
 }
 
-void makeMemNoAccess (const(void)[] mem) nothrow @nogc { _d_valgrind_make_mem_noaccess (mem.ptr, mem.length); }
-void makeMemUndefined(const(void)[] mem) nothrow @nogc { _d_valgrind_make_mem_undefined(mem.ptr, mem.length); }
-void makeMemDefined  (const(void)[] mem) nothrow @nogc { _d_valgrind_make_mem_defined  (mem.ptr, mem.length); }
+@trusted void makeMemNoAccess (const(void)[] mem) nothrow @nogc { _d_valgrind_make_mem_noaccess (mem.ptr, mem.length); }
+@trusted void makeMemUndefined(const(void)[] mem) nothrow @nogc { _d_valgrind_make_mem_undefined(mem.ptr, mem.length); }
+@trusted void makeMemDefined  (const(void)[] mem) nothrow @nogc { _d_valgrind_make_mem_defined  (mem.ptr, mem.length); }
 
-uint getVBits(const(void)[] mem, ubyte[] bits) nothrow @nogc
+@trusted uint getVBits(const(void)[] mem, ubyte[] bits) nothrow @nogc
 {
     assert(mem.length == bits.length);
     return _d_valgrind_get_vbits(mem.ptr, bits.ptr, mem.length);
 }
 
-uint setVBits(const(void)[] mem, ubyte[] bits) nothrow @nogc
+@trusted uint setVBits(const(void)[] mem, ubyte[] bits) nothrow @nogc
 {
     assert(mem.length == bits.length);
     return _d_valgrind_set_vbits(mem.ptr, bits.ptr, mem.length);
 }
 
-void disableAddrReportingInRange(const(void)[] mem) nothrow @nogc
+@trusted void disableAddrReportingInRange(const(void)[] mem) nothrow @nogc
 {
     _d_valgrind_disable_addr_reporting_in_range(mem.ptr, mem.length);
 }
 
-void enableAddrReportingInRange(const(void)[] mem) nothrow @nogc
+@trusted void enableAddrReportingInRange(const(void)[] mem) nothrow @nogc
 {
     _d_valgrind_enable_addr_reporting_in_range(mem.ptr, mem.length);
 }

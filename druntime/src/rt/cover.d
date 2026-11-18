@@ -42,7 +42,7 @@ private
         size_t  len;
         size_t* ptr;
 
-        bool opIndex( size_t i )
+        @system bool opIndex( size_t i )
         in
         {
             assert( i < len );
@@ -81,13 +81,13 @@ private
 
     @nogc nothrow:
 
-        bool initialize()
+        @system bool initialize()
         {
             import core.internal.parseoptions : initConfigOptions;
             return initConfigOptions(this, this.errorName);
         }
 
-        void help()
+        @system void help()
         {
             string s = "Code coverage options are specified as whitespace separated assignments:
     merge:0|1      - 0 overwrites existing reports, 1 merges current run with existing coverage reports (default: %d)
@@ -111,7 +111,7 @@ private
  * Params:
  *  pathname = The new path name.
  */
-extern (C) void dmd_coverSourcePath( string pathname )
+@system extern (C) void dmd_coverSourcePath( string pathname )
 {
     config.srcpath = pathname;
 }
@@ -123,7 +123,7 @@ extern (C) void dmd_coverSourcePath( string pathname )
  * Params:
  *  pathname = The new path name.
  */
-extern (C) void dmd_coverDestPath( string pathname )
+@system extern (C) void dmd_coverDestPath( string pathname )
 {
     config.dstpath = pathname;
 }
@@ -136,7 +136,7 @@ extern (C) void dmd_coverDestPath( string pathname )
  *      flag = true means new data is summed with existing data in the listing
  *         file; false means a new listing file is always created.
  */
-extern (C) void dmd_coverSetMerge( bool flag )
+@system extern (C) void dmd_coverSetMerge( bool flag )
 {
     config.merge = flag;
 }
@@ -151,7 +151,7 @@ extern (C) void dmd_coverSetMerge( bool flag )
  *  data     = Array containg the coverage hits of each line
  *  minPercent = minimal coverage of the module
  */
-extern (C) void _d_cover_register2(string filename, size_t[] valid, uint[] data, ubyte minPercent)
+@system extern (C) void _d_cover_register2(string filename, size_t[] valid, uint[] data, ubyte minPercent)
 {
     assert(minPercent <= 100);
 
@@ -167,7 +167,7 @@ extern (C) void _d_cover_register2(string filename, size_t[] valid, uint[] data,
 
 /* Kept for the moment for backwards compatibility.
  */
-extern (C) void _d_cover_register( string filename, size_t[] valid, uint[] data )
+@system extern (C) void _d_cover_register( string filename, size_t[] valid, uint[] data )
 {
     _d_cover_register2(filename, valid, data, 0);
 }
@@ -214,7 +214,7 @@ bool lstEquals(char[][] sourceLines, char[][] lstLines)
     return true;
 }
 
-unittest
+@system unittest
 {
     char[][] src = cast(char[][])[ "12345", " | 12345, asasd", "|", ".;" ];
     char[][] lst = cast(char[][])[ "       |12345", "       | | 12345, asasd", "      1||", "0000000|.;", "" ];
@@ -224,12 +224,12 @@ unittest
     assert(!lstEquals(src, badLst));
 }
 
-shared static this()
+@system shared static this()
 {
     config.initialize();
 }
 
-shared static ~this()
+@system shared static ~this()
 {
     if (!gdata.length || config.disable) return;
 
@@ -462,7 +462,7 @@ string chomp( string str, string delim = null )
 }
 
 // open/create file for read/write, pointer at beginning
-FILE* openOrCreateFile(string name)
+@system FILE* openOrCreateFile(string name)
 {
     version (Windows)
         immutable fd = _wopen(toUTF16z(name), _O_RDWR | _O_CREAT | _O_BINARY, _S_IREAD | _S_IWRITE);
@@ -502,7 +502,7 @@ void lockFile(int fd)
     }
 }
 
-bool readFile(FILE* file, ref char[] buf)
+@system bool readFile(FILE* file, ref char[] buf)
 {
     if (fseek(file, 0, SEEK_END) != 0)
         assert(0, "fseek failed");
@@ -524,7 +524,7 @@ bool readFile(FILE* file, ref char[] buf)
 version (Windows) extern (C) nothrow @nogc FILE* _wfopen(scope const wchar* filename, scope const wchar* mode);
 
 
-bool readFile(string name, ref char[] buf)
+@system bool readFile(string name, ref char[] buf)
 {
     version (Windows)
         auto file = _wfopen(toUTF16z(name), "rb"w.ptr);

@@ -33,7 +33,7 @@ extern(C) nothrow
     void setbuffer(FILE *stream, char *buf, size_t size); // note: _DEFAULT_SOURCE
 }
 
-unittest
+@system unittest
 {
     static int flag = 0;
     static int written = 0;
@@ -91,7 +91,7 @@ unittest
     //assert(stdin.fileno() == 0);
 }
 
-unittest
+@system unittest
 { /* setbuffer */
     char buf;
     int c;

@@ -1,4 +1,4 @@
-module pertest;
+module pertest; @system: // Destiny: runtime test code
 
 import core.stdc.stdio : FILE, fprintf, stderr;
 

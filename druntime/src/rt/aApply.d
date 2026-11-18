@@ -73,7 +73,7 @@ Params:
 Returns:
     non-zero when the loop was exited through a `break`
 */
-extern (C) int _aApplycd1(scope const(char)[] aa, dg_t dg)
+@system extern (C) int _aApplycd1(scope const(char)[] aa, dg_t dg)
 {
     int result;
     size_t len = aa.length;
@@ -134,7 +134,7 @@ unittest
 }
 
 /// ditto
-extern (C) int _aApplywd1(scope const(wchar)[] aa, dg_t dg)
+@system extern (C) int _aApplywd1(scope const(wchar)[] aa, dg_t dg)
 {
     int result;
     size_t len = aa.length;
@@ -195,7 +195,7 @@ unittest
 }
 
 /// ditto
-extern (C) int _aApplycw1(scope const(char)[] aa, dg_t dg)
+@system extern (C) int _aApplycw1(scope const(char)[] aa, dg_t dg)
 {
     int result;
     size_t len = aa.length;
@@ -269,7 +269,7 @@ unittest
 }
 
 /// ditto
-extern (C) int _aApplywc1(scope const(wchar)[] aa, dg_t dg)
+@system extern (C) int _aApplywc1(scope const(wchar)[] aa, dg_t dg)
 {
     int result;
     size_t len = aa.length;
@@ -349,7 +349,7 @@ unittest
 }
 
 /// ditto
-extern (C) int _aApplydc1(scope const(dchar)[] aa, dg_t dg)
+@system extern (C) int _aApplydc1(scope const(dchar)[] aa, dg_t dg)
 {
     int result;
 
@@ -425,7 +425,7 @@ unittest
 }
 
 /// ditto
-extern (C) int _aApplydw1(scope const(dchar)[] aa, dg_t dg)
+@system extern (C) int _aApplydw1(scope const(dchar)[] aa, dg_t dg)
 {
     int result;
 
@@ -510,7 +510,7 @@ extern (D) alias dg2_t = int delegate(void* i, void* c);
 /**
 Variants of _aApplyXXX that include a loop index.
 */
-extern (C) int _aApplycd2(scope const(char)[] aa, dg2_t dg)
+@system extern (C) int _aApplycd2(scope const(char)[] aa, dg2_t dg)
 {
     int result;
     size_t len = aa.length;
@@ -578,7 +578,7 @@ unittest
 }
 
 /// ditto
-extern (C) int _aApplywd2(scope const(wchar)[] aa, dg2_t dg)
+@system extern (C) int _aApplywd2(scope const(wchar)[] aa, dg2_t dg)
 {
     int result;
     size_t len = aa.length;
@@ -646,7 +646,7 @@ unittest
 }
 
 /// ditto
-extern (C) int _aApplycw2(scope const(char)[] aa, dg2_t dg)
+@system extern (C) int _aApplycw2(scope const(char)[] aa, dg2_t dg)
 {
     int result;
     size_t len = aa.length;
@@ -725,7 +725,7 @@ unittest
 }
 
 /// ditto
-extern (C) int _aApplywc2(scope const(wchar)[] aa, dg2_t dg)
+@system extern (C) int _aApplywc2(scope const(wchar)[] aa, dg2_t dg)
 {
     int result;
     size_t len = aa.length;
@@ -810,7 +810,7 @@ unittest
 }
 
 /// ditto
-extern (C) int _aApplydc2(scope const(dchar)[] aa, dg2_t dg)
+@system extern (C) int _aApplydc2(scope const(dchar)[] aa, dg2_t dg)
 {
     int result;
     size_t len = aa.length;
@@ -890,7 +890,7 @@ unittest
 }
 
 /// ditto
-extern (C) int _aApplydw2(scope const(dchar)[] aa, dg2_t dg)
+@system extern (C) int _aApplydw2(scope const(dchar)[] aa, dg2_t dg)
 {   int result;
 
     debug(apply) printf("_aApplydw2(), len = %zd\n", aa.length);

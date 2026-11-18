@@ -308,7 +308,7 @@ else version (DigitalMars)
 {
     version (SysV_x64)
     {
-        void va_copy(out va_list dest, va_list src, void* storage = alloca(__va_list_tag.sizeof))
+        @system void va_copy(out va_list dest, va_list src, void* storage = alloca(__va_list_tag.sizeof))
         {
             // Instead of copying the pointers, and aliasing the source va_list,
             // the default argument alloca will allocate storage in the caller's

@@ -101,7 +101,7 @@ private
 
     /// __inflight is per-stack, not per-thread, and as such needs to be
     /// swapped out on fiber context switches.
-    extern(C) void* _d_eh_swapContext(void* newContext) nothrow @nogc
+    @system extern(C) void* _d_eh_swapContext(void* newContext) nothrow @nogc
     {
         auto old = __inflight;
         __inflight = cast(InFlight*)newContext;
@@ -109,7 +109,7 @@ private
     }
 }
 
-void terminate()
+@system void terminate()
 {
     version (AArch64)
     {
@@ -132,7 +132,7 @@ void terminate()
  * Return DHandlerTable if there is one, NULL if not.
  */
 
-immutable(FuncTable)* __eh_finddata(void *address)
+@system immutable(FuncTable)* __eh_finddata(void *address)
 {
     import rt.sections;
     foreach (ref sg; SectionGroup)
@@ -145,7 +145,7 @@ immutable(FuncTable)* __eh_finddata(void *address)
     return null;
 }
 
-immutable(FuncTable)* __eh_finddata(void *address, immutable(FuncTable)* pstart, immutable(FuncTable)* pend)
+@system immutable(FuncTable)* __eh_finddata(void *address, immutable(FuncTable)* pstart, immutable(FuncTable)* pend)
 {
     debug(PRINTF) printf("FuncTable.sizeof = %#zx\n", FuncTable.sizeof);
     debug(PRINTF) printf("__eh_finddata(address = %p)\n", address);
@@ -209,7 +209,7 @@ immutable(FuncTable)* __eh_finddata(void *address, immutable(FuncTable)* pstart,
  *   caller's EBP
  */
 
-size_t __eh_find_caller(size_t regbp, size_t *pretaddr)
+@system size_t __eh_find_caller(size_t regbp, size_t *pretaddr)
 {
     size_t bp = *cast(size_t *)regbp;
 
@@ -231,7 +231,7 @@ size_t __eh_find_caller(size_t regbp, size_t *pretaddr)
  * Throw a D object.
  */
 
-extern (C) void _d_throwc(Throwable h)
+@system extern (C) void _d_throwc(Throwable h)
 {
     size_t regebp;
 

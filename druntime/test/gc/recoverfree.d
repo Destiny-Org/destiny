@@ -1,5 +1,5 @@
 // upstream issue 20438
-import core.memory;
+@system: import core.memory;
 
 void main()
 {

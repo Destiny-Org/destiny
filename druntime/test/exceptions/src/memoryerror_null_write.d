@@ -1,4 +1,4 @@
-import etc.linux.memoryerror;
+@system: import etc.linux.memoryerror;
 
 int* x = null;
 

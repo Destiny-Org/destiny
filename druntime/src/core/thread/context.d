@@ -36,7 +36,7 @@ struct Callable
         () @trusted { m_dg = dg; }();
         m_type = Call.DG;
     }
-    void opCall()
+    @system void opCall()
     {
         switch (m_type)
         {

@@ -645,7 +645,7 @@ nothrow pure @safe unittest
 }
 
 // upstream issue 21110
-pure unittest
+@system pure unittest
 {
     import core.exception;
 

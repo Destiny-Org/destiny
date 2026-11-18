@@ -1,4 +1,4 @@
-class E : Exception
+@system: class E : Exception
 {
     static int instances;
     this(string msg = "", Throwable nextInChain = null)

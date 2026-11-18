@@ -1,4 +1,4 @@
-module test.stdcpp.string;
+module test.stdcpp.string; @system: // Destiny: runtime test code
 
 import core.stdcpp.string;
 

@@ -564,7 +564,7 @@ private:
 ////////////////////////////////////////////////////////////////////////////////
 
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.atomic, core.thread, core.sync.semaphore;
 
@@ -701,7 +701,7 @@ unittest
 }
 
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.atomic, core.thread;
     __gshared ReadWriteMutex rwmutex;
@@ -778,7 +778,7 @@ unittest
 }
 
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.atomic, core.thread, core.sync.semaphore;
 
@@ -920,7 +920,7 @@ unittest
 }
 
 static if(!isSingleThreaded)
-unittest
+@system unittest
 {
     import core.atomic, core.thread;
     shared static ReadWriteMutex rwmutex;

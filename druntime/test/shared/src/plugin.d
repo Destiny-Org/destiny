@@ -1,4 +1,4 @@
-import core.thread, core.memory, core.atomic;
+@system: import core.thread, core.memory, core.atomic;
 
 // test init
 shared uint gctor, gdtor, tctor, tdtor;

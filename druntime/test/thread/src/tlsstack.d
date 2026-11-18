@@ -1,4 +1,4 @@
-module core.thread.test; // needs access to getStackTop()/getStackBottom()
+module core.thread.test; @system: // Destiny: runtime test code // needs access to getStackTop()/getStackBottom()
 
 import core.stdc.stdio : printf;
 import core.thread;

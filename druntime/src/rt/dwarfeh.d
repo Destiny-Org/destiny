@@ -178,7 +178,7 @@ struct ExceptionHeader
      * Returns:
      *  allocated and initalized ExceptionHeader
      */
-    static ExceptionHeader* create(Throwable o) @nogc
+    @system static ExceptionHeader* create(Throwable o) @nogc
     {
         auto eh = &ehstorage;
         if (eh.object)                  // if in use
@@ -198,7 +198,7 @@ struct ExceptionHeader
      * Params:
      *  eh = ExceptionHeader to free
      */
-    static void free(ExceptionHeader* eh)
+    @system static void free(ExceptionHeader* eh)
     {
         debug (EH_personality) writeln("free(%p)", eh);
         /* Smite contents even if subsequently free'd,
@@ -212,7 +212,7 @@ struct ExceptionHeader
     /*************************
      * Push this onto stack of chained exceptions.
      */
-    void push()
+    @system void push()
     {
         next = stack;
         stack = &this;
@@ -236,7 +236,7 @@ struct ExceptionHeader
      * Returns:
      *  pointer to ExceptionHeader that eo points into.
      */
-    static ExceptionHeader* toExceptionHeader(_Unwind_Exception* eo)
+    @system static ExceptionHeader* toExceptionHeader(_Unwind_Exception* eo)
     {
         return cast(ExceptionHeader*)(cast(void*)eo - ExceptionHeader.exception_object.offsetof);
     }
@@ -249,7 +249,7 @@ struct ExceptionHeader
  * Returns:
  *      object that was caught
  */
-extern(C) Throwable __dmd_begin_catch(_Unwind_Exception* exceptionObject)
+@system extern(C) Throwable __dmd_begin_catch(_Unwind_Exception* exceptionObject)
 {
     ExceptionHeader *eh = ExceptionHeader.toExceptionHeader(exceptionObject);
     debug (EH_personality) writeln("__dmd_begin_catch(%p), object = %p", eh, eh.object);
@@ -274,7 +274,7 @@ extern(C) Throwable __dmd_begin_catch(_Unwind_Exception* exceptionObject)
  * Returns:
  *      previous value of stack
  */
-extern(C) void* _d_eh_swapContextDwarf(void* newContext) nothrow @nogc
+@system extern(C) void* _d_eh_swapContextDwarf(void* newContext) nothrow @nogc
 {
     auto old = ExceptionHeader.stack;
     ExceptionHeader.stack = cast(ExceptionHeader*)newContext;
@@ -292,7 +292,7 @@ extern(C) void* _d_eh_swapContextDwarf(void* newContext) nothrow @nogc
  * Returns:
  *      doesn't return
  */
-extern(C) void _d_throwdwarf(Throwable o)
+@system extern(C) void _d_throwdwarf(Throwable o)
 {
     ExceptionHeader *eh = ExceptionHeader.create(o);
 
@@ -401,7 +401,7 @@ extern(C) void _d_throwdwarf(Throwable o)
  *      http://www.ucw.cz/~hubicka/papers/abi/node25.html
  */
 
-extern (C) _Unwind_Reason_Code __dmd_personality_v0(int ver, _Unwind_Action actions,
+@system extern (C) _Unwind_Reason_Code __dmd_personality_v0(int ver, _Unwind_Action actions,
                _Unwind_Exception_Class exceptionClass, _Unwind_Exception* exceptionObject,
                _Unwind_Context* context)
 {
@@ -589,7 +589,7 @@ extern (C) _Unwind_Reason_Code __dmd_personality_v0(int ver, _Unwind_Action acti
  * Returns:
  *      class type to look for
  */
-ClassInfo getClassInfo(_Unwind_Exception* exceptionObject, const(ubyte)* currentLsd)
+@system ClassInfo getClassInfo(_Unwind_Exception* exceptionObject, const(ubyte)* currentLsd)
 {
     ExceptionHeader* eh = ExceptionHeader.toExceptionHeader(exceptionObject);
     Throwable ehobject = eh.object;
@@ -626,7 +626,7 @@ ClassInfo getClassInfo(_Unwind_Exception* exceptionObject, const(ubyte)* current
  * See_Also:
  *      https://en.wikipedia.org/wiki/LEB128
  */
-_uleb128_t uLEB128(const(ubyte)** p)
+@system _uleb128_t uLEB128(const(ubyte)** p)
 {
     auto q = *p;
     _uleb128_t result = 0;
@@ -653,7 +653,7 @@ _uleb128_t uLEB128(const(ubyte)** p)
  * See_Also:
  *      https://en.wikipedia.org/wiki/LEB128
  */
-_sleb128_t sLEB128(const(ubyte)** p)
+@system _sleb128_t sLEB128(const(ubyte)** p)
 {
     auto q = *p;
     ubyte b;
@@ -723,7 +723,7 @@ enum
  *      https://anarcheuz.github.io/2015/02/15/ELF%20internals%20part%202%20-%20exception%20handling/
  */
 
-LsdaResult scanLSDA(const(ubyte)* lsda, _Unwind_Ptr ip, _Unwind_Exception_Class exceptionClass,
+@system LsdaResult scanLSDA(const(ubyte)* lsda, _Unwind_Ptr ip, _Unwind_Exception_Class exceptionClass,
         bool cleanupsOnly,
         bool preferHandler,
         _Unwind_Exception* exceptionObject,
@@ -871,7 +871,7 @@ LsdaResult scanLSDA(const(ubyte)* lsda, _Unwind_Ptr ip, _Unwind_Exception_Class 
  *      - 0 means classType is not in the Action Table
  *      - &lt;0 means corrupt
  */
-int actionTableLookup(_Unwind_Exception* exceptionObject, uint actionRecordPtr, const(ubyte)* pActionTable,
+@system int actionTableLookup(_Unwind_Exception* exceptionObject, uint actionRecordPtr, const(ubyte)* pActionTable,
                       const(ubyte)* tt, ubyte TType, _Unwind_Exception_Class exceptionClass, const(ubyte)* lsda)
 {
     debug (EH_personality)
@@ -978,7 +978,7 @@ enum LsdaResult
     handler,    // handler found (i.e. a catch)
 }
 
-void terminate(uint line) @nogc
+@system void terminate(uint line) @nogc
 {
     printf("dwarfeh(%u) fatal error\n", line);
     abort();     // unceremoniously exit
@@ -1009,7 +1009,7 @@ enum _Unwind_Exception_Class cppExceptionClass1 = cppExceptionClass + 1;
  * Returns:
  *      null if not caught, pointer to thrown object if caught
  */
-void* getCppPtrToThrownObject(_Unwind_Exception* exceptionObject, CppTypeInfo sti)
+@system void* getCppPtrToThrownObject(_Unwind_Exception* exceptionObject, CppTypeInfo sti)
 {
     void* p;    // pointer to thrown object
     if (exceptionObject.exception_class & 1)
@@ -1073,7 +1073,7 @@ struct CppExceptionHeader
      * Returns:
      *  pointer to CppExceptionHeader that eo points into.
      */
-    static CppExceptionHeader* toExceptionHeader(_Unwind_Exception* eo)
+    @system static CppExceptionHeader* toExceptionHeader(_Unwind_Exception* eo)
     {
         return cast(CppExceptionHeader*)(eo + 1) - 1;
     }

@@ -40,7 +40,7 @@ else
     int __nextBlkIdx;
 }
 
-@property BlkInfo *__blkcache() nothrow @nogc
+@system @property BlkInfo *__blkcache() nothrow @nogc
 {
     if (!__blkcache_storage)
     {
@@ -63,7 +63,7 @@ else
 }
 
 // free the allocation on thread exit.
-void cleanupBlkCache(void* storage) nothrow @nogc
+@system void cleanupBlkCache(void* storage) nothrow @nogc
 {
     if (storage)
     {
@@ -89,7 +89,7 @@ enum IsMarked : int
 alias IsMarkedDg = IsMarked delegate(void* addr) nothrow; /// The isMarked callback function.
 
 // we expect this to be called with the lock in place
-void processGCMarks(void* data, scope IsMarkedDg isMarked) nothrow
+@system void processGCMarks(void* data, scope IsMarkedDg isMarked) nothrow
 {
     if (!data)
         return;
@@ -114,7 +114,7 @@ void processGCMarks(void* data, scope IsMarkedDg isMarked) nothrow
     }
 }
 
-unittest
+@system unittest
 {
     // Bugzilla 10701 - segfault in GC
     ubyte[] result; result.length = 4096;
@@ -135,7 +135,7 @@ unittest
         so any use of the returned BlkInfo should copy it and then check the
         base ptr of the copy before actually using it.
   */
-BlkInfo *__getBlkInfo(void *interior) nothrow @nogc
+@system BlkInfo *__getBlkInfo(void *interior) nothrow @nogc
 {
     BlkInfo *ptr = __blkcache;
     if (ptr is null)
@@ -175,7 +175,7 @@ BlkInfo *__getBlkInfo(void *interior) nothrow @nogc
     return null; // not in cache.
 }
 
-void __insertBlkInfoCache(BlkInfo bi, BlkInfo *curpos) nothrow @nogc
+@system void __insertBlkInfoCache(BlkInfo bi, BlkInfo *curpos) nothrow @nogc
 {
     auto cache = __blkcache;
     if (cache is null)

@@ -248,7 +248,7 @@ static:
     }
 }
 
-unittest
+@system unittest
 {
     // randomized unittest for randomized data structure
     import /*cstdlib = */core.stdc.stdlib : rand, srand;

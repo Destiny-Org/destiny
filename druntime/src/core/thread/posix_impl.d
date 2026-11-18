@@ -113,7 +113,7 @@ version (GNU)
 }
 
 private extern(C) void* _d_eh_swapContextDwarf(void* newContext) nothrow @nogc;
-package void* swapContextImpl(void* newContext) nothrow @nogc
+@system package void* swapContextImpl(void* newContext) nothrow @nogc
 {
     return _d_eh_swapContextDwarf(newContext);
 }
@@ -150,7 +150,7 @@ class Thread : ThreadBase
         super(sz);
     }
 
-    ~this() nothrow @nogc
+    @trusted ~this() nothrow @nogc
     {
         if (super.destructBeforeDtor())
             return;
@@ -248,7 +248,7 @@ class Thread : ThreadBase
         }
     }
 
-    final Thread start() nothrow
+    @trusted final Thread start() nothrow
     in
     {
         assert( !next && !prev );
@@ -326,7 +326,7 @@ class Thread : ThreadBase
         }
     }
 
-    override final Throwable join( bool rethrow = true )
+    @trusted override final Throwable join( bool rethrow = true ) // safe interface: waits for the thread, rethrows its exception
     {
         if ( m_tdescr.tid != m_tdescr.tid.init && pthread_join( m_tdescr.tid, null ) != 0 )
             throw new ThreadException( "Unable to join thread" );
@@ -486,7 +486,7 @@ class Thread : ThreadBase
         int fakePriority = int.max;
     }
 
-    final @property int priority()
+    @trusted final @property int priority()
     {
         version (NetBSD)
         {
@@ -511,7 +511,7 @@ class Thread : ThreadBase
         }
     }
 
-    final @property void priority( int val )
+    @trusted final @property void priority( int val )
     in
     {
         assert(val >= PRIORITY_MIN);
@@ -629,12 +629,12 @@ class Thread : ThreadBase
         }
     }
 
-    static void yield() @nogc nothrow
+    @trusted static void yield() @nogc nothrow
     {
         sched_yield();
     }
 
-    package static ThreadDescr getCurrentThreadDescr() nothrow @nogc
+    @system package static ThreadDescr getCurrentThreadDescr() nothrow @nogc
     {
         version (Darwin)
         {
@@ -648,7 +648,7 @@ class Thread : ThreadBase
             return ThreadDescr(tid: gettid);
     }
 
-    package static void afterDeploy() nothrow @nogc
+    @system package static void afterDeploy() nothrow @nogc
     {
         version (Darwin)
         {
@@ -758,7 +758,7 @@ class Thread : ThreadBase
 
 version (CoreDdoc) {} else
 version (CRuntime_WASI) {} else
-extern (C) void thread_setGCSignals(int suspendSignalNo, int resumeSignalNo) nothrow @nogc
+@system extern (C) void thread_setGCSignals(int suspendSignalNo, int resumeSignalNo) nothrow @nogc
 in
 {
     assert(suspendSignalNo != 0);
@@ -777,7 +777,7 @@ do
 
 version (CoreDdoc) {} else
 version (CRuntime_WASI) {} else
-extern (C) void thread_getGCSignals(out int suspendSignalNo, out int resumeSignalNo) nothrow @nogc
+@system extern (C) void thread_getGCSignals(out int suspendSignalNo, out int resumeSignalNo) nothrow @nogc
 in
 {
     assert(suspendSignalNumber != 0);
@@ -802,7 +802,7 @@ else
 }
 
 // Returns true on success
-package bool suspendThreadImpl(Thread t) @nogc nothrow
+@system package bool suspendThreadImpl(Thread t) @nogc nothrow
 {
     version (Darwin)
         return thread_suspend(t.m_tdescr.tmach) == KERN_SUCCESS;
@@ -815,7 +815,7 @@ package bool suspendThreadImpl(Thread t) @nogc nothrow
 }
 
 // Returns true on success
-package bool resumeThreadImpl(Thread t) @nogc nothrow
+@system package bool resumeThreadImpl(Thread t) @nogc nothrow
 {
     version (Darwin)
         return thread_resume(t.m_tdescr.tmach) == KERN_SUCCESS;
@@ -827,7 +827,7 @@ package bool resumeThreadImpl(Thread t) @nogc nothrow
         return pthread_kill(t.m_tdescr.tid, resumeSignalNumber) == 0;
 }
 
-package void afterStopTheWorld(bool suspendedSelf, size_t cnt) @nogc nothrow
+@system package void afterStopTheWorld(bool suspendedSelf, size_t cnt) @nogc nothrow
 {
     version (Darwin)
     {}
@@ -856,7 +856,7 @@ package void afterStopTheWorld(bool suspendedSelf, size_t cnt) @nogc nothrow
     }
 }
 
-package void loadStackAndRegInfo(Thread t, const bool sameThread) nothrow @nogc
+@system package void loadStackAndRegInfo(Thread t, const bool sameThread) nothrow @nogc
 {
     version (Darwin)
     {
@@ -1139,7 +1139,7 @@ package(core)
     // Call these routines when entering/leaving critical sections of the code that
     // are not cancellation points.
 
-    extern (C) int thread_cancelDisable() nothrow
+    @system extern (C) int thread_cancelDisable() nothrow
     {
         static if (__traits(compiles, core.sys.posix.pthread.PTHREAD_CANCEL_DISABLE))
         {
@@ -1154,7 +1154,7 @@ package(core)
         }
     }
 
-    extern (C) void thread_cancelRestore(int oldstate) nothrow
+    @system extern (C) void thread_cancelRestore(int oldstate) nothrow
     {
         static if (__traits(compiles, core.sys.posix.pthread.PTHREAD_CANCEL_DISABLE))
         {
@@ -1170,7 +1170,7 @@ private
     // Entry point for POSIX threads
     //
     version (CoreDdoc) {} else
-    extern (C) void* thread_entryPoint( void* arg ) nothrow
+    @system extern (C) void* thread_entryPoint( void* arg ) nothrow
     {
         version (Shared)
         {
@@ -1344,7 +1344,7 @@ private
             return true;
         }
 
-        extern (C) void thread_suspendHandler( int sig ) nothrow
+        @system extern (C) void thread_suspendHandler( int sig ) nothrow
         in
         {
             assert( sig == suspendSignalNumber );
@@ -1383,7 +1383,7 @@ private
         }
 
 
-        extern (C) void thread_resumeHandler( int sig ) nothrow
+        @system extern (C) void thread_resumeHandler( int sig ) nothrow
         in
         {
             assert( sig == resumeSignalNumber );
@@ -1423,7 +1423,7 @@ extern (C) @nogc nothrow
     version (OpenBSD) int pthread_stackseg_np(pthread_t thread, stack_t* sinfo);
 }
 
-package void* getStackBottomImpl() nothrow @nogc
+@system package void* getStackBottomImpl() nothrow @nogc
 {
     version (Darwin)
     {
@@ -1530,7 +1530,7 @@ package struct LLThreadContext
 }
 
 // Returns: false if error occurred
-package bool launchLLThread(LLThreadProperties* tprop, ref LLThreadContext context, ref ll_ThreadData curr_llt) nothrow @nogc
+@system package bool launchLLThread(LLThreadProperties* tprop, ref LLThreadContext context, ref ll_ThreadData curr_llt) nothrow @nogc
 {
     static extern (C) void* thread_lowlevelEntry(void* ctx) nothrow
     {
@@ -1561,7 +1561,7 @@ package bool launchLLThread(LLThreadProperties* tprop, ref LLThreadContext conte
     return true;
 }
 
-private size_t adjustStackSize(size_t sz) nothrow @nogc
+@system private size_t adjustStackSize(size_t sz) nothrow @nogc
 {
     import core.memory: pageSize;
     import core.thread.types: PTHREAD_STACK_MIN;
@@ -1587,7 +1587,7 @@ private size_t adjustStackSize(size_t sz) nothrow @nogc
 }
 
 version (CoreDdoc) {} else
-void joinLowLevelThread(ThreadID tid) nothrow @nogc
+@system void joinLowLevelThread(ThreadID tid) nothrow @nogc
 {
     if (pthread_join(tid, null) != 0)
         onThreadError("Unable to join thread");

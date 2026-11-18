@@ -1,4 +1,4 @@
-import core.stdc.stdio : FILE, fprintf, stderr;
+@system: import core.stdc.stdio : FILE, fprintf, stderr;
 
 class MyException : Exception
 {

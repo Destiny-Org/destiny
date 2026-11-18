@@ -279,7 +279,7 @@ if (T.sizeof == Base.sizeof && T.alignof == Base.alignof)
     }
 }
 
-unittest
+@system unittest
 {
     assert(typeid(int).toString == "int");
 
@@ -335,14 +335,14 @@ private class TypeInfoArrayGeneric(T, Base = T) : Select!(is(T == Base), TypeInf
         }
 
     static if (is(T == Base))
-        override bool equals(in void* p1, in void* p2) const
+        @system override bool equals(in void* p1, in void* p2) const
         {
             // Just reuse the builtin.
             return *cast(const(T)[]*) p1 == *cast(const(T)[]*) p2;
         }
 
     static if (is(T == Base) || (__traits(isIntegral, T) && T.max != Base.max))
-        override int compare(in void* p1, in void* p2) const
+        @system override int compare(in void* p1, in void* p2) const
         {
             // Can't reuse __cmp in object.d because that handles NaN differently.
             // (Q: would it make sense to unify behaviors?)
@@ -359,13 +359,13 @@ private class TypeInfoArrayGeneric(T, Base = T) : Select!(is(T == Base), TypeInf
             }
             return cmp3(lhs.length, rhs.length);        }
 
-    override @property inout(TypeInfo) next() inout
+    @trusted override @property inout(TypeInfo) next() inout // only casts typeid(T) to inout
     {
         return cast(inout) typeid(T);
     }
 }
 
-unittest
+@system unittest
 {
     assert(typeid(int[]) == typeid(int[]));
     assert(typeid(int[]) != typeid(uint[]));
@@ -520,7 +520,7 @@ class TypeInfo_Al : TypeInfoArrayGeneric!(long, ulong) {}
 version (CoreUnittest)
     private extern (C) void[] _adSort(void[] a, TypeInfo ti);
 
-unittest
+@system unittest
 {
     assert(typeid(string).toString() == "immutable(char)[]");
     int[][] a = [[5,3,8,7], [2,5,3,8,7]];
@@ -606,7 +606,7 @@ class TypeInfo_Av : TypeInfo_Ah
 {
     override string toString() const { return "void[]"; }
 
-    override @property inout(TypeInfo) next() inout
+    @trusted override @property inout(TypeInfo) next() inout // only casts typeid(void) to inout
     {
         return cast(inout) typeid(void);
     }
@@ -646,7 +646,7 @@ class TypeInfo_n : TypeInfo
     override @property immutable(void)* rtInfo() { return rtinfoNoPointers; }
 }
 
-unittest
+@system unittest
 {
     with (typeid(typeof(null)))
     {
@@ -662,7 +662,7 @@ unittest
 }
 
 // Test typeinfo for classes.
-unittest
+@system unittest
 {
     static class Bacon
     {

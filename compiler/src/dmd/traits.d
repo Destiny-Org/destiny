@@ -1290,6 +1290,11 @@ Expression semanticTraits(TraitsExp e, Scope* sc)
                 if (e.ident == Id.getVirtualMethods && !fd.isVirtualMethod())
                     return 0;
 
+                // Destiny: finish the declaration's semantic first, so its type
+                // carries defaulted/inferred attributes (e.g. @safe) instead of the
+                // raw parsed type (upstream returns unanalysed methods here).
+                fd.functionSemantic();
+
                 auto fa = new FuncAliasDeclaration(fd.ident, fd, false);
                 fa.visibility = fd.visibility;
 

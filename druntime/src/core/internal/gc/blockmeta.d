@@ -42,7 +42,7 @@ struct LargeArrayHeader
         else
             ti_alignvalid &= ~cast(size_t)1;
     }
-    const(TypeInfo) typeInfo() pure nothrow @nogc
+    @system const(TypeInfo) typeInfo() pure nothrow @nogc
     {
         return cast(const(TypeInfo))cast(void*)(ti_alignvalid & ~cast(size_t)1);
     }
@@ -58,17 +58,17 @@ size_t LARGEPREFIX(size_t alignment) pure nothrow @nogc
     return alignment > LARGEPREFIX_MIN ? alignment : LARGEPREFIX_MIN;
 }
 
-size_t LARGEPREFIX(scope void* base) pure nothrow @nogc
+@system size_t LARGEPREFIX(scope void* base) pure nothrow @nogc
 {
     // padding at the front of the array
     return (cast(LargeArrayHeader*)base).alignment;
 }
 size_t LARGEPAD(size_t alignment) pure nothrow @nogc { return LARGEPREFIX(alignment) + 1; }
 
-size_t LARGEPAD(scope void* base) pure nothrow @nogc { return LARGEPREFIX(base) + 1; }
+@system size_t LARGEPAD(scope void* base) pure nothrow @nogc { return LARGEPREFIX(base) + 1; }
 
 // size used to store the TypeInfo at the end of an allocation for structs that have a destructor
-size_t structTypeInfoSize(const TypeInfo ti) pure nothrow @nogc
+@system size_t structTypeInfoSize(const TypeInfo ti) pure nothrow @nogc
 {
     if (ti && typeid(ti) is typeid(TypeInfo_Struct)) // avoid a complete dynamic type cast
     {
@@ -114,7 +114,7 @@ size_t structTypeInfoSize(const TypeInfo ti) pure nothrow @nogc
 
   where elem0 starts 16 bytes after the first byte.
   */
-bool __setArrayAllocLength(ref BlkInfo info, size_t newlength, bool isshared, size_t oldlength, size_t typeInfoSize) pure nothrow
+@system bool __setArrayAllocLength(ref BlkInfo info, size_t newlength, bool isshared, size_t oldlength, size_t typeInfoSize) pure nothrow
 {
     import core.atomic;
 
@@ -214,7 +214,7 @@ bool __setArrayAllocLength(ref BlkInfo info, size_t newlength, bool isshared, si
   If the STRUCTFINAL bit is not set, no finalizer is stored (but if needed the
   slot is zeroed)
   */
-void __setBlockMetaInfo(ref BlkInfo info, const TypeInfo ti, size_t alignment) pure nothrow
+@system void __setBlockMetaInfo(ref BlkInfo info, const TypeInfo ti, size_t alignment) pure nothrow
 {
     if ((info.attr & BlkAttr.APPENDABLE) && info.size > PAGESIZE / 2)
     {
@@ -244,13 +244,13 @@ void __setBlockMetaInfo(ref BlkInfo info, const TypeInfo ti, size_t alignment) p
   Get the finalizer info from the block (typeinfo).
   If called on a block, without STRUCTFINAL set, returns null.
   */
-const(TypeInfo) __getBlockFinalizerInfo(ref BlkInfo info) pure nothrow
+@system const(TypeInfo) __getBlockFinalizerInfo(ref BlkInfo info) pure nothrow
 {
     return __getBlockFinalizerInfo(info.base, info.size, info.attr);
 }
 
 /// ditto
-const(TypeInfo) __getBlockFinalizerInfo(void* base, size_t size, uint attr) pure nothrow
+@system const(TypeInfo) __getBlockFinalizerInfo(void* base, size_t size, uint attr) pure nothrow
 {
     if (!(attr & BlkAttr.STRUCTFINAL))
         return null;
@@ -266,7 +266,7 @@ const(TypeInfo) __getBlockFinalizerInfo(void* base, size_t size, uint attr) pure
 /**
   get the used size of the array for the given block
   */
-size_t __arrayAllocLength(ref BlkInfo info) pure nothrow
+@system size_t __arrayAllocLength(ref BlkInfo info) pure nothrow
     in(info.attr & BlkAttr.APPENDABLE)
 {
     auto typeInfoSize = (info.attr & BlkAttr.STRUCTFINAL) ? size_t.sizeof : 0;
@@ -282,7 +282,7 @@ size_t __arrayAllocLength(ref BlkInfo info) pure nothrow
 /**
   Atomically get the used size of the array for the given block
   */
-size_t __arrayAllocLengthAtomic(ref BlkInfo info) pure nothrow
+@system size_t __arrayAllocLengthAtomic(ref BlkInfo info) pure nothrow
     in(info.attr & BlkAttr.APPENDABLE)
 {
     import core.atomic;
@@ -299,7 +299,7 @@ size_t __arrayAllocLengthAtomic(ref BlkInfo info) pure nothrow
 /**
   Get the maximum bytes that can be stored in the given block.
   */
-size_t __arrayAllocCapacity(ref BlkInfo info) pure nothrow
+@system size_t __arrayAllocCapacity(ref BlkInfo info) pure nothrow
     in(info.attr & BlkAttr.APPENDABLE)
 {
     // Capacity is a calculation based solely on the block info.
@@ -363,7 +363,7 @@ void *__arrayStart()(return scope void* base, size_t size) nothrow pure
  * Trim a block's extents to the known valid data that is not metadata. This
  * takes into account the finalizer and array metadata.
  */
-void __trimExtents(ref scope void* base, ref size_t blockSize, uint attr) nothrow pure @nogc
+@system void __trimExtents(ref scope void* base, ref size_t blockSize, uint attr) nothrow pure @nogc
 {
     if (attr & BlkAttr.APPENDABLE)
     {

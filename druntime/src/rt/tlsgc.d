@@ -29,7 +29,7 @@ struct Data
  * Initialization hook, called FROM each thread. No assumptions about
  * module initialization state should be made.
  */
-void* init() nothrow @nogc
+@system void* init() nothrow @nogc
 {
     auto data = cast(Data*).malloc(Data.sizeof);
     if ( data is null ) onOutOfMemoryError();
@@ -44,7 +44,7 @@ void* init() nothrow @nogc
  * Finalization hook, called FOR each thread. No assumptions about
  * module initialization state should be made.
  */
-void destroy(void* data) nothrow @nogc
+@system void destroy(void* data) nothrow @nogc
 {
     // do module specific finalization
     rt.sections.finiTLSRanges((cast(Data*)data).tlsRanges);
@@ -58,7 +58,7 @@ alias ScanDg = void delegate(void* pstart, void* pend) nothrow;
  * GC scan hook, called FOR each thread. Can be used to scan
  * additional thread local memory.
  */
-void scan(void* data, scope ScanDg dg) nothrow
+@system void scan(void* data, scope ScanDg dg) nothrow
 {
     // do module specific marking
     rt.sections.scanTLSRanges((cast(Data*)data).tlsRanges, dg);

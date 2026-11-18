@@ -62,7 +62,7 @@ struct SharedObjects
     alias Callback = int delegate(SharedObject);
 
     ///
-    static int opApply(scope Callback dg)
+    @system static int opApply(scope Callback dg)
     {
         extern(C) int nativeCallback(dl_phdr_info* info, size_t, void* data)
         {
@@ -81,7 +81,7 @@ struct SharedObject
 {
 @nogc nothrow:
     /// Returns the executable of the current process.
-    static SharedObject thisExecutable()
+    @system static SharedObject thisExecutable()
     {
         foreach (object; SharedObjects)
             return object; // first object
@@ -92,7 +92,7 @@ struct SharedObject
      * Tries to find the shared object containing the specified address in one of its segments.
      * Returns: True on success.
      */
-    static bool findForAddress(const scope void* address, out SharedObject result)
+    @system static bool findForAddress(const scope void* address, out SharedObject result)
     {
         version (linux)        enum IterateManually = true;
         else version (NetBSD)  enum IterateManually = true;
@@ -130,7 +130,7 @@ struct SharedObject
     }
 
     /// Returns the name of (usually: path to) the object. Null-terminated.
-    const(char)[] name() const
+    @system const(char)[] name() const
     {
         import core.stdc.string : strlen;
 
@@ -182,7 +182,7 @@ struct SharedObject
     }
 
     /// Iterates over this object's segments.
-    int opApply(scope int delegate(ref const Elf_Phdr) @nogc nothrow dg) const
+    @system int opApply(scope int delegate(ref const Elf_Phdr) @nogc nothrow dg) const
     {
         foreach (ref phdr; info.dlpi_phdr[0 .. info.dlpi_phnum])
         {
@@ -197,7 +197,7 @@ struct SharedObject
      * Tries to find the segment containing the specified address.
      * Returns: True on success.
      */
-    bool findSegmentForAddress(const scope void* address, out const(Elf_Phdr)* result) const
+    @system bool findSegmentForAddress(const scope void* address, out const(Elf_Phdr)* result) const
     {
         if (address < baseAddress)
             return false;
@@ -225,7 +225,7 @@ version (linux)
 
 version (Linux_Use_GNU)
 {
-    const(char)* getprogname()
+    @system const(char)* getprogname()
     {
         import core.sys.linux.errno : program_invocation_name;
         return program_invocation_name;
@@ -244,7 +244,7 @@ else // Bionic, BSDs
     extern(C) const(char)* getprogname();
 }
 
-unittest
+@system unittest
 {
     import core.stdc.stdio : printf;
 

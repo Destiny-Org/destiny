@@ -1,4 +1,4 @@
-class C : Exception
+@system: class C : Exception
 {
     this() { super(""); }
 }

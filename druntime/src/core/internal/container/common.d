@@ -12,7 +12,7 @@ public import core.stdc.stdlib : free;
 import core.internal.traits : dtorIsNothrow;
 nothrow:
 
-void* xrealloc(void* ptr, size_t sz) nothrow @nogc
+@system void* xrealloc(void* ptr, size_t sz) nothrow @nogc
 {
     import core.exception;
 
@@ -22,7 +22,7 @@ void* xrealloc(void* ptr, size_t sz) nothrow @nogc
     assert(0);
 }
 
-void* xmalloc(size_t sz) nothrow @nogc
+@system void* xmalloc(size_t sz) nothrow @nogc
 {
     import core.exception;
     if (auto nptr = .malloc(sz))

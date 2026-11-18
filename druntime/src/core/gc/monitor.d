@@ -75,7 +75,7 @@ alias GCCollectMonitor = void function(size_t freedPages) nothrow @nogc;
  *   free    = callback for deallocations, or `null` to disable
  *   collect = callback for completed collections, or `null` to disable
  */
-void setGCMonitor(GCAllocMonitor alloc, GCFreeMonitor free, GCCollectMonitor collect = null) nothrow @nogc
+@system void setGCMonitor(GCAllocMonitor alloc, GCFreeMonitor free, GCCollectMonitor collect = null) nothrow @nogc
 {
     allocMonitor = alloc;
     freeMonitor = free;

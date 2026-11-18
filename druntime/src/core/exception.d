@@ -110,7 +110,7 @@ class ArrayIndexError : RangeError
     assert(new ArrayIndexError(size_t.max, size_t.max-1).msg);
 }
 
-unittest
+@system unittest
 {
     try
     {
@@ -178,7 +178,7 @@ class ArraySliceError : RangeError
     assert(new ArraySliceError(size_t.max, size_t.max, size_t.max-1).msg);
 }
 
-unittest
+@system unittest
 {
     try
     {
@@ -343,7 +343,7 @@ class FinalizeError : Error
     }
 }
 
-unittest
+@system unittest
 {
     ClassInfo info = new ClassInfo;
     info.name = "testInfo";
@@ -644,7 +644,7 @@ alias NullDerefHandler = void function(string file, size_t line) nothrow;
  *  file = The name of the file that signaled this error.
  *  line = The line number on which this error occurred.
  */
-extern (C) void onAssertError( string file = __FILE__, size_t line = __LINE__ ) nothrow
+@trusted extern (C) void onAssertError( string file = __FILE__, size_t line = __LINE__ ) nothrow
 {
     if ( _assertHandler is null )
         throw staticError!AssertError(file, line);
@@ -662,7 +662,7 @@ extern (C) void onAssertError( string file = __FILE__, size_t line = __LINE__ ) 
  *  line = The line number on which this error occurred.
  *  msg  = An error message supplied by the user.
  */
-extern (C) void onAssertErrorMsg( string file, size_t line, string msg ) nothrow
+@trusted extern (C) void onAssertErrorMsg( string file, size_t line, string msg ) nothrow
 {
     if ( _assertHandler is null )
         throw staticError!AssertError(msg, file, line);
@@ -678,7 +678,7 @@ extern (C) void onAssertErrorMsg( string file, size_t line, string msg ) nothrow
  *  file = The name of the file that signaled this error.
  *  line = The line number on which this error occurred.
  */
-extern(C) void onNullPointerError(string file = __FILE__, size_t line = __LINE__) nothrow
+@trusted extern(C) void onNullPointerError(string file = __FILE__, size_t line = __LINE__) nothrow
 {
     if (_nullDerefHandler is null)
         throw staticError!NullPointerError(file, line);
@@ -695,7 +695,7 @@ extern(C) void onNullPointerError(string file = __FILE__, size_t line = __LINE__
  *  line = The line number on which this error occurred.
  *  msg  = An error message supplied by the user.
  */
-extern (C) void onUnittestErrorMsg( string file, size_t line, string msg ) nothrow
+@trusted extern (C) void onUnittestErrorMsg( string file, size_t line, string msg ) nothrow
 {
     onAssertErrorMsg( file, line, msg );
 }
@@ -888,42 +888,42 @@ extern (C)
 {
     /* One of these three is called upon an assert() fail.
      */
-    void _d_assertp(immutable(char)* file, uint line)
+    @trusted void _d_assertp(immutable(char)* file, uint line)
     {
         import core.stdc.string : strlen;
         onAssertError(file[0 .. strlen(file)], line);
     }
 
-    void _d_assert_msg(string msg, string file, uint line)
+    @trusted void _d_assert_msg(string msg, string file, uint line)
     {
         onAssertErrorMsg(file, line, msg);
     }
 
-    void _d_assert(string file, uint line)
+    @trusted void _d_assert(string file, uint line)
     {
         onAssertError(file, line);
     }
 
     /* One of these three is called upon an assert() fail inside of a unittest block
      */
-    void _d_unittestp(immutable(char)* file, uint line)
+    @system void _d_unittestp(immutable(char)* file, uint line)
     {
         import core.stdc.string : strlen;
         _d_unittest(file[0 .. strlen(file)], line);
     }
 
-    void _d_unittest_msg(string msg, string file, uint line)
+    @system void _d_unittest_msg(string msg, string file, uint line)
     {
         onUnittestErrorMsg(file, line, msg);
     }
 
-    void _d_unittest(string file, uint line)
+    @system void _d_unittest(string file, uint line)
     {
         _d_unittest_msg("unittest failure", file, line);
     }
 
     /// Called when an invalid array index/slice or associative array key is accessed
-    void _d_arrayboundsp(immutable(char*) file, uint line)
+    @trusted void _d_arrayboundsp(immutable(char*) file, uint line)
     {
         import core.stdc.string : strlen;
         onRangeError(file[0 .. strlen(file)], line);
@@ -936,7 +936,7 @@ extern (C)
     }
 
     /// Called when an out of range slice of an array is created
-    void _d_arraybounds_slicep(immutable(char*) file, uint line, size_t lower, size_t upper, size_t length)
+    @trusted void _d_arraybounds_slicep(immutable(char*) file, uint line, size_t lower, size_t upper, size_t length)
     {
         import core.stdc.string : strlen;
         onArraySliceError(lower, upper, length, file[0 .. strlen(file)], line);
@@ -949,7 +949,7 @@ extern (C)
     }
 
     /// Called when an out of range array index is accessed
-    void _d_arraybounds_indexp(immutable(char*) file, uint line, size_t index, size_t length)
+    @trusted void _d_arraybounds_indexp(immutable(char*) file, uint line, size_t index, size_t length)
     {
         import core.stdc.string : strlen;
         onArrayIndexError(index, length, file[0 .. strlen(file)], line);
@@ -961,7 +961,7 @@ extern (C)
         onArrayIndexError(index, length, file, line);
     }
 
-    void _d_nullpointerp(immutable(char*) file, uint line)
+    @trusted void _d_nullpointerp(immutable(char*) file, uint line)
     {
         import core.stdc.string : strlen;
         onNullPointerError(file[0 .. strlen(file)], line);

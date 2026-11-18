@@ -31,18 +31,18 @@ static import core.memory;
 extern (C) noreturn onOutOfMemoryError(void* pretend_sideffect = null, string file = __FILE__, size_t line = __LINE__) @trusted pure nothrow @nogc; /* dmd @@@BUG11461@@@ */
 
 // register GC in C constructor (_STI_)
-private pragma(crt_constructor) void gc_manual_ctor()
+@system private pragma(crt_constructor) void gc_manual_ctor()
 {
     _d_register_manual_gc();
 }
 
-extern(C) void _d_register_manual_gc()
+@system extern(C) void _d_register_manual_gc()
 {
     import core.gc.registry;
     registerGCFactory("manual", &initialize);
 }
 
-private GC initialize()
+@system private GC initialize()
 {
     import core.lifetime : emplace;
 
@@ -58,7 +58,7 @@ class ManualGC : GC
     Array!Root roots;
     Array!Range ranges;
 
-    this()
+    @system this()
     {
     }
 
@@ -100,7 +100,7 @@ class ManualGC : GC
         return 0;
     }
 
-    void* malloc(size_t size, uint bits, const TypeInfo ti) nothrow
+    @system void* malloc(size_t size, uint bits, const TypeInfo ti) nothrow
     {
         void* p = cstdlib.malloc(size);
 
@@ -109,7 +109,7 @@ class ManualGC : GC
         return p;
     }
 
-    BlkInfo qalloc(size_t size, uint bits, const scope TypeInfo ti) nothrow
+    @system BlkInfo qalloc(size_t size, uint bits, const scope TypeInfo ti) nothrow
     {
         BlkInfo retval;
         retval.base = malloc(size, bits, ti);
@@ -118,7 +118,7 @@ class ManualGC : GC
         return retval;
     }
 
-    void* calloc(size_t size, uint bits, const TypeInfo ti) nothrow
+    @system void* calloc(size_t size, uint bits, const TypeInfo ti) nothrow
     {
         void* p = cstdlib.calloc(1, size);
 
@@ -127,7 +127,7 @@ class ManualGC : GC
         return p;
     }
 
-    void* realloc(void* p, size_t size, uint bits, const TypeInfo ti) nothrow
+    @system void* realloc(void* p, size_t size, uint bits, const TypeInfo ti) nothrow
     {
         p = cstdlib.realloc(p, size);
 
@@ -146,7 +146,7 @@ class ManualGC : GC
         return 0;
     }
 
-    void free(void* p) nothrow @nogc
+    @system void free(void* p) nothrow @nogc
     {
         cstdlib.free(p);
     }
@@ -188,12 +188,12 @@ class ManualGC : GC
         return typeof(return).init;
     }
 
-    void addRoot(void* p) nothrow @nogc
+    @system void addRoot(void* p) nothrow @nogc
     {
         roots.insertBack(Root(p));
     }
 
-    void removeRoot(void* p) nothrow @nogc
+    @system void removeRoot(void* p) nothrow @nogc
     {
         foreach (ref r; roots)
         {
@@ -212,7 +212,7 @@ class ManualGC : GC
         return &rootsApply;
     }
 
-    private int rootsApply(scope int delegate(ref Root) nothrow dg)
+    @system private int rootsApply(scope int delegate(ref Root) nothrow dg)
     {
         foreach (ref r; roots)
         {
@@ -222,12 +222,12 @@ class ManualGC : GC
         return 0;
     }
 
-    void addRange(void* p, size_t sz, const TypeInfo ti = null) nothrow @nogc
+    @system void addRange(void* p, size_t sz, const TypeInfo ti = null) nothrow @nogc
     {
         ranges.insertBack(Range(p, p + sz, cast() ti));
     }
 
-    void removeRange(void* p) nothrow @nogc
+    @system void removeRange(void* p) nothrow @nogc
     {
         foreach (ref r; ranges)
         {
@@ -246,7 +246,7 @@ class ManualGC : GC
         return &rangesApply;
     }
 
-    private int rangesApply(scope int delegate(ref Range) nothrow dg)
+    @system private int rangesApply(scope int delegate(ref Range) nothrow dg)
     {
         foreach (ref r; ranges)
         {

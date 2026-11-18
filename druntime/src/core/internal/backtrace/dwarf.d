@@ -126,7 +126,7 @@ struct Location
     int line = -1;
 
     /// Format this location into a human-readable string
-    void toString (scope void delegate(scope const char[]) sink) const
+    @system void toString (scope void delegate(scope const char[]) sink) const
     {
         import core.demangle;
 
@@ -187,7 +187,7 @@ struct Location
     }
 }
 
-unittest
+@system unittest
 {
     static string format(Location loc)
     {
@@ -213,7 +213,7 @@ unittest
     assert(format(Location()) == "??:42");
 }
 
-int traceHandlerOpApplyImpl(size_t numFrames,
+@system int traceHandlerOpApplyImpl(size_t numFrames,
                             scope const(void)* delegate(size_t) getNthAddress,
                             scope const(char)[] delegate(size_t) getNthFuncName,
                             scope int delegate(ref size_t, ref const(char[])) dg)
@@ -309,7 +309,7 @@ struct TraceInfoBuffer
 
 private:
 
-int processCallstack(Location[] locations, const(DebugSections)* sections,
+@system int processCallstack(Location[] locations, const(DebugSections)* sections,
                      size_t baseAddress, scope int delegate(ref size_t, ref const(char[])) dg)
 {
     const hasDebugLine = sections !is null && sections.line.length;
@@ -493,7 +493,7 @@ version (Darwin) {
  *   locations = The locations to resolve
  *   baseAddress = The offset to apply to every address
  */
-void resolveAddresses(ref const DebugSections sections, Location[] locations, size_t baseAddress) @nogc nothrow
+@system void resolveAddresses(ref const DebugSections sections, Location[] locations, size_t baseAddress) @nogc nothrow
 {
     size_t numberOfLocationsFound = 0;
 
@@ -650,7 +650,7 @@ alias RunStateMachineCallback =
  * Returns:
  *   `false` if an error happened (e.g. unknown opcode)
  */
-bool runStateMachine(ref const(LineNumberProgram) lp, scope RunStateMachineCallback callback) @nogc nothrow
+@system bool runStateMachine(ref const(LineNumberProgram) lp, scope RunStateMachineCallback callback) @nogc nothrow
 {
     StateMachine machine;
     machine.isStatement = lp.defaultIsStatement;
@@ -833,7 +833,7 @@ T read(T)(ref const(ubyte)[] buffer) @nogc nothrow
 }
 
 // Reads a null-terminated string from `buffer`.
-const(char)[] readStringz(ref const(ubyte)[] buffer) @nogc nothrow
+@system const(char)[] readStringz(ref const(ubyte)[] buffer) @nogc nothrow
 {
     const p = cast(char*) buffer.ptr;
     const str = p[0 .. strlen(p)];
@@ -841,7 +841,7 @@ const(char)[] readStringz(ref const(ubyte)[] buffer) @nogc nothrow
     return str;
 }
 
-ulong readULEB128(ref const(ubyte)[] buffer) @nogc nothrow
+@system ulong readULEB128(ref const(ubyte)[] buffer) @nogc nothrow
 {
     ulong val = 0;
     uint shift = 0;
@@ -858,14 +858,14 @@ ulong readULEB128(ref const(ubyte)[] buffer) @nogc nothrow
     return val;
 }
 
-unittest
+@system unittest
 {
     const(ubyte)[] data = [0xe5, 0x8e, 0x26, 0xDE, 0xAD, 0xBE, 0xEF];
     assert(readULEB128(data) == 624_485);
     assert(data[] == [0xDE, 0xAD, 0xBE, 0xEF]);
 }
 
-long readSLEB128(ref const(ubyte)[] buffer) @nogc nothrow
+@system long readSLEB128(ref const(ubyte)[] buffer) @nogc nothrow
 {
     long val = 0;
     uint shift = 0;
@@ -998,7 +998,7 @@ struct EntryFormatPair
 }
 
 /// Reads a DWARF v5 directory/file name entry format.
-Array!EntryFormatPair readEntryFormat(ref const(ubyte)[] buffer) @nogc nothrow
+@system Array!EntryFormatPair readEntryFormat(ref const(ubyte)[] buffer) @nogc nothrow
 {
     const numPairs = buffer.read!ubyte();
 
@@ -1033,7 +1033,7 @@ Array!EntryFormatPair readEntryFormat(ref const(ubyte)[] buffer) @nogc nothrow
  * Returns:
  *   `false` if `form` is unknown, in which case `data` is left untouched
  */
-bool skipForm(ref const(ubyte)[] data, DW_FORM form, bool is64bitDwarf, ubyte addressSize) @nogc nothrow
+@system bool skipForm(ref const(ubyte)[] data, DW_FORM form, bool is64bitDwarf, ubyte addressSize) @nogc nothrow
 {
     with (DW_FORM) switch (form)
     {
@@ -1100,7 +1100,7 @@ bool skipForm(ref const(ubyte)[] data, DW_FORM form, bool is64bitDwarf, ubyte ad
  *   The string, or `null` if `form` is not supported
  *   (`data` is still advanced past the value if the form is known).
  */
-const(char)[] readStringForm(ref const(ubyte)[] data, DW_FORM form, bool is64bitDwarf,
+@system const(char)[] readStringForm(ref const(ubyte)[] data, DW_FORM form, bool is64bitDwarf,
                              ref const DebugSections sections) @nogc nothrow
 {
     switch (form) with (DW_FORM)
@@ -1162,7 +1162,7 @@ enum DW_UT : ubyte
  * Returns:
  *   The compilation directory, or `null` if it could not be found
  */
-const(char)[] findCompilationDirectory(ref const DebugSections sections, size_t lineProgramOffset) @nogc nothrow
+@system const(char)[] findCompilationDirectory(ref const DebugSections sections, size_t lineProgramOffset) @nogc nothrow
 {
     const(ubyte)[] info = sections.info;
     while (info.length > 4)
@@ -1396,7 +1396,7 @@ struct SourceFile
 }
 
 /// Reads the DWARF 5 directory and file entries into `lp`.
-void readEntries(ref const(ubyte)[] data, ref LineNumberProgram lp, bool is64bitDwarf,
+@system void readEntries(ref const(ubyte)[] data, ref LineNumberProgram lp, bool is64bitDwarf,
                  ref const DebugSections sections) @nogc nothrow
 {
     // Entries that can't be parsed (e.g. due to an unknown form) keep
@@ -1450,7 +1450,7 @@ void readEntries(ref const(ubyte)[] data, ref LineNumberProgram lp, bool is64bit
     }
 }
 
-LineNumberProgram readLineNumberProgram(ref const(ubyte)[] data, ref const DebugSections sections) @nogc nothrow
+@system LineNumberProgram readLineNumberProgram(ref const(ubyte)[] data, ref const DebugSections sections) @nogc nothrow
 {
     const originalData = data;
 

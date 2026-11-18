@@ -1,4 +1,4 @@
-import core.runtime;
+@system: import core.runtime;
 import core.stdc.string : strrchr;
 
 extern(C) alias RunDepTests = int function();

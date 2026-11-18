@@ -66,7 +66,7 @@ Params:
 
 Returns: pointer to `sz` bytes of free, uninitialized memory, managed by the GC.
 */
-extern (C) void* _d_allocmemory(size_t sz) @weak
+@system extern (C) void* _d_allocmemory(size_t sz) @weak
 {
     return GC.malloc(sz);
 }
@@ -84,7 +84,7 @@ Params:
 
 Returns: newly created object
 */
-extern (C) Object _d_newclass(const ClassInfo ci) @weak
+@system extern (C) Object _d_newclass(const ClassInfo ci) @weak
 {
     void* p;
     auto init = ci.initializer;
@@ -139,7 +139,7 @@ extern (C) Object _d_newclass(const ClassInfo ci) @weak
 /**
  *
  */
-extern (C) void _d_delinterface(void** p)
+@system extern (C) void _d_delinterface(void** p)
 {
     if (*p)
     {
@@ -159,7 +159,7 @@ private extern (D) alias fp_t = void function (Object);
 /**
  *
  */
-extern (C) void _d_delclass(Object* p) @weak
+@system extern (C) void _d_delclass(Object* p) @weak
 {
     if (*p)
     {
@@ -190,7 +190,7 @@ extern (C) void _d_delclass(Object* p) @weak
 }
 
 // strip const/immutable/shared/inout from type info
-inout(TypeInfo) unqualify(return scope inout(TypeInfo) cti) pure nothrow @nogc
+@system inout(TypeInfo) unqualify(return scope inout(TypeInfo) cti) pure nothrow @nogc
 {
     TypeInfo ti = cast() cti;
     while (ti)
@@ -211,7 +211,7 @@ inout(TypeInfo) unqualify(return scope inout(TypeInfo) cti) pure nothrow @nogc
     return ti;
 }
 
-private uint __typeAttrs(const scope TypeInfo ti, void *copyAttrsFrom = null) pure nothrow
+@system private uint __typeAttrs(const scope TypeInfo ti, void *copyAttrsFrom = null) pure nothrow
 {
     if (copyAttrsFrom)
     {
@@ -229,12 +229,12 @@ private uint __typeAttrs(const scope TypeInfo ti, void *copyAttrsFrom = null) pu
     return attrs;
 }
 
-package bool hasPostblit(in TypeInfo ti) nothrow pure
+@system package bool hasPostblit(in TypeInfo ti) nothrow pure
 {
     return (&ti.postblit).funcptr !is &TypeInfo.postblit;
 }
 
-void __doPostblit(void *ptr, size_t len, const TypeInfo ti)
+@system void __doPostblit(void *ptr, size_t len, const TypeInfo ti)
 {
     if (!hasPostblit(ti))
         return;
@@ -276,7 +276,7 @@ Params:
     length = `.length` of resulting array
 Returns: newly allocated array
 */
-extern (C) void[] _d_newarrayU(const scope TypeInfo ti, size_t length) pure nothrow @weak
+@system extern (C) void[] _d_newarrayU(const scope TypeInfo ti, size_t length) pure nothrow @weak
 {
     auto tinext = unqualify(ti.next);
     auto size = tinext.tsize;
@@ -301,7 +301,7 @@ extern (C) void[] _d_newarrayU(const scope TypeInfo ti, size_t length) pure noth
 }
 
 /// ditto
-extern (C) void[] _d_newarrayT(const TypeInfo ti, size_t length) pure nothrow @weak
+@system extern (C) void[] _d_newarrayT(const TypeInfo ti, size_t length) pure nothrow @weak
 {
     void[] result = _d_newarrayU(ti, length);
     auto tinext = unqualify(ti.next);
@@ -312,7 +312,7 @@ extern (C) void[] _d_newarrayT(const TypeInfo ti, size_t length) pure nothrow @w
 }
 
 /// ditto
-extern (C) void[] _d_newarrayiT(const TypeInfo ti, size_t length) pure nothrow @weak
+@system extern (C) void[] _d_newarrayiT(const TypeInfo ti, size_t length) pure nothrow @weak
 {
     import core.internal.traits : AliasSeq;
 
@@ -354,7 +354,7 @@ Params:
 Returns:
     newly allocated item
 */
-extern (C) void* _d_newitemU(scope const TypeInfo _ti) pure nothrow @weak
+@system extern (C) void* _d_newitemU(scope const TypeInfo _ti) pure nothrow @weak
 {
     auto ti = unqualify(_ti);
     auto flags = __typeAttrs(ti);
@@ -365,7 +365,7 @@ extern (C) void* _d_newitemU(scope const TypeInfo _ti) pure nothrow @weak
 /**
  *
  */
-extern (C) void _d_delmemory(void* *p) @weak
+@system extern (C) void _d_delmemory(void* *p) @weak
 {
     if (*p)
     {
@@ -378,7 +378,7 @@ extern (C) void _d_delmemory(void* *p) @weak
 /**
  *
  */
-extern (C) void _d_callinterfacefinalizer(void *p) @weak
+@system extern (C) void _d_callinterfacefinalizer(void *p) @weak
 {
     if (p)
     {
@@ -392,7 +392,7 @@ extern (C) void _d_callinterfacefinalizer(void *p) @weak
 /**
  *
  */
-extern (C) void _d_callfinalizer(void* p) @weak
+@system extern (C) void _d_callfinalizer(void* p) @weak
 {
     rt_finalize( p );
 }
@@ -401,7 +401,7 @@ extern (C) void _d_callfinalizer(void* p) @weak
 /**
  *
  */
-extern (C) void rt_setCollectHandler(CollectHandler h)
+@system extern (C) void rt_setCollectHandler(CollectHandler h)
 {
     collectHandler = h;
 }
@@ -410,7 +410,7 @@ extern (C) void rt_setCollectHandler(CollectHandler h)
 /**
  *
  */
-extern (C) CollectHandler rt_getCollectHandler()
+@system extern (C) CollectHandler rt_getCollectHandler()
 {
     return collectHandler;
 }
@@ -419,7 +419,7 @@ extern (C) CollectHandler rt_getCollectHandler()
 /**
  *
  */
-extern (C) int rt_hasFinalizerInSegment(void* p, size_t size, TypeInfo typeInfo, scope const(void)[] segment) nothrow
+@system extern (C) int rt_hasFinalizerInSegment(void* p, size_t size, TypeInfo typeInfo, scope const(void)[] segment) nothrow
 {
     if (!p)
         return false;
@@ -448,7 +448,7 @@ extern (C) int rt_hasFinalizerInSegment(void* p, size_t size, TypeInfo typeInfo,
     return false;
 }
 
-void finalize_array(void* p, size_t size, const TypeInfo_Struct si)
+@system void finalize_array(void* p, size_t size, const TypeInfo_Struct si)
 {
     // Due to the fact that the delete operator calls destructors
     // for arrays from the last element to the first, we maintain
@@ -462,7 +462,7 @@ void finalize_array(void* p, size_t size, const TypeInfo_Struct si)
 }
 
 // called by the GC
-void finalize_struct(void* p, TypeInfo_Struct ti) nothrow
+@system void finalize_struct(void* p, TypeInfo_Struct ti) nothrow
 {
     debug(PRINTF) printf("finalize_struct(p = %p)\n", p);
 
@@ -479,7 +479,7 @@ void finalize_struct(void* p, TypeInfo_Struct ti) nothrow
 /**
  *
  */
-extern (C) void rt_finalize2(void* p, bool det = true, bool resetMemory = true) nothrow
+@system extern (C) void rt_finalize2(void* p, bool det = true, bool resetMemory = true) nothrow
 {
     debug(PRINTF) printf("rt_finalize2(p = %p)\n", p);
 
@@ -521,12 +521,12 @@ extern (C) void rt_finalize2(void* p, bool det = true, bool resetMemory = true) 
 }
 
 /// Backwards compatibility
-extern (C) void rt_finalize(void* p, bool det = true) nothrow
+@system extern (C) void rt_finalize(void* p, bool det = true) nothrow
 {
     rt_finalize2(p, det, true);
 }
 
-extern (C) void rt_finalizeFromGC(void* p, size_t size, uint attr, TypeInfo typeInfo) nothrow
+@system extern (C) void rt_finalizeFromGC(void* p, size_t size, uint attr, TypeInfo typeInfo) nothrow
 {
     // to verify: reset memory necessary?
     if (typeInfo is null) {
@@ -570,7 +570,7 @@ Params:
     c = `dchar` to append
 Returns: updated `x` cast to `void[]`
 */
-extern (C) void[] _d_arrayappendcd(ref byte[] x, dchar c) @weak
+@system extern (C) void[] _d_arrayappendcd(ref byte[] x, dchar c) @weak
 {
     // c could encode into from 1 to 4 characters
     char[4] buf = void;
@@ -666,7 +666,7 @@ Params:
 
 Returns: updated `x` cast to `void[]`
 */
-extern (C) void[] _d_arrayappendwd(ref byte[] x, dchar c) @weak
+@system extern (C) void[] _d_arrayappendwd(ref byte[] x, dchar c) @weak
 {
     // c could encode into from 1 to 2 w characters
     wchar[2] buf = void;
@@ -782,7 +782,7 @@ unittest
     testPostBlit!(const(S))();
 }
 
-unittest
+@system unittest
 {
     // Bugzilla 3454 - Inconsistent flag setting in GC.realloc()
     static void test(size_t multiplier)
@@ -807,7 +807,7 @@ unittest
     test(1024 * 1024);
 }
 
-unittest
+@system unittest
 {
     import core.exception;
     try
@@ -820,7 +820,7 @@ unittest
     }
 }
 
-unittest
+@system unittest
 {
     // upstream issue 13854
     auto arr = new ubyte[PAGESIZE]; // ensure page size
@@ -863,7 +863,7 @@ unittest
     assert(info2.base is carr2.ptr); // no offset, the capacity is small.
 }
 
-unittest
+@system unittest
 {
     // upstream issue 13878
     auto arr = new ubyte[1];
@@ -920,7 +920,7 @@ unittest
 
 // test struct finalizers
 debug(SENTINEL) {} else
-deprecated unittest
+@system deprecated unittest
 {
     __gshared int dtorCount;
     static struct S1
@@ -1001,7 +1001,7 @@ deprecated unittest
 }
 
 // test struct dtor handling not causing false pointers
-unittest
+@system unittest
 {
     // for 64-bit, allocate a struct of size 40
     static struct S
@@ -1073,7 +1073,7 @@ unittest
 }
 
 // test class finalizers exception handling
-unittest
+@system unittest
 {
     bool test(E)()
     {
@@ -1161,7 +1161,7 @@ unittest
 }
 
 debug(SENTINEL) {} else
-unittest
+@system unittest
 {
     static void testAlignMalloc(int algn)()
     {

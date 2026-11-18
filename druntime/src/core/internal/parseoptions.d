@@ -142,7 +142,7 @@ bool rt_parseOption(T)(const(char)[] optname, ref inout(char)[] str, ref T res, 
 
 private:
 
-bool optError(const scope char[] msg, const scope char[] name, const(char)[] errName)
+@system bool optError(const scope char[] msg, const scope char[] name, const(char)[] errName)
 {
     import core.atomic : atomicLoad;
 
@@ -262,7 +262,7 @@ do
     return true;
 }
 
-bool parse(const(char)[] optname, ref inout(char)[] str, ref bool res, const(char)[] errName)
+@system bool parse(const(char)[] optname, ref inout(char)[] str, ref bool res, const(char)[] errName)
 in { assert(str.length); }
 do
 {
@@ -276,7 +276,7 @@ do
     return true;
 }
 
-bool parse(const(char)[] optname, ref inout(char)[] str, ref float res, const(char)[] errName)
+@system bool parse(const(char)[] optname, ref inout(char)[] str, ref float res, const(char)[] errName)
 in { assert(str.length); }
 do
 {
@@ -293,7 +293,7 @@ do
     return true;
 }
 
-bool parse(const(char)[] optname, ref inout(char)[] str, ref inout(char)[] res, const(char)[] errName)
+@system bool parse(const(char)[] optname, ref inout(char)[] str, ref inout(char)[] res, const(char)[] errName)
 in { assert(str.length); }
 do
 {
@@ -305,7 +305,7 @@ do
     return true;
 }
 
-bool parseError(const scope char[] exp, const scope char[] opt, const scope char[] got, const(char)[] errName)
+@system bool parseError(const scope char[] exp, const scope char[] opt, const scope char[] got, const(char)[] errName)
 {
     import core.atomic : atomicLoad;
 
@@ -319,7 +319,7 @@ bool parseError(const scope char[] exp, const scope char[] opt, const scope char
     return false;
 }
 
-bool overflowedError(const scope char[] opt, const scope char[] got)
+@system bool overflowedError(const scope char[] opt, const scope char[] got)
 {
     import core.atomic : atomicLoad;
 
@@ -335,7 +335,7 @@ size_t min(size_t a, size_t b) { return a <= b ? a : b; }
 
 version (CoreUnittest) __gshared bool inUnittest;
 
-unittest
+@system unittest
 {
     inUnittest = true;
     scope (exit) inUnittest = false;

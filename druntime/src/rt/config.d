@@ -80,7 +80,7 @@ alias rt_configCallBack = string delegate(string) @nogc nothrow;
 *  - rt_options[] contains an entry "<opt>=value"
 *  - null otherwise
 */
-string rt_configOption(string opt, scope rt_configCallBack dg = null, bool reverse = false) @nogc nothrow
+@system string rt_configOption(string opt, scope rt_configCallBack dg = null, bool reverse = false) @nogc nothrow
 {
     if (!dg)
         dg = (string s) => s;
@@ -95,7 +95,7 @@ string rt_configOption(string opt, scope rt_configCallBack dg = null, bool rever
     return s;
 }
 
-string rt_cmdlineOption(string opt, scope rt_configCallBack dg) @nogc nothrow
+@system string rt_cmdlineOption(string opt, scope rt_configCallBack dg) @nogc nothrow
 {
     if (rt_cmdline_enabled!())
     {
@@ -116,7 +116,7 @@ string rt_cmdlineOption(string opt, scope rt_configCallBack dg) @nogc nothrow
     return null;
 }
 
-string rt_envvarsOption(string opt, scope rt_configCallBack dg) @nogc nothrow
+@system string rt_envvarsOption(string opt, scope rt_configCallBack dg) @nogc nothrow
 {
     if (rt_envvars_enabled!())
     {
@@ -139,7 +139,7 @@ string rt_envvarsOption(string opt, scope rt_configCallBack dg) @nogc nothrow
     return null;
 }
 
-string rt_linkOption(string opt, scope rt_configCallBack dg) @nogc nothrow
+@system string rt_linkOption(string opt, scope rt_configCallBack dg) @nogc nothrow
 {
     foreach (a; rt_options!())
     {

@@ -227,7 +227,7 @@ private:
     bool _inOpApply;
 }
 
-unittest
+@system unittest
 {
     HashTab!(int, int) tab;
 
@@ -265,7 +265,7 @@ unittest
     static assert(!__traits(compiles, foo(tab)));
 }
 
-unittest
+@system unittest
 {
     HashTab!(string, size_t) tab;
 
@@ -289,7 +289,7 @@ unittest
     assert(tab.empty);
 }
 
-unittest
+@system unittest
 {
     alias RC = common.RC!();
     HashTab!(size_t, RC) tab;
@@ -306,7 +306,7 @@ unittest
     assert(cnt == 0);
 }
 
-unittest
+@system unittest
 {
     import core.exception;
 

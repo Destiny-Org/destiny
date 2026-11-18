@@ -1,4 +1,4 @@
-debug (SENTINEL)
+@system: debug (SENTINEL)
 void main()
 {
     import core.stdc.stdio : printf;
