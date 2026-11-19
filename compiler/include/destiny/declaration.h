@@ -621,6 +621,7 @@ public:
 
     // Formerly FUNCFLAGS
     uint32_t flags;
+    d_bool safeDefaultHinted;             // Destiny: hintSafeByDefault already printed for this function
     d_bool requiresClosure;               // this function needs a closure
 
     bool purityInprocess() const;

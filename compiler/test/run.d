@@ -128,7 +128,7 @@ Options:
     }
 
     // allow overwrites from the environment
-    hostDC = environment.get("HOST_DC", "dmd");
+    hostDC = environment.get("HOST_DC", "destiny"); // Destiny: the released compiler on PATH
     unitTestRunnerCommand = resultsDir.buildPath("unit_test_runner").exeName;
 
     // bootstrap all needed environment variables

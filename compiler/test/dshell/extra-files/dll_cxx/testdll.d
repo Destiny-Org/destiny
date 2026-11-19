@@ -1,3 +1,5 @@
+@system: // Destiny: C++ interop test code (D's default)
+
 version(Windows)
     enum EXPORT = "export ";
 else

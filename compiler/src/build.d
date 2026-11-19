@@ -1089,7 +1089,7 @@ void parseEnvironment()
     if (hostDcDef.length == 0)
     {
         const hostDc = env.getDefault("HOST_DC", null);
-        env["HOST_DC"] = hostDc.length ? hostDc : "dmd";
+        env["HOST_DC"] = hostDc.length ? hostDc : "destiny"; // Destiny: a released destiny on PATH
     }
     else
         // HOST_DC may be defined in the environment
@@ -1098,18 +1098,20 @@ void parseEnvironment()
     // Auto-bootstrapping of a specific host compiler
     if (env.getNumberedBool("AUTO_BOOTSTRAP"))
     {
-        auto hostDCVer = env.getDefault("HOST_DC_VER", "2.113.1");
-        writefln("Using Bootstrap compiler: %s", hostDCVer);
-        auto hostDCRoot = env["G"].buildPath("host_dmd-"~hostDCVer);
-        auto hostDCBase = hostDCVer~"."~(os == "freebsd" ? os~"-"~model : os);
-        auto hostDCURL = env.getDefault("HOST_COMPILER_MIRROR", "https://github.com/Destiny-Org/host-compilers/releases/download")~"/dmd-"~hostDCVer~"/dmd."~hostDCBase; // see ci/host_compiler.sh
-        env["HOST_DC"] = hostDCRoot.buildPath("dmd2", os, os == "osx" ? "bin" : "bin"~model, "dmd");
+        // Destiny: a released destiny64 package from Destiny-Org/host-compilers
+        // (the same files ci/host_compiler.sh installs; Linux x86_64 only)
+        auto hostDCVer = env.getDefault("HOST_DC_VER", "2.115.0-master");
+        writefln("Using Bootstrap compiler: destiny %s", hostDCVer);
+        auto hostDCRoot = env["G"].buildPath("host_destiny-"~hostDCVer);
+        auto hostDCURL = env.getDefault("HOST_COMPILER_MIRROR", "https://github.com/Destiny-Org/host-compilers/releases/download")
+            ~"/destiny-"~hostDCVer~"/destiny64-"~hostDCVer~"-"~os;
+        env["HOST_DC"] = hostDCRoot.buildPath("destiny64", "bin", "destiny");
         env["HOST_DC_PATH"] = env["HOST_DC"];
         // TODO: use dmd.conf from the host too (in case there's a global or user-level dmd.conf)
         env["HOST_DC_RUN"] = env["HOST_DC"];
         if (!env["HOST_DC"].exists)
         {
-            writefln("Downloading DMD %s", hostDCVer);
+            writefln("Downloading destiny %s", hostDCVer);
             auto curlFlags = "-fsSL --retry 5 --retry-max-time 120 --connect-timeout 5 --speed-time 30 --speed-limit 1024";
             hostDCRoot.mkdirRecurse;
             ("curl " ~ curlFlags ~ " " ~ hostDCURL~".tar.xz | tar -C "~hostDCRoot~" -Jxf - || rm -rf "~hostDCRoot).spawnShell.wait;
@@ -1123,7 +1125,7 @@ void parseEnvironment()
 
     if (!env["HOST_DC_PATH"].exists)
     {
-        abortBuild("No DMD compiler is installed. Try AUTO_BOOTSTRAP=1 or manually set the D host compiler with HOST_DC");
+        abortBuild("No destiny compiler found. Install a released destiny (ci/host_compiler.sh), try AUTO_BOOTSTRAP=1, or set HOST_DC");
     }
 }
 

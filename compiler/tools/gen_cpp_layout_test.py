@@ -26,7 +26,7 @@ _SKIP_HEADERS = frozenset({
     "root/dsystem.h",
 })
 
-# Free functions in namespace destiny that are not wrapped in dmd.cxxfrontend on Linux
+# Free functions in namespace destiny that are not wrapped in destiny.cxxfrontend on Linux
 # (e.g. Windows/MSVC-only functions).
 _SKIP_FREE_FUNCS = frozenset({
     "toCppMangleMSVC",
@@ -92,20 +92,22 @@ _D_KEYWORD_RENAME: dict[tuple[str, str], str | None] = {
 
 # All D imports needed to check all definitions from include/*.h
 D_IMPORTS = """\
-import dmd.aggregate, dmd.aliasthis, dmd.arraytypes, dmd.ast_node,
-       dmd.attrib, dmd.compiler, dmd.cond, dmd.ctfeexpr, dmd.cxxfrontend, dmd.declaration,
-       dmd.denum, dmd.dimport, dmd.dmodule, dmd.dscope, dmd.dstruct,
-       dmd.dsymbol, dmd.dtemplate, dmd.dversion, dmd.errors,
-       dmd.astenums, dmd.ctorflow, dmd.dclass, dmd.dmacro, dmd.dsymbolsem, dmd.errorsink, dmd.expression, dmd.func,
-       dmd.globals, dmd.hdrgen, dmd.lexer,
-       dmd.id, dmd.identifier, dmd.init, dmd.json, dmd.location,
-       dmd.mangle, dmd.mtype, dmd.nspace, dmd.objc, dmd.rootobject,
-       dmd.statement, dmd.staticassert, dmd.target, dmd.tokens, dmd.typinf,
-       dmd.visitor, dmd.vsoptions,
-       dmd.root.array, dmd.root.bitarray, dmd.root.complex,
-       dmd.root.ctfloat, dmd.root.filename, dmd.root.longdouble,
-       dmd.root.optional, dmd.root.port, dmd.root.rmem,
-       dmd.common.charactertables, dmd.common.outbuffer;"""
+@system: // Destiny: these checks inspect raw field offsets (D's default)
+
+import destiny.aggregate, destiny.aliasthis, destiny.arraytypes, destiny.ast_node,
+       destiny.attrib, destiny.compiler, destiny.cond, destiny.ctfeexpr, destiny.cxxfrontend, destiny.declaration,
+       destiny.denum, destiny.dimport, destiny.dmodule, destiny.dscope, destiny.dstruct,
+       destiny.dsymbol, destiny.dtemplate, destiny.dversion, destiny.errors,
+       destiny.astenums, destiny.ctorflow, destiny.dclass, destiny.dmacro, destiny.dsymbolsem, destiny.errorsink, destiny.expression, destiny.func,
+       destiny.globals, destiny.hdrgen, destiny.lexer,
+       destiny.id, destiny.identifier, destiny.init, destiny.json, destiny.location,
+       destiny.mangle, destiny.mtype, destiny.nspace, destiny.objc, destiny.rootobject,
+       destiny.statement, destiny.staticassert, destiny.target, destiny.tokens, destiny.typinf,
+       destiny.visitor, destiny.vsoptions,
+       destiny.root.array, destiny.root.bitarray, destiny.root.complex,
+       destiny.root.ctfloat, destiny.root.filename, destiny.root.longdouble,
+       destiny.root.optional, destiny.root.port, destiny.root.rmem,
+       destiny.common.charactertables, destiny.common.outbuffer;"""
 
 # Helper emitted once
 D_HELPER_CODE = r"""private enum hasMangled(alias T, string method, string mangled) = () {
@@ -115,7 +117,7 @@ D_HELPER_CODE = r"""private enum hasMangled(alias T, string method, string mangl
 }();
 
 private enum genericMsg =
-    "Changes to dmd's extern(C++) types/functions must be reflected in compiler/include/*.h\n";
+    "Changes to the compiler's extern(C++) types/functions must be reflected in compiler/include/*.h\n";
 
 // Eponymous template: dLocString!sym => "file:line" string
 template dLocString(alias sym)
@@ -462,7 +464,7 @@ def gen(include_dir: Path, out_path: Path) -> None:
             seen.add(h)
 
             if not in_dir(child):
-                # Recurse into namespaces even from other files (dmd ns spans headers).
+                # Recurse into namespaces even from other files (the destiny namespace spans headers).
                 if child.kind == CK.NAMESPACE:
                     walk(child)
                 continue
@@ -472,36 +474,36 @@ def gen(include_dir: Path, out_path: Path) -> None:
             elif child.kind in (CK.CLASS_DECL, CK.STRUCT_DECL) and child.is_definition():
                 emit_record(child)
             elif child.kind == CK.NAMESPACE:
-                if child.spelling == "dmd":
+                if child.spelling == "destiny":
                     collect_dmd_namespace(child)
                 walk(child)
 
     walk(tu.cursor)
 
     # Emit mangled name checks for free functions in namespace destiny.
-    # All such functions are re-exported via dmd.cxxfrontend as extern(C++, "dmd").
+    # All such functions are re-exported via destiny.cxxfrontend as extern(C++, "destiny").
     if dmd_free_funcs:
         name_count = Counter(f.spelling for f in dmd_free_funcs)
         lines.append("")
-        lines.append("// free functions in namespace destiny (via dmd.cxxfrontend)")
+        lines.append("// free functions in namespace destiny (via destiny.cxxfrontend)")
         for func in dmd_free_funcs:
             fname = func.spelling
             mangled = func.mangled_name
             floc = func.location
             func_cpp_loc = f"{os.path.relpath(floc.file.name, include_str)}:{floc.line}"
             if fname in _SKIP_FREE_FUNCS:
-                lines.append(f"// skip destiny::{fname}: not in dmd.cxxfrontend on this platform")
+                lines.append(f"// skip destiny::{fname}: not in destiny.cxxfrontend on this platform")
             elif uses_dstring(func):
                 lines.append(f"// skip destiny::{fname}: uses DString")
             elif name_count[fname] > 1:
-                msg = (f'"\\n\\nNo overload of `dmd.cxxfrontend.{fname}` has C++ mangling:\\n'
+                msg = (f'"\\n\\nNo overload of `destiny.cxxfrontend.{fname}` has C++ mangling:\\n'
                        f'  expected: {mangled} at {func_cpp_loc}\\n" ~ genericMsg')
-                lines.append(f'static assert(hasMangled!(dmd.cxxfrontend, "{fname}", "{mangled}"), {msg});')
+                lines.append(f'static assert(hasMangled!(destiny.cxxfrontend, "{fname}", "{mangled}"), {msg});')
             else:
-                msg = (f'"\\n\\nMangled name mismatch for `dmd.cxxfrontend.{fname}`:\\n'
-                       f'  D:   " ~ dmd.cxxfrontend.{fname}.mangleof ~ " at " ~ dLocString!(dmd.cxxfrontend.{fname}) ~ "\\n'
+                msg = (f'"\\n\\nMangled name mismatch for `destiny.cxxfrontend.{fname}`:\\n'
+                       f'  D:   " ~ destiny.cxxfrontend.{fname}.mangleof ~ " at " ~ dLocString!(destiny.cxxfrontend.{fname}) ~ "\\n'
                        f'  C++: {mangled} at {func_cpp_loc}\\n" ~ genericMsg')
-                lines.append(f'static assert(dmd.cxxfrontend.{fname}.mangleof == "{mangled}", {msg});')
+                lines.append(f'static assert(destiny.cxxfrontend.{fname}.mangleof == "{mangled}", {msg});')
 
     out_path.write_text("\n".join(lines) + "\n")
     print(f"Generated {out_path} ({len(lines)} lines)")

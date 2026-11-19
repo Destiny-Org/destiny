@@ -293,7 +293,8 @@ void test_semantic()
     assert(ad && ad->ctor && ad->sizeok == Sizeok::done);
     CtorDeclaration *ctor = ad->ctor->isCtorDeclaration();
     assert(ctor->isMember() && !ctor->isNested());
-    assert(0 == strcmp(ctor->type->toChars(), "Error(string)"));
+    // Destiny: functions are @safe by default, which shows in the type
+    assert(0 == strcmp(ctor->type->toChars(), "@safe Error(string)"));
 
     ClassDeclaration *cd = ad->isClassDeclaration();
     assert(cd && cd->hasMonitor());
