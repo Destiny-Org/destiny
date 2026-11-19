@@ -12,7 +12,7 @@ $(OBJDIR)/no_%.done: private negate := !
 
 $(OBJDIR)/%.done: $(OBJDIR)/%$(DOTEXE)
 	@echo Testing $<
-	$(negate) $(TIMELIMIT)$(VALGRIND) --quiet --tool=memcheck --error-exitcode=8 $<
+	$(negate) $(TIMELIMIT)$(VALGRIND) --quiet --tool=memcheck --leak-check=full --errors-for-leak-kinds=definite --error-exitcode=8 $<
 	@touch $@
 
 gc_src := \

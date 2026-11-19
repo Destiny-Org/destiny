@@ -1,3 +1,4 @@
+@system: // Destiny: deliberately unsafe throughout, checked by valgrind
 // Use-after-GC (escaping heap reference).
 
 struct S
@@ -31,7 +32,7 @@ int destroyStack()
     return x[123];
 }
 
-int main()
+@system int main() // Destiny: deliberately unsafe, checked by valgrind
 {
     int x = makeBadInstances();
     x += destroyStack();

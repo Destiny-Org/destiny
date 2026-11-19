@@ -253,7 +253,7 @@ Note that these groups have no strict meaning, the category assignments are a bi
 | [mangle/cpp.d](https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mangle/cpp.d)       | C++ name mangling                                                |
 | [mangle/cppwin.d](https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mangle/cppwin.d) | C++ name mangling for Windows                                    |
 | [mangle/basic.d](https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mangle/basic.d)   | D name mangling for basic types                                  |
-| [mangle/package.d](https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mangle/package.d)           | D [name mangling](https://github.com/Destiny-Org/destiny/blob/main/spec/abi.dd) |
+| [mangle/package.d](https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/mangle/package.d)           | D [name mangling](https://github.com/Destiny-Org/destiny/blob/main/spec/abi.ddd) |
 
 ### Linking
 
@@ -265,7 +265,7 @@ Note that these groups have no strict meaning, the category assignments are a bi
 
 | File                                                                  | Purpose                                                                                                 |
 |-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| [doc.d](https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/doc.d)       | [Documentation generation](https://github.com/Destiny-Org/destiny/blob/main/spec/ddoc.dd)                                            |
+| [doc.d](https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/doc.d)       | [Documentation generation](https://github.com/Destiny-Org/destiny/blob/main/spec/ddoc.ddd)                                            |
 | [dmacro.d](https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/dmacro.d) | DDoc macro processing                                                                                   |
 | [hdrgen.d](https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/hdrgen.d) | Convert an AST into D source code for `.di` header generation, as well as `-vcg-ast` and error messages |
 | [json.d](https://github.com/Destiny-Org/destiny/blob/main/compiler/src/destiny/json.d)     | Describe the module in a `.json` file for the `-X` flag                                                 |

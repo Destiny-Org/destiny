@@ -1,0 +1,82 @@
+# valgrind suppressions for ci/memcheck.sh: reports that are not bugs in
+# Destiny. Each entry says why it is suppressed. Add entries only with a
+# reason; a real leak must be fixed, not suppressed.
+#
+# Function names are mangled D symbols. A repeated part of a name is
+# compressed to a back reference (the second `2gc` in
+# core.internal.gc.impl.conservative.gc is `Qw`), so match with `*`.
+
+# The garbage collector is conservative: during a collection it reads every
+# word of every thread's stack, including parts below the thread's stack
+# pointer that valgrind calls invalid. These reads are how a stop-the-world
+# GC finds roots; they never write and never use the values as data.
+{
+   gc-scan-thread-stacks-4
+   Memcheck:Addr4
+   fun:_D4core8internal2gc4impl12conservative*3Gcx12collectRoots*
+}
+{
+   gc-scan-thread-stacks-8
+   Memcheck:Addr8
+   fun:_D4core8internal2gc4impl12conservative*3Gcx12collectRoots*
+}
+
+# The words found that way are often uninitialised (stack slots not yet
+# written). The collector treats each one as a possible pointer and follows
+# it through its mark bits, so valgrind reports the branch on it (in Gcx's
+# mark, sweep and root scan, and the bit helpers they call). Every entry
+# below needs a Gcx frame in the stack, so code outside the GC is not hidden.
+{
+   gc-conservative-words-cond
+   Memcheck:Cond
+   ...
+   fun:_D4core8internal2gc4impl12conservative*3Gcx*
+}
+{
+   gc-conservative-words-value4
+   Memcheck:Value4
+   ...
+   fun:_D4core8internal2gc4impl12conservative*3Gcx*
+}
+{
+   gc-conservative-words-value8
+   Memcheck:Value8
+   ...
+   fun:_D4core8internal2gc4impl12conservative*3Gcx*
+}
+
+# An exception's stack trace is malloc'ed when it is thrown and freed by the
+# exception's destructor. Exceptions are GC objects, and the GC does not
+# promise to run destructors (an exception still referenced at exit, or kept
+# alive by a stale word on a stack, is never finalized), so these traces can
+# outlive the program.
+{
+   exception-stack-trace
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   ...
+   fun:_D4core7runtime19defaultTraceHandler*
+}
+
+# An object's monitor (for `synchronized`) is malloc'ed on first use and
+# freed by the object's finalizer: the same GC finalization rule as above.
+{
+   object-monitor
+   Memcheck:Leak
+   match-leak-kinds: definite
+   ...
+   fun:_D2rt8monitor_13ensureMonitor*
+}
+
+# rt.minfo's tests make module-constructor cycles on purpose and catch the
+# Error they raise. An Error that unwinds through nothrow code skips cleanup
+# (D does not promise cleanup for Errors), so the sorter's scratch memory is
+# not freed. Only these tests catch the Error; a real program aborts on it.
+{
+   minfo-cycle-tests
+   Memcheck:Leak
+   match-leak-kinds: definite
+   ...
+   fun:_D2rt5minfo*__unittest_L*
+}

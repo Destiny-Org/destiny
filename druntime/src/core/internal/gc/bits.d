@@ -277,10 +277,12 @@ struct GCBits
         // simulate broken array append test case in vibe.d
         GCBits bits;
         bits.alloc(10000);
+        scope (exit) bits.Dtor();
         auto data = bits.data;
 
         GCBits src;
         src.alloc(67);
+        scope (exit) src.Dtor();
         src.data[0] = 0x4;
 
         bits.copyRangeRepeating(2, 10000, src.data, 67);
@@ -359,6 +361,7 @@ struct GCBits
     {
         GCBits bits;
         bits.alloc(1000);
+        scope (exit) bits.Dtor();
         auto data = bits.data;
 
         bits.setRange(0,1);

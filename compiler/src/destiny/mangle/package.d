@@ -1,7 +1,7 @@
 /**
  * Does name mangling for `extern(D)` symbols.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/abi.dd, Name Mangling)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/abi.ddd, Name Mangling)
  *
  * Copyright: Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors: Walter Bright, https://www.digitalmars.com
@@ -422,7 +422,7 @@ void mangleFuncType(TypeFunction t, TypeFunction ta, ubyte modMask, Type tret, r
  */
 void mangleParameter(Parameter p, ref OutBuffer buf, ref Backref backref)
 {
-    // https://github.com/Destiny-Org/destiny/blob/main/spec/abi.dd
+    // https://github.com/Destiny-Org/destiny/blob/main/spec/abi.ddd
 
     auto stc = p.storageClass;
 

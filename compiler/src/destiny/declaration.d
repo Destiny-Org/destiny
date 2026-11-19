@@ -325,7 +325,7 @@ extern (C++) final class TupleDeclaration : Declaration
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.ddd
  */
 extern (C++) final class AliasDeclaration : Declaration
 {

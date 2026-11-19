@@ -194,11 +194,19 @@ package:
     }
     PoolTable!MockPool pooltable;
 
+    // minimize() hands the removed pools back to the caller to release
+    MockPool*[] freePools(MockPool*[] removed)
+    {
+        foreach (pool; removed)
+            cstdlib.free(pool);
+        return removed;
+    }
+
     void reset()
     {
         foreach (ref pool; pooltable[0 .. $])
             pool.freepages = pool.npages;
-        pooltable.minimize();
+        freePools(pooltable.minimize());
         assert(pooltable.length == 0);
 
         foreach (i; 0 .. NPOOLS)
@@ -221,7 +229,7 @@ package:
     // all pools are free
     reset();
     assert(pooltable.length == NPOOLS);
-    auto freed = pooltable.minimize();
+    auto freed = freePools(pooltable.minimize());
     assert(freed.length == NPOOLS);
     assert(pooltable.length == 0);
 
@@ -229,7 +237,7 @@ package:
     reset();
     usePools();
     assert(pooltable.length == NPOOLS);
-    freed = pooltable.minimize();
+    freed = freePools(pooltable.minimize());
     assert(freed.length == 0);
     assert(pooltable.length == NPOOLS);
 
@@ -242,7 +250,7 @@ package:
         // make the 2nd pool free
         pooltable[2].freepages = NPAGES;
 
-        pooltable.minimize();
+        freePools(pooltable.minimize());
         assert(pooltable.length == NPOOLS - 1);
         assert(pooltable[0] == opools[0]);
         assert(pooltable[1] == opools[1]);
@@ -267,7 +275,7 @@ package:
         top = pooltable[NPOOLS - 1].topAddr;
     }
 
-    freed = pooltable.minimize();
+    freed = freePools(pooltable.minimize());
     assert(freed.length == 0);
     assert(pooltable.length == NPOOLS);
     assert(pooltable.minAddr == base);
@@ -276,7 +284,7 @@ package:
     pooltable[NPOOLS - 1].freepages = NPAGES;
     pooltable[NPOOLS - 2].freepages = NPAGES;
 
-    freed = pooltable.minimize();
+    freed = freePools(pooltable.minimize());
     assert(freed.length == 2);
     assert(pooltable.length == NPOOLS - 2);
     assert(pooltable.minAddr == base);
@@ -284,7 +292,7 @@ package:
 
     pooltable[0].freepages = NPAGES;
 
-    freed = pooltable.minimize();
+    freed = freePools(pooltable.minimize());
     assert(freed.length == 1);
     assert(pooltable.length == NPOOLS - 3);
     assert(pooltable.minAddr != base);
@@ -294,7 +302,7 @@ package:
     // free all
     foreach (pool; pooltable[0 .. $])
         pool.freepages = NPAGES;
-    freed = pooltable.minimize();
+    freed = freePools(pooltable.minimize());
     assert(freed.length == NPOOLS - 3);
     assert(pooltable.length == 0);
     pooltable.Dtor();

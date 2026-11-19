@@ -1,7 +1,7 @@
 /***
  * Semantic analysis of expressions.
  *
- * Specification: ($LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd, Expressions)
+ * Specification: ($LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd, Expressions)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
@@ -4457,7 +4457,7 @@ private bool functionParameters(Loc loc, Scope* sc,
             (*arguments)[i] = checkNoreturnVarAccess(arg);
         }
 
-        if (tf.parameterList.varargs == VarArg.typesafe && i + 1 == nparams) // https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+        if (tf.parameterList.varargs == VarArg.typesafe && i + 1 == nparams) // https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
         {
             //printf("\t\tvarargs == 2, p.type = '%s'\n", p.type.toChars());
             if (MATCH m = arg.implicitConvTo(p.type))
@@ -9728,7 +9728,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
     override void visit(MixinExp exp)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
          */
 
         static if (LOGSEMANTIC)
@@ -9834,7 +9834,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
     override void visit(AssertExp exp)
     {
-        // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+        // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
         static if (LOGSEMANTIC)
         {
             printf("AssertExp::semantic('%s')\n", exp.toErrMsg());
@@ -14089,7 +14089,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
             Expression e;
             if (t2.ty == Tpointer)
             {
-                // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+                // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
                 // "If both operands are pointers, and the operator is -, the pointers are
                 // subtracted and the result is divided by the size of the type pointed to
                 // by the operands. It is an error if the pointers point to different types."
@@ -14282,7 +14282,7 @@ private extern (C++) final class ExpressionSemanticVisitor : Visitor
 
     override void visit(CatExp exp)
     {
-        // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+        // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
         //printf("CatExp.semantic() %s\n", toChars());
         if (Expression e = exp.opOverloadBinary(sc, aliasThisStop))
         {

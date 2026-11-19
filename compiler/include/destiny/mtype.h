@@ -132,7 +132,7 @@ enum VarArgValues
 {
     VARARGnone     = 0,  /// fixed number of arguments
     VARARGvariadic = 1,  /// T t, ...)  can be C-style (core.stdc.stdarg) or D-style (core.vararg)
-    VARARGtypesafe = 2,  /// T t ...) typesafe https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+    VARARGtypesafe = 2,  /// T t ...) typesafe https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
     VARARGKRvariadic = 3 /// K+R C style variadics (no function prototype)
 };
 typedef unsigned char VarArg;

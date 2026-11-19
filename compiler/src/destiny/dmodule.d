@@ -1,7 +1,7 @@
 /**
  * Defines a package and module.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd, Modules)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/module.ddd, Modules)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
@@ -402,7 +402,24 @@ extern (C++) final class Module : Package
         const(char)[] srcfilename;
         //printf("Module::Module(filename = '%.*s', ident = '%s')\n", cast(int)filename.length, filename.ptr, ident.toChars());
         this.arg = filename;
-        srcfilename = FileName.defaultExt(filename, mars_ext);
+        // Destiny: a name without an extension means `name.dd`, else `name.d`
+        if (!FileName.ext(filename))
+        {
+            srcfilename = FileName.defaultExt(filename, dest_ext);
+            if (FileName.exists(srcfilename) != 1)
+            {
+                const dfile = FileName.defaultExt(filename, mars_ext);
+                if (FileName.exists(dfile) == 1)
+                {
+                    FileName.free(srcfilename.ptr);
+                    srcfilename = dfile;
+                }
+                else
+                    FileName.free(dfile.ptr);
+            }
+        }
+        else
+            srcfilename = FileName.defaultExt(filename, mars_ext);
         if (target.run_noext && global.params.run &&
             !FileName.ext(filename) &&
             FileName.exists(srcfilename) == 0 &&
@@ -411,7 +428,9 @@ extern (C++) final class Module : Package
             FileName.free(srcfilename.ptr);
             srcfilename = FileName.sansExt(filename);
         }
-        else if (!FileName.equalsExt(srcfilename, mars_ext) &&
+        else if (!FileName.equalsExt(srcfilename, dest_ext) &&
+                 !FileName.equalsExt(srcfilename, dest_hdr_ext) &&
+                 !FileName.equalsExt(srcfilename, mars_ext) &&
                  !FileName.equalsExt(srcfilename, hdr_ext) &&
                  !FileName.equalsExt(srcfilename, c_ext) &&
                  !FileName.equalsExt(srcfilename, h_ext) &&
@@ -423,7 +442,7 @@ extern (C++) final class Module : Package
             eSink.error(loc, "%s `%s` source file name '%.*s' must have .%.*s extension",
                   kind, toPrettyChars,
                   cast(int)srcfilename.length, srcfilename.ptr,
-                  cast(int)mars_ext.length, mars_ext.ptr);
+                  cast(int)dest_ext.length, dest_ext.ptr);
             fatal();
         }
 
@@ -432,7 +451,7 @@ extern (C++) final class Module : Package
         if (doDocComment)
             setDocfile();
         if (doHdrGen)
-            hdrfile = setOutfilename(global.params.dihdr.name, global.params.dihdr.dir, arg, hdr_ext);
+            hdrfile = setOutfilename(global.params.dihdr.name, global.params.dihdr.dir, arg, interfaceExt(arg));
 
         this.edition = global.params.edition;
     }
@@ -587,11 +606,18 @@ extern (C++) final class Module : Package
      * Params:
      *  loc = The location at which the file read originated (e.g. import)
      */
+    /// Destiny: the extension of the interface file `-H` writes for `src`:
+    /// `.di` for a D (`.d`) source file, `.ddi` for anything else
+    extern (D) static const(char)[] interfaceExt(const(char)[] src) nothrow
+    {
+        return FileName.equalsExt(src, mars_ext) ? hdr_ext : dest_hdr_ext;
+    }
+
     private void onFileReadError(Loc loc, bool removeHeaders)
     {
         auto eSink = global.errorSink;
         const name = srcfile.toString();
-        if (FileName.equals(name, "object.d"))
+        if (FileName.equals(name, "object.d") || FileName.equals(name, "object.dd"))
         {
             ObjectNotFound(Loc.initial, ident);
         }
@@ -611,7 +637,7 @@ extern (C++) final class Module : Package
             else
             {
                 eSink.error(loc, "unable to read module `%s`", toChars());
-                const pkgfile = FileName.combine(FileName.sansExt(name), package_d);
+                const pkgfile = FileName.combine(FileName.sansExt(name), package_dd);
                 eSink.errorSupplemental(loc, "Expected '%.*s' or '%.*s' in one of the following import paths:",
                     cast(int)name.length, name.ptr, cast(int)pkgfile.length, pkgfile.ptr);
             }
@@ -730,7 +756,7 @@ extern (C++) final class Module : Package
         }
         /* If it has the extension ".di", it is a "header" file.
          */
-        if (FileName.equalsExt(arg, hdr_ext))
+        if (FileName.equalsExt(arg, hdr_ext) || FileName.equalsExt(arg, dest_hdr_ext))
             filetype = FileType.dhdr;
 
         /// Promote `this` to a root module if requested via `-i`

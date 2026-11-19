@@ -254,7 +254,7 @@ extern (C) pure @nogc nothrow
      * So, we'll ignore it.
      *
      * See_Also:
-     *     $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd, D's rules for purity),
+     *     $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd, D's rules for purity),
      *     which allow for memory allocation under specific circumstances.
      */
     pragma(mangle, "malloc") void* pureMalloc(size_t size) @trusted;

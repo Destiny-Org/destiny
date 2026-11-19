@@ -2206,7 +2206,7 @@ extern (C++) final class TypeTag : Type
 /***********************************************************
  * Represents a function's formal parameters + variadics info.
  * Length, indexing and iteration are based on a depth-first tuple expansion.
- * https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
  */
 extern (C++) struct ParameterList
 {

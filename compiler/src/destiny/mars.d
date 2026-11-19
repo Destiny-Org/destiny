@@ -1843,6 +1843,8 @@ bool parseCommandLine(const ref Strings arguments, const size_t argc, out Param 
                 const(char)[] runarg = arguments[i + 1].toDString();
                 const(char)[] ext = FileName.ext(runarg);
                 if (ext &&
+                    FileName.equals(ext, dest_ext) == 0 &&
+                    FileName.equals(ext, dest_hdr_ext) == 0 &&
                     FileName.equals(ext, mars_ext) == 0 &&
                     FileName.equals(ext, hdr_ext) == 0 &&
                     FileName.equals(ext, i_ext) == 0 &&
@@ -1996,7 +1998,9 @@ bool createModule(const(char)* file, ref Strings libmodules, ref Param params, c
     /* Examine extension to see if it is a valid
      * D, Ddoc or C source file extension
      */
-    if (FileName.equals(ext, mars_ext) ||
+    if (FileName.equals(ext, dest_ext) ||
+        FileName.equals(ext, dest_hdr_ext) ||
+        FileName.equals(ext, mars_ext) ||
         FileName.equals(ext, hdr_ext ) ||
         FileName.equals(ext, dd_ext  ) ||
         FileName.equals(ext, c_ext   ) ||

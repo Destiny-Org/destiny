@@ -476,7 +476,7 @@ version (D_SIMD)
     unittest
     {
         float4 a;
-        a = cast(float4)__simd(XMM.CMPPD, a, a, 0x7A);
+        a = cast(float4)__simd(XMM.CMPPD, a, a, 2); // predicate 2: less than or equal (SSE defines 0-7)
     }
 
     /***

@@ -1,7 +1,7 @@
 /**
  * Enforce visibility constraints such as `public` and `private`.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/attribute.dd, Visibility Attributes)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/attribute.ddd, Visibility Attributes)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)

@@ -1,7 +1,7 @@
 /**
  * Implements the `alias this` symbol.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/class.dd, Alias This)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/class.ddd, Alias This)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)

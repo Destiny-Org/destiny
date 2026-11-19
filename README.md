@@ -64,6 +64,8 @@ same platforms.
 
 ## Hello world
 
+Destiny source files end in `.dd`. Save this as `hello.dd`:
+
 ```d
 import std.stdio;
 
@@ -74,7 +76,7 @@ void main()
 ```
 
 ```
-destiny -run hello.d
+destiny -run hello.dd
 ```
 
 ## Packages
@@ -100,4 +102,6 @@ for errors, completion and quick fixes in your editor.
 
 ## License
 
-Boost Software License 1.0; see [LICENSE.txt](LICENSE.txt).
+Mozilla Public License 2.0; see [LICENSE](LICENSE) and [NOTICE](NOTICE). Destiny is
+based on D, and the original D files stay under the Boost Software License
+1.0 ([LICENSE.txt](LICENSE.txt)).

@@ -333,14 +333,14 @@ enum AliasThisRec : int
 
 /***************
  * Variadic argument lists
- * https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
  */
 enum VarArg : ubyte
 {
     none     = 0,  /// fixed number of arguments
     variadic = 1,  /// (T t, ...)  can be C-style (core.stdc.stdarg) or D-style (core.vararg)
-    typesafe = 2,  /// (T t ...) typesafe https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
-                   ///   or https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+    typesafe = 2,  /// (T t ...) typesafe https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
+                   ///   or https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
     KRvariadic = 3, /// K+R C style variadics (no function prototype)
 }
 
@@ -407,7 +407,7 @@ enum InitKind : ubyte
 
 /// A linkage attribute as defined by `extern(XXX)`
 ///
-/// https://github.com/Destiny-Org/destiny/blob/main/spec/attribute.dd
+/// https://github.com/Destiny-Org/destiny/blob/main/spec/attribute.ddd
 enum LINK : ubyte
 {
     default_,
@@ -429,7 +429,7 @@ enum CPPMANGLE : ubyte
 
 /// Function match levels
 ///
-/// https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+/// https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
 enum MATCH : int
 {
     nomatch,   /// no match

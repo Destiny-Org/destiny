@@ -54,10 +54,39 @@ UnitTestResult testAll()
     ret.runMain = false;
     foreach (moduleInfo; ModuleInfo)
     {
+        if (skipped(moduleInfo.name))
+        {
+            printf("SKIP %.*s %.*s\n", cast(uint) mode.length, mode.ptr,
+                   cast(uint) moduleInfo.name.length, moduleInfo.name.ptr);
+            continue;
+        }
         doTest(moduleInfo, ret);
     }
 
     return ret;
+}
+
+/// Whether TEST_RUNNER_SKIP (comma-separated module names) lists `name`.
+/// For tools that cannot run some modules' tests, such as valgrind, which
+/// emulates 80-bit `real` arithmetic with only 64 bits.
+bool skipped(const(char)[] name)
+{
+    import core.stdc.stdlib : getenv;
+    import core.stdc.string : strlen;
+    auto env = getenv("TEST_RUNNER_SKIP");
+    if (env is null)
+        return false;
+    auto list = env[0 .. strlen(env)];
+    while (list.length)
+    {
+        size_t end;
+        while (end < list.length && list[end] != ',')
+            ++end;
+        if (list[0 .. end] == name)
+            return true;
+        list = end < list.length ? list[end + 1 .. $] : null;
+    }
+    return false;
 }
 
 

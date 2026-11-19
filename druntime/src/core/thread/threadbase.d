@@ -749,8 +749,17 @@ package(core.thread):
         assert(idx != -1);
         import core.stdc.string : memmove;
         memmove(pAboutToStart + idx, pAboutToStart + idx + 1, size_t.sizeof * (nAboutToStart - idx - 1));
-        pAboutToStart =
-            cast(ThreadBase*)realloc(pAboutToStart, size_t.sizeof * --nAboutToStart);
+        // realloc to size 0 is implementation-defined (undefined in C23):
+        // free the list when the last waiting thread has started
+        if (--nAboutToStart == 0)
+        {
+            import core.stdc.stdlib : free;
+            free(pAboutToStart);
+            pAboutToStart = null;
+        }
+        else
+            pAboutToStart =
+                cast(ThreadBase*)realloc(pAboutToStart, size_t.sizeof * nAboutToStart);
     }
 
 

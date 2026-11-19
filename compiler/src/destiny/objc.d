@@ -1,7 +1,7 @@
 /**
  * Interfacing with Objective-C.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/objc_interface.dd, Interfacing to Objective-C)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/objc_interface.ddd, Interfacing to Objective-C)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)

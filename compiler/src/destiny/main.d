@@ -533,7 +533,7 @@ private int tryMain(const(char)[][] argv, out Param params)
             if (m.docfile)
                 m.setDocfile();
             if (m.hdrfile)
-                m.hdrfile = m.setOutfilename(params.dihdr.name, params.dihdr.dir, m.arg, hdr_ext);
+                m.hdrfile = m.setOutfilename(params.dihdr.name, params.dihdr.dir, m.arg, Module.interfaceExt(m.arg));
         }
 
         if (m.filetype == FileType.dhdr)

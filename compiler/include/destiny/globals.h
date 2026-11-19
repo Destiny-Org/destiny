@@ -216,7 +216,7 @@ struct Param
 
     // Options for `-preview=/-revert=`
     FeatureState useDIP25;       // implement https://github.com/Destiny-Org/destiny
-    FeatureState useDIP1000;     // implement https://github.com/Destiny-Org/destiny/blob/main/spec/memory-safe-d.dd
+    FeatureState useDIP1000;     // implement https://github.com/Destiny-Org/destiny/blob/main/spec/memory-safe-d.ddd
     d_bool ehnogc;                 // use @nogc exception handling
     d_bool useDIP1021;             // implement DIP1021
     FeatureState fieldwise;      // do struct equality testing field-wise rather than by memcmp()

@@ -720,6 +720,8 @@ version (HaveMemstream)
     assert(fflush(f) == 0);
     assert(memcmp(ptr, testdata.ptr, testdata.length) == 0);
     assert(fclose(f) == 0);
+    import core.stdc.stdlib : free;
+    free(ptr); // after fclose the buffer belongs to the caller
 }
 
 version (CRuntime_UClibc) {} else
@@ -737,4 +739,6 @@ version (HaveMemstream)
     assert(fflush(f) == 0);
     assert(memcmp(ptr, testdata.ptr, testdata.length*wchar_t.sizeof) == 0);
     assert(fclose(f) == 0);
+    import core.stdc.stdlib : free;
+    free(ptr); // after fclose the buffer belongs to the caller
 }

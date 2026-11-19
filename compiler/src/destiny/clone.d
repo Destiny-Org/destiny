@@ -97,7 +97,7 @@ STC mergeFuncAttrs(STC s1, const FuncDeclaration f) pure @safe
  * Returns:
  *      if found, returns FuncDeclaration of opAssign, otherwise null
  * References:
- *      https://github.com/Destiny-Org/destiny/blob/main/spec/operatoroverloading.dd
+ *      https://github.com/Destiny-Org/destiny/blob/main/spec/operatoroverloading.ddd
  */
 FuncDeclaration hasIdentityOpAssign(AggregateDeclaration ad, Scope* sc)
 {
@@ -249,7 +249,7 @@ private bool needOpAssign(StructDeclaration sd)
  * if defined).
  *
  * References:
- *      https://github.com/Destiny-Org/destiny/blob/main/spec/struct.dd
+ *      https://github.com/Destiny-Org/destiny/blob/main/spec/struct.ddd
  * Params:
  *      sd = struct to generate opAssign for
  *      sc = context
@@ -756,7 +756,7 @@ FuncDeclaration buildXopCmp(StructDeclaration sd, Scope* sc)
  * Returns:
  *      need to generate toHash()
  * References:
- *   https://github.com/Destiny-Org/destiny/blob/main/spec/hash-map.dd
+ *   https://github.com/Destiny-Org/destiny/blob/main/spec/hash-map.ddd
  */
 private bool needToHash(StructDeclaration sd)
 {
@@ -1379,8 +1379,8 @@ private DtorDeclaration buildExternDDtor(AggregateDeclaration ad, Scope* sc)
  * Returns:
  *      generated invariant, null if not needed
  * References:
- * https://github.com/Destiny-Org/destiny/blob/main/spec/class.dd
- * https://github.com/Destiny-Org/destiny/blob/main/spec/struct.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/class.ddd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/struct.ddd
  */
 FuncDeclaration buildInv(AggregateDeclaration ad, Scope* sc)
 {
@@ -1935,7 +1935,7 @@ void needCopyOrMoveCtor(StructDeclaration sd, out bool hasCopyCtor, out bool has
  *  sc = the scope where the constructor is generated
  *  move = true means generate the move constructor, otherwise copy constructor
  * References:
- *   https://github.com/Destiny-Org/destiny/blob/main/spec/struct.dd
+ *   https://github.com/Destiny-Org/destiny/blob/main/spec/struct.ddd
  */
 void buildCopyOrMoveCtor(StructDeclaration sd, Scope* sc, bool move)
 {

@@ -228,8 +228,8 @@ struct TemplatePrevious
 
 /***********************************************************
  * [mixin] template Identifier (parameters) [Constraint]
- * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
- * https://github.com/Destiny-Org/destiny/blob/main/spec/template-mixin.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.ddd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template-mixin.ddd
  */
 extern (C++) final class TemplateDeclaration : ScopeDsymbol
 {
@@ -396,7 +396,7 @@ extern (C++) final class TypeDeduced : Type
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.ddd
  */
 extern (C++) class TemplateParameter : ASTNode
 {
@@ -470,7 +470,7 @@ extern (C++) class TemplateParameter : ASTNode
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.ddd
  * Syntax:
  *  ident : specType = defaultType
  */
@@ -531,7 +531,7 @@ extern (C++) class TemplateTypeParameter : TemplateParameter
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.ddd
  * Syntax:
  *  this ident : specType = defaultType
  */
@@ -559,7 +559,7 @@ extern (C++) final class TemplateThisParameter : TemplateTypeParameter
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.ddd
  * Syntax:
  *  valType ident : specValue = defaultValue
  */
@@ -619,7 +619,7 @@ extern (C++) final class TemplateValueParameter : TemplateParameter
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.ddd
  * Syntax:
  *  specType ident : specAlias = defaultAlias
  */
@@ -674,7 +674,7 @@ extern (C++) final class TemplateAliasParameter : TemplateParameter
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.ddd
  * Syntax:
  *  ident ...
  */
@@ -739,7 +739,7 @@ extern (C++) final class TemplateTupleParameter : TemplateParameter
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/template.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template.ddd
  * Given:
  *  foo!(args) =>
  *      name = foo
@@ -1102,7 +1102,7 @@ bool definitelyValueParameter(Expression e) @safe
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/template-mixin.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/template-mixin.ddd
  * Syntax:
  *    mixin MixinTemplateName [TemplateArguments] [Identifier];
  */

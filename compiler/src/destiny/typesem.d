@@ -1495,7 +1495,7 @@ private void resolveTupleIndex(Loc loc, Scope* sc, Dsymbol s, out Expression pe,
  *      pe = set if expression otherwise null
  *      pt = set if type otherwise null
  *      ps = set if symbol otherwise null
- *      typeid = set if in TypeidExpression https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ *      typeid = set if in TypeidExpression https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 private void resolveHelper(TypeQualified mt, Loc loc, Scope* sc, Dsymbol s, Dsymbol scopesym,
     out Expression pe, out Type pt, out Dsymbol ps, bool intypeid = false)
@@ -2646,6 +2646,17 @@ private extern(D) MATCH argumentMatchParameter (FuncDeclaration fd, TypeFunction
                 break;
             ta = tat;
         }
+    }
+
+    /* Destiny: whether an `in` parameter is passed by `ref` depends on the
+     * target (e.g. `in real` is `ref` on 32-bit x86 only), so it must accept
+     * the same arguments as a by-value `in`: an argument that converts
+     * implicitly is converted into a temporary (see functionParameters).
+     */
+    if ((p.storageClass & STC.constscoperef) && m > MATCH.nomatch && !ta.constConv(tp))
+    {
+        ta = tp;
+        m = MATCH.convert;
     }
 
     /* A ref variable should work like a head-const reference.
@@ -4104,7 +4115,7 @@ Type typeSemantic(Type type, Loc loc, Scope* sc)
                     if (isStackAllocatedVariadic)
                     {
                         /* This is because they can be constructed on the stack
-                         * https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+                         * https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
                          */
                         eSink.error(loc, "typesafe variadic function parameter `%s` of type `%s` cannot be marked `return`",
                             fparam.ident ? fparam.ident.toErrMsg() : "", t.toErrMsg());

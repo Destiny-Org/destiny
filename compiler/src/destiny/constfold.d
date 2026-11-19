@@ -3,7 +3,7 @@
  *
  * The routines in this module are called from `optimize.d`.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/float.dd, Floating Point Constant Folding)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/float.ddd, Floating Point Constant Folding)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)

@@ -662,7 +662,7 @@ extern(C++) final class ForwardingAttribDeclaration : AttribDeclaration
 /***********************************************************
  * Mixin declarations, like:
  *      mixin("int x");
- * https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/module.ddd
  */
 // Note: was CompileDeclaration
 extern (C++) final class MixinDeclaration : AttribDeclaration

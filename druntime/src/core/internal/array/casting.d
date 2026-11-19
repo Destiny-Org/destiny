@@ -141,4 +141,7 @@ TTo[] __ArrayCast(TFrom, TTo)(return scope TFrom[] from) @nogc pure @trusted
         printf("Actual  : |%.*s|\n", cast(int) msg.length, msg.ptr);
         assert(false);
     }
+    // the message is malloc'ed for the error; a real program ends there
+    import core.memory : pureFree;
+    pureFree(cast(void*) msg.ptr);
 }

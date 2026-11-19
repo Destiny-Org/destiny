@@ -1,7 +1,7 @@
 /**
  * Defines the bulk of the classes which represent the AST at the expression level.
  *
- * Specification: ($LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd, Expressions)
+ * Specification: ($LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd, Expressions)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
@@ -112,7 +112,7 @@ enum WANTvalue  = 0;    // default
 enum WANTexpand = 1;    // expand const/immutable variables if possible
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) abstract class Expression : ASTNode
 {
@@ -678,7 +678,7 @@ extern (C++) final class ErrorExp : Expression
  * An uninitialized value,
  * generated from void initializers.
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.ddd
  */
 extern (C++) final class VoidInitExp : Expression
 {
@@ -783,7 +783,7 @@ extern (C++) class IdentifierExp : Expression
 /***********************************************************
  * The dollar operator used when indexing or slicing an array. E.g `a[$]`, `a[1 .. $]` etc.
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/arrays.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/arrays.ddd
  */
 extern (C++) final class DollarExp : IdentifierExp
 {
@@ -820,7 +820,7 @@ extern (C++) final class DsymbolExp : Expression
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) class ThisExp : Expression
 {
@@ -854,7 +854,7 @@ extern (C++) class ThisExp : Expression
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class SuperExp : ThisExp
 {
@@ -872,7 +872,7 @@ extern (C++) final class SuperExp : ThisExp
 /***********************************************************
  * A compile-time known `null` value
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class NullExp : Expression
 {
@@ -889,7 +889,7 @@ extern (C++) final class NullExp : Expression
 }
 
 /***********************************************************
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class StringExp : Expression
 {
@@ -1315,7 +1315,7 @@ extern (C++) final class TupleExp : Expression
 /***********************************************************
  * [ e1, e2, e3, ... ]
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class ArrayLiteralExp : Expression
 {
@@ -1399,7 +1399,7 @@ extern (C++) final class ArrayLiteralExp : Expression
 /***********************************************************
  * [ key0 : value0, key1 : value1, ... ]
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class AssocArrayLiteralExp : Expression
 {
@@ -1986,7 +1986,7 @@ extern (C++) final class IsExp : Expression
 /***********************************************************
  * Base class for unary operators
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) abstract class UnaExp : Expression
 {
@@ -2087,7 +2087,7 @@ extern (C++) class BinAssignExp : BinExp
 /***********************************************************
  * A string mixin, `mixin("x")`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class MixinExp : Expression
 {
@@ -2115,7 +2115,7 @@ extern (C++) final class MixinExp : Expression
  *
  * Not to be confused with module imports, `import std.stdio`, which is an `ImportStatement`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class ImportExp : UnaExp
 {
@@ -2133,7 +2133,7 @@ extern (C++) final class ImportExp : UnaExp
 /***********************************************************
  * An assert expression, `assert(x == y)`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class AssertExp : UnaExp
 {
@@ -2604,7 +2604,7 @@ extern (C++) final class NotExp : UnaExp
 /***********************************************************
  * The delete operator, `delete x` (deprecated)
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class DeleteExp : UnaExp
 {
@@ -2624,7 +2624,7 @@ extern (C++) final class DeleteExp : UnaExp
  *
  * It's possible to cast to one type while painting to another type
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class CastExp : UnaExp
 {
@@ -2692,7 +2692,7 @@ extern (C++) final class VectorExp : UnaExp
 /***********************************************************
  * e1.array property for vectors.
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/simd.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/simd.ddd
  */
 extern (C++) final class VectorArrayExp : UnaExp
 {
@@ -2710,7 +2710,7 @@ extern (C++) final class VectorArrayExp : UnaExp
 /***********************************************************
  * e1 [lwr .. upr]
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class SliceExp : UnaExp
 {
@@ -2774,7 +2774,7 @@ extern (C++) final class ArrayLengthExp : UnaExp
 /***********************************************************
  * e1 [ a0, a1, a2, a3 ,... ]
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class ArrayExp : UnaExp
 {
@@ -3394,7 +3394,7 @@ extern (C++) final class CatDcharAssignExp : CatAssignExp
 /***********************************************************
  * The addition operator, `x + y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class AddExp : BinExp
 {
@@ -3412,7 +3412,7 @@ extern (C++) final class AddExp : BinExp
 /***********************************************************
  * The minus operator, `x - y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class MinExp : BinExp
 {
@@ -3430,7 +3430,7 @@ extern (C++) final class MinExp : BinExp
 /***********************************************************
  * The concatenation operator, `x ~ y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class CatExp : BinExp
 {
@@ -3450,7 +3450,7 @@ extern (C++) final class CatExp : BinExp
 /***********************************************************
  * The multiplication operator, `x * y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class MulExp : BinExp
 {
@@ -3468,7 +3468,7 @@ extern (C++) final class MulExp : BinExp
 /***********************************************************
  * The division operator, `x / y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class DivExp : BinExp
 {
@@ -3486,7 +3486,7 @@ extern (C++) final class DivExp : BinExp
 /***********************************************************
  * The modulo operator, `x % y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class ModExp : BinExp
 {
@@ -3504,7 +3504,7 @@ extern (C++) final class ModExp : BinExp
 /***********************************************************
  * The 'power' operator, `x ^^ y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class PowExp : BinExp
 {
@@ -3522,7 +3522,7 @@ extern (C++) final class PowExp : BinExp
 /***********************************************************
  * The 'shift left' operator, `x << y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class ShlExp : BinExp
 {
@@ -3540,7 +3540,7 @@ extern (C++) final class ShlExp : BinExp
 /***********************************************************
  * The 'shift right' operator, `x >> y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class ShrExp : BinExp
 {
@@ -3558,7 +3558,7 @@ extern (C++) final class ShrExp : BinExp
 /***********************************************************
  * The 'unsigned shift right' operator, `x >>> y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class UshrExp : BinExp
 {
@@ -3576,7 +3576,7 @@ extern (C++) final class UshrExp : BinExp
 /***********************************************************
  * The bitwise 'and' operator, `x & y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class AndExp : BinExp
 {
@@ -3594,7 +3594,7 @@ extern (C++) final class AndExp : BinExp
 /***********************************************************
  * The bitwise 'or' operator, `x | y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class OrExp : BinExp
 {
@@ -3612,7 +3612,7 @@ extern (C++) final class OrExp : BinExp
 /***********************************************************
  * The bitwise 'xor' operator, `x ^ y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class XorExp : BinExp
 {
@@ -3630,8 +3630,8 @@ extern (C++) final class XorExp : BinExp
 /***********************************************************
  * The logical 'and' / 'or' operator, `X && Y` / `X || Y`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class LogicalExp : BinExp
 {
@@ -3653,7 +3653,7 @@ extern (C++) final class LogicalExp : BinExp
  * `op` is one of:
  *      EXP.lessThan, EXP.lessOrEqual, EXP.greaterThan, EXP.greaterOrEqual
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class CmpExp : BinExp
 {
@@ -3674,7 +3674,7 @@ extern (C++) final class CmpExp : BinExp
  *
  * Note: `x !in y` is rewritten to `!(x in y)` in the parser
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class InExp : BinExp
 {
@@ -3712,7 +3712,7 @@ extern (C++) final class RemoveExp : BinExp
  *
  * EXP.equal and EXP.notEqual
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class EqualExp : BinExp
 {
@@ -3734,7 +3734,7 @@ extern (C++) final class EqualExp : BinExp
  *
  * EXP.identity and EXP.notIdentity
  *
- *  https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ *  https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class IdentityExp : BinExp
 {
@@ -3753,7 +3753,7 @@ extern (C++) final class IdentityExp : BinExp
 /***********************************************************
  * The ternary operator, `econd ? e1 : e2`
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) final class CondExp : BinExp
 {
@@ -3788,7 +3788,7 @@ extern (C++) final class CondExp : BinExp
  * void foo(string file = __FILE__, int line = __LINE__); // DefaultInitExp
  * ---
  *
- * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
  */
 extern (C++) class DefaultInitExp : Expression
 {

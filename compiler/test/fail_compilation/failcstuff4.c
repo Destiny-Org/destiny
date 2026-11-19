@@ -3,7 +3,7 @@
 ---
 fail_compilation/failcstuff4.c(100): Error: can only `*` a pointer, not a `int`
 fail_compilation/failcstuff4.c(157): Error: variable `failcstuff4.T22106.f1` - no definition of struct `S22106_t`
-fail_compilation/failcstuff4.c(157):        see https://github.com/Destiny-Org/destiny/blob/main/spec/struct.dd
+fail_compilation/failcstuff4.c(157):        see https://github.com/Destiny-Org/destiny/blob/main/spec/struct.ddd
 fail_compilation/failcstuff4.c(157):        perhaps declare a variable with pointer type `S22106_t*` instead
 ---
 */

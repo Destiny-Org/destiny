@@ -1,7 +1,7 @@
 /**
  * Handles operator overloading.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/operatoroverloading.dd, Operator Overloading)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/operatoroverloading.ddd, Operator Overloading)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
@@ -804,7 +804,7 @@ Expression opOverloadEqual(EqualExp e, Scope* sc, Type[2] aliasThisStop)
         }
 
         /* Do memberwise equality.
-         * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
          * Rewrite:
          *      e1 == e2
          * as:
@@ -1255,10 +1255,10 @@ bool inferForeachAggregate(Scope* sc, bool isForeach, ref Expression feaggr, out
         Type tab = aggr.type.toBasetype();
         switch (tab.ty)
         {
-        case Tarray:            // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
-        case Tsarray:           // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
-        case Ttuple:            // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
-        case Taarray:           // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        case Tarray:            // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
+        case Tsarray:           // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
+        case Ttuple:            // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
+        case Taarray:           // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
             break;
 
         case Tclass:
@@ -1270,7 +1270,7 @@ bool inferForeachAggregate(Scope* sc, bool isForeach, ref Expression feaggr, out
                 sapply = search_function(ad, isForeach ? Id.apply : Id.applyReverse);
                 if (sapply)
                 {
-                    // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+                    // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
                     // opApply aggregate
                     break;
                 }
@@ -1290,7 +1290,7 @@ bool inferForeachAggregate(Scope* sc, bool isForeach, ref Expression feaggr, out
             }
             if (ad.search(Loc.initial, isForeach ? Id.Ffront : Id.Fback))
             {
-                // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+                // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
                 // range aggregate
                 break;
             }
@@ -1304,7 +1304,7 @@ bool inferForeachAggregate(Scope* sc, bool isForeach, ref Expression feaggr, out
             return false;
         }
 
-        case Tdelegate:        // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        case Tdelegate:        // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
             if (auto de = aggr.isDelegateExp())
             {
                 sapply = de.func;

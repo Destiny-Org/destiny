@@ -1,5 +1,5 @@
 import core.memory;
-void main()
+@system void main() // Destiny: raw GC.malloc (D's default)
 {
     auto collections = GC.profileStats().numCollections;
     // loop until we trigger a collection

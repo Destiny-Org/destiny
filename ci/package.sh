@@ -68,7 +68,8 @@ DFLAGS=-I%@P%/../import/druntime -I%@P%/../import/fate -L-L%@P%/../lib32 -L-rpat
 EOF
 fi
 
-cp "$ENGINE/LICENSE.txt" "$root/" 2>/dev/null || true
+# MPL-2.0 (LICENSE, NOTICE) and the Boost license of the original D files
+for f in LICENSE NOTICE LICENSE.txt; do cp "$ENGINE/$f" "$root/"; done
 
 tar -C "$stage" -cJf "$archive" "$name"
 echo "$archive"

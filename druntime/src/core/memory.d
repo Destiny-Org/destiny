@@ -288,7 +288,7 @@ extern(C):
      * such as during an out of memory condition.  This function is reentrant,
      * but `GC.enable()` must be called once for each call to `GC.disable()`.
      * Unlike the
-     * $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd, `@nogc` attribute),
+     * $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd, `@nogc` attribute),
      * `GC.disable()` halts
      * collections across all threads, yet still allows GC allocations.
      * Disabling collections eliminates GC pauses.
@@ -1111,7 +1111,7 @@ extern(C):
  * behaving as if it were never changed.
  *
  * See_Also:
- *     $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd, D's rules for purity),
+ *     $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd, D's rules for purity),
  *     which allow for memory allocation under specific circumstances.
  */
 void* pureMalloc()(size_t size) @trusted pure @nogc nothrow

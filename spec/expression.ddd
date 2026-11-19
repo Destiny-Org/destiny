@@ -704,7 +704,7 @@ $(GNAME EqualExpression):
     $(H5 $(LNAME2 struct_equality, Struct Equality))
 
     $(P For struct objects, equality means the result of the
-        $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/operatoroverloading.dd, `opEquals()` member function).
+        $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/operatoroverloading.ddd, `opEquals()` member function).
         If an `opEquals()` is not provided, one will be generated.
         Equality is defined as the logical product of all equality
         results of the corresponding object fields.

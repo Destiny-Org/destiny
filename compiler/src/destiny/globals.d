@@ -195,7 +195,7 @@ extern (C++) struct Param
 
     // Options for `-preview=/-revert=`
     FeatureState useDIP25 = FeatureState.enabled; // implement https://github.com/Destiny-Org/destiny
-    FeatureState useDIP1000 = FeatureState.enabled; // always on in Destiny; implement https://github.com/Destiny-Org/destiny/blob/main/spec/memory-safe-d.dd
+    FeatureState useDIP1000 = FeatureState.enabled; // always on in Destiny; implement https://github.com/Destiny-Org/destiny/blob/main/spec/memory-safe-d.ddd
     bool ehnogc;                 // use @nogc exception handling
     bool useDIP1021;             // implement DIP1021
     FeatureState fieldwise;      // do struct equality testing field-wise rather than by memcmp()
@@ -283,11 +283,15 @@ extern (C++) struct Param
     }
 }
 
-enum mars_ext = "d";        // for D source files
+// Destiny: Destiny source and interface files are .dd / .ddi; D's .d / .di
+// stay accepted, and Ddoc source files moved from .dd to .ddd.
+enum dest_ext     = "dd";   // for Destiny source files
+enum dest_hdr_ext = "ddi";  // for Destiny interface ('header') files
+enum mars_ext = "d";        // for D source files (accepted)
 enum doc_ext  = "html";     // for Ddoc generated files
 enum ddoc_ext = "ddoc";     // for Ddoc macro include files
-enum dd_ext   = "dd";       // for Ddoc source files
-enum hdr_ext  = "di";       // for D 'header' import files
+enum dd_ext   = "ddd";      // for Ddoc source files
+enum hdr_ext  = "di";       // for D 'header' import files (accepted)
 enum json_ext = "json";     // for JSON files
 enum map_ext  = "map";      // for .map files
 enum c_ext    = "c";        // for C source files

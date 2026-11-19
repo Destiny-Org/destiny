@@ -97,7 +97,7 @@ ubyte defaultTargetOSMajor() @safe
 /**
  * Add default `version` identifier for destiny, and set the
  * target platform in `params`.
- * https://github.com/Destiny-Org/destiny/blob/main/spec/version.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/version.ddd
  *
  * Needs to be run after all arguments parsing (command line, DFLAGS environment
  * variable and config file) in order to add final flags (such as `X86_64` or

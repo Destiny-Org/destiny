@@ -55,7 +55,7 @@ alias GCThreadInitFunction = void function(ThreadBase base) nothrow @nogc;
  * Note: The registry does not perform synchronization, as registration is
  *   assumed to be executed serially, as is the case for C constructors.
  * See_Also:
- *   $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/garbage.dd, Configuring the Garbage Collector)
+ *   $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/garbage.ddd, Configuring the Garbage Collector)
  */
 @system void registerGCFactory(string name, GCFactory factory,
         GCThreadInitFunction threadInit = null) nothrow @nogc

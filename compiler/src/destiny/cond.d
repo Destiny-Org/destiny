@@ -1,7 +1,7 @@
 /**
  * Evaluate compile-time conditionals, such as `static if` `version` and `debug`.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/version.dd, Conditional Compilation)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/version.ddd, Conditional Compilation)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)

@@ -1,0 +1,10 @@
+Destiny source files end in `.dd`
+
+Destiny source files use the `.dd` extension and interface files `.ddi`, so
+Destiny code is not mistaken for D. D's `.d` and `.di` files are still
+accepted, so D code and packages keep working; an import finds `mod.ddi`,
+`mod.dd`, `mod.di`, then `mod.d` (and the same for `package.*`).
+
+`-H` writes `mod.ddi` for a `.dd` file and `mod.di` for a `.d` file.
+
+Ddoc documentation source files, which used `.dd`, now use `.ddd`.

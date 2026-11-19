@@ -1174,8 +1174,9 @@ pure nothrow @safe /* @nogc */ unittest
         uint refs;
     }
 
-    import core.stdc.stdlib : malloc;
+    import core.stdc.stdlib : free, malloc;
     void[] buf = malloc(Node.sizeof)[0 .. Node.sizeof];
+    scope (exit) free(buf.ptr);
 
     const Node* n = emplace!(const Node)(buf, 42, null, 10);
     assert(n.payload == 42);
@@ -2628,6 +2629,15 @@ T _d_newThrowable(T)() @trusted
 
     assert(exc.refcount() == 1);
     assert(e.refcount() == 1);
+
+    // release them the way _d_newThrowable made them (refcount 1 is
+    // not a live reference count yet, so _d_delThrowable would reject them)
+    import core.memory : GC, pureFree;
+    foreach (t; [exc, e])
+    {
+        GC.removeRange(cast(void*) t);
+        pureFree(cast(void*) t);
+    }
 }
 
 /**

@@ -532,6 +532,14 @@ package
  *
  * Authors: Based on a design by Mikola Lysenko.
  */
+
+// valgrind stack registration for fiber stacks (etc/valgrind/valgrind.c)
+version (Windows) {} else
+{
+    private extern (C) uint _d_valgrind_stack_register(const void* start, const void* end) nothrow @nogc;
+    private extern (C) void _d_valgrind_stack_deregister(uint id) nothrow @nogc;
+}
+
 class Fiber : FiberBase
 {
     ///////////////////////////////////////////////////////////////////////////
@@ -717,6 +725,12 @@ protected:
     //
     // Allocate a new stack for this fiber.
     //
+    version (Windows) {} else
+    {
+        // valgrind's id for this fiber's stack (see etc/valgrind/valgrind.c)
+        private uint m_valgrindStack;
+    }
+
     @system final override void allocStack( size_t sz, size_t guardPageSize ) nothrow
     in
     {
@@ -852,6 +866,7 @@ protected:
                 void* guard = m_pmem + sz - guardPageSize;
             }
             m_size = sz;
+            m_valgrindStack = _d_valgrind_stack_register(m_pmem, m_pmem + sz);
 
             static if ( __traits( compiles, mmap ) )
             {
@@ -894,6 +909,7 @@ protected:
         {
             import core.sys.posix.sys.mman : mmap, munmap;
 
+            _d_valgrind_stack_deregister(m_valgrindStack);
             static if ( __traits( compiles, mmap ) )
             {
                 munmap( m_pmem, m_size );

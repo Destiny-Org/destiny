@@ -745,6 +745,7 @@ void runModuleFuncsRev(alias getfp)(const(immutable(ModuleInfo)*)[] modules)
         immutable(ModuleInfo*)[] tlsdtors=null)
     {
         auto mgroup = ModuleGroup(modules);
+        scope (exit) mgroup.free(); // the sorted ctor lists are malloc'ed
         mgroup.sortCtors(oncycle);
 
         // if we are expecting sort to throw, don't throw because of unexpected

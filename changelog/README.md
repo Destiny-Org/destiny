@@ -5,7 +5,7 @@ How to add a new changelog entry to the pending changelog?
 ==========================================================
 
 Create a new file in the `changelog` folder. It should begin with `destiny.`,
-`dmd.` or `druntime.` and end with `.dd`. The contents of the entry should look
+or `druntime.`, and end with `.ddd`. The contents of the entry should look
 similar to a git commit message. The first line represents the title of the
 change.  After an empty line follows the long description:
 
@@ -30,4 +30,4 @@ and of course you can link to other $(LINK2 https://github.com/Destiny-Org/desti
 ```
 
 The title can't contain links (it's already one).
-For more infos, see the [Ddoc spec](https://github.com/Destiny-Org/destiny/blob/main/spec/ddoc.dd).
+For more infos, see the [Ddoc spec](https://github.com/Destiny-Org/destiny/blob/main/spec/ddoc.ddd).

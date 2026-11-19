@@ -45,6 +45,12 @@ immutable ErrorFilter[] knownProblems = [
     ErrorFilter("core.stdc.math.float_t", "", "Hurd", 0, ""),
     ErrorFilter("core.stdc.signal.sig_atomic_t", "", "FreeBSD", 0, ""),
     ErrorFilter("core.stdc.stdio.FILE", "", "FreeBSD", 0, ""),
+    // Destiny: glibc 2.42 split the trailing padding of FILE (__pad5 and
+    // _unused2 became _prevchain, _total_written and a smaller _unused2).
+    // Size and every real field are unchanged, so druntime (2.42 layout)
+    // is correct with any glibc; only the padding member differs.
+    ErrorFilter("core.stdc.stdio.FILE", "_unused2", "linux", 0, "glibc 2.42 padding split"),
+    ErrorFilter("core.stdc.stdio._IO_FILE", "_unused2", "linux", 0, "glibc 2.42 padding split"),
     ErrorFilter("core.stdc.stdio.FILE", "", "Hurd", 0, ""),
     ErrorFilter("core.stdc.stdio._IO_FILE", "", "Hurd", 0, ""),
     ErrorFilter("core.stdc.stdio.__sFILE", "", "FreeBSD", 0, ""),

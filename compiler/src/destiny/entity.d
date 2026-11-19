@@ -1,7 +1,7 @@
 /**
  * Defines the named entities to support the "\\&amp;Entity;" escape sequence for strings / character literals.
  *
- * Specification $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/entity.dd, Named Character Entities)
+ * Specification $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/entity.ddd, Named Character Entities)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)

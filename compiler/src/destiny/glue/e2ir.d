@@ -1671,7 +1671,7 @@ elem* toElem(Expression e, ref IRState irs)
 
     elem* visitAssert(AssertExp ae)
     {
-        // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+        // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
         //printf("AssertExp.toElem() %s\n", ae.toChars());
         elem* e;
         if (irs.params.useAssert != CHECKENABLE.on)
@@ -1983,7 +1983,7 @@ elem* toElem(Expression e, ref IRState irs)
     }
 
     /***************************************
-     * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
      */
 
     elem* visitCat(CatExp ce)

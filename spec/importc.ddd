@@ -12,7 +12,7 @@ $(HEADERNAV_TOC)
     as a C compiler to compile and link 100% C programs.
     )
 
-    $(NOTE ImportC and $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/betterc.dd, BetterC) are very different.
+    $(NOTE ImportC and $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/betterc.ddd, BetterC) are very different.
     ImportC is an actual C compiler. BetterC is a subset of Destiny that relies only on the
     existence of the C Standard library. BetterC code can be linked with ImportC code, too.)
 
@@ -650,11 +650,11 @@ $(H2 $(LNAME2 extensions, Extensions))
     $(P The `asm` keyword may be used to embed assembler instructions, its
     syntax is implementation defined. The Digital Mars D compiler only supports
     the dialect of inline assembly as described in the documentation of the
-    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd, Destiny x86 Inline Assembler).)
+    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.ddd, Destiny x86 Inline Assembler).)
 
     $(P `asm(mangleName)` in a function or variable declaration may be used to specify the
     mangle name for a symbol. Its use is analogous to
-    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/pragma.dd, pragma mangle).)
+    $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/pragma.ddd, pragma mangle).)
 
 $(CCODE
 char **myenviron asm("environ") = 0;

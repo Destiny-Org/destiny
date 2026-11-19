@@ -1,6 +1,6 @@
 /**
  * Inline assembler implementation for Destiny.
- * https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd
+ * https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.ddd
  *
  * Copyright:   Copyright (c) 1992-1999 by Symantec
  *              Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors

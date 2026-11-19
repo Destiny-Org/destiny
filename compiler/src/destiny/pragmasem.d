@@ -1,7 +1,7 @@
 /**
  * Does semantic analysis for pragmas.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/pragma.dd, Pragmas)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/pragma.ddd, Pragmas)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
@@ -280,7 +280,7 @@ bool pragmaStmtSemantic(PragmaStatement ps, Scope* sc)
         }
     }
 
-    /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+    /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
      */
     // Should be merged with PragmaDeclaration
 

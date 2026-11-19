@@ -2759,7 +2759,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
                     const loc = (s ? s : dsym).loc;
                     eSink.errorSupplemental(loc, "required by type `%s`", dsym.type.toChars());
                 }
-                eSink.errorSupplemental(dsym.loc, "see https://github.com/Destiny-Org/destiny/blob/main/spec/struct.dd");
+                eSink.errorSupplemental(dsym.loc, "see https://github.com/Destiny-Org/destiny/blob/main/spec/struct.ddd");
                 eSink.errorSupplemental(dsym.loc, "perhaps declare a variable with pointer type `%s*` instead", dsym.type.toChars());
 
                 // Flag variable as error to avoid invalid error messages due to unknown size
@@ -3910,7 +3910,7 @@ private extern(C++) final class DsymbolSemanticVisitor : Visitor
     }
 
     /***********************************************************
-     * https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/module.ddd
      */
     override void visit(MixinDeclaration cd)
     {

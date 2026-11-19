@@ -43,16 +43,16 @@ jobs:
       run: pre-commit run --show-diff-on-failure --color=always --all-files
     - name: Check changelog entries
       run: |
-        check_prefix="$(find changelog -type f -name '*\.dd' -a ! -name 'destiny\.*' -a ! -name 'druntime\.*')"
+        check_prefix="$(find changelog -type f -name '*\.ddd' -a ! -name 'destiny\.*' -a ! -name 'druntime\.*')"
         if [ ! -z "${check_prefix}" ]; then
           echo 'All changelog entries must begin with `destiny.` or `druntime.`'
           echo 'Found:'
           echo "${check_prefix}"
           exit 1
         fi
-        check_ext="$(find changelog -type f ! -name 'README\.md' -a ! -name '*\.dd')"
+        check_ext="$(find changelog -type f ! -name 'README\.md' -a ! -name '*\.ddd')"
         if [ ! -z "${check_ext}" ]; then
-          echo 'All changelog entries must end with `.dd`'
+          echo 'All changelog entries must end with `.ddd`'
           echo 'Found:'
           echo "${check_ext}"
           exit 1

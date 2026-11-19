@@ -1,7 +1,7 @@
 /**
  * Does semantic analysis for statements.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd, Statements)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd, Statements)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
@@ -234,7 +234,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitExp(ExpStatement s)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         if (!s.exp)
@@ -278,7 +278,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitMixin(MixinStatement cs)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         //printf("MixinStatement::semantic() %s\n", exp.toChars());
@@ -616,7 +616,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
     void visitWhile(WhileStatement ws)
     {
         /* Rewrite as a for(;condition;) loop
-         * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
         Expression cond = ws.condition;
         Statement _body = ws._body;
@@ -642,7 +642,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitDo(DoStatement ds)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
         const inLoopSave = sc.inLoop;
         sc.inLoop = true;
@@ -680,7 +680,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitFor(ForStatement fs)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
         //printf("ForStatement::semantic %s\n", fs.toChars());
 
@@ -775,7 +775,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitForeach(ForeachStatement fs)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         //printf("ForeachStatement::semantic() %p\n", fs);
@@ -1553,7 +1553,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitForeachRange(ForeachRangeStatement fs)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         //printf("ForeachRangeStatement::semantic() %p\n", fs);
@@ -1757,7 +1757,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitIf(IfStatement ifs)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         // check in syntax level
@@ -1907,7 +1907,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitPragma(PragmaStatement ps)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
         import destiny.pragmasem : pragmaStmtSemantic;
         if (!pragmaStmtSemantic(ps, sc))
@@ -1925,7 +1925,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitSwitch(SwitchStatement ss)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         //printf("SwitchStatement::semantic(%p)\n", ss);
@@ -2574,7 +2574,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitGotoDefault(GotoDefaultStatement gds)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         gds.sw = sc.switchStatement;
@@ -2593,7 +2593,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitGotoCase(GotoCaseStatement gcs)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         if (!sc.switchStatement)
@@ -2617,7 +2617,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitReturn(ReturnStatement rs)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         //printf("ReturnStatement.dsymbolSemantic() %s\n", toChars(rs));
@@ -2862,7 +2862,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
             {
                 /* Determine "refness" of function return:
                  * if it's an lvalue, return by ref, else return by value
-                 * https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+                 * https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
                  */
 
                 void turnOffRef(scope void delegate() supplemental)
@@ -3059,7 +3059,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitBreak(BreakStatement bs)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         //printf("BreakStatement::semantic()\n");
@@ -3137,7 +3137,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitContinue(ContinueStatement cs)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         //printf("ContinueStatement::semantic() %p\n", cs);
@@ -3224,7 +3224,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitSynchronized(SynchronizedStatement ss)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         if (ss.exp)
@@ -3347,7 +3347,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitWith(WithStatement ws)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         ScopeDsymbol sym;
@@ -3484,7 +3484,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
         result = ws;
     }
 
-    // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+    // https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
     void visitTryCatch(TryCatchStatement tcs)
     {
         //printf("TryCatchStatement.semantic()\n");
@@ -3636,7 +3636,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitScopeGuard(ScopeGuardStatement oss)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         if (oss.tok != TOK.onScopeExit)
@@ -3686,7 +3686,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitThrow(ThrowStatement ts)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         //printf("ThrowStatement::semantic()\n");
@@ -3717,7 +3717,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitGoto(GotoStatement gs)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         //printf("GotoStatement::semantic()\n");
@@ -3810,7 +3810,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitAsm(AsmStatement s)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/statement.ddd
          */
 
         //printf("AsmStatement()::semantic()\n");
@@ -3871,7 +3871,7 @@ Statement statementSemanticVisit(Statement s, Scope* sc)
 
     void visitImport(ImportStatement imps)
     {
-        /* https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
+        /* https://github.com/Destiny-Org/destiny/blob/main/spec/module.ddd
          */
 
         foreach (i; 0 .. imps.imports.length)

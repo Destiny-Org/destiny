@@ -1,7 +1,7 @@
 /**
  * Inline assembler for the Destiny programming language compiler.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd, Inline Assembler)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.ddd, Inline Assembler)
  *
  *              Copyright (C) 2018-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)

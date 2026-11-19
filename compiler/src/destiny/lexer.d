@@ -1,7 +1,7 @@
 /**
  * Implements the lexical analyzer, which converts source code into lexical tokens.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd, Lexical)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/lex.ddd, Lexical)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
@@ -1344,7 +1344,7 @@ class Lexer
 
     /********
      * Parse the given string literal escape sequence into a single character.
-     * D https://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd
+     * D https://github.com/Destiny-Org/destiny/blob/main/spec/lex.ddd
      * C11 6.4.4.4
      * Params:
      *  loc = location to use for error messages
@@ -2109,7 +2109,7 @@ class Lexer
     Params:
         t = the token to set the resulting string to
     * References:
-    *   D https://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd
+    *   D https://github.com/Destiny-Org/destiny/blob/main/spec/lex.ddd
     *   ImportC C11 6.4.5
     */
     private void escapeStringConstant(Token* t, bool supportInterpolation = false)
@@ -2228,7 +2228,7 @@ class Lexer
 
     /**************************************
      * Reference:
-     *    https://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd
+     *    https://github.com/Destiny-Org/destiny/blob/main/spec/lex.ddd
      */
     private TOK charConstant(Token* t)
     {
@@ -3165,7 +3165,7 @@ class Lexer
                                 TOK.float80Literal: "`real` for the current target".ptr][result];
             error(scanloc, "number `%s%s` is not representable as a %s", sbufptr, suffix, type);
             const char* extra = result == TOK.float64Literal ? "`real` literals can be written using the `L` suffix. " : "";
-            eSink.errorSupplemental(scanloc, "%shttps://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd", extra);
+            eSink.errorSupplemental(scanloc, "%shttps://github.com/Destiny-Org/destiny/blob/main/spec/lex.ddd", extra);
         }
         debug
         {
@@ -3231,7 +3231,7 @@ class Lexer
      * Returns:
      *  true if the special token sequence was handled
      * References:
-     *  https://github.com/Destiny-Org/destiny/blob/main/spec/lex.dd
+     *  https://github.com/Destiny-Org/destiny/blob/main/spec/lex.ddd
      */
     bool parseSpecialTokenSequence() @system
     {

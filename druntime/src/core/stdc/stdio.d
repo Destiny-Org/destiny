@@ -415,7 +415,7 @@ else version (CRuntime_Glibc)
         char[1] _shortbuf = 0;
         void*   _lock;
 
-        ptrdiff_t _offset;
+        long    _offset;    // Destiny: __off64_t, 8 bytes on 32-bit too
 
         /*_IO_codecvt*/ void* _codecvt;
         /*_IO_wide_data*/ void* _wide_data;

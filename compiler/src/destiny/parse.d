@@ -1,7 +1,7 @@
 /**
  * Takes a token stream from the lexer, and parses it into an abstract syntax tree.
  *
- * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/grammar.dd, D Grammar)
+ * Specification: $(LINK2 https://github.com/Destiny-Org/destiny/blob/main/spec/grammar.ddd, D Grammar)
  *
  * Copyright:   Copyright (C) 1999-2026 by The D Language Foundation, All Rights Reserved; Copyright (C) 2026 Destiny contributors
  * Authors:     $(LINK2 https://www.digitalmars.com, Walter Bright)
@@ -131,7 +131,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
         nextToken();
 
         /* parse ModuleFullyQualifiedName
-         * https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/module.ddd
          */
 
         if (token.value != TOK.identifier)
@@ -218,9 +218,9 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
      * Parse the ModuleAttributes preceding a module declaration.
      * ModuleDeclaration:
      *    ModuleAttributes(opt) module ModuleFullyQualifiedName ;
-     * https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/module.ddd
      * Params:
-     *  msg = set to the AssignExpression from DeprecatedAttribute https://github.com/Destiny-Org/destiny/blob/main/spec/module.dd
+     *  msg = set to the AssignExpression from DeprecatedAttribute https://github.com/Destiny-Org/destiny/blob/main/spec/module.ddd
      *  isdeprecated = set to true if a DeprecatedAttribute is seen
      */
     private
@@ -1671,7 +1671,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
                     stc |= STC.ref_ | STC.returnRef;
                     nextToken();            // consume it
                 }
-                else if (prefix & STC.ref_) // https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+                else if (prefix & STC.ref_) // https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
                     stc |= STC.returnRef;   // treat member function `ref int fp() return;` as `int fp() return ref;`
                 break;
             }
@@ -4027,7 +4027,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
             break;
 
         case TOK.mixin_:
-            // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+            // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
             loc = token.loc;
             nextToken();
             if (token.value != TOK.leftParenthesis)
@@ -4250,7 +4250,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
      * Returns:
      *      t with the suffixes added
      * See_Also:
-     *      https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
+     *      https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.ddd
      */
     private AST.Type parseTypeSuffixes(AST.Type t)
     {
@@ -4352,7 +4352,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
      *  pudas        = any user defined attributes seen so far. Merged with any more found
      * Returns:
      *  type declared
-     * Reference: https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
+     * Reference: https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.ddd
      */
     private AST.Type parseDeclarator(AST.Type t, ref int palt, Identifier* pident,
         AST.TemplateParameters** tpl = null, STC storageClass = STC.none,
@@ -5156,7 +5156,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
      * Parse AliasReassignment:
      *   identifier = type;
      * Parser is sitting on the identifier.
-     * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.ddd
      * Params:
      *  comment = if not null, comment to attach to symbol
      * Returns:
@@ -5180,7 +5180,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
     /********************************
      * Parse declarations that start with `alias`
      * Parser is sitting on the `alias`.
-     * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.ddd
      * Params:
      *  comment = if not null, comment to attach to symbol
      * Returns:
@@ -5199,7 +5199,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
 
         /* Look for:
          *   alias Identifier this;
-         * https://github.com/Destiny-Org/destiny/blob/main/spec/class.dd
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/class.ddd
          */
         if (token.value == TOK.identifier && peekNext() == TOK.this_)
         {
@@ -5241,7 +5241,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
         /* Look for:
          *  alias identifier = type;
          *  alias identifier(...) = type;
-         * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.dd
+         * https://github.com/Destiny-Org/destiny/blob/main/spec/declaration.ddd
          */
         if (token.value == TOK.identifier && hasOptionalParensThen(peek(&token), TOK.assign))
         {
@@ -7090,9 +7090,9 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
                 /* upstream issue 16088
                  *
                  * At this point it can either be an
-                 * https://github.com/Destiny-Org/destiny/blob/main/spec/grammar.dd
+                 * https://github.com/Destiny-Org/destiny/blob/main/spec/grammar.ddd
                  * or an
-                 * https://github.com/Destiny-Org/destiny/blob/main/spec/grammar.dd
+                 * https://github.com/Destiny-Org/destiny/blob/main/spec/grammar.ddd
                  * See if the next token after `import` is a `(`; if so,
                  * then it is an import expression.
                  */
@@ -7423,7 +7423,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
     /********************
      * Parse inline assembler block.
      * Enters with token on the `asm`.
-     * https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.dd
+     * https://github.com/Destiny-Org/destiny/blob/main/spec/iasm.ddd
      *
      * AsmStatement:
      *   asm FunctionAttributes(opt) { AsmInstructionListopt }
@@ -8924,7 +8924,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
             }
         case TOK.assert_:
             {
-                // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+                // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
                 AST.Expression msg = null;
 
                 nextToken();
@@ -8946,7 +8946,7 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
             }
         case TOK.mixin_:
             {
-                // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+                // https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
                 nextToken();
                 if (token.value != TOK.leftParenthesis)
                     error(token.loc, "found `%s` when expecting `%s` following `mixin`", token.toChars(), Token.toChars(TOK.leftParenthesis));
@@ -9927,10 +9927,10 @@ class Parser(AST, Lexer = destiny.lexer.Lexer) : Lexer
      * Params:
      *    thisexp = If not null, it is the `this` reference for the creation
      *              of an inner class.
-     *              https://github.com/Destiny-Org/destiny/blob/main/spec/class.dd
-     *              https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+     *              https://github.com/Destiny-Org/destiny/blob/main/spec/class.ddd
+     *              https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
      *              If null, then it is a NewExpression.
-     *              https://github.com/Destiny-Org/destiny/blob/main/spec/expression.dd
+     *              https://github.com/Destiny-Org/destiny/blob/main/spec/expression.ddd
      * Returns:
      *   NewExpression
      */

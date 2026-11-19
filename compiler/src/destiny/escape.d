@@ -1043,7 +1043,7 @@ bool checkNewEscape(ref Scope sc, Expression e, bool gag)
         if (!v.isReference())
             return;
 
-        // https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+        // https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
         if (p == sc.func)
         {
             //printf("escaping reference to local ref variable %s\n", v.toChars());
@@ -1345,7 +1345,7 @@ private bool checkReturnEscapeImpl(ref Scope sc, Expression e, bool refs, bool g
             }
             else
             {
-                // https://github.com/Destiny-Org/destiny/blob/main/spec/function.dd
+                // https://github.com/Destiny-Org/destiny/blob/main/spec/function.ddd
                 // Only look for errors if in module listed on command line
                 if (p == sc.func)
                 {

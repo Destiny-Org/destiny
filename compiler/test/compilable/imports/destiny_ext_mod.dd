@@ -1,0 +1,4 @@
+module imports.destiny_ext_mod;
+
+/// A module in a Destiny `.dd` file, imported by compilable/destiny_ext.d
+int answer() @safe pure nothrow @nogc { return 42; }

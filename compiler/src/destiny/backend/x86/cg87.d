@@ -108,9 +108,12 @@ private void getlvalue87(ref CGstate cg, ref CodeBuilder cdb, ref code pcs,elem*
     getlvalue(cg, cdb, pcs, e, keepmsk);
     if (ADDFWAIT())
         pcs.Iflags |= CF.wait;
-    if (I32)
+    // x87 memory operands take no operand-size prefix or REX.W: the opcode
+    // alone gives the size (e.g. DF /0 is FILD m16), and a stray 0x66 makes
+    // the encoding invalid for tools such as valgrind
+    if (I32 || I64)
         pcs.Iflags &= ~CF.opsize;
-    else if (I64)
+    if (I64)
         pcs.Irex &= ~REX_W;
 }
 

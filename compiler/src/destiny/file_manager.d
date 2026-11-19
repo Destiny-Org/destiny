@@ -16,17 +16,20 @@ import destiny.root.stringtable : StringTable;
 import destiny.root.file : File;
 import destiny.root.filename : FileName, isDirSeparator;
 import destiny.root.string : toDString;
-import destiny.globals : mars_ext, hdr_ext, i_ext, h_ext, c_ext, ImportPathInfo;
+import destiny.globals : dest_ext, dest_hdr_ext, mars_ext, hdr_ext, i_ext, h_ext, c_ext, ImportPathInfo;
 import destiny.identifier;
 import destiny.location;
 
+enum package_dd  = "package." ~ dest_ext;
+enum package_ddi = "package." ~ dest_hdr_ext;
 enum package_d  = "package." ~ mars_ext;
 enum package_di = "package." ~ hdr_ext;
 
 /// Returns: whether a file with `name` is a special "package.d" module
 bool isPackageFileName(scope FileName fileName) nothrow
 {
-    return FileName.equals(fileName.name, package_d) || FileName.equals(fileName.name, package_di);
+    return FileName.equals(fileName.name, package_dd) || FileName.equals(fileName.name, package_ddi) ||
+        FileName.equals(fileName.name, package_d) || FileName.equals(fileName.name, package_di);
 }
 
 // A path stack that allows one to go up and down the path using directory
@@ -176,7 +179,10 @@ nothrow:
         whichPathFoundThis = -1;
 
         // List of extensions to match, in order of precedence.
-        const(char)[][2] extensions = [
+        // Destiny: .ddi, .dd (Destiny), then .di, .d (D)
+        const(char)[][4] extensions = [
+            FileName.forceExt(filename, dest_hdr_ext),
+            FileName.forceExt(filename, dest_ext),
             FileName.forceExt(filename, hdr_ext),
             FileName.forceExt(filename, mars_ext),
         ];
@@ -232,15 +238,14 @@ nothrow:
                  * Therefore, the result should be: filename/package.d
                  * iff filename/package.d is a file
                  */
-                const ni = FileName.combine(n, package_di);
-                if (FileName.exists(ni) == 1)
-                    return ni;
-                FileName.free(ni.ptr);
-
-                const nd = FileName.combine(n, package_d);
-                if (FileName.exists(nd) == 1)
-                    return nd;
-                FileName.free(nd.ptr);
+                // package.ddi, package.dd (Destiny), then package.di, package.d (D)
+                foreach (pkg; [package_ddi, package_dd, package_di, package_d])
+                {
+                    const np = FileName.combine(n, pkg);
+                    if (FileName.exists(np) == 1)
+                        return np;
+                    FileName.free(np.ptr);
+                }
             }
 
             /* Search for any file with importC extensions after all attempts
