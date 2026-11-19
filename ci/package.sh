@@ -54,16 +54,17 @@ if [ "$MODEL" = 64 ] && [ -f "$FATE_BUILD32/libfate.a" ]; then
     rm -f "$root"/lib32/*.o
 fi
 
-# paths are relative to the compiler (%@P%), so the folder works anywhere
+# paths are relative to the compiler (%@P%), so the folder works anywhere;
+# -rpath lets programs linked with -defaultlib=libfate.so find it at run time
 cat > "$root/bin/destiny.conf" <<EOF
 [Environment$MODEL]
-DFLAGS=-I%@P%/../import/druntime -I%@P%/../import/fate -L-L%@P%/../lib -L--export-dynamic -fPIC
+DFLAGS=-I%@P%/../import/druntime -I%@P%/../import/fate -L-L%@P%/../lib -L-rpath=%@P%/../lib -L--export-dynamic -fPIC
 EOF
 if [ -d "$root/lib32" ]; then
     cat >> "$root/bin/destiny.conf" <<EOF
 
 [Environment32]
-DFLAGS=-I%@P%/../import/druntime -I%@P%/../import/fate -L-L%@P%/../lib32 -L--export-dynamic -fPIC
+DFLAGS=-I%@P%/../import/druntime -I%@P%/../import/fate -L-L%@P%/../lib32 -L-rpath=%@P%/../lib32 -L--export-dynamic -fPIC
 EOF
 fi
 

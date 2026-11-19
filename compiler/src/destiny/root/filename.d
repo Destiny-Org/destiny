@@ -575,10 +575,23 @@ nothrow:
                 // Make sure we mem.xmalloc thing - OutBuffer uses plain malloc
                 // Failure to do so would result in random memory corruption
                 // when using the bump allocator.
-                if (sink(xarraydup(buf[]).ptr))
+                const piece = xarraydup(buf[]).ptr;
+                buf.setsize(0); // start the next piece empty
+                if (sink(piece))
                     break;
             }
         } while (c);
+    }
+
+    version (Posix) unittest
+    {
+        // each piece starts empty (a PATH lookup once only worked for its first entry)
+        Strings pieces;
+        appendSplitPath("/a/bin:/b/bin: /c", pieces);
+        assert(pieces.length == 3);
+        assert(pieces[0].toDString == "/a/bin");
+        assert(pieces[1].toDString == "/b/bin");
+        assert(pieces[2].toDString == "/c");
     }
 
     /**

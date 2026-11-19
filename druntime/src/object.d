@@ -2430,7 +2430,10 @@ const:
         }
         if (flags & MIunitTests)
         {
-            p += (size_t.sizeof - cast(size_t)p % size_t.sizeof) % size_t.sizeof;
+            // The compiler pads relative to the start of this record, which
+            // need not be pointer-aligned itself (it is not on x86).
+            const offset = cast(size_t)(p - cast(void*)&this);
+            p += (size_t.sizeof - offset % size_t.sizeof) % size_t.sizeof;
             if (flag == MIunitTests) return p;
         }
         assert(0);
