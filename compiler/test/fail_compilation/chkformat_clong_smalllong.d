@@ -18,6 +18,7 @@ fail_compilation/chkformat_clong_smalllong.d(22):        `char*` may be formatte
 */
 
 import core.stdc.stdio;
+@system: // Destiny: calls C printf (D's default)
 #line 20
 void test_lu_ulong()    { printf("%lu", ulong.init); }
 void test_lu_charstar() { char* p; printf("%lu", p); }

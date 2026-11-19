@@ -103,7 +103,7 @@ struct A10 { ushort a:8; ubyte b; };             // 2 2
 struct A11 { ubyte a; int b:5, c:11, :0, d:8;    // 12 4
              struct { int ee:8; } };
 
-int main()
+@system int main() // Destiny: calls C printf (D's default)
 {
     printf("T0 = %d %d | 1 1\n", cast(int)T0.sizeof, cast(int)T0.alignof);
     printf("T1 = %d %d | 2 2\n", cast(int)T1.sizeof, cast(int)T1.alignof);

@@ -1,6 +1,8 @@
 // no debug info (adds stack frame), no optimizations (might remove truncation)
 // PERMUTE_ARGS:
 
+@system: // Destiny: reads machine code through a function pointer (D's default)
+
 enum M_PI_L        = 0x1.921fb54442d1846ap+1L;       // 3.14159 fldpi
 enum M_LOG2T_L     = 0x1.a934f0979a3715fcp+1L;       // 3.32193 fldl2t
 enum M_LOG2E_L     = 0x1.71547652b82fe178p+0L;       // 1.4427 fldl2e
