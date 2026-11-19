@@ -46,6 +46,14 @@ jobs:
     - name: Build compiler, druntime and Fate (release)
       run: ci/run.sh build 0
 
+    - name: Build 32-bit druntime and Fate (for -m32 and the x86 CI jobs)
+      run: |
+        set -eux
+        sudo apt-get update && sudo apt-get install -y g++-multilib
+        destiny=$PWD/generated/linux/release/64/destiny
+        make -j$N -C druntime MODEL=32 DMD=$destiny ENABLE_RELEASE=1
+        make -j$N -C ../fate MODEL=32 DMD=$destiny DMD_DIR=$PWD ENABLE_RELEASE=1
+
     - name: Package
       id: package
       run: echo "archive=$(ci/package.sh dist)" >> $GITHUB_OUTPUT

@@ -201,7 +201,11 @@ jobs:
     #        Running the test suite        #
     ########################################
     - name: Run compiler C++ test suite
-      run: ./destiny_engine/compiler/test/run.d --environment runnable_cxx dshell/dll_cxx.d
+      run: |
+        set -eux
+        cd destiny_engine
+        destiny -revert=safedefault -g -i -Icompiler/test -release compiler/test/run.d -ofgenerated/run
+        generated/run --environment runnable_cxx dshell/dll_cxx.d
 
     - name: Run druntime C++ tests
       run: make -C destiny_engine/druntime -j$N test/stdcpp/.run

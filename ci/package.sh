@@ -5,7 +5,8 @@
 #   └── destiny64/
 #       ├── bin/destiny, bin/destiny.conf
 #       ├── import/druntime/, import/fate/
-#       └── lib/  (druntime and Fate libraries)
+#       ├── lib/    (64-bit druntime and Fate libraries)
+#       └── lib32/  (32-bit libraries, when built with MODEL=32 too)
 #
 # Usage: ci/package.sh [OUT_DIR]   (run from destiny_engine, after building
 # the compiler, druntime and Fate with ENABLE_RELEASE=1)
@@ -45,11 +46,26 @@ cp -r "$FATE/fate/sys" "$root/import/fate/fate/"
 cp -P "$FATE_BUILD"/libfate.* "$root/lib/"
 rm -f "$root"/lib/*.o
 
+# 32-bit libraries, so the package can build 32-bit programs (-m32)
+FATE_BUILD32=$FATE/generated/$OS_NAME/release/32
+if [ "$MODEL" = 64 ] && [ -f "$FATE_BUILD32/libfate.a" ]; then
+    mkdir -p "$root/lib32"
+    cp -P "$FATE_BUILD32"/libfate.* "$root/lib32/"
+    rm -f "$root"/lib32/*.o
+fi
+
 # paths are relative to the compiler (%@P%), so the folder works anywhere
 cat > "$root/bin/destiny.conf" <<EOF
 [Environment$MODEL]
 DFLAGS=-I%@P%/../import/druntime -I%@P%/../import/fate -L-L%@P%/../lib -L--export-dynamic -fPIC
 EOF
+if [ -d "$root/lib32" ]; then
+    cat >> "$root/bin/destiny.conf" <<EOF
+
+[Environment32]
+DFLAGS=-I%@P%/../import/druntime -I%@P%/../import/fate -L-L%@P%/../lib32 -L--export-dynamic -fPIC
+EOF
+fi
 
 cp "$ENGINE/LICENSE.txt" "$root/" 2>/dev/null || true
 

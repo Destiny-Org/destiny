@@ -201,4 +201,5 @@ jobs:
       - name: Test AArch64 cross-compile and run via QEMU
         run: |
           source ~/host-compilers/*/activate
-          compiler/test/run.d arm
+          destiny -revert=safedefault -g -i -Icompiler/test -release compiler/test/run.d -ofgenerated/run
+          generated/run arm

@@ -163,7 +163,7 @@ Options:
         args = ["all"];
 
     // move any long-running tests to the front
-    static size_t sortKey(in ref Target target)
+    static size_t sortKey(scope const ref Target target)
     {
         const name = target.normalizedTestName;
         if (name.startsWith("runnable"))
@@ -314,6 +314,7 @@ void ensureToolsExists(const string[string] env, const TestTool[] tools ...)
         {
             buildCommand = [
                 hostDC,
+                "-revert=safedefault", // the tools are written for D's @system default
                 "-m"~env["MODEL"],
                 "-of"~targetBin,
                 sourceFile
@@ -450,7 +451,7 @@ Target[] predefinedTargets(string[] targets)
 
             case "arm":
                 newTargets ~= Target("",
-                    [hostDC, "-i", "-I" ~ scriptDir, "-run", testPath(buildPath("dshell", "arm_cross.d"))]);
+                    [hostDC, "-revert=safedefault", "-i", "-I" ~ scriptDir, "-run", testPath(buildPath("dshell", "arm_cross.d"))]);
                 break;
 
             case "all":

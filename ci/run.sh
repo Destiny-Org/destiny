@@ -126,7 +126,7 @@ test_destiny() {
         rm compiler/test/runnable/gdb4181.d
     fi
 
-    $build_path/destiny -g -i -Icompiler/test -release compiler/test/run.d -ofgenerated/run
+    $build_path/destiny -revert=safedefault -g -i -Icompiler/test -release compiler/test/run.d -ofgenerated/run
     generated/run -j$N --environment MODEL=$MODEL HOST_DC=$build_path/destiny "${args[@]}"
 }
 

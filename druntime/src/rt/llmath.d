@@ -11,6 +11,7 @@
 
 module rt.llmath;
 
+@system: // Destiny: 32-bit long-math helpers in inline asm (D's default)
 extern (C):
 
 
